@@ -47,11 +47,12 @@ npm test              = 内容校验 + 评估 + E2E
 
 ## 分支与协作
 
-远程仓库：[iamshaynez/sanguo-tianxia-weizhu](https://github.com/iamshaynez/sanguo-tianxia-weizhu)。
+完整开发、提交、测试和 PR 规范见 [CONTRIBUTING.md](CONTRIBUTING.md)。远程仓库：[iamshaynez/sanguo-tianxia-weizhu](https://github.com/iamshaynez/sanguo-tianxia-weizhu)。
 
-- `main`：稳定分支；`dev`：日常集成分支，两者从同一初始提交建立。
-- 功能开发从 `dev` 切功能分支，先通过 PR 合入 `dev`；发布时再通过 PR 将 `dev` 合入 `main`。
-- `main` 与 `dev` 均启用保护：禁止直接推送、删除和强制推送，只允许 PR 合并；所需审核人数为 0。
+- `main` 为稳定分支，`dev` 为日常集成分支。
+- 功能开发从 `dev` 切专题分支，先通过 PR 合入 `dev`；发布时再通过 PR 将 `dev` 合入 `main`。
+- 两个分支均禁止直接推送、删除和强制推送，只允许 PR 合并；所需审核人数为 0，但仍须完成自审、完整测试和 CI。
+- PR 会自动运行 `.github/workflows/ci.yml` 中的完整 `npm test`；UI 改动还须附桌面、手机及涉及布局的实际截图。
 
 测试哲学与 TDD 工作流见 [TESTING.md](TESTING.md):只为用户可见行为写 E2E,不写内部实现的单元测试;AI 行为改动必须先过评估套件;章节是数据,数据有测试。
 
