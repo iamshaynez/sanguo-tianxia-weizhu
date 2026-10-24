@@ -7,6 +7,7 @@
     "test": "npm run lint:content && npm run eval:ai && npm run test:e2e",
     "lint:content": "node tests/content/chapters.lint.mjs",
     "eval:ai": "node tests/ai-eval/run.mjs",
+    "gen:preflop": "node scripts/generate-preflop-table.mjs",
     "test:e2e": "playwright test"
   },
   "keywords": [],
