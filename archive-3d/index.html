@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>暮色牌局 · Demo</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+<script type="importmap">
+{
+  "imports": {
+    "three": "./node_modules/three/build/three.module.js",
+    "three/addons/": "./node_modules/three/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="app"></div>
+
+<div id="intro">
+  <div class="intro-inner">
+    <h1>暮色牌局</h1>
+    <p class="sub">DEMO · 黄昏赌桌 · 单挑</p>
+    <p class="story">你把名字输给了庄家。<br>今夜，一手一手，赢回来。</p>
+    <button id="startBtn">坐 下 ， 开 局</button>
+    <p class="hint">移动鼠标环视牌桌 · 点击自己的手牌可以拿起来看</p>
+  </div>
+</div>
+
+<div id="hud" class="hidden">
+  <div id="oppPlate" class="plate">
+    <span class="pname">收债人 · 无名氏</span>
+    <span class="pstack" id="oppStack">1000</span>
+    <span id="tiltDots" title="情绪"><i></i><i></i><i></i></span>
+  </div>
+  <div id="youPlate" class="plate">
+    <span class="pname">你</span>
+    <span class="pstack" id="youStack">1000</span>
+  </div>
+  <div id="potLabel">底 池 <b id="potNum">0</b></div>
+  <div id="blindLabel">盲注 10 / 20</div>
+  <div id="handLabel">当前牌型 —</div>
+  <div id="luckLabel"><span class="dot"></span>运势 · 平</div>
+  <div id="seedLabel">种子 <b id="seedVal">—</b> <a id="verifyBtn">验牌</a></div>
+
+  <div id="actions" class="hidden">
+    <button data-act="fold">弃牌</button>
+    <button data-act="check">过牌</button>
+    <button data-act="call">跟注</button>
+    <button data-act="raise">加注</button>
+    <button data-act="allin">全压</button>
+  </div>
+  <div id="raiseOpts" class="hidden"></div>
+  <button id="tauntBtn" disabled>攻 心</button>
+
+  <div id="bubble" class="hidden"></div>
+  <div id="banner" class="hidden"><div id="bannerMain"></div><div id="bannerSub"></div></div>
+  <div id="codex"><h3>破绽图鉴</h3><ul id="codexList"><li class="empty">尚无记录 —— 盯住他的手。</li></ul></div>
+
+  <div id="seedModal" class="hidden">
+    <h3>本手牌序验证</h3>
+    <p class="seedline">种子 <b id="modalSeed">—</b> · 牌堆自上而下：</p>
+    <div id="deckOrder"></div>
+    <p class="seedline dim">同一枚种子，永远洗出同一副牌。庄家不作弊。</p>
+    <button id="closeSeed">关 闭</button>
+  </div>
+
+  <div id="endOverlay" class="hidden">
+    <h2 id="endTitle"></h2>
+    <p id="endSub"></p>
+    <button id="restartBtn">再 来 一 局</button>
+  </div>
+
+  <div id="vignette"></div>
+</div>
+
+<div id="errBox"></div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

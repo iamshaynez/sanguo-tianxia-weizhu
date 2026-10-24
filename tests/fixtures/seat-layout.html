@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多人武将席位布局预览</title>
+  <base href="../../">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+  <div id="battle" class="screen">
+    <div id="scene">
+      <div class="tent-lines" aria-hidden="true"></div>
+      <div id="blindLabel">六人局 · 席位 UI 预览</div>
+      <div id="oppChar"></div>
+      <div id="table"><div class="felt-emblem">天下为注<span>公共牌区不随人数重排</span></div></div>
+      <div id="youPlate" class="plate"><span class="pname">你</span><span class="pstack">2000</span></div>
+      <div id="codex"><h3>破 绽 簿</h3><ul><li class="empty">每位对手的记录随各自席位归档。</li></ul></div>
+    </div>
+  </div>
+  <script type="module">
+    import { createOpponent, POSE } from '../../src/character.js';
+    const seats = createOpponent(document.getElementById('oppChar'));
+    seats.setPlayers([
+      { id: 'lvbu', name: '吕布', skin: 'lvbu', stack: 1840, boss: true },
+      { id: 'caocao', name: '曹操', skin: 'caocao', stack: 2260 },
+      { id: 'zhuge', name: '诸葛亮', skin: 'zhuge', stack: 960 },
+      { id: 'zhouyu', name: '周瑜', skin: 'zhouyu', stack: 1500 },
+      { id: 'simayi', name: '司马懿', skin: 'simayi', stack: 3120, tilt: 2 },
+    ]);
+    seats.setPose(POSE.THINKING, 'zhuge');
+    seats.setActive(true, 'zhuge');
+    seats.say('此局,且让我再想一想。', 60, 'zhuge');
+  </script>
+</body>
+</html>
