@@ -7,6 +7,11 @@ import { GENERALS } from '../../src/generals.js';
 
 const P0 = { aggr: 0.8, bluff: 0.16, tilt: 0 };
 const P3 = { aggr: 0.8, bluff: 0.16, tilt: 3 };
+const MARGINAL_TURN = {
+  street: 2, hole: [C('2', 0), C('2', 1)],
+  board: [C('K', 2), C('Q', 3), C('8', 0), C('A', 1)],
+  pot: 100, stack: 900, minRaise: 20, raisesLeft: 1, equityRuns: 1200,
+};
 
 // 单手日志(每手独立收集,便于跨街分析;read 跟踪器跨手共享,读人才能积累样本)
 function handLogs(personality, villain, hands, seed) {
@@ -23,6 +28,104 @@ function handLogs(personality, villain, hands, seed) {
 const flat = logs => logs.flat();
 
 export const scenarios = [
+  // ---------- 零、胜率引擎 ----------
+  {
+    id: 'equity_strength_and_player_count',
+    group: '胜率引擎',
+    desc: 'AA > KK > 72o,同一手牌随对手增加而权益下降',
+    run() {
+      const measure = (hole, opponents = 1) => PK.estimateEquity(hole, [], {
+        opponents, runs: 800, rng: PK.mulberry32(1001),
+      });
+      const aa = measure([C('A', 0), C('A', 1)]);
+      const kk = measure([C('K', 0), C('K', 1)]);
+      const trash = measure([C('7', 0), C('2', 2)]);
+      const multi = measure([C('A', 0), C('A', 1)], 3);
+      const ok = aa.e > kk.e && kk.e > trash.e && aa.e > multi.e && aa.e > 0.78 && trash.e < 0.45;
+      return {
+        actual: `AA ${aa.e.toFixed(3)} / KK ${kk.e.toFixed(3)} / 72o ${trash.e.toFixed(3)} / AA vs3 ${multi.e.toFixed(3)}`,
+        pass: ok,
+      };
+    },
+  },
+  {
+    id: 'preflop_table_complete',
+    group: '胜率引擎',
+    desc: '169 类翻牌前胜率全部可查且处于 0..1',
+    run() {
+      let count = 0, valid = true;
+      for (let hi = 0; hi < 13; hi++) for (let lo = 0; lo <= hi; lo++) {
+        for (const kind of hi === lo ? [''] : ['s', 'o']) {
+          const hole = hi === lo ? [hi * 4, hi * 4 + 1] : [hi * 4, lo * 4 + (kind === 's' ? 0 : 1)];
+          const e = PK.preflopEquity(hole);
+          count++;
+          if (!(e > 0 && e < 1)) valid = false;
+        }
+      }
+      const rejected = [[], [0], [0, 0], [52, 1], ['0', 1]].every(hole => {
+        try { PK.preflopEquity(hole); return false; } catch { return true; }
+      });
+      return { actual: `${count} 类 / 全部有效 ${valid} / 非法输入拒绝 ${rejected}`, pass: count === 169 && valid && rejected };
+    },
+  },
+  {
+    id: 'equity_multiway_split_share',
+    group: '胜率引擎',
+    desc: '四人共有皇家同花顺:权益精确为 1/4,而非固定半池',
+    run() {
+      const board = [C('A', 0), C('K', 0), C('Q', 0), C('J', 0), C('10', 0)];
+      const r = PK.estimateEquity([C('7', 1), C('2', 2)], board, {
+        opponents: 3, runs: 24, rng: PK.mulberry32(1002),
+      });
+      const ok = r.win === 0 && r.tie === 1 && r.loss === 0 && Math.abs(r.e - 0.25) < 1e-9;
+      return { actual: `win ${r.win} / tie ${r.tie} / equity ${r.e}`, pass: ok };
+    },
+  },
+  {
+    id: 'equity_seed_and_inputs_reproduce',
+    group: '胜率引擎',
+    desc: '同种子结果一致,且不修改手牌或公共牌输入',
+    run() {
+      const hole = [C('A', 0), C('K', 1)], board = [C('Q', 2), C('7', 3), C('2', 0)];
+      const before = JSON.stringify({ hole, board });
+      const measure = () => PK.estimateEquity(hole, board, {
+        opponents: 2, runs: 400, rng: PK.mulberry32(1003),
+      });
+      const a = measure(), b = measure();
+      const same = JSON.stringify(a) === JSON.stringify(b);
+      const unchanged = before === JSON.stringify({ hole, board });
+      return { actual: `复现 ${same} / 输入不变 ${unchanged} / e=${a.e}`, pass: same && unchanged };
+    },
+  },
+  {
+    id: 'equity_decision_sequence_reproducible',
+    group: '胜率引擎',
+    desc: '同一初始种子的完整 AI 决策序列可复现',
+    run() {
+      const state = { street: 1, hole: [C('8', 0), C('8', 1)], board: [C('K', 2), C('5', 3), C('2', 0)], toCall: 70, pot: 100, stack: 900, minRaise: 20, raisesLeft: 1 };
+      const play = () => {
+        const rng = PK.mulberry32(1004);
+        return Array.from({ length: 24 }, () => PK.aiDecide({ ...state, personality: P0, rng }));
+      };
+      const a = play(), b = play();
+      const same = JSON.stringify(a) === JSON.stringify(b);
+      return { actual: `${a.map(d => d.type).join(',')} / 复现 ${same}`, pass: same };
+    },
+  },
+  {
+    id: 'equity_performance_budget',
+    group: '胜率引擎',
+    desc: '1000 次单挑模拟在 500ms 内完成',
+    run() {
+      const start = performance.now();
+      const r = PK.estimateEquity([C('A', 0), C('K', 1)], [C('Q', 2), C('7', 3), C('2', 0)], {
+        runs: 1000, rng: PK.mulberry32(1005),
+      });
+      const ms = performance.now() - start;
+      return { actual: `${ms.toFixed(1)}ms / e=${r.e.toFixed(3)}`, pass: ms < 500 };
+    },
+  },
+
   // ---------- 一、基础纪律 ----------
   {
     id: 'preflop_premium_never_folds',
@@ -142,9 +245,9 @@ export const scenarios = [
   {
     id: 'tilt_loosens_calls',
     group: '情绪模型',
-    desc: '上头(tilt3)对顶对大注的跟注率显著高于冷静(≥25 点)',
+    desc: '上头(tilt3)对边缘低对大注的跟注率显著高于冷静(≥25 点)',
     run() {
-      const state = { street: 1, hole: [C('J', 0), C('10', 0)], board: [C('J', 2), C('6', 3), C('2', 0)], toCall: 100, pot: 100, stack: 900, minRaise: 20, raisesLeft: 1 };
+      const state = { ...MARGINAL_TURN, toCall: 100 };
       const calm = probe({ state, personality: P0, seed: 11 }).pct('call', 'raise');
       const hot = probe({ state, personality: P3, seed: 11 }).pct('call', 'raise');
       const gap = hot - calm;
@@ -156,7 +259,7 @@ export const scenarios = [
     group: '情绪模型',
     desc: '上头后主动进攻率显著提升(≥25 点)',
     run() {
-      const state = { street: 1, hole: [C('J', 0), C('10', 0)], board: [C('J', 2), C('6', 3), C('2', 0)], toCall: 0, pot: 100, stack: 900, minRaise: 20, raisesLeft: 1 };
+      const state = { ...MARGINAL_TURN, toCall: 0 };
       const calm = probe({ state, personality: P0, seed: 13 }).pct('bet', 'raise');
       const hot = probe({ state, personality: P3, seed: 13 }).pct('bet', 'raise');
       const gap = hot - calm;
@@ -254,23 +357,27 @@ export const scenarios = [
     },
   },
   {
-    id: 'vs_maniac_discipline',
+    id: 'overbet_discipline',
     group: '长期对抗',
-    desc: 'vs 疯子:强牌(>0.75)继续率 ≥ 80%,弱牌(<0.3)弃牌率 ≥ 55%(赔率一致的下限)',
+    desc: 'vs 超额加压:强牌继续率 ≥80%,弱牌且赔率不足时弃牌率 ≥55%',
     run() {
+      const overbet = v => {
+        if (v.raisesLeft > 0 && v.stack > v.toCall + v.minRaise) {
+          return { type: 'raise', amount: Math.min(v.stack, v.toCall + Math.max(v.minRaise, Math.round(v.pot * 3))) };
+        }
+        return v.toCall > 0 ? { type: 'call' } : { type: 'check' };
+      };
       const rng = PK.mulberry32(888);
       const log = [];
-      for (let i = 0; i < 400; i++) {
-        simulateHand({ rng, aiPersonality: P0, villain: villains.maniac, log });
-      }
+      for (let i = 0; i < 400; i++) simulateHand({ rng, aiPersonality: P0, villain: overbet, log });
       const pre = log.filter(e => e.street === 0 && e.toCall > 0);
       const strong = pre.filter(e => PK.preflopStrength(e.hole) > 0.75);
-      const weak = pre.filter(e => PK.preflopStrength(e.hole) < 0.3);
+      const weak = pre.filter(e => PK.preflopStrength(e.hole) < 0.3 && e.toCall / (e.pot + e.toCall) >= 0.4);
       const cont = strong.filter(e => e.d.type !== 'fold').length / Math.max(1, strong.length) * 100;
       const fold = weak.filter(e => e.d.type === 'fold').length / Math.max(1, weak.length) * 100;
       return {
-        actual: `强牌继续 ${cont.toFixed(0)}%(${strong.length} 例)/ 弱牌弃牌 ${fold.toFixed(0)}%(${weak.length} 例)`,
-        pass: cont >= 80 && fold >= 55,
+        actual: `强牌继续 ${cont.toFixed(0)}%(${strong.length} 例)/ 弱牌坏赔率弃牌 ${fold.toFixed(0)}%(${weak.length} 例)`,
+        pass: cont >= 80 && fold >= 55 && weak.length >= 10,
       };
     },
   },
@@ -293,7 +400,7 @@ export const scenarios = [
   {
     id: 'd_semi_bluff_draws',
     group: '战术维度',
-    desc: '半诈唬:semi 0.9 的诈唬 ≥38% 带听牌;semi 0.1 的 ≤28%(纯空气为主)',
+    desc: '半诈唬:semi 0.9 的听牌份额高 ≥20 点,semi 0.1 仍以空气为主',
     run() {
       const drawShare = semi => {
         const log = flat(handLogs({ aggr: 0.8, bluff: 0.3, semi, courage: 1 }, villains.station, 600, 202));
@@ -305,7 +412,8 @@ export const scenarios = [
         return withDraw / Math.max(1, bluffs.length) * 100;
       };
       const hi = drawShare(0.9), lo = drawShare(0.1);
-      return { actual: `semi0.9 → ${hi.toFixed(0)}% 带听牌 / semi0.1 → ${lo.toFixed(0)}%`, pass: hi >= 38 && lo <= 28 };
+      // 真实胜率会提高听牌在诈唬中的自然占比,但低 semi 仍必须让空气过半。
+      return { actual: `semi0.9 → ${hi.toFixed(0)}% 带听牌 / semi0.1 → ${lo.toFixed(0)}%(差 ${(hi - lo).toFixed(0)})`, pass: hi >= 38 && hi - lo >= 20 && lo < 50 };
     },
   },
   {
@@ -328,7 +436,7 @@ export const scenarios = [
     group: '战术维度',
     desc: '火候:边缘对子遇 0.9 池注,callBias 0.09 比 0 的继续率高 ≥25 点',
     run() {
-      const state = { street: 1, hole: [C('8', 0), C('8', 1)], board: [C('K', 2), C('5', 3), C('2', 0)], toCall: 90, pot: 100, stack: 900, minRaise: 20, raisesLeft: 1 };
+      const state = { ...MARGINAL_TURN, toCall: 90 };
       const loose = probe({ state, personality: { aggr: 0.8, bluff: 0.16, callBias: 0.09, courage: 1 }, seed: 31 });
       const tight = probe({ state, personality: { aggr: 0.8, bluff: 0.16, callBias: 0, courage: 1 }, seed: 31 });
       const gap = loose.pct('call', 'raise') - tight.pct('call', 'raise');
@@ -340,7 +448,7 @@ export const scenarios = [
     group: '战术维度',
     desc: '抗压:边缘对子遇重压,courage 0.8 比 0.2 的继续率高 ≥25 点',
     run() {
-      const state = { street: 1, hole: [C('8', 0), C('8', 1)], board: [C('K', 2), C('5', 3), C('2', 0)], toCall: 90, pot: 100, stack: 900, minRaise: 20, raisesLeft: 1 };
+      const state = { ...MARGINAL_TURN, toCall: 90 };
       const brave = probe({ state, personality: { aggr: 0.8, bluff: 0.16, callBias: 0.08, courage: 0.8 }, seed: 37 });
       const timid = probe({ state, personality: { aggr: 0.8, bluff: 0.16, callBias: 0.08, courage: 0.2 }, seed: 37 });
       const gap = brave.pct('call', 'raise') - timid.pct('call', 'raise');
@@ -353,10 +461,10 @@ export const scenarios = [
     desc: '士气:同受重挫,rage 进攻率比 sulk 高 ≥20 点;sulk 受压弃牌比 rage 高 ≥20 点',
     run() {
       const base = { aggr: 0.7, bluff: 0.1, courage: 0.5, morale: -3, moraleSens: 1 };
-      const atk = { street: 1, hole: [C('J', 0), C('10', 0)], board: [C('J', 1), C('10', 2), C('2', 3)], toCall: 0, pot: 100, stack: 900, minRaise: 20, raisesLeft: 1 };
+      const atk = { ...MARGINAL_TURN, toCall: 0 };
       const rageA = probe({ state: atk, personality: { ...base, moraleStyle: 'rage' }, seed: 41 }).pct('bet', 'raise');
       const sulkA = probe({ state: atk, personality: { ...base, moraleStyle: 'sulk' }, seed: 41 }).pct('bet', 'raise');
-      const def = { street: 1, hole: [C('8', 0), C('8', 1)], board: [C('K', 2), C('5', 3), C('2', 0)], toCall: 70, pot: 100, stack: 900, minRaise: 20, raisesLeft: 1 };
+      const def = { ...MARGINAL_TURN, toCall: 70 };
       const rageD = probe({ state: def, personality: { ...base, callBias: 0.04, moraleStyle: 'rage' }, seed: 43 }).pct('call', 'raise');
       const sulkD = probe({ state: def, personality: { ...base, callBias: 0.04, moraleStyle: 'sulk' }, seed: 43 }).pct('call', 'raise');
       return {
@@ -368,9 +476,9 @@ export const scenarios = [
   {
     id: 'd_smug_value_thinner',
     group: '战术维度',
-    desc: '得意:士气 +2 时价值打薄(0.80 强度的加注率比冷静高 ≥50 点)',
+    desc: '得意:士气 +2 时价值打薄(约 0.81 权益的加注率比冷静高 ≥50 点)',
     run() {
-      const state = { street: 2, hole: [C('A', 0), C('2', 0)], board: [C('A', 1), C('A', 2), C('7', 0), C('9', 0)], toCall: 100, pot: 100, stack: 900, minRaise: 20, raisesLeft: 1 };
+      const state = { street: 2, hole: [C('Q', 0), C('J', 1)], board: [C('Q', 2), C('8', 3), C('2', 0), C('K', 1)], toCall: 100, pot: 100, stack: 900, minRaise: 20, raisesLeft: 1, equityRuns: 1200 };
       const calm = probe({ state, personality: { aggr: 0.8, bluff: 0.1, courage: 1, morale: 0, moraleSens: 1 }, seed: 47 }).pct('raise');
       const smug = probe({ state, personality: { aggr: 0.8, bluff: 0.1, courage: 1, morale: 2, moraleSens: 1 }, seed: 47 }).pct('raise');
       const gap = smug - calm;
@@ -461,17 +569,20 @@ export const scenarios = [
   {
     id: 'f_difficulty_orders',
     group: '框架映射',
-    desc: '难度真实:弱/中/强三档属性 vs 跟注站,期望收益严格递增且强档 >0',
+    desc: '难度真实:弱/中/强三档属性 vs 跟注站,三种子 2400 手收益严格递增且强档 >0',
     run() {
       const weak = makePersona({ 武勇: 35, 智谋: 10, 诈术: 65, 胆识: 35, 耐性: 20, 心性: 15 });
       const mid = makePersona({});
       const strong = makePersona({ 武勇: 70, 智谋: 80, 诈术: 55, 胆识: 70, 耐性: 70, 心性: 70 });
-      const deltas = [weak, mid, strong].map((p, idx) => {
-        const rng = PK.mulberry32(6000 + idx);
-        const read = PK.createRead();
+      const hands = 2400;
+      const deltas = [weak, mid, strong].map(p => {
         let delta = 0;
-        for (let i = 0; i < 800; i++) delta += simulateHand({ rng, aiPersonality: p.ai, villain: villains.station, read }).deltaAi;
-        return delta / 800;
+        for (let seed = 0; seed < 3; seed++) {
+          const rng = PK.mulberry32(6000 + seed);
+          const read = PK.createRead();
+          for (let i = 0; i < hands / 3; i++) delta += simulateHand({ rng, aiPersonality: p.ai, villain: villains.station, read }).deltaAi;
+        }
+        return delta / hands;
       });
       const [dw, dm, ds] = deltas;
       const estOk = weak.difficulty < mid.difficulty && mid.difficulty < strong.difficulty;
@@ -523,7 +634,7 @@ export const scenarios = [
   {
     id: 'f_lvbu_pressure_and_rage',
     group: '人物保真度',
-    desc: '吕布三性:自由进攻率高于司马懿;价值打薄(0.80 强度加注差距 ≥30 点);暴怒(士气-3 进攻率提升 ≥25 点)',
+    desc: '吕布三性:自由进攻率高于司马懿;价值打薄(约 0.81 权益加注差距 ≥30 点);暴怒(士气-3 进攻率提升 ≥25 点)',
     run() {
       const lv = makePersona(CHAPTERS.find(c => c.id === 'hulao').boss.traits).ai;
       const si = makePersona(CHAPTERS.find(c => c.id === 'wuzhangyuan').boss.traits).ai;
@@ -533,12 +644,12 @@ export const scenarios = [
         return log.filter(e => e.d.type === 'bet').length / Math.max(1, log.length) * 100;
       };
       const aLv = free(lv), aSi = free(si);
-      // (b) 价值打薄:0.80 强度遇注,吕布应加注、司马懿只跟
-      const thin = { street: 2, hole: [C('A', 0), C('2', 0)], board: [C('A', 1), C('A', 2), C('7', 0), C('9', 0)], toCall: 100, pot: 100, stack: 900, minRaise: 20, raisesLeft: 1 };
+      // (b) 价值打薄:约 0.81 权益遇注,吕布应加注、司马懿只跟
+      const thin = { street: 2, hole: [C('Q', 0), C('J', 1)], board: [C('Q', 2), C('8', 3), C('2', 0), C('K', 1)], toCall: 100, pot: 100, stack: 900, minRaise: 20, raisesLeft: 1, equityRuns: 1200 };
       const rLv = probe({ state: thin, personality: lv, seed: 82 }).pct('raise');
       const rSi = probe({ state: thin, personality: si, seed: 82 }).pct('raise');
       // (c) 暴怒:士气 -3 主动进攻率提升
-      const atk = { street: 1, hole: [C('J', 0), C('10', 0)], board: [C('J', 1), C('6', 2), C('2', 3)], toCall: 0, pot: 100, stack: 900, minRaise: 20, raisesLeft: 1 };
+      const atk = { street: 2, hole: [C('2', 0), C('2', 1)], board: [C('K', 2), C('Q', 3), C('8', 0), C('3', 1)], toCall: 0, pot: 100, stack: 900, minRaise: 20, raisesLeft: 1 };
       const calm = probe({ state: atk, personality: { ...lv, morale: 0 }, seed: 84 }).pct('bet', 'raise');
       const rage = probe({ state: atk, personality: { ...lv, morale: -3 }, seed: 84 }).pct('bet', 'raise');
       return {
