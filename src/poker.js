@@ -1,5 +1,6 @@
 // poker.js —— 牌堆、洗牌(种子可验)、牌型评估、单挑 AI
 // 牌的表示:id = rank * 4 + suit。rank 0..12 即 2..A;suit 0♠ 1♥ 2♦ 3♣
+import { PREFLOP_EQUITY } from './preflop.js';
 
 export const SUITS = ['♠', '♥', '♦', '♣'];
 export const SUIT_RED = [false, true, true, false];
@@ -123,6 +124,20 @@ export function preflopStrength(hole) {
   return Math.max(0.02, Math.min(1, s));
 }
 
+// 翻牌前决策使用离线生成的 169 类真实胜率;旧 preflopStrength 仅用于破绽分级。
+export function preflopEquity(hole) {
+  if (!Array.isArray(hole) || hole.length !== 2 || new Set(hole).size !== 2
+    || hole.some(id => !Number.isInteger(id) || id < 0 || id >= 52)) {
+    throw new Error('手牌必须为两张不同的合法牌');
+  }
+  const [a, b] = hole;
+  const hi = Math.max(rankOf(a), rankOf(b)), lo = Math.min(rankOf(a), rankOf(b));
+  const key = hi === lo ? `${hi},${hi}` : `${hi},${lo}${suitOf(a) === suitOf(b) ? 's' : 'o'}`;
+  const e = PREFLOP_EQUITY[key];
+  if (e === undefined) throw new Error(`未登记的起手牌类型:${key}`);
+  return e;
+}
+
 // ---------- 翻牌后强度估计:成牌 + 听牌 ----------
 const MADE_EQUITY = [0.16, 0.40, 0.55, 0.66, 0.75, 0.83, 0.90, 0.95, 0.99];
 
@@ -157,6 +172,66 @@ export function postflopEquity(hole, board) {
     if (made.cat === 0 && rankOf(hole[0]) > boardMax && rankOf(hole[1]) > boardMax) e += 0.05;
   }
   return { e: Math.min(0.99, e), made, flushDraw, oesd };
+}
+
+// ---------- 蒙特卡洛胜率:全范围对手,支持多人平分池份额 ----------
+// e 是期望底池份额,单挑等于 win + tie / 2;多人按实际并列人数分配。
+// rng 必须由调用方注入,种子牌局与行为测试才能完整复现。
+export function estimateEquity(hole, board = [], { opponents = 1, runs = 400, rng = Math.random } = {}) {
+  if (!Array.isArray(hole) || hole.length !== 2) throw new Error('手牌必须为两张');
+  if (!Array.isArray(board) || board.length > 5) throw new Error('公共牌必须为 0 到 5 张');
+  if (!Number.isInteger(opponents) || opponents < 1 || opponents > 9) throw new Error('对手数必须为 1 到 9');
+  if (!Number.isInteger(runs) || runs < 1) throw new Error('模拟次数必须为正整数');
+  if (typeof rng !== 'function') throw new Error('胜率模拟需要 RNG');
+  const known = [...hole, ...board];
+  if (new Set(known).size !== known.length || known.some(id => !Number.isInteger(id) || id < 0 || id >= 52)) {
+    throw new Error('手牌或公共牌包含重复/非法牌');
+  }
+
+  const baseDeck = makeDeck().filter(id => !known.includes(id));
+  let wins = 0, ties = 0, losses = 0, share = 0;
+  for (let run = 0; run < runs; run++) {
+    const deck = shuffle(baseDeck.slice(), rng);
+    let cursor = 0;
+    const oppHoles = Array.from({ length: opponents }, () => [deck[cursor++], deck[cursor++]]);
+    const runBoard = [...board, ...deck.slice(cursor, cursor + 5 - board.length)];
+    const hero = evaluate7([...hole, ...runBoard]).score;
+    let better = 0, equal = 0;
+    for (const oppHole of oppHoles) {
+      const cmp = compareScore(hero, evaluate7([...oppHole, ...runBoard]).score);
+      if (cmp < 0) better++;
+      else if (cmp === 0) equal++;
+    }
+    if (better > 0) losses++;
+    else if (equal > 0) { ties++; share += 1 / (equal + 1); }
+    else { wins++; share += 1; }
+  }
+  return { win: wins / runs, tie: ties / runs, loss: losses / runs, e: share / runs, runs };
+}
+
+// 相同决策状态复用确定性模拟,临界赔率再提高精度;不消耗人格动作的 RNG。
+const EQUITY_CACHE = new Map();
+function decisionEquity(o) {
+  const opponents = Math.max(1, Math.min(9, o.opponents ?? 1));
+  if (o.street === 0 && opponents === 1) return { e: preflopEquity(o.hole), runs: 0 };
+  const cards = [...o.hole].sort((a, b) => a - b).join(',') + '|' + [...o.board].sort((a, b) => a - b).join(',');
+  const signature = `${cards}|${opponents}`;
+  const simulate = runs => {
+    const key = `${signature}|${runs}`;
+    if (EQUITY_CACHE.has(key)) return EQUITY_CACHE.get(key);
+    const rng = mulberry32(hashSeed(`equity-v1|${key}`));
+    const result = estimateEquity(o.hole, o.board, { opponents, runs, rng });
+    EQUITY_CACHE.set(key, result);
+    if (EQUITY_CACHE.size > 512) EQUITY_CACHE.delete(EQUITY_CACHE.keys().next().value);
+    return result;
+  };
+  const baseRuns = o.equityRuns || 160;
+  let result = simulate(baseRuns);
+  if (!o.equityRuns && o.toCall > 0) {
+    const odds = o.toCall / Math.max(1, o.pot + o.toCall);
+    if (Math.abs(result.e - odds) < 0.08) result = simulate(Math.max(800, baseRuns));
+  }
+  return result;
 }
 
 // ---------- 对手倾向跟踪(读人的数据基座) ----------
@@ -227,7 +302,7 @@ export function aiDecide(o) {
   } else if (m > 0 && sens > 0) { mBluff = 1 + m * 0.2 * sens; mValue = -0.02 * m * sens; }
 
   const eq = street === 0 ? null : postflopEquity(hole, board);
-  const e = street === 0 ? preflopStrength(hole) : eq.e;
+  const e = decisionEquity(o).e;
 
   // 读人:跟踪到的对手倾向 → 剥削式调整(样本 <3 手不轻动)
   let bluffMult = 1, vMin = P.valueMin + mValue, cBias = P.callBias + mCall,
@@ -290,8 +365,9 @@ export function aiDecide(o) {
     return { type: 'check', trapped: true };
   }
 
-  const betProb = Math.min(0.95,
-    e * P.aggr * tiltK * mAggr + ((wantBluff || planBluff) ? 0.55 : 0) + scareK * 0.4);
+  const rawBetProb = e * P.aggr * tiltK * mAggr + ((wantBluff || planBluff) ? 0.55 : 0) + scareK * 0.4;
+  const valueFloor = e >= vMin ? Math.max(0.78, Math.min(0.95, P.aggr)) : 0;
+  const betProb = Math.min(0.95, Math.max(valueFloor, rawBetProb));
   if (rng() < betProb && stack > 0) {
     const amt = Math.min(stack, Math.max(minRaise, Math.round(pot * (0.45 + rng() * 0.55)) || minRaise));
     const air = e < 0.45 + scareK * 0.2;

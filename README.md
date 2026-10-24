@@ -40,8 +40,8 @@ python3 -m http.server 8619
 
 ```bash
 npm run lint:content  # 章节配方校验(~0.5s)
-npm run eval:ai       # AI 行为评估(33 场景,~2s)
-npm run test:e2e      # 用户视角 E2E 全套件(Playwright,~15min)
+npm run eval:ai       # AI 行为评估(39 场景,多种子长期对抗,~6min)
+npm run test:e2e      # 用户视角 E2E 全套件(Playwright,~18min)
 npm test              = 内容校验 + 评估 + E2E
 ```
 
@@ -62,6 +62,8 @@ npm test              = 内容校验 + 评估 + E2E
 
 对手的牌风由六维三国语义属性驱动(`src/persona.js`):**武勇**(进攻/价值打薄)、**智谋**(读人/连环/借题)、**诈术**(诈唬/半诈唬/破绽作假)、**胆识**(抗压)、**耐性**(慢打/跟注火候)、**心性**(情绪稳定/激将相性)。每个维度都真实改变牌局(由 ai-eval 统计证明),任何角色只是一包六维数值。战斗运行时还有士气事件流:爆冷、连败、大胜、激将都会改变对手状态。
 
+胜率判断与人物人格分离:翻牌前查 169 类离线胜率表,翻牌后做可复现的蒙特卡洛模拟;接近底池赔率边界时自动提高精度。读人、慢打、半诈唬、连环计谋和武将性格仍由原决策框架承担,多人模拟按并列人数计算底池份额,不依赖外部 AI 库或后端。
+
 ## 内容即数据
 
 《英雄记总目》(`src/chapters.js`)与武将档案库(`src/generals.js`):33 回章节、22 名武将,全部是纯数据。加一回 = 加一条章节数据;加一个武将 = 加一条档案(签名破绽/台词/小传/造型键),章节以 `boss.gen` 引用、跨回复用、境遇只改属性。配方由 `tests/content/chapters.lint.mjs` 把守。
@@ -77,6 +79,8 @@ src/generals.js   武将档案库:签名破绽/台词/小传/造型键
 src/scroll.js     残卷:目录/题记(因果覆盖)/结算/终局/观阵录 + 持久化与解锁
 src/apocrypha.js  残卷无终稿:随机外传页生成器(NG+)
 src/persona.js    人格基座:六维三国属性 → AI 战术参数/难度/分档
+src/preflop.js    169 类翻牌前真实胜率表(由脚本生成)
+scripts/generate-preflop-table.mjs  翻牌前胜率表离线生成器
 src/battle.js     战斗:发牌/下注状态机/破绽/士气事件流/专属机制/演出
 src/character.js  数据驱动的武将席位:头像/军资/情绪/台词/多人布局
 src/portrait.js   本地《三国志9》头像映射:牌桌/入场卡/观阵录共用
