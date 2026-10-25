@@ -16,7 +16,7 @@ services:
       - "127.0.0.1:18091:80"   # 只绑回环：对外一律走 openresty/CF，不直接暴露公网
     healthcheck:
       # 纯静态直出：/ 能应答即等价健康
-      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:80/"]
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:80/runtime.json"]
       interval: 30s
       timeout: 5s
       retries: 3

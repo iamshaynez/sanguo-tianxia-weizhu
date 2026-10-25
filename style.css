@@ -429,6 +429,9 @@ button.ghost:hover { border-color: #b7a578; }
 .note-line { margin-top: 15px; color: #989278; font-size: 12px; font-style: normal; }
 #settleRetry { margin-right: 0; }
 #errBox { position: fixed; left: 10px; bottom: 10px; z-index: 99; max-width: 60%; color: #ff8a7a; font: 12px/1.6 monospace; white-space: pre-wrap; }
+.app-version { position: fixed; z-index: 85; left: 50%; bottom: max(2px, env(safe-area-inset-bottom)); display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 6px; max-width: calc(100vw - 16px); padding: 2px 7px; color: #8c8b78; background: #10130fbf; border-radius: 2px; font: 9px/1.4 var(--song); letter-spacing: .03em; text-align: center; transform: translateX(-50%); pointer-events: none; }
+.app-version span, .app-version time { white-space: nowrap; }
+.app-version[data-status="missing"] { color: #a58c68; }
 
 /* ---------------- 观阵录:复用武将卡语言 ---------------- */
 .annalsbox { width: min(980px, 94vw); max-height: 88vh; text-align: left; }

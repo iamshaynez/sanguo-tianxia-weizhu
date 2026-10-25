@@ -12,7 +12,7 @@ export default defineConfig({
     headless: true,
   },
   webServer: {
-    command: 'python3 -m http.server 8619',
+    command: 'npm start',
     url: 'http://127.0.0.1:8619/index.html',
     reuseExistingServer: true,
     timeout: 15_000,
