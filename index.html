@@ -23,15 +23,17 @@
     </svg>
   </div>
   <div class="intro-inner">
-    <p class="intro-era" id="introStep"><span>残卷</span> 英雄记 · 汉末异闻</p>
+    <p class="intro-era prologue-transition" id="introStep"><span>残卷</span> 英雄记 · 汉末异闻</p>
     <div class="intro-title-lock">
       <span class="intro-seal">汉</span>
       <div><h1>三国：天下为注</h1><p class="sub">HEROES AT THE TABLE</p></div>
     </div>
     <div class="intro-kingdoms" aria-hidden="true"><span>魏</span><i></i><span>蜀</span><i></i><span>吴</span></div>
-    <p class="intro-lesson" id="introLesson">牌可验，史可改。</p>
-    <p class="story" id="introStory">史书只写了沙场,没写牌桌。<br>这部残卷,记的是另一部三国。</p>
-    <div class="intro-points" id="introPoints"></div>
+    <div id="introNarrative" class="intro-narrative prologue-transition" aria-live="polite" aria-atomic="true">
+      <p class="intro-lesson" id="introLesson">牌可验，史可改。</p>
+      <p class="story" id="introStory">史书只写了沙场,没写牌桌。<br>这部残卷,记的是另一部三国。</p>
+      <div class="intro-points" id="introPoints"></div>
+    </div>
     <button id="startBtn" disabled>开 卷<span>展开英雄记</span></button>
     <button id="prologueSkip" class="intro-skip hidden">跳过背景，直接入卷</button>
     <p class="hint" id="introHint">盯住对手的手 —— 破绽比牌更值钱</p>
@@ -104,24 +106,26 @@
 <div id="page" class="screen hidden">
   <div class="page-book">
     <div class="page-spine" aria-hidden="true"><span>英</span><span>雄</span><span>记</span></div>
-    <div class="page-inner">
-      <p class="page-folio" id="pageFolio">残卷章回</p>
-      <p class="page-year" id="pageYear"></p>
-      <h2 class="page-name" id="pageName"></h2>
-      <div class="page-divider"><i></i><span>若</span><i></i></div>
-      <p class="page-premise" id="pagePremise"></p>
-      <section class="page-history" id="pageHistory" aria-label="本回史实与改编">
-        <div class="page-history-heading"><span>史实底稿</span><b id="pageEra"></b><small id="pageSource"></small></div>
-        <p id="pageRecord"></p>
-        <div class="page-adaptation"><span>演义与改写</span><p id="pageAdaptation"></p></div>
-        <p class="page-lead" id="pageLead"></p>
-      </section>
-      <div class="page-cast" id="pageCast"></div>
-      <div class="page-cold-open" id="pageColdOpen"></div>
-      <p class="page-objective" id="pageObjective"></p>
-      <p class="page-rule hidden" id="pageRule"></p>
-      <p class="page-note" id="pageNote"></p>
-      <div id="pageRoute" class="page-route"></div>
+    <div class="page-content">
+      <div class="page-inner">
+        <p class="page-folio" id="pageFolio">残卷章回</p>
+        <p class="page-year" id="pageYear"></p>
+        <h2 class="page-name" id="pageName"></h2>
+        <div class="page-divider"><i></i><span>若</span><i></i></div>
+        <p class="page-premise" id="pagePremise"></p>
+        <section class="page-history" id="pageHistory" aria-label="本回史实与改编">
+          <div class="page-history-heading"><span>史实底稿</span><b id="pageEra"></b><small id="pageSource"></small></div>
+          <p id="pageRecord"></p>
+          <div class="page-adaptation"><span>演义与改写</span><p id="pageAdaptation"></p></div>
+          <p class="page-lead" id="pageLead"></p>
+        </section>
+        <div class="page-cast" id="pageCast"></div>
+        <div class="page-cold-open" id="pageColdOpen"></div>
+        <p class="page-objective" id="pageObjective"></p>
+        <p class="page-rule hidden" id="pageRule"></p>
+        <p class="page-note" id="pageNote"></p>
+        <div id="pageRoute" class="page-route"></div>
+      </div>
       <div class="page-actions">
         <button id="openPage">启 程</button>
         <button id="pageAlt" class="ghost hidden">执子之手</button>
