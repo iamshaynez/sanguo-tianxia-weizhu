@@ -70,7 +70,7 @@ test.describe('章回剧情与故人记忆', () => {
   });
 
   test('长剧情页纸纹不压字,底部操作区在首屏与卷尾均完整', async ({ page }) => {
-    for (const size of [{ width: 390, height: 844 }, { width: 320, height: 568 }]) {
+    for (const size of [{ width: 390, height: 844 }, { width: 320, height: 568 }, { width: 280, height: 740 }]) {
       await page.setViewportSize(size);
       await newGame(page, 'fast=1&seed=ST06&chapter=changban&omen=sow');
       const checkActions = async () => {
@@ -80,7 +80,7 @@ test.describe('章回剧情与故人记忆', () => {
           expect(box.x).toBeGreaterThanOrEqual(0);
           expect(box.x + box.width).toBeLessThanOrEqual(size.width);
           expect(box.y).toBeGreaterThanOrEqual(0);
-          expect(box.y + box.height).toBeLessThanOrEqual(size.height - 8);
+          expect(box.y + box.height).toBeLessThanOrEqual(size.height - 32);
         }
       };
       const texture = await page.locator('.page-book').evaluate(el => Number(getComputedStyle(el, '::before').opacity));

@@ -263,6 +263,33 @@ test.describe('剧情可达性与作用域', () => {
   });
 });
 
+test('窄屏展卷不横向裁字,底部按钮始终完整可点', async ({ page }) => {
+  for (const size of [{ width: 320, height: 568 }, { width: 390, height: 740 }]) {
+    await page.setViewportSize(size);
+    await newGame(page, 'seed=PB-MOBILE&chapter=taoyuan&omen=sow&stage=boss');
+    await page.click('#openPage');
+    await clickAvailNode(page, 'boss');
+    await expect(page.locator('#battleBriefing')).toHaveClass(/show/);
+    for (const delay of [0, 350, 750]) {
+      if (delay) await page.waitForTimeout(delay);
+      const clip = await page.locator('.briefing-paper').evaluate(el => getComputedStyle(el).clipPath);
+      expect(clip).toBe('inset(0px)');
+      const paper = await page.locator('.briefing-paper').boundingBox();
+      const leftRoller = await page.locator('.briefing-roller.left').boundingBox();
+      const rightRoller = await page.locator('.briefing-roller.right').boundingBox();
+      for (const selector of ['#briefingKicker', '#briefingTitle', '#briefingReason', '.briefing-actions', '#briefingEnter', '#briefingSkip', '#briefingBack']) {
+        const box = await page.locator(selector).boundingBox();
+        expect(box).not.toBeNull();
+        expect(box.x).toBeGreaterThanOrEqual(paper.x - 1);
+        expect(box.x).toBeGreaterThanOrEqual(leftRoller.x + leftRoller.width - 1);
+        expect(box.x + box.width).toBeLessThanOrEqual(paper.x + paper.width + 1);
+        expect(box.x + box.width).toBeLessThanOrEqual(rightRoller.x + 1);
+        expect(box.y + box.height).toBeLessThanOrEqual(Math.min(paper.y + paper.height + 1, size.height - 16));
+      }
+    }
+  }
+});
+
 // 广度矩阵只验证每回真实 DOM 可达与阵容结构;精确文案由上方独立场景验收。
 for (const chapter of CHAPTERS) {
   test(`逐回战书矩阵:${chapter.name} · 关底可展卷`, async ({ page }) => {
