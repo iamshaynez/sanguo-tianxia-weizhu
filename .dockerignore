@@ -1,0 +1,16 @@
+# 注意：docker/ 不能忽略——Dockerfile 要 COPY docker/nginx.conf
+.git
+.github
+.dockerignore
+node_modules
+test-results
+playwright-report
+gui-test-screenshots
+shots
+archive-3d
+.video_agent
+.zcode
+tests
+scripts
+out
+*.log

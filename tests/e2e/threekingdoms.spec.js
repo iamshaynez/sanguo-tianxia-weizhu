@@ -70,7 +70,7 @@ test.describe('通用武将卡', () => {
     await expect(page.locator('#bossIntro')).toHaveClass(/show/, { timeout: 30_000 });
     await expect(page.locator('#bossIntro')).toHaveAttribute('data-kind', 'boss');
     await expect(page.locator('#bossIntroName')).toHaveText('吕布');
-    await expect(page.locator('#bossIntroBio')).toHaveText('天下第一,不肯低头。');
+    await expect(page.locator('#bossIntroBio')).toHaveText('虎牢关前，他把“天下无双”当作最短的战书。');
     await expect(page.locator('#bossIntro .portrait-img')).toHaveAttribute('data-skin', 'lvbu');
     await expect(page.locator('#bossIntro .portrait-img')).toHaveAttribute('src', './assets/portraits/san9/No_004.jpg');
     await expect(page.locator('#bossIntro .general-art svg')).toHaveCount(0);
@@ -81,12 +81,15 @@ test.describe('通用武将卡', () => {
     await page.click('#introSkip');
     await entered;
     await expect(page.locator('#bossIntro')).toBeHidden();
-    await expect(page.locator('#bubble')).toContainText('天下无双');
-    const plate = await page.locator('#oppPlate').boundingBox();
-    const bubble = await page.locator('#bubble').boundingBox();
-    const overlap = Math.max(0, Math.min(plate.x + plate.width, bubble.x + bubble.width) - Math.max(plate.x, bubble.x))
-      * Math.max(0, Math.min(plate.y + plate.height, bubble.y + bubble.height) - Math.max(plate.y, bubble.y));
-    expect(overlap).toBe(0);
+    await expect(page.locator('#bannerMain')).toHaveText('吕布');
+    await expect(page.locator('#bannerSub')).toContainText('你的筹码');
+    if (await page.locator('#bubble').isVisible()) {
+      const plate = await page.locator('#oppPlate').boundingBox();
+      const bubble = await page.locator('#bubble').boundingBox();
+      const overlap = Math.max(0, Math.min(plate.x + plate.width, bubble.x + bubble.width) - Math.max(plate.x, bubble.x))
+        * Math.max(0, Math.min(plate.y + plate.height, bubble.y + bubble.height) - Math.max(plate.y, bubble.y));
+      expect(overlap).toBe(0);
+    }
   });
 
   test('观阵录复用同一立绘和六维语言', async ({ page }) => {

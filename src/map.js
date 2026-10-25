@@ -1,4 +1,6 @@
-// map.js —— 行军图:地名节点路径与事件
+// map.js —— 行军图:地名节点路径、通用事件与章节剧情场景
+import { linesFor, speakerName } from './story-engine.js';
+
 const $ = id => document.getElementById(id);
 
 const TYPES = {
@@ -193,6 +195,35 @@ export function eventModal(type, applyFn) {
         modal.classList.add('hidden');
         resolve(b.dataset.k);
       });
+    });
+  });
+}
+
+// 章节场景与通用事件共用弹窗;选择返回完整定义,由主流程统一应用效果。
+export function storyModal(scene, { P, chapter, previousChoice = null } = {}) {
+  const modal = $('eventModal');
+  const box = $('eventBox');
+  const lines = linesFor(scene.lines, { P, chapter });
+  box.innerHTML = `
+    <p class="modal-kicker">残 卷 见 闻</p><h3>${scene.title}</h3>
+    <div class="scene-lines">${lines.map(line =>
+      `<div class="story-line"><span class="story-speaker">${speakerName(line.speaker)}</span><p class="story-text">${line.text}</p></div>`).join('')}</div>
+    ${previousChoice ? `<p class="scene-memory">残卷记得你的旧策；这次仍可改选，效果只计入本次行程。</p>` : ''}
+    <div class="ev-opts">${(scene.choices || []).map(choice =>
+      `<button data-choice="${choice.id}">${previousChoice === choice.id ? '旧策 · ' : ''}${choice.text}<b>${choice.detail || ''}</b></button>`).join('')}</div>
+    <button class="scene-skip" data-skip="1">略过这段见闻</button>`;
+  modal.classList.remove('hidden');
+  return new Promise(resolve => {
+    box.querySelectorAll('[data-choice]').forEach(button => {
+      button.addEventListener('click', () => {
+        const choice = scene.choices.find(item => item.id === button.dataset.choice);
+        modal.classList.add('hidden');
+        resolve({ choice, skipped: false });
+      });
+    });
+    box.querySelector('[data-skip]').addEventListener('click', () => {
+      modal.classList.add('hidden');
+      resolve({ choice: null, skipped: true });
     });
   });
 }

@@ -64,6 +64,10 @@ export function createOpponent(mount) {
     seat.profile.addEventListener('click', () => {
       mount.dispatchEvent(new CustomEvent('seatinspect', { detail: { ...seat.data } }));
     });
+    seat.card.addEventListener('click', event => {
+      if (event.target.closest('.seat-profile')) return;
+      mount.dispatchEvent(new CustomEvent('seatselect', { detail: { id } }));
+    });
     seats.set(id, seat);
     mount.appendChild(el);
     updateSeat(id, player);
@@ -83,6 +87,11 @@ export function createOpponent(mount) {
       seat.card.classList.toggle('boss', !!player.boss);
       seat.el.querySelector('.seat-rank').textContent = player.boss ? '关' : '敌';
     }
+    if (player.eliminated !== undefined) {
+      seat.el.classList.toggle('is-eliminated', !!player.eliminated);
+      seat.el.querySelector('.seat-rank').textContent = player.eliminated ? '出' : (seat.card.classList.contains('boss') ? '关' : '敌');
+    }
+    if (player.selected !== undefined) seat.card.classList.toggle('is-selected', !!player.selected);
   }
 
   function setPlayers(players = []) {
@@ -98,7 +107,7 @@ export function createOpponent(mount) {
 
   function getSeat(id = primaryId) {
     if (!seats.size) setPlayers();
-    return seats.get(id) || seats.get(primaryId);
+    return seats.get(id);
   }
 
   function setSkin(key = 'default', id = primaryId) {
@@ -129,6 +138,14 @@ export function createOpponent(mount) {
     setTilt(tilt, id = primaryId) { updateSeat(getSeat(id).el.dataset.seatId, { tilt }); },
     setBoss(boss, id = primaryId) { updateSeat(getSeat(id).el.dataset.seatId, { boss }); },
     setTilted(on, id = primaryId) { getSeat(id).card.classList.toggle('tilted', !!on); },
+    setEliminated(on, id = primaryId) { updateSeat(id, { eliminated: !!on }); },
+    setSelected(on, id = primaryId) { updateSeat(id, { selected: !!on }); },
+    setTell(text, id = primaryId) {
+      const seat = getSeat(id);
+      const el = seat.el.querySelector('.seat-pose');
+      el.textContent = text || POSE_TEXT[seat.card.dataset.pose] || POSE_TEXT[POSE.NEUTRAL];
+      el.title = text || '';
+    },
     setActive(on, id = primaryId) {
       const seat = getSeat(id);
       seat.card.classList.toggle('is-active', !!on);

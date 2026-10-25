@@ -2,16 +2,33 @@
 import { CHAPTERS, SCROLLS, GATE_IDS, NORMAL_IDS, getChapter } from './chapters.js';
 import { traitGrid } from './general-card.js';
 import { portraitImage } from './portrait.js';
+import { normalizeStoryState, coldOpenFor, storyFor, speakerName, outcomeVariant } from './story-engine.js';
+import { chapterEncounters } from './encounters.js';
 
 const $ = id => document.getElementById(id);
 export const SAVE_KEY = 'yxj_v1';
+export const TUTORIAL_VERSION = 1;
 
 // ---------------- 进度 ----------------
 export function loadProgress() {
   try {
     const p = JSON.parse(localStorage.getItem(SAVE_KEY) || '{}');
-    return { pages: p.pages || {}, endings: p.endings || [], annals: p.annals || {}, flags: p.flags || {}, apocWins: p.apocWins || 0 };
-  } catch { return { pages: {}, endings: [], annals: {}, flags: {}, apocWins: 0 }; }
+    const returning = Object.keys(p.pages || {}).length > 0 || Object.keys(p.annals || {}).length > 0 || (p.endings || []).length > 0;
+    return {
+      version: 2,
+      pages: p.pages || {}, endings: p.endings || [], annals: p.annals || {}, flags: p.flags || {}, apocWins: p.apocWins || 0,
+      story: normalizeStoryState(p.story),
+      tutorial: {
+        version: TUTORIAL_VERSION,
+        introDone: p.tutorial ? !!p.tutorial.introDone : returning,
+        steps: p.tutorial?.steps || {},
+        skipped: !!p.tutorial?.skipped,
+      },
+    };
+  } catch {
+    return { version: 2, pages: {}, endings: [], annals: {}, flags: {}, apocWins: 0,
+      story: normalizeStoryState(), tutorial: { version: TUTORIAL_VERSION, introDone: false, steps: {}, skipped: false } };
+  }
 }
 export function saveProgress(p) { localStorage.setItem(SAVE_KEY, JSON.stringify(p)); }
 
@@ -81,6 +98,16 @@ export function renderPage(chapter, onStart, onBack, opts = {}) {
   $('pageRule').textContent = chapter.ruleText || '';
   $('pageRule').classList.toggle('hidden', !chapter.ruleText);
   $('pageNote').textContent = opts.note || chapter.note;
+  const story = storyFor(chapter);
+  const storyCtx = { P: opts.P, chapter };
+  $('pageCast').innerHTML = story ? story.cast.map(id => `<span>${speakerName(id)}</span>`).join('') : '';
+  $('pageCast').classList.toggle('hidden', !story);
+  const coldOpen = story ? coldOpenFor(chapter, storyCtx) : [];
+  $('pageColdOpen').innerHTML = coldOpen.map(line =>
+    `<div class="story-line"><span class="story-speaker">${speakerName(line.speaker)}</span><p class="story-text">${line.text}</p></div>`).join('');
+  $('pageColdOpen').classList.toggle('hidden', !coldOpen.length);
+  $('pageObjective').textContent = story?.objective || '';
+  $('pageObjective').classList.toggle('hidden', !story?.objective);
   const siblings = CHAPTERS.filter(c => c.scroll === chapter.scroll);
   const ordinal = siblings.findIndex(c => c.id === chapter.id) + 1;
   $('pageFolio').textContent = chapter.apocrypha ? '无终稿 · 随机外传'
@@ -135,11 +162,13 @@ export function pickOmen(chapter, FX) {
 
 // ---------------- 结算 ----------------
 // win: { text } 展示野史(choice 页先出抉择;yeshiExtra 为执子之手等追注);loss: 兵败批注 + 正史入账
-export function settle(chapter, { win, annotation, yeshiExtra }) {
+export function settle(chapter, { win, annotation, yeshiExtra, storyOutcome = null }) {
   const modal = $('settle');
   const stamp = $('settleStamp'), title = $('settleTitle');
   const his = $('settleHistory'), ye = $('settleYeshi'), note = $('settleNote');
+  const hook = $('settleHook'), clue = $('settleClue');
   const choices = $('settleChoices'), retry = $('settleRetry'), home = $('settleHome');
+  hook.textContent = ''; clue.textContent = '';
   modal.classList.remove('hidden');
   choices.innerHTML = '';
   return new Promise(resolve => {
@@ -152,8 +181,11 @@ export function settle(chapter, { win, annotation, yeshiExtra }) {
       note.textContent = '';
       retry.style.display = 'none'; home.textContent = '回 目 录';
       const showYeshi = (text, key) => {
-        ye.textContent = '野史:' + text;
+        const variant = outcomeVariant(storyOutcome, key);
+        const outcomeText = chapter.rule?.choice && !variant ? text : (variant?.text || storyOutcome?.text || text);
+        ye.textContent = '野史:' + outcomeText;
         ye.style.display = '';
+        hook.textContent = variant?.hook || storyOutcome?.hook || '';
         note.textContent = yeshiExtra || '';
         choices.innerHTML = '';
         home.onclick = () => done({ r: 'home', yeshiKey: key });
@@ -175,6 +207,8 @@ export function settle(chapter, { win, annotation, yeshiExtra }) {
       title.style.color = '#c85a4a';
       his.innerHTML = `史:${chapter.history}`;
       ye.style.display = 'none';
+      hook.textContent = '';
+      clue.textContent = storyOutcome?.clue || '';
       note.textContent = annotation || chapter.defeat;
       retry.style.display = ''; retry.textContent = '翻页重开';
       home.textContent = '回 目 录';
@@ -184,16 +218,20 @@ export function settle(chapter, { win, annotation, yeshiExtra }) {
   });
 }
 
-// ---------------- 终局三问 ----------------
+// ---------------- 终局三种署名 ----------------
 export const ENDINGS = [
-  { q: '问他:你是谁?', a: '「我是每一个把三国讲到落泪的人。这一卷,替你收下。」' },
-  { q: '问他:我是谁?', a: '「你是第一个坐下来,肯把每一页打完的读者。」' },
-  { q: '问他:牌外还有什么?', a: '「牌外没有别的了——所以才要一直打下去。」' },
+  { key: 'seal', q: '封卷 · 留下你改写的三国', a: '你把笔搁在最后一页。有人活了下来，也有人替这份圆满付了账。写卷人合上封面：“这一次，别再说你不知道代价。”' },
+  { key: 'restore', q: '还史 · 让该发生的仍发生', a: '你把野史一页页撕下，正史重新显露。故人们没有忘记你。麦城的雪里、五丈原的秋风里，总有人忽然想起：曾有读者替他们不甘过。' },
+  { key: 'unwritten', q: '撕卷 · 三国不许有终稿', a: '你撕掉最后一页，碎纸却化成更多空白。写卷人笑了：“好。那就让后人每一次不甘，都长出一个新的三国。”无终稿由此展开。' },
 ];
 export function finale(p) {
   const modal = $('finale');
   modal.classList.remove('hidden');
   $('finaleText').textContent = '';
+  const huarong = p.story?.choices?.huarong || p.pages?.huarong;
+  const maicheng = p.pages?.maicheng;
+  $('finaleMemory').textContent = (huarong === 'yeshiB' ? '他先提起华容：“你放过曹操，是因为义，还是因为不愿看他死？” ' : '')
+    + (maicheng && maicheng !== 'unread' ? '又翻到麦城：“这一页，你终于看懂吕蒙让你看的是哪只手了。”' : '他翻着你留下的页码：“现在，告诉我哪一部才算真的三国。”');
   const box = $('finaleQ');
   box.innerHTML = '';
   $('finaleHome').style.display = 'none';
@@ -205,7 +243,7 @@ export function finale(p) {
         box.innerHTML = '';
         $('finaleText').textContent = e.a;
         $('finaleHome').style.display = '';
-        $('finaleHome').onclick = () => { modal.classList.add('hidden'); resolve(e.q); };
+        $('finaleHome').onclick = () => { modal.classList.add('hidden'); resolve(e.key); };
       });
       box.appendChild(b);
     }
@@ -228,7 +266,7 @@ export function renderAnnals(p, { generals, chapters, describeTraits, traitsOf }
     const g = generals[gid];
     if (!g) continue;
     const a = p.annals[gid];
-    const appearances = chapters.filter(c => c.boss?.gen === gid).map(c => c.name).join(' · ');
+    const appearances = chapters.filter(c => chapterEncounters(c).some(encounter => encounter.cfg.gen === gid)).map(c => c.name).join(' · ');
     const bands = describeTraits(traitsOf(gid)).map(b => `${b.trait}<b>${b.label}</b>`).join(' ');
     const tellLine = ['strong', 'weak'].filter(k => a.tells?.[k]?.n > 0)
       .map(k => `「${g.tells[k]}」 见过${a.tells[k].n}次,识破${a.tells[k].hit}次`).join('<br>');
