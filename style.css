@@ -550,14 +550,14 @@ button.ghost:hover { border-color: #b7a578; }
   .chips { grid-template-columns: repeat(3, 1fr); }
   .chips .chip { height: 42px; justify-content: center; padding: 5px; font-size: 12px; }
   .chips .chip i { flex-basis: 19px; width: 19px; height: 21px; font-size: 11px; }
-  #page { padding: 12px; padding-bottom: max(12px, env(safe-area-inset-bottom)); }
+  #page { padding: 12px; padding-bottom: max(32px, calc(12px + env(safe-area-inset-bottom))); }
   .page-book { width: 100%; min-height: 0; max-height: 94vh; max-height: 94dvh; overflow: hidden; }
   .page-spine { width: 40px; padding-top: 26px; font-size: 17px; }
   .page-inner { padding: 24px 17px; }
   .page-name { font-size: 43px; }
   .page-premise { font-size: 17px; }
   .page-stamp { display: none; }
-  .page-actions { flex-wrap: wrap; gap: 8px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); }
+  .page-actions { flex-wrap: wrap; gap: 8px; padding: 10px 12px calc(16px + env(safe-area-inset-bottom)); }
   .page-actions button { min-width: 94px; min-height: 44px; padding: 10px 14px; font-size: 13px; }
   .map-mast { top: 15px; display: block; width: 94vw; }
   .map-mast .screen-title { font-size: 20px; white-space: nowrap; }
@@ -693,9 +693,14 @@ button.ghost:hover { border-color: #b7a578; }
   .briefing-source { flex-basis: 180px; }
 }
 @media (max-width: 640px) {
-  #battleBriefing { padding: 8px; }
+  #battleBriefing { padding: 8px; padding-bottom: max(24px, env(safe-area-inset-bottom)); }
   .briefing-shell { width: 100%; max-height: calc(100dvh - 16px); padding: 8px 10px; }
-  .briefing-paper { max-height: calc(100dvh - 32px); padding: 17px 15px 0; }
+  .briefing-paper { max-height: calc(100dvh - 32px); padding: 17px 24px 0; clip-path: inset(0); }
+  #battleBriefing.show .briefing-paper { animation: briefingMobileFade .35s ease both; }
+  #battleBriefing.show .briefing-roller.left { left: 8px; animation: none; }
+  #battleBriefing.show .briefing-roller.right { right: 8px; animation: none; }
+  #battleBriefing.show .briefing-reveal { animation-name: briefingMobileFade; }
+  @keyframes briefingMobileFade { from { opacity: 0; } to { opacity: 1; } }
   .briefing-header { display: block; padding-bottom: 11px; }
   .briefing-title-line { gap: 10px; margin-top: 6px; }
   #briefingTitle { font-size: clamp(25px, 8vw, 34px); letter-spacing: .06em; }
@@ -715,10 +720,12 @@ button.ghost:hover { border-color: #b7a578; }
   .briefing-stakes { margin-top: 13px; }
   .briefing-stakes section { padding: 10px 11px; }
   .briefing-stakes p { margin-top: 7px; font-size: 11px; }
-  .briefing-actions { flex-wrap: wrap; gap: 7px; margin: auto -15px 0; padding: 11px 15px max(11px, env(safe-area-inset-bottom)); }
-  .briefing-actions button { padding: 8px 12px; font-size: 12px; }
-  #briefingEnter { order: -1; flex: 1 0 100%; min-width: 0; font-size: 17px; }
-  #briefingSkip { margin-right: auto; }
+  .briefing-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: auto 0 0; padding: 11px 12px calc(16px + env(safe-area-inset-bottom)); }
+  .briefing-actions button { min-width: 0; padding: 8px 6px; font-size: 12px; letter-spacing: .08em; }
+  #briefingEnter { order: -1; grid-column: 1 / -1; width: 100%; min-width: 0; font-size: 17px; }
+  #briefingSkip { width: 100%; margin: 0; }
+  #briefingBack { width: 100%; }
+  #briefingSkip.hidden + #briefingBack { grid-column: 1 / -1; }
   .page-history { padding: 10px 11px; }
   #pageRecord { font-size: 11px; }
   .page-adaptation p, .page-lead { font-size: 10px; }
