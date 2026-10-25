@@ -26,8 +26,8 @@ export async function openChapter(page, id) {
 // strategy: 'station' 跟注站 | 'maniac' 全压流 | 'cautious' 稳健(大注弃牌)
 // 同时自动处理:事件/天时弹窗选第一项、兵败翻页重开、改写后回目录(抉择页先选第一项)
 // autoSettle=false 时保留结算弹窗,供需要亲手验收兵败/改写的用例点击
-export async function installDriver(page, strategy = 'station', { autoSettle = true } = {}) {
-  await page.evaluate(([s, auto]) => { window.__drive = s; window.__autoSettle = auto; }, [strategy, autoSettle]);
+export async function installDriver(page, strategy = 'station', { autoSettle = true, autoBriefing = true } = {}) {
+  await page.evaluate(([s, auto, brief]) => { window.__drive = s; window.__autoSettle = auto; window.__autoBriefing = brief; }, [strategy, autoSettle, autoBriefing]);
   await page.evaluate(() => {
     if (window.__autoTimer) return;
     window.__autoTimer = setInterval(() => {
@@ -45,6 +45,10 @@ export async function installDriver(page, strategy = 'station', { autoSettle = t
           b = (call && amt <= 90) ? call : pick(['check', 'fold']);
         }
         if (b) b.click();
+      }
+      const bf = document.getElementById('battleBriefing');
+      if (window.__autoBriefing !== false && bf && !bf.classList.contains('hidden')) {
+        document.getElementById('briefingEnter')?.click();
       }
       const ev = document.getElementById('eventModal');
       if (ev && !ev.classList.contains('hidden')) {
@@ -80,9 +84,17 @@ export async function clickAvailNode(page, type = null) {
   }, type);
 }
 
+// 战书只在显式调用时确认;剧情验收用例不得让自动司机替玩家略过
+export async function confirmBriefing(page) {
+  await expect(page.locator('#battleBriefing')).toBeVisible();
+  await expect(page.locator('#briefingReason')).not.toBeEmpty();
+  await page.click('#briefingEnter');
+}
+
 // 进入战斗并等待 HUD 就位
 export async function enterBattle(page, type = 'battle') {
   await clickAvailNode(page, type);
+  await confirmBriefing(page);
   await expect(page.locator('#battle')).toBeVisible();
   await expect(page.locator('#oppName')).not.toBeEmpty();
   await expect(page.locator('#blindLabel')).toContainText('盲注');
@@ -93,7 +105,9 @@ export async function reachBattle(page, type = 'battle') {
   for (let i = 0; i < 5; i++) {
     if (await page.locator('#battle').isVisible()) return;
     await clickAvailNode(page, type);
-    await page.waitForTimeout(900);
+    await page.waitForTimeout(300);
+    if (await page.locator('#battleBriefing').isVisible()) await confirmBriefing(page);
+    await page.waitForTimeout(600);
     if (await page.locator('#battle').isVisible()) {
       await expect(page.locator('#oppName')).not.toBeEmpty();
       await expect(page.locator('#blindLabel')).toContainText('盲注');

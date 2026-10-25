@@ -50,7 +50,7 @@
       <button id="apocBtn" class="ghost" style="display:none">残卷无终稿</button>
     </div>
   </header>
-  <div class="codex-legend"><span><i>○</i> 未读</span><span><i>史</i> 正史已录</span><span><i>野</i> 野史已成</span><b>不必每页皆胜,败亦成章</b></div>
+  <div class="codex-legend"><span><i>○</i> 未读</span><span><i>原</i> 原卷已录</span><span><i>野</i> 野史已成</span><b>不必每页皆胜,败亦成章</b></div>
   <div id="scrollList"></div>
 </div>
 
@@ -58,6 +58,46 @@
 <div id="bossIntro" class="hidden">
   <div class="intro-brush" aria-hidden="true"></div>
   <div id="generalIntroCard" class="general-card"></div>
+</div>
+
+<!-- 每场战斗前的史诗战书:信息常驻,展卷动画可略过 -->
+<div id="battleBriefing" class="hidden" role="dialog" aria-modal="true" aria-labelledby="briefingTitle" aria-describedby="briefingReason">
+  <div class="briefing-shell">
+    <div class="briefing-roller left" aria-hidden="true"></div>
+    <div class="briefing-roller right" aria-hidden="true"></div>
+    <article class="briefing-paper">
+      <header class="briefing-header briefing-reveal">
+        <div class="briefing-heading">
+          <p id="briefingKicker"></p>
+          <div class="briefing-title-line"><h2 id="briefingTitle" tabindex="-1"></h2><span class="briefing-seal" aria-hidden="true">战</span></div>
+          <p class="briefing-coordinates"><span id="briefingPlace"></span><i>·</i><span id="briefingEra"></span><i>·</i><span id="briefingRound"></span></p>
+        </div>
+        <p class="briefing-source" id="briefingSource"></p>
+      </header>
+      <div class="briefing-body">
+        <aside class="briefing-opponents briefing-reveal" aria-label="当场敌阵">
+          <h3><span>对 阵</span>此席与谁争锋</h3>
+          <div id="briefingRoster" class="briefing-roster"></div>
+          <p id="briefingRule" class="briefing-rule hidden"></p>
+        </aside>
+        <div class="briefing-story briefing-reveal">
+          <section class="briefing-reason">
+            <h3><span>起 因</span>为何非战不可</h3>
+            <p id="briefingReason"></p>
+          </section>
+          <div class="briefing-stakes">
+            <section class="briefing-win"><h3><span>胜 则</span>此局之后</h3><p id="briefingWin"></p></section>
+            <section class="briefing-loss"><h3><span>负 则</span>所失为何</h3><p id="briefingLoss"></p></section>
+          </div>
+        </div>
+      </div>
+      <footer class="briefing-actions briefing-reveal">
+        <button id="briefingSkip" class="ghost">略过展卷<small>保留全部战书</small></button>
+        <button id="briefingBack" class="ghost">返回行军</button>
+        <button id="briefingEnter">击鼓入席<small id="briefingEnterDetail"></small></button>
+      </footer>
+    </article>
+  </div>
 </div>
 
 <!-- 翻页题记 -->
@@ -70,6 +110,12 @@
       <h2 class="page-name" id="pageName"></h2>
       <div class="page-divider"><i></i><span>若</span><i></i></div>
       <p class="page-premise" id="pagePremise"></p>
+      <section class="page-history" id="pageHistory" aria-label="本回史实与改编">
+        <div class="page-history-heading"><span>史实底稿</span><b id="pageEra"></b><small id="pageSource"></small></div>
+        <p id="pageRecord"></p>
+        <div class="page-adaptation"><span>演义与改写</span><p id="pageAdaptation"></p></div>
+        <p class="page-lead" id="pageLead"></p>
+      </section>
       <div class="page-cast" id="pageCast"></div>
       <div class="page-cold-open" id="pageColdOpen"></div>
       <p class="page-objective" id="pageObjective"></p>
@@ -172,7 +218,7 @@
     <p id="settleClue" class="settle-clue"></p>
     <div id="settleChoices" class="ev-opts"></div>
     <p id="settleNote" class="note-line"></p>
-    <div class="end-actions"><button id="settleRetry">翻 页 重 开</button><button id="settleHome" class="ghost">回 目 录</button></div>
+    <div class="end-actions"><button id="settleRetry">翻 页 重 开</button><button id="settleNext" class="hidden">续读下一回</button><button id="settleHome" class="ghost">回 目 录</button></div>
   </div>
 </div>
 

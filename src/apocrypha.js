@@ -39,7 +39,7 @@ export function genApocrypha(rng = Math.random) {
     omens: omenFx.map((fx, i) => ({ n: omenNames[i], fx })),
     rule: r.rule || {},
     ruleText: r.text,
-    history: '此页无正史。',
+    history: '此页不入史。',
     yeshi: '你赢下这一页,纸页随风而散,又生新页。',
     note: '写卷人注:无终稿,无终局。',
     defeat: '风把这一页吹回了原处。',

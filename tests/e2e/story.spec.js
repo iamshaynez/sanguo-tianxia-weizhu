@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { newGame, clickAvailNode, installDriver, stopDriver } from './helpers.js';
+import { newGame, clickAvailNode, confirmBriefing, installDriver, stopDriver } from './helpers.js';
 
 async function save(page) {
   return page.evaluate(() => JSON.parse(localStorage.getItem('yxj_v1') || '{}'));
@@ -35,6 +35,7 @@ test.describe('章回剧情与故人记忆', () => {
     await expect(page.locator('#pageColdOpen')).toContainText('白门楼上你替他选了一条活路');
     await page.click('#openPage');
     await clickAvailNode(page, 'boss');
+    await confirmBriefing(page);
     await expect(page.locator('#bossIntro')).toHaveClass(/show/);
     await expect(page.locator('#bossIntroBio')).toContainText('白门楼');
     await expect(page.locator('#bossIntroQuote')).toContainText('奉先未死');
@@ -44,12 +45,14 @@ test.describe('章回剧情与故人记忆', () => {
     await newGame(page, 'fast=1&seed=ST04&chapter=qianli&omen=sow&stage=boss&round=5&intro=1');
     await page.click('#openPage');
     await clickAvailNode(page, 'boss');
+    await confirmBriefing(page);
     await expect(page.locator('#bossIntroName')).toHaveText('秦琪 · 黄河渡');
     await expect(page.locator('#bossIntroBio')).toContainText('黄河渡口');
 
     await newGame(page, 'fast=1&seed=ST05&chapter=sangu&omen=sow&stage=boss&round=3&intro=1');
     await page.click('#openPage');
     await clickAvailNode(page, 'boss');
+    await confirmBriefing(page);
     await expect(page.locator('#battle')).toBeVisible();
     await expect(page.locator('#bannerSub')).toContainText('胜后会不会狂');
   });

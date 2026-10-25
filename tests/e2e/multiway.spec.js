@@ -1,8 +1,9 @@
 import { test, expect } from '@playwright/test';
-import { newGame, clickAvailNode, installDriver, stopDriver } from './helpers.js';
+import { newGame, clickAvailNode, confirmBriefing, installDriver, stopDriver } from './helpers.js';
 
 async function enterChibi(page) {
   await clickAvailNode(page, 'boss');
+  await confirmBriefing(page);
   for (const name of ['曹操 · 连舫', '周瑜 · 都督', '诸葛亮 · 借风']) {
     await expect(page.locator('#bossIntro')).toHaveClass(/show/);
     await expect(page.locator('#bossIntroName')).toHaveText(name);

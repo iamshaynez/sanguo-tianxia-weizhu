@@ -84,7 +84,7 @@ button.ghost:hover { border-color: #b7a578; }
 
 /* ---------------- 翻页题记 ---------------- */
 #page { display: flex; align-items: center; justify-content: center; padding: 20px; background: #0c100bb8; }
-.page-book { position: relative; display: flex; width: min(850px, 92vw); min-height: 550px; color: #302d23; background: var(--paper); border: 1px solid #e1d5b7; box-shadow: 0 30px 90px #0009, inset 0 0 90px #6b5a3430; }
+.page-book { position: relative; display: flex; width: min(850px, 92vw); min-height: min(550px, 94vh); color: #302d23; background: var(--paper); border: 1px solid #e1d5b7; box-shadow: 0 30px 90px #0009, inset 0 0 90px #6b5a3430; }
 .page-book::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .22; background: repeating-linear-gradient(0deg, transparent 0 4px, #5c5137 4px 5px), radial-gradient(ellipse at 70% 30%, transparent, #75633b55); }
 .page-spine { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 68px; padding-top: 44px; color: #d3b98b; background: #43392a; border-right: 5px solid #796746; font: 24px var(--serif); }
 .page-spine::after { content: "残卷"; margin-top: auto; margin-bottom: 35px; color: #a38b61; font-size: 12px; letter-spacing: .3em; writing-mode: vertical-rl; }
@@ -325,6 +325,73 @@ button.ghost:hover { border-color: #b7a578; }
 @keyframes nameEnter { from { opacity: 0; transform: translateX(35px); } to { opacity: 1; transform: translateX(0); } }
 @keyframes sealEnter { from { opacity: 0; transform: scale(2.3) rotate(-15deg); } to { opacity: 1; transform: scale(1) rotate(-3deg); } }
 
+/* ---------------- 战前史诗卷轴 ---------------- */
+#battleBriefing { position: fixed; inset: 0; z-index: 65; display: flex; align-items: center; justify-content: center; padding: 18px; background: radial-gradient(ellipse at 50% 42%, #34332688, #080b08f5 76%); opacity: 0; transition: opacity .3s ease; }
+#battleBriefing.show { opacity: 1; }
+.briefing-shell { position: relative; width: min(1100px, 96vw); max-height: calc(100vh - 36px); max-height: calc(100dvh - 36px); padding: 12px 20px; }
+.briefing-paper { position: relative; z-index: 2; display: flex; flex-direction: column; max-height: calc(100vh - 60px); max-height: calc(100dvh - 60px); overflow: hidden; padding: 25px 32px 0; color: #332e22; background: linear-gradient(100deg, #c8b88f, #e2d5b3 12%, #d9cba6 50%, #e5d9b9 88%, #c4b187); border: 1px solid #eadbb6; box-shadow: 0 28px 100px #000c, inset 0 0 80px #6b562c2b; }
+.briefing-paper::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; opacity: .18; background: repeating-linear-gradient(2deg, transparent 0 4px, #665737 4px 5px), radial-gradient(ellipse at 20% 30%, transparent, #79653c55); }
+.briefing-roller { position: absolute; z-index: 4; top: 0; bottom: 0; width: 25px; background: linear-gradient(90deg, #2b2117, #806841 42%, #4b3823 72%, #241b13); border: 1px solid #a08450; border-radius: 9px; box-shadow: 4px 6px 16px #0008; }
+.briefing-roller::before, .briefing-roller::after { content: ''; position: absolute; left: -4px; width: 31px; height: 15px; background: #33261a; border: 1px solid #8e7347; border-radius: 6px; }
+.briefing-roller::before { top: -5px; } .briefing-roller::after { bottom: -5px; }
+.briefing-roller.left { left: 50%; } .briefing-roller.right { right: 50%; }
+.briefing-header { display: flex; align-items: start; justify-content: space-between; gap: 24px; padding-bottom: 15px; border-bottom: 1px solid #9d895d80; }
+.briefing-heading { flex: 1; min-width: 0; }
+#briefingKicker { color: #8f4334; font-size: 10px; letter-spacing: .24em; }
+.briefing-title-line { display: flex; align-items: center; gap: 16px; margin-top: 8px; }
+#briefingTitle { margin: 0; color: #2f2b20; font: 400 clamp(30px, 3.6vw, 48px)/1.25 var(--serif); letter-spacing: .1em; outline: none; }
+.briefing-seal { display: flex; align-items: center; justify-content: center; flex: 0 0 44px; width: 44px; height: 51px; color: #a13c30; border: 3px double #a13c30; font: 27px var(--serif); transform: rotate(-6deg); opacity: .7; }
+.briefing-coordinates { display: flex; align-items: center; flex-wrap: wrap; gap: 5px 10px; margin-top: 9px; color: #6f624a; font-size: 11px; letter-spacing: .07em; }
+.briefing-coordinates i { color: #a24837; font-style: normal; }
+.briefing-source { flex: 0 0 240px; padding-top: 4px; color: #7e7056; font-size: 10px; line-height: 1.7; text-align: right; }
+.briefing-body { display: grid; grid-template-columns: minmax(250px, .78fr) minmax(0, 1.45fr); gap: 28px; min-height: 0; overflow-y: auto; padding: 20px 2px 20px; scrollbar-color: #9b8557 #d4c49d; scrollbar-width: thin; }
+.briefing-opponents { padding-right: 25px; border-right: 1px solid #9d895d66; }
+.briefing-opponents h3, .briefing-story h3 { color: #5f513a; font: 12px/1.6 var(--serif); letter-spacing: .12em; }
+.briefing-opponents h3 span, .briefing-story h3 span { display: inline-block; margin-right: 10px; padding: 3px 7px; color: #e6d4ac; background: #7d352b; font-size: 12px; letter-spacing: .2em; }
+.briefing-roster { display: grid; gap: 9px; margin-top: 13px; }
+.briefing-enemy { display: grid; grid-template-columns: 70px minmax(0, 1fr); min-height: 82px; color: #dfd1ae; background: linear-gradient(110deg, #292b21, #1c2018); border: 1px solid #76643f; }
+.briefing-enemy-art { position: relative; min-height: 82px; overflow: hidden; border-right: 1px solid #76643f; }
+.briefing-enemy-art .portrait-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: saturate(.88) contrast(1.04); }
+.briefing-enemy-art > span { position: absolute; top: 4px; left: 4px; display: flex; align-items: center; justify-content: center; width: 19px; height: 22px; color: #e9d3a3; background: #84362b; font: 11px var(--serif); }
+.briefing-enemy > div:last-child { align-self: center; min-width: 0; padding: 9px 10px; }
+.briefing-enemy b { display: block; color: #ead7ab; font: 16px/1.45 var(--serif); }
+.briefing-enemy small { display: block; margin-top: 4px; color: #9e957b; font-size: 9px; line-height: 1.5; }
+.briefing-rule { margin-top: 12px; padding: 9px 11px; color: #813b30; background: #a34c3510; border-left: 2px solid #9d4737; font-size: 11px; line-height: 1.75; }
+.briefing-rule::before { content: '本回战法 · '; font-family: var(--serif); }
+.briefing-story { min-width: 0; }
+.briefing-reason > p { margin-top: 12px; color: #3d3628; font: 17px/1.95 var(--serif); letter-spacing: .045em; }
+.briefing-stakes { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 19px; }
+.briefing-stakes section { padding: 13px 14px; background: #f3e8ca35; border-top: 2px solid #8b774d; }
+.briefing-stakes p { margin-top: 10px; color: #514735; font-size: 12px; line-height: 1.85; }
+.briefing-stakes .briefing-win { border-top-color: #6c7955; }
+.briefing-stakes .briefing-win h3 span { background: #5f6d4e; }
+.briefing-stakes .briefing-loss { border-top-color: #a14c3c; }
+.briefing-actions { display: flex; align-items: center; justify-content: flex-end; gap: 10px; flex: 0 0 auto; margin: auto -32px 0; padding: 14px 32px max(14px, env(safe-area-inset-bottom)); background: #d8c9a6f2; border-top: 1px solid #9d895d80; }
+.briefing-actions button { min-height: 44px; padding: 9px 17px; font-size: 14px; }
+.briefing-actions button small { display: block; margin-top: 3px; font: 9px var(--song); letter-spacing: .06em; }
+.briefing-actions .ghost { color: #675c46; border-color: #948360; }
+.briefing-actions .ghost:hover { color: #2f2a20; background: #c0b18d; }
+#briefingSkip { margin-right: auto; }
+#briefingEnter { min-width: 190px; color: #f0dfb8; background: #743128; border-color: #a65d43; font-size: 18px; }
+#briefingEnter small { color: #d1af82; }
+.briefing-open .coachmark { display: none !important; }
+#battleBriefing.show .briefing-paper { animation: briefingUnroll .9s cubic-bezier(.2, .78, .2, 1) both; }
+#battleBriefing.show .briefing-roller.left { animation: briefingRollLeft .9s cubic-bezier(.2, .78, .2, 1) both; }
+#battleBriefing.show .briefing-roller.right { animation: briefingRollRight .9s cubic-bezier(.2, .78, .2, 1) both; }
+#battleBriefing.show .briefing-reveal { animation: briefingReveal .48s .5s ease both; }
+#battleBriefing.show .briefing-story { animation-delay: .68s; }
+#battleBriefing.show .briefing-actions { animation-delay: .82s; }
+#battleBriefing.show .briefing-seal { animation: sealEnter .45s .65s cubic-bezier(.2, 1.4, .4, 1) both; }
+#battleBriefing.is-open .briefing-paper { animation: none; clip-path: inset(0); }
+#battleBriefing.is-open .briefing-roller.left { left: 8px; animation: none; }
+#battleBriefing.is-open .briefing-roller.right { right: 8px; animation: none; }
+#battleBriefing.is-open .briefing-reveal { opacity: 1; transform: none; animation: none; }
+#battleBriefing.is-open .briefing-seal { opacity: .7; transform: rotate(-6deg) scale(1); animation: none; }
+@keyframes briefingUnroll { from { clip-path: inset(0 50%); } to { clip-path: inset(0); } }
+@keyframes briefingRollLeft { from { left: 50%; } to { left: 8px; } }
+@keyframes briefingRollRight { from { right: 50%; } to { right: 8px; } }
+@keyframes briefingReveal { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: translateY(0); } }
+
 /* ---------------- 弹窗与朱批 ---------------- */
 .modal { position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; padding: 18px; background: #080b08cf; backdrop-filter: blur(5px); }
 .modal-box { position: relative; width: min(570px, 92vw); max-height: 92vh; overflow-y: auto; padding: 30px 34px; color: #ded2b5; background: linear-gradient(135deg, #25271c, #171a13); border: 1px solid #8c7548; box-shadow: 0 24px 80px #000b, inset 0 0 0 5px #15170f, inset 0 0 0 6px #51472f; text-align: center; }
@@ -390,6 +457,16 @@ button.ghost:hover { border-color: #b7a578; }
 .intro-skip { margin: 14px 0 0 18px; padding: 8px 12px; color: #85816c; background: transparent; border-color: #504e3f; font-size: 11px; }
 #replayIntroBtn { padding: 10px 14px; font-size: 12px; }
 .page-book { max-height: 94vh; overflow-y: auto; }
+.page-history { margin: 16px auto 0; max-width: 640px; padding: 13px 16px; color: #484131; background: #f2e6c733; border: 1px solid #9b8a654d; text-align: left; }
+.page-history-heading { display: flex; align-items: baseline; flex-wrap: wrap; gap: 5px 12px; }
+.page-history-heading > span, .page-adaptation > span { color: #963f31; font: 13px var(--serif); letter-spacing: .16em; }
+.page-history-heading b { color: #6c5a3c; font-size: 11px; font-weight: 400; }
+.page-history-heading small { flex-basis: 100%; color: #84775d; font-size: 10px; line-height: 1.6; }
+#pageRecord { margin-top: 8px; font-size: 12px; line-height: 1.85; }
+.page-adaptation { margin-top: 10px; padding-top: 9px; border-top: 1px solid #9b8a6540; }
+.page-adaptation p { margin-top: 5px; color: #665a45; font-size: 11px; line-height: 1.8; }
+.page-lead { margin-top: 10px; padding: 8px 10px; color: #71562f; background: #a4894d0b; border-left: 2px solid #9b4738; font: 12px/1.8 var(--serif); }
+.page-lead::before { content: '承前 · '; color: #963f31; }
 .page-cast { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
 .page-cast span { padding: 3px 9px; color: #6e5a3e; border: 1px solid #a79670; font-size: 11px; letter-spacing: .08em; }
 .page-cast span::before { content: '故人 · '; color: #9a4a38; }
@@ -599,6 +676,53 @@ button.ghost:hover { border-color: #b7a578; }
   #codex { top: 206px; }
   #oppChar.is-multi ~ #codex { top: 206px; }
 }
+@media (max-width: 800px) {
+  .briefing-body { grid-template-columns: minmax(210px, .72fr) minmax(0, 1.2fr); gap: 18px; }
+  .briefing-opponents { padding-right: 17px; }
+  .briefing-stakes { grid-template-columns: 1fr; gap: 10px; }
+  .briefing-source { flex-basis: 180px; }
+}
+@media (max-width: 640px) {
+  #battleBriefing { padding: 8px; }
+  .briefing-shell { width: 100%; max-height: calc(100dvh - 16px); padding: 8px 10px; }
+  .briefing-paper { max-height: calc(100dvh - 32px); padding: 17px 15px 0; }
+  .briefing-header { display: block; padding-bottom: 11px; }
+  .briefing-title-line { gap: 10px; margin-top: 6px; }
+  #briefingTitle { font-size: clamp(25px, 8vw, 34px); letter-spacing: .06em; }
+  .briefing-seal { flex-basis: 34px; width: 34px; height: 40px; font-size: 21px; }
+  .briefing-coordinates { gap: 3px 7px; font-size: 9px; }
+  .briefing-source { margin-top: 7px; padding: 0; font-size: 9px; text-align: left; }
+  .briefing-body { display: block; padding: 13px 1px; }
+  .briefing-opponents { padding: 0 0 13px; border-right: 0; border-bottom: 1px solid #9d895d66; }
+  .briefing-roster { display: flex; gap: 7px; margin-top: 10px; overflow-x: auto; }
+  .briefing-enemy { display: block; flex: 1 0 106px; min-height: 0; }
+  .briefing-enemy-art { height: 72px; min-height: 0; border-right: 0; border-bottom: 1px solid #76643f; }
+  .briefing-enemy > div:last-child { padding: 6px 7px; }
+  .briefing-enemy b { font-size: 12px; }
+  .briefing-enemy small { font-size: 8px; }
+  .briefing-story { padding-top: 14px; }
+  .briefing-reason > p { margin-top: 9px; font-size: 15px; line-height: 1.9; }
+  .briefing-stakes { margin-top: 13px; }
+  .briefing-stakes section { padding: 10px 11px; }
+  .briefing-stakes p { margin-top: 7px; font-size: 11px; }
+  .briefing-actions { flex-wrap: wrap; gap: 7px; margin: auto -15px 0; padding: 11px 15px max(11px, env(safe-area-inset-bottom)); }
+  .briefing-actions button { padding: 8px 12px; font-size: 12px; }
+  #briefingEnter { order: -1; flex: 1 0 100%; min-width: 0; font-size: 17px; }
+  #briefingSkip { margin-right: auto; }
+  .page-history { padding: 10px 11px; }
+  #pageRecord { font-size: 11px; }
+  .page-adaptation p, .page-lead { font-size: 10px; }
+}
+@media (max-height: 700px) and (min-width: 641px) {
+  .briefing-paper { padding-top: 16px; }
+  .briefing-header { padding-bottom: 10px; }
+  #briefingTitle { font-size: 31px; }
+  .briefing-body { padding-top: 12px; padding-bottom: 12px; }
+  .briefing-enemy { grid-template-columns: 58px minmax(0, 1fr); min-height: 64px; }
+  .briefing-enemy-art { min-height: 64px; }
+  .briefing-reason > p { font-size: 14px; }
+  .briefing-stakes { margin-top: 12px; }
+}
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }

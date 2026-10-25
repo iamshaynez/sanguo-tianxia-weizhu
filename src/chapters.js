@@ -8,7 +8,7 @@
 //   skirmish 遭遇战对手 { name, traits } / boss 关卡对手 { name, traits, stack, blinds?, escalate? }
 //   omens 天时三选 { n 名称, fx 效果键 } —— fx: supply 粮草+200 / sow 敌士气-1 / keenEye 看破 / raid 敌-200
 //   rule 规则修饰 { tauntImmune 攻心无效 / lieMult 破绽作假倍率 / gauntlet 连战场数 / choice {a,b} 双野史 }
-//   history 正史一句 / yeshi 野史(choice 页为 A 线) / yeshiB 野史 B 线(仅 choice)
+//   history 原卷一句(可含演义) / yeshi 野史(choice 页为 A 线) / yeshiB 野史 B 线(仅 choice)
 //   note 写卷人注 / defeat 兵败批注 / gate 大关回(改写后开下一卷)
 
 export const FX = {
@@ -62,7 +62,7 @@ export const CHAPTERS = [
     omens: [{ n: '三英助阵', fx: 'supply' }, { n: '赤兔长嘶', fx: 'sow' }, { n: '辕门观阵', fx: 'keenEye' }],
     ruleText: '他天下无双,只进不退。蹲下,等他力竭。',
     history: '三英战吕布,吕布败走。',
-    yeshi: '画戟坠地,温候掷盔长笑:「痛快!」',
+    yeshi: '画戟坠地,温侯掷盔长笑:「痛快!」',
     note: '写卷人注:此人只进不退,等他力竭。',
     defeat: '天下第一,名副其实。',
   },
@@ -115,7 +115,7 @@ export const CHAPTERS = [
   },
   {
     id: 'baimenlou', scroll: 1, year: '建安三年', name: '白门楼', type: 'assault', gate: true,
-    premise: '若温候肯听陈宫一言。',
+    premise: '若温侯肯听陈宫一言。',
     regret: '天下第一,死在不肯低头。',
     map: ['下邳', '泗水', '白门楼'],
     skirmish: { name: '陷阵营锐士', traits: T(70, 30, 20, 65, 45, 40) },
@@ -128,7 +128,7 @@ export const CHAPTERS = [
     omens: [{ n: '陈宫之谋', fx: 'keenEye' }, { n: '赤兔未疲', fx: 'sow' }, { n: '水围困城', fx: 'supply' }],
     ruleText: '',
     history: '布乞命于玄德,玄德一语,缢杀于白门楼。',
-    yeshi: '温候听陈宫,弃下邳,走淮南。天下再乱十年。',
+    yeshi: '温侯听陈宫,弃下邳,走淮南。天下再乱十年。',
     note: '写卷人注:困兽犹斗,何况是吕布。',
     defeat: '白门楼的绳子,始终等着。',
   },
@@ -518,7 +518,7 @@ export const CHAPTERS = [
     defeat: '阴平无人,成都无险。',
   },
   {
-    id: 'guijin', scroll: 4, year: '泰始元年', name: '归晋', type: 'scheme',
+    id: 'guijin', scroll: 4, year: '太康元年', name: '归晋', type: 'scheme',
     premise: '若三国的牌,还有最后一局。',
     regret: '分久必合,合久……未必合。',
     map: ['建业', '石头城', '洛阳'],
