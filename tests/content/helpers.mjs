@@ -3,3 +3,6 @@ export { CHAPTERS, FX, SCROLLS, GATE_IDS, NORMAL_IDS, getChapter } from '../../s
 export { TRAITS } from '../../src/persona.js';
 export { GENERALS } from '../../src/generals.js';
 export { SKINS } from '../../src/character.js';
+export { STORY_DATA } from '../../src/story-data/index.js';
+export { SPEAKERS } from '../../src/story-engine.js';
+export { rosterOf, roundConfig, chapterEncounters } from '../../src/encounters.js';

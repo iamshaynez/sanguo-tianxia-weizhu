@@ -3,7 +3,8 @@ import { expect } from '@playwright/test';
 
 // 开卷:带参数进入,点「开卷」。默认落到残卷目录;?chapter= 时落到题记页
 export async function newGame(page, params = '') {
-  await page.goto('/?' + params);
+  const withTutorialDefault = params.includes('tutorial=') ? params : `${params}${params ? '&' : ''}tutorial=0`;
+  await page.goto('/?' + withTutorialDefault);
   await expect(page.locator('#startBtn')).toBeVisible();
   await page.click('#startBtn');
   await expect(page.locator('#scroll:not(.hidden), #page:not(.hidden)').first()).toBeVisible();

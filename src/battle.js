@@ -1,62 +1,35 @@
-// battle.js —— 2.5D 牌桌战斗:发牌、下注、破绽、摊牌、清台
+// battle.js —— 2.5D 多人牌桌:有序席位、独立 AI、破绽、边池、淘汰与演出
 import * as PK from './poker.js';
+import * as T from './table.js';
 import { makePersona } from './persona.js';
 import { wait } from './fx2d.js';
 import { POSE } from './character.js';
+import { battleBeatsFor, speakerName } from './story-engine.js';
 
 const $ = id => document.getElementById(id);
-
 const SLOTS = {
   community: i => ({ x: 50 + (i - 2) * 11.5, y: 45 }),
   pot: { x: 50, y: 38 },
-  betP: { x: 50, y: 66 },
-  betO: { x: 50, y: 26 },
-  stackP: { x: 87, y: 74 },
-  stackO: { x: 11, y: 13 },
+  betP: { x: 50, y: 66 }, stackP: { x: 87, y: 74 },
   deck: { x: 10, y: 42 },
-  oppHole: i => ({ x: i === 0 ? 45.5 : 54.5, y: 27 }),
-  playerHole: i => ({ x: i === 0 ? 45 : 55, y: 97 }),
 };
-
 const LINES = {
-  deal: ['又是一手。', '洗牌、发牌,阵前再见。'],
-  bet: ['下注。', '跟上,或者让开。'],
-  raise: ['加注。', '此注,翻倍。'],
-  call: ['跟。', '看你这一手。'],
-  check: ['过。', '……慢慢来。'],
-  fold: ['这手让给你。', '……不值得。'],
-  allin: ['全压。', '要么全跟,要么退。'],
-  win: ['筹码,该是我的。', '承让。'],
-  lose: ['……留着吧。', '这一手,记下。'],
-  taunt: ['……口舌之快。', '阵前斗口,输家的把戏。'],
-  tauntTilt: ['放肆!', '你、再、说、一、遍?'],
+  deal: ['又是一手。', '洗牌、发牌,阵前再见。'], bet: ['下注。', '跟上,或者让开。'],
+  raise: ['加注。', '此注,翻倍。'], call: ['跟。', '看你这一手。'], check: ['过。', '……慢慢来。'],
+  fold: ['这手让给你。', '……不值得。'], allin: ['全压。', '要么全跟,要么退。'],
+  win: ['筹码,该是我的。', '承让。'], lose: ['……留着吧。', '这一手,记下。'],
+  taunt: ['……口舌之快。', '阵前斗口,输家的把戏。'], tauntTilt: ['放肆!', '你、再、说、一、遍?'],
 };
 
-// ---------------- 牌元素 ----------------
-function cardEl(id, big = false) {
+function cardEl(id, big = false, seatId = '') {
   const el = document.createElement('div');
   el.className = 'card' + (PK.SUIT_RED[PK.suitOf(id)] ? ' red' : '') + (big ? ' big' : '');
   const r = PK.RANKS[PK.rankOf(id)], s = PK.SUITS[PK.suitOf(id)];
-  const face = r >= 9 || r === 0 && false
-    ? `<div class="pip big-letter">${r}</div><div class="pip mid-suit">${s}</div>`
+  const face = r >= 9 ? `<div class="pip big-letter">${r}</div><div class="pip mid-suit">${s}</div>`
     : `<div class="pip mid-suit only">${s}</div><div class="pip small-rank">${r}</div>`;
-  el.innerHTML = `
-    <div class="inner">
-      <div class="face front">
-        <div class="corner tl">${r}<br>${s}</div>
-        <div class="center">${face}</div>
-        <div class="corner br">${r}<br>${s}</div>
-      </div>
-      <div class="face back"><div class="back-sig">♠</div></div>
-    </div>`;
+  el.innerHTML = `<div class="inner"><div class="face front"><div class="corner tl">${r}<br>${s}</div><div class="center">${face}</div><div class="corner br">${r}<br>${s}</div></div><div class="face back"><div class="back-sig">♠</div></div></div>`;
   el.dataset.cardId = id;
-  return el;
-}
-
-function stackEl(count, tone) {
-  const el = document.createElement('div');
-  el.className = 'stack';
-  renderStack(el, count, tone);
+  if (seatId) el.dataset.seatId = seatId;
   return el;
 }
 
@@ -64,128 +37,164 @@ function renderStack(el, count, tone) {
   el.innerHTML = '';
   const n = Math.min(Math.max(0, Math.round(count)), 12);
   for (let i = 0; i < n; i++) {
-    const c = document.createElement('div');
-    c.className = 'chip ' + tone;
-    c.style.bottom = i * 5 + 'px';
-    el.appendChild(c);
+    const chip = document.createElement('div');
+    chip.className = 'chip ' + tone;
+    chip.style.bottom = i * 5 + 'px';
+    el.appendChild(chip);
   }
 }
 
-// ---------------- 战斗 ----------------
+function opponentX(index, count) {
+  if (count === 1) return 50;
+  if (count === 2) return [31, 69][index];
+  return [20, 50, 80][index] || (12 + index * 76 / Math.max(1, count - 1));
+}
+
 export function startBattle(opts) {
   const {
-    playerStack = 1000, oppStack = 1000,
-    blinds0 = [10, 20], escalateEvery = 4,
-    boss = false, oppName = '收债人 · 无名氏',
-    rule = {}, oppMorale0 = 0, general = null,
+    playerStack = 1000, oppStack = 1000, blinds0 = [10, 20], escalateEvery = 4,
+    boss = false, oppName = '无名敌将', rule = {}, oppMorale0 = 0, general = null,
     ui, audio, oppChar, onEnd,
   } = opts;
-
   const table = $('table'), cardLayer = $('cardLayer'), scene = $('scene');
-  const piles = {
-    pot: $('stPot'), betP: $('stBetP'), betO: $('stBetO'),
-    stackP: $('stStackP'), stackO: $('stStackO'),
+  const single = {
+    name: oppName, stack: oppStack, persona: opts.persona || makePersona(), general,
+    skin: opts.oppSkin || general?.skin || 'default', morale: oppMorale0, gen: opts.oppGen || null,
   };
-  const BL = i => {
-    const m = Math.pow(1.5, i);
+  const configs = opts.opponents?.length ? opts.opponents : [single];
+  const hero = { id: 'player', name: opts.playerName || '你', isHero: true, stack: playerStack, hole: [] };
+  const opponents = configs.map((cfg, index) => {
+    const persona = cfg.persona || makePersona(cfg.traits);
+    const id = cfg.id || (index === 0 ? 'opponent' : `opponent-${index + 1}`);
+    const seat = {
+      id, isHero: false, name: cfg.name || `敌将 ${index + 1}`, stack: cfg.stack,
+      initialStack: cfg.stack, hole: [], gen: cfg.general || null, genId: cfg.gen || cfg.generalId || null,
+      skin: cfg.skin || cfg.general?.skin || 'default', persona, morale: cfg.morale ?? oppMorale0,
+      lossStreak: 0, slowplayed: false, bluffLine: false, tell: null, read: PK.createRead(),
+    };
+    seat.ai = {
+      ...persona.ai,
+      get tilt() { return tiltOf(seat); },
+      get morale() { return seat.morale; },
+    };
+    return seat;
+  });
+  const G = {
+    handNum: 0, blindLv: 0, button: 0, blinds: [...blinds0], H: null,
+    hero, opponents, seats: [hero, ...opponents], board: [], deck: [], deckPtr: 0, deckLog: [],
+    over: false, taunted: false, spectate: false, selected: opponents[0].id,
+    meshByCard: new Map(), boardEls: [], seed: opts.seed, keenEye: !!opts.keenEye,
+  };
+  const BL = level => {
+    const m = Math.pow(1.5, level);
     return [Math.round(blinds0[0] * m / 5) * 5, Math.round(blinds0[1] * m / 5) * 5];
   };
+  const tiltOf = seat => Math.max(0, Math.min(3, -seat.morale));
+  const BARK = (seat, key, fallback) => seat.gen?.barks?.[key] || fallback;
 
-  const G = {
-    handNum: 0, blindLv: 0,
-    p: { stack: playerStack, bet: 0, hole: [] },
-    o: { stack: oppStack, bet: 0, hole: [] },
-    pot: 0, board: [], deck: [], deckPtr: 0, deckLog: [],
-    morale: oppMorale0, oLossStreak: 0, taunted: false, over: false,
-    slowplayed: false, bluffLine: false,
-    tell: null, meshByCard: new Map(), holeP: [], holeO: [], boardEls: [],
-    seed: opts.seed,
-    keenEye: !!opts.keenEye,
-    oStack0: oppStack,
-  };
-  // 人格基座:六维属性 → 战术参数;缺省为全 50 常人
-  const PERSONA = opts.persona || makePersona();
-  // 武将档案:签名破绽与台词(无名偏将用通用套话)
-  const GEN = general;
-  const TELLS = GEN?.tells || { strong: '右手护住筹码堆', weak: '左手抚上瓷面' };
-  const BARK = (k, fallback) => GEN?.barks?.[k] || fallback;
-  // 士气 → 怒气(破绽诚实度、UI 灯):消沉/暴怒都算失守
-  const tiltOf = () => Math.max(0, Math.min(3, -G.morale));
-  const readStats = PK.createRead();
-  const AI_P = {
-    ...PERSONA.ai,
-    get tilt() { return tiltOf(); },
-    get morale() { return G.morale; },
-  };
-  const say = (key, p = 0.55) => { if (Math.random() < p) ui.bubble(LINES[key][Math.floor(Math.random() * LINES[key].length)]); };
-
-  oppChar.setBoss(boss);
-  oppChar.setSkin(opts.oppSkin || GEN?.skin || 'default');
-  oppChar.setProfile({
-    bio: GEN?.bio || '乱世群雄,各有一局。',
-    traits: PERSONA.traits,
-  });
-  // 执子之手:你执丞相——名牌与攻心钮让位给观星
+  oppChar.setPlayers(opponents.map(seat => ({ id: seat.id, name: seat.name, stack: seat.stack, skin: seat.skin, boss })));
+  for (const seat of opponents) {
+    oppChar.setProfile({ bio: seat.gen?.bio || '乱世群雄,各有一局。', traits: seat.persona.traits }, seat.id);
+    oppChar.setBoss(boss, seat.id);
+    oppChar.setTilt(tiltOf(seat), seat.id);
+  }
+  oppChar.setSelected(true, G.selected);
   ui.setPlayerName?.(opts.playerName);
   ui.setTauntLabel?.(opts.zhiZi ? '观 星' : '攻 心');
-  ui.setOppName(oppName);
-  ui.setStacks(G.p.stack, G.o.stack);
-  ui.setPot(0); ui.setTilt(tiltOf()); ui.setBlind('');
-  ui.setHand('—'); ui.clearCodex();
+  ui.setHand('—');
+  ui.clearCodex();
+  ui.setPot(0);
 
-  // ---------- 布局与动画 ----------
+  const piles = { pot: $('stPot'), bet: new Map([['player', $('stBetP')]]), stack: new Map([['player', $('stStackP')]]) };
+  for (const [index, seat] of opponents.entries()) {
+    const betEl = index === 0 ? $('stBetO') : document.createElement('div');
+    const stackEl = index === 0 ? $('stStackO') : document.createElement('div');
+    if (index > 0) {
+      betEl.id = `stBet-${seat.id}`; stackEl.id = `stStack-${seat.id}`;
+      betEl.className = 'stack opponent-bet'; stackEl.className = 'stack opponent-stack';
+      betEl.dataset.dynamicPile = '1'; stackEl.dataset.dynamicPile = '1';
+      table.append(betEl, stackEl);
+    }
+    betEl.dataset.seatId = seat.id; stackEl.dataset.seatId = seat.id;
+    piles.bet.set(seat.id, betEl); piles.stack.set(seat.id, stackEl);
+  }
+
+  function seatSlot(seat, kind, cardIndex = 0) {
+    if (seat.isHero) {
+      if (kind === 'hole') {
+        const gap = window.innerWidth <= 640 ? 28 : 10;
+        return { x: 50 + (cardIndex ? gap / 2 : -gap / 2), y: 97 };
+      }
+      if (kind === 'bet') return SLOTS.betP;
+      return SLOTS.stackP;
+    }
+    const index = opponents.indexOf(seat), count = opponents.length;
+    const x = opponentX(index, count);
+    if (kind === 'hole') {
+      const offset = window.innerWidth <= 640 ? 8 : 5.5;
+      return { x: x + (cardIndex ? offset : -offset), y: count === 1 ? 27 : 22 };
+    }
+    if (kind === 'bet') return { x, y: count === 1 ? 26 : 30 };
+    return { x: count === 1 ? 11 : x, y: count === 1 ? 13 : 11 };
+  }
   function slotPos(slot, el) {
-    const r = cardLayer.getBoundingClientRect();
-    const er = el.getBoundingClientRect();
+    const r = cardLayer.getBoundingClientRect(), er = el.getBoundingClientRect();
     return { x: r.width * slot.x / 100 - er.width / 2, y: r.height * slot.y / 100 - er.height / 2 };
   }
-
   function place(el, slot, immediate = false) {
-    const p = slotPos(slot, el);
     if (immediate) el.classList.add('no-anim');
-    el.style.transform = `translate(${p.x}px, ${p.y}px)`;
+    el.style.transform = `translate(${slotPos(slot, el).x}px, ${slotPos(slot, el).y}px)`;
     if (immediate) { el.offsetHeight; el.classList.remove('no-anim'); }
   }
-
-  function pileTo(pileEl, slot) {
+  function pileTo(el, slot) {
     const r = cardLayer.getBoundingClientRect();
-    pileEl.style.left = (r.width * slot.x / 100) + 'px';
-    pileEl.style.top = (r.height * slot.y / 100) + 'px';
+    el.style.left = (r.width * slot.x / 100) + 'px';
+    el.style.top = (r.height * slot.y / 100) + 'px';
   }
-
   function layoutPiles() {
-    pileTo(piles.pot, SLOTS.pot); pileTo(piles.betP, SLOTS.betP);
-    pileTo(piles.betO, SLOTS.betO); pileTo(piles.stackP, SLOTS.stackP);
-    pileTo(piles.stackO, SLOTS.stackO);
+    pileTo(piles.pot, SLOTS.pot);
     pileTo($('deckEl'), SLOTS.deck);
+    for (const seat of G.seats) {
+      pileTo(piles.bet.get(seat.id), seatSlot(seat, 'bet'));
+      pileTo(piles.stack.get(seat.id), seatSlot(seat, 'stack'));
+    }
   }
   layoutPiles();
   const relayout = () => layoutPiles();
   addEventListener('resize', relayout);
 
   function refreshPiles() {
-    renderStack(piles.stackP, G.p.stack, 'ivory');
-    renderStack(piles.stackO, G.o.stack, 'ebony');
-    renderStack(piles.betP, G.p.bet, 'ivory');
-    renderStack(piles.betO, G.o.bet, 'ebony');
-    renderStack(piles.pot, G.pot, 'pot');
-    ui.setStacks(G.p.stack, G.o.stack);
-    ui.setPot(G.pot + G.p.bet + G.o.bet);
+    for (const seat of G.seats) {
+      renderStack(piles.stack.get(seat.id), seat.stack, seat.isHero ? 'ivory' : 'ebony');
+      renderStack(piles.bet.get(seat.id), seat.bet || 0, seat.isHero ? 'ivory' : 'ebony');
+      if (!seat.isHero) {
+        oppChar.setStack(seat.stack, seat.id);
+        oppChar.setTilt(tiltOf(seat), seat.id);
+      }
+    }
+    renderStack(piles.pot, G.H ? T.potTotal(G.H.seats) : 0, 'pot');
+    ui.setStacks(hero.stack, opponents[0].stack);
+    ui.setPot(G.H ? T.potTotal(G.H.seats) : 0);
+    ui.setTilt(tiltOf(opponents[0]));
+  }
+  function refreshDealer() {
+    const seat = G.H?.seats[G.H.button];
+    if (!seat) return;
+    const button = $('dealerBtn');
+    button.title = `庄位 · ${seat.isHero ? '你' : seat.name}`;
+    button.dataset.seatId = seat.id;
+    if (seat.isHero) { button.style.left = '36%'; button.style.top = '82%'; }
+    else {
+      button.style.left = `${opponentX(opponents.indexOf(seat), opponents.length)}%`;
+      button.style.top = '17%';
+    }
   }
   refreshPiles();
 
-  function putChips(who, amt) {
-    const P = who === 'p' ? G.p : G.o;
-    amt = Math.min(amt, P.stack);
-    P.stack -= amt; P.bet += amt;
-    audio.chip();
-    refreshPiles();
-    return amt;
-  }
-
   async function flyChips(fromSlot, toSlot, tone) {
-    const el = stackEl(Math.min(8, 8), tone);
-    el.classList.add('fly');
+    const el = document.createElement('div');
+    el.className = 'stack fly';
+    renderStack(el, 8, tone);
     cardLayer.appendChild(el);
     place(el, fromSlot, true);
     await wait(0.03);
@@ -194,27 +203,15 @@ export function startBattle(opts) {
     await wait(0.42);
     el.remove();
   }
-
-  async function commitBets() {
-    if (G.p.bet === 0 && G.o.bet === 0) return;
-    await Promise.all([flyChips(SLOTS.betP, SLOTS.pot, 'ivory'), flyChips(SLOTS.betO, SLOTS.pot, 'ebony')]);
-    const matched = Math.min(G.p.bet, G.o.bet);
-    const excess = Math.abs(G.p.bet - G.o.bet);
-    if (excess > 0) { if (G.p.bet > G.o.bet) G.p.stack += excess; else G.o.stack += excess; }
-    G.pot += matched * 2;
-    G.p.bet = 0; G.o.bet = 0;
+  async function collectBets() {
+    if (!G.H) return;
+    const bets = G.H.seats.filter(seat => seat.bet > 0);
+    await Promise.all(bets.map(seat => flyChips(seatSlot(seat, 'bet'), SLOTS.pot, seat.isHero ? 'ivory' : 'ebony')));
+    T.closeRound(G.H);
     refreshPiles();
   }
-
-  async function sweepPot(who) {
-    await flyChips(SLOTS.pot, who === 'p' ? SLOTS.stackP : SLOTS.stackO, 'pot');
-    if (who === 'p') G.p.stack += G.pot; else G.o.stack += G.pot;
-    G.pot = 0;
-    refreshPiles();
-  }
-
-  async function dealCard(id, slot, faceUp, big = false) {
-    const el = cardEl(id, big);
+  async function dealCard(id, slot, faceUp, big = false, seatId = '') {
+    const el = cardEl(id, big, seatId);
     cardLayer.appendChild(el);
     G.meshByCard.set(id, el);
     place(el, SLOTS.deck, true);
@@ -225,11 +222,9 @@ export function startBattle(opts) {
     await wait(0.4);
     return el;
   }
-
-  function nextCard() { return G.deck[G.deckPtr++]; }
-
+  const nextCard = () => G.deck[G.deckPtr++];
   async function clearTable() {
-    const all = [...G.holeP, ...G.holeO, ...G.boardEls].filter(Boolean);
+    const all = [...G.meshByCard.values()].filter(Boolean);
     for (const el of all) {
       el.classList.remove('flipped', 'hl');
       place(el, { x: 50, y: -30 });
@@ -237,124 +232,108 @@ export function startBattle(opts) {
     }
     await wait(0.5);
     all.forEach(el => el.remove());
-    G.holeP = []; G.holeO = []; G.boardEls = [];
-    G.meshByCard.clear();
+    G.meshByCard.clear(); G.boardEls = [];
   }
 
-  // ---------- 破绽 ----------
-  function applyTell(street, rng = Math.random) {
-    let e;
-    if (street === 0) e = PK.preflopStrength(G.o.hole);
-    else e = PK.postflopEquity(G.o.hole, G.board).e;
+  function applyTell(seat, street, rng) {
+    if (seat.folded || seat.stack <= 0 && !seat.hole.length) return;
+    const e = street === 0 ? PK.preflopStrength(seat.hole) : PK.postflopEquity(seat.hole, G.board).e;
     const actual = e > 0.66 ? 'strong' : e < 0.34 ? 'weak' : 'mid';
     let shown = actual;
-    const lieMult = rule.lieMult || 1;
-    const lieChance = (G.keenEye ? PERSONA.lieChance * 0.35 : PERSONA.lieChance) * lieMult;
-    if (rule.lieAll && G.handNum <= rule.lieAll) {
-      // 专属机制·白衣全谎:前几手的破绽全是假动作(示弱诱敌)
-      shown = actual === 'weak' ? 'strong' : 'weak';
-    } else if (tiltOf() < 2 && rng() < lieChance) {
-      shown = actual === 'strong' ? 'weak' : 'strong';
-    }
-    G.tell = { street, shown, actual };
-    oppChar.setPose(shown === 'strong' ? POSE.STRONG : shown === 'weak' ? POSE.BLUFF : POSE.NEUTRAL);
+    const lieChance = (G.keenEye ? seat.persona.lieChance * 0.35 : seat.persona.lieChance) * (rule.lieMult || 1);
+    if (rule.lieAll && G.handNum <= rule.lieAll) shown = actual === 'weak' ? 'strong' : 'weak';
+    else if (tiltOf(seat) < 2 && rng() < lieChance) shown = actual === 'strong' ? 'weak' : 'strong';
+    seat.tell = { street, shown, actual };
+    oppChar.setPose(shown === 'strong' ? POSE.STRONG : shown === 'weak' ? POSE.BLUFF : POSE.NEUTRAL, seat.id);
+    const tells = seat.gen?.tells || { strong: '右手护住筹码堆', weak: '左手抚上瓷面' };
+    oppChar.setTell(shown === 'mid' ? '' : tells[shown], seat.id);
+    if (shown !== 'mid') opts.onTellShown?.({ seatId: seat.id, gen: seat.genId, street, shown });
+  }
+  function codexFromShowdown(seat, handName) {
+    if (!seat.tell || seat.tell.shown === 'mid') return;
+    const tells = seat.gen?.tells || { strong: '右手护住筹码堆', weak: '左手抚上瓷面' };
+    const desc = tells[seat.tell.shown];
+    const hit = seat.tell.shown === seat.tell.actual;
+    const who = opponents.length === 1 ? '他' : seat.name;
+    ui.codexAdd(`第${G.handNum}手 · ${who}亮出<b>${handName}</b><br>「${desc}」 → ${seat.tell.actual === 'strong' ? '强牌' : '弱牌'} ${hit ? '<b>✓ 命中</b>' : '<b>✗ 是假动作</b>'}`);
+    opts.onTell?.({ ...seat.tell, hit, seatId: seat.id, gen: seat.genId, name: seat.name });
   }
 
-  function codexFromShowdown(oppHandName) {
-    if (!G.tell || G.tell.shown === 'mid') return;
-    const desc = G.tell.shown === 'strong' ? TELLS.strong : TELLS.weak;
-    const hit = G.tell.shown === G.tell.actual;
-    ui.codexAdd(
-      `第${G.handNum}手 · 他亮出<b>${oppHandName}</b><br>` +
-      `「${desc}」 → ${G.tell.actual === 'strong' ? '强牌' : '弱牌'} ${hit ? '<b>✓ 命中</b>' : '<b>✗ 是假动作</b>'}`
-    );
-    opts.onTell?.({ shown: G.tell.shown, actual: G.tell.actual, hit });
+  function say(seat, key, probability = 0.55) {
+    if (Math.random() >= probability) return;
+    const lines = LINES[key];
+    oppChar.say(lines[Math.floor(Math.random() * lines.length)], 2.6, seat.id);
   }
+  function clearActive() { for (const seat of opponents) oppChar.setActive(false, seat.id); }
 
-  // ---------- 下注轮 ----------
-  const other = x => x === 'p' ? 'o' : 'p';
-
-  async function playerAct() {
-    oppChar.setActive(false);
-    const toCall = G.o.bet - G.p.bet;
-    const totalPot = G.pot + G.p.bet + G.o.bet;
-    const BB = BL(G.blindLv)[1];
+  async function playerAct(seat, view) {
+    clearActive();
     const presets = [];
-    if (G.p.stack > toCall) {
+    if (view.canRaise) {
       for (const f of [0.5, 1, 2]) {
-        const extra = Math.max(BB, Math.round(totalPot * f / 5) * 5);
-        const amount = Math.min(G.p.stack, toCall + extra);
-        if (amount > toCall && !presets.some(p => p.amount === amount)) {
+        const extra = Math.max(view.minRaise, Math.round(view.pot * f / 5) * 5);
+        const amount = Math.min(view.stack, view.toCall + extra);
+        if (amount > view.toCall && !presets.some(p => p.amount === amount)) {
           presets.push({ label: f === 0.5 ? '½ 底池' : f === 1 ? '1 底池' : '2 底池', amount });
         }
       }
     }
-    const a = await ui.promptAction({ toCall, stack: G.p.stack, presets });
-    if (a.type === 'fold' || a.type === 'check') { readStats.track(toCall, a.type); return { type: a.type }; }
-    if (a.type === 'call') { putChips('p', toCall); readStats.track(toCall, 'call'); return { type: 'call' }; }
-    if (a.type === 'allin') {
-      const wasRaise = G.p.stack > toCall;
-      putChips('p', G.p.stack);
-      readStats.track(toCall, wasRaise ? 'raise' : 'call');
-      await dramatic(true);
-      return { type: wasRaise ? 'raise' : 'call', allin: true };
-    }
-    putChips('p', a.amount);
-    readStats.track(toCall, 'raise');
-    if (G.p.stack === 0) await dramatic(true);
-    return { type: 'raise', allin: G.p.stack === 0 };
+    const action = await ui.promptAction({ toCall: view.toCall, stack: view.stack, presets });
+    if (action.type === 'raise') return { type: 'raise', amount: action.amount };
+    return { type: action.type };
   }
 
-  async function oppAct(street, rng) {
-    oppChar.setActive(true);
-    oppChar.setPose(POSE.THINKING);
-    await wait(0.8 + Math.random() * 0.8);
-    const toCall = G.p.bet - G.o.bet;
-    // 专属机制·困兽:背水一战,攻势更烈
-    const pers = (rule.cornered && G.o.stack < G.oStack0 * 0.3)
-      ? { ...AI_P, aggr: AI_P.aggr * 1.4 }
-      : AI_P;
-    const d = PK.aiDecide({
-      street, hole: G.o.hole, board: G.board,
-      toCall, pot: G.pot + G.p.bet + G.o.bet, stack: G.o.stack,
-      minRaise: BL(G.blindLv)[1], raisesLeft: G.raisesLeft > 0 ? 1 : 0,
-      personality: pers, rng,
-      villain: readStats.view(), slowplayed: G.slowplayed, bluffLine: G.bluffLine,
+  async function oppAct(seat, street, rng) {
+    clearActive();
+    oppChar.setActive(true, seat.id);
+    oppChar.setPose(POSE.THINKING, seat.id);
+    await wait(G.spectate ? 0.08 : 0.8 + Math.random() * 0.8);
+    const view = T.actionView(G.H, seat.id);
+    const personality = rule.cornered && seat.stack < seat.initialStack * 0.3
+      ? { ...seat.ai, aggr: seat.ai.aggr * 1.4 } : seat.ai;
+    const decision = PK.aiDecide({
+      ...view, street, hole: seat.hole, board: G.board,
+      personality, rng, villain: seat.read.view(),
+      slowplayed: seat.slowplayed, bluffLine: seat.bluffLine,
+      equityRuns: opponents.length > 1 ? 96 : undefined,
     });
-    // 跨街计谋状态:慢打埋伏与诈唬一线
-    G.slowplayed = !!d.trapped;
-    G.bluffLine = (d.type === 'bet' || d.type === 'raise') && !!d.bluff;
-    applyTell(street, rng);
-    oppChar.setActive(false);
-    if (d.type === 'fold') { say('fold'); return { type: 'fold' }; }
-    if (d.type === 'check') { say('check', 0.3); return { type: 'check' }; }
-    if (d.type === 'call') { say('call', 0.35); putChips('o', toCall); return { type: 'call' }; }
-    const allin = d.amount >= G.o.stack;
-    putChips('o', d.amount);
-    say(allin ? 'allin' : (toCall > 0 ? 'raise' : 'bet'), 0.7);
-    if (allin) await dramatic(true);
-    return { type: 'raise', allin };
+    seat.slowplayed = !!decision.trapped;
+    seat.bluffLine = (decision.type === 'bet' || decision.type === 'raise') && !!decision.bluff;
+    if (decision.type === 'fold') say(seat, 'fold');
+    if (decision.type === 'check') say(seat, 'check', 0.3);
+    if (decision.type === 'call') say(seat, 'call', 0.35);
+    if (decision.type === 'bet' || decision.type === 'raise') say(seat, view.toCall > 0 ? 'raise' : 'bet', 0.7);
+    oppChar.setActive(false, seat.id);
+    return decision;
+  }
+
+  async function performAction(seat, decision) {
+    const view = T.actionView(G.H, seat.id);
+    const result = T.applyAction(G.H, seat.id, decision);
+    if (seat.isHero) {
+      const tracked = decision.type === 'allin' ? (view.stack <= view.toCall ? 'call' : 'raise') : decision.type;
+      for (const opponent of opponents) opponent.read.track(view.toCall, tracked);
+      if (result.folded && T.liveSeats(G.H.seats).length > 1) G.spectate = true;
+    } else if (result.allin) {
+      say(seat, 'allin', 0.7);
+    }
+    if (result.amount > 0) audio.chip();
+    if (result.allin) await dramatic(true);
+    refreshPiles();
+    return result;
   }
 
   async function bettingRound(street, rng) {
-    let actor = street === 0 ? 'p' : 'o';
-    const pending = new Set(['p', 'o']);
-    G.raisesLeft = 3;
-    while (pending.size) {
-      if (!pending.has(actor)) { actor = other(actor); continue; }
-      if (G.p.stack === 0 || G.o.stack === 0) break;
-      const res = actor === 'p' ? await playerAct() : await oppAct(street, rng);
-      pending.delete(actor);
-      if (res.type === 'fold') return { folded: actor };
-      if (res.type === 'raise') { G.raisesLeft--; pending.add(other(actor)); }
-      await wait(0.22);
-      actor = other(actor);
+    T.beginRound(G.H, street);
+    while (!G.H.roundComplete) {
+      const seat = G.H.seats.find(item => item.id === G.H.actor);
+      const decision = seat.isHero ? await playerAct(seat, T.actionView(G.H, seat.id)) : await oppAct(seat, street, rng);
+      await performAction(seat, decision);
+      await wait(G.spectate ? 0.04 : 0.22);
     }
-    await commitBets();
-    return { folded: null };
+    await collectBets();
   }
 
-  // ---------- 演出 ----------
   let dramaticOn = false;
   async function dramatic(on) {
     dramaticOn = on;
@@ -364,213 +343,248 @@ export function startBattle(opts) {
   }
 
   async function dealStreet(street) {
-    // 烧牌(只示牌背,迅速飞走淡出)
-    audio.card();
-    nextCard();
+    audio.card(); nextCard();
     const burnEl = document.createElement('div');
     burnEl.className = 'burnCard';
     cardLayer.appendChild(burnEl);
     place(burnEl, SLOTS.deck, true);
-    await wait(0.02);
-    place(burnEl, { x: 10, y: 66 });
-    burnEl.style.opacity = 0;
+    await wait(0.02); place(burnEl, { x: 10, y: 66 }); burnEl.style.opacity = 0;
     setTimeout(() => burnEl.remove(), 460);
-
-    if (street === 1) {
-      for (let i = 0; i < 3; i++) {
-        const id = nextCard();
-        G.board.push(id);
-        G.boardEls[i] = await dealCard(id, SLOTS.community(i), true);
-        await wait(0.12);
-      }
-    } else {
+    const count = street === 1 ? 3 : 1;
+    for (let i = 0; i < count; i++) {
       const id = nextCard();
       G.board.push(id);
-      G.boardEls[street + 1] = await dealCard(id, SLOTS.community(street + 1), true);
+      const boardIndex = G.board.length - 1;
+      G.boardEls[boardIndex] = await dealCard(id, SLOTS.community(boardIndex), true);
+      await wait(0.12);
     }
-    ui.setHand(PK.madeName(G.p.hole, G.board));
+    ui.setHand(PK.madeName(hero.hole, G.board));
   }
 
-  async function showdown() {
-    for (const el of G.holeO) { el.classList.add('flipped'); }
-    audio.card();
-    await wait(0.7);
-    const mine = PK.evaluate7([...G.p.hole, ...G.board]);
-    const his = PK.evaluate7([...G.o.hole, ...G.board]);
-    const cmp = PK.compareScore(mine.score, his.score);
-    codexFromShowdown(his.name);
-
-    const winCards = cmp >= 0 ? mine.best5 : his.best5;
-    for (const id of winCards) {
-      const el = G.meshByCard.get(id);
-      if (el) el.classList.add('hl');
+  function bumpMorale(seat, amount) {
+    const before = seat.morale;
+    seat.morale = Math.max(-3, Math.min(2, seat.morale + amount));
+    oppChar.setTilt(tiltOf(seat), seat.id);
+    oppChar.setTilted(tiltOf(seat) >= 2, seat.id);
+    if (tiltOf(seat) >= 2) oppChar.say(BARK(seat, 'tilt', LINES.tauntTilt[0]), 2.6, seat.id);
+    else if (amount <= -2 && seat.morale < before) oppChar.say(BARK(seat, 'badbeat', '……这一手,记下。'), 2.6, seat.id);
+    else if (amount > 0 && seat.morale > 0) oppChar.say(BARK(seat, 'smug', '承让。'), 2.6, seat.id);
+  }
+  function updateMorale() {
+    const bb = G.blinds[1];
+    for (const seat of opponents) {
+      const net = seat.stack - seat.handStartStack;
+      if (net < 0) {
+        seat.lossStreak++;
+        if (net <= -Math.max(200, bb * 8)) bumpMorale(seat, -2);
+        else if (net <= -bb * 4) bumpMorale(seat, -1);
+        if (seat.lossStreak >= 3) { bumpMorale(seat, -1); seat.lossStreak = 0; }
+      } else if (net > 0) {
+        seat.lossStreak = 0;
+        if (net >= bb * 8) bumpMorale(seat, 1);
+      }
     }
-    await wait(0.9);
-
-    if (cmp > 0) {
-      const wonPot = G.pot;
-      ui.banner(mine.name, `你赢下底池 ${wonPot}`);
-      audio.win();
-      await sweepPot('p');
-      say('lose');
-      // 士气事件:爆冷(好牌输大池)重创,大池落败小创,连败累积
-      const BB = BL(G.blindLv)[1];
-      const hisE = PK.postflopEquity(G.o.hole, G.board).e;
-      G.oLossStreak++;
-      if (hisE >= 0.75 && wonPot >= BB * 6) bumpMorale(-2);
-      else if (wonPot >= 300) bumpMorale(-1);
-      if (G.oLossStreak >= 3) { bumpMorale(-1); G.oLossStreak = 0; }
-    } else if (cmp < 0) {
-      const wonPot = G.pot;
-      ui.banner(his.name, `他赢下底池 ${wonPot}`);
-      await sweepPot('o');
-      say('win');
-      // 士气事件:大胜得意
-      G.oLossStreak = 0;
-      if (wonPot >= BL(G.blindLv)[1] * 8) bumpMorale(1);
-    } else {
-      ui.banner('平分底池', `同为${mine.name}`);
-      const half = Math.floor(G.pot / 2);
-      G.pot = half; await sweepPot('p');
-      G.pot = half; await sweepPot('o');
-    }
-    await wait(0.7);
   }
 
-  function bumpMorale(n) {
-    const before = G.morale;
-    G.morale = Math.max(-3, Math.min(2, G.morale + n));
-    ui.setTilt(tiltOf());
-    oppChar.setTilted(tiltOf() >= 2);
-    if (tiltOf() >= 2) ui.bubble(BARK('tilt', LINES.tauntTilt[Math.floor(Math.random() * 2)]));
-    else if (n <= -2 && G.morale < before) ui.bubble(BARK('badbeat', '……这一手,记下。'));
-    else if (n > 0 && G.morale > 0) ui.bubble(BARK('smug', '承让。'));
+  async function awardPots(settled) {
+    const winners = G.H.seats.filter(seat => settled.awards[seat.id] > 0);
+    await Promise.all(winners.map(seat => flyChips(SLOTS.pot, seatSlot(seat, 'stack'), 'pot')));
+    refreshPiles();
   }
 
-  async function resolveFold(loser) {
-    const winner = loser === 'p' ? 'o' : 'p';
-    await commitBets();
-    ui.banner(winner === 'p' ? '他弃牌了' : '你弃牌了', `底池 ${G.pot}`);
-    await sweepPot(winner);
-    if (winner === 'p') say('fold');
+  async function resolveFold() {
+    const winner = T.liveSeats(G.H.seats)[0];
+    const pot = T.potTotal(G.H.seats);
+    const settled = T.settleHand(G.H);
+    if (winner.isHero && opponents.length === 1) ui.banner('他弃牌了', `底池 ${pot}`);
+    else if (hero.folded && opponents.length === 1) ui.banner('你弃牌了', `底池 ${pot}`);
+    else ui.banner(`${winner.name} 收池`, `底池 ${pot}`);
+    await awardPots(settled);
+    updateMorale();
     await wait(0.5);
   }
 
-  // ---------- 一手牌 ----------
-  async function playHand() {
-    G.handNum++;
-    G.taunted = false;
-    ui.enableTaunt(true);
-    G.p.bet = 0; G.o.bet = 0; G.pot = 0;
-    G.board = []; G.p.hole = []; G.o.hole = [];
-    ui.setHand('—');
-    refreshPiles();
-
-    // 开场白(本场第一手)与专属机制·秋风(第 N 手,他等到了)
-    if (G.handNum === 1 && GEN?.barks?.open) ui.bubble(GEN.barks.open, 3.2);
-    if (rule.autumnWind && G.handNum === rule.autumnWind) {
-      ui.banner('秋风起', '他等到了他要等的。');
-      bumpMorale(1);
-      await wait(1.4);
+  async function showdown() {
+    const live = T.liveSeats(G.H.seats);
+    for (const seat of live) {
+      if (!seat.isHero) for (const id of seat.hole) G.meshByCard.get(id)?.classList.add('flipped');
     }
-
-    const lv = Math.min(6, Math.floor((G.handNum - 1) / escalateEvery));
-    const [SB, BB] = BL(lv);
-    ui.setBlind(`盲注 ${SB} / ${BB} · 第 ${G.handNum} 手`);
-    if (lv !== G.blindLv) {
-      G.blindLv = lv;
-      ui.banner('盲注升级', `${SB} / ${BB}`);
-      audio.chime();
-      await wait(1.1);
+    audio.card();
+    await wait(0.7);
+    const evaluations = {}, scores = {};
+    for (const seat of live) {
+      evaluations[seat.id] = PK.evaluate7([...seat.hole, ...G.board]);
+      scores[seat.id] = evaluations[seat.id].score;
+      if (!seat.isHero) codexFromShowdown(seat, evaluations[seat.id].name);
     }
-
-    const rng = PK.mulberry32(PK.hashSeed(G.seed + '#' + G.handNum));
-    G.deck = PK.shuffle(PK.makeDeck(), rng);
-    G.deckPtr = 0;
-    G.deckLog = [...G.deck];
-
-    say('deal', G.handNum === 1 && GEN?.barks?.open ? 0 : 0.4);
-    putChips('p', SB); await wait(0.3);
-    putChips('o', BB); await wait(0.4);
-
-    G.p.hole = [nextCard(), nextCard()];
-    G.o.hole = [nextCard(), nextCard()];
-    G.holeP[0] = await dealCard(G.p.hole[0], SLOTS.playerHole(0), true, true);
-    G.holeO[0] = await dealCard(G.o.hole[0], SLOTS.oppHole(0), false);
-    G.holeP[1] = await dealCard(G.p.hole[1], SLOTS.playerHole(1), true, true);
-    G.holeO[1] = await dealCard(G.o.hole[1], SLOTS.oppHole(1), false);
-    ui.setHand(PK.madeName(G.p.hole, []));
-
-    applyTell(0, rng);
-    let r = await bettingRound(0, rng);
-    if (r.folded) { await finishHand(r.folded); return; }
-
-    for (const street of [1, 2, 3]) {
-      await dealStreet(street);
-      applyTell(street, rng);
-      if (!(G.p.stack === 0 || G.o.stack === 0)) {
-        r = await bettingRound(street, rng);
-        if (r.folded) { await finishHand(r.folded); return; }
-      } else if (street < 3) {
-        await wait(0.6); // 全压后依次亮街
-      }
+    await wait(0.5);
+    const settled = T.settleHand(G.H, scores);
+    const winners = [...new Set(settled.pots.flatMap(pot => pot.winners))];
+    for (const id of winners) {
+      for (const card of evaluations[id]?.best5 || []) G.meshByCard.get(card)?.classList.add('hl');
     }
-    await showdown();
-    await finishHand(null);
+    if (opponents.length === 1) {
+      const opponent = opponents[0];
+      const cmp = live.some(seat => seat.isHero) && live.includes(opponent)
+        ? PK.compareScore(scores.player, scores[opponent.id]) : 0;
+      if (cmp > 0) ui.banner(evaluations.player.name, `你赢下底池 ${settled.awards.player}`);
+      else if (cmp < 0) ui.banner(evaluations[opponent.id].name, `他赢下底池 ${settled.awards[opponent.id]}`);
+      else ui.banner('平分底池', `同为${evaluations.player.name}`);
+      if (cmp > 0) { audio.win(); say(opponent, 'lose'); }
+      if (cmp < 0) say(opponent, 'win');
+    } else {
+      const summary = winners.map(id => {
+        const seat = G.H.seats.find(item => item.id === id);
+        return `${seat.isHero ? '你' : seat.name} +${settled.awards[id]}`;
+      }).join(' · ');
+      ui.banner('群英摊牌', summary);
+      if (settled.awards.player > 0) audio.win();
+    }
+    await awardPots(settled);
+    updateMorale();
+    await wait(0.7);
   }
 
-  async function finishHand(foldLoser) {
-    if (foldLoser) await resolveFold(foldLoser);
+  function showStoryBeat() {
+    const story = opts.story;
+    if (!story?.chapter) return false;
+    const low = opponents.some(seat => seat.stack > 0 && seat.stack <= seat.initialStack * 0.55);
+    const triggers = G.handNum === 1 ? ['start', 'hand:1', 'low'] : [`hand:${G.handNum}`, 'low'];
+    for (const trigger of triggers) {
+      if (trigger === 'low' && !low) continue;
+      const ctx = { P: story.P, R: story.R, chapter: story.chapter, round: story.round, handNum: G.handNum, multi: opponents.length > 1 };
+      const beat = battleBeatsFor(story.chapter, trigger, ctx).find(item => !story.R.storyBeats?.has(item.id));
+      if (!beat) continue;
+      story.R.storyBeats?.add(beat.id);
+      ui.banner(speakerName(beat.speaker), beat.text);
+      return true;
+    }
+    return false;
+  }
+
+  async function playHand() {
+    G.handNum++;
+    G.taunted = false; G.spectate = false;
+    ui.enableTaunt(true);
+    G.board = []; G.boardEls = [];
+    ui.setHand('—');
+    const level = Math.min(6, Math.floor((G.handNum - 1) / escalateEvery));
+    const [SB, BB] = BL(level);
+    G.blinds = [SB, BB];
+    ui.setBlind(`盲注 ${SB} / ${BB} · 第 ${G.handNum} 手${opponents.length > 1 ? ` · ${opponents.length + 1}人桌` : ''}`);
+    if (level !== G.blindLv) {
+      G.blindLv = level;
+      ui.banner('盲注升级', `${SB} / ${BB}`);
+      audio.chime(); await wait(1.1);
+    }
+    const rng = PK.mulberry32(PK.hashSeed(G.seed + '#' + G.handNum));
+    G.deck = PK.shuffle(PK.makeDeck(), rng); G.deckPtr = 0; G.deckLog = [...G.deck];
+    for (const seat of G.seats) {
+      seat.hole = []; seat.slowplayed = false; seat.bluffLine = false; seat.tell = null;
+    }
+    G.H = T.createHand(G.seats, { button: G.button, blinds: [SB, BB] });
+    G.H.board = G.board;
+    refreshDealer();
+    refreshPiles();
+    const storyShown = showStoryBeat();
+    if (G.handNum === 1 && opponents[0].gen?.barks?.open) oppChar.say(opponents[0].gen.barks.open, 3.2, opponents[0].id);
+    if (rule.autumnWind && G.handNum === rule.autumnWind) {
+      ui.banner('秋风起', '他等到了他要等的。');
+      bumpMorale(opponents[0], 1);
+      await wait(1.4);
+    }
+    if (!storyShown && !(G.handNum === 1 && opponents[0].gen?.barks?.open)) say(opponents[0], 'deal', 0.4);
+
+    for (const seat of G.H.seats) {
+      seat.hole = [nextCard(), nextCard()];
+      await dealCard(seat.hole[0], seatSlot(seat, 'hole', 0), seat.isHero, seat.isHero, seat.id);
+      await dealCard(seat.hole[1], seatSlot(seat, 'hole', 1), seat.isHero, seat.isHero, seat.id);
+    }
+    ui.setHand(PK.madeName(hero.hole, []));
+    for (const seat of opponents) if (!seat.folded) applyTell(seat, 0, rng);
+    await bettingRound(0, rng);
+    for (const street of [1, 2, 3]) {
+      if (T.liveSeats(G.H.seats).length <= 1) break;
+      await dealStreet(street);
+      for (const seat of opponents) if (!seat.folded) applyTell(seat, street, rng);
+      await bettingRound(street, rng);
+    }
+    await finishHand();
+  }
+
+  async function finishHand() {
+    if (T.liveSeats(G.H.seats).length === 1) await resolveFold();
+    else await showdown();
     await dramatic(false);
     await clearTable();
-    if (G.o.stack <= 0) { G.over = true; return endBattle(true); }
-    if (G.p.stack <= 0) { G.over = true; return endBattle(false); }
+    for (const seat of G.H.seats) { seat.committed = 0; seat.bet = 0; }
+    G.H = null;
+    refreshPiles();
+    for (const seat of opponents) if (seat.stack <= 0) oppChar.setEliminated(true, seat.id);
+    if (hero.stack <= 0) { G.over = true; return endBattle(false); }
+    if (opponents.every(seat => seat.stack <= 0)) { G.over = true; return endBattle(true); }
+    G.button = T.nextButton(G.seats, G.button);
     await wait(1.1);
   }
 
   async function endBattle(win) {
     if (win) {
-      oppChar.setPose(POSE.NEUTRAL);
-      ui.banner(boss ? '关隘已破' : '他被清台了', boss ? '这一页,等你改写' : '他掷杖离席');
-      audio.win();
-      await wait(1.8);
+      clearActive();
+      ui.banner(boss ? '关隘已破' : (opponents.length > 1 ? '群英尽数离席' : '他被清台了'), boss ? '这一页,等你改写' : '他掷杖离席');
+      audio.win(); await wait(1.8);
     }
     cleanup();
-    onEnd(win, G.p.stack);
+    onEnd(win, hero.stack, {
+      opponents: opponents.map(seat => ({ id: seat.id, gen: seat.genId, name: seat.name, stack: seat.stack, eliminated: seat.stack <= 0 })),
+    });
   }
+
+  const onSeatSelect = event => {
+    const id = event.detail?.id;
+    const seat = opponents.find(item => item.id === id && item.stack > 0);
+    if (!seat) return;
+    G.selected = seat.id;
+    for (const other of opponents) oppChar.setSelected(other.id === seat.id, other.id);
+  };
+  $('oppChar').addEventListener('seatselect', onSeatSelect);
+  const onPeek = event => { event.target.closest('.card.big')?.classList.toggle('peek'); };
+  cardLayer.addEventListener('pointerdown', onPeek);
 
   function cleanup() {
     removeEventListener('resize', relayout);
-    oppChar.setTilted(false);
+    $('oppChar').removeEventListener('seatselect', onSeatSelect);
+    cardLayer.removeEventListener('pointerdown', onPeek);
+    table.querySelectorAll('[data-dynamic-pile]').forEach(el => el.remove());
+    for (const seat of opponents) oppChar.setTilted(false, seat.id);
     ui.enableTaunt(false);
     ui.vignette(false);
     ui.setPlayerName?.();
     ui.setTauntLabel?.();
+    if (dramaticOn) audio.heartStop();
   }
 
-  // 攻心按钮回调注册(激将相性由人格心性决定;章节规则可令攻心无效)
   ui.onTaunt(() => {
-    if (G.taunted || G.over) return;
+    if (G.taunted || G.over || !G.H) return;
+    let seat = opponents.find(item => item.id === G.selected && item.stack > 0 && !item.folded)
+      || opponents.find(item => item.stack > 0 && !item.folded);
+    if (!seat) return;
     G.taunted = true;
     ui.enableTaunt(false);
-    // 执子之手·观星:不激将,只看破——洞悉其真实之势
     if (opts.zhiZi) {
-      const a = G.tell?.actual;
-      ui.bubble(a ? `观星 · 其势实为${a === 'strong' ? '强' : a === 'weak' ? '弱' : '中'}` : '观星 · 星象未明', 3);
-      audio.chime();
-      return;
+      const actual = seat.tell?.actual;
+      const text = actual ? `观星 · 其势实为${actual === 'strong' ? '强' : actual === 'weak' ? '弱' : '中'}` : '观星 · 星象未明';
+      if (opponents.length === 1) oppChar.say(text, 3, seat.id);
+      else ui.banner(`观星 · ${seat.name}`, text);
+      audio.chime(); return;
     }
-    if (rule.tauntImmune || PERSONA.tauntMult === 0) {
-      ui.bubble(BARK('taunt', '(他不动声色,仿佛没听见。)'));
-      audio.thud();
-      return;
+    if (rule.tauntImmune || seat.persona.tauntMult === 0) {
+      oppChar.say(BARK(seat, 'taunt', '(他不动声色,仿佛没听见。)'), 2.6, seat.id);
+      audio.thud(); return;
     }
-    G.morale = Math.max(-3, G.morale - PERSONA.tauntMult);
-    ui.setTilt(tiltOf());
-    oppChar.setTilted(tiltOf() >= 2);
-    ui.bubble(tiltOf() >= 2
-      ? BARK('tilt', LINES.tauntTilt[Math.floor(Math.random() * 2)])
-      : BARK('taunt', LINES.taunt[Math.floor(Math.random() * 2)]));
+    seat.morale = Math.max(-3, seat.morale - seat.persona.tauntMult);
+    oppChar.setTilt(tiltOf(seat), seat.id);
+    oppChar.setTilted(tiltOf(seat) >= 2, seat.id);
+    oppChar.say(tiltOf(seat) >= 2 ? BARK(seat, 'tilt', LINES.tauntTilt[0]) : BARK(seat, 'taunt', LINES.taunt[0]), 2.6, seat.id);
     audio.thud();
   });
   ui.onVerify(() => {
@@ -580,14 +594,6 @@ export function startBattle(opts) {
     ui.showSeedModal('#' + G.seed + ' · 第' + Math.max(1, G.handNum) + '手', html);
   });
 
-  // 玩家看牌
   $('playerCardsHint').classList.remove('hidden');
-  cardLayer.addEventListener('pointerdown', e => {
-    const t = e.target.closest('.card.big');
-    if (t) t.classList.toggle('peek');
-  });
-
-  (async () => {
-    while (!G.over) await playHand();
-  })();
+  (async () => { while (!G.over) await playHand(); })();
 }

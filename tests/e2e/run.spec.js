@@ -11,7 +11,7 @@ const seedProgress = (pages, endings = []) => page => page.addInitScript(
   [pages, endings]);
 
 test.describe('行军图与事件', () => {
-  test('战斗胜利:节点完成、筹码继承、辎重到账', async ({ page }) => {
+  test('战斗胜利:节点完成、筹码继承、章节事件与关底解锁', async ({ page }) => {
     await newGame(page, 'fast=1&seed=RUN01&opp=120');
     await openChapter(page, 'taoyuan');
     const chipsBefore = parseInt(await page.locator('#runChips').textContent(), 10);
@@ -26,12 +26,12 @@ test.describe('行军图与事件', () => {
     // 筹码继承(已变化)
     const chipsAfter = parseInt(await page.locator('#runChips').textContent(), 10);
     expect(chipsAfter).not.toBe(chipsBefore);
-    // 辎重:+150
+    // 桃林章节事件:选择乡勇退路,军资不因重复点击而变化
     await clickAvailNode(page, 'chest');
     await expect(page.locator('#eventModal')).toBeVisible();
-    await expect(page.locator('#eventBox')).toContainText('辎 重');
-    await page.click('#eventBox button');
-    await expect(page.locator('#runChips')).toHaveText(String(chipsAfter + 150));
+    await expect(page.locator('#eventBox')).toContainText('桃林');
+    await page.click('[data-choice="village-rearguard"]');
+    await expect(page.locator('#runChips')).toHaveText(String(chipsAfter));
     // 关卡解锁
     await expect(page.locator('#mapSvg .node.avail')).toHaveClass(/t-boss/);
   });
@@ -47,7 +47,8 @@ test.describe('兵败与批注', () => {
     await expect(page.locator('#settle')).toBeVisible({ timeout: 120_000 });
     await stopDriver(page);
     await expect(page.locator('#settleTitle')).toHaveText('这一页,兵败');
-    await expect(page.locator('#settleNote')).toHaveText('酒还温着,人已退场。');
+    await expect(page.locator('#settleNote')).toContainText('同生共死');
+    await expect(page.locator('#settleClue')).toContainText('互救不是三人一起全押');
     await expect(page.locator('#settleHistory')).toContainText('史:黄巾起');
     // 正史入账
     const st = await page.evaluate(() => JSON.parse(localStorage.getItem('yxj_v1')).pages.taoyuan);
@@ -89,10 +90,10 @@ test.describe('改写与持久化', () => {
 
   test('连战页:千里走单骑,五阵连破', async ({ page }) => {
     test.setTimeout(540_000); // 必须大于 winChapter 的 480s 自主作战预算,留出清理时间
-    await newGame(page, 'fast=1&seed=RUN05&opp=40&chapter=qianli');
+    await newGame(page, 'fast=1&seed=RUN05&chips=5000&opp=20&chapter=qianli');
     await page.click('#openPage');
     const won = await winChapter(page, 'qianli', { maxMs: 480_000 });
-    if (!won) test.skip(true, '小概率:五阵未能在时限内连破');
+    expect(won).toBeTruthy();
     const st = await page.evaluate(() => JSON.parse(localStorage.getItem('yxj_v1')).pages.qianli);
     expect(['yeshi', 'yeshiB', 'yeshiAB']).toContain(st);
   });
@@ -121,20 +122,24 @@ test.describe('大关回与终局', () => {
     await expect(page.locator('#codexProgress')).toContainText('最后一页已现');
   });
 
-  test('写卷人:赢下最后一页,问他一个问题', async ({ page }) => {
+  test('写卷人:封卷、还史、撕卷三种署名,撕卷接入无终稿', async ({ page }) => {
     test.setTimeout(360_000);
     await seedProgress({ ...GATES, ...FILL })(page);
     await newGame(page, 'fast=1&seed=RUN06&opp=80');
     await openChapter(page, 'zuizhong');
     const won = await winChapter(page, 'zuizhong');
     expect(won).toBeTruthy();
-    // 三问浮现,任选一问得答
     await expect(page.locator('#finale')).toBeVisible();
-    await page.click('#finaleQ button >> nth=0');
-    await expect(page.locator('#finaleText')).not.toBeEmpty();
+    await expect(page.locator('#finaleQ button')).toHaveCount(3);
+    await expect(page.locator('#finaleQ')).toContainText('封卷');
+    await expect(page.locator('#finaleQ')).toContainText('还史');
+    await expect(page.locator('#finaleQ')).toContainText('撕卷');
+    await page.click('#finaleQ button >> nth=2');
+    await expect(page.locator('#finaleText')).toContainText('无终稿');
     await page.click('#finaleHome');
     await expect(page.locator('#scroll')).toBeVisible();
     const endings = await page.evaluate(() => JSON.parse(localStorage.getItem('yxj_v1')).endings);
-    expect(endings.length).toBe(1);
+    expect(endings).toEqual(['unwritten']);
+    await expect(page.locator('#apocBtn')).toBeVisible();
   });
 });

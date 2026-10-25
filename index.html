@@ -23,15 +23,18 @@
     </svg>
   </div>
   <div class="intro-inner">
-    <p class="intro-era"><span>残卷</span> 英雄记 · 汉末异闻</p>
+    <p class="intro-era" id="introStep"><span>残卷</span> 英雄记 · 汉末异闻</p>
     <div class="intro-title-lock">
       <span class="intro-seal">汉</span>
       <div><h1>三国：天下为注</h1><p class="sub">HEROES AT THE TABLE</p></div>
     </div>
     <div class="intro-kingdoms" aria-hidden="true"><span>魏</span><i></i><span>蜀</span><i></i><span>吴</span></div>
-    <p class="story">史书只写了沙场,没写牌桌。<br>这部残卷,记的是另一部三国。</p>
-    <button id="startBtn">开 卷<span>展开英雄记</span></button>
-    <p class="hint">盯住对手的手 —— 破绽比牌更值钱</p>
+    <p class="intro-lesson" id="introLesson">牌可验，史可改。</p>
+    <p class="story" id="introStory">史书只写了沙场,没写牌桌。<br>这部残卷,记的是另一部三国。</p>
+    <div class="intro-points" id="introPoints"></div>
+    <button id="startBtn" disabled>开 卷<span>展开英雄记</span></button>
+    <button id="prologueSkip" class="intro-skip hidden">跳过背景，直接入卷</button>
+    <p class="hint" id="introHint">盯住对手的手 —— 破绽比牌更值钱</p>
   </div>
   <p class="intro-foot">卷帙有尽 · 野史无生</p>
 </div>
@@ -43,6 +46,7 @@
     <p class="runinfo" id="codexProgress"></p>
     <div id="codexTools">
       <button id="annalsBtn" class="ghost">观 阵 录</button>
+      <button id="replayIntroBtn" class="ghost">重 温 开 卷</button>
       <button id="apocBtn" class="ghost" style="display:none">残卷无终稿</button>
     </div>
   </header>
@@ -66,6 +70,9 @@
       <h2 class="page-name" id="pageName"></h2>
       <div class="page-divider"><i></i><span>若</span><i></i></div>
       <p class="page-premise" id="pagePremise"></p>
+      <div class="page-cast" id="pageCast"></div>
+      <div class="page-cold-open" id="pageColdOpen"></div>
+      <p class="page-objective" id="pageObjective"></p>
       <p class="page-rule hidden" id="pageRule"></p>
       <p class="page-note" id="pageNote"></p>
       <div id="pageRoute" class="page-route"></div>
@@ -161,6 +168,8 @@
     <h2 id="settleTitle"></h2>
     <p id="settleHistory" class="annals"></p>
     <p id="settleYeshi" class="annals gold"></p>
+    <p id="settleHook" class="settle-hook"></p>
+    <p id="settleClue" class="settle-clue"></p>
     <div id="settleChoices" class="ev-opts"></div>
     <p id="settleNote" class="note-line"></p>
     <div class="end-actions"><button id="settleRetry">翻 页 重 开</button><button id="settleHome" class="ghost">回 目 录</button></div>
@@ -172,7 +181,7 @@
   <div class="modal-box endbox">
     <p class="modal-kicker">残卷终章</p>
     <h2>最后一页</h2>
-    <p class="annals dim">他推开手边的笔,看着你:「问吧。」</p>
+    <p class="annals dim" id="finaleMemory">他推开手边的笔,看着你:「这一页,由你署名。」</p>
     <div id="finaleQ" class="ev-opts"></div>
     <p id="finaleText" class="annals gold"></p>
     <button id="finaleHome">合 上 残 卷</button>
@@ -187,6 +196,11 @@
     <button id="annalsClose">合 卷</button>
   </div>
 </div>
+
+<aside id="coachmark" class="coachmark hidden" aria-live="polite">
+  <p class="coach-kicker">残卷初解</p><h3 id="coachTitle"></h3><p id="coachText"></p>
+  <div><button id="coachClose">知道了</button><button id="coachNever" class="ghost">不再提示</button></div>
+</aside>
 
 <div id="errBox"></div>
 <script type="module" src="./src/main.js"></script>
