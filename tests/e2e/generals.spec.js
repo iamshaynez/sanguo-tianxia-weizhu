@@ -42,8 +42,8 @@ test.describe('L4:列传', () => {
     await newGame(page, 'fast=1&seed=GEN12&opp=60&omen=keenEye&chapter=hulao&stage=boss');
     await page.click('#openPage');
     await enterBattle(page, 'boss');
-    // 打完关卡(司机全压流,胜负都入账)
-    await installDriver(page, 'maniac');
+    // 打完关卡(司机全压流,胜负都入账;结算留给本用例验收)
+    await installDriver(page, 'maniac', { autoSettle: false });
     await page.waitForFunction(() =>
       !document.getElementById('settle').classList.contains('hidden'), { timeout: 240_000 });
     await stopDriver(page);

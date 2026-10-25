@@ -3,12 +3,17 @@ import { startBackdrop, wait } from './fx2d.js';
 import { AudioFX } from './audio.js';
 import { createOpponent } from './character.js';
 import { startBattle } from './battle.js';
-import { buildMarch, createMap, eventModal } from './map.js';
+import { buildMarch, createMap, eventModal, storyModal } from './map.js';
 import { makePersona, TRAITS, describeTraits } from './persona.js';
 import { FX, getChapter, CHAPTERS } from './chapters.js';
 import { getGeneral, GENERALS } from './generals.js';
 import { renderGeneralCard } from './general-card.js';
+import { rosterOf, roundConfig, chapterEncounters } from './encounters.js';
 import * as SC from './scroll.js';
+import { createOnboarding } from './onboarding.js';
+import {
+  storyFor, mapSceneFor, introFor, outcomeFor, markSceneSeen, sceneSeen, choiceFor,
+} from './story-engine.js';
 
 const $ = id => document.getElementById(id);
 window.addEventListener('error', e => { $('errBox').textContent += e.message + '\n'; });
@@ -57,6 +62,8 @@ const ui = {
     $('seedModal').classList.remove('hidden');
   },
   promptAction({ toCall, stack, presets }) {
+    onboarding.tip('action');
+    onboarding.tip('taunt');
     return new Promise(resolve => {
       const btns = [...actions.querySelectorAll('button')];
       const vis = {
@@ -161,7 +168,13 @@ function opponentSkin(cfg, gen, boss) {
 
 // ---------------- 残卷主循环 ----------------
 let P = SC.loadProgress();     // 补全度(持久)
+SC.saveProgress(P);            // 原地完成旧存档迁移,不回写任何剧情结果
 let R = null;                  // 当前回的运行态
+const onboarding = createOnboarding(P, {
+  save: SC.saveProgress,
+  onFinish: enterGame,
+  force: PARAMS.get('tutorial') || '',
+});
 
 let marchBusy = false; // 亮相/战斗/事件期间锁住军令,防连点重入
 const map = createMap({
@@ -180,13 +193,28 @@ const map = createMap({
         return;
       }
       if (node.type === 'boss') return await enterBoss(node);
-      const key = await eventModal(node.type, R);
-      if (key === 'heal') R.chips += 80;
-      if (key === 'money') R.chips += 150;
-      if (key === 'loot') R.chips += 150;
-      if (key === 'calm') R.keenEye = true;
-      if (key === 'eye') R.keenEye = true;
-      if (key === 'bribe') R.bribe = true;
+      const scene = mapSceneFor(R.chapter, node);
+      if (scene) {
+        const previous = choiceFor(P, R.chapter.id, scene.id);
+        const result = await storyModal(scene, { P, chapter: R.chapter, previousChoice: previous });
+        markSceneSeen(P, R.chapter.id, scene.id);
+        if (result.choice) {
+          P.story.choices[`${R.chapter.id}.${scene.id}`] = result.choice.id;
+          for (const sibling of scene.choices || []) {
+            if (sibling.id !== result.choice.id && sibling.effects?.fact) delete P.story.facts[sibling.effects.fact];
+          }
+          applyStoryEffects(result.choice.effects, R, P);
+        }
+        SC.saveProgress(P);
+      } else {
+        const key = await eventModal(node.type, R);
+        if (key === 'heal') R.chips += 80;
+        if (key === 'money') R.chips += 150;
+        if (key === 'loot') R.chips += 150;
+        if (key === 'calm') R.keenEye = true;
+        if (key === 'eye') R.keenEye = true;
+        if (key === 'bribe') R.bribe = true;
+      }
       node.done = true;
       R.current = node.id;
       map.render();
@@ -195,6 +223,15 @@ const map = createMap({
     }
   },
 });
+
+function applyStoryEffects(effects = {}, run = R, progress = P) {
+  if (effects.chips) run.chips += effects.chips;
+  if (effects.keenEye) run.keenEye = true;
+  if (effects.sow) run.oppMorale0 -= effects.sow;
+  if (effects.raid) run.raid = true;
+  if (effects.oppChips) run.storyOppChips = (run.storyOppChips || 0) + effects.oppChips;
+  if (effects.fact) progress.story.facts[effects.fact] = true;
+}
 
 function showCodex() {
   R = null;
@@ -206,92 +243,126 @@ function openChapterPage(chapter) {
   const ov = SC.causalFor(P, chapter); // 页间因果:前页改写,此页题记随变
   const alt = chapter.id === 'wuzhangyuan' && SC.isYeshi(SC.pageState(P, 'wuzhangyuan'));
   const begin = (asZhuge) => async () => {
-    const fx = PARAMS.get('omen') || await SC.pickOmen(chapter, FX);
+    let fx = PARAMS.get('omen');
+    if (!fx) {
+      onboarding.tip('omen');
+      fx = await SC.pickOmen(chapter, FX);
+    }
     startMarch(chapter, fx, { asZhuge });
   };
   show('page');
   SC.renderPage(chapter, begin(false), showCodex, {
     premise: ov?.premise,
     note: ov?.note,
+    P,
     alt: alt ? { label: '执子之手', start: begin(true) } : null,
   });
+  onboarding.tip('page');
 }
 
 function startMarch(chapter, omenFx, { asZhuge = false } = {}) {
-  const baseChips = parseInt(PARAMS.get('chips') || '1000', 10);
+  const story = storyFor(chapter);
+  const clueFx = P.story.clues[chapter.id] ? story?.loss?.clueFx : null;
+  const baseChips = parseInt(PARAMS.get('chips') || '1000', 10) + (clueFx === 'supply' ? 150 : 0);
   R = {
     chapter, omenFx, asZhuge,
     chips: baseChips + (omenFx === 'supply' ? 200 : 0),
     nodes: buildMarch(chapter),
     current: null,
     seed: PARAMS.get('seed') || Math.random().toString(16).slice(2, 8).toUpperCase(),
-    keenEye: omenFx === 'keenEye',
-    oppMorale0: omenFx === 'sow' ? -1 : 0,
-    raid: omenFx === 'raid',
+    keenEye: omenFx === 'keenEye' || clueFx === 'keenEye',
+    oppMorale0: (omenFx === 'sow' ? -1 : 0) - (clueFx === 'sow' ? 1 : 0),
+    raid: omenFx === 'raid' || clueFx === 'raid',
     bribe: false,
-    marchInfo: `${chapter.year || '残卷'} · ${chapter.name}`,
+    storyOppChips: 0,
+    storyBeats: new Set(),
+    clueActive: !!clueFx,
+    marchInfo: `${chapter.year || '残卷'} · ${chapter.name}${clueFx ? ' · 史鉴生效' : ''}`,
   };
-  if (PARAMS.get('stage') === 'boss') { // 调试:直达关卡
-    const last = R.nodes[R.nodes.length - 1];
-    for (const n of R.nodes) if (n.id !== last.id) n.done = true;
-    R.current = R.nodes[R.nodes.length - 2]?.id || null;
+  const debugTarget = PARAMS.get('stage') === 'boss' ? R.nodes[R.nodes.length - 1]?.id : PARAMS.get('node');
+  if (debugTarget) { // 调试:直达指定行军节点(stage=boss 为兼容别名)
+    const targetIndex = R.nodes.findIndex(n => n.id === debugTarget);
+    if (targetIndex >= 0) {
+      for (const n of R.nodes) if (n.col < targetIndex) n.done = true;
+      R.current = R.nodes[targetIndex - 1]?.id || null;
+    }
   }
   $('marchTitle').textContent = `行 军 图 · ${chapter.name}`;
   show('map');
   map.render();
+  onboarding.tip('map');
 }
 
-// 一场战斗(遭遇战/关卡单场);返回 Promise<win:boolean>
+// 一场战斗(遭遇战/关卡单场);单对手也会归一化为一席阵容
 async function enterBattle(node, cfg, { stack, roundInfo = '', noOverride = false } = {}) {
   const boss = node.type === 'boss';
-  let oppStack = (PARAMS.get('opp') && !noOverride) ? parseInt(PARAMS.get('opp'), 10) : (stack ?? cfg.stack);
-  if (boss && PARAMS.get('bossopp') && !noOverride) oppStack = parseInt(PARAMS.get('bossopp'), 10);
-  if (R.bribe) { oppStack = Math.max(300, oppStack - 250); R.bribe = false; }
-  if (R.raid && boss) { oppStack = Math.max(300, oppStack - 200); R.raid = false; }
+  const roster = rosterOf(cfg);
+  const rawOverride = !noOverride && ((boss && PARAMS.get('bossopp')) || PARAMS.get('opp'));
+  const overrides = rawOverride?.split(',').map(value => parseInt(value, 10)).filter(Number.isFinite) || [];
+  const members = roster.map((member, index) => {
+    let memberStack = overrides.length === 1 ? overrides[0] : (overrides[index] ?? (roster.length === 1 ? (stack ?? member.stack) : (index === 0 ? (stack ?? member.stack ?? cfg.stack) : (member.stack ?? cfg.stack))));
+    if (index === 0 && R.bribe) { memberStack = Math.max(300, memberStack - 250); R.bribe = false; }
+    if (index === 0 && R.raid && boss) { memberStack = Math.max(300, memberStack - 200); R.raid = false; }
+    if (index === 0 && R.storyOppChips) { memberStack = Math.max(100, memberStack + R.storyOppChips); R.storyOppChips = 0; }
+    const gen = getGeneral(member.gen);
+    return {
+      id: index === 0 ? 'opponent' : `opponent-${index + 1}`,
+      name: member.name, stack: memberStack, gen: member.gen, general: gen,
+      persona: personaOf(member.traits), skin: opponentSkin(member, gen, boss), morale: R.oppMorale0,
+    };
+  });
+  const primary = members[0], gen = primary.general;
   const battleSeed = `${R.seed}#${R.chapter.id}#${node.id}${roundInfo}`;
   ui.setSeed('#' + battleSeed);
-  const gen = getGeneral(cfg.gen);
   if (!boss) await opponentIntro(R.chapter, cfg, false);
 
   show('battle');
   return new Promise(resolve => {
     startBattle({
       playerStack: R.chips,
-      oppStack,
-      blinds0: cfg.blinds || [10, 20],
+      oppStack: primary.stack,
+      opponents: members,
+      blinds0: cfg.blinds || roster[0].blinds || [10, 20],
       escalateEvery: cfg.escalate || 4,
       boss,
-      oppName: cfg.name,
-      persona: personaOf(cfg.traits),
+      oppName: primary.name,
+      oppGen: primary.gen,
+      persona: primary.persona,
       rule: R.chapter.rule || {},
       oppMorale0: R.oppMorale0,
       general: gen,
-      oppSkin: opponentSkin(cfg, gen, boss),
-      playerName: boss && R.asZhuge ? '诸葛亮' : undefined, // 执子之手:你执丞相
+      oppSkin: primary.skin,
+      playerName: boss && R.asZhuge ? '诸葛亮' : undefined,
       zhiZi: boss && R.asZhuge,
       seed: battleSeed,
+      story: { chapter: R.chapter, P, R, round: Number(roundInfo.match(/#r(\d+)/)?.[1] || 1) },
       keenEye: R.keenEye,
       ui, audio, oppChar,
-      onTell(t) { if (gen) annalsTell(cfg.gen, t); },
-      onEnd(win, finalStack) {
+      onTell(t) { const genId = t.gen || members.find(member => member.id === t.seatId)?.gen; if (genId) annalsTell(genId, t); },
+      onTellShown() { onboarding.tip('tell'); },
+      onEnd(win, finalStack, summary) {
         R.chips = Math.max(0, finalStack);
-        if (gen) annalsRecord(cfg.gen, win);
+        if (members.length === 1 && primary.gen) annalsRecord(primary.gen, win);
+        else for (const opponent of summary.opponents || []) if (opponent.gen) annalsRecord(opponent.gen, win);
         resolve(win);
       },
     });
   });
 }
 
-// 全对手亮相:遭遇战短卡、关卡完整卡;点击「应战」可立即跳过
-async function opponentIntro(chapter, cfg, boss) {
+// 全对手亮相:章节专属小传与旧账台词;新条件版本仍会出现,重复挑战不阻塞
+async function opponentIntro(chapter, cfg, boss, { index = 0, count = 1 } = {}) {
   const el = $('bossIntro');
   const gen = getGeneral(cfg.gen);
+  const local = introFor(chapter, cfg, { P, R, chapter });
+  const introId = `intro:${chapter.id}:${cfg.gen || cfg.name}:${local.quote || 'base'}`;
+  if (sceneSeen(P, chapter.id, introId) && PARAMS.get('intro') !== '1') return;
   renderGeneralCard($('generalIntroCard'), {
     name: cfg.name,
-    bio: gen?.bio || (boss ? '乱世群雄,各有一局。' : '无名之辈,也守着不肯退的一步。'),
-    quote: gen?.barks?.open || (boss ? '此路,先问过我的牌。' : '前路遭遇,胜负手上见。'),
+    bio: local.bio || gen?.bio || (boss ? '乱世群雄,各有一局。' : '无名之辈,也守着不肯退的一步。'),
+    quote: local.quote || gen?.barks?.open || (boss ? '此路,先问过我的牌。' : '前路遭遇,胜负手上见。'),
     traits: cfg.traits,
-    rule: chapter.ruleText || chapter.premise,
+    rule: local.rule || chapter.ruleText || storyFor(chapter)?.objective || chapter.premise,
     skin: opponentSkin(cfg, gen, boss),
     eyebrow: boss ? (chapter.gate ? '大 关' : '敌 将 亮 相') : '遭 遇',
     year: chapter.year || '残卷深处',
@@ -299,6 +370,7 @@ async function opponentIntro(chapter, cfg, boss) {
     skirmish: !boss,
   });
   el.dataset.kind = boss ? 'boss' : 'skirmish';
+  if (boss && count > 1) $('introSkip').innerHTML = `${index < count - 1 ? '下 一 位' : '应 战'}<small>${index + 1} / ${count} · 点击继续</small>`;
   el.classList.toggle('gate', !!(boss && chapter.gate));
   el.classList.remove('hidden');
   void el.offsetWidth;
@@ -306,27 +378,39 @@ async function opponentIntro(chapter, cfg, boss) {
   let skip;
   const skipped = new Promise(resolve => { skip = resolve; });
   $('introSkip').addEventListener('click', skip, { once: true });
-  await Promise.race([wait(boss ? (chapter.gate ? 3.6 : 3.0) : 2.2), skipped]);
+  await Promise.race([wait(boss ? (storyFor(chapter) ? 5.2 : (chapter.gate ? 3.6 : 3.0)) : 2.2), skipped]);
+  markSceneSeen(P, chapter.id, introId);
+  SC.saveProgress(P);
   el.classList.remove('show');
   el.classList.add('hidden');
 }
-async function bossIntro(chapter) {
-  return opponentIntro(chapter, chapter.boss, true);
+async function bossIntro(chapter, cfg = chapter.boss) {
+  const roster = rosterOf(cfg);
+  for (let i = 0; i < roster.length; i++) await opponentIntro(chapter, roster[i], true, { index: i, count: roster.length });
 }
 
 // 关卡:单场或连战(gauntlet)
 async function enterBoss(node) {
   const c = R.chapter;
-  await bossIntro(c);
   const rounds = c.rule?.gauntlet || 1;
-  for (let r = 1; r <= rounds; r++) {
+  const firstRound = Math.max(1, Math.min(rounds, parseInt(PARAMS.get('round') || '1', 10) || 1));
+  await bossIntro(c, roundConfig(c.boss, firstRound));
+  for (let r = firstRound; r <= rounds; r++) {
+    const currentBoss = roundConfig(c.boss, r);
     R.marchInfo = rounds > 1 ? `${c.name} · 第 ${r} / ${rounds} 阵` : `${c.year || '残卷'} · ${c.name}`;
     if (rounds > 1) {
       ui.banner(`第 ${r} 阵`, rounds > 1 && c.id === 'qiqin' ? '擒他,也放他。' : '');
       await wait(1.0);
     }
-    const win = await enterBattle(node, c.boss, { stack: c.boss.stack, roundInfo: '#r' + r });
+    if (r > firstRound && c.boss.rounds) await bossIntro(c, currentBoss);
+    const win = await enterBattle(node, currentBoss, { stack: currentBoss.stack, roundInfo: '#r' + r });
     if (!win) {
+      if ((c.rule?.advanceOnLoss || 0) >= r && r < rounds) {
+        R.chips = 650;
+        ui.banner('输了，也要再来', `第 ${r + 1} 顾，考的不是上一阵输赢。`);
+        await wait(1.2);
+        continue;
+      }
       // 专属机制·七进七出:本场首次清台,半仓再战
       if (c.rule?.reviveOnce && !R.revived) {
         R.revived = true;
@@ -335,7 +419,7 @@ async function enterBoss(node) {
         audio.chime();
         await wait(1.6);
         const again = await enterBattle(node, c.boss, {
-          stack: Math.max(300, Math.floor(c.boss.stack * 0.6)),
+          stack: Math.max(300, Math.floor(currentBoss.stack * 0.6)),
           roundInfo: '#revive',
           noOverride: true, // 复活战不受 ?opp/?bossopp 影响(测试以此制造必败首战)
         });
@@ -371,8 +455,11 @@ function annalsTell(genId, t) {
 }
 // 列传六维:取该武将首次出场回的属性包
 function traitsOfGen(genId) {
-  const c = CHAPTERS.find(c => c.boss?.gen === genId);
-  return c ? c.boss.traits : {};
+  for (const chapter of CHAPTERS) {
+    const encounter = chapterEncounters(chapter).find(item => item.cfg.gen === genId);
+    if (encounter) return encounter.cfg.traits;
+  }
+  return {};
 }
 
 $('annalsBtn').addEventListener('click', () => {
@@ -383,27 +470,37 @@ $('annalsClose').addEventListener('click', () => $('annalsModal').classList.add(
 
 async function endChapter(win) {
   const c = R.chapter;
-  if (!win) { // 兵败即刻入账:正史写入残卷
+  const storyOutcome = outcomeFor(c, win, { P, R, chapter: c });
+  if (!win) { // 兵败即刻入账:正史与史鉴写入残卷
     SC.markPage(P, c.id, 'history');
+    P.story.outcomes[c.id] = 'history';
+    if (storyOutcome.clue) P.story.clues[c.id] = true;
     SC.saveProgress(P);
   }
   const yeshiExtra = R.asZhuge ? '批注:这一局,你亲手执过丞相之手。' : '';
-  const res = await SC.settle(c, { win, annotation: c.defeat, yeshiExtra });
+  const res = await SC.settle(c, { win, annotation: storyOutcome.text || c.defeat, yeshiExtra, storyOutcome });
   if (win) {
-    SC.markPage(P, c.id, res.yeshiKey || 'yeshi');
+    const resultKey = res.yeshiKey || 'yeshi';
+    SC.markPage(P, c.id, resultKey);
+    P.story.outcomes[c.id] = resultKey;
+    P.story.choices[c.id] = resultKey;
+    if (storyOutcome.choiceFact) P.story.facts[storyOutcome.choiceFact] = true;
     if (c.apocrypha) P.apocWins = (P.apocWins || 0) + 1; // 无终稿:只计数,不占正卷
     if (R.asZhuge) P.flags = { ...P.flags, zhizishou: true };
     SC.saveProgress(P);
     if (c.type === 'finale') {
       const q = await SC.finale(P);
       P.endings.push(q);
+      P.flags.ending = q;
       SC.saveProgress(P);
     }
+    onboarding.tip('settle');
     return showCodex();
   }
   SC.markPage(P, c.id, 'history');
   SC.saveProgress(P);
   if (res.r === 'retry') return startMarch(c, R.omenFx, { asZhuge: R.asZhuge });
+  onboarding.tip('settle');
   return showCodex();
 }
 
@@ -412,8 +509,7 @@ import { genApocrypha } from './apocrypha.js';
 $('apocBtn').addEventListener('click', () => openChapterPage(genApocrypha()));
 
 // ---------------- 开卷 ----------------
-$('startBtn').addEventListener('click', () => {
-  audio.resume();
+function enterGame() {
   $('intro').classList.add('fade');
   setTimeout(() => {
     const direct = PARAMS.get('chapter');
@@ -421,4 +517,14 @@ $('startBtn').addEventListener('click', () => {
     if (c) openChapterPage(c);
     else showCodex();
   }, 900);
+}
+$('startBtn').addEventListener('click', () => {
+  audio.resume();
+  onboarding.start();
 });
+$('prologueSkip').addEventListener('click', () => onboarding.skip());
+$('replayIntroBtn').addEventListener('click', () => {
+  show('intro');
+  onboarding.replay();
+});
+$('startBtn').disabled = false;

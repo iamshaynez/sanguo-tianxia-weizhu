@@ -1,6 +1,7 @@
 // tests/content/chapters.lint.mjs —— 章节数据配方校验(内容即数据,数据有测试)
 // 配方:槽位齐全 / 文案长度上限(防长文渗漏) / 引用合法 / 结构契约 / 武将档案配方
-import { CHAPTERS, FX, GENERALS, SKINS } from './helpers.mjs';
+import { CHAPTERS, FX, GENERALS, SKINS, STORY_DATA, SPEAKERS, chapterEncounters, rosterOf } from './helpers.mjs';
+import { existsSync } from 'node:fs';
 
 const TRAIT_KEYS = ['武勇', '智谋', '诈术', '胆识', '耐性', '心性'];
 const len = s => [...String(s || '')].length;
@@ -43,6 +44,15 @@ for (const c of CHAPTERS) {
     }
   }
   check(c.boss && Number.isFinite(c.boss.stack) && c.boss.stack > 0, `${at} boss 缺 stack`);
+  if (c.boss?.opponents) check(c.boss.opponents.length >= 2 && c.boss.opponents.length <= 3, `${at} 同桌阵容须为 2–3 人`);
+  if (c.boss?.rounds) check(c.boss.rounds.length === c.rule?.gauntlet, `${at} named 连战轮次与 gauntlet 不一致`);
+  for (const encounter of chapterEncounters(c)) {
+    const ec = encounter.cfg;
+    check(ec.name && len(ec.name) > 0, `${at} 遭遇配置缺名称`);
+    check(encounter.kind === 'skirmish' || (Number.isFinite(ec.stack) && ec.stack > 0), `${at}/${ec.name} 缺有效军资`);
+    if (ec.gen) check(GENERALS[ec.gen], `${at}/${ec.name} 武将未登记:${ec.gen}`);
+    for (const key of TRAIT_KEYS) check(Number.isFinite(ec.traits?.[key]) && ec.traits[key] >= 0 && ec.traits[key] <= 100, `${at}/${ec.name} 六维 ${key} 异常`);
+  }
 
   check(Array.isArray(c.omens) && c.omens.length === 3, `${at} 天时必须三选`);
   const fxSet = new Set();
@@ -105,9 +115,80 @@ for (const [gid, g] of Object.entries(GENERALS)) {
   }
 }
 
+// 所有注册头像必须存在于本地,通用武将像也只使用明确的通用键
+for (const [key, skin] of Object.entries(SKINS)) {
+  check(/^No_(?:pk_)?\d{3}\.jpg$/.test(skin.file), `[头像 ${key}] 文件名异常:${skin.file}`);
+  check(existsSync(`assets/portraits/san9/${skin.file}`), `[头像 ${key}] 文件不存在:${skin.file}`);
+}
+
+// 章回剧本:长文按场景拆拍,不再用“一行上限”压制叙事
+const STORY_LINE_LIMIT = { coldOpen: 100, map: 120, battle: 72, outcome: 220, clue: 120 };
+const EFFECT_KEYS = new Set(['chips', 'oppChips', 'keenEye', 'sow', 'fact', 'raid']);
+const WHEN_KINDS = new Set(['page', 'choice', 'clue', 'fact', 'seen', 'round', 'hand', 'multi', 'single', 'asZhuge', 'omen']);
+function checkWhen(when, at) {
+  const atoms = Array.isArray(when) ? when : (when ? [when] : []);
+  for (const raw of atoms) {
+    const atom = String(raw).replace(/^!/, '');
+    const kind = atom.split(':')[0];
+    check(WHEN_KINDS.has(kind), `${at} 未知剧情条件:${raw}`);
+  }
+}
+function checkLines(lines, kind, at) {
+  check(Array.isArray(lines) && lines.length > 0, `${at} 缺${kind}文本`);
+  for (const line of lines || []) {
+    check(line && typeof line.speaker === 'string' && (SPEAKERS[line.speaker] || GENERALS[line.speaker]), `${at} 说话人未登记:${line?.speaker}`);
+    check(len(line.text) > 0 && len(line.text) <= STORY_LINE_LIMIT[kind], `${at} ${kind}文本长度异常(${len(line.text)})`);
+    checkWhen(line.when, at);
+  }
+}
+for (const [cid, story] of Object.entries(STORY_DATA)) {
+  const at = `[剧本 ${cid}]`;
+  const chapterRef = CHAPTERS.find(c => c.id === cid);
+  check(!!chapterRef, `${at} 没有对应章节`);
+  check(Array.isArray(story.cast) && story.cast.length > 0, `${at} 缺登场人物`);
+  for (const gid of story.cast || []) check(GENERALS[gid] || SPEAKERS[gid], `${at} 登场人物未登记:${gid}`);
+  check(len(story.objective) > 0 && len(story.objective) <= 90, `${at} 本回目标缺失或过长`);
+  checkLines(story.coldOpen, 'coldOpen', at);
+  check(Array.isArray(story.map) && (cid === 'zuizhong' || story.map.length > 0), `${at} 缺专属行军场景`);
+  const sceneIds = new Set();
+  for (const scene of story.map || []) {
+    check(scene.id && !sceneIds.has(scene.id), `${at} 地图场景 ID 缺失或重复`);
+    sceneIds.add(scene.id);
+    check(Number.isInteger(scene.node) || typeof scene.node === 'string', `${at}/${scene.id} 节点引用异常`);
+    if (Number.isInteger(scene.node)) check(scene.node > 0 && chapterRef && scene.node < chapterRef.map.length - 1, `${at}/${scene.id} 不在可到达的中间节点`);
+    check(len(scene.title) > 0 && len(scene.title) <= 24, `${at}/${scene.id} 场景标题异常`);
+    checkLines(scene.lines, 'map', `${at}/${scene.id}`);
+    check(Array.isArray(scene.choices) && scene.choices.length >= 1 && scene.choices.length <= 3, `${at}/${scene.id} 选项数量异常`);
+    const choiceIds = new Set();
+    for (const choice of scene.choices || []) {
+      check(choice.id && !choiceIds.has(choice.id), `${at}/${scene.id} 选项 ID 缺失或重复`);
+      choiceIds.add(choice.id);
+      check(len(choice.text) > 0 && len(choice.text) <= 36, `${at}/${scene.id} 选项文本异常`);
+      for (const key of Object.keys(choice.effects || {})) check(EFFECT_KEYS.has(key), `${at}/${scene.id} 未知效果:${key}`);
+    }
+  }
+  check(Array.isArray(story.battle) && story.battle.length >= 2, `${at} 至少两个牌局拍点`);
+  const beatIds = new Set();
+  for (const beat of story.battle || []) {
+    check(beat.id && !beatIds.has(beat.id), `${at} 牌局拍点 ID 缺失或重复`);
+    beatIds.add(beat.id);
+    check(['start', 'low'].includes(beat.at) || /^hand:[1-9]\d*$/.test(beat.at), `${at}/${beat.id} 拍点触发器异常`);
+    checkLines([beat], 'battle', `${at}/${beat.id}`);
+  }
+  for (const result of ['win', 'loss']) {
+    check(len(story[result]?.text) > 0 && len(story[result].text) <= STORY_LINE_LIMIT.outcome, `${at} ${result} 结局文本异常`);
+    checkLines(story[result]?.lines || [{ speaker: 'narrator', text: story[result]?.text }], 'outcome', `${at}/${result}`);
+  }
+  check(len(story.win?.hook) > 0 && len(story.win.hook) <= 100, `${at} 缺下页钩子`);
+  check(len(story.loss?.clue) > 0 && len(story.loss.clue) <= STORY_LINE_LIMIT.clue, `${at} 缺失败史鉴`);
+  if (story.loss?.clueFx) check(story.loss.clueFx in FX, `${at} 史鉴效果非法`);
+}
+for (const id of ['hulao', 'baimenlou', 'zhujiu']) check(STORY_DATA[id], `缺连续剧情样板:${id}`);
+for (const chapter of CHAPTERS) check(STORY_DATA[chapter.id], `[${chapter.id}] 缺完整章回剧本`);
+
 if (fails.length) {
   console.error(`❌ 章节配方校验 ${fails.length} 项未过:`);
   for (const f of fails) console.error('  - ' + f);
   process.exit(1);
 }
-console.log(`✅ 章节配方校验通过:${CHAPTERS.length} 回(含最后一页),大关回 4 + 终局,天时效果键 ${Object.keys(FX).length} 种`);
+console.log(`✅ 章节配方校验通过:${CHAPTERS.length} 回(含最后一页),完整剧本 ${Object.keys(STORY_DATA).length} 回,武将 ${Object.keys(GENERALS).length} 名,大关回 4 + 终局,天时效果键 ${Object.keys(FX).length} 种`);

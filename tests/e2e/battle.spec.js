@@ -60,14 +60,8 @@ test.describe('摊牌与图鉴', () => {
     await openChapter(page, 'taoyuan');
     await enterBattle(page);
     await installDriver(page, 'station'); // 跟注站必然打到摊牌
-    await page.waitForFunction(() =>
-      document.getElementById('banner').classList.contains('show'), { timeout: 90_000 });
-    // 对方两张牌已翻开
-    const flipped = await page.evaluate(() =>
-      [...document.querySelectorAll('#cardLayer .card:not(.big)')].filter(el =>
-        el.classList.contains('flipped') && parseInt(el.style.transform.match(/, ([\d.-]+)px\)/)?.[1] || '0', 10) < 250
-      ).length);
-    expect(flipped).toBeGreaterThanOrEqual(2);
+    // 等真正的摊牌,而非章节开场/机制横幅
+    await expect(page.locator('#cardLayer .card[data-seat-id="opponent"].flipped')).toHaveCount(2, { timeout: 90_000 });
     // 赢家 5 张高亮
     await expect(page.locator('#cardLayer .card.hl')).toHaveCount(5, { timeout: 10_000 }).catch(() => {
       // 平分底池时双方都亮:允许 10 张
@@ -128,13 +122,14 @@ test.describe('牌桌仪式感', () => {
 
 test.describe('盲注与战斗终结', () => {
   test('盲注每 4 手递增,战斗必分胜负', async ({ page }) => {
-    await newGame(page, 'fast=1&seed=ESCA01&opp=400&omen=keenEye');
+    test.setTimeout(240_000);
+    await newGame(page, 'fast=1&seed=ESCA01&chips=5000&opp=5000&omen=keenEye');
     await openChapter(page, 'taoyuan');
     await enterBattle(page);
-    await installDriver(page, 'maniac');
-    // 打到第 5 手应升级到 15/30
-    await expect(page.locator('#blindLabel')).toContainText('15 / 30', { timeout: 120_000 });
-    // 战斗终将结束:回地图(胜)或结算(负)
+    await installDriver(page, 'cautious');
+    // 大军资稳健局确保观察到第 5 手;随后切全压流验证战斗终结
+    await expect(page.locator('#blindLabel')).toContainText('15 / 30', { timeout: 150_000 });
+    await page.evaluate(() => { window.__drive = 'maniac'; });
     await waitBattleEnd(page);
     await stopDriver(page);
   });

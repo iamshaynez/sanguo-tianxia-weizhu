@@ -14,6 +14,116 @@ export const GENERALS = {
       badbeat: '不可能……不可能!',
     },
   },
+  liubei: {
+    name: '刘备', skin: 'liubei', bio: '屡败屡起，最懂人心未凉。',
+    tells: { strong: '双剑并放，眉目温和', weak: '袖中拇指反复摩挲' },
+    barks: { open: '备，愿与君同行。', taunt: '备并非无怒，只是不轻怒。', tilt: '莫非天意如此!', smug: '仁义并非退让。', badbeat: '败了，便再来。' },
+  },
+  guanyu: {
+    name: '关羽', skin: 'guanyu', bio: '青龙偃月，一诺重于千钧。',
+    tells: { strong: '丹凤眼微睁，抚须不语', weak: '刀尖向下一垂' },
+    barks: { open: '关某，领教。', taunt: '多言无益。', tilt: '鼠辈，安敢如此!', smug: '义之所至，何惧之有。', badbeat: '这一局，关某记下了。' },
+  },
+  zhangfei: {
+    name: '张飞', skin: 'zhangfei', bio: '豹头环眼，粗中亦有细。',
+    tells: { strong: '环眼圆睁，向前倾身', weak: '摸起酒碗又放下' },
+    barks: { open: '燕人张飞在此!', taunt: '你再说一遍?!', tilt: '俺要掀了这桌!', smug: '痛快，再来!', badbeat: '俺偏不信这个邪!' },
+  },
+  chengong: {
+    name: '陈宫', skin: 'chengong', bio: '谋士所争，常是主公一念。',
+    tells: { strong: '合袖正坐，目光不移', weak: '望向城图一角' },
+    barks: { open: '陈宫，有一策。', taunt: '激我无益。', tilt: '竖子不足与谋!', smug: '此局尚可挽回。', badbeat: '明公……仍不肯听吗?' },
+  },
+  zhaoyun: {
+    name: '赵云', skin: 'zhaoyun', bio: '一身是胆，长坂护主。',
+    tells: { strong: '枪锋收在身后，呼吸绵长', weak: '护住怀中襁褓' },
+    barks: { open: '常山赵子龙，请战。', taunt: '云并无惧意。', tilt: '挡我者，让开!', smug: '进退自如。', badbeat: '少主尚在，云不能退。' },
+  },
+  dianwei: {
+    name: '典韦', skin: 'dianwei', bio: '双戟在手，营门便在。',
+    tells: { strong: '双戟顿地，寸步不退', weak: '回头望了一眼营门' },
+    barks: { open: '典韦在此，谁也别想过。', taunt: '找死!', tilt: '先问过我的双戟!', smug: '营门无恙。', badbeat: '主公……可曾走远?' },
+  },
+  diaochan: {
+    name: '貂蝉', skin: 'diaochan', bio: '连环计中，最自由的一步。',
+    tells: { strong: '眼波未动，笑意不减', weak: '指尖掠过袖中短刃' },
+    barks: { open: '诸位，何必急着相看两厌。', taunt: '将军也只会说狠话吗?', tilt: '你们都不肯听我说。', smug: '局中人，未必知局。', badbeat: '原来我也不在计外。' },
+  },
+  sunquan: {
+    name: '孙权', skin: 'sunquan', bio: '坐断东南，善择人和。',
+    tells: { strong: '按剑听潮，不置一词', weak: '反复权衡左右神色' },
+    barks: { open: '江东孙权，愿闻高见。', taunt: '仲谋自有决断。', tilt: '欺人太甚!', smug: '江东不可轻侮。', badbeat: '再议，再议。' },
+  },
+  lusu: {
+    name: '鲁肃', skin: 'lusu', bio: '榻上之策，厚道亦有锋。',
+    tells: { strong: '拱手微笑，言辞笃定', weak: '欲言又止，望向江北' },
+    barks: { open: '鲁肃，愿两家都好。', taunt: '足下何必如此。', tilt: '肃也要争一回!', smug: '和并非让。', badbeat: '是肃看漏了一层。' },
+  },
+  pangtong: {
+    name: '庞统', skin: 'pangtong', bio: '凤雏不栖枯枝。',
+    tells: { strong: '负手大笑，目光犀利', weak: '咳嗽一声，避开坡名' },
+    barks: { open: '庞士元，献丑了。', taunt: '你且说说谁不中用。', tilt: '竖子安敢轻我!', smug: '小计而已。', badbeat: '落凤……果然不吉。' },
+  },
+  huangzhong: {
+    name: '黄忠', skin: 'huangzhong', bio: '老将开弓，不服春秋。',
+    tells: { strong: '弓满如月，臂不摇', weak: '揉了揉右肩' },
+    barks: { open: '老将黄忠，请战!', taunt: '谁敢说我老!', tilt: '看我再开一石弓!', smug: '尚能饭否?能!', badbeat: '这一刀，慢了吗?' },
+  },
+  masuo: {
+    name: '马谡', skin: 'masuo', bio: '纸上兵势，山上孤寨。',
+    tells: { strong: '谈兵不止，手指山河', weak: '反复寻找水源' },
+    barks: { open: '马幼常，早已胸有成竹。', taunt: '你懂什么兵法!', tilt: '我之计绝无疏漏!', smug: '居高临下，势如破竹。', badbeat: '丞相……谡错了。' },
+  },
+  wangping: {
+    name: '王平', skin: 'wangping', bio: '沉实善守，知何时进。',
+    tells: { strong: '阵列齐整，呼吸沉稳', weak: '低声清点水源' },
+    barks: { open: '王平，奉令守此。', taunt: '守好自己再说。', tilt: '不可乱了阵脚!', smug: '稳，也是胜。', badbeat: '终究没能劝住。' },
+  },
+  jiangwei: {
+    name: '姜维', skin: 'jiangwei', bio: '幼麟继志，锐气未折。',
+    tells: { strong: '挺枪直视，神采逼人', weak: '短暂望向汉中' },
+    barks: { open: '天水姜伯约，请赐教。', taunt: '再来便是。', tilt: '维宁死不退!', smug: '此志尚可继。', badbeat: '丞相……维有愧。' },
+  },
+  caoshuang: {
+    name: '曹爽', skin: 'caoshuang', bio: '权柄在手，疑心在门。',
+    tells: { strong: '凭几而坐，号令随意', weak: '频频探问府外' },
+    barks: { open: '大将军面前，还不行礼。', taunt: '你也配激我?', tilt: '调兵!快调兵!', smug: '魏室尽在我手。', badbeat: '仲达竟真敢……' },
+  },
+  yufan: {
+    name: '虞翻', skin: 'yufan', bio: '江东直士，话里藏针。',
+    tells: { strong: '拂袖反问，声调愈高', weak: '捻须停顿片刻' },
+    barks: { open: '虞仲翔，有一问。', taunt: '狂生无礼!', tilt: '你休要强辩!', smug: '理屈词穷了吧。', badbeat: '是翻失言了。' },
+  },
+  luji: {
+    name: '陆绩', skin: 'luji', bio: '陆郎怀橘，少年有锋。',
+    tells: { strong: '正襟反问，寸步不让', weak: '看向案上橘核' },
+    barks: { open: '陆公纪，愿闻其详。', taunt: '莫欺我年少!', tilt: '你此话不通!', smug: '此问已答。', badbeat: '绩，受教了。' },
+  },
+  kongxiu: {
+    name: '孔秀', skin: 'commander', bio: '东岭守将，一关亦一诺。',
+    tells: { strong: '横刀关上，脚跟不动', weak: '回望身后印信' },
+    barks: { open: '东岭孔秀，验文过关。', taunt: '你敢闯关!', tilt: '关门落锁!', smug: '无令莫行。', badbeat: '关某之名，不假。' },
+  },
+  hanfu: {
+    name: '韩福', skin: 'commander', bio: '洛阳关吏，刀快心虚。',
+    tells: { strong: '拔刀抢先，声势逼人', weak: '频繁擦拭掌心' },
+    barks: { open: '韩福在此，留下文凭。', taunt: '找死!', tilt: '放箭，快放箭!', smug: '此关难越。', badbeat: '我怎敢拦他……' },
+  },
+  bianxi: {
+    name: '卞喜', skin: 'bianxi', bio: '镇国寺僧，袈裟藏刃。',
+    tells: { strong: '合十低眉，气息沉稳', weak: '袖中刀环轻响' },
+    barks: { open: '镇国寺一叙，如何?', taunt: '佛也渡不得你。', tilt: '动手!', smug: '此地清静。', badbeat: '刀藏在佛前，也瞒不过他。' },
+  },
+  wangzhi: {
+    name: '王植', skin: 'commander', bio: '荥阳太守，笑里设局。',
+    tells: { strong: '笑容不改，杯盏极稳', weak: '瞥向廊下伏兵' },
+    barks: { open: '王植备了薄酒。', taunt: '莫给脸不要脸。', tilt: '放火!', smug: '入我彀中矣。', badbeat: '这一局，反被你看破。' },
+  },
+  qinqi: {
+    name: '秦琪', skin: 'commander', bio: '黄河渡口，最后一声喝。',
+    tells: { strong: '横刀立马，目光直迫', weak: '握缰的手收紧' },
+    barks: { open: '秦琪守渡，来者止步。', taunt: '你敢小瞧我!', tilt: '渡口封死!', smug: '插翅难飞。', badbeat: '黄河，也拦不住你。' },
+  },
   huaxiong: {
     name: '华雄', skin: 'huaxiong', bio: '温酒未寒时的那个人。',
     tells: { strong: '按刀而立,纹丝不动', weak: '频频回望关门' },

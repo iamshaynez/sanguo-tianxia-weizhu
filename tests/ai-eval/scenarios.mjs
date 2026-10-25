@@ -4,6 +4,7 @@ import { C, villains, simulateHand, probe, randomState } from './engine.mjs';
 import { makePersona, describeTraits, estimateDifficulty, TRAITS } from '../../src/persona.js';
 import { CHAPTERS } from '../../src/chapters.js';
 import { GENERALS } from '../../src/generals.js';
+import { multiwayScenarios } from './multiway-scenarios.mjs';
 
 const P0 = { aggr: 0.8, bluff: 0.16, tilt: 0 };
 const P3 = { aggr: 0.8, bluff: 0.16, tilt: 3 };
@@ -699,4 +700,5 @@ export const scenarios = [
       return { actual: bad.length ? bad.join('、') : '29 处引用全部档案齐备', pass: bad.length === 0 };
     },
   },
+  ...multiwayScenarios,
 ];
