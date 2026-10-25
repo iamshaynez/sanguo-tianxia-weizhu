@@ -7,9 +7,11 @@
 ## 运行
 
 ```bash
-python3 -m http.server 8619
+npm start
 # 打开 http://127.0.0.1:8619/
 ```
+
+`npm start` 会先写入 `runtime.json`，再启动静态服务器。页面右下角显示版本号、提交短 SHA 和本次服务器启动时间（UTC），便于判断当前打开的是哪次部署；旧服务若显示“启动时间未登记”，说明没有按新方式启动。该文件已加入 `.gitignore`，不需要提交。
 
 ## 玩法与剧情
 
@@ -39,6 +41,7 @@ python3 -m http.server 8619
 - **三国古风 UX**：开卷 → 史实底稿／冷开场 → 天时 → 行军见闻 → 战前展卷 → 武将亮相 → 对局 → 朱批结算／续读下一回。
 - **观阵录**：同一套立绘与六维用于入场和列传，展示战绩、出场回目与识破记录；刷新后保留。
 - **响应式与可访问性**：桌面与窄屏分别排布，章节正文独立滚动、底部操作区固定并适配手机安全区；移动端保留横排行动按钮，支持键盘节点、减少动态效果和演出加速。
+- **部署版本页脚**：右下角展示版本号、提交短 SHA 与服务器启动时间（UTC），首页和 `runtime.json` 禁用缓存；旧部署会明确提示“启动时间未登记”。
 
 ## 开发
 
@@ -101,6 +104,10 @@ src/chapters.js   《英雄记总目》：33 回章节机制与阵容
 src/story-data/   四卷剧本 + 33 回史实底稿与逐战战书
 src/story-engine.js 剧本条件与场景解析
 src/briefing.js   战前展卷、敌阵与胜负代价、键盘和焦点管理
+src/version.js    展示版本号
+src/runtime-info.js 页脚版本、提交与启动时间读取
+scripts/stamp-runtime.mjs 本地启动时生成 runtime.json
+docker/entrypoint.sh 容器启动时生成 runtime.json
 src/onboarding.js 四短节开卷与第一次操作提示
 src/generals.js   44 名角色档案
 src/encounters.js 同桌阵容与 named 连战
