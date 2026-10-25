@@ -390,8 +390,7 @@ export function startBattle(opts) {
   }
 
   async function awardPots(settled) {
-    const winners = G.H.seats.filter(seat => settled.awards[seat.id] > 0);
-    await Promise.all(winners.map(seat => flyChips(SLOTS.pot, seatSlot(seat, 'stack'), 'pot')));
+    // 退款说明必须在筹码动画之前出现，避免后续结算横幅覆盖它。
     const refunds = settled.pots.filter(pot => pot.refund && pot.amount > 0);
     if (refunds.length) {
       const text = refunds.map(refund => {
@@ -400,6 +399,8 @@ export function startBattle(opts) {
       }).join(' · ');
       ui.banner($('bannerMain').textContent, `${$('bannerSub').textContent} · 其中 ${text} 为未跟注退回`);
     }
+    const winners = G.H.seats.filter(seat => settled.awards[seat.id] > 0);
+    await Promise.all(winners.map(seat => flyChips(SLOTS.pot, seatSlot(seat, 'stack'), 'pot')));
     refreshPiles();
   }
 
