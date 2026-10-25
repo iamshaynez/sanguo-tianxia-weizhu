@@ -49,7 +49,8 @@ export const SCROLL_4_STORIES = {
     objective: '同沉疴争回刘备的时间，也让那句托孤从试探与重担，变回真正的信任。',
     coldOpen: [
       { speaker: 'narrator', text: '永安宫的药香压不住江潮。刘备枕边放着写了一半的遗诏，最后几个字迟迟不肯落下。' },
-      { speaker: 'liubei', text: '云长还活着，夷陵也没烧起来。可我为何还是躺到了这里？原来人躲过自己的错，也躲不过岁月。', when: 'page:maicheng:yeshi' },
+      { speaker: 'liubei', text: '云长还活着，夷陵也没烧起来。可我为何还是躺到了这里？原来人躲过自己的错，也躲不过岁月。', when: ['page:maicheng:yeshi', 'page:yiling:yeshi'] },
+      { speaker: 'liubei', text: '云长还活着，夷陵的火却仍旧烧过。原来救下一个名字，并不会替我们免去下一场错。', when: ['page:maicheng:yeshi', '!page:yiling:yeshi'] },
       { speaker: 'liubei', text: '二弟走后，我总觉得每一天都是借来的。今日连借也没处借了，只得把阿斗和孔明都叫来。', when: '!page:maicheng:yeshi' },
       { speaker: 'zhuge', text: '陛下，病可医，话不可反着留。您今日想见的是臣，还是一个能替您背完蜀汉的人？' },
     ],

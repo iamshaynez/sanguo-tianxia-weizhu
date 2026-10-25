@@ -4,6 +4,7 @@ import { traitGrid } from './general-card.js';
 import { portraitImage } from './portrait.js';
 import { normalizeStoryState, coldOpenFor, storyFor, speakerName, outcomeVariant } from './story-engine.js';
 import { chapterEncounters } from './encounters.js';
+import { briefingFor } from './story-data/briefings.js';
 
 const $ = id => document.getElementById(id);
 export const SAVE_KEY = 'yxj_v1';
@@ -35,7 +36,7 @@ export function saveProgress(p) { localStorage.setItem(SAVE_KEY, JSON.stringify(
 export function pageState(p, id) { return p.pages[id] || 'unread'; }
 export function isYeshi(st) { return st === 'yeshi' || st === 'yeshiB' || st === 'yeshiAB'; }
 export function markPage(p, id, st) {
-  if (st === 'history' && isYeshi(p.pages[id])) return; // 正史不覆盖野史
+  if (st === 'history' && isYeshi(p.pages[id])) return; // 原卷不覆盖野史
   if (isYeshi(st) && isYeshi(p.pages[id]) && p.pages[id] !== st) p.pages[id] = 'yeshiAB';
   else p.pages[id] = st;
 }
@@ -53,7 +54,7 @@ export function finaleUnlocked(p) {
 }
 
 // ---------------- 目录 ----------------
-const STATE_MARK = { unread: '○', history: '史', yeshi: '野', yeshiB: '野', yeshiAB: '全' };
+const STATE_MARK = { unread: '○', history: '原', yeshi: '野', yeshiB: '野', yeshiAB: '全' };
 export function renderCodex(p, onPick) {
   $('codexProgress').innerHTML =
     `已改写 <b>${yeshiCount(p)}</b> / ${NORMAL_IDS.length} 页` +
@@ -95,6 +96,15 @@ export function renderPage(chapter, onStart, onBack, opts = {}) {
   $('pageYear').textContent = chapter.year ? chapter.year : '残卷深处';
   $('pageName').textContent = chapter.name;
   $('pagePremise').textContent = opts.premise || chapter.premise;
+  const brief = briefingFor(chapter);
+  $('pageHistory').classList.toggle('hidden', !brief);
+  if (brief) {
+    $('pageEra').textContent = brief.era;
+    $('pageSource').textContent = brief.source;
+    $('pageRecord').textContent = brief.record;
+    $('pageAdaptation').textContent = brief.adaptation;
+    $('pageLead').textContent = brief.lead;
+  }
   $('pageRule').textContent = chapter.ruleText || '';
   $('pageRule').classList.toggle('hidden', !chapter.ruleText);
   $('pageNote').textContent = opts.note || chapter.note;
@@ -161,13 +171,15 @@ export function pickOmen(chapter, FX) {
 }
 
 // ---------------- 结算 ----------------
-// win: { text } 展示野史(choice 页先出抉择;yeshiExtra 为执子之手等追注);loss: 兵败批注 + 正史入账
-export function settle(chapter, { win, annotation, yeshiExtra, storyOutcome = null }) {
+// win: { text } 展示野史(choice 页先出抉择;yeshiExtra 为执子之手等追注);loss: 兵败批注 + 原卷入账
+export function settle(chapter, { win, annotation, yeshiExtra, storyOutcome = null, next = null }) {
   const modal = $('settle');
   const stamp = $('settleStamp'), title = $('settleTitle');
   const his = $('settleHistory'), ye = $('settleYeshi'), note = $('settleNote');
   const hook = $('settleHook'), clue = $('settleClue');
   const choices = $('settleChoices'), retry = $('settleRetry'), home = $('settleHome');
+  const nextButton = $('settleNext');
+  nextButton.classList.add('hidden');
   hook.textContent = ''; clue.textContent = '';
   modal.classList.remove('hidden');
   choices.innerHTML = '';
@@ -177,7 +189,7 @@ export function settle(chapter, { win, annotation, yeshiExtra, storyOutcome = nu
       stamp.textContent = '改'; stamp.className = 'stamp seal';
       title.textContent = '你改写了这一页';
       title.style.color = '#e9d9b0';
-      his.innerHTML = `<s>史:${chapter.history}</s>`;
+      his.innerHTML = `<s>原卷:${chapter.history}</s>`;
       note.textContent = '';
       retry.style.display = 'none'; home.textContent = '回 目 录';
       const showYeshi = (text, key) => {
@@ -189,6 +201,11 @@ export function settle(chapter, { win, annotation, yeshiExtra, storyOutcome = nu
         note.textContent = yeshiExtra || '';
         choices.innerHTML = '';
         home.onclick = () => done({ r: 'home', yeshiKey: key });
+        nextButton.classList.toggle('hidden', !next);
+        if (next) {
+          nextButton.textContent = `续读 · ${next.name}`;
+          nextButton.onclick = () => done({ r: 'next', yeshiKey: key });
+        }
       };
       if (chapter.rule?.choice) {
         ye.style.display = 'none';
@@ -205,7 +222,7 @@ export function settle(chapter, { win, annotation, yeshiExtra, storyOutcome = nu
       stamp.textContent = '史'; stamp.className = 'stamp dim';
       title.textContent = '这一页,兵败';
       title.style.color = '#c85a4a';
-      his.innerHTML = `史:${chapter.history}`;
+      his.innerHTML = `原卷:${chapter.history}`;
       ye.style.display = 'none';
       hook.textContent = '';
       clue.textContent = storyOutcome?.clue || '';
@@ -221,7 +238,7 @@ export function settle(chapter, { win, annotation, yeshiExtra, storyOutcome = nu
 // ---------------- 终局三种署名 ----------------
 export const ENDINGS = [
   { key: 'seal', q: '封卷 · 留下你改写的三国', a: '你把笔搁在最后一页。有人活了下来，也有人替这份圆满付了账。写卷人合上封面：“这一次，别再说你不知道代价。”' },
-  { key: 'restore', q: '还史 · 让该发生的仍发生', a: '你把野史一页页撕下，正史重新显露。故人们没有忘记你。麦城的雪里、五丈原的秋风里，总有人忽然想起：曾有读者替他们不甘过。' },
+  { key: 'restore', q: '还史 · 让该发生的仍发生', a: '你把野史一页页撕下，原卷重新显露。故人们没有忘记你。麦城的雪里、五丈原的秋风里，总有人忽然想起：曾有读者替他们不甘过。' },
   { key: 'unwritten', q: '撕卷 · 三国不许有终稿', a: '你撕掉最后一页，碎纸却化成更多空白。写卷人笑了：“好。那就让后人每一次不甘，都长出一个新的三国。”无终稿由此展开。' },
 ];
 export function finale(p) {
