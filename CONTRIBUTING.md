@@ -12,7 +12,7 @@
 nvm use
 npm ci
 npx playwright install chromium
-python3 -m http.server 8619
+npm start
 # 打开 http://127.0.0.1:8619/
 ```
 

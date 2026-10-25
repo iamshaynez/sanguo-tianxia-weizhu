@@ -19,6 +19,35 @@ test.describe('冒烟:界面骨架', () => {
     expect(painted).toBeTruthy();
   });
 
+  test('页脚显示版本、提交与服务器启动时间且不遮按钮', async ({ page }) => {
+    const response = await page.request.get('/runtime.json');
+    expect(response.ok()).toBeTruthy();
+    const data = await response.json();
+    expect(data.version).toBe('1.0.0');
+    expect(data.commit).toMatch(/^[0-9a-f]{7,40}$/);
+    expect(Number.isFinite(Date.parse(data.startedAt))).toBe(true);
+    await page.goto('/');
+    await expect(page.locator('#appVersion')).toHaveAttribute('data-status', 'ready');
+    await expect(page.locator('#versionNumber')).toHaveText(`v${data.version}+${data.commit.slice(0, 7)}`);
+    await expect(page.locator('#serverStartedAt')).toHaveAttribute('datetime', data.startedAt);
+    for (const width of [320, 390]) {
+      await page.setViewportSize({ width, height: 844 });
+      const footer = await page.locator('#appVersion').boundingBox();
+      const button = await page.locator('#startBtn').boundingBox();
+      const overlap = Math.max(0, Math.min(footer.x + footer.width, button.x + button.width) - Math.max(footer.x, button.x))
+        * Math.max(0, Math.min(footer.y + footer.height, button.y + button.height) - Math.max(footer.y, button.y));
+      expect(overlap).toBe(0);
+    }
+  });
+
+  test('旧服务缺少版本文件时页脚明确提示未登记', async ({ page }) => {
+    await page.route('**/runtime.json*', route => route.fulfill({ status: 404, body: 'not found' }));
+    await page.goto('/');
+    await expect(page.locator('#appVersion')).toHaveAttribute('data-status', 'missing');
+    await expect(page.locator('#versionNumber')).toHaveText('v1.0.0');
+    await expect(page.locator('#serverStartedAt')).toHaveText('启动时间未登记');
+  });
+
   test('正式名称在窄屏完整显示且不越界', async ({ page }) => {
     await page.goto('/');
     for (const width of [320, 390]) {

@@ -6,3 +6,4 @@ out/
 gui-test-screenshots/
 .DS_Store
 *.log
+runtime.json

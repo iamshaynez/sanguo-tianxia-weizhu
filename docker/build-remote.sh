@@ -22,9 +22,11 @@ rm -rf src && mkdir src
 curl -fsSL "https://codeload.github.com/iamshaynez/sanguo-tianxia-weizhu/tar.gz/${SHA}" -o src/src.tar.gz \
   || { echo "源码拉取失败"; exit 1; }
 tar xzf src/src.tar.gz -C src --strip-components=1
+APP_VERSION="$(grep -m1 '"version"' src/package.json | cut -d '"' -f4)"
+if [[ -z "$APP_VERSION" ]]; then APP_VERSION=1.0.0; fi
 
 echo "== 构建 $IMG:$SHA / :main =="
-( cd src && docker build -t "$IMG:$SHA" -t "$IMG:main" . ) || { echo "构建失败"; exit 1; }
+( cd src && docker build --build-arg APP_VERSION="$APP_VERSION" --build-arg APP_COMMIT="$SHA" -t "$IMG:$SHA" -t "$IMG:main" . ) || { echo "构建失败"; exit 1; }
 
 echo "== 推送 ACR（服务器侧，国内路径） =="
 docker push "$IMG:$SHA" || { echo "推送 :$SHA 失败"; exit 1; }

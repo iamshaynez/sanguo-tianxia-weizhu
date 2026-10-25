@@ -4,6 +4,7 @@
   "description": "《三国：天下为注》——三国古风德州扑克战役网页游戏",
   "main": "index.js",
   "scripts": {
+    "start": "node scripts/stamp-runtime.mjs && python3 -m http.server 8619",
     "test": "npm run lint:content && npm run eval:ai && npm run test:e2e",
     "lint:content": "node tests/content/chapters.lint.mjs",
     "eval:ai": "node tests/ai-eval/run.mjs",
