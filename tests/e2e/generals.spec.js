@@ -1,7 +1,7 @@
 // tests/e2e/generals.spec.js —— 武将出场 L1-L5:签名破绽/台词/造型/列传/专属机制
 import { test, expect } from '@playwright/test';
 import {
-  newGame, enterBattle, installDriver, stopDriver, loc,
+  newGame, enterBattle, confirmBriefing, installDriver, stopDriver, loc,
 } from './helpers.js';
 
 // 大关测试用 ?stage=boss 直达关卡(行军图前段置竟),聚焦关卡本身
@@ -97,9 +97,16 @@ test.describe('L5:专属机制与演出', () => {
     await newGame(page, 'fast=1&seed=GEN14&chips=80&bossopp=99999&omen=sow&chapter=changban&stage=boss');
     await page.click('#openPage');
     await enterBattle(page, 'boss');
-    await installDriver(page, 'maniac');
+    await installDriver(page, 'maniac', { autoBriefing: false });
     await expect(page.locator('#bannerMain')).toContainText('七进七出', { timeout: 240_000 });
+    await expect(page.locator('#battleBriefing')).toBeVisible();
     await stopDriver(page);
+    await expect(page.locator('#briefingTitle')).toHaveText('长坂坡 · 回马再战');
+    await expect(page.locator('#briefingReason')).toContainText('第一次冲阵没有撕开缺口');
+    await expect(page.locator('#briefingBack')).toBeHidden();
+    await confirmBriefing(page);
+    await expect(page.locator('#battle')).toBeVisible();
+    await expect(page.locator('#errBox')).toBeEmpty();
   });
 
   test('白衣全谎:麦城前三手的摊牌破绽全是假动作', async ({ page }) => {

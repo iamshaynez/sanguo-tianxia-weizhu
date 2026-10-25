@@ -1,6 +1,6 @@
 // tests/content/chapters.lint.mjs —— 章节数据配方校验(内容即数据,数据有测试)
 // 配方:槽位齐全 / 文案长度上限(防长文渗漏) / 引用合法 / 结构契约 / 武将档案配方
-import { CHAPTERS, FX, GENERALS, SKINS, STORY_DATA, SPEAKERS, chapterEncounters, rosterOf } from './helpers.mjs';
+import { CHAPTERS, FX, GENERALS, SKINS, STORY_DATA, BRIEFINGS, SPEAKERS, chapterEncounters, rosterOf } from './helpers.mjs';
 import { existsSync } from 'node:fs';
 
 const TRAIT_KEYS = ['武勇', '智谋', '诈术', '胆识', '耐性', '心性'];
@@ -121,6 +121,38 @@ for (const [key, skin] of Object.entries(SKINS)) {
   check(existsSync(`assets/portraits/san9/${skin.file}`), `[头像 ${key}] 文件不存在:${skin.file}`);
 }
 
+// 史实底稿与逐战战书:每一回都必须能交代年代、来源、改编、对阵与胜负代价
+const BRIEF_LIMIT = { era: 34, source: 80, record: 170, adaptation: 170, lead: 150, title: 34, body: 170 };
+function checkBattleBrief(brief, at) {
+  check(brief && len(brief.title) > 0 && len(brief.title) <= BRIEF_LIMIT.title, `${at} 战题缺失或过长`);
+  for (const key of ['why', 'win', 'loss']) {
+    check(len(brief?.[key]) >= 12 && len(brief?.[key]) <= BRIEF_LIMIT.body, `${at} ${key} 战书缺失或长度异常(${len(brief?.[key])})`);
+  }
+}
+check(Object.keys(BRIEFINGS).length === CHAPTERS.length, '史实底稿数量必须与正卷及终章一致');
+for (const id of Object.keys(BRIEFINGS)) check(idsSet.has(id), `[战书 ${id}] 没有对应章节`);
+for (const c of CHAPTERS) {
+  const at = `[战书 ${c.id}]`;
+  const brief = BRIEFINGS[c.id];
+  check(!!brief, `${at} 缺史实底稿`);
+  if (!brief) continue;
+  for (const key of ['era', 'source', 'record', 'adaptation', 'lead']) {
+    check(len(brief[key]) > 0 && len(brief[key]) <= BRIEF_LIMIT[key], `${at} ${key} 缺失或过长(${len(brief[key])})`);
+  }
+  checkBattleBrief(brief.skirmish, `${at}/遭遇`);
+  checkBattleBrief(brief.boss, `${at}/关底`);
+  if (c.rule?.gauntlet) {
+    check(Array.isArray(brief.rounds) && brief.rounds.length === c.rule.gauntlet, `${at} 连战战书必须覆盖每一阵`);
+    (brief.rounds || []).forEach((round, index) => checkBattleBrief(round, `${at}/第${index + 1}阵`));
+  } else {
+    check(!brief.rounds, `${at} 非连战不应配置逐阵战书`);
+  }
+  if (c.rule?.reviveOnce) checkBattleBrief(brief.revive, `${at}/回马再战`);
+}
+check(CHAPTERS.find(c => c.id === 'guijin')?.year === '太康元年', '[guijin] 灭吴归晋应使用太康元年');
+check(BRIEFINGS.guijin?.era.includes('280'), '[guijin] 史实底稿应标明 280 年');
+check(!JSON.stringify({ CHAPTERS, STORY_DATA, BRIEFINGS }).includes('温候'), '吕布封号统一为「温侯」');
+
 // 章回剧本:长文按场景拆拍,不再用“一行上限”压制叙事
 const STORY_LINE_LIMIT = { coldOpen: 100, map: 120, battle: 72, outcome: 220, clue: 120 };
 const EFFECT_KEYS = new Set(['chips', 'oppChips', 'keenEye', 'sow', 'fact', 'raid']);
@@ -191,4 +223,4 @@ if (fails.length) {
   for (const f of fails) console.error('  - ' + f);
   process.exit(1);
 }
-console.log(`✅ 章节配方校验通过:${CHAPTERS.length} 回(含最后一页),完整剧本 ${Object.keys(STORY_DATA).length} 回,武将 ${Object.keys(GENERALS).length} 名,大关回 4 + 终局,天时效果键 ${Object.keys(FX).length} 种`);
+console.log(`✅ 章节配方校验通过:${CHAPTERS.length} 回(含最后一页),完整剧本 ${Object.keys(STORY_DATA).length} 回,史实底稿 ${Object.keys(BRIEFINGS).length} 回,武将 ${Object.keys(GENERALS).length} 名,大关回 4 + 终局,天时效果键 ${Object.keys(FX).length} 种`);

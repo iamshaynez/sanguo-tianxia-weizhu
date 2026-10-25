@@ -1,6 +1,6 @@
 // tests/e2e/threekingdoms.spec.js —— 三国古风 UX:残卷、山河行军图、通用武将卡
 import { test, expect } from '@playwright/test';
-import { newGame, enterBattle } from './helpers.js';
+import { newGame, enterBattle, confirmBriefing } from './helpers.js';
 
 async function seedAnnals(page) {
   await page.addInitScript(() => {
@@ -54,6 +54,8 @@ test.describe('通用武将卡', () => {
       const node = document.querySelector('#mapSvg .node.avail');
       for (let i = 0; i < 5; i++) node.dispatchEvent(new MouseEvent('click', { bubbles: true }));
     });
+    await expect(page.locator('#battleBriefing')).toBeVisible();
+    await confirmBriefing(page);
     await expect(page.locator('#bossIntro')).toHaveClass(/show/);
     await page.click('#introSkip');
     await expect(page.locator('#battle')).toBeVisible();

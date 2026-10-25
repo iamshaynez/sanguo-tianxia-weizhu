@@ -38,7 +38,7 @@ test.describe('行军图与事件', () => {
 });
 
 test.describe('兵败与批注', () => {
-  test('兵败:批注浮现、正史入账、翻页重开同一页', async ({ page }) => {
+  test('兵败:批注浮现、原卷入账、翻页重开同一页', async ({ page }) => {
     test.setTimeout(300_000);
     await newGame(page, 'fast=1&seed=RUN02&chips=80&opp=5000');
     await openChapter(page, 'taoyuan');
@@ -49,7 +49,7 @@ test.describe('兵败与批注', () => {
     await expect(page.locator('#settleTitle')).toHaveText('这一页,兵败');
     await expect(page.locator('#settleNote')).toContainText('同生共死');
     await expect(page.locator('#settleClue')).toContainText('互救不是三人一起全押');
-    await expect(page.locator('#settleHistory')).toContainText('史:黄巾起');
+    await expect(page.locator('#settleHistory')).toContainText('原卷:黄巾起');
     // 正史入账
     const st = await page.evaluate(() => JSON.parse(localStorage.getItem('yxj_v1')).pages.taoyuan);
     expect(st).toBe('history');

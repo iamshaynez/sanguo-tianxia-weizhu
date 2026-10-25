@@ -261,7 +261,7 @@ export const SCROLL_1_STORIES = {
     cast: ['lvbu', 'chengong', 'caocao', 'liubei'],
     objective: '在吕布与陈宫之间找出真正的死局，决定下邳还有没有明天。',
     coldOpen: [
-      { speaker: 'chengong', text: '城外是曹军，城内是渴了三日的兵。温候仍说，只要他肯出战，便没有输。' },
+      { speaker: 'chengong', text: '城外是曹军，城内是渴了三日的兵。温侯仍说，只要他肯出战，便没有输。' },
       { speaker: 'lvbu', text: '虎牢那次，你赢的是牌。今日敢拿命再赌一次？', when: 'page:hulao:yeshi' },
       { speaker: 'chengong', text: '你来了。虎牢那页我读过——可这一回，要救的不是他的胜名。', when: 'page:hulao:yeshi' },
       { speaker: 'writer', text: '白门楼的绳子悬在页外。你每赢一手，它便清楚一分。' },

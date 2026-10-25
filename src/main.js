@@ -11,6 +11,7 @@ import { renderGeneralCard } from './general-card.js';
 import { rosterOf, roundConfig, chapterEncounters } from './encounters.js';
 import * as SC from './scroll.js';
 import { createOnboarding } from './onboarding.js';
+import { createBattleBriefing } from './briefing.js';
 import {
   storyFor, mapSceneFor, introFor, outcomeFor, markSceneSeen, sceneSeen, choiceFor,
 } from './story-engine.js';
@@ -158,6 +159,10 @@ function traitsParam() {
 }
 const TRAITS_OVERRIDE = traitsParam();
 const personaOf = traits => makePersona(TRAITS_OVERRIDE || traits);
+const battleBriefing = createBattleBriefing({
+  audio,
+  reduced: PARAMS.get('fast') === '1' || window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+});
 
 // 无名部曲使用原版通用头像,名将按档案匹配。
 function opponentSkin(cfg, gen, boss) {
@@ -183,21 +188,12 @@ const map = createMap({
     if (marchBusy) return;
     marchBusy = true;
     try {
-      if (node.type === 'battle') {
-        const win = await enterBattle(node, R.chapter.skirmish, { stack: 500 });
-        if (!win) return await endChapter(false);
-        node.done = true;
-        R.current = node.id;
-        show('map');
-        map.render();
-        return;
-      }
-      if (node.type === 'boss') return await enterBoss(node);
       const scene = mapSceneFor(R.chapter, node);
-      if (scene) {
+      if (scene && !R.mapScenes.has(scene.id)) {
         const previous = choiceFor(P, R.chapter.id, scene.id);
         const result = await storyModal(scene, { P, chapter: R.chapter, previousChoice: previous });
         markSceneSeen(P, R.chapter.id, scene.id);
+        R.mapScenes.add(scene.id);
         if (result.choice) {
           P.story.choices[`${R.chapter.id}.${scene.id}`] = result.choice.id;
           for (const sibling of scene.choices || []) {
@@ -206,7 +202,19 @@ const map = createMap({
           applyStoryEffects(result.choice.effects, R, P);
         }
         SC.saveProgress(P);
-      } else {
+      }
+      if (node.type === 'battle') {
+        const win = await enterBattle(node, R.chapter.skirmish, { stack: 500 });
+        if (win === null) return returnToMarch(node);
+        if (!win) return await endChapter(false);
+        node.done = true;
+        R.current = node.id;
+        show('map');
+        map.render();
+        return;
+      }
+      if (node.type === 'boss') return await enterBoss(node);
+      if (!scene) {
         const key = await eventModal(node.type, R);
         if (key === 'heal') R.chips += 80;
         if (key === 'money') R.chips += 150;
@@ -276,6 +284,7 @@ function startMarch(chapter, omenFx, { asZhuge = false } = {}) {
     bribe: false,
     storyOppChips: 0,
     storyBeats: new Set(),
+    mapScenes: new Set(),
     clueActive: !!clueFx,
     marchInfo: `${chapter.year || '残卷'} · ${chapter.name}${clueFx ? ' · 史鉴生效' : ''}`,
   };
@@ -293,28 +302,49 @@ function startMarch(chapter, omenFx, { asZhuge = false } = {}) {
   onboarding.tip('map');
 }
 
-// 一场战斗(遭遇战/关卡单场);单对手也会归一化为一席阵容
+function returnToMarch(node) {
+  show('map');
+  map.render();
+  document.querySelector(`#mapSvg [data-node="${node.id}"]`)?.focus({ preventScroll: true });
+}
+
+// 一场战斗(遭遇战/关卡单场);先展战书,再亮相,最后才进入牌桌
 async function enterBattle(node, cfg, { stack, roundInfo = '', noOverride = false } = {}) {
   const boss = node.type === 'boss';
   const roster = rosterOf(cfg);
-  const rawOverride = !noOverride && ((boss && PARAMS.get('bossopp')) || PARAMS.get('opp'));
+  const rawOverride = noOverride ? null : ((boss && PARAMS.get('bossopp')) || PARAMS.get('opp'));
   const overrides = rawOverride?.split(',').map(value => parseInt(value, 10)).filter(Number.isFinite) || [];
-  const members = roster.map((member, index) => {
-    let memberStack = overrides.length === 1 ? overrides[0] : (overrides[index] ?? (roster.length === 1 ? (stack ?? member.stack) : (index === 0 ? (stack ?? member.stack ?? cfg.stack) : (member.stack ?? cfg.stack))));
+  const round = Number(roundInfo.match(/#r(\d+)/)?.[1] || 1);
+  const revive = roundInfo === '#revive';
+  const displayRoster = roster.map((member, index) => {
+    const memberStack = overrides.length === 1 ? overrides[0] : (overrides[index] ?? (roster.length === 1 ? (stack ?? member.stack) : (index === 0 ? (stack ?? member.stack ?? cfg.stack) : (member.stack ?? cfg.stack))));
+    const gen = getGeneral(member.gen);
+    return { ...member, stack: memberStack, general: gen, skin: opponentSkin(member, gen, boss) };
+  });
+  onboarding.hideTip();
+  const accepted = await battleBriefing.show({
+    chapter: R.chapter, node, roster: displayRoster,
+    round, rounds: R.chapter.rule?.gauntlet || 1, revive, allowBack: !revive,
+  });
+  if (!accepted) return null;
+
+  // 玩家确认入席后才消耗行军效果;返回地图不会白失增益。
+  const members = displayRoster.map((member, index) => {
+    let memberStack = member.stack;
     if (index === 0 && R.bribe) { memberStack = Math.max(300, memberStack - 250); R.bribe = false; }
     if (index === 0 && R.raid && boss) { memberStack = Math.max(300, memberStack - 200); R.raid = false; }
     if (index === 0 && R.storyOppChips) { memberStack = Math.max(100, memberStack + R.storyOppChips); R.storyOppChips = 0; }
-    const gen = getGeneral(member.gen);
     return {
       id: index === 0 ? 'opponent' : `opponent-${index + 1}`,
-      name: member.name, stack: memberStack, gen: member.gen, general: gen,
-      persona: personaOf(member.traits), skin: opponentSkin(member, gen, boss), morale: R.oppMorale0,
+      name: member.name, stack: memberStack, gen: member.gen, general: member.general,
+      persona: personaOf(member.traits), skin: member.skin, morale: R.oppMorale0,
     };
   });
   const primary = members[0], gen = primary.general;
   const battleSeed = `${R.seed}#${R.chapter.id}#${node.id}${roundInfo}`;
   ui.setSeed('#' + battleSeed);
-  if (!boss) await opponentIntro(R.chapter, cfg, false);
+  if (boss) await bossIntro(R.chapter, cfg);
+  else await opponentIntro(R.chapter, cfg, false);
 
   show('battle');
   return new Promise(resolve => {
@@ -335,7 +365,7 @@ async function enterBattle(node, cfg, { stack, roundInfo = '', noOverride = fals
       playerName: boss && R.asZhuge ? '诸葛亮' : undefined,
       zhiZi: boss && R.asZhuge,
       seed: battleSeed,
-      story: { chapter: R.chapter, P, R, round: Number(roundInfo.match(/#r(\d+)/)?.[1] || 1) },
+      story: boss ? { chapter: R.chapter, P, R, round } : null,
       keenEye: R.keenEye,
       ui, audio, oppChar,
       onTell(t) { const genId = t.gen || members.find(member => member.id === t.seatId)?.gen; if (genId) annalsTell(genId, t); },
@@ -393,17 +423,18 @@ async function bossIntro(chapter, cfg = chapter.boss) {
 async function enterBoss(node) {
   const c = R.chapter;
   const rounds = c.rule?.gauntlet || 1;
-  const firstRound = Math.max(1, Math.min(rounds, parseInt(PARAMS.get('round') || '1', 10) || 1));
-  await bossIntro(c, roundConfig(c.boss, firstRound));
+  const requestedRound = R.bossRound || parseInt(PARAMS.get('round') || '1', 10) || 1;
+  const firstRound = Math.max(1, Math.min(rounds, requestedRound));
   for (let r = firstRound; r <= rounds; r++) {
+    R.bossRound = r;
     const currentBoss = roundConfig(c.boss, r);
     R.marchInfo = rounds > 1 ? `${c.name} · 第 ${r} / ${rounds} 阵` : `${c.year || '残卷'} · ${c.name}`;
     if (rounds > 1) {
       ui.banner(`第 ${r} 阵`, rounds > 1 && c.id === 'qiqin' ? '擒他,也放他。' : '');
       await wait(1.0);
     }
-    if (r > firstRound && c.boss.rounds) await bossIntro(c, currentBoss);
     const win = await enterBattle(node, currentBoss, { stack: currentBoss.stack, roundInfo: '#r' + r });
+    if (win === null) return returnToMarch(node);
     if (!win) {
       if ((c.rule?.advanceOnLoss || 0) >= r && r < rounds) {
         R.chips = 650;
@@ -432,6 +463,7 @@ async function enterBoss(node) {
       await wait(0.8);
     }
   }
+  delete R.bossRound;
   node.done = true;
   R.current = node.id;
   return endChapter(true);
@@ -468,17 +500,31 @@ $('annalsBtn').addEventListener('click', () => {
 });
 $('annalsClose').addEventListener('click', () => $('annalsModal').classList.add('hidden'));
 
+function nextAfterWin(chapter) {
+  if (chapter.apocrypha || chapter.type === 'finale') return null;
+  const index = CHAPTERS.findIndex(item => item.id === chapter.id);
+  const next = index >= 0 ? CHAPTERS[index + 1] : null;
+  if (!next) return null;
+  if (next.scroll === chapter.scroll) return next;
+  if (next.scroll === 5) {
+    const projected = { ...P, pages: { ...P.pages, [chapter.id]: 'yeshi' } };
+    return SC.finaleUnlocked(projected) ? next : null;
+  }
+  return chapter.gate ? next : null;
+}
+
 async function endChapter(win) {
   const c = R.chapter;
   const storyOutcome = outcomeFor(c, win, { P, R, chapter: c });
-  if (!win) { // 兵败即刻入账:正史与史鉴写入残卷
+  if (!win) { // 兵败即刻入账:原卷与史鉴写入残卷
     SC.markPage(P, c.id, 'history');
     P.story.outcomes[c.id] = 'history';
     if (storyOutcome.clue) P.story.clues[c.id] = true;
     SC.saveProgress(P);
   }
   const yeshiExtra = R.asZhuge ? '批注:这一局,你亲手执过丞相之手。' : '';
-  const res = await SC.settle(c, { win, annotation: storyOutcome.text || c.defeat, yeshiExtra, storyOutcome });
+  const next = nextAfterWin(c);
+  const res = await SC.settle(c, { win, annotation: storyOutcome.text || c.defeat, yeshiExtra, storyOutcome, next });
   if (win) {
     const resultKey = res.yeshiKey || 'yeshi';
     SC.markPage(P, c.id, resultKey);
@@ -495,6 +541,7 @@ async function endChapter(win) {
       SC.saveProgress(P);
     }
     onboarding.tip('settle');
+    if (res.r === 'next' && next) return openChapterPage(next);
     return showCodex();
   }
   SC.markPage(P, c.id, 'history');

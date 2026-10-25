@@ -4,5 +4,6 @@ export { TRAITS } from '../../src/persona.js';
 export { GENERALS } from '../../src/generals.js';
 export { SKINS } from '../../src/character.js';
 export { STORY_DATA } from '../../src/story-data/index.js';
+export { BRIEFINGS } from '../../src/story-data/briefings.js';
 export { SPEAKERS } from '../../src/story-engine.js';
 export { rosterOf, roundConfig, chapterEncounters } from '../../src/encounters.js';
