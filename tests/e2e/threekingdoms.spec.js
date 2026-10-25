@@ -145,7 +145,9 @@ test.describe('通用武将卡', () => {
     const cards = await page.locator('#cardLayer .card.big').all();
     const boxes = await Promise.all(cards.map(c => c.boundingBox()));
     const plate = await page.locator('#youPlate').boundingBox();
-    expect(plate.y).toBeGreaterThanOrEqual(Math.max(...boxes.map(b => b.y + b.height)) - 1);
+    const overlaps = boxes.map(box => Math.max(0, Math.min(plate.x + plate.width, box.x + box.width) - Math.max(plate.x, box.x))
+      * Math.max(0, Math.min(plate.y + plate.height, box.y + box.height) - Math.max(plate.y, box.y)));
+    expect(overlaps).toEqual([0, 0]);
     const opp = await page.locator('#oppPlate').boundingBox();
     const luck = await page.locator('#luckLabel').boundingBox();
     const topOverlap = Math.max(0, Math.min(opp.x + opp.width, luck.x + luck.width) - Math.max(opp.x, luck.x))

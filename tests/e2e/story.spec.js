@@ -69,6 +69,35 @@ test.describe('章回剧情与故人记忆', () => {
     await expect(page.locator('#openPage')).toBeVisible();
   });
 
+  test('长剧情页纸纹不压字,底部操作区在首屏与卷尾均完整', async ({ page }) => {
+    for (const size of [{ width: 390, height: 844 }, { width: 320, height: 568 }]) {
+      await page.setViewportSize(size);
+      await newGame(page, 'fast=1&seed=ST06&chapter=changban&omen=sow');
+      const checkActions = async () => {
+        for (const selector of ['#openPage', '#pageBack']) {
+          const box = await page.locator(selector).boundingBox();
+          expect(box).not.toBeNull();
+          expect(box.x).toBeGreaterThanOrEqual(0);
+          expect(box.x + box.width).toBeLessThanOrEqual(size.width);
+          expect(box.y).toBeGreaterThanOrEqual(0);
+          expect(box.y + box.height).toBeLessThanOrEqual(size.height - 8);
+        }
+      };
+      const texture = await page.locator('.page-book').evaluate(el => Number(getComputedStyle(el, '::before').opacity));
+      expect(texture).toBeLessThanOrEqual(0.1);
+      await checkActions();
+      await page.locator('.page-book').evaluate(book => {
+        book.scrollTop = book.scrollHeight;
+        const inner = book.querySelector('.page-inner');
+        inner.scrollTop = inner.scrollHeight;
+      });
+      await checkActions();
+      const route = await page.locator('#pageRoute').boundingBox();
+      const actions = await page.locator('.page-actions').boundingBox();
+      expect(route.y + route.height).toBeLessThanOrEqual(actions.y + 1);
+    }
+  });
+
   test('兵败留下史鉴,翻页重开时真实减少假破绽', async ({ page }) => {
     test.setTimeout(240_000);
     await newGame(page, 'fast=1&seed=ST03&chips=80&bossopp=5000&chapter=hulao&stage=boss&omen=sow');

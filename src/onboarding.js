@@ -37,7 +37,13 @@ const TIPS = {
 export function createOnboarding(P, { save, onFinish, force = '' } = {}) {
   let step = 0;
   let active = false;
+  let transitioning = false;
+  let transitionVersion = 0;
   const pendingTips = [];
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const fast = new URLSearchParams(location.search).get('fast') === '1';
+  const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
+  const prologueElements = () => [$('introStep'), $('introNarrative')];
 
   function render() {
     const data = PROLOGUE[step];
@@ -50,7 +56,47 @@ export function createOnboarding(P, { save, onFinish, force = '' } = {}) {
     $('introHint').textContent = '背景序章约三十秒；机制还会在第一次操作时分别提示';
   }
 
+  function resetTransition() {
+    transitionVersion++;
+    transitioning = false;
+    for (const el of prologueElements()) el.classList.remove('is-leaving', 'is-entering');
+    $('startBtn').disabled = false;
+  }
+
+  async function transitionRender() {
+    if (transitioning) return;
+    const version = ++transitionVersion;
+    if (reducedMotion.matches) { render(); return; }
+    transitioning = true;
+    $('startBtn').disabled = true;
+    const enter = fast ? 200 : 620;
+    const leave = fast ? 60 : 160;
+    const child = fast ? 120 : 420;
+    const elements = prologueElements();
+    for (const el of elements) {
+      el.style.setProperty('--prologue-enter', `${enter}ms`);
+      el.style.setProperty('--prologue-leave', `${leave}ms`);
+      el.style.setProperty('--prologue-child', `${child}ms`);
+      el.classList.remove('is-entering');
+      el.classList.add('is-leaving');
+    }
+    await pause(leave);
+    if (version !== transitionVersion) return;
+    for (const el of elements) {
+      el.classList.remove('is-leaving');
+      el.classList.add('is-entering');
+    }
+    render();
+    void $('introNarrative').offsetWidth;
+    for (const el of elements) el.classList.remove('is-entering');
+    await pause(enter + 100);
+    if (version !== transitionVersion) return;
+    transitioning = false;
+    $('startBtn').disabled = false;
+  }
+
   function finish() {
+    resetTransition();
     active = false;
     P.tutorial.introDone = true;
     save(P);
@@ -59,16 +105,18 @@ export function createOnboarding(P, { save, onFinish, force = '' } = {}) {
 
   function start() {
     if (force === '0' || (P.tutorial.introDone && force !== '1' && !active)) { onFinish(); return; }
-    if (!active) { active = true; step = 0; render(); return; }
+    if (transitioning) return;
+    if (!active) { active = true; step = 0; transitionRender(); return; }
     if (step >= PROLOGUE.length - 1) { finish(); return; }
     step++;
-    render();
+    transitionRender();
   }
 
   function replay() {
+    resetTransition();
     active = true;
     step = 0;
-    render();
+    transitionRender();
   }
 
   function skip() {
