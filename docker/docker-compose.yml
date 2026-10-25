@@ -2,8 +2,9 @@
 # 服务器布局：/opt/apps/sanguo/{docker-compose.yml, build.sh, deploy.sh, .env}
 # 镜像来自阿里云 ACR（与 app41 / novel-universe 同实例，命名空间 xiaowenz）。
 # 接入层：openresty 反代 san.xiaowenz.com → 容器名 sanguo:80，经共享 apps 网络
-# （本文件底部 networks 段完成接入）；CF 当前 Flexible（回源 80），源站 443 块
-# 与 le.crt SAN 已备好，随时可切 Full(strict)。
+# （本文件底部 networks 段完成接入）。域名走 CF proxy：CF 接管面向浏览器的 TLS、
+# Flexible 模式回源走源站 80——源站不配 443/证书；若将来切 Full(strict)，
+# 用 CF Origin Certificate（免费 15 年），不要在源站自行签证书。
 # 本机 18091 端口保留作运维/冒烟后门（deploy.sh 冒烟即打它）。
 services:
   sanguo:
