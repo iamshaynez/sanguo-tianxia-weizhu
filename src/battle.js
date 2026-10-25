@@ -278,7 +278,7 @@ export function startBattle(opts) {
         }
       }
     }
-    const action = await ui.promptAction({ toCall: view.toCall, stack: view.stack, presets });
+    const action = await ui.promptAction({ toCall: view.toCall, stack: view.stack, presets, canRaise: view.canRaise });
     if (action.type === 'raise') return { type: 'raise', amount: action.amount };
     return { type: action.type };
   }
@@ -310,6 +310,9 @@ export function startBattle(opts) {
   async function performAction(seat, decision) {
     const view = T.actionView(G.H, seat.id);
     const result = T.applyAction(G.H, seat.id, decision);
+    if (result.allin && result.amount > 0) {
+      ui.banner(result.type === 'call' ? '全压跟注' : '全压', `${seat.isHero ? '你' : seat.name} 投入 ${result.amount} · 剩余筹码 0`);
+    }
     if (seat.isHero) {
       const tracked = decision.type === 'allin' ? (view.stack <= view.toCall ? 'call' : 'raise') : decision.type;
       for (const opponent of opponents) opponent.read.track(view.toCall, tracked);
@@ -389,6 +392,14 @@ export function startBattle(opts) {
   async function awardPots(settled) {
     const winners = G.H.seats.filter(seat => settled.awards[seat.id] > 0);
     await Promise.all(winners.map(seat => flyChips(SLOTS.pot, seatSlot(seat, 'stack'), 'pot')));
+    const refunds = settled.pots.filter(pot => pot.refund && pot.amount > 0);
+    if (refunds.length) {
+      const text = refunds.map(refund => {
+        const seat = G.H.seats.find(item => item.id === refund.id);
+        return `${seat?.isHero ? '你' : seat?.name || refund.id} +${refund.amount}`;
+      }).join(' · ');
+      ui.banner($('bannerMain').textContent, `${$('bannerSub').textContent} · 其中 ${text} 为未跟注退回`);
+    }
     refreshPiles();
   }
 

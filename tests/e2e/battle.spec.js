@@ -110,13 +110,63 @@ test.describe('牌桌仪式感', () => {
   });
 
   test('全压:红色脉冲与推镜演出', async ({ page }) => {
-    await newGame(page, 'fast=1&seed=FEEL03&omen=keenEye');
+    await newGame(page, 'fast=1&seed=FEEL03&chips=1200&opp=500&omen=keenEye');
+    await openChapter(page, 'taoyuan');
+    await enterBattle(page);
+    await waitButtons(page);
+    await expect(page.locator('#youStack')).toHaveText('1190');
+    await expect(page.locator('#actions [data-act="allin"]')).toContainText('1190');
+    await page.click('#actions [data-act="allin"]');
+    await expect(page.locator('#youStack')).toHaveText('0');
+    await expect(page.locator('#bannerMain')).toContainText('全压');
+    await expect(page.locator('#bannerSub')).toContainText('1190');
+    await expect(page.locator('#bannerSub')).toContainText('剩余筹码 0');
+    await expect(page.locator('#vignette')).toHaveClass(/on/);
+    await expect(page.locator('#scene')).toHaveClass(/allin/);
+  });
+
+  test('无法再加注时不显示假全压,只保留真实跟注金额', async ({ page }) => {
+    await newGame(page, 'fast=1&seed=FEEL04&opp=20&omen=keenEye');
+    await openChapter(page, 'taoyuan');
+    await enterBattle(page);
+    await waitButtons(page);
+    await expect(page.locator('#actions [data-act="allin"]')).toBeHidden();
+    const call = page.locator('#actions [data-act="call"]');
+    await expect(call).toContainText('跟注 10');
+    await call.click();
+    await expect(page.locator('#youStack')).toHaveText('980');
+  });
+
+  test('全压超出对手跟注能力时,显示未跟注退回', async ({ page }) => {
+    await newGame(page, 'fast=1&seed=FEEL05&chips=1200&opp=500&traits=20,50,0,0,50,50&omen=keenEye');
     await openChapter(page, 'taoyuan');
     await enterBattle(page);
     await waitButtons(page);
     await page.click('#actions [data-act="allin"]');
-    await expect(page.locator('#vignette')).toHaveClass(/on/);
-    await expect(page.locator('#scene')).toHaveClass(/allin/);
+    await expect(page.locator('#bannerSub')).toContainText('未跟注退回', { timeout: 90_000 });
+  });
+
+  test('玩家筹码牌在宽屏与窄屏均不压手牌', async ({ page }) => {
+    for (const size of [{ width: 762, height: 598 }, { width: 1280, height: 720 }, { width: 390, height: 844 }, { width: 320, height: 568 }]) {
+      await page.setViewportSize(size);
+      await newGame(page, 'fast=1&seed=FEEL03&chips=1200&opp=500&omen=keenEye');
+      await openChapter(page, 'taoyuan');
+      await enterBattle(page);
+      await waitButtons(page);
+      const overlaps = await page.evaluate(() => {
+        const plate = document.getElementById('youPlate').getBoundingClientRect();
+        expectPlateInside(plate);
+        return [...document.querySelectorAll('.card.big')].map(card => {
+          const r = card.getBoundingClientRect();
+          return Math.max(0, Math.min(plate.right, r.right) - Math.max(plate.left, r.left))
+            * Math.max(0, Math.min(plate.bottom, r.bottom) - Math.max(plate.top, r.top));
+        });
+        function expectPlateInside(r) {
+          if (r.left < 0 || r.top < 0 || r.right > innerWidth || r.bottom > innerHeight) throw new Error('筹码牌越出视口');
+        }
+      });
+      expect(overlaps).toEqual([0, 0]);
+    }
   });
 });
 

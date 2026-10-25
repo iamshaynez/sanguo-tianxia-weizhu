@@ -62,7 +62,7 @@ const ui = {
     $('deckOrder').innerHTML = deckHtml;
     $('seedModal').classList.remove('hidden');
   },
-  promptAction({ toCall, stack, presets }) {
+  promptAction({ toCall, stack, presets, canRaise }) {
     onboarding.tip('action');
     onboarding.tip('taunt');
     return new Promise(resolve => {
@@ -72,7 +72,7 @@ const ui = {
         check: toCall === 0,
         call: toCall > 0,
         raise: stack > toCall && presets.length > 0,
-        allin: stack > 0,
+        allin: stack > 0 && canRaise,
       };
       const cleanup = () => {
         actions.classList.add('hidden');
@@ -85,6 +85,7 @@ const ui = {
         b.style.display = vis[act] ? '' : 'none';
         if (act === 'call') b.innerHTML = toCall >= stack ? `全压跟注 <b>${stack}</b>` : `跟注 <b>${toCall}</b>`;
         if (act === 'raise') b.textContent = toCall > 0 ? '加注' : '下注';
+        if (act === 'allin') b.innerHTML = `全 压 <b>${stack}</b>`;
         b.addEventListener('click', () => {
           if (act === 'raise') {
             raiseOpts.innerHTML = '';
