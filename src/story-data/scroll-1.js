@@ -172,11 +172,12 @@ export const SCROLL_1_STORIES = {
   },
 
   yuanshemen: {
-    cast: ['lvbu', 'jiling', 'liubei', 'guanyu', 'zhangfei'],
+    cast: ['lvbu', 'jiling', 'yuanshu', 'liubei', 'guanyu', 'zhangfei'],
     objective: '让纪灵与刘备都保住退路，也逼吕布证明那一箭不是另一种恃强。',
     coldOpen: [
       { speaker: 'narrator', text: '辕门外的画戟只有小枝可中，辕门内却坐着两支随时会厮杀的大军。吕布把弓放在桌上，先请你发牌。' },
       { speaker: 'lvbu', text: '虎牢你说我只知进。今日两家都在，看我如何用一支箭叫他们退。', when: 'page:hulao:yeshi' },
+      { speaker: 'yuanshu', text: '纪灵听令:小沛若不下,休回淮南!孤的玉玺要配的是天下,不是一个吕布的情面。', when: '!seen:yuanshu' },
       { speaker: 'jiling', text: '纪某奉主公之命，不因一箭退兵。除非满座都承认，这一箭赌得起。' },
       { speaker: 'liubei', text: '备不愿拿小沛百姓的命，替任何人证明箭术。' },
     ],
@@ -297,6 +298,150 @@ export const SCROLL_1_STORIES = {
     loss: {
       text: '绳索收紧时，你才发现自己一直在回答“怎样赢吕布”，却从没回答“吕布怎样才肯活”。',
       clue: '史鉴 · 陈宫看穿了困兽的节奏；重开时假破绽减少。',
+      clueFx: 'keenEye',
+    },
+  },
+
+  xianshan: {
+    cast: ['sunjian', 'huanggai', 'chengpu', 'handang', 'liubiao'],
+    objective: '在岘山的竹影里替孙坚读出那一箭,让江东的火种不灭在起笔。',
+    coldOpen: [
+      { speaker: 'narrator', text: '洛阳的余烬未冷,传国玉玺贴着孙坚的胸口发烫。襄阳城头,刘表的第二支箭已经搭上弦。' },
+      { speaker: 'sunjian', text: '孤从长沙杀到洛阳,没输过一阵。刘景升凭一座城、几支箭,就想留下江东的虎?' },
+      { speaker: 'chengpu', text: '主公,岘山竹密,追兵不宜尽出。不如先遣人探路,老臣压阵。' },
+      { speaker: 'huanggai', text: '德谋谨慎过了头。那「吕公」跑得连盔都歪了,再不追,刘表就真寻着援军了!' },
+      { speaker: 'writer', text: '野史里,猛虎常死于最信任自己爪牙的那一天。', when: '!seen:sunjian' },
+    ],
+    intros: {
+      huangzu: [
+        { when: 'seen:huangzu', bio: '他记得孙坚的刀有多快,这次把伏兵埋得更深。', quote: '又来一只孙家的虎。岘山的箭,管够。' },
+        { bio: '他打不过孙坚,但他认得孙坚的性子——猛虎从不绕路。', quote: '江夏的箭,等这一天等了两年。' },
+      ],
+      caimao: [
+        { when: 'seen:caimao', bio: '水军布好了退路,他只剩一件事:别让蔡家陪葬。', quote: '这次我守水路。山里的事,黄将军请自便。' },
+        { bio: '他把姐姐的枕风与姐夫的兵符都换成了筹码。', quote: '荆州的水养不了虎。将军,别白费箭。' },
+      ],
+    },
+    map: [{
+      id: 'bamboo-veil', node: 1, title: '邓塞 · 竹影疑兵',
+      lines: [
+        { speaker: 'handang', text: '竹影里有人影,数不清。末将愿带义从先探,主公压后。' },
+        { speaker: 'sunjian', text: '义公的话,孤听见了。可若孤压后,将士便会替孤慢半拍。' },
+        { speaker: 'you', text: '虎的胆气在阵前,虎的活路却常常在回头的那一眼。' },
+      ],
+      choices: [
+        { id: 'scout-first', text: '先遣韩当探竹,全军缓进', detail: '本回看破提升,记住竹影之疑', effects: { keenEye: true, fact: 'xianshan_scout' } },
+        { id: 'tiger-charge', text: '随猛虎直接凿穿竹阵', detail: '军资 +100,敌军起手士气 -1', effects: { chips: 100, sow: 1, fact: 'xianshan_charge' } },
+      ],
+    }],
+    battle: [
+      { id: 'xianshan-open', at: 'start', speaker: 'huangzu', text: '孙坚!你追了两天,箭也追了你两天!' },
+      { id: 'xianshan-slow', at: 'hand:2', speaker: 'chengpu', text: '别急着回应每一声鼓。竹子会响,响的不都是人。', when: 'fact:xianshan_scout' },
+      { id: 'xianshan-rain', at: 'hand:2', speaker: 'sunjian', text: '箭雨将至。看旗不看他——旗倒的方向,才是伏兵真处。', when: '!fact:xianshan_scout' },
+      { id: 'xianshan-low', at: 'low', speaker: 'huanggai', text: '主公,换马!公覆的背,还挡得住一轮!' },
+    ],
+    win: {
+      text: '竹影里的箭一一落空,黄祖被按在马下时还在喊"不可能"。孙坚没有杀他,只折断了他两支箭:"回去告诉刘景升,襄阳的城门,孤明年再来敲。"江东的火种,就这样越过了岘山。',
+      hook: '猛虎既全,江东的故事有了下一个名字——界桥的白马,正朝幽州奔去。',
+    },
+    loss: {
+      text: '箭入竹影的那一刻,你才看清那阵"溃逃"有多整齐。猛虎死于追击,而江东还要等一个少年接住这个名字。',
+      clue: '史鉴 · 黄祖的伏兵靠「乱」诱你全押:竹响时先看旗。重开后他的假破绽会减少。',
+      clueFx: 'keenEye',
+    },
+  },
+
+  jieqiao: {
+    cast: ['gongsunzan', 'zhaoyun', 'quyi', 'wenchou'],
+    objective: '在界桥替白马义从挡下先登的弩,也替赵云挣到第一次被看清的出手。',
+    coldOpen: [
+      { speaker: 'narrator', text: '幽州的白马义从号称天下第一骑,直到界桥对岸,八百先登营沉默地张开了弩。' },
+      { speaker: 'gongsunzan', text: '白马义从,冲一次,河北就安静十年。伯圭在幽州见过最强的是狼,没见过会等人的狼。' },
+      { speaker: 'zhaoyun', text: '云自常山来,投的是守土之军,不是送死之军。将军,敌阵不齐,必有后变。' },
+      { speaker: 'quyi', text: '骑兵?过了河,就是一排排会喘气的靶子。', when: 'seen:quyi' },
+      { speaker: 'wenchou', text: '袁公说,河北的枪,今日要教幽州人怎么用。', when: '!seen:wenchou' },
+    ],
+    intros: {
+      quyi: [
+        { when: 'seen:quyi', bio: '他记得上一次你的白马怎样绕开弩阵,这次把盾压得更低。', quote: '又想绕?我的弩,不止一排。' },
+        { bio: '他麾下八百人,人人见过血,个个不怕骑。', quote: '过河吧。我的弩等你很久了。' },
+      ],
+      wenchou: [
+        { when: 'page:baima:yeshi', bio: '颜良的名字是他的伤疤,也是他的火——他听说那阵输得不明不白。', quote: '河北双壁,少了一壁。今日我来补上。' },
+        { when: 'seen:wenchou', bio: '他仍不服上一阵,枪却收起了三分轻敌。', quote: '这次,我先等你过河。' },
+        { bio: '他与颜良并称河北双壁,唯一胜过颜良的,是耐心。', quote: '我不急。枪比你长,我等得起。' },
+      ],
+    },
+    map: [{
+      id: 'river-read', node: 1, title: '界桥 · 半渡之机',
+      lines: [
+        { speaker: 'zhaoyun', text: '桥窄,马密。若先登趁我半渡放弩,白马再多也挤不成阵。' },
+        { speaker: 'gongsunzan', text: '子龙太谨慎。当年孤带着几十骑,就敢凿穿鲜卑的狼群。' },
+        { speaker: 'you', text: '凿穿靠的是出其不意。今日对岸的人,专等你们冲。' },
+      ],
+      choices: [
+        { id: 'dismount-line', text: '令前锋下马结盾,牵马过桥', detail: '本回看破提升,记住半渡之险', effects: { keenEye: true, fact: 'jieqiao_dismount' } },
+        { id: 'white-storm', text: '白马全速,直扑先登', detail: '军资 +100,先登起手士气 -1', effects: { chips: 100, sow: 1, fact: 'jieqiao_storm' } },
+      ],
+    }],
+    battle: [
+      { id: 'jieqiao-open', at: 'start', speaker: 'quyi', text: '盾——起!弩——抬!让幽州人见识什么叫先登!' },
+      { id: 'jieqiao-shield', at: 'hand:2', speaker: 'zhaoyun', text: '他的盾每落一次,弩就要重上一弦。数他的节拍,别数他的箭。', when: 'fact:jieqiao_dismount' },
+      { id: 'jieqiao-wen', at: 'hand:3', speaker: 'wenchou', text: '白马乱了!河北的枪,收账!' },
+      { id: 'jieqiao-low', at: 'low', speaker: 'gongsunzan', text: '义从折损过半……子龙,你说得对,是伯圭急了。' },
+    ],
+    win: {
+      text: '弩阵的节拍被你数尽,白马分三队轮冲,先登的盾墙终于裂开一角。文丑挺枪来救时,赵云一枪逼住他:"将军的枪很稳,可惜为骄人而用。"袁绍的中军退回河北,界桥两岸,从此都知道了常山赵子龙的名字。',
+      hook: '公孙瓒胜了这一阵,却败给了自己的高墙。而在郿坞的凤仪亭,另一场父子裂痕正待花开。',
+    },
+    loss: {
+      text: '半渡时弩声齐响,白马成排倒在河里。赵云断后救回公孙瓒,回头看你一眼,没有说话。',
+      clue: '史鉴 · 麹义的弩阵赢在「等你冲」。重开后他的假破绽减少;别在半渡时把义从全部推上。',
+      clueFx: 'keenEye',
+    },
+  },
+
+  shenting: {
+    cast: ['sunce', 'taishici', 'zhouyu', 'chengpu'],
+    objective: '在神亭岭让两件兵器打完整场,替孙策与太史慈都留下体面。',
+    coldOpen: [
+      { speaker: 'narrator', text: '曲阿城外,斥候来报:孙策只带十二骑,去探刘繇大营。太史慈提枪上马,身后只跟了一个会打鼓的小卒。' },
+      { speaker: 'sunce', text: '人人都叫我小霸王。今日岭上无阵无鼓,正好看看,名号底下还剩什么。' },
+      { speaker: 'taishici', text: '东莱太史慈,饭都吃不饱的人,偏偏枪不输人。战便战,谁怕谁!' },
+      { speaker: 'zhouyu', text: '伯符,神亭岭的风向不对。这一仗打到一半,必来第三拨人。' },
+    ],
+    intros: {
+      taishici: [
+        { when: 'seen:taishici', bio: '上一次的戟与甲让他记住了你的名字,也记住了你的公平。', quote: '又是你。这次,借你的眼看谁更配赢。' },
+        { when: 'page:jieqiao:yeshi', bio: '他听说过界桥那个数节拍的读卷人,枪下便多了三分敬。', quote: '数得清弩阵的人,应该也数得清我的枪。' },
+        { bio: '他一生只认两个东西:母亲的教诲,和打得赢的对手。', quote: '神亭岭的风大。兵器拿稳了!' },
+      ],
+    },
+    map: [{
+      id: 'no-flags', node: 2, title: '神亭岭 · 无鼓之阵',
+      lines: [
+        { speaker: 'taishici', text: '此间没有军令,没有阵图。你若替谁出谋,这一架便不干净了。' },
+        { speaker: 'sunce', text: '好!那便让开战场。公瑾退后三十步——今日单挑,谁插手我跟谁急!' },
+        { speaker: 'you', text: '那我押在一旁看。看谁先露出真本事,也看谁先露出真性情。' },
+      ],
+      choices: [
+        { id: 'fair-watch', text: '袖手旁观,记下二人枪路', detail: '本回看破提升,记住神亭枪路', effects: { keenEye: true, fact: 'shenting_watch' } },
+        { id: 'drink-bet', text: '在岭头摆酒,赌谁先脱力', detail: '军资 +120,二人战意更盛', effects: { chips: 120, sow: 1, fact: 'shenting_bet' } },
+      ],
+    }],
+    battle: [
+      { id: 'shenting-open', at: 'start', speaker: 'taishici', text: '小霸王,接枪!别叫旁人小看了你我!' },
+      { id: 'shenting-halberd', at: 'hand:2', speaker: 'sunce', text: '好戟法!枪再快些——我孙家的手,还没抖!' },
+      { id: 'shenting-armor', at: 'hand:3', speaker: 'taishici', text: '盔给你扯了,甲也快了。还想打?我陪到底!' },
+      { id: 'shenting-low', at: 'low', speaker: 'zhouyu', text: '两虎相争,必有一伤——而伤的那个,明日还要守城。' },
+    ],
+    win: {
+      text: '戟折了,甲裂了,两人抱着兵器躺在岭上喘气,忽然同时大笑。太史慈翻身坐起:"孙郎,明日阵前再见,我可不让你。"孙策把断戟扔给他:"留着。修好了,再来。"你把岭头的酒分作两碗,一碗给了赢家,一碗给了没输的人。',
+      hook: '神亭的笑声未落,江东的版图正待铺开。而在小沛,一支画戟又要替两家人说和。',
+    },
+    loss: {
+      text: '你的插手让单挑变了味,两件兵器同时指住了你。太史慈失望地收枪:"原来读卷人,也会掀桌。"',
+      clue: '史鉴 · 这一页要的不是速胜,是让二人打满全场。重开时,先看谁先脱力再落注。',
       clueFx: 'keenEye',
     },
   },

@@ -9,7 +9,7 @@ test.describe('分步开卷与渐进引导', () => {
     await page.goto('/?fast=1');
     await page.click('#startBtn');
     await expect(page.locator('#introStep')).toContainText('1 / 4');
-    await expect(page.locator('#introStory')).toContainText('二十枚野史朱印');
+    await expect(page.locator('#introStory')).toContainText('三十枚野史朱印');
     for (const step of [2, 3, 4]) {
       await page.click('#startBtn');
       await expect(page.locator('#introStep')).toContainText(`${step} / 4`);

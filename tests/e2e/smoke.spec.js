@@ -64,11 +64,11 @@ test.describe('冒烟:界面骨架', () => {
   test('残卷目录:四卷齐备,首卷可读,余卷带锁', async ({ page }) => {
     await newGame(page);
     await expect(page.locator('#scroll .screen-title')).toHaveText('英 雄 记');
-    await expect(page.locator('#codexProgress')).toContainText('已改写 0 / 32');
+    await expect(page.locator('#codexProgress')).toContainText('已改写 0 / 50');
     // 五组:四卷 + 最后一页
     await expect(page.locator('.scrollGroup')).toHaveCount(5);
-    // 卷一 7 回,首回「桃园」未读态
-    await expect(page.locator('.scrollGroup').nth(0).locator('.chip')).toHaveCount(7);
+    // 卷一 10 回,首回「桃园」未读态
+    await expect(page.locator('.scrollGroup').nth(0).locator('.chip')).toHaveCount(10);
     await expect(page.locator('[data-ch="taoyuan"]')).toHaveClass(/st-unread/);
     // 卷二三四与最后一页带锁
     await expect(page.locator('.scrollGroup.locked')).toHaveCount(4);
@@ -96,13 +96,13 @@ test.describe('冒烟:界面骨架', () => {
     await newGame(page, 'fast=1&seed=SMOKE1&omen=sow');
     await openChapter(page, 'taoyuan');
     await enterBattle(page);
-    await expect(page.locator('#oppName')).toHaveText('黄巾游骑');
+    await expect(page.locator('#oppName')).toHaveText('黄巾 · 程远志');
     // 席位使用本地三国志9头像,不再渲染傀儡 SVG
-    await expect(page.locator('#oppPlate .portrait-img')).toHaveAttribute('data-skin', 'soldier');
+    await expect(page.locator('#oppPlate .portrait-img')).toHaveAttribute('data-skin', 'chengyuanzhi');
     await expect(page.locator('#oppChar svg')).toHaveCount(0);
-    // 双方筹码与盲注(遭遇战:对方 500,大盲后 480;夺气天时起手士气 -1)
+    // 双方筹码与盲注(遭遇战:对方 450,大盲后 430;夺气天时起手士气 -1)
     await expect(page.locator('#youStack')).toHaveText('990');
-    await expect(page.locator('#oppStack')).toHaveText('480');
+    await expect(page.locator('#oppStack')).toHaveText('430');
     await expect(page.locator('#blindLabel')).toHaveText('盲注 10 / 20 · 第 1 手');
     await expect(page.locator('#potNum')).toHaveText('30');
     await expect(loc.tiltDotsOn(page)).toHaveCount(1);

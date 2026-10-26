@@ -50,7 +50,7 @@ export function scrollUnlocked(p, s) {
   return gate ? isYeshi(pageState(p, gate.id)) : false;
 }
 export function finaleUnlocked(p) {
-  return GATE_IDS.every(id => isYeshi(pageState(p, id))) && yeshiCount(p) >= 20;
+  return GATE_IDS.every(id => isYeshi(pageState(p, id))) && yeshiCount(p) >= 30;
 }
 
 // ---------------- 目录 ----------------

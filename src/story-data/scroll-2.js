@@ -89,12 +89,14 @@ export const SCROLL_2_STORIES = {
   },
 
   guandu: {
-    cast: ['caocao', 'yuanshao'],
+    cast: ['caocao', 'yuanshao', 'guojia', 'xuyou', 'tianfeng', 'jushou'],
     objective: '让袁绍的雄厚军资变成迟疑，在盲注吞尽曹军之前找到乌巢真正的软肋。',
     coldOpen: [
       { speaker: 'narrator', text: '官渡的粮簿比战报更薄。曹操每划掉一日，袁绍帐中便多一位自称有策的谋士。' },
       { speaker: 'yuanshao', text: '孟德，你我自幼相识。你的脾气我清楚，你的粮草，我更清楚。' },
       { speaker: 'caocao', text: '云长终究还是去找玄德了。孤留得住赤兔，留不住人心；本初，你却连人心都未看清。', when: 'page:qianli:yeshi' },
+      { speaker: 'guojia', text: '明公，袁氏十胜十败之说，嘉只敢保证前九。最后一胜，要你亲自去赢。' },
+      { speaker: 'tianfeng', text: '主公若胜，丰必死；若败，丰亦死。冀州的牢里，元皓已替你们把话写好了。', when: '!seen:tianfeng' },
       { speaker: 'caocao', text: '许攸来了便请他坐。孤可以只穿一只鞋迎他，却不能让全军看见孤只剩三日粮。' },
     ],
     intros: {
@@ -225,15 +227,21 @@ export const SCROLL_2_STORIES = {
   },
 
   changban: {
-    cast: ['liubei', 'zhaoyun', 'zhangfei', 'caocao', 'xiahoudun', 'zhanghe'],
+    cast: ['liubei', 'zhaoyun', 'zhangfei', 'caocao', 'xiahoudun', 'zhanghe', 'wenpin'],
     objective: '在曹操、夏侯惇、张郃同桌追剿下，让赵云带回阿斗、张飞守住当阳桥。',
     coldOpen: [
       { speaker: 'narrator', text: '长坂的尘土里，百姓、辎重和败兵挤成一条路。赵云逆向而行，张飞却勒马停在桥头。' },
       { speaker: 'zhaoyun', text: '主公，夫人与阿斗还在后面。云去去便回——若不回，翼德替我守桥。' },
       { speaker: 'zhangfei', text: '俺不要你替！回来，自己守！' },
+      { speaker: 'wenpin', text: '常山赵子龙……文聘奉命拦截，却不忍逼之过死。这一枪，聘自留三分。', when: '!seen:wenpin' },
       { speaker: 'caocao', text: '传令，赵云要活的。至于桥上的黑脸将军——孤要亲自看看，他凭什么叫三军停下。' },
     ],
     intros: {
+      wenpin: [
+        { when: 'page:chibi:yeshi', bio: '赤壁之后他守着荆州旧地，深知追与不追都写进史笔。', quote: '当年长坂追与不追，聘如今仍未想明白。' },
+        { when: 'seen:wenpin', bio: '他还记得长坂那半式收回的枪，出手便不再留情面。', quote: '这次不让你过。对不住旧主的家眷。' },
+        { bio: '新附曹营的荆州旧将，枪一寸寸都在尽忠与旧义之间。', quote: '聘奉命巡此。长坂的路，不通。' },
+      ],
       caocao: [
         { when: 'page:zhujiu:yeshi', bio: '青梅亭后他仍记得那声雷，如今要用千军逼出藏住的答案。', quote: '那次让你借雷藏住了。今日，孤看千军替你开牌。' },
         { when: 'page:bowang:yeshi', bio: '博望新败让他更谨慎，也更不肯给刘备第二次整军的机会。', quote: '一把火赢不了第二次。追。' },
@@ -288,6 +296,59 @@ export const SCROLL_2_STORIES = {
       text: '赵云找回了阿斗，却找不到回桥的路；张飞喝住了追兵，却喝不住三支军令同时分开。孤勇能赢一阵，救不了所有人。',
       clue: '史鉴 · 曹操要活口，元让要报仇，张郃要截桥。让他们争同一条追击线，别把三人各推向一条退路；重开敌军士气 -1。',
       clueFx: 'sow',
+    },
+  },
+
+  baima: {
+    cast: ['guanyu', 'caocao', 'guojia', 'xunyu', 'yanliang', 'wenchou'],
+    objective: '在白马与延津两阵之间,替关羽把两场大功,赢成一条回家的路。',
+    coldOpen: [
+      { speaker: 'narrator', text: '白马坡前,颜良连斩宋宪魏续,二十合败徐晃,曹营诸将栗然。曹操把目光投向了那个始终背对着战报的人。' },
+      { speaker: 'caocao', text: '云长,孤知道你人在心不在。可颜良的刀,如今悬在孤所有将军的头上。' },
+      { speaker: 'guanyu', text: '关某答应过,立功便走。此阵之后,请丞相守信——备的下落,孤已听说了。' },
+      { speaker: 'guojia', text: '颜良之勇不可力敌,文丑之躁可以计取。奉孝只担心一件事:云长这两刀砍完,天下再无人留得住他。', when: '!seen:guojia' },
+      { speaker: 'yanliang', text: '曹营无人了吗?叫那个红脸的马弓手上来看看。', when: '!seen:yanliang' },
+    ],
+    intros: {
+      yanliang: [
+        { when: 'seen:yanliang', bio: '他记得那次快得看不清的刀光,这次把营垒扎得更深。', quote: '那口刀……这次,我要看清它来路。' },
+        { bio: '河北第一刀,连胜让他相信天下没有第二口更快的刀。', quote: '连营十里,谁来谁死。' },
+      ],
+      wenchou: [
+        { when: 'seen:wenchou', bio: '界桥之后他学会等,延津却又要他追——他最恨这种矛盾。', quote: '你教会我数节拍。那这次,换你数我的马蹄。' },
+        { bio: '为颜良复仇的心比枪更重,辎重散落一地也拦不住他的冲锋。', quote: '白马的账,延津清。' },
+      ],
+      songxian: [
+        { bio: '他从吕布的旧梦里醒来,急着向新主证明自己。', quote: '温侯旧部,不是孬种!看我的!' },
+      ],
+    },
+    map: [{
+      id: 'two-blades', node: 1, title: '黎阳 · 两阵之间',
+      lines: [
+        { speaker: 'xunyu', text: '颜良兵精而不识变,文丑勇而性躁。两阵之间,真正要读的是云长的心。' },
+        { speaker: 'guanyu', text: '荀令君放心。关某的刀只为丞相砍这一回,砍完,便去寻兄。' },
+        { speaker: 'you', text: '两阵两刀,刀刀都要干净。拖泥带水,走的路就长了。' },
+      ],
+      choices: [
+        { id: 'feed-few', text: '以老弱为饵,佯弃辎重', detail: '文丑军起手军资 -200,记住饵兵之计', effects: { raid: true, fact: 'baima_bait' } },
+        { id: 'watch-blade', text: '陪关羽先看清颜良的麾盖', detail: '本回看破提升,记住麾盖之下', effects: { keenEye: true, fact: 'baima_watch' } },
+      ],
+    }],
+    battle: [
+      { id: 'baima-open', at: 'start', speaker: 'yanliang', text: '又来?宋宪魏续的刀,还在我马上挂着!' },
+      { id: 'baima-ride', at: 'hand:2', speaker: 'narrator', text: '赤兔马从土山后转出,颜良的麾盖在阵前孤零零亮着——他想问来将何人,刀已经到了。', when: 'fact:baima_watch' },
+      { id: 'baima-clash', at: 'hand:2', speaker: 'guanyu', text: '麾盖之下,便是他要护的军心。破了他的旗,这一阵就完了。', when: '!fact:baima_watch' },
+      { id: 'baima-wen', at: 'hand:3', speaker: 'wenchou', text: '马快!文丑的枪还没热,你跑什么?!' },
+      { id: 'baima-low', at: 'low', speaker: 'guojia', text: '两阵之间最忌恋战。云长,酒在这里,路也在这里。' },
+    ],
+    win: {
+      text: '白马的麾盖倒下时,延津的文丑还在马蹄声里数你的节拍。两阵两刀,干净得像关羽的刀背。曹操亲斟的酒他没有喝,只拱了拱手:"丞相,关某去也。"袖中那封寻兄的书信,终于用上了。',
+      hook: '两阵大功换来一纸放行。前方五关六将,没有一人读过这封信。',
+    },
+    loss: {
+      text: '第一阵的胜利让你贪了第二阵的快。文丑的铁骑漫过河滩时,你才想起郭嘉那句"两阵之间,真正要读的是云长的心"。',
+      clue: '史鉴 · 颜良输给轻敌,文丑赢在等你急。重开时先弃辎重乱其军心:文丑起手军资 -200。',
+      clueFx: 'raid',
     },
   },
 };
