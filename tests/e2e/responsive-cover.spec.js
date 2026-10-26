@@ -48,9 +48,9 @@ test.describe('封面响应式', () => {
 
 test.describe('武将卡响应式', () => {
   // 背景:≤640px 左右分栏下立绘列宽高比 1:4.4,方图 cover 后仅露 22% 宽竖条;
-  // 改上下布局后立绘为横幅,可见宽度应为 100%。
+  // 横幅 cover 又会上下裁剪。改上下布局 + 正方立绘盒 contain:整幅素材零裁剪。
   for (const [w, h] of [[390, 844], [320, 568]]) {
-    test(`宽 ${w}px:武将卡立绘为横幅(可见全宽),卡片与入阵按钮入屏`, async ({ page }) => {
+    test(`宽 ${w}px:武将卡立绘为正方完整展示(contain),卡片与入阵按钮入屏`, async ({ page }) => {
       await page.setViewportSize({ width: w, height: h });
       await page.goto('/?fast=1&chapter=hulao&stage=boss&omen=sow&tutorial=0');
       await page.waitForTimeout(500);
@@ -71,10 +71,13 @@ test.describe('武将卡响应式', () => {
         const art = document.querySelector('.general-art').getBoundingClientRect();
         const card = document.querySelector('.general-card').getBoundingClientRect();
         const skip = document.getElementById('introSkip').getBoundingClientRect();
-        return { aspect: art.width / art.height, vh: innerHeight, cardBottom: card.bottom, skipBottom: skip.bottom, skipTop: skip.top };
+        const fit = getComputedStyle(document.querySelector('.general-art .portrait-img')).objectFit;
+        return { aspect: art.width / art.height, fit, vh: innerHeight, cardBottom: card.bottom, skipBottom: skip.bottom, skipTop: skip.top };
       });
-      // 横幅立绘:宽高比 > 1 ⇒ 方图按宽缩放,横向 100% 可见
-      expect(m.aspect).toBeGreaterThan(1);
+      // 正方立绘盒 + contain:全身零裁剪(240×240 方图在方盒内完整显示)
+      expect(m.aspect).toBeGreaterThan(0.9);
+      expect(m.aspect).toBeLessThan(1.1);
+      expect(m.fit).toBe('contain');
       expect(m.cardBottom).toBeLessThanOrEqual(m.vh + 1);
       expect(m.skipBottom).toBeLessThanOrEqual(m.vh);
       expect(m.skipTop).toBeGreaterThanOrEqual(0);

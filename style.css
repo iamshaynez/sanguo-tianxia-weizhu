@@ -715,17 +715,19 @@ button.ghost:hover { border-color: #b7a578; }
   .briefing-source { flex-basis: 180px; }
 }
 @media (max-width: 640px) {
-  /* 武将卡:窄屏改上下布局,立绘作顶部横幅。
-     原因:左右分栏下立绘列仅约 155×690(宽高比 1:4.4),方图 cover 后
-     只露出中间约 22% 宽的竖条,人物几乎不可辨认;横幅(约 92vw×36%)
-     裁掉胸下躯干,面部完整。 */
-  .general-card { grid-template-columns: 1fr; grid-template-rows: minmax(0, 36%) minmax(0, 1fr); height: min(660px, 88vh); }
-  #bossIntro[data-kind="skirmish"] .general-card { height: min(600px, 86vh); }
-  .general-art { border-right: 0; border-bottom: 1px solid #77643f; }
-  .general-art .portrait-img { object-position: center 12%; }
+  /* 武将卡:窄屏改上下布局,立绘以正方形完整展示(全身零裁剪)。
+     演进:左右分栏时立绘列 1:4.4 仅见 22% 宽竖条 → 横幅后面部完整但
+     裁掉下半身(用户仍觉"展示不全") → 方图配方盒 contain,240×240
+     原图按宽放大居中,全身可见;矮屏按 52vh 限高仍保持正方。 */
+  .general-card { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); height: min(680px, 90vh); }
+  #bossIntro[data-kind="skirmish"] .general-card { height: min(620px, 88vh); }
+  .general-art { width: min(100%, 52vh); margin: 0 auto; aspect-ratio: 1 / 1; border-right: 0; border-bottom: 1px solid #77643f; }
+  .general-art .portrait-img { object-fit: contain; object-position: center; }
   .art-sun { top: 16px; width: 150px; height: 150px; }
   .art-caption { display: none; }
   .general-info { min-height: 0; overflow-y: auto; padding: 13px 15px 12px; }
+  /* 操作行钉在可视底部:矮屏信息区需滚动时,「入阵」按钮也始终可见可点 */
+  .general-footer { position: sticky; bottom: -12px; margin-top: auto; padding: 10px 0 12px; background: linear-gradient(180deg, #1b1d1600, #1b1d16e6 26%); }
   .general-title-row { margin-top: 6px; padding-bottom: 8px; gap: 10px; }
   #bossIntroName { font-size: clamp(28px, 9vw, 40px); }
   #bossIntroBio { margin-top: 6px; font-size: 11px; }
