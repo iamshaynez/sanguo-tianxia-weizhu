@@ -504,6 +504,10 @@ button.ghost:hover { border-color: #b7a578; }
 
 /* ---------------- 响应式 ---------------- */
 @media (max-width: 900px) {
+  /* 封面:魏蜀吴在 ~900px 内以绝对定位会压住标题/副标(641-900 实测重叠),统一改流式排在标题下方 */
+  .intro-kingdoms { position: static; justify-content: flex-start; margin-top: 20px; gap: 12px; }
+  .intro-kingdoms span { width: 44px; height: 44px; font-size: 20px; }
+  .intro-kingdoms i { width: 20px; }
   .scroll-mast { grid-template-columns: 1fr auto; gap: 12px; }
   #codexProgress { grid-row: 2; grid-column: 1 / -1; }
   .codex-legend b { display: none; }
@@ -660,6 +664,21 @@ button.ghost:hover { border-color: #b7a578; }
   .coachmark h3 { font-size: 16px; }
   #coachText { font-size: 11px; }
   .annals-heading > span { display: none; }
+}
+/* 横屏手机等矮视口:压缩封面纵向节奏,保证「开卷」完整入屏(390px 高实测出屏) */
+@media (max-height: 560px) {
+  .intro-era { margin-bottom: 10px; }
+  .intro-title-lock { gap: 14px; }
+  .intro-seal { width: 36px; height: 54px; font-size: 24px; }
+  #intro h1 { font-size: clamp(22px, 5.2vh, 40px); }
+  #intro .sub { margin-top: 6px; }
+  .intro-kingdoms { display: none; }
+  #intro .intro-lesson { margin-top: 12px; font-size: 16px; }
+  #intro .story { margin-top: 8px; font-size: 12px; line-height: 1.6; }
+  .intro-points { display: none; }
+  #startBtn { min-width: 180px; margin-top: 14px; padding: 10px 26px 9px; font-size: 17px; }
+  #intro .hint { display: none; }
+  .intro-foot { display: none; }
 }
 @media (max-height: 700px) and (min-width: 641px) {
   #oppChar { top: 44px; width: 400px; }
