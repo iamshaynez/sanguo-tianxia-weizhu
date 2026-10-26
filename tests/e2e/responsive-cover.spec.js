@@ -45,3 +45,39 @@ test.describe('封面响应式', () => {
     expect(overflow).toBeLessThanOrEqual(2);
   });
 });
+
+test.describe('武将卡响应式', () => {
+  // 背景:≤640px 左右分栏下立绘列宽高比 1:4.4,方图 cover 后仅露 22% 宽竖条;
+  // 改上下布局后立绘为横幅,可见宽度应为 100%。
+  for (const [w, h] of [[390, 844], [320, 568]]) {
+    test(`宽 ${w}px:武将卡立绘为横幅(可见全宽),卡片与入阵按钮入屏`, async ({ page }) => {
+      await page.setViewportSize({ width: w, height: h });
+      await page.goto('/?fast=1&chapter=hulao&stage=boss&omen=sow&tutorial=0');
+      await page.waitForTimeout(500);
+      await page.evaluate(() => document.getElementById('startBtn').click());
+      await page.waitForFunction(() => !document.getElementById('page').classList.contains('hidden'));
+      await page.evaluate(() => document.getElementById('openPage').click());
+      await page.waitForFunction(() => !document.getElementById('map').classList.contains('hidden') || !document.getElementById('omenModal').classList.contains('hidden'));
+      await page.waitForTimeout(200);
+      await page.evaluate(() => { const m = document.getElementById('omenModal'); if (!m.classList.contains('hidden')) m.querySelector('#omenBox button')?.click(); });
+      await page.waitForFunction(() => !document.getElementById('map').classList.contains('hidden'));
+      await page.waitForTimeout(300);
+      await page.evaluate(() => { const n = document.querySelector('#mapSvg .node.avail'); if (n) n.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+      await page.waitForFunction(() => !document.getElementById('battleBriefing').classList.contains('hidden'));
+      await page.evaluate(() => document.getElementById('briefingEnter').click());
+      await page.waitForFunction(() => document.getElementById('bossIntro').classList.contains('show'));
+
+      const m = await page.evaluate(() => {
+        const art = document.querySelector('.general-art').getBoundingClientRect();
+        const card = document.querySelector('.general-card').getBoundingClientRect();
+        const skip = document.getElementById('introSkip').getBoundingClientRect();
+        return { aspect: art.width / art.height, vh: innerHeight, cardBottom: card.bottom, skipBottom: skip.bottom, skipTop: skip.top };
+      });
+      // 横幅立绘:宽高比 > 1 ⇒ 方图按宽缩放,横向 100% 可见
+      expect(m.aspect).toBeGreaterThan(1);
+      expect(m.cardBottom).toBeLessThanOrEqual(m.vh + 1);
+      expect(m.skipBottom).toBeLessThanOrEqual(m.vh);
+      expect(m.skipTop).toBeGreaterThanOrEqual(0);
+    });
+  }
+});
