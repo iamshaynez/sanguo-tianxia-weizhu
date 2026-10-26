@@ -48,15 +48,20 @@ export const SCROLL_3_STORIES = {
   },
 
   caochuan: {
-    cast: ['zhuge', 'lusu', 'caocao'],
+    cast: ['zhuge', 'lusu', 'caocao', 'caizhong'],
     objective: '在雾散前让曹军自己决定放箭，把曹操的多疑借成江东的军需。',
     coldOpen: [
       { speaker: 'narrator', text: '第三更，鲁肃摸着船上的稻草人，终于明白诸葛亮要借的不只是箭，还有曹操不敢出兵的那一颗心。' },
       { speaker: 'lusu', text: '若雾突然散了呢？子敬可以陪你冒险，江东不能陪你陪葬。' },
+      { speaker: 'caizhong', text: '丞相放心,小人兄弟早把江东水路摸熟了——这雾夜里,他们绝不敢出船。', when: '!seen:caizhong' },
       { speaker: 'zhuge', text: '堂上既已请江东主战，箭便不能只在账上。子敬，这一船是还愿，不是赌命。' },
       { speaker: 'you', text: '雾只负责遮船。让曹操看见什么，还得由我们来说。' },
     ],
     intros: {
+      caizhong: [
+        { when: 'seen:caizhong', bio: '诈降的兄弟档又换了一套装束,口径却仍旧差半拍。', quote: '这、这次弟弟没来。情报,小人一个人包了。' },
+        { bio: '蔡夫人族中小子,降书里的每一个字都商量好了,唯独彼此没商量。', quote: '降卒蔡中,愿为丞相效犬马!' },
+      ],
       caocao: [
         { when: 'page:zhujiu:yeshi', bio: '他在青梅亭读过你的藏锋，如今更不信江上的每一次试探。', quote: '青梅旧友，也学会借雾藏锋了？' },
         { bio: '北岸水寨，他把每一声鼓都当成一句没说完的谎话。', quote: '雾夜来船，必有深意。先莫出击。' },
@@ -240,11 +245,12 @@ export const SCROLL_3_STORIES = {
   },
 
   luofengpo: {
-    cast: ['pangtong', 'liubei', 'zhangren'],
+    cast: ['pangtong', 'liubei', 'zhangren', 'liuzhang'],
     objective: '利用的卢与张任对凤雏的执念，让伏兵射中一个错误的目标。',
     coldOpen: [
       { speaker: 'narrator', text: '落凤坡前，的卢不肯踏过白石道。庞统翻身下马，将缰绳递回刘备手里，忽然问张任要杀的究竟是马，还是人。' },
       { speaker: 'pangtong', text: '孔明来信只说将帅多凶少吉。他连我也一并算了，却忘了伏兵也要先认人。' },
+      { speaker: 'liuzhang', text: '父兄守了三十年的蜀道,竟真有人打进来……任儿,成都的门,拜托你了。', when: '!seen:liuzhang' },
       { speaker: 'liubei', text: '士元，换马本是好意。若这好意正好替你写了死籍呢？' },
       { speaker: 'zhangren', text: '不见的卢，不许放箭。我要刘备，莫伤错了人。' },
     ],
@@ -285,11 +291,13 @@ export const SCROLL_3_STORIES = {
   },
 
   dingjunshan: {
-    cast: ['huangzhong', 'xiahouyuan', 'zhanghe'],
+    cast: ['huangzhong', 'xiahouyuan', 'zhanghe', 'fazheng', 'yanyan'],
     objective: '借夏侯渊的快与张郃的变互相牵制，让老将一刀落在两人换防的半拍。',
     coldOpen: [
       { speaker: 'narrator', text: '定军山上下各有一面鼓。夏侯渊催人快攻，张郃却按兵测路；两面鼓总差半拍，黄忠听了三遍，解下了弓。' },
       { speaker: 'huangzhong', text: '他们说老将只剩一刀。够是够，只怕有人快得撞上来，有人巧得不肯来。' },
+      { speaker: 'fazheng', text: '汉升,山上两将不和,便是天给你的第三条路。孝直在旌旗上,只写一个「待」字。', when: '!seen:fazheng' },
+      { speaker: 'yanyan', text: '老哥哥,当年蜀道上一声「断头将军」,今日原样奉还。你的侧翼,严颜包了。' },
       { speaker: 'xiahouyuan', text: '年迈还敢居高？天明的鼓未响，我便先上山取你的刀。' },
       { speaker: 'zhanghe', text: '妙才，居高者故意示弱。你若只会快，便正好替他省去诱敌。' },
     ],
@@ -329,18 +337,24 @@ export const SCROLL_3_STORIES = {
   },
 
   shuiyan: {
-    cast: ['guanyu', 'yujin'],
+    cast: ['guanyu', 'yujin', 'pangde'],
     objective: '蓄水而不恃水，在七军改营前锁住高地与退路，把天时变成军令。',
     coldOpen: [
-      { speaker: 'narrator', text: '沔水已经漫过旧界石，于禁仍把营垒排得一线不乱。关羽看了很久，让人撤去一面写着水字的旗。' },
+      { speaker: 'narrator', text: '沔水已经漫过旧界石，于禁仍把营垒排得一线不乱。庞德的棺木停在辕门外，漆色比乌云更沉。' },
       { speaker: 'guanyu', text: '七军之稳，在令行禁止；七军之险，也在无人敢先违令移营。' },
       { speaker: 'yujin', text: '关云长，天时未必助你。营中粮尚可支十日，你若久等，先乱的是樊城外。' },
+      { speaker: 'pangde', text: '于将军,庞某此来,榇已在营外。你我同守,守的不是魏土,是各自主帅的名字。', when: '!seen:pangde' },
       { speaker: 'you', text: '他要等雨停。我不必让雨更早，只要让他舍不得先动。' },
     ],
     intros: {
       yujin: [
         { when: 'seen:yujin', bio: '他记得低洼怎样吞掉军阵，这次仍不肯让一次擅动毁去严名。', quote: '水涨可测。军心，不可先乱。' },
         { bio: '泰山之稳，最信军令，也最晚承认军令已经过时。', quote: '各营听令，无令不得移驻一步。' },
+      ],
+      pangde: [
+        { when: 'seen:pangde', bio: '西凉旧部出身的他不信天命,只信手中刀与营外那口棺。', quote: '再战一场。棺未用,人未还。' },
+        { when: 'page:tongguan:yeshi', bio: '他记得西凉的散与聚,如今把不服换成了决死的忠。', quote: '马儿败在西凉。庞某,不会败在这里。' },
+        { bio: '抬榇而来的降将,每一箭都在替自己的名节还债。', quote: '榇在此。关公,请全力。' },
       ],
     },
     map: [{
@@ -374,15 +388,21 @@ export const SCROLL_3_STORIES = {
   },
 
   maicheng: {
-    cast: ['guanyu', 'lvmeng', 'luxun'],
+    cast: ['guanyu', 'lvmeng', 'luxun', 'guanping', 'zhoucang', 'panzhang'],
     objective: '拆穿白衣与卑辞共同织成的旧我之局，让关羽不以华容的旧账决定麦城的活路。',
     coldOpen: [
       { speaker: 'narrator', text: '麦城的雪盖住烽火台，吕蒙的白衣与陆逊的绶带一前一后入帐。关羽案上，摆着当年华容留下的一截刀穗。' },
       { speaker: 'guanyu', when: 'choice:huarong:yeshiB', text: '那日刀未落，曹军今日在北按兵。关某放下的义，原来会沿地图回来要账。' },
       { speaker: 'guanyu', when: 'choice:huarong:yeshi', text: '那日刀落，北方诸侯各怀心思，求援的信到临沮便没了下文。恩义清了，路却未宽。' },
+      { speaker: 'guanping', text: '父亲,平儿探过路了:北面小道可走,唯临沮一带林密,恐有吴人设网。' },
+      { speaker: 'zhoucang', text: '俺的腿快过他们的马!将军上马,俺扛刀开路——谁挡,俺踩谁!' },
       { speaker: 'lvmeng', text: '云长，你最盛时水淹七军；可盟友与旧敌，都从那场水里学会了怎样对付你。' },
     ],
     intros: {
+      panzhang: [
+        { when: 'seen:panzhang', bio: '他惦记的从来不只是城,还有城里那口八十二斤的刀。', quote: '青龙刀……这次,该换个主人了。' },
+        { bio: '设网的人先算的不是兵,是走投无路者的习惯。', quote: '雪夜赶路的人,总爱挑最近的那条。' },
+      ],
       lvmeng: [
         { when: 'choice:huarong:yeshiB', bio: '他知道你曾放曹操北归，便把这段旧义也算进了求援路。', quote: '你能纵虎，能否走过我留给义气的路？' },
         { when: 'choice:huarong:yeshi', bio: '他记得华容刀落，不再指望旧恩能拖住你的刀。', quote: '你既杀过曹操，便该知道我无旧恩可还。' },
@@ -424,6 +444,308 @@ export const SCROLL_3_STORIES = {
     loss: {
       text: '吕蒙算你的旧义，陆逊算你的新断。一个封住求援，一个等你犹豫；雪停时，麦城仍只记住了那个不肯改变的关羽。',
       clue: '史鉴 · 吕蒙与陆逊会分别利用旧恩与退路；重开时看破提升，华容的选择仍会留下不同劝谏。',
+      clueFx: 'keenEye',
+    },
+  },
+
+  nanjun: {
+    cast: ['zhouyu', 'caoren', 'chengpu', 'ganning', 'lusu'],
+    objective: '在江陵城下与曹仁对读,让周瑜的箭疮不必第二次裂开。',
+    coldOpen: [
+      { speaker: 'narrator', text: '赤壁的火光才熄,南郡的旗还在曹仁手里。周瑜披甲临江,箭疮尚未收口,曹仁却在城头摆开了嘲讽的鼓。' },
+      { speaker: 'zhouyu', text: '曹子孝守城,十年不倦。要取南郡,先要赢他不肯出城的那颗心。' },
+      { speaker: 'caoren', text: '都督箭疮未愈吧?本将这面鼓,专为你擂。你若动气,城门便为你开。', when: '!seen:caoren' },
+      { speaker: 'ganning', text: '都督,把夷陵交给兴霸。铃响之处,便是吴军又进一步。' },
+      { speaker: 'chengpu', text: '公瑾,老夫陪你压阵。箭疮这东西,最怕的不是箭,是气。' },
+    ],
+    intros: {
+      caoren: [
+        { when: 'seen:caoren', bio: '他记得你怎样替周瑜挡下怒气,这次连鼓都懒得擂了。', quote: '又来?这次我连激你的兴致都省了。' },
+        { bio: '他把守城写成一门手艺:不赌气,不侥幸,不心疼一砖一瓦。', quote: '江陵的砖,一块一块都数过。来。' },
+      ],
+      caohong: [
+        { bio: '他替兄长守夷陵道,信奉的道理只有一条:主公的退路比自己的命长。', quote: '这道口,姓曹。想过?留下买路的东西。' },
+      ],
+    },
+    map: [{
+      id: 'outside-mock', node: 1, title: '江陵 · 城下之鼓',
+      lines: [
+        { speaker: 'zhouyu', text: '他每日擂鼓骂我箭疮,要我拔营决战。我若应战,疮裂;我若不应,军心馁。' },
+        { speaker: 'lusu', text: '都督不如把他擂给你的每一面鼓,都记成他出城的日子。' },
+        { speaker: 'you', text: '鼓声是他的表,不是你的。让鼓替你数他的换防。' },
+      ],
+      choices: [
+        { id: 'count-drums', text: '记录鼓点与垛口换防', detail: '本回看破提升,记住换防之隙', effects: { keenEye: true, fact: 'nanjun_count' } },
+        { id: 'yiling-feint', text: '佯攻夷陵,分其兵势', detail: '曹军起手军资 -200,记住分兵', effects: { raid: true, fact: 'nanjun_feint' } },
+      ],
+    }],
+    battle: [
+      { id: 'nanjun-open', at: 'start', speaker: 'caoren', text: '周郎!箭疮好些了吗?本将的鼓,今日擂得更响!' },
+      { id: 'nanjun-anger', at: 'hand:2', speaker: 'zhouyu', text: '他把鼓擂给我,我便把怒气记在他账上。等他换了第三班守军——' },
+      { id: 'nanjun-gap', at: 'hand:3', speaker: 'ganning', text: '夷陵铃响了!曹洪分兵了,江陵的墙薄了一层!', when: 'fact:nanjun_feint' },
+      { id: 'nanjun-low', at: 'low', speaker: 'chengpu', text: '都督的脸白了。老夫替你压住阵脚——这一阵,赢了再养伤!' },
+    ],
+    win: {
+      text: '曹仁弃城西走的那夜,周瑜按着箭伤登上了江陵城头。他没有接受欢呼,只让人把城头那面嘲弄过他的鼓抬来,亲手敲了三下,又送还曹仁:"替我谢谢它,守住了我的耐心。"南郡,终于姓孙。',
+      hook: '南郡到手,荆州的账才翻开了第一页。而北方的马蹄声,已带着一腔仇恨碾向潼关。',
+    },
+    loss: {
+      text: '鼓声第三次响起时,周瑜提枪上马,箭疮在甲缝里裂开。你扶住他的一瞬,江陵城门轰然大开——曹仁等的正是这一刻。',
+      clue: '史鉴 · 曹仁的鼓是给你情绪上的枷。重开后他的假破绽减少;数他的换防,别数他的挑衅。',
+      clueFx: 'keenEye',
+    },
+  },
+
+  tongguan: {
+    cast: ['machao', 'xuchu', 'caocao', 'jiaxu', 'xuhuang'],
+    objective: '在西凉铁骑的怒火里护住曹操,也让马超的仇有一个说得出口的去处。',
+    coldOpen: [
+      { speaker: 'narrator', text: '潼关的风卷着沙,马超的白袍在阵前来回,像一杆不肯倒的旗。曹操的中军帐里,贾诩慢慢研着墨。' },
+      { speaker: 'machao', text: '曹瞒!杀父之仇,欺天之恨!今日不把你剁在潼关,马超誓不为人!' },
+      { speaker: 'caocao', text: '马儿不死,孤无葬地也。诸公,谁替孤挡住这阵风?' },
+      { speaker: 'xuchu', text: '主公下帐,退后!虎痴在此——马儿,过来!' },
+      { speaker: 'jiaxu', text: '明公莫慌。西凉人多,心却不齐。文和的墨,比虎痴的刀慢,却更毒。', when: '!seen:jiaxu' },
+    ],
+    intros: {
+      machao: [
+        { when: 'seen:machao', bio: '他记得渭水那夜的冰与火,恨意未减,枪却更沉了。', quote: '又来挡我?先问过我手里的枪!' },
+        { when: 'page:jiameng:yeshi', bio: '葭萌的火盆边他曾放下过枪,此刻枪尖却在微微发抖。', quote: '你见过我放下枪的样子……别再提!' },
+        { bio: '锦袍银枪,半生都在替死去的父叔讨一个说法。', quote: '父债子偿,天经地义。让开!' },
+      ],
+      xuchu: [
+        { when: 'seen:xuchu', bio: '渭水之战让他记住了你,这次把腰间的绳又紧了三圈。', quote: '再来!俺的力气还没用完!' },
+        { bio: '他不懂什么离间计,只认一个理:主公在身后,就不能退。', quote: '马儿的枪快?俺的命更硬!' },
+      ],
+    },
+    map: [{
+      id: 'weishui-ice', node: 1, title: '渭南 · 冰城疑云',
+      lines: [
+        { speaker: 'xuhuang', text: '一夜寒风,渭水结出了冰沙。若连夜筑城,天明便有一座冰营——马超的骑兵,冲不动冰。' },
+        { speaker: 'jiaxu', text: '冰城只能挡马,挡不住恨。要拆西凉,须先拆韩遂与马超的情分——一封信,够了。' },
+        { speaker: 'you', text: '让他先把怒气全押上来,再让他看见信上的墨点。' },
+      ],
+      choices: [
+        { id: 'ice-wall', text: '连夜筑冰城,以静制动', detail: '本回看破提升,记住冰城之利', effects: { keenEye: true, fact: 'tongguan_ice' } },
+        { id: 'letter-smudge', text: '在离间信上留下涂改的墨点', detail: '西凉军起手士气 -1,记住墨点之疑', effects: { sow: 1, fact: 'tongguan_smudge' } },
+      ],
+    }],
+    battle: [
+      { id: 'tongguan-open', at: 'start', speaker: 'machao', text: '曹瞒!你修的冰城,挡得住马,挡不住仇!' },
+      { id: 'tongguan-bare', at: 'hand:2', speaker: 'xuchu', text: '马儿,认得俺吗?虎侯今天,就站你面前!', when: 'multi' },
+      { id: 'tongguan-letter', at: 'hand:3', speaker: 'narrator', text: '韩遂捧着那封信,手指停在墨点上。马超瞥见的那一眼,比曹操的千军更冷。', when: 'fact:tongguan_smudge' },
+      { id: 'tongguan-low', at: 'low', speaker: 'caocao', text: '马儿,孤知你不服。可你父之死——你真敢把账全算在孤一人身上吗?' },
+    ],
+    win: {
+      text: '渭南的风停时,西凉的营自己烧了起来——不是曹操的火,是那封信上的墨点。马超单骑立在残阵之前,枪指曹操,久久没有落下,最终调头向西。曹操抚着胡须轻声说:"孤赢的不是他,是他终于开始想,那笔账到底该找谁算。"',
+      hook: '西凉散了,仇恨却还在寻找一个骑手。它会在葭萌关的火盆边,再等马超三年。',
+    },
+    loss: {
+      text: '马超的怒火没有等你的离间计生效。铁骑三冲,冰城四裂,曹操割须弃袍的那一刻,你在乱军中只看见了虎痴的背影。',
+      clue: '史鉴 · 马超的强在于怒气换筹码。重开后他的假破绽减少;先用冰城耗,再用墨点疑。',
+      clueFx: 'keenEye',
+    },
+  },
+
+  ruxu: {
+    cast: ['ganning', 'zhoutai', 'sunquan', 'lingtong', 'caocao'],
+    objective: '护住百骑劫营的每一声铃响,让曹操的四十万大军自乱一夜。',
+    coldOpen: [
+      { speaker: 'narrator', text: '曹操四十万大军压向濡须,孙权帐中鸦雀无声。甘宁把一百枚铜铃摆上案,一枚一枚,摆成一条线。' },
+      { speaker: 'sunquan', text: '孟德有张辽,孤有兴霸。可一百骑进四十万人的营,兴霸,孤要你活着回来。' },
+      { speaker: 'ganning', text: '主公放心。铃响则进,铃停则回——兴霸带的不是一百个送死的,是一百个来记账的!' },
+      { speaker: 'lingtong', text: '甘宁!你又抢头阵!我父亲的旧部,还没死绝!', when: '!seen:ganning' },
+      { speaker: 'zhoutai', text: '都尉少说一句。这一百骑里,有公绩你父亲的老兄弟。' },
+    ],
+    intros: {
+      caocao: [
+        { when: 'page:caochuan:yeshi', bio: '草船的雾与今夜的铃,让他把江东的胆量重新记了一账。', quote: '借了孤的箭,又来借孤的营。好胆!' },
+        { when: 'seen:caocao', bio: '他记得你每次都借他的多疑,这次索性把疑心布满四十万营。', quote: '孤的营,今夜谁碰谁死——问题是谁来碰?' },
+        { bio: '四十万人的营火,把江面照成了白昼,也把每一条影子都放大成敌。', quote: '江东鼠辈,只会借雾借火。正面,孤等他们。' },
+      ],
+      xuhuang: [
+        { bio: '他布的阵讲究一个「整」字,连劫营者都会被整阵逼回原路。', quote: '来劫营?先过我这排整齐的拒马。' },
+      ],
+      lejin: [
+        { bio: '文谦的名字取「进」,人也一样——前锋永远比军令快一步。', quote: '先锋营,先登!江东人,尝尝乐进的刀!' },
+      ],
+    },
+    map: [{
+      id: 'hundred-bells', node: 1, title: '横江 · 铃响为号',
+      lines: [
+        { speaker: 'ganning', text: '每人一根白鹅翎,衔在嘴里。进营不杀人,只砍旗、放火、擂他们的鼓。' },
+        { speaker: 'zhoutai', text: '幼平守坞门。铃响第二遍,无论回来几个,坞门都开。' },
+        { speaker: 'you', text: '四十万人的营,最怕的不是一百骑,是「不知来了多少骑」。' },
+      ],
+      choices: [
+        { id: 'feather-quiet', text: '衔枚裹铃,先静后炸', detail: '本回看破提升,记住静默之利', effects: { keenEye: true, fact: 'ruxu_quiet' } },
+        { id: 'three-fires', text: '三处举火,令其自相惊扰', detail: '曹军起手军资 -200,记住火号', effects: { raid: true, fact: 'ruxu_fires' } },
+      ],
+    }],
+    battle: [
+      { id: 'ruxu-open', at: 'start', speaker: 'caocao', text: '江上静得反常。传令各营:今夜有警,先守,后动,别中了疑兵!' },
+      { id: 'ruxu-bells', at: 'hand:2', speaker: 'ganning', text: '铃——响!兄弟们,让曹营自己踩自己!' },
+      { id: 'ruxu-chaos', at: 'hand:3', speaker: 'narrator', text: '三处火起,四十万营帐的鼓互相擂响了。没有一支箭知道该射向哪里。', when: 'fact:ruxu_fires' },
+      { id: 'ruxu-low', at: 'low', speaker: 'sunquan', text: '铃停了……数一数,回来几个?一个、两个……都在。都在就好。' },
+    ],
+    win: {
+      text: '天明时清点,一百骑连人带铃,一枚不少。曹操望着一夜自相踩踏的营盘,对左右说:"孙权治军如此,孤不可急图也。"遂班师。孙权亲自替甘宁斟酒:"孟德有张辽,孤有兴霸——足矣。"',
+      hook: '濡须的铃声让合肥的名字更加滚烫。张辽在那里等着,把「吴」字写成江东儿郎的梦魇。',
+    },
+    loss: {
+      text: '铃响得太早,四十万营从慌乱里醒过来。回来的铃,只有七十枚。甘宁把缺了三十枚的铃串收进怀里,从此再没提过这一夜。',
+      clue: '史鉴 · 百骑劫营赢在「乱其耳目」而非「战其兵锋」。重开时先静后炸;曹操的多疑是你唯一的内应。',
+      clueFx: 'keenEye',
+    },
+  },
+
+  jiameng: {
+    cast: ['zhangfei', 'machao', 'zhuge', 'weiyan'],
+    objective: '在葭萌关的火盆边,让两杆天下最烈的枪打完,再谈谁跟谁走。',
+    coldOpen: [
+      { speaker: 'narrator', text: '渭南的败兵投了张鲁,马超领兵来到葭萌关下。关上的张飞听说来的是他,先大笑三声,再让人把戒酒的誓书压在案下。' },
+      { speaker: 'zhangfei', text: '马超!听说你在潼关追得曹操割须?好!俺老张遇强则喜——来来来,大战三百回合!' },
+      { speaker: 'machao', text: '燕人张飞?潼关之后,人人都说天下只有你的三弟配和我一战。放马过来!' },
+      { speaker: 'zhuge', text: '翼德,此人恨极而勇,不可力取。亮只要你记住:打满,别打死。', when: '!fact:jiameng_done' },
+      { speaker: 'weiyan', text: '军师,文长愿领一军绕后。若张将军有个闪失——', when: 'seen:weiyan' },
+    ],
+    intros: {
+      machao: [
+        { when: 'page:tongguan:yeshi', bio: '渭南的墨点他至今没想透,这份恨意使他的枪少了三分方向。', quote: '离间计赢不了两次。这次,只论枪!' },
+        { when: 'seen:machao', bio: '他与张飞一战之后,枪里多了些说不清的东西。', quote: '又见面了。这次,先打完,再说话。' },
+        { bio: '败军之将,把最后的体面都押在了这杆枪上。', quote: '西凉已失,家已无。我只有这场仗。' },
+      ],
+      madai: [
+        { when: 'seen:madai', bio: '他护着堂兄的侧翼,也护着马家最后的人丁。', quote: '我兄长的事,便是我马岱的事。' },
+        { bio: '话不多的西凉刀客,刀法与心事一样沉。', quote: '先过我这一关。' },
+      ],
+    },
+    map: [{
+      id: 'lamp-duel', node: 1, title: '葭萌关 · 挑灯夜战',
+      lines: [
+        { speaker: 'zhangfei', text: '天黑了打不痛快!来人,点起火把,两百盏!俺们夜战!' },
+        { speaker: 'machao', text: '好气魄!张飞,你比我听闻的更像条汉子!' },
+        { speaker: 'you', text: '火把照得亮枪,也照得亮人心。打到后来,枪会说话。' },
+      ],
+      choices: [
+        { id: 'keep-count', text: '替张飞数回合,严控体力', detail: '本回看破提升,记住二百回合', effects: { keenEye: true, fact: 'jiameng_count' } },
+        { id: 'warm-wine', text: '温两碗酒候在场边', detail: '军资 +120,二人愈战愈敬', effects: { chips: 120, sow: 1, fact: 'jiameng_wine' } },
+      ],
+    }],
+    battle: [
+      { id: 'jiameng-open', at: 'start', speaker: 'zhangfei', text: '马超!接矛!今日不喝倒你,俺老张不姓张!' },
+      { id: 'jiameng-fire', at: 'hand:2', speaker: 'narrator', text: '两百盏火把把战场照成了白昼。两杆枪在光里绞了又绞,看台上的人渐渐忘了喝彩。' },
+      { id: 'jiameng-madai', at: 'hand:3', speaker: 'madai', text: '兄长,退吧!张鲁的援兵到不了,西凉的人也剩不多了!', when: '!fact:jiameng_wine' },
+      { id: 'jiameng-wine', at: 'hand:3', speaker: 'machao', text: '……场边那两碗酒,是给谁的?', when: 'fact:jiameng_wine' },
+      { id: 'jiameng-low', at: 'low', speaker: 'zhuge', text: '翼德,收三分力。此人心中有事,枪再烈,也撑到头了。' },
+    ],
+    win: {
+      text: '两百余合之后,火把烧短了半截。张飞把矛往地上一拄:"马超,歇一夜,明日再打!"马超在马上沉默良久,忽然问:"张将军,刘皇叔……真能容下我这身仇?"场边那两碗温酒,最终三个人分了——你,翼德,和一杆放平的枪。',
+      hook: '葭萌的火盆边,西凉的枪找到了新的方向。而在荆州,鲁肃正为一张借据,请云长过江。',
+    },
+    loss: {
+      text: '你急着替张飞找胜机,反而打断了那杆枪想说的话。马超勒马回阵,从此闭门不出,谁也请不动。',
+      clue: '史鉴 · 这一页的胜负在枪外。重开时让两人打满:数回合者得全局,温酒者得人心。',
+      clueFx: 'sow',
+    },
+  },
+
+  daodan: {
+    cast: ['guanyu', 'lusu', 'guanping', 'zhoucang', 'zhuge'],
+    objective: '在陆口的酒宴上,让鲁肃讨不到荆州,也让关羽不必拔刀。',
+    coldOpen: [
+      { speaker: 'narrator', text: '鲁肃的请帖写了三遍,措辞一遍比一遍客气。江心的船已备好,舱里坐着刀斧手,帖上却只写了一个「叙旧」。' },
+      { speaker: 'lusu', text: '云长,肃别无他意,只求把荆州的账,当面算清。' },
+      { speaker: 'guanyu', text: '子敬相邀,关某岂敢不来。平儿,随我赴宴;周仓,扛刀。' },
+      { speaker: 'guanping', text: '父亲,临行前军师嘱托:此宴在酒,不在荆州;在信,不在刀。' },
+      { speaker: 'zhoucang', text: '俺就把刀立在船头,让江东人看看分量!' },
+    ],
+    intros: {
+      lusu: [
+        { when: 'seen:lusu', bio: '他上次没能讨回荆州,这一次把道理磨得更圆,刀斧手埋得更深。', quote: '云长,这次肃要的仍不是降,是一个「还」字。' },
+        { bio: '江东最厚道的人,也终于学会了在酒里设局。', quote: '借据在此。云长,请过目。' },
+      ],
+      dingfeng: [
+        { when: 'seen:dingfeng', bio: '他埋伏的位置换了三次,却始终没等到那声摔杯。', quote: '再等等……主将的杯子,怎么还不落地?' },
+        { bio: '雪中奋短兵的老将,此刻把短兵藏在了案几之下。', quote: '酒过三巡,听杯为号。' },
+      ],
+    },
+    map: [{
+      id: 'river-feast', node: 1, title: '陆口 · 江心一宴',
+      lines: [
+        { speaker: 'lusu', text: '云长,席间只有你我旧谊,别无他事——肃先干为敬。' },
+        { speaker: 'guanyu', text: '子敬的酒,关某喝。荆州的账,醉后再说。' },
+        { speaker: 'you', text: '借据压在他袖底,刀斧手压在船板下。谁先急,谁先输。' },
+      ],
+      choices: [
+        { id: 'count-cups', text: '数鲁肃斟酒的节奏与眼神', detail: '本回看破提升,记住斟酒之律', effects: { keenEye: true, fact: 'daodan_count' } },
+        { id: 'hold-scabbard', text: '按住周仓的刀鞘,先礼后兵', detail: '东吴伏兵起手士气 -1,记住按刀之义', effects: { sow: 1, fact: 'daodan_hold' } },
+      ],
+    }],
+    battle: [
+      { id: 'daodan-open', at: 'start', speaker: 'lusu', text: '云长,今日只谈旧谊。来,满饮此杯——' },
+      { id: 'daodan-deed', at: 'hand:2', speaker: 'guanyu', text: '子敬,酒是好酒。只是这借据上的墨,关某记得比你清楚。' },
+      { id: 'daodan-blade', at: 'hand:3', speaker: 'zhoucang', text: '船板底下有脚步声!将军,俺的刀——', when: '!fact:daodan_hold' },
+      { id: 'daodan-hold', at: 'hand:3', speaker: 'guanyu', text: '周仓,退后。今日这把刀,只陪关某喝酒。', when: 'fact:daodan_hold' },
+      { id: 'daodan-low', at: 'low', speaker: 'guanping', text: '父亲,鲁肃亲自送我们到船头了。他的手,一直在袖子里攥着那份借据。' },
+    ],
+    win: {
+      text: '船离江心,鲁肃立在渡口,久久望着那口八十二斤的刀远去。他没有摔杯,因为关羽临走时说:"子敬,荆州之约,关某记下了。你保的不是借据,是两家还没破裂的信。"回营的船上汽笛无声,只有你知道,这杯酒替荆州又买了几年。',
+      hook: '单刀会散,两家的账却没散。合肥的方向,一声更比一声紧的战鼓,正在等孙权。',
+    },
+    loss: {
+      text: '刀出鞘的那一瞬,宴席就输了。你没能按住那八十二斤的火气,也没能按住船板下的短兵。江水把「单刀赴会」冲成了「两败俱伤」。',
+      clue: '史鉴 · 鲁肃要的是「信」不是「城」,伏兵等的是「刀」不是「理」。重开后看破提升,先按刀,再算账。',
+      clueFx: 'keenEye',
+    },
+  },
+
+  xiaoyaojin: {
+    cast: ['sunquan', 'zhangliao', 'lingtong', 'ganning', 'zhoutai'],
+    objective: '在逍遥津的窄桥边,让张辽的八百冲不散十万,也护住凌统的断后。',
+    coldOpen: [
+      { speaker: 'narrator', text: '合肥城头,张辽把八百死士列在门前,甲叶上一滴水都没有——他们已等了一夜。城外,吴军十万,刚拔完营。' },
+      { speaker: 'zhangliao', text: '吴人新至,营垒未立。此刻冲阵,八百人能当八万。随我——冲!' },
+      { speaker: 'sunquan', text: '张辽?!他怎么敢出城!各营勿慌,先稳住——甘宁,凌统,护住侧翼!' },
+      { speaker: 'lingtong', text: '主公先走!凌家三百亲兵,还够挡一阵!' },
+      { speaker: 'ganning', text: '公绩!别逞英雄!你的三百人,不是拿来换主公一程的!' },
+    ],
+    intros: {
+      zhangliao: [
+        { when: 'seen:zhangliao', bio: '他记得你的阵怎样在半渡时稳住,这次把冲锋的时机又提前了半刻。', quote: '又想稳住阵脚?我的刀,不给你列阵的时间。' },
+        { bio: '八百人的胆,是他一夜一夜喂出来的。', quote: '辽来十年,只为今日这一冲!' },
+      ],
+      lejin: [
+        { bio: '他与张辽、李典共守合肥,三人面和心齐,刀却各自藏锋。', quote: '张将军冲前,乐某守后——合肥的门,进得来出不去。' },
+      ],
+      lidian: [
+        { bio: '他劝张辽「先折其盛气」时不带私怨,布阵最重「余地」二字。', quote: '李曼成不与你斗狠。我只封你要退的路。' },
+      ],
+    },
+    map: [{
+      id: 'half-ford', node: 1, title: '逍遥津 · 半渡之桥',
+      lines: [
+        { speaker: 'zhoutai', text: '主公,津桥的板朽了两块,马不能疾驰。幼平先背主公过桥!' },
+        { speaker: 'lingtong', text: '幼平带主公走!我挡张辽!' },
+        { speaker: 'you', text: '张辽要的不是杀孙权,是「吴军自乱」四个字。别把十万人的心,输给八百人的胆。' },
+      ],
+      choices: [
+        { id: 'hold-line', text: '教十万军先结阵,再渡桥', detail: '本回看破提升,记住结阵渡桥', effects: { keenEye: true, fact: 'xiaoyaojin_line' } },
+        { id: 'rear-guard', text: '亲领断后,换主公先渡', detail: '军资 +100,张辽军起手士气 -1', effects: { chips: 100, sow: 1, fact: 'xiaoyaojin_rear' } },
+      ],
+    }],
+    battle: [
+      { id: 'xiaoyaojin-open', at: 'start', speaker: 'zhangliao', text: '张辽在此!吴军听着——今日,只取你们阵中最乱的一处!' },
+      { id: 'xiaoyaojin-charge', at: 'hand:2', speaker: 'narrator', text: '八百人凿进吴阵,像一柄锥子。所过之处,十万人的旗自己在倒。' },
+      { id: 'xiaoyaojin-ling', at: 'hand:3', speaker: 'lingtong', text: '主公过了桥!三百亲兵……还剩几十。够了,够再挡一阵!' },
+      { id: 'xiaoyaojin-low', at: 'low', speaker: 'sunquan', text: '公绩回来!凌统——回来!孤的江东,不能靠你们一个个用命换!' },
+    ],
+    win: {
+      text: '津桥修复的那一瞬,吴军十万终于列成了阵。张辽在城头望见,收刀入鞘:"吴人能稳住了,此城不可再出。"凌统浑身是血地踏上桥板,孙权亲自下马扶住他。回建业的路上再无笑声,只有孙权的一句:"孤记住了合肥,记住了张文远。"',
+      hook: '逍遥津的教训,让江东把目光彻底收回荆州。而刘备的汉中鼓声,已经敲到了定军山下。',
+    },
+    loss: {
+      text: '十万人的阵,终究没能挡住八百人的胆。津桥一断,凌统的三百亲兵留在了对岸,张辽的名字从此压在江东六岁孩童的哭声里。',
+      clue: '史鉴 · 张辽赢在「趁乱」不在「兵多」。重开时先结阵再渡桥;他冲不乱你,就轮到他不敢单独出城。',
       clueFx: 'keenEye',
     },
   },

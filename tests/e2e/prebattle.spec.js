@@ -166,12 +166,13 @@ test.describe('战前展卷仪式', () => {
 
   test('七擒七阵逐一换文,不是同一段战书重复七次', async ({ page }) => {
     const titles = ['第一擒 · 先赢其勇', '第二擒 · 不服其计', '第三擒 · 旧友与藤甲', '第四擒 · 火不伤其心', '第五擒 · 问服谁', '第六擒 · 同桌明言', '第七擒 · 自定明日'];
+    const gens = ['孟获', '孟优', '祝融', '带来洞主', '孟获', '兀突骨', '孟获'];
     const reasons = new Set();
     for (let round = 1; round <= 7; round++) {
       await openBossBriefing(page, 'qiqin', `round=${round}`);
       await expect(page.locator('#briefingTitle')).toHaveText(titles[round - 1]);
       await expect(page.locator('#briefingRound')).toContainText(`第 ${round} / 7 阵`);
-      await expect(page.locator('#briefingRoster')).toContainText('孟获');
+      await expect(page.locator('#briefingRoster')).toContainText(gens[round - 1]);
       reasons.add(await page.locator('#briefingReason').textContent());
     }
     expect(reasons.size).toBe(7);
@@ -211,7 +212,7 @@ test.describe('战前展卷仪式', () => {
     await expect(page.locator('#battleBriefing')).toBeVisible();
     await expect(page.locator('#briefingSource')).toHaveText('写卷人随机外传');
     await expect(page.locator('#briefingReason')).toContainText('不在旧卷中的对局');
-    await expect(page.locator('#briefingWin')).toContainText('不改动正卷三十二回');
+    await expect(page.locator('#briefingWin')).toContainText('不改动正卷五十回');
   });
 });
 

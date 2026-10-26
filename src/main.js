@@ -207,7 +207,7 @@ const map = createMap({
         SC.saveProgress(P);
       }
       if (node.type === 'battle') {
-        const win = await enterBattle(node, R.chapter.skirmish, { stack: 500 });
+        const win = await enterBattle(node, R.chapter.skirmish, { stack: R.chapter.skirmish.stack ?? 500 });
         if (win === null) return returnToMarch(node);
         if (!win) return await endChapter(false);
         node.done = true;
