@@ -51,6 +51,7 @@ export function createOpponent(mount) {
           </div>
         </div>
         <button class="seat-profile" type="button" title="武将详情" aria-label="查看武将详情">谱</button>
+        <span class="seat-record" hidden></span>
       </section>
       <div class="seat-bubble hidden"${index === 0 ? ' id="bubble"' : ''} aria-live="polite"></div>`;
     const seat = {
@@ -146,6 +147,17 @@ export function createOpponent(mount) {
       el.textContent = text || POSE_TEXT[seat.card.dataset.pose] || POSE_TEXT[POSE.NEUTRAL];
       el.title = text || '';
     },
+    // 立绘角标:此人生平破绩履历(识破命中/总数,诓骗次数)。数据来自观阵录存档,
+    // 让"谁可信"在决策瞬间可见,而不是埋在图鉴深处。
+    setTellRecord(record, id = primaryId) {
+      const seat = getSeat(id);
+      if (!seat) return;
+      const el = seat.el.querySelector('.seat-record');
+      if (!record || !record.n) { el.hidden = true; el.textContent = ''; return; }
+      el.hidden = false;
+      el.dataset.lies = String(record.lies || 0);
+      el.textContent = `识破${record.hit}/${record.n}${record.lies ? ` 诓${record.lies}` : ''}`;
+    },
     setActive(on, id = primaryId) {
       const seat = getSeat(id);
       seat.card.classList.toggle('is-active', !!on);
@@ -155,7 +167,33 @@ export function createOpponent(mount) {
       const seat = getSeat(id);
       clearTimeout(seat.timer);
       seat.bubble.textContent = text;
-      seat.bubble.classList.remove('hidden');
+      seat.bubble.classList.remove('hidden', 'is-intent', 'is-verdict', 'is-lie');
+      seat.bubble.style.opacity = 1;
+      seat.el.classList.add('speaking');
+      seat.timer = setTimeout(() => {
+        seat.bubble.style.opacity = 0;
+        seat.el.classList.remove('speaking');
+      }, dur * 1000);
+    },
+    // 破绽气泡:台词层(他说漏嘴的话)+注解层(动作文案/判词/识破履历)。
+    // tone:'equity' 牌力破绽(朱) / 'intent' 意图泄露(金,恒真) / 'verdict-hit'|'verdict-lie' 摊牌验真。
+    tell({ line, note, dur = 3, id = primaryId, tone = 'equity' }) {
+      const seat = getSeat(id);
+      if (!seat) return;
+      clearTimeout(seat.timer);
+      seat.bubble.replaceChildren();
+      const quote = document.createElement('b');
+      quote.textContent = line || '……';
+      seat.bubble.append(quote);
+      if (note) {
+        const meta = document.createElement('i');
+        meta.textContent = note;
+        seat.bubble.append(meta);
+      }
+      seat.bubble.classList.remove('hidden', 'is-intent', 'is-verdict', 'is-lie');
+      if (tone === 'intent') seat.bubble.classList.add('is-intent');
+      if (tone === 'verdict-hit') seat.bubble.classList.add('is-verdict');
+      if (tone === 'verdict-lie') seat.bubble.classList.add('is-verdict', 'is-lie');
       seat.bubble.style.opacity = 1;
       seat.el.classList.add('speaking');
       seat.timer = setTimeout(() => {

@@ -4,6 +4,7 @@ import * as T from './table.js';
 import { makePersona } from './persona.js';
 import { wait } from './fx2d.js';
 import { POSE } from './character.js';
+import { tellCategory, tellLine, INTENT_NOTES } from './tell-lines.js';
 import { battleBeatsFor, speakerName } from './story-engine.js';
 
 const $ = id => document.getElementById(id);
@@ -70,7 +71,7 @@ export function startBattle(opts) {
       id, isHero: false, name: cfg.name || `敌将 ${index + 1}`, stack: cfg.stack,
       initialStack: cfg.stack, hole: [], gen: cfg.general || null, genId: cfg.gen || cfg.generalId || null,
       skin: cfg.skin || cfg.general?.skin || 'default', persona, morale: cfg.morale ?? oppMorale0,
-      lossStreak: 0, slowplayed: false, bluffLine: false, tell: null, read: PK.createRead(),
+      lossStreak: 0, slowplayed: false, bluffLine: false, tell: null, tellIntentUsed: false, read: PK.createRead(),
     };
     seat.ai = {
       ...persona.ai,
@@ -92,11 +93,18 @@ export function startBattle(opts) {
   const tiltOf = seat => Math.max(0, Math.min(3, -seat.morale));
   const BARK = (seat, key, fallback) => seat.gen?.barks?.[key] || fallback;
 
+  // 调试/测试钩子:直接驱动席位气泡与履历角标(e2e 用,不涉存档)
+  window.__tellUI = {
+    show: payload => oppChar.tell(payload),
+    record: (record, id) => oppChar.setTellRecord(record, id),
+  };
+
   oppChar.setPlayers(opponents.map(seat => ({ id: seat.id, name: seat.name, stack: seat.stack, skin: seat.skin, boss })));
   for (const seat of opponents) {
     oppChar.setProfile({ bio: seat.gen?.bio || '乱世群雄,各有一局。', traits: seat.persona.traits }, seat.id);
     oppChar.setBoss(boss, seat.id);
     oppChar.setTilt(tiltOf(seat), seat.id);
+    if (seat.genId) oppChar.setTellRecord(opts.getTellRecord?.(seat.genId) || null, seat.id);
   }
   oppChar.setSelected(true, G.selected);
   ui.setPlayerName?.(opts.playerName);
@@ -237,26 +245,72 @@ export function startBattle(opts) {
 
   function applyTell(seat, street, rng) {
     if (seat.folded || seat.stack <= 0 && !seat.hole.length) return;
+    const tells = seat.gen?.tells || { strong: '右手护住筹码堆', weak: '左手抚上瓷面' };
+    const recordSuffix = () => {
+      const rec = seat.genId ? opts.getTellRecord?.(seat.genId) : null;
+      return rec && rec.n ? ` · 识破${rec.hit}/${rec.n}` : '';
+    };
+    // 意图型破绽:诈唬线/慢打埋伏进行中,小概率露真(每手至多一次,恒真,
+    // 与当街牌力破绽互斥)。泄露的是决策机的真实状态,是玩家最想买的信息。
+    // 演出层概率与选词一律用 Math.random:破绽呈现不得消耗共享游戏 RNG,
+    // 否则种子局的发牌流会被洗掉(见 generals.spec 秋风起用例)。
+    if (!seat.tellIntentUsed && street > 0 && (seat.bluffLine || seat.slowplayed)) {
+      const p = Math.min(0.34, 0.08 + seat.persona.ai.plan * 0.22 + (G.keenEye ? 0.12 : 0));
+      if (Math.random() < p) {
+        seat.tellIntentUsed = true;
+        const intent = seat.slowplayed ? 'trap' : 'bluff';
+        seat.tell = { street, shown: intent, actual: intent, kind: 'intent' };
+        oppChar.setPose(intent === 'bluff' ? POSE.STRONG : POSE.BLUFF, seat.id);
+        oppChar.tell({
+          line: tellLine({ genId: seat.genId, category: `${intent}Leak`, traits: seat.persona.traits }),
+          note: `${INTENT_NOTES[intent]}${recordSuffix()}`,
+          tone: 'intent', dur: 3.2, id: seat.id,
+        });
+        opts.onTellShown?.({ seatId: seat.id, gen: seat.genId, street, shown: intent, kind: 'intent' });
+        return;
+      }
+    }
     const e = street === 0 ? PK.preflopStrength(seat.hole) : PK.postflopEquity(seat.hole, G.board).e;
     const actual = e > 0.66 ? 'strong' : e < 0.34 ? 'weak' : 'mid';
     let shown = actual;
     const lieChance = (G.keenEye ? seat.persona.lieChance * 0.35 : seat.persona.lieChance) * (rule.lieMult || 1);
     if (rule.lieAll && G.handNum <= rule.lieAll) shown = actual === 'weak' ? 'strong' : 'weak';
     else if (tiltOf(seat) < 2 && rng() < lieChance) shown = actual === 'strong' ? 'weak' : 'strong';
-    seat.tell = { street, shown, actual };
+    seat.tell = { street, shown, actual, kind: 'equity' };
     oppChar.setPose(shown === 'strong' ? POSE.STRONG : shown === 'weak' ? POSE.BLUFF : POSE.NEUTRAL, seat.id);
-    const tells = seat.gen?.tells || { strong: '右手护住筹码堆', weak: '左手抚上瓷面' };
-    oppChar.setTell(shown === 'mid' ? '' : tells[shown], seat.id);
-    if (shown !== 'mid') opts.onTellShown?.({ seatId: seat.id, gen: seat.genId, street, shown });
+    if (shown === 'mid') return;
+    // 台词层携带真伪的"语气"(真强笃定/装强用力,见 tell-lines.js),注解层
+    // 只给可观察信息:动作文案 + 此人生平识破履历。判真伪是玩家的功课。
+    oppChar.tell({
+      line: tellLine({ genId: seat.genId, category: tellCategory(shown, actual), traits: seat.persona.traits }),
+      note: `${tells[shown]}${recordSuffix()}`,
+      dur: 3, id: seat.id,
+    });
+    opts.onTellShown?.({ seatId: seat.id, gen: seat.genId, street, shown });
   }
   function codexFromShowdown(seat, handName) {
     if (!seat.tell || seat.tell.shown === 'mid') return;
+    const isIntent = seat.tell.kind === 'intent';
     const tells = seat.gen?.tells || { strong: '右手护住筹码堆', weak: '左手抚上瓷面' };
-    const desc = tells[seat.tell.shown];
+    const desc = isIntent ? INTENT_NOTES[seat.tell.shown] : tells[seat.tell.shown];
     const hit = seat.tell.shown === seat.tell.actual;
     const who = opponents.length === 1 ? '他' : seat.name;
-    ui.codexAdd(`第${G.handNum}手 · ${who}亮出<b>${handName}</b><br>「${desc}」 → ${seat.tell.actual === 'strong' ? '强牌' : '弱牌'} ${hit ? '<b>✓ 命中</b>' : '<b>✗ 是假动作</b>'}`);
+    const truth = seat.tell.actual === 'strong' ? '强牌' : seat.tell.actual === 'weak' ? '弱牌' : '中牌';
+    ui.codexAdd(`第${G.handNum}手 · ${who}亮出<b>${handName}</b><br>「${desc}」 → ${isIntent ? '果然在演' : `${truth} ${hit ? '✓ 命中' : '✗ 是假动作'}`}`);
+    // 摊牌验真高光:命中/被骗是破绽系统的心跳,从战书小字升到台面。
+    if (opponents.length === 1) {
+      oppChar.tell({
+        line: isIntent ? '……被你看了去。' : hit ? '被你看穿了。' : '你上当了。',
+        note: `${isIntent ? '他方才在演' : `「${desc}」→ ${truth}`} · ${hit ? '你读对了' : '是假动作'}`,
+        tone: hit ? 'verdict-hit' : 'verdict-lie', dur: 2.8, id: seat.id,
+      });
+    } else {
+      ui.banner(hit ? `你读对了 · ${seat.name}` : `他骗了你 · ${seat.name}`, isIntent ? '他方才在演' : `「${desc}」→ ${truth}`);
+    }
+    if (hit) audio.chime(); else audio.thud();
     opts.onTell?.({ ...seat.tell, hit, seatId: seat.id, gen: seat.genId, name: seat.name });
+    // 履历入账后立绘角标即时刷新(识破X中Y / 诓N)
+    if (seat.genId) oppChar.setTellRecord(opts.getTellRecord?.(seat.genId) || null, seat.id);
   }
 
   function say(seat, key, probability = 0.55) {
@@ -492,7 +546,7 @@ export function startBattle(opts) {
     const rng = PK.mulberry32(PK.hashSeed(G.seed + '#' + G.handNum));
     G.deck = PK.shuffle(PK.makeDeck(), rng); G.deckPtr = 0; G.deckLog = [...G.deck];
     for (const seat of G.seats) {
-      seat.hole = []; seat.slowplayed = false; seat.bluffLine = false; seat.tell = null;
+      seat.hole = []; seat.slowplayed = false; seat.bluffLine = false; seat.tell = null; seat.tellIntentUsed = false;
     }
     G.H = T.createHand(G.seats, { button: G.button, blinds: [SB, BB] });
     G.H.board = G.board;

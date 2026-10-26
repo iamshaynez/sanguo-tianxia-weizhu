@@ -374,6 +374,14 @@ async function enterBattle(node, cfg, { stack, roundInfo = '', noOverride = fals
       story: boss ? { chapter: R.chapter, P, R, round } : null,
       keenEye: R.keenEye,
       ui, audio, oppChar,
+      // 破绩履历聚合(识破命中/总数/诓骗次数)上牌桌:立绘角标与气泡注解共用。
+      getTellRecord(genId) {
+        const t = annals()[genId]?.tells;
+        if (!t) return null;
+        let n = 0, hit = 0;
+        for (const kind of Object.values(t)) { n += kind.n; hit += kind.hit; }
+        return n ? { n, hit, lies: n - hit } : null;
+      },
       onTell(t) { const genId = t.gen || members.find(member => member.id === t.seatId)?.gen; if (genId) annalsTell(genId, t); },
       onTellShown() { onboarding.tip('tell'); },
       onEnd(win, finalStack, summary) {
