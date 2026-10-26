@@ -746,3 +746,16 @@ button.ghost:hover { border-color: #b7a578; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* 版本巡检提示(auto-update.js):新部署已上线时的常驻低打扰角标 */
+.update-toast {
+  position: fixed; right: 18px; bottom: 52px; z-index: 90;
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; border: 1px solid var(--gold);
+  background: #1d1a12ee; border-radius: 4px;
+  box-shadow: 0 8px 28px #000a; font-family: var(--serif);
+  letter-spacing: .12em; font-size: 14px; color: var(--paper-light);
+  animation: update-toast-in .35s ease-out;
+}
+.update-toast button { padding: 6px 14px; font-size: 13px; letter-spacing: .3em; }
+@keyframes update-toast-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
