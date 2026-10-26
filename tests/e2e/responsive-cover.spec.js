@@ -84,3 +84,70 @@ test.describe('武将卡响应式', () => {
     });
   }
 });
+
+test.describe('战书与谁争锋立绘', () => {
+  async function openBriefing(page, chapter) {
+    await page.goto(`/?fast=1&chapter=${chapter}&stage=boss&omen=sow&tutorial=0`);
+    await page.waitForTimeout(500);
+    await page.evaluate(() => document.getElementById('startBtn').click());
+    await page.waitForFunction(() => !document.getElementById('page').classList.contains('hidden'));
+    await page.evaluate(() => document.getElementById('openPage').click());
+    await page.waitForFunction(() => !document.getElementById('map').classList.contains('hidden') || !document.getElementById('omenModal').classList.contains('hidden'));
+    await page.waitForTimeout(200);
+    await page.evaluate(() => { const m = document.getElementById('omenModal'); if (!m.classList.contains('hidden')) m.querySelector('#omenBox button')?.click(); });
+    await page.waitForFunction(() => !document.getElementById('map').classList.contains('hidden'));
+    await page.waitForTimeout(300);
+    await page.evaluate(() => { const n = document.querySelector('#mapSvg .node.avail'); if (n) n.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+    await page.waitForFunction(() => !document.getElementById('battleBriefing').classList.contains('hidden'));
+  }
+
+  async function versusMetrics(page) {
+    return page.evaluate(() => {
+      const cards = [...document.querySelectorAll('.briefing-enemy-art')].map(el => {
+        const r = el.getBoundingClientRect();
+        return { aspect: r.width / r.height, width: r.width };
+      });
+      const enter = document.getElementById('briefingEnter').getBoundingClientRect();
+      return { cards, vh: innerHeight, enterBottom: enter.bottom, enterTop: enter.top };
+    });
+  }
+
+  // 背景:≤640px 旧版立绘盒固定 72px 高,单将卡被 flex-grow 撑满整行(300px),
+  // 240×240 方图 cover 后仅露顶部约 24% 高,面部被裁。修复:卡片限宽 156px
+  // + 立绘正方盒(aspect-ratio 1/1),原图零裁剪。桌面 70×82 竖盒保持不变。
+  for (const [w, h] of [[390, 844], [320, 568]]) {
+    test(`宽 ${w}px:单将立绘正方完整,入阵按钮在屏内`, async ({ page }) => {
+      await page.setViewportSize({ width: w, height: h });
+      await openBriefing(page, 'hulao');
+      const m = await versusMetrics(page);
+      expect(m.cards).toHaveLength(1);
+      expect(m.cards[0].aspect).toBeGreaterThan(0.95);
+      expect(m.cards[0].aspect).toBeLessThan(1.05);
+      expect(m.cards[0].width).toBeLessThanOrEqual(157);
+      expect(m.enterBottom).toBeLessThanOrEqual(m.vh);
+      expect(m.enterTop).toBeGreaterThanOrEqual(0);
+    });
+  }
+
+  test('宽 390px:双将横排各为正方完整立绘', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await openBriefing(page, 'xianshan');
+    const m = await versusMetrics(page);
+    expect(m.cards).toHaveLength(2);
+    for (const card of m.cards) {
+      expect(card.aspect).toBeGreaterThan(0.95);
+      expect(card.aspect).toBeLessThan(1.05);
+    }
+    expect(m.enterBottom).toBeLessThanOrEqual(m.vh);
+  });
+
+  test('桌面 1280px:竖向小卡布局不变', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await openBriefing(page, 'hulao');
+    const m = await versusMetrics(page);
+    expect(m.cards).toHaveLength(1);
+    expect(m.cards[0].width).toBeLessThanOrEqual(72);
+    expect(m.cards[0].aspect).toBeGreaterThan(0.8);
+    expect(m.cards[0].aspect).toBeLessThan(0.9);
+  });
+});
