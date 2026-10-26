@@ -83,6 +83,35 @@ test.describe('武将卡响应式', () => {
       expect(m.skipTop).toBeGreaterThanOrEqual(0);
     });
   }
+
+  // 折叠屏内屏横置(小米18 Fold 内屏 2364×1672,DPR 2.75→859×608 CSS px):
+  // 走桌面左右分栏分支,立绘列盒型非正方,必须 contain 才不裁 240×240 方图。
+  test('宽 859px(折叠屏横置):左右分栏立绘 contain 零裁剪', async ({ page }) => {
+    await page.setViewportSize({ width: 859, height: 608 });
+    await page.goto('/?fast=1&chapter=hulao&stage=boss&omen=sow&tutorial=0');
+    await page.waitForTimeout(500);
+    await page.evaluate(() => document.getElementById('startBtn').click());
+    await page.waitForFunction(() => !document.getElementById('page').classList.contains('hidden'));
+    await page.evaluate(() => document.getElementById('openPage').click());
+    await page.waitForFunction(() => !document.getElementById('map').classList.contains('hidden') || !document.getElementById('omenModal').classList.contains('hidden'));
+    await page.waitForTimeout(200);
+    await page.evaluate(() => { const m = document.getElementById('omenModal'); if (!m.classList.contains('hidden')) m.querySelector('#omenBox button')?.click(); });
+    await page.waitForFunction(() => !document.getElementById('map').classList.contains('hidden'));
+    await page.waitForTimeout(300);
+    await page.evaluate(() => { const n = document.querySelector('#mapSvg .node.avail'); if (n) n.dispatchEvent(new MouseEvent('click', { bubbles: true })); });
+    await page.waitForFunction(() => !document.getElementById('battleBriefing').classList.contains('hidden'));
+    await page.evaluate(() => document.getElementById('briefingEnter').click());
+    await page.waitForFunction(() => document.getElementById('bossIntro').classList.contains('show'));
+    const m = await page.evaluate(() => {
+      const img = document.querySelector('.general-art .portrait-img');
+      const skip = document.getElementById('introSkip').getBoundingClientRect();
+      return { fit: getComputedStyle(img).objectFit, natural: img.naturalWidth / img.naturalHeight, skipIn: skip.bottom <= innerHeight && skip.top >= 0 };
+    });
+    expect(m.fit).toBe('contain');
+    expect(m.natural).toBeGreaterThan(0.95);
+    expect(m.natural).toBeLessThan(1.05);
+    expect(m.skipIn).toBe(true);
+  });
 });
 
 test.describe('战书与谁争锋立绘', () => {
@@ -107,8 +136,9 @@ test.describe('战书与谁争锋立绘', () => {
         const r = el.getBoundingClientRect();
         return { aspect: r.width / r.height, width: r.width };
       });
+      const fit = getComputedStyle(document.querySelector('.briefing-enemy-art .portrait-img')).objectFit;
       const enter = document.getElementById('briefingEnter').getBoundingClientRect();
-      return { cards, vh: innerHeight, enterBottom: enter.bottom, enterTop: enter.top };
+      return { cards, fit, vh: innerHeight, enterBottom: enter.bottom, enterTop: enter.top };
     });
   }
 
@@ -149,5 +179,20 @@ test.describe('战书与谁争锋立绘', () => {
     expect(m.cards[0].width).toBeLessThanOrEqual(72);
     expect(m.cards[0].aspect).toBeGreaterThan(0.8);
     expect(m.cards[0].aspect).toBeLessThan(0.9);
+    // 240×240 方图素材:任何盒型都不裁剪(竖盒上下留窄边,背景 #22201a 衬底)
+    expect(m.fit).toBe('contain');
+  });
+});
+
+test.describe('页脚强制刷新', () => {
+  // cache:'reload' 重验核心资源后整页重载——手机 Chrome/CF 边缘压旧对象时的手点兜底
+  test('点击强制刷新后整页重载', async ({ page }) => {
+    await page.goto('/?fast=1&tutorial=0');
+    await page.waitForTimeout(500);
+    await page.evaluate(() => { window.__frMarker = 1; });
+    await page.locator('#forceRefresh').click();
+    await page.waitForFunction(() => !window.__frMarker, null, { timeout: 15_000 });
+    // 重载后页脚按钮仍可用(未被禁用卡死)
+    await expect(page.locator('#forceRefresh')).toBeEnabled();
   });
 });

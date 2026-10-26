@@ -13,7 +13,7 @@ import * as SC from './scroll.js';
 import { createOnboarding } from './onboarding.js';
 import { createBattleBriefing } from './briefing.js';
 import { initRuntimeInfo } from './runtime-info.js';
-import { watchRuntimeVersion } from './auto-update.js';
+import { watchRuntimeVersion, forceReloadLatest } from './auto-update.js';
 import {
   storyFor, mapSceneFor, introFor, outcomeFor, markSceneSeen, sceneSeen, choiceFor,
 } from './story-engine.js';
@@ -25,6 +25,7 @@ window.addEventListener('unhandledrejection', e => { $('errBox').textContent += 
 startBackdrop($('backdrop'));
 initRuntimeInfo();
 watchRuntimeVersion();
+document.getElementById('forceRefresh')?.addEventListener('click', () => { void forceReloadLatest(); });
 const audio = new AudioFX();
 const oppChar = createOpponent($('oppChar'));
 

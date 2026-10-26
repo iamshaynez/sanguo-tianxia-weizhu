@@ -255,6 +255,7 @@
 <div id="errBox"></div>
 <footer id="appVersion" class="app-version" aria-label="应用版本与服务器启动时间">
   <span id="versionNumber">v…</span><span aria-hidden="true">·</span><time id="serverStartedAt">启动时间读取中…</time>
+  <button id="forceRefresh" class="force-refresh" type="button" title="跳过所有缓存,重新拉取最新程序文件并刷新页面">强制刷新</button>
 </footer>
 <!-- data-cfasync 必须在 src 之前:豁免 Cloudflare Rocket Loader——
      它不支持 ES Module,会把 type="module" 改写成私有类型导致整站脚本失效
