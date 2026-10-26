@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node scripts/stamp-runtime.mjs && python3 -m http.server 8619",
     "test": "npm run lint:content && npm run eval:ai && npm run test:e2e",
-    "lint:content": "node tests/content/chapters.lint.mjs",
+    "lint:content": "node tests/content/chapters.lint.mjs && node tests/content/tell-lines.lint.mjs",
     "eval:ai": "node tests/ai-eval/run.mjs",
     "gen:preflop": "node scripts/generate-preflop-table.mjs",
     "test:e2e": "playwright test"
