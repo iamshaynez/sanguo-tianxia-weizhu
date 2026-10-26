@@ -1,5 +1,5 @@
 // apocrypha.js —— 残卷无终稿(NG+):通关后的随机外传页
-// 从武将档案池、地名池、规则库、天时池中随机组装一页;只计胜场,不占正卷三十二回。
+// 从武将档案池、地名池、规则库、天时池中随机组装一页;只计胜场,不占正卷五十回。
 import { GENERALS } from './generals.js';
 import { FX } from './chapters.js';
 

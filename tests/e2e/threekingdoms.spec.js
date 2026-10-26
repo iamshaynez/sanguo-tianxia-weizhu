@@ -34,12 +34,12 @@ test.describe('三国古风界面', () => {
 
 test.describe('通用武将卡', () => {
   test('无名遭遇战也有短亮相,六维来自本场对手', async ({ page }) => {
-    await newGame(page, 'fast=1&seed=TK01&chapter=taoyuan&omen=sow');
+    await newGame(page, 'fast=1&seed=TK01&chapter=bowang&omen=sow');
     await page.click('#openPage');
     const entered = enterBattle(page, 'battle');
     await expect(page.locator('#bossIntro')).toHaveClass(/show/);
     await expect(page.locator('#bossIntro')).toHaveAttribute('data-kind', 'skirmish');
-    await expect(page.locator('#bossIntroName')).toHaveText('黄巾游骑');
+    await expect(page.locator('#bossIntroName')).toHaveText('曹军前锋');
     await expect(page.locator('#bossIntro .portrait-img')).toBeVisible();
     await expect(page.locator('#bossIntroTraits [data-trait]')).toHaveCount(6);
     await page.click('#introSkip');

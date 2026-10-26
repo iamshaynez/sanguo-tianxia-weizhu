@@ -70,7 +70,7 @@ test.describe('改写与持久化', () => {
     expect(won).toBeTruthy();
     await expect(page.locator('#scroll')).toBeVisible();
     await expect(page.locator('[data-ch="taoyuan"]')).toHaveClass(/st-yeshi/);
-    await expect(page.locator('#codexProgress')).toContainText('已改写 1 / 32');
+    await expect(page.locator('#codexProgress')).toContainText('已改写 1 / 50');
     // 刷新后仍在
     await page.reload();
     await page.click('#startBtn');
@@ -104,7 +104,9 @@ test.describe('大关回与终局', () => {
   const FILL = Object.fromEntries(
     ['taoyuan', 'sishui', 'hulao', 'fengyiting', 'yuanshemen', 'wancheng',
       'zhujiu', 'qianli', 'guandu', 'sangu', 'bowang',
-      'shezhan', 'caochuan', 'chibi', 'huarong', 'sanqi'].map(id => [id, 'yeshi']));
+      'shezhan', 'caochuan', 'chibi', 'huarong', 'sanqi',
+      'xianshan', 'jieqiao', 'shenting', 'baima', 'nanjun', 'tongguan',
+      'ruxu', 'jiameng', 'daodan', 'xiaoyaojin'].map(id => [id, 'yeshi']));
 
   test('大关回全改写:解锁余卷,但野史不足时写卷人不现', async ({ page }) => {
     await seedProgress({ ...GATES })(page);
@@ -114,8 +116,8 @@ test.describe('大关回与终局', () => {
     await expect(page.locator('[data-ch="zuizhong"]')).toHaveClass(/locked/);
   });
 
-  test('终局门槛:野史满二十,最后一页浮现', async ({ page }) => {
-    await seedProgress({ ...GATES, ...FILL })(page); // 4 大关回 + 16 = 20
+  test('终局门槛:野史满三十,最后一页浮现', async ({ page }) => {
+    await seedProgress({ ...GATES, ...FILL })(page); // 4 大关回 + 26 = 30
     await newGame(page);
     await expect(page.locator('.scrollGroup.locked')).toHaveCount(0);
     await expect(page.locator('[data-ch="zuizhong"]')).not.toHaveClass(/locked/);

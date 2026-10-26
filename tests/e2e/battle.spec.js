@@ -77,7 +77,7 @@ test.describe('摊牌与图鉴', () => {
     // 至多 4 手内应出现非 mid 破绽并入册
     await expect(loc.codexItems(page).first()).toBeVisible({ timeout: 120_000 });
     const text = await page.locator('#codexList').textContent();
-    expect(text).toMatch(/右手护住筹码堆|左手抚上瓷面/);
+    expect(text).toMatch(/右手护住筹码堆|左手抚上瓷面|回头看副将还在不在|挥刀大呼/);
     expect(text).toMatch(/命中|假动作/);
     await stopDriver(page);
   });
