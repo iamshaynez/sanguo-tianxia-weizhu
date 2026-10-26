@@ -174,7 +174,7 @@ button.ghost:hover { border-color: #b7a578; }
 .seat-card.tilted { animation: seatRage .5s linear infinite; }
 .seat-art { position: relative; min-width: 0; overflow: hidden; border-right: 1px solid #71603e; background: #252a20; }
 .seat-art::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(0deg, #10150e66, transparent 45%); box-shadow: inset 0 0 22px #10140d66; }
-.seat-art .portrait-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: saturate(.9) contrast(1.04); }
+.seat-art .portrait-img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; filter: saturate(.9) contrast(1.04); }
 .seat-rank { position: absolute; z-index: 2; top: 9px; left: 9px; display: flex; align-items: center; justify-content: center; width: 27px; height: 33px; color: #e3c795; background: #75342a; border: 1px solid #b47a50; font: 16px var(--serif); }
 .seat-card.boss .seat-rank { background: #9a382c; }
 .seat-turn { position: absolute; z-index: 2; left: 50%; bottom: 8px; transform: translateX(-50%); padding: 3px 7px; color: #2b2418; background: #ddbd76; font: 9px var(--serif); letter-spacing: .18em; white-space: nowrap; opacity: 0; transition: opacity .25s; }
@@ -290,7 +290,7 @@ button.ghost:hover { border-color: #b7a578; }
 .art-sun { position: absolute; top: 52px; left: 50%; transform: translateX(-50%); width: 240px; height: 240px; border-radius: 50%; background: #d0b6792b; border: 1px solid #d0b67930; }
 .art-ink { position: absolute; width: 120%; height: 110px; background: #111a13aa; transform: rotate(-14deg); }
 .art-ink-a { left: -20%; bottom: 70px; } .art-ink-b { left: -5%; bottom: 10px; opacity: .65; }
-.general-art .portrait-img { position: absolute; z-index: 2; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: saturate(.88) contrast(1.04); transform-origin: 50% 100%; user-select: none; }
+.general-art .portrait-img { position: absolute; z-index: 2; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; filter: saturate(.88) contrast(1.04); transform-origin: 50% 100%; user-select: none; }
 .art-seal { position: absolute; z-index: 4; top: 25px; left: 25px; display: flex; align-items: center; justify-content: center; width: 45px; height: 56px; color: #e0c395; background: #8e342b; border: 2px solid #bd6a50; outline: 1px solid #5d241e; outline-offset: -5px; font: 28px var(--serif); box-shadow: 5px 8px 18px #0005; }
 .art-caption { position: absolute; z-index: 4; right: 18px; bottom: 23px; color: #b5a67c; font-size: 10px; letter-spacing: .38em; writing-mode: vertical-rl; }
 .general-info { display: flex; flex-direction: column; min-width: 0; padding: 29px 36px 25px; background: linear-gradient(115deg, #24261b, #171a13); }
@@ -358,8 +358,8 @@ button.ghost:hover { border-color: #b7a578; }
 .briefing-opponents h3 span, .briefing-story h3 span { display: inline-block; margin-right: 10px; padding: 3px 7px; color: #e6d4ac; background: #7d352b; font-size: 12px; letter-spacing: .2em; }
 .briefing-roster { display: grid; gap: 9px; margin-top: 13px; }
 .briefing-enemy { display: grid; grid-template-columns: 70px minmax(0, 1fr); min-height: 82px; color: #dfd1ae; background: linear-gradient(110deg, #292b21, #1c2018); border: 1px solid #76643f; }
-.briefing-enemy-art { position: relative; min-height: 82px; overflow: hidden; border-right: 1px solid #76643f; }
-.briefing-enemy-art .portrait-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: saturate(.88) contrast(1.04); }
+.briefing-enemy-art { position: relative; min-height: 82px; overflow: hidden; background: #22201a; border-right: 1px solid #76643f; }
+.briefing-enemy-art .portrait-img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; filter: saturate(.88) contrast(1.04); }
 .briefing-enemy-art > span { position: absolute; top: 4px; left: 4px; display: flex; align-items: center; justify-content: center; width: 19px; height: 22px; color: #e9d3a3; background: #84362b; font: 11px var(--serif); }
 .briefing-enemy > div:last-child { align-self: center; min-width: 0; padding: 9px 10px; }
 .briefing-enemy b { display: block; color: #ead7ab; font: 16px/1.45 var(--serif); }
@@ -432,6 +432,10 @@ button.ghost:hover { border-color: #b7a578; }
 .app-version { position: fixed; z-index: 85; left: 50%; bottom: max(2px, env(safe-area-inset-bottom)); display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 6px; max-width: calc(100vw - 16px); padding: 2px 7px; color: #8c8b78; background: #10130fbf; border-radius: 2px; font: 9px/1.4 var(--song); letter-spacing: .03em; text-align: center; transform: translateX(-50%); pointer-events: none; }
 .app-version span, .app-version time { white-space: nowrap; }
 .app-version[data-status="missing"] { color: #a58c68; }
+/* 强制刷新:手点兜底,重验核心资源后整页重载(见 auto-update.js forceReloadLatest) */
+.app-version .force-refresh { pointer-events: auto; padding: 1px 7px; color: #c9b88a; background: #2a2717; border: 1px solid #6b5c33; border-radius: 3px; font: inherit; letter-spacing: .06em; cursor: pointer; }
+.app-version .force-refresh:active { transform: translateY(1px); }
+.app-version .force-refresh[disabled] { opacity: .55; cursor: default; }
 
 /* ---------------- 观阵录:复用武将卡语言 ---------------- */
 .annalsbox { width: min(980px, 94vw); max-height: 88vh; text-align: left; }
@@ -439,7 +443,7 @@ button.ghost:hover { border-color: #b7a578; }
 .annals-heading > span { color: #797765; font-size: 11px; letter-spacing: .15em; }
 .annalCard { display: grid; grid-template-columns: 150px 1fr; gap: 20px; margin-top: 14px; padding: 14px; background: #1b1e16; border: 1px solid #514a34; }
 .annalVisual { position: relative; height: 174px; overflow: hidden; background: radial-gradient(circle at 50% 30%, #625b3d, #252a20 75%); border: 1px solid #6c5c3c; }
-.annalVisual .portrait-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: saturate(.88) contrast(1.04); user-select: none; }
+.annalVisual .portrait-img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; filter: saturate(.88) contrast(1.04); user-select: none; }
 .annalMain { min-width: 0; }
 .annalHead { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 12px; }
 .annalName { color: #e2d2ac; font: 22px var(--serif); letter-spacing: .15em; }

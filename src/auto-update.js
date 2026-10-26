@@ -38,3 +38,18 @@ export function watchRuntimeVersion({ intervalMs = 60_000 } = {}) {
   window.__probeUpdate = probe; // e2e/调试钩子
   probe();
 }
+
+// 强制刷新(页脚按钮):对当前文档引用的核心资源逐个 cache:'reload' 重验,
+// 让浏览器 HTTP 缓存里的条目与源站对齐,然后整页重载。部署侧同时给
+// style.css 注入 ?v=commit(见 docker/entrypoint.sh),URL 每次部署都变,
+// 边缘与浏览器里的旧对象天然失效;这里的手点兜底覆盖任何残余路径。
+export async function forceReloadLatest(doc = document) {
+  const button = doc.getElementById('forceRefresh');
+  if (button) { button.disabled = true; button.textContent = '校验中…'; }
+  const assets = [new URL('.', doc.baseURI).href];
+  for (const element of doc.querySelectorAll('link[rel="stylesheet"][href], script[src]')) {
+    assets.push(new URL(element.getAttribute('src') || element.getAttribute('href'), doc.baseURI).href);
+  }
+  await Promise.allSettled(assets.map(url => fetch(url, { cache: 'reload' })));
+  location.reload();
+}
