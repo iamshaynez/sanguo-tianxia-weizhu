@@ -753,8 +753,11 @@ button.ghost:hover { border-color: #b7a578; }
   .briefing-body { display: block; padding: 13px 1px; }
   .briefing-opponents { padding: 0 0 13px; border-right: 0; border-bottom: 1px solid #9d895d66; }
   .briefing-roster { display: flex; gap: 7px; margin-top: 10px; overflow-x: auto; }
-  .briefing-enemy { display: block; flex: 1 0 106px; min-height: 0; }
-  .briefing-enemy-art { height: 72px; min-height: 0; border-right: 0; border-bottom: 1px solid #76643f; }
+  /* 与谁争锋:单将时 flex-grow 把卡撑满整行(390px 下 300×72 扁条),方图 cover
+     后只露顶部约 24% 高,连面部都被裁掉(用户反馈)。卡片限宽 + 立绘正方盒,
+     高度随宽度给足,240×240 原图零裁剪;多将横排/横滑行为不变。 */
+  .briefing-enemy { display: block; flex: 1 0 106px; max-width: 156px; min-height: 0; }
+  .briefing-enemy-art { width: 100%; height: auto; aspect-ratio: 1 / 1; min-height: 0; border-right: 0; border-bottom: 1px solid #76643f; }
   .briefing-enemy > div:last-child { padding: 6px 7px; }
   .briefing-enemy b { font-size: 12px; }
   .briefing-enemy small { font-size: 8px; }
