@@ -16,6 +16,8 @@ import { initRuntimeInfo } from './runtime-info.js';
 import { watchRuntimeVersion, forceReloadLatest } from './auto-update.js';
 import { initFullscreen } from './fullscreen.js';
 import { loadChapterData } from './story-data/runtime.js';
+import { initPwa } from './pwa.js';
+import { createSaveTransfer } from './save-transfer.js';
 import {
   storyFor, mapSceneFor, introFor, outcomeFor, markSceneSeen, sceneSeen, choiceFor,
 } from './story-engine.js';
@@ -188,6 +190,15 @@ const onboarding = createOnboarding(P, {
   save: SC.saveProgress,
   onFinish: enterGame,
   force: PARAMS.get('tutorial') || '',
+});
+createSaveTransfer({
+  read: () => P,
+  onImported(imported) {
+    SC.saveProgress(imported);
+    for (const key of Object.keys(P)) delete P[key];
+    Object.assign(P, imported);
+    showCodex();
+  },
 });
 
 let marchBusy = false; // 亮相/战斗/事件期间锁住军令,防连点重入
@@ -625,3 +636,4 @@ $('replayIntroBtn').addEventListener('click', () => {
   onboarding.replay();
 });
 $('startBtn').disabled = false;
+initPwa();
