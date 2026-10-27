@@ -6,6 +6,12 @@
 <title>三国：天下为注 · 残卷英雄记</title>
 <meta name="description" content="三国古风德州扑克战役：翻开残卷，与群雄对局，以牌为刃，重写意难平。">
 <meta name="theme-color" content="#10130f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="天下为注">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 <link rel="canonical" href="https://san.xiaowenz.com/">
 <!-- 社交爬虫需要绝对 URL;分享图改版时递增文件名,避免各平台继续读取旧缓存。 -->
 <meta property="og:type" content="website">
@@ -74,6 +80,8 @@
     <p class="runinfo" id="codexProgress"></p>
     <div id="codexTools">
       <button id="annalsBtn" class="ghost">观 阵 录</button>
+      <button id="saveBtn" class="ghost">存 档</button>
+      <button id="pwaInstallBtn" class="ghost hidden" type="button">安装 App</button>
       <button id="replayIntroBtn" class="ghost">重 温 开 卷</button>
       <button id="apocBtn" class="ghost" style="display:none">残卷无终稿</button>
     </div>
@@ -276,6 +284,27 @@
     <div class="annals-heading"><div><p class="modal-kicker">识将 · 识牌</p><h3>观 阵 录</h3></div><span>见过,才有破绽可寻</span></div>
     <div id="annalsBox"></div>
     <button id="annalsClose">合 卷</button>
+  </div>
+</div>
+
+<!-- 存档备份:导出下载,导入先校验摘要再确认覆盖 -->
+<div id="saveModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="saveTitle">
+  <div class="modal-box save-box">
+    <p class="modal-kicker">残卷行囊</p>
+    <h3 id="saveTitle">存档备份</h3>
+    <p class="save-intro">导出可长期保存的 JSON 文件。导入会先展示摘要，确认后才覆盖当前浏览器里的进度。</p>
+    <div class="save-transfer-actions">
+      <button id="saveExport" type="button">导出当前存档</button>
+      <button id="saveImportChoose" class="ghost" type="button">选择导入文件</button>
+      <input id="saveImportInput" type="file" accept=".json,application/json" hidden>
+    </div>
+    <div id="saveImportPreview" class="save-import-preview hidden">
+      <p id="saveImportSummary"></p>
+      <p class="save-warning">确认后将覆盖当前进度；未结算的行军和牌局不包含在存档中。</p>
+      <button id="saveImportConfirm" type="button">覆盖并导入</button>
+    </div>
+    <p id="saveMessage" class="save-message" role="status" aria-live="polite"></p>
+    <button id="saveClose" class="ghost" type="button">合 卷</button>
   </div>
 </div>
 

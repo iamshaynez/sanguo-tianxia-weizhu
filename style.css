@@ -73,7 +73,7 @@ button.ghost:hover { border-color: #b7a578; }
 #scroll .screen-title { font-size: 31px; }
 #codexProgress { position: static; transform: none; white-space: nowrap; font-size: 13px; }
 #codexTools { display: flex; gap: 8px; }
-#annalsBtn, #apocBtn { padding: 10px 14px; font-size: 12px; }
+#codexTools button { padding: 10px 14px; font-size: 12px; }
 .runinfo { color: #aaa185; font-size: 13px; letter-spacing: .12em; }
 .runinfo b { color: var(--gold-light); font-size: 18px; }
 .runinfo .sep { margin: 0 12px; color: #625e4c; }
@@ -508,6 +508,19 @@ button.ghost:hover { border-color: #b7a578; }
 .annalTraits .trait-line b { font-size: 14px; }
 .annalTraits .trait-track { height: 2px; margin-top: 3px; }
 #annalsClose { display: block; margin: 20px auto 0; padding: 10px 30px; }
+
+/* ---------------- 存档备份与 PWA 安装 ---------------- */
+.save-box { width: min(540px, 92vw); }
+.save-intro { margin-top: 15px; color: #a9a184; font-size: 12px; line-height: 1.9; letter-spacing: .05em; }
+.save-transfer-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+.save-transfer-actions button { padding: 11px 12px; font-size: 13px; }
+.save-import-preview { margin-top: 18px; padding: 13px 15px; color: #c9bb96; background: #171b14; border: 1px solid #6b5b39; }
+#saveImportSummary { font-size: 13px; line-height: 1.8; }
+.save-warning { margin-top: 9px; color: #b08c72; font-size: 11px; line-height: 1.7; }
+#saveImportConfirm { margin-top: 12px; padding: 9px 18px; font-size: 12px; }
+.save-message { min-height: 1.7em; margin-top: 14px; color: #c8b88f; font-size: 12px; line-height: 1.7; }
+#saveClose { display: block; margin: 16px auto 0; padding: 8px 24px; font-size: 12px; }
+.pwa-notice { position: fixed; z-index: 95; right: 18px; bottom: 52px; max-width: min(420px, calc(100vw - 36px)); padding: 11px 15px; color: #e1d3b2; background: #1d1a12f2; border: 1px solid #a88d55; border-radius: 4px; box-shadow: 0 8px 28px #000a; font: 13px/1.7 var(--serif); letter-spacing: .06em; }
 
 .seat-card.is-selected { border-color: #e0bd73; box-shadow: 0 0 0 2px #c8a86833, 0 8px 24px #0006; }
 .opponent-seat.is-eliminated { opacity: .38; filter: grayscale(.85); }

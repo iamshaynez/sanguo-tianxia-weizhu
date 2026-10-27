@@ -11,25 +11,30 @@ export const SAVE_KEY = 'yxj_v1';
 export const TUTORIAL_VERSION = 1;
 
 // ---------------- 进度 ----------------
+export function normalizeProgress(p = {}) {
+  const record = value => value && typeof value === 'object' && !Array.isArray(value) ? value : {};
+  const pages = { ...record(p.pages) };
+  const annals = { ...record(p.annals) };
+  const endings = Array.isArray(p.endings) ? p.endings.filter(item => typeof item === 'string') : [];
+  const returning = Object.keys(pages).length > 0 || Object.keys(annals).length > 0 || endings.length > 0;
+  const tutorial = record(p.tutorial);
+  return {
+    version: 2,
+    pages, endings, annals,
+    flags: { ...record(p.flags) },
+    apocWins: Number.isFinite(p.apocWins) ? Math.max(0, p.apocWins) : 0,
+    story: normalizeStoryState(p.story),
+    tutorial: {
+      version: TUTORIAL_VERSION,
+      introDone: p.tutorial ? !!tutorial.introDone : returning,
+      steps: { ...record(tutorial.steps) },
+      skipped: !!tutorial.skipped,
+    },
+  };
+}
 export function loadProgress() {
-  try {
-    const p = JSON.parse(localStorage.getItem(SAVE_KEY) || '{}');
-    const returning = Object.keys(p.pages || {}).length > 0 || Object.keys(p.annals || {}).length > 0 || (p.endings || []).length > 0;
-    return {
-      version: 2,
-      pages: p.pages || {}, endings: p.endings || [], annals: p.annals || {}, flags: p.flags || {}, apocWins: p.apocWins || 0,
-      story: normalizeStoryState(p.story),
-      tutorial: {
-        version: TUTORIAL_VERSION,
-        introDone: p.tutorial ? !!p.tutorial.introDone : returning,
-        steps: p.tutorial?.steps || {},
-        skipped: !!p.tutorial?.skipped,
-      },
-    };
-  } catch {
-    return { version: 2, pages: {}, endings: [], annals: {}, flags: {}, apocWins: 0,
-      story: normalizeStoryState(), tutorial: { version: TUTORIAL_VERSION, introDone: false, steps: {}, skipped: false } };
-  }
+  try { return normalizeProgress(JSON.parse(localStorage.getItem(SAVE_KEY) || '{}')); }
+  catch { return normalizeProgress(); }
 }
 export function saveProgress(p) { localStorage.setItem(SAVE_KEY, JSON.stringify(p)); }
 

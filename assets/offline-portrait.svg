@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" role="img" aria-label="残卷离线占位图">
+  <rect width="240" height="240" fill="#172019"/>
+  <circle cx="181" cy="53" r="34" fill="#d2bd83" opacity=".16"/>
+  <path d="M0 173L43 119L75 154L115 99L158 155L193 119L240 165V240H0Z" fill="#273026" opacity=".7"/>
+  <path d="M0 195L57 148L101 183L151 139L197 181L240 151V240H0Z" fill="#10170f"/>
+  <rect x="67" y="57" width="106" height="116" rx="2" fill="#82352b" stroke="#bd684f" stroke-width="3"/>
+  <rect x="75" y="65" width="90" height="100" fill="none" stroke="#d2a178" stroke-width="1" opacity=".65"/>
+  <text x="120" y="137" text-anchor="middle" fill="#ead7ab" font-family="Kaiti SC,STKaiti,KaiTi,serif" font-size="60">残</text>
+  <text x="120" y="202" text-anchor="middle" fill="#a99b77" font-family="Songti SC,STSong,serif" font-size="18" letter-spacing="8">离线</text>
+  <rect x="5" y="5" width="230" height="230" fill="none" stroke="#8b754a" stroke-width="2" opacity=".65"/>
+</svg>

@@ -11,6 +11,7 @@
     "eval:ai": "node tests/ai-eval/run.mjs",
     "gen:preflop": "node scripts/generate-preflop-table.mjs",
     "gen:og": "node scripts/generate-og-card.mjs",
+    "gen:pwa": "node scripts/generate-pwa-assets.mjs",
     "test:e2e": "playwright test"
   },
   "keywords": [],
