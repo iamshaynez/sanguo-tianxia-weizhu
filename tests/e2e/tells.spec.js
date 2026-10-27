@@ -56,17 +56,27 @@ test.describe('破绽气泡与履历角标', () => {
   });
 
   test('真实牌局:吕布破绽出现时,台词来自词池且注解带签名动作或履历', async ({ page }) => {
-    test.setTimeout(150_000);
+    test.setTimeout(240_000);
     await enterLubuBattle(page);
     await installDriver(page, 'station');
+    // 意图泄露用 Math.random,牌局不可按种子复现:本局打完可能直接回行军图,
+    // 补一个自动续战循环(打完点下一个节点),并在页内等满 150 秒。
+    await page.evaluate(() => {
+      window.__reenter = setInterval(() => {
+        const battle = document.getElementById('battle');
+        if (!battle || battle.classList.contains('hidden')) {
+          const node = document.querySelector('#mapSvg .node.avail');
+          if (node) node.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+        }
+      }, 600);
+    });
     const pools = {
       famous: Object.values(TELL_LINE_POOLS.FAMOUS.lvbu).flat(),
-      intent: [...TELL_LINE_POOLS.FAMOUS.lvbu.bluffLeak, ...TELL_LINE_POOLS.FAMOUS.lvbu.trapLeak],
     };
     const seen = await page.evaluate(async ({ famous }) => {
       const bubble = document.querySelector('#oppChar .seat-bubble');
       let spoke = null;
-      const deadline = Date.now() + 60_000;
+      const deadline = Date.now() + 150_000;
       while (Date.now() < deadline) {
         const b = bubble?.querySelector('b')?.textContent || '';
         if (b && !bubble.classList.contains('hidden') && bubble.style.opacity !== '0') {
@@ -76,6 +86,7 @@ test.describe('破绽气泡与履历角标', () => {
       }
       return spoke;
     }, { famous: pools.famous });
+    await page.evaluate(() => clearInterval(window.__reenter));
     expect(seen).not.toBeNull();
     const tells = ['画戟横于膝上,指节发白', '赤兔不安地刨蹄', '识破', '指尖泄了密', '按兵太久'];
     expect(tells.some(t => seen.note.includes(t))).toBe(true);
