@@ -2,6 +2,7 @@
 // 背景:641-900px 宽度下魏蜀吴原为绝对定位,与标题/副标实测重叠;横屏手机
 // (高≤390)下开卷按钮曾整体出屏。此文件把两个教训钉进回归。
 import { test, expect } from '@playwright/test';
+import { waitAppReady } from './helpers.js';
 
 async function coverBoxes(page) {
   return page.evaluate(() => {
@@ -15,7 +16,7 @@ test.describe('封面响应式', () => {
     test(`宽 ${width}px:魏蜀吴与标题互不遮挡,开卷入屏`, async ({ page }) => {
       await page.setViewportSize({ width, height: 850 });
       await page.goto('/?fast=1&tutorial=0');
-      await page.waitForTimeout(600);
+      await waitAppReady(page);
       const b = await coverBoxes(page);
       expect(b.start.bottom).toBeLessThanOrEqual(850);
       if (b.kingdoms.shown) {
@@ -29,7 +30,7 @@ test.describe('封面响应式', () => {
   test('横屏手机(844×390):开卷按钮完整入屏且无横向溢出', async ({ page }) => {
     await page.setViewportSize({ width: 844, height: 390 });
     await page.goto('/?fast=1&tutorial=0');
-    await page.waitForTimeout(600);
+    await waitAppReady(page);
     const b = await coverBoxes(page);
     expect(b.start.bottom).toBeLessThanOrEqual(390);
     expect(b.start.top).toBeGreaterThanOrEqual(0);
@@ -40,7 +41,7 @@ test.describe('封面响应式', () => {
   test('窄屏手机(320×568):标题不溢出横向', async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 568 });
     await page.goto('/?fast=1&tutorial=0');
-    await page.waitForTimeout(600);
+    await waitAppReady(page);
     const overflow = await page.evaluate(() => document.scrollingElement.scrollWidth - innerWidth);
     expect(overflow).toBeLessThanOrEqual(2);
   });
@@ -53,7 +54,7 @@ test.describe('武将卡响应式', () => {
     test(`宽 ${w}px:武将卡立绘为正方完整展示(contain),卡片与入阵按钮入屏`, async ({ page }) => {
       await page.setViewportSize({ width: w, height: h });
       await page.goto('/?fast=1&chapter=hulao&stage=boss&omen=sow&tutorial=0');
-      await page.waitForTimeout(500);
+      await waitAppReady(page);
       await page.evaluate(() => document.getElementById('startBtn').click());
       await page.waitForFunction(() => !document.getElementById('page').classList.contains('hidden'));
       await page.evaluate(() => document.getElementById('openPage').click());
@@ -89,7 +90,7 @@ test.describe('武将卡响应式', () => {
   test('宽 859px(折叠屏横置):左右分栏立绘 contain 零裁剪', async ({ page }) => {
     await page.setViewportSize({ width: 859, height: 608 });
     await page.goto('/?fast=1&chapter=hulao&stage=boss&omen=sow&tutorial=0');
-    await page.waitForTimeout(500);
+    await waitAppReady(page);
     await page.evaluate(() => document.getElementById('startBtn').click());
     await page.waitForFunction(() => !document.getElementById('page').classList.contains('hidden'));
     await page.evaluate(() => document.getElementById('openPage').click());
@@ -117,7 +118,7 @@ test.describe('武将卡响应式', () => {
 test.describe('战书与谁争锋立绘', () => {
   async function openBriefing(page, chapter) {
     await page.goto(`/?fast=1&chapter=${chapter}&stage=boss&omen=sow&tutorial=0`);
-    await page.waitForTimeout(500);
+    await waitAppReady(page);
     await page.evaluate(() => document.getElementById('startBtn').click());
     await page.waitForFunction(() => !document.getElementById('page').classList.contains('hidden'));
     await page.evaluate(() => document.getElementById('openPage').click());
@@ -188,7 +189,7 @@ test.describe('页脚强制刷新', () => {
   // cache:'reload' 重验核心资源后整页重载——手机 Chrome/CF 边缘压旧对象时的手点兜底
   test('点击强制刷新后整页重载', async ({ page }) => {
     await page.goto('/?fast=1&tutorial=0');
-    await page.waitForTimeout(500);
+    await waitAppReady(page);
     await page.evaluate(() => { window.__frMarker = 1; });
     await page.locator('#forceRefresh').click();
     await page.waitForFunction(() => !window.__frMarker, null, { timeout: 15_000 });

@@ -1,11 +1,18 @@
 // tests/e2e/helpers.js —— E2E 公共动作(全部从用户视角驱动 DOM)
 import { expect } from '@playwright/test';
 
+// 动态引导完成:开卷按钮可用且首屏加载提示已消失
+export async function waitAppReady(page) {
+  await expect(page.locator('#startBtn')).toBeVisible();
+  await expect(page.locator('#startBtn')).toBeEnabled();
+  await expect(page.locator('#bootStatus')).toBeHidden();
+}
+
 // 开卷:带参数进入,点「开卷」。默认落到残卷目录;?chapter= 时落到题记页
 export async function newGame(page, params = '') {
   const withTutorialDefault = params.includes('tutorial=') ? params : `${params}${params ? '&' : ''}tutorial=0`;
   await page.goto('/?' + withTutorialDefault);
-  await expect(page.locator('#startBtn')).toBeVisible();
+  await waitAppReady(page);
   await page.click('#startBtn');
   await expect(page.locator('#scroll:not(.hidden), #page:not(.hidden)').first()).toBeVisible();
 }

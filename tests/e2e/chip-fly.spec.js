@@ -7,10 +7,11 @@
 // 则同步等于目标位。在页面内复刻 place() 序列即可确定性验证,不依赖
 // 牌局随机(意图泄露用 Math.random,赢法不可种子复现)。
 import { test, expect } from '@playwright/test';
+import { waitAppReady } from './helpers.js';
 
 test('筹码瞬移豁免生效:首帧即落目标位,且正常态保留飞行动画', async ({ page }) => {
   await page.goto('/?fast=1&chapter=hulao&tutorial=0');
-  await page.waitForTimeout(400);
+  await waitAppReady(page);
   await page.evaluate(() => document.getElementById('startBtn').click());
   await expect(page.locator('#page')).toBeVisible();
   await page.evaluate(() => document.getElementById('openPage').click());

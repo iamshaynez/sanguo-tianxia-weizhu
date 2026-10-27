@@ -35,6 +35,11 @@
       <div class="intro-points" id="introPoints"></div>
     </div>
     <button id="startBtn" disabled>开 卷<span>展开英雄记</span></button>
+    <div id="bootStatus" class="boot-status" data-state="loading" role="status" aria-live="polite" aria-atomic="true">
+      <span class="boot-track" aria-hidden="true"><i></i></span>
+      <p id="bootMessage">正在展开残卷…</p>
+      <button id="bootRetry" class="ghost hidden" type="button">重新加载</button>
+    </div>
     <button id="prologueSkip" class="intro-skip hidden">跳过背景，直接入卷</button>
     <p class="hint" id="introHint">盯住对手的手 —— 破绽比牌更值钱</p>
   </div>
@@ -53,6 +58,10 @@
     </div>
   </header>
   <div class="codex-legend"><span><i>○</i> 未读</span><span><i>原</i> 原卷已录</span><span><i>野</i> 野史已成</span><b>不必每页皆胜,败亦成章</b></div>
+  <div id="chapterLoadStatus" class="chapter-load-status hidden" data-state="loading" role="status" aria-live="polite" aria-atomic="true">
+    <span id="chapterLoadMessage"></span>
+    <button id="chapterLoadRetry" class="ghost hidden" type="button">重试</button>
+  </div>
   <div id="scrollList"></div>
 </div>
 
@@ -255,11 +264,54 @@
 <div id="errBox"></div>
 <footer id="appVersion" class="app-version" aria-label="应用版本与服务器启动时间">
   <span id="versionNumber">v…</span><span aria-hidden="true">·</span><time id="serverStartedAt">启动时间读取中…</time>
-  <button id="forceRefresh" class="force-refresh" type="button" title="跳过所有缓存,重新拉取最新程序文件并刷新页面">强制刷新</button>
+  <button id="fullscreenToggle" class="fullscreen-toggle" type="button" aria-label="进入全屏" aria-pressed="false" title="进入浏览器全屏">全 屏</button>
+  <button id="forceRefresh" class="force-refresh" type="button" title="重新校验当前页面与核心程序,并刷新页面">强制刷新</button>
 </footer>
-<!-- data-cfasync 必须在 src 之前:豁免 Cloudflare Rocket Loader——
-     它不支持 ES Module,会把 type="module" 改写成私有类型导致整站脚本失效
-     (版本页脚/自动更新全部不跑)。 -->
-<script type="module" data-cfasync="false" src="./src/main.js"></script>
+<!-- data-cfasync 豁免 Cloudflare Rocket Loader。引导脚本不依赖任何业务模块：
+     模块图下载期间提供状态,失败后由用户手动重试,不自动刷新打断页面。 -->
+<script id="appBootstrap" data-cfasync="false" data-app-entry="./src/main.js">
+(() => {
+  const status = document.getElementById('bootStatus');
+  const message = document.getElementById('bootMessage');
+  const retry = document.getElementById('bootRetry');
+  const entry = document.getElementById('appBootstrap').dataset.appEntry;
+  let settled = false;
+
+  const showRetry = show => retry.classList.toggle('hidden', !show);
+  const setMessage = (state, text, canRetry = false) => {
+    status.dataset.state = state;
+    message.textContent = text;
+    showRetry(canRetry);
+  };
+  const slowTimer = setTimeout(() => {
+    if (!settled && status.dataset.state === 'loading') {
+      setMessage('slow', '网络较慢，正在继续展开残卷…', true);
+    }
+  }, 8000);
+
+  retry.addEventListener('click', () => location.reload());
+  window.addEventListener('offline', () => {
+    if (!settled) setMessage('offline', '网络已断开，仍在尝试读取残卷；恢复后可重新加载。', true);
+  });
+  window.addEventListener('online', () => {
+    if (!settled && status.dataset.state === 'offline') {
+      setMessage('loading', '网络已恢复，正在继续展开残卷…');
+    }
+  });
+
+  import(entry).then(() => {
+    settled = true;
+    clearTimeout(slowTimer);
+    document.body.dataset.appReady = 'ready';
+    status.classList.add('hidden');
+    showRetry(false);
+  }).catch(error => {
+    settled = true;
+    clearTimeout(slowTimer);
+    setMessage('error', '残卷加载未完成，请检查网络后重试。', true);
+    console.error('应用模块加载失败', error);
+  });
+})();
+</script>
 </body>
 </html>
