@@ -231,6 +231,10 @@ button.ghost:hover { border-color: #b7a578; }
 .card { position: absolute; width: 56px; height: 80px; left: 0; top: 0; transition: transform .42s cubic-bezier(.25, .9, .3, 1.05), opacity .4s; pointer-events: auto; }
 .card.big { width: 76px; height: 108px; cursor: pointer; }
 .card.no-anim { transition: none !important; }
+/* 筹码飞行同享瞬移豁免:place(from, true) 靠它把筹码即刻放到起点。
+   此前只豁免了 .card——筹码的"瞬移"变成 0.42s 过渡,每个筹码都从
+   牌桌左上角(对手角落)起跳横扫桌面,赢家结算看起来像筹码推给对面。 */
+.stack.no-anim { transition: none !important; }
 .card .inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .5s cubic-bezier(.3, .9, .35, 1.1); }
 .card.flipped .inner { transform: rotateY(180deg); }
 .card .face { position: absolute; inset: 0; border-radius: 4px; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 3px 10px #0007; overflow: hidden; }
