@@ -192,6 +192,15 @@ button.ghost:hover { border-color: #b7a578; }
 .seat-card.boss .seat-rank { background: #9a382c; }
 .seat-turn { position: absolute; z-index: 2; left: 50%; bottom: 8px; transform: translateX(-50%); padding: 3px 7px; color: #2b2418; background: #ddbd76; font: 9px var(--serif); letter-spacing: .18em; white-space: nowrap; opacity: 0; transition: opacity .25s; }
 .seat-card.is-active .seat-turn { opacity: 1; }
+.seat-roles { position: absolute; z-index: 8; top: -16px; right: 2px; display: flex; gap: 4px; pointer-events: none; }
+.seat-role { padding: 2px 5px; color: #d8cbaa; background: #171b15f2; border: 1px solid #75633f; box-shadow: 0 2px 8px #0006; font: 10px/1.4 var(--song); letter-spacing: .03em; white-space: nowrap; }
+.seat-role[data-role="button"] { color: #2b2418; background: #ddbd76; border-color: #ecd39a; }
+.seat-role[data-role="sb"] { color: #c8dccf; border-color: #607b68; }
+.seat-role[data-role="bb"] { color: #edc0a5; border-color: #9f5840; }
+.seat-fold-status { position: absolute; z-index: 7; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-5deg); padding: 5px 10px; color: #d2c7ae; background: #151812ed; border: 1px solid #81745e; box-shadow: 0 4px 16px #0008; font: 15px var(--serif); letter-spacing: .16em; white-space: nowrap; }
+.seat-card.is-folded { border-color: #55584d; filter: grayscale(.72); }
+.seat-card.is-folded .seat-art, .seat-card.is-folded .seat-body { opacity: .48; }
+.seat-card.is-folded .seat-turn { opacity: 0; }
 .seat-body { display: flex; flex-direction: column; min-width: 0; padding: 16px 14px 12px; }
 .seat-name { display: block; overflow: hidden; padding-right: 24px; color: #ead9b3; font: 22px var(--serif); letter-spacing: .1em; text-overflow: ellipsis; white-space: nowrap; }
 .seat-stack { display: flex; align-items: baseline; gap: 9px; margin-top: 12px; }
@@ -219,7 +228,7 @@ button.ghost:hover { border-color: #b7a578; }
 .seat-record { position: absolute; z-index: 6; left: 5px; bottom: 5px; padding: 1px 5px; color: #d8c793; background: #161910e6; border: 1px solid #6e5c33; border-radius: 2px; font: 9px/1.5 var(--song); letter-spacing: .04em; white-space: nowrap; pointer-events: none; }
 .seat-record[data-lies="1"], .seat-record[data-lies="2"] { color: #cfae87; border-color: #8a6a3a; }
 .seat-record[data-lies]:not([data-lies="0"]):not([data-lies="1"]):not([data-lies="2"]) { color: #e59a86; border-color: #96432f; }
-#oppChar.is-multi { width: min(1160px, calc(100vw - 280px)); max-width: calc(100vw - 32px); justify-content: safe center; overflow-x: auto; padding: 2px 2px 8px; scroll-snap-type: x proximity; scrollbar-color: #766446 #161812; scrollbar-width: thin; }
+#oppChar.is-multi { width: min(1160px, calc(100vw - 280px)); max-width: calc(100vw - 32px); justify-content: safe center; overflow-x: auto; margin-top: -16px; padding: 18px 2px 8px; scroll-snap-type: x proximity; scrollbar-color: #766446 #161812; scrollbar-width: thin; }
 #oppChar.is-multi .opponent-seat { flex: 1 0 180px; max-width: 220px; scroll-snap-align: center; }
 #oppChar.is-multi .seat-card { grid-template-columns: 76px minmax(0, 1fr); height: 118px; }
 #oppChar.is-multi .seat-body { padding: 12px 9px 9px; }
@@ -234,6 +243,9 @@ button.ghost:hover { border-color: #b7a578; }
 #oppChar.is-multi .seat-bubble b { font-size: 11px; line-height: 1.4; }
 #oppChar.is-multi .seat-bubble i { margin-top: 3px; padding-top: 3px; font-size: 9px; }
 #oppChar.is-multi ~ #codex { top: 210px; width: 190px; }
+#oppChar.is-multi .seat-roles { right: 0; gap: 2px; }
+#oppChar.is-multi .seat-role { padding: 1px 3px; font-size: 9px; }
+#oppChar.is-multi .seat-fold-status { padding: 3px 6px; font-size: 12px; }
 @keyframes seatRage { 25% { transform: translate(1px, -1px); } 75% { transform: translate(-1px, 1px); } }
 #table { position: absolute; left: 50%; top: 58%; transform: translate(-50%, -50%); width: min(86vw, 960px); aspect-ratio: 2.45; border-radius: 50%; background: radial-gradient(ellipse at 50% 40%, #3d4b36, #29382a 48%, #1a281e 80%, #111c15); box-shadow: 0 0 0 13px #2a1d13, 0 0 0 15px #927344, 0 0 0 20px #15110c, 0 30px 60px #000a, inset 0 0 90px #0007; z-index: 2; }
 #table::before { content: ""; position: absolute; inset: 7.5%; border: 2px solid #ad915257; border-radius: 50%; pointer-events: none; }
@@ -278,6 +290,9 @@ button.ghost:hover { border-color: #b7a578; }
 .chip.pot { background: repeating-linear-gradient(90deg, transparent 0 6px, #c39b4d 6px 9px), linear-gradient(#e8dcc0, #c8b88e); }
 #scene > .plate, #scene > #potLabel, #scene > #blindLabel, #scene > #handLabel, #scene > #luckLabel, #scene > #seedLabel, #scene > #playerCardsHint { position: absolute; z-index: 12; }
 .plate { padding: 9px 16px; background: #171b15dd; border: 1px solid #75633f; border-left: 3px solid #923b2f; box-shadow: 0 6px 18px #0004; font-size: 14px; letter-spacing: .1em; }
+#youPlate .seat-roles { top: -18px; right: auto; left: 0; }
+#youPlate.is-folded .pname, #youPlate.is-folded .pstack { opacity: .24; }
+.player-fold-status { position: absolute; z-index: 4; inset: 0; display: flex; align-items: center; justify-content: center; color: #d2c7ae; background: #171b15ed; font-size: 11px; letter-spacing: .12em; white-space: nowrap; }
 .plate .pname { color: #d1c5a7; margin-right: 14px; } .plate .pstack { color: #e0c17b; font-size: 17px; }
 #youPlate { bottom: 22%; left: 22px; transform: none; }
 #potLabel { top: 44%; left: 50%; transform: translateX(-50%); color: #c5b68c; font-size: 13px; letter-spacing: .25em; }
@@ -619,7 +634,7 @@ button.ghost:hover { border-color: #b7a578; }
   .seat-card { grid-template-columns: 100px minmax(0, 1fr); height: 126px; }
   .seat-body { padding: 13px 12px 10px; }
   .seat-name { font-size: 20px; }
-  #oppChar.is-multi { width: calc(100vw - 16px); max-width: none; padding: 2px 2px 7px; }
+  #oppChar.is-multi { width: calc(100vw - 16px); max-width: none; padding: 18px 2px 7px; }
   #oppChar.is-multi .opponent-seat { flex: 0 0 124px; }
   #oppChar.is-multi .seat-card { display: flex; flex-direction: column; height: 126px; }
   #oppChar.is-multi .seat-art { flex: 0 0 62px; border-right: 0; border-bottom: 1px solid #71603e; }
@@ -641,7 +656,7 @@ button.ghost:hover { border-color: #b7a578; }
   #youPlate .pname { margin-right: 8px; }
   #youPlate .pstack { font-size: 14px; }
   #blindLabel, #luckLabel { top: 12px; padding: 6px; font-size: 9px; }
-  #blindLabel { left: 8px; } #luckLabel { top: 12px; right: 8px; }
+  #blindLabel { left: 8px; letter-spacing: .03em; white-space: nowrap; } #luckLabel { top: 12px; right: 8px; }
   #potLabel { top: 40%; }
   #codex { top: 240px; left: 8px; width: 150px; padding: 8px; transition: opacity .25s; }
   #oppChar.is-multi ~ #codex { top: 240px; width: 150px; }

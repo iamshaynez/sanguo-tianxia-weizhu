@@ -104,7 +104,7 @@ export async function enterBattle(page, type = 'battle') {
   await confirmBriefing(page);
   await expect(page.locator('#battle')).toBeVisible();
   await expect(page.locator('#oppName')).not.toBeEmpty();
-  await expect(page.locator('#blindLabel')).toContainText('盲注');
+  await expect(page.locator('#blindLabel')).toContainText('小盲');
 }
 
 // 连点行军图直到战斗出现(中间可能隔着事件节点,driver 会自动处理弹窗)
@@ -117,7 +117,7 @@ export async function reachBattle(page, type = 'battle') {
     await page.waitForTimeout(600);
     if (await page.locator('#battle').isVisible()) {
       await expect(page.locator('#oppName')).not.toBeEmpty();
-      await expect(page.locator('#blindLabel')).toContainText('盲注');
+      await expect(page.locator('#blindLabel')).toContainText('小盲');
       return;
     }
   }

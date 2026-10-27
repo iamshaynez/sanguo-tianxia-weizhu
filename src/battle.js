@@ -3,7 +3,7 @@ import * as PK from './poker.js';
 import * as T from './table.js';
 import { makePersona } from './persona.js';
 import { wait } from './fx2d.js';
-import { POSE } from './character.js';
+import { POSE, renderSeatRoles } from './character.js';
 import { tellCategory, tellLine, INTENT_NOTES } from './tell-lines.js';
 import { battleBeatsFor, speakerName } from './story-engine.js';
 
@@ -13,6 +13,7 @@ const SLOTS = {
   pot: { x: 50, y: 38 },
   betP: { x: 50, y: 66 }, stackP: { x: 87, y: 74 },
   deck: { x: 10, y: 42 },
+  muck: { x: 10, y: 66 },
 };
 const LINES = {
   deal: ['又是一手。', '洗牌、发牌,阵前再见。'], bet: ['下注。', '跟上,或者让开。'],
@@ -197,6 +198,27 @@ export function startBattle(opts) {
       button.style.top = '17%';
     }
   }
+  function refreshFoldState(seat) {
+    const folded = !!G.H?.seats.includes(seat) && seat.folded;
+    if (seat.isHero) {
+      $('youPlate').classList.toggle('is-folded', folded);
+      $('playerFoldStatus').classList.toggle('hidden', !folded);
+    } else {
+      oppChar.setFolded(folded, seat.id);
+    }
+  }
+  function refreshSeatStates() {
+    for (const seat of G.seats) {
+      const pos = G.H.seats.findIndex(item => item.id === seat.id);
+      const roles = [];
+      if (pos === G.H.button) roles.push({ kind: 'button', label: '庄' });
+      if (pos === G.H.sb) roles.push({ kind: 'sb', label: `小盲 ${G.blinds[0]}` });
+      if (pos === G.H.bb) roles.push({ kind: 'bb', label: `大盲 ${G.blinds[1]}` });
+      if (seat.isHero) renderSeatRoles($('playerRoles'), roles);
+      else oppChar.setRoles(roles, seat.id);
+      refreshFoldState(seat);
+    }
+  }
   refreshPiles();
 
   async function flyChips(fromSlot, toSlot, tone) {
@@ -229,6 +251,20 @@ export function startBattle(opts) {
     place(el, slot);
     await wait(0.4);
     return el;
+  }
+  async function muckCards(seat) {
+    const cards = seat.hole.map(id => ({ id, el: G.meshByCard.get(id) })).filter(item => item.el);
+    for (const { el } of cards) {
+      el.classList.remove('flipped', 'hl', 'peek');
+      el.style.pointerEvents = 'none';
+      place(el, SLOTS.muck);
+      el.style.opacity = 0;
+    }
+    await wait(0.42);
+    for (const { id, el } of cards) {
+      G.meshByCard.delete(id);
+      el.remove();
+    }
   }
   const nextCard = () => G.deck[G.deckPtr++];
   async function clearTable() {
@@ -394,6 +430,10 @@ export function startBattle(opts) {
     } else if (result.allin) {
       say(seat, 'allin', 0.7);
     }
+    if (result.folded) {
+      refreshFoldState(seat);
+      await muckCards(seat);
+    }
     if (result.amount > 0) audio.chip();
     if (result.allin) await dramatic(true);
     refreshPiles();
@@ -425,7 +465,7 @@ export function startBattle(opts) {
     burnEl.className = 'burnCard';
     cardLayer.appendChild(burnEl);
     place(burnEl, SLOTS.deck, true);
-    await wait(0.02); place(burnEl, { x: 10, y: 66 }); burnEl.style.opacity = 0;
+    await wait(0.02); place(burnEl, SLOTS.muck); burnEl.style.opacity = 0;
     setTimeout(() => burnEl.remove(), 460);
     const count = street === 1 ? 3 : 1;
     for (let i = 0; i < count; i++) {
@@ -557,7 +597,7 @@ export function startBattle(opts) {
     const level = Math.min(6, Math.floor((G.handNum - 1) / escalateEvery));
     const [SB, BB] = BL(level);
     G.blinds = [SB, BB];
-    ui.setBlind(`盲注 ${SB} / ${BB} · 第 ${G.handNum} 手${opponents.length > 1 ? ` · ${opponents.length + 1}人桌` : ''}`);
+    ui.setBlind(`小盲 ${SB} · 大盲 ${BB} · 第 ${G.handNum} 手${opponents.length > 1 ? ` · ${opponents.length + 1}人桌` : ''}`);
     if (level !== G.blindLv) {
       G.blindLv = level;
       ui.banner('盲注升级', `${SB} / ${BB}`);
@@ -570,6 +610,7 @@ export function startBattle(opts) {
     }
     G.H = T.createHand(G.seats, { button: G.button, blinds: [SB, BB] });
     G.H.board = G.board;
+    refreshSeatStates();
     refreshDealer();
     refreshPiles();
     const storyShown = showStoryBeat();
@@ -645,6 +686,9 @@ export function startBattle(opts) {
     ui.enableTaunt(false);
     ui.vignette(false);
     ui.setPlayerName?.();
+    renderSeatRoles($('playerRoles'), []);
+    $('youPlate').classList.remove('is-folded');
+    $('playerFoldStatus').classList.add('hidden');
     ui.setTauntLabel?.();
     if (dramaticOn) audio.heartStop();
   }
