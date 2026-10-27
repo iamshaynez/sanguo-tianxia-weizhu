@@ -3,7 +3,7 @@ FROM node:24-alpine AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
-COPY index.html style.css ./
+COPY index.html style.css manifest.webmanifest sw.js ./
 COPY src/ src/
 COPY assets/ assets/
 COPY scripts/build.mjs scripts/build.mjs
