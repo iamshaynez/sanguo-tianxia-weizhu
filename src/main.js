@@ -14,6 +14,8 @@ import { createOnboarding } from './onboarding.js';
 import { createBattleBriefing } from './briefing.js';
 import { initRuntimeInfo } from './runtime-info.js';
 import { watchRuntimeVersion, forceReloadLatest } from './auto-update.js';
+import { initFullscreen } from './fullscreen.js';
+import { loadChapterData } from './story-data/runtime.js';
 import {
   storyFor, mapSceneFor, introFor, outcomeFor, markSceneSeen, sceneSeen, choiceFor,
 } from './story-engine.js';
@@ -26,6 +28,7 @@ startBackdrop($('backdrop'));
 initRuntimeInfo();
 watchRuntimeVersion();
 document.getElementById('forceRefresh')?.addEventListener('click', () => { void forceReloadLatest(); });
+initFullscreen($('fullscreenToggle'));
 const audio = new AudioFX();
 const oppChar = createOpponent($('oppChar'));
 
@@ -249,11 +252,13 @@ function applyStoryEffects(effects = {}, run = R, progress = P) {
 
 function showCodex() {
   R = null;
+  $('chapterLoadStatus').classList.add('hidden');
+  $('chapterLoadRetry').classList.add('hidden');
   show('scroll');
   SC.renderCodex(P, openChapterPage);
 }
 
-function openChapterPage(chapter) {
+function renderChapterPage(chapter) {
   const ov = SC.causalFor(P, chapter); // 页间因果:前页改写,此页题记随变
   const alt = chapter.id === 'wuzhangyuan' && SC.isYeshi(SC.pageState(P, 'wuzhangyuan'));
   const begin = (asZhuge) => async () => {
@@ -273,6 +278,37 @@ function openChapterPage(chapter) {
   });
   onboarding.tip('page');
 }
+
+let chapterLoading = false;
+let requestedChapter = null;
+async function openChapterPage(chapter) {
+  if (chapterLoading) return;
+  chapterLoading = true;
+  requestedChapter = chapter;
+  if ($('scroll').classList.contains('hidden')) showCodex();
+  const status = $('chapterLoadStatus');
+  status.dataset.state = 'loading';
+  status.classList.remove('hidden');
+  $('chapterLoadMessage').textContent = `正在下载《${chapter.name}》剧本与战书…`;
+  $('chapterLoadRetry').classList.add('hidden');
+  $('scrollList').inert = true;
+  try {
+    await loadChapterData(chapter);
+    status.classList.add('hidden');
+    renderChapterPage(chapter);
+  } catch (error) {
+    status.dataset.state = 'error';
+    $('chapterLoadMessage').textContent = `《${chapter.name}》下载未完成，请检查网络后重试。`;
+    $('chapterLoadRetry').classList.remove('hidden');
+    console.error('章节资源加载失败', error);
+  } finally {
+    $('scrollList').inert = false;
+    chapterLoading = false;
+  }
+}
+$('chapterLoadRetry').addEventListener('click', () => {
+  if (requestedChapter) void openChapterPage(requestedChapter);
+});
 
 function startMarch(chapter, omenFx, { asZhuge = false } = {}) {
   const story = storyFor(chapter);

@@ -48,6 +48,14 @@ button.ghost:hover { border-color: #b7a578; }
 #startBtn span { display: block; margin-top: 4px; color: #c9a887; font: 10px var(--song); letter-spacing: .28em; }
 #startBtn:hover:not(:disabled) { background: #873a2f; border-color: #d49a6d; }
 #intro .hint { margin-top: 24px; color: #777662; font-size: 11px; letter-spacing: .18em; }
+.boot-status { width: min(360px, 100%); margin-top: 14px; color: #aaa185; font-size: 11px; letter-spacing: .08em; }
+.boot-track { display: block; height: 2px; overflow: hidden; background: #3d3d2e; }
+.boot-track i { display: block; width: 42%; height: 100%; background: linear-gradient(90deg, transparent, #c8a868, transparent); animation: boot-progress 1.5s ease-in-out infinite; }
+.boot-status p { margin-top: 8px; line-height: 1.7; }
+.boot-status[data-state="error"], .boot-status[data-state="offline"] { color: #d0a184; }
+.boot-status[data-state="error"] .boot-track, .boot-status[data-state="offline"] .boot-track { display: none; }
+#bootRetry { margin-top: 9px; padding: 6px 13px; font-size: 11px; }
+@keyframes boot-progress { from { transform: translateX(-110%); } to { transform: translateX(340%); } }
 .prologue-transition { opacity: 1; clip-path: inset(0); transform: translateY(0); transition: opacity var(--prologue-enter, 620ms) ease, clip-path var(--prologue-enter, 620ms) cubic-bezier(.22, .75, .2, 1), transform var(--prologue-enter, 620ms) cubic-bezier(.22, .75, .2, 1); }
 .prologue-transition.is-leaving { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(-8px); transition-duration: var(--prologue-leave, 160ms); }
 .prologue-transition.is-entering { opacity: 0; clip-path: inset(0 0 100% 0); transform: translateY(14px); transition: none; }
@@ -73,6 +81,11 @@ button.ghost:hover { border-color: #b7a578; }
 .codex-legend span { white-space: nowrap; }
 .codex-legend i { margin-right: 5px; color: #b49b6a; font-style: normal; }
 .codex-legend b { margin-left: auto; color: #8b8066; font-weight: 400; }
+.chapter-load-status { display: flex; align-items: center; gap: 14px; width: min(1180px, 100%); margin: 14px auto 0; padding: 10px 13px; color: #c6b78e; background: #1c1f17; border-left: 2px solid #a88d55; font-size: 12px; line-height: 1.6; }
+.chapter-load-status[data-state="loading"]::before { content: ""; flex: 0 0 14px; width: 14px; height: 14px; border: 1px solid #5c553e; border-top-color: #d1b576; border-radius: 50%; animation: chapter-loading .8s linear infinite; }
+.chapter-load-status[data-state="error"] { color: #d8a58b; border-left-color: #a95643; }
+#chapterLoadRetry { flex: 0 0 auto; margin-left: auto; padding: 5px 14px; font-size: 11px; }
+@keyframes chapter-loading { to { transform: rotate(360deg); } }
 #scrollList { display: flex; flex-direction: column; gap: 14px; width: min(1180px, 100%); margin: 22px auto 0; }
 .scrollGroup { position: relative; display: grid; grid-template-columns: 170px 1fr; min-height: 92px; background: #1c1f17ed; border: 1px solid #4e4935; box-shadow: 0 8px 24px #0002; }
 .scrollGroup::before, .scrollGroup::after { content: ""; position: absolute; left: -5px; right: -5px; height: 4px; background: #5d5136; border: 1px solid #85734c; }
@@ -453,10 +466,11 @@ button.ghost:hover { border-color: #b7a578; }
 .app-version { position: fixed; z-index: 85; left: 50%; bottom: max(2px, env(safe-area-inset-bottom)); display: flex; flex-wrap: wrap; justify-content: center; gap: 2px 6px; max-width: calc(100vw - 16px); padding: 2px 7px; color: #8c8b78; background: #10130fbf; border-radius: 2px; font: 9px/1.4 var(--song); letter-spacing: .03em; text-align: center; transform: translateX(-50%); pointer-events: none; }
 .app-version span, .app-version time { white-space: nowrap; }
 .app-version[data-status="missing"] { color: #a58c68; }
-/* 强制刷新:手点兜底,重验核心资源后整页重载(见 auto-update.js forceReloadLatest) */
-.app-version .force-refresh { pointer-events: auto; padding: 1px 7px; color: #c9b88a; background: #2a2717; border: 1px solid #6b5c33; border-radius: 3px; font: inherit; letter-spacing: .06em; cursor: pointer; }
-.app-version .force-refresh:active { transform: translateY(1px); }
-.app-version .force-refresh[disabled] { opacity: .55; cursor: default; }
+/* 页脚动作:手点重验核心资源,以及浏览器全屏进出。 */
+.app-version .force-refresh, .app-version .fullscreen-toggle { pointer-events: auto; padding: 1px 7px; color: #c9b88a; background: #2a2717; border: 1px solid #6b5c33; border-radius: 3px; font: inherit; letter-spacing: .06em; cursor: pointer; }
+.app-version .force-refresh:active, .app-version .fullscreen-toggle:active { transform: translateY(1px); }
+.app-version .force-refresh[disabled], .app-version .fullscreen-toggle[disabled] { opacity: .55; cursor: default; }
+.fullscreen-status { position: fixed; z-index: 90; left: 18px; bottom: 52px; max-width: min(420px, calc(100vw - 36px)); padding: 10px 14px; color: #ded2b5; background: #1d1a12ee; border: 1px solid #8c7548; border-radius: 4px; box-shadow: 0 8px 28px #000a; font: 12px/1.7 var(--serif); letter-spacing: .08em; }
 
 /* ---------------- 观阵录:复用武将卡语言 ---------------- */
 .annalsbox { width: min(980px, 94vw); max-height: 88vh; text-align: left; }

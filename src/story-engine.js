@@ -1,5 +1,5 @@
 // story-engine.js —— 无 DOM 的剧本解析：条件、场景、入场与牌局拍点
-import { STORY_DATA } from './story-data/index.js';
+import { STORY_DATA } from './story-data/runtime.js';
 import { GENERALS } from './generals.js';
 
 export const SPEAKERS = {

@@ -1,6 +1,6 @@
 // smoke.spec.js —— 冒烟:用户第一眼看到的所有东西
 import { test, expect } from '@playwright/test';
-import { newGame, openChapter, enterBattle, loc } from './helpers.js';
+import { newGame, openChapter, enterBattle, loc, waitAppReady } from './helpers.js';
 
 test.describe('冒烟:界面骨架', () => {
   test('标题页呈现品牌与入口', async ({ page }) => {
@@ -8,6 +8,7 @@ test.describe('冒烟:界面骨架', () => {
     await expect(page.locator('#intro h1')).toHaveText('三国：天下为注');
     await expect(page.locator('#intro .story')).toContainText('史书只写了沙场');
     await expect(page.locator('#startBtn')).toBeVisible();
+    await waitAppReady(page);
     // 背景画布已渲染(非空白)
     const painted = await page.evaluate(() => {
       const c = document.getElementById('backdrop');

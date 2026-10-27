@@ -1,12 +1,12 @@
 // tells.spec.js —— 破绽系统的台面呈现:两层气泡、立绘履历角标、真实牌局接线
 import { test, expect } from '@playwright/test';
-import { installDriver } from './helpers.js';
+import { installDriver, waitAppReady } from './helpers.js';
 import { TELL_LINE_POOLS } from '../../src/tell-lines.js';
 
 // ?stage=boss 直达虎牢关底:题记→天时→行军图→关底战书→吕布亮相→应战入桌
 async function enterLubuBattle(page) {
   await page.goto('/?fast=1&seed=TELL1&chapter=hulao&stage=boss&omen=sow&tutorial=0');
-  await page.waitForTimeout(400);
+  await waitAppReady(page);
   await page.evaluate(() => document.getElementById('startBtn').click());
   await expect(page.locator('#page')).toBeVisible();
   await page.evaluate(() => document.getElementById('openPage').click());
