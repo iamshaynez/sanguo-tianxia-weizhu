@@ -10,6 +10,7 @@
     "lint:content": "node tests/content/chapters.lint.mjs && node tests/content/tell-lines.lint.mjs",
     "eval:ai": "node tests/ai-eval/run.mjs",
     "gen:preflop": "node scripts/generate-preflop-table.mjs",
+    "gen:og": "node scripts/generate-og-card.mjs",
     "test:e2e": "playwright test"
   },
   "keywords": [],
