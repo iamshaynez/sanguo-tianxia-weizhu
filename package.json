@@ -4,7 +4,8 @@
   "description": "《三国：天下为注》——三国古风德州扑克战役网页游戏",
   "main": "index.js",
   "scripts": {
-    "start": "node scripts/stamp-runtime.mjs && python3 -m http.server 8619",
+    "start": "node scripts/stamp-runtime.mjs && node scripts/build.mjs --dev && python3 -m http.server 8619 --directory dist",
+    "build": "node scripts/build.mjs",
     "test": "npm run lint:content && npm run eval:ai && npm run test:e2e",
     "lint:content": "node tests/content/chapters.lint.mjs && node tests/content/tell-lines.lint.mjs",
     "eval:ai": "node tests/ai-eval/run.mjs",
@@ -16,6 +17,7 @@
   "license": "ISC",
   "type": "module",
   "devDependencies": {
-    "@playwright/test": "^1.64.1"
+    "@playwright/test": "^1.64.1",
+    "esbuild": "^0.28.2"
   }
 }

@@ -4,7 +4,7 @@ import { traitGrid } from './general-card.js';
 import { portraitImage } from './portrait.js';
 import { normalizeStoryState, coldOpenFor, storyFor, speakerName, outcomeVariant } from './story-engine.js';
 import { chapterEncounters } from './encounters.js';
-import { briefingFor } from './story-data/briefings.js';
+import { briefingFor } from './story-data/runtime.js';
 
 const $ = id => document.getElementById(id);
 export const SAVE_KEY = 'yxj_v1';

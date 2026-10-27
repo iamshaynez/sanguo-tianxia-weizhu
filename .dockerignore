@@ -3,6 +3,9 @@
 .github
 .dockerignore
 node_modules
+dist
+scripts/*
+!scripts/build.mjs
 test-results
 playwright-report
 gui-test-screenshots
@@ -11,6 +14,5 @@ archive-3d
 .video_agent
 .zcode
 tests
-scripts
 out
 *.log

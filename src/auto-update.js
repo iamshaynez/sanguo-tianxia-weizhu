@@ -47,6 +47,8 @@ export async function forceReloadLatest(doc = document) {
   const button = doc.getElementById('forceRefresh');
   if (button) { button.disabled = true; button.textContent = '校验中…'; }
   const assets = [new URL('.', doc.baseURI).href];
+  const bootstrap = doc.querySelector('[data-app-entry]');
+  if (bootstrap) assets.push(new URL(bootstrap.getAttribute('data-app-entry'), doc.baseURI).href);
   for (const element of doc.querySelectorAll('link[rel="stylesheet"][href], script[src]')) {
     assets.push(new URL(element.getAttribute('src') || element.getAttribute('href'), doc.baseURI).href);
   }
