@@ -104,7 +104,7 @@ test.describe('冒烟:界面骨架', () => {
     // 双方筹码与盲注(遭遇战:对方 450,大盲后 430;夺气天时起手士气 -1)
     await expect(page.locator('#youStack')).toHaveText('990');
     await expect(page.locator('#oppStack')).toHaveText('430');
-    await expect(page.locator('#blindLabel')).toHaveText('盲注 10 / 20 · 第 1 手');
+    await expect(page.locator('#blindLabel')).toHaveText('小盲 10 · 大盲 20 · 第 1 手');
     await expect(page.locator('#potNum')).toHaveText('30');
     await expect(loc.tiltDotsOn(page)).toHaveCount(1);
     // 种子与验牌入口
