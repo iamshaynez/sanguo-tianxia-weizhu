@@ -285,8 +285,10 @@ export function renderAnnals(p, { generals, chapters, describeTraits, traitsOf }
     const a = p.annals[gid];
     const appearances = chapters.filter(c => chapterEncounters(c).some(encounter => encounter.cfg.gen === gid)).map(c => c.name).join(' · ');
     const bands = describeTraits(traitsOf(gid)).map(b => `${b.trait}<b>${b.label}</b>`).join(' ');
-    const tellLine = ['strong', 'weak'].filter(k => a.tells?.[k]?.n > 0)
-      .map(k => `「${g.tells[k]}」 见过${a.tells[k].n}次,识破${a.tells[k].hit}次`).join('<br>');
+    // 破绽履历四类:牌力签名(strong/weak,文案在武将档案)+ 意图(bluff/trap,恒真泄露)
+    const TELL_LABELS = { strong: g.tells.strong, weak: g.tells.weak, bluff: '诈唬之意', trap: '埋伏之意' };
+    const tellLine = Object.keys(TELL_LABELS).filter(k => a.tells?.[k]?.n > 0)
+      .map(k => `「${TELL_LABELS[k]}」 见过${a.tells[k].n}次,识破${a.tells[k].hit}次`).join('<br>');
     const card = document.createElement('div');
     card.className = 'annalCard';
     card.dataset.gen = gid;
