@@ -178,7 +178,7 @@ test.describe('盲注与战斗终结', () => {
     await enterBattle(page);
     await installDriver(page, 'cautious');
     // 大军资稳健局确保观察到第 5 手;随后切全压流验证战斗终结
-    await expect(page.locator('#blindLabel')).toContainText('15 / 30', { timeout: 150_000 });
+    await expect(page.locator('#blindLabel')).toContainText('小盲 15 · 大盲 30', { timeout: 150_000 });
     await page.evaluate(() => { window.__drive = 'maniac'; });
     await waitBattleEnd(page);
     await stopDriver(page);

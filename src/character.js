@@ -12,6 +12,19 @@ const POSE_TEXT = {
   [POSE.THINKING]: '思量中',
 };
 
+export function renderSeatRoles(mount, roles = []) {
+  mount.replaceChildren();
+  mount.classList.toggle('hidden', !roles.length);
+  mount.setAttribute('aria-label', roles.length ? roles.map(role => role.label).join(' · ') : '无席位角色');
+  for (const role of roles) {
+    const chip = document.createElement('span');
+    chip.className = 'seat-role';
+    chip.dataset.role = role.kind;
+    chip.textContent = role.label;
+    mount.appendChild(chip);
+  }
+}
+
 export function createOpponent(mount) {
   const seats = new Map();
   let primaryId = 'opponent';
@@ -40,6 +53,8 @@ export function createOpponent(mount) {
           <span class="seat-rank">敌</span>
           <span class="seat-turn">行动</span>
         </div>
+        <span class="seat-roles hidden" aria-label="席位角色"></span>
+        <span class="seat-fold-status" hidden>已弃牌</span>
         <div class="seat-body">
           <div class="seat-heading">
             <span class="seat-name"${index === 0 ? ' id="oppName"' : ''}></span>
@@ -92,6 +107,10 @@ export function createOpponent(mount) {
       seat.el.classList.toggle('is-eliminated', !!player.eliminated);
       seat.el.querySelector('.seat-rank').textContent = player.eliminated ? '出' : (seat.card.classList.contains('boss') ? '关' : '敌');
     }
+    if (player.folded !== undefined) {
+      seat.card.classList.toggle('is-folded', !!player.folded);
+      seat.card.querySelector('.seat-fold-status').hidden = !player.folded;
+    }
     if (player.selected !== undefined) seat.card.classList.toggle('is-selected', !!player.selected);
   }
 
@@ -140,6 +159,8 @@ export function createOpponent(mount) {
     setBoss(boss, id = primaryId) { updateSeat(getSeat(id).el.dataset.seatId, { boss }); },
     setTilted(on, id = primaryId) { getSeat(id).card.classList.toggle('tilted', !!on); },
     setEliminated(on, id = primaryId) { updateSeat(id, { eliminated: !!on }); },
+    setFolded(on, id = primaryId) { updateSeat(id, { folded: !!on }); },
+    setRoles(roles, id = primaryId) { renderSeatRoles(getSeat(id).card.querySelector('.seat-roles'), roles); },
     setSelected(on, id = primaryId) { updateSeat(id, { selected: !!on }); },
     setTell(text, id = primaryId) {
       const seat = getSeat(id);

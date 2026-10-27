@@ -73,7 +73,7 @@ test.describe('战前展卷仪式', () => {
     await expect(page.locator('#bossIntro')).toHaveClass(/show/);
     await page.click('#introSkip');
     await expect(page.locator('#battle')).toBeVisible();
-    await expect(page.locator('#blindLabel')).toContainText('盲注');
+    await expect(page.locator('#blindLabel')).toContainText('小盲');
     expect(external).toEqual([]);
     await expect(page.locator('#errBox')).toBeEmpty();
   });
