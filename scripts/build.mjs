@@ -13,6 +13,17 @@ const dev = process.argv.includes('--dev');
 await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
 
+const workerResult = build({
+  absWorkingDir: root,
+  entryPoints: ['src/odds-worker.js'],
+  outfile: 'dist/assets/odds-worker.js',
+  bundle: true,
+  format: 'esm',
+  target: 'es2020',
+  minify: true,
+  charset: 'utf8',
+});
+
 const result = await build({
   absWorkingDir: root,
   entryPoints: { main: 'src/main.js', style: 'style.css' },
@@ -27,6 +38,7 @@ const result = await build({
   charset: 'utf8',
   metafile: true,
 });
+await workerResult;
 
 function builtFile(entryPoint) {
   const found = Object.entries(result.metafile.outputs).find(([, meta]) => meta.entryPoint === entryPoint);
@@ -36,6 +48,7 @@ function builtFile(entryPoint) {
 
 const mainFile = builtFile('src/main.js');
 const styleFile = builtFile('style.css');
+const oddsWorkerFile = 'assets/odds-worker.js';
 let html = await readFile(path.join(root, 'index.html'), 'utf8');
 const replacements = [
   ['href="./style.css"', `href="./${styleFile}"`],
@@ -52,9 +65,9 @@ await cp(path.join(root, 'manifest.webmanifest'), path.join(dist, 'manifest.webm
 const chunkFiles = Object.keys(result.metafile.outputs)
   .filter(file => file.includes('/chunks/') && file.endsWith('.js'))
   .map(file => path.relative('dist', file).split(path.sep).join('/'));
-const buildAssets = [mainFile, styleFile, ...chunkFiles].map(file => `/${file}`);
+const buildAssets = [mainFile, styleFile, oddsWorkerFile, ...chunkFiles].map(file => `/${file}`);
 const fingerprintedFiles = [
-  mainFile, styleFile, ...chunkFiles, 'manifest.webmanifest', 'assets/offline-portrait.svg',
+  mainFile, styleFile, oddsWorkerFile, ...chunkFiles, 'manifest.webmanifest', 'assets/offline-portrait.svg',
   'assets/icons/icon-192.png', 'assets/icons/icon-512.png',
   'assets/icons/icon-maskable-512.png', 'assets/icons/apple-touch-icon.png',
 ];
@@ -84,7 +97,7 @@ if (dev) {
 }
 
 const sizes = [];
-for (const file of [mainFile, styleFile]) {
+for (const file of [mainFile, styleFile, oddsWorkerFile]) {
   const content = await readFile(path.join(dist, file));
   sizes.push(`${file} ${(content.length / 1024).toFixed(1)} KiB / gzip ${(gzipSync(content).length / 1024).toFixed(1)} KiB`);
 }

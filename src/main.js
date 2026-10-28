@@ -18,6 +18,7 @@ import { initFullscreen } from './fullscreen.js';
 import { loadChapterData } from './story-data/runtime.js';
 import { initPwa } from './pwa.js';
 import { createSaveTransfer } from './save-transfer.js';
+import { createOddsPanel } from './odds-panel.js';
 import {
   storyFor, mapSceneFor, introFor, outcomeFor, markSceneSeen, sceneSeen, choiceFor,
 } from './story-engine.js';
@@ -33,6 +34,7 @@ document.getElementById('forceRefresh')?.addEventListener('click', () => { void 
 initFullscreen($('fullscreenToggle'));
 const audio = new AudioFX();
 const oppChar = createOpponent($('oppChar'));
+const oddsPanel = createOddsPanel();
 
 // ---------------- HUD 适配层 ----------------
 const actions = $('actions'), raiseOpts = $('raiseOpts');
@@ -186,6 +188,39 @@ function opponentSkin(cfg, gen, boss) {
 let P = SC.loadProgress();     // 补全度(持久)
 SC.saveProgress(P);            // 原地完成旧存档迁移,不回写任何剧情结果
 let R = null;                  // 当前回的运行态
+
+function syncSettings() { $('equityAssist').checked = !!P.settings.equityAssist; }
+function notifyOddsSetting() {
+  window.dispatchEvent(new CustomEvent('odds-setting-change', { detail: { enabled: !!P.settings.equityAssist } }));
+}
+function closeSettings() {
+  $('settingsModal').classList.add('hidden');
+  $('settingsToggle').focus({ preventScroll: true });
+}
+syncSettings();
+$('settingsToggle').addEventListener('click', () => {
+  syncSettings();
+  $('settingsModal').classList.remove('hidden');
+  $('equityAssist').focus({ preventScroll: true });
+});
+$('settingsClose').addEventListener('click', closeSettings);
+$('equityAssist').addEventListener('change', event => {
+  P.settings.equityAssist = event.currentTarget.checked;
+  SC.saveProgress(P);
+  notifyOddsSetting();
+});
+document.addEventListener('keydown', event => {
+  if ($('settingsModal').classList.contains('hidden')) return;
+  if (event.key === 'Escape') { closeSettings(); return; }
+  if (event.key !== 'Tab') return;
+  const first = $('equityAssist'), last = $('settingsClose');
+  if (event.shiftKey && (document.activeElement === first || !$('settingsModal').contains(document.activeElement))) {
+    event.preventDefault(); last.focus();
+  } else if (!event.shiftKey && (document.activeElement === last || !$('settingsModal').contains(document.activeElement))) {
+    event.preventDefault(); first.focus();
+  }
+});
+
 const onboarding = createOnboarding(P, {
   save: SC.saveProgress,
   onFinish: enterGame,
@@ -197,6 +232,8 @@ createSaveTransfer({
     SC.saveProgress(imported);
     for (const key of Object.keys(P)) delete P[key];
     Object.assign(P, imported);
+    syncSettings();
+    notifyOddsSetting();
     showCodex();
   },
 });
@@ -420,6 +457,8 @@ async function enterBattle(node, cfg, { stack, roundInfo = '', noOverride = fals
       seed: battleSeed,
       story: boss ? { chapter: R.chapter, P, R, round } : null,
       keenEye: R.keenEye,
+      odds: oddsPanel,
+      oddsEnabled: () => !!P.settings.equityAssist,
       ui, audio, oppChar,
       // 破绩履历聚合(识破命中/总数/诓骗次数)上牌桌:立绘角标与气泡注解共用。
       getTellRecord(genId) {

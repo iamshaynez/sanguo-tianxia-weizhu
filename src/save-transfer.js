@@ -8,9 +8,9 @@ const isRecord = value => value && typeof value === 'object' && !Array.isArray(v
 
 function assertProgress(value) {
   if (!isRecord(value)) throw new Error(INVALID_MESSAGE);
-  const known = ['version', 'pages', 'endings', 'annals', 'flags', 'apocWins', 'story', 'tutorial'];
+  const known = ['version', 'pages', 'endings', 'annals', 'flags', 'apocWins', 'settings', 'story', 'tutorial'];
   if (!known.some(key => Object.hasOwn(value, key))) throw new Error(INVALID_MESSAGE);
-  for (const key of ['pages', 'annals', 'flags', 'story', 'tutorial']) {
+  for (const key of ['pages', 'annals', 'flags', 'settings', 'story', 'tutorial']) {
     if (value[key] !== undefined && !isRecord(value[key])) throw new Error(INVALID_MESSAGE);
   }
   if (value.endings !== undefined && !Array.isArray(value.endings)) throw new Error(INVALID_MESSAGE);

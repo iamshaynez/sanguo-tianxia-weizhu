@@ -6,6 +6,7 @@ import { wait } from './fx2d.js';
 import { POSE, renderSeatRoles } from './character.js';
 import { tellCategory, tellLine, INTENT_NOTES } from './tell-lines.js';
 import { battleBeatsFor, speakerName } from './story-engine.js';
+import { createOddsCalculator } from './odds-client.js';
 
 const $ = id => document.getElementById(id);
 const SLOTS = {
@@ -56,7 +57,7 @@ export function startBattle(opts) {
   const {
     playerStack = 1000, oppStack = 1000, blinds0 = [10, 20], escalateEvery = 4,
     boss = false, oppName = '无名敌将', rule = {}, oppMorale0 = 0, general = null,
-    ui, audio, oppChar, onEnd,
+    ui, audio, oppChar, onEnd, odds, oddsEnabled = () => false,
   } = opts;
   const table = $('table'), cardLayer = $('cardLayer'), scene = $('scene');
   const single = {
@@ -87,6 +88,8 @@ export function startBattle(opts) {
     over: false, taunted: false, spectate: false, selected: opponents[0].id,
     meshByCard: new Map(), boardEls: [], seed: opts.seed, keenEye: !!opts.keenEye,
   };
+  const oddsCalculator = createOddsCalculator();
+  let oddsRevision = 0;
   const BL = level => {
     const m = Math.pow(1.5, level);
     return [Math.round(blinds0[0] * m / 5) * 5, Math.round(blinds0[1] * m / 5) * 5];
@@ -186,6 +189,33 @@ export function startBattle(opts) {
     ui.setPot(G.H ? T.potTotal(G.H.seats) : 0);
     ui.setTilt(tiltOf(opponents[0]));
   }
+  function clearOdds() {
+    oddsRevision++;
+    oddsCalculator.cancel();
+    odds?.clear();
+  }
+  function refreshOdds() {
+    const revision = ++oddsRevision;
+    if (!oddsEnabled() || !G.H || hero.folded || hero.hole.length !== 2
+      || ![0, 3, 4, 5].includes(G.board.length) || T.liveSeats(G.H.seats).length < 2) {
+      oddsCalculator.cancel();
+      odds?.clear();
+      return;
+    }
+    const opponentsLeft = G.H.seats.filter(seat => !seat.isHero && !seat.folded).length;
+    const hole = [...hero.hole], board = [...G.board];
+    odds?.pending();
+    oddsCalculator.analyze({ hole, board, opponents: opponentsLeft }).then(result => {
+      if (revision === oddsRevision) odds?.render(result);
+    }).catch(error => {
+      if (error.name === 'AbortError' || revision !== oddsRevision) return;
+      console.warn('局势分析暂时不可用', error);
+      odds?.error();
+    });
+  }
+  const onOddsSettingChange = () => refreshOdds();
+  addEventListener('odds-setting-change', onOddsSettingChange);
+
   function refreshDealer() {
     const seat = G.H?.seats[G.H.button];
     if (!seat) return;
@@ -433,6 +463,7 @@ export function startBattle(opts) {
     if (result.folded) {
       refreshFoldState(seat);
       await muckCards(seat);
+      refreshOdds();
     }
     if (result.amount > 0) audio.chip();
     if (result.allin) await dramatic(true);
@@ -460,6 +491,7 @@ export function startBattle(opts) {
   }
 
   async function dealStreet(street) {
+    clearOdds();
     audio.card(); nextCard();
     const burnEl = document.createElement('div');
     burnEl.className = 'burnCard';
@@ -476,6 +508,7 @@ export function startBattle(opts) {
       await wait(0.12);
     }
     ui.setHand(PK.madeName(hero.hole, G.board));
+    refreshOdds();
   }
 
   function bumpMorale(seat, amount) {
@@ -589,6 +622,7 @@ export function startBattle(opts) {
   }
 
   async function playHand() {
+    clearOdds();
     G.handNum++;
     G.taunted = false; G.spectate = false;
     ui.enableTaunt(true);
@@ -628,6 +662,7 @@ export function startBattle(opts) {
       await dealCard(seat.hole[1], seatSlot(seat, 'hole', 1), seat.isHero, seat.isHero, seat.id);
     }
     ui.setHand(PK.madeName(hero.hole, []));
+    refreshOdds();
     for (const seat of opponents) if (!seat.folded) applyTell(seat, 0, rng);
     await bettingRound(0, rng);
     for (const street of [1, 2, 3]) {
@@ -640,6 +675,7 @@ export function startBattle(opts) {
   }
 
   async function finishHand() {
+    clearOdds();
     if (T.liveSeats(G.H.seats).length === 1) await resolveFold();
     else await showdown();
     await dramatic(false);
@@ -678,6 +714,8 @@ export function startBattle(opts) {
   cardLayer.addEventListener('pointerdown', onPeek);
 
   function cleanup() {
+    clearOdds();
+    removeEventListener('odds-setting-change', onOddsSettingChange);
     removeEventListener('resize', relayout);
     $('oppChar').removeEventListener('seatselect', onSeatSelect);
     cardLayer.removeEventListener('pointerdown', onPeek);
