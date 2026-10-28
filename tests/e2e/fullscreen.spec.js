@@ -38,7 +38,7 @@ test.describe('浏览器全屏', () => {
     test(`宽 ${width}px:全屏与刷新按钮都在页脚可视范围内`, async ({ page }) => {
       await page.setViewportSize({ width, height: 844 });
       await page.goto('/');
-      for (const selector of ['#fullscreenToggle', '#forceRefresh']) {
+      for (const selector of ['#fullscreenToggle', '#settingsToggle', '#forceRefresh']) {
         const box = await page.locator(selector).boundingBox();
         expect(box.x).toBeGreaterThanOrEqual(0);
         expect(box.x + box.width).toBeLessThanOrEqual(width);

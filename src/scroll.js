@@ -23,6 +23,7 @@ export function normalizeProgress(p = {}) {
     pages, endings, annals,
     flags: { ...record(p.flags) },
     apocWins: Number.isFinite(p.apocWins) ? Math.max(0, p.apocWins) : 0,
+    settings: { equityAssist: !!record(p.settings).equityAssist },
     story: normalizeStoryState(p.story),
     tutorial: {
       version: TUTORIAL_VERSION,
