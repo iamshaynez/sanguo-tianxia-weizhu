@@ -216,6 +216,32 @@
     <div id="seedLabel">种子 <b id="seedVal">—</b> <a id="verifyBtn">验牌</a></div>
     <div id="playerCardsHint" class="hidden">点击手牌可拿起看</div>
 
+    <aside id="oddsPanel" class="hidden" data-state="idle" aria-label="局势分析">
+      <div class="odds-panel-heading"><h3>局 势</h3><span id="oddsStatus">等待手牌</span></div>
+      <div class="odds-primary" aria-live="polite" aria-atomic="true">
+        <div class="odds-win-block"><span>胜率</span><strong id="oddsWin">—</strong></div>
+        <div class="odds-submetrics">
+          <span>平分 <b id="oddsTie">—</b></span>
+          <span id="oddsShareWrap">期望份额 <b id="oddsShare">—</b></span>
+        </div>
+      </div>
+      <div id="oddsDrawPreview" class="odds-draw-preview-list"></div>
+      <details id="oddsDetails">
+        <summary><span>听牌与终局</span><small aria-hidden="true">＋</small></summary>
+        <div class="odds-details-body">
+          <section>
+            <h4>成牌路径 <small>河牌终局</small></h4>
+            <div id="oddsDraws" class="odds-draw-list"></div>
+          </section>
+          <section class="odds-distribution-section">
+            <h4>终局牌型 <small id="oddsDistributionMethod"></small></h4>
+            <div id="oddsDistribution" class="odds-dist-grid"></div>
+          </section>
+          <p class="odds-note">胜率按对手暗牌等可能模拟；outs 是下一张可形成该最终牌型的补牌。只使用你的明牌、公共牌与未弃牌对手数。</p>
+        </div>
+      </details>
+    </aside>
+
     <div id="actions" class="hidden">
       <button data-act="fold">弃牌</button>
       <button data-act="check">过牌</button>
@@ -308,6 +334,20 @@
   </div>
 </div>
 
+<!-- 对局设置 -->
+<div id="settingsModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+  <div class="modal-box settings-box">
+    <p class="modal-kicker">帐中偏好</p>
+    <h3 id="settingsTitle">设 置</h3>
+    <label class="setting-row" for="equityAssist">
+      <span><b>局势分析</b><small>胜率 · 听牌 outs · 终局牌型概率</small></span>
+      <input id="equityAssist" type="checkbox" role="switch" aria-describedby="equityAssistNote">
+    </label>
+    <p id="equityAssistNote" class="settings-note">开启后显示在牌桌右侧。只根据你的手牌、公共牌和未弃牌对手数计算，不读取对手暗牌或未来牌序；设置会随存档保存。</p>
+    <button id="settingsClose" class="ghost" type="button">合 卷</button>
+  </div>
+</div>
+
 <aside id="coachmark" class="coachmark hidden" aria-live="polite">
   <p class="coach-kicker">残卷初解</p><h3 id="coachTitle"></h3><p id="coachText"></p>
   <div><button id="coachClose">知道了</button><button id="coachNever" class="ghost">不再提示</button></div>
@@ -317,6 +357,7 @@
 <footer id="appVersion" class="app-version" aria-label="应用版本与服务器启动时间">
   <span id="versionNumber">v…</span><span aria-hidden="true">·</span><time id="serverStartedAt">启动时间读取中…</time>
   <button id="fullscreenToggle" class="fullscreen-toggle" type="button" aria-label="进入全屏" aria-pressed="false" title="进入浏览器全屏">全 屏</button>
+  <button id="settingsToggle" class="settings-toggle" type="button" title="对局设置">设 置</button>
   <button id="forceRefresh" class="force-refresh" type="button" title="重新校验当前页面与核心程序,并刷新页面">强制刷新</button>
 </footer>
 <!-- data-cfasync 豁免 Cloudflare Rocket Loader。引导脚本不依赖任何业务模块：
