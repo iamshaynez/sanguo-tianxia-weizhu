@@ -574,16 +574,23 @@ export function startBattle(opts) {
       if (!seat.isHero) for (const id of seat.hole) G.meshByCard.get(id)?.classList.add('flipped');
     }
     audio.card();
-    await wait(0.7);
+    await wait(1.05); // 亮牌先看清,再盖章
     const evaluations = {}, scores = {};
     for (const seat of live) {
       evaluations[seat.id] = PK.evaluate7([...seat.hole, ...G.board]);
       scores[seat.id] = evaluations[seat.id].score;
-      if (!seat.isHero) codexFromShowdown(seat, evaluations[seat.id].name);
+      if (!seat.isHero) {
+        codexFromShowdown(seat, evaluations[seat.id].name);
+        oppChar.setShowdown(evaluations[seat.id].name, '', seat.id);
+      }
     }
     await wait(0.5);
     const settled = T.settleHand(G.H, scores);
     const winners = [...new Set(settled.pots.flatMap(pot => pot.winners))];
+    // 判印定谳:赢家鎏金,输家沉墨
+    for (const seat of live) {
+      if (!seat.isHero) oppChar.setShowdown(evaluations[seat.id].name, winners.includes(seat.id) ? 'win' : 'lose', seat.id);
+    }
     for (const id of winners) {
       for (const card of evaluations[id]?.best5 || []) G.meshByCard.get(card)?.classList.add('hl');
     }
@@ -599,14 +606,15 @@ export function startBattle(opts) {
     } else {
       const summary = winners.map(id => {
         const seat = G.H.seats.find(item => item.id === id);
-        return `${seat.isHero ? '你' : seat.name} +${settled.awards[id]}`;
+        const hand = evaluations[id]?.name;
+        return `${seat.isHero ? '你' : seat.name}${hand ? `·${hand}` : ''} +${settled.awards[id]}`;
       }).join(' · ');
       ui.banner('群英摊牌', summary);
       if (settled.awards.player > 0) audio.win();
     }
     await awardPots(settled);
     updateMorale();
-    await wait(0.7);
+    await wait(1.8); // 判印与战报停足,筹码归位后牌才离桌
   }
 
   function showStoryBeat() {
@@ -647,6 +655,7 @@ export function startBattle(opts) {
     for (const seat of G.seats) {
       seat.hole = []; seat.slowplayed = false; seat.bluffLine = false; seat.tell = null; seat.tellLog = []; seat.tellIntentUsed = false;
     }
+    for (const seat of opponents) oppChar.clearShowdown(seat.id);
     G.H = T.createHand(G.seats, { button: G.button, blinds: [SB, BB] });
     G.H.board = G.board;
     refreshSeatStates();
@@ -725,7 +734,7 @@ export function startBattle(opts) {
     $('oppChar').removeEventListener('seatselect', onSeatSelect);
     cardLayer.removeEventListener('pointerdown', onPeek);
     table.querySelectorAll('[data-dynamic-pile]').forEach(el => el.remove());
-    for (const seat of opponents) oppChar.setTilted(false, seat.id);
+    for (const seat of opponents) { oppChar.setTilted(false, seat.id); oppChar.clearShowdown(seat.id); }
     ui.enableTaunt(false);
     ui.vignette(false);
     ui.setPlayerName?.();

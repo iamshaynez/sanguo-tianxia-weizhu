@@ -586,6 +586,12 @@ button.ghost:hover { border-color: #b7a578; }
 .pwa-notice { position: fixed; z-index: 95; right: 18px; bottom: 52px; max-width: min(420px, calc(100vw - 36px)); padding: 11px 15px; color: #e1d3b2; background: #1d1a12f2; border: 1px solid #a88d55; border-radius: 4px; box-shadow: 0 8px 28px #000a; font: 13px/1.7 var(--serif); letter-spacing: .06em; }
 
 .seat-card.is-selected { border-color: #e0bd73; box-shadow: 0 0 0 2px #c8a86833, 0 8px 24px #0006; }
+/* 摊牌判印:亮牌后压在立绘上的牌型章,输赢以色泽分野 */
+.seat-showdown { position: absolute; top: 40%; left: 50%; z-index: 5; padding: 3px 10px; color: #f3e2b3; background: #10130fdd; border: 1px solid #c8a868; box-shadow: 0 4px 14px #000a; font: 15px var(--serif); letter-spacing: .14em; white-space: nowrap; transform: translate(-50%, -50%) rotate(-4deg); animation: showdownStamp .32s cubic-bezier(.2, 1.5, .4, 1) both; }
+.seat-showdown[data-tone='win'] { color: #ffe9b0; border-color: #f0cf7e; background: #6d3a26ee; text-shadow: 0 0 12px #f0cf7e66; }
+.seat-showdown[data-tone='lose'] { color: #8a8574; border-color: #565040; background: #10130fbb; filter: grayscale(.4); }
+@keyframes showdownStamp { from { opacity: 0; transform: translate(-50%, -50%) rotate(-4deg) scale(1.55); } to { opacity: 1; transform: translate(-50%, -50%) rotate(-4deg) scale(1); } }
+#oppChar.is-multi .seat-showdown { padding: 2px 7px; font-size: 12px; letter-spacing: .08em; }
 .opponent-seat.is-eliminated { opacity: .38; filter: grayscale(.85); }
 .opponent-seat.is-eliminated .seat-card { cursor: default; }
 
