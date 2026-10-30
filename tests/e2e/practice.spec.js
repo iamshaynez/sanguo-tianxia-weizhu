@@ -1,32 +1,39 @@
-// tests/e2e/practice.spec.js —— 野战练习场:选关、战书、等筹码对局与多人布局
+// tests/e2e/practice.spec.js —— 野战练习场:入口、点兵台、战书、等筹码对局与多人布局
 import { test, expect } from '@playwright/test';
 import { newGame, installDriver, stopDriver, confirmBriefing } from './helpers.js';
 
-async function openPractice(page) {
-  await page.click('#practiceBtn');
-  await expect(page.locator('#practiceModal')).toBeVisible();
-  // 2-8 人桌七档分组齐备,33 处练习场全部陈列
-  await expect(page.locator('#practiceList .practice-group')).toHaveCount(7);
-  await expect(page.locator('#practiceList .practice-arena')).toHaveCount(33);
+// 目录入口与正史并列;进入后落在全屏点兵台
+async function enterPracticeScreen(page) {
+  await expect(page.locator('#scrollList .practiceGate')).toBeVisible();
+  await page.click('[data-practice-gate]');
+  await expect(page.locator('#practice')).toBeVisible();
+  await expect(page.locator('#scroll')).toBeHidden();
 }
 
 test.describe('野战练习场', () => {
-  test('目录分档陈列,胜绩空态为「○」', async ({ page }) => {
+  test('目录与正史并列,点兵台分档陈列 33 处战场', async ({ page }) => {
     await newGame(page, 'fast=1');
-    await openPractice(page);
-    const groups = page.locator('#practiceList .practice-group');
+    // 正史四卷 + 最后一页不受影响;野卷门枢独占一区
+    await expect(page.locator('.scrollGroup')).toHaveCount(5);
+    await expect(page.locator('.practiceGate-btn .portrait-img')).toHaveCount(4);
+    await enterPracticeScreen(page);
+    await expect(page.locator('#practiceList .practice-tier')).toHaveCount(7);
+    await expect(page.locator('#practiceList .practice-arena')).toHaveCount(33);
+    const tiers = page.locator('#practiceList .practice-tier');
     for (let i = 0; i < 7; i++) {
-      await expect(groups.nth(i)).toHaveAttribute('data-size', String(i + 2));
+      await expect(tiers.nth(i)).toHaveAttribute('data-size', String(i + 2));
     }
-    await expect(page.locator('.pa-mark').first()).toHaveText('○');
-    await expect(page.locator('.pa-rec')).toHaveCount(0);
-    await page.click('#practiceClose');
-    await expect(page.locator('#practiceModal')).toBeHidden();
+    // 空态:未战,战绩栏为「○ / 未 战」
+    await expect(page.locator('.pa-side').first()).toContainText('未 战');
+    await expect(page.locator('#practiceStats')).toContainText('尚无战录');
+    await page.click('#practiceBack');
+    await expect(page.locator('#scroll')).toBeVisible();
+    await expect(page.locator('#practice')).toBeHidden();
   });
 
   test('8 人桌:战书等额军资、七席对局、筹码守恒', async ({ page }) => {
     await newGame(page, 'fast=1&seed=PRAC801');
-    await openPractice(page);
+    await enterPracticeScreen(page);
     await page.locator('[data-arena="taodong"]').click();
     await expect(page.locator('#battleBriefing')).toHaveClass(/show/);
     await expect(page.locator('#briefingKicker')).toContainText('野战战书');
@@ -55,22 +62,22 @@ test.describe('野战练习场', () => {
     await expect(page.locator('#errBox')).toBeEmpty();
   });
 
-  test('返回选关不打仗:战书取消回到练习场列表', async ({ page }) => {
+  test('战书返回:取消入席回到点兵台', async ({ page }) => {
     await newGame(page, 'fast=1');
-    await openPractice(page);
+    await enterPracticeScreen(page);
     await page.locator('[data-arena="wenjiu"]').click();
     await expect(page.locator('#battleBriefing')).toHaveClass(/show/);
     await expect(page.locator('#briefingReason')).not.toBeEmpty();
     await expect(page.locator('#briefingTitle')).toContainText('汜水关');
     await page.click('#briefingBack');
-    await expect(page.locator('#practiceModal')).toBeVisible();
+    await expect(page.locator('#practice')).toBeVisible();
     await expect(page.locator('#battleBriefing')).toBeHidden();
   });
 
   test('窄屏 8 人桌:席位可横滑,行动按钮不越界', async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 });
     await newGame(page, 'fast=1&seed=PRAC802');
-    await page.click('#practiceBtn');
+    await enterPracticeScreen(page);
     await page.locator('[data-arena="jiangdong"]').click();
     await confirmBriefing(page);
     await expect(page.locator('#battle')).toBeVisible();
@@ -90,18 +97,23 @@ test.describe('野战练习场', () => {
     await expect(page.locator('#errBox')).toBeEmpty();
   });
 
-  test('1v1 速局打完:练习簿与列传入账,回到选关列表', async ({ page }) => {
+  test('1v1 速局打完:练习簿与列传入账,回到点兵台', async ({ page }) => {
     await newGame(page, 'fast=1&seed=PRAC101');
-    await openPractice(page);
+    await enterPracticeScreen(page);
     await page.locator('[data-arena="wenjiu"]').click();
     await confirmBriefing(page);
     // 温酒局:军资 600,盲注 15/30 —— 全压流很快分出胜负
     await installDriver(page, 'maniac');
-    await page.waitForFunction(() => !document.getElementById('practiceModal').classList.contains('hidden')
-      && document.querySelector('#practiceList .practice-arena[data-arena="wenjiu"] .pa-rec'), { timeout: 300_000 });
+    await page.waitForFunction(() => {
+      const practice = document.getElementById('practice');
+      if (!practice || practice.classList.contains('hidden')) return false;
+      const side = document.querySelector('#practiceList .practice-arena[data-arena="wenjiu"] .pa-side');
+      return !!side && side.textContent.includes('胜');
+    }, { timeout: 300_000 });
     await stopDriver(page);
-    const record = page.locator('[data-arena="wenjiu"] .pa-rec');
-    await expect(record).toContainText(/1 胜|0 胜/);
+    const side = page.locator('[data-arena="wenjiu"] .pa-side');
+    await expect(side).toContainText(/胜/);
+    await expect(page.locator('#practiceStats')).toContainText('已战 1 场');
     const save = await page.evaluate(() => JSON.parse(localStorage.getItem('yxj_v1') || '{}'));
     expect(save.practice.wenjiu.seen).toBe(1);
     expect(Object.keys(save.annals)).toContain('huaxiong');

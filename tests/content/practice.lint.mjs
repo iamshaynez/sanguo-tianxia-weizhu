@@ -15,10 +15,15 @@ const LIMIT = {
 
 check(PRACTICE_ARENAS.length >= 30, `练习场数量不足 30(当前 ${PRACTICE_ARENAS.length})`);
 
-// 桌型覆盖:1-8 人(2-8 人桌)每种至少一场
+// 桌型覆盖:1-8 人(2-8 人桌)每种至少一场;分档白描齐全
 const sizes = new Set(PRACTICE_ARENAS.map(a => a.size));
 for (let s = 2; s <= 8; s++) check(sizes.has(s), `缺 ${s} 人桌练习场`);
 check(PRACTICE_TIERS.length === 7, '桌型分档必须为 2..8 七档');
+for (const tier of PRACTICE_TIERS) {
+  check(Number.isInteger(tier.size) && tier.size >= 2 && tier.size <= 8, `分档 size 越界:${tier.size}`);
+  check(len(tier.label) >= 2 && len(tier.label) <= 10, `分档「${tier.label}」名长度异常`);
+  check(len(tier.desc) >= 8 && len(tier.desc) <= 30, `分档「${tier.label}」白描缺失或超长(${len(tier.desc)})`);
+}
 
 const ids = new Set();
 let totalOpponents = 0;
