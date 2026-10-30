@@ -18,9 +18,16 @@ export function normalizeProgress(p = {}) {
   const endings = Array.isArray(p.endings) ? p.endings.filter(item => typeof item === 'string') : [];
   const returning = Object.keys(pages).length > 0 || Object.keys(annals).length > 0 || endings.length > 0;
   const tutorial = record(p.tutorial);
+  // 野战练习场练习簿:每个练习场 { seen, won }
+  const practice = {};
+  for (const [id, raw] of Object.entries(record(p.practice))) {
+    const seen = Math.max(0, Math.floor(Number(raw?.seen) || 0));
+    if (!seen) continue;
+    practice[id] = { seen, won: Math.min(seen, Math.max(0, Math.floor(Number(raw?.won) || 0))) };
+  }
   return {
     version: 2,
-    pages, endings, annals,
+    pages, endings, annals, practice,
     flags: { ...record(p.flags) },
     apocWins: Number.isFinite(p.apocWins) ? Math.max(0, p.apocWins) : 0,
     settings: { equityAssist: !!record(p.settings).equityAssist },

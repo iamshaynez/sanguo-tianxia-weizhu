@@ -7,3 +7,4 @@ export { STORY_DATA } from '../../src/story-data/index.js';
 export { BRIEFINGS } from '../../src/story-data/briefings.js';
 export { SPEAKERS } from '../../src/story-engine.js';
 export { rosterOf, roundConfig, chapterEncounters } from '../../src/encounters.js';
+export { PRACTICE_ARENAS, PRACTICE_TIERS, arenaRoster, practiceBrief } from '../../src/practice-data.js';

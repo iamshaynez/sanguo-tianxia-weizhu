@@ -9,6 +9,8 @@ import { FX, getChapter, CHAPTERS } from './chapters.js';
 import { getGeneral, GENERALS } from './generals.js';
 import { renderGeneralCard } from './general-card.js';
 import { rosterOf, roundConfig, chapterEncounters } from './encounters.js';
+import { PRACTICE_ARENAS, arenaRoster, practiceBrief } from './practice-data.js';
+import { initPracticeModal, openPractice, closePractice } from './practice.js';
 import * as SC from './scroll.js';
 import { createOnboarding } from './onboarding.js';
 import { createBattleBriefing } from './briefing.js';
@@ -568,6 +570,75 @@ async function enterBoss(node) {
   R.current = node.id;
   return endChapter(true);
 }
+
+// ---------------- 野战练习场:不进卷、不改史 ----------------
+// 等筹码典故对局:战书 → 牌桌 → 练习簿记一笔(顺带入列传),再回选关。
+async function startPracticeArena(arena) {
+  closePractice();
+  const roster = arenaRoster(arena);
+  onboarding.hideTip();
+  const accepted = await battleBriefing.show({
+    practice: practiceBrief(arena), roster, allowBack: true,
+    node: { type: 'battle', name: arena.place }, chapter: null, // practice 分支不读章节
+  });
+  if (!accepted) return openPractice(P, startPracticeArena);
+
+  const members = roster.map(member => ({
+    id: member.id, name: member.name, stack: member.stack,
+    gen: member.gen, general: getGeneral(member.gen),
+    persona: personaOf(member.traits), skin: member.skin, morale: 0,
+  }));
+  const primary = members[0];
+  const battleSeed = `${Math.random().toString(16).slice(2, 8).toUpperCase()}#practice#${arena.id}`;
+  ui.setSeed('#' + battleSeed);
+  show('battle');
+  return new Promise(resolve => {
+    startBattle({
+      playerStack: arena.stack,
+      oppStack: arena.stack,
+      opponents: members,
+      blinds0: [...arena.blinds],
+      escalateEvery: arena.escalate,
+      boss: false,
+      oppName: primary.name,
+      oppGen: primary.gen,
+      persona: primary.persona,
+      rule: arena.rule || {},
+      oppMorale0: 0,
+      general: primary.general,
+      oppSkin: primary.skin,
+      seed: battleSeed,
+      story: null,
+      keenEye: false,
+      odds: oddsPanel,
+      oddsEnabled: () => !!P.settings.equityAssist,
+      ui, audio, oppChar,
+      getTellRecord(genId) {
+        const t = annals()[genId]?.tells;
+        if (!t) return null;
+        let n = 0, hit = 0;
+        for (const kind of Object.values(t)) { n += kind.n; hit += kind.hit; }
+        return n ? { n, hit, lies: n - hit } : null;
+      },
+      onTell(t) { const genId = t.gen || members.find(member => member.id === t.seatId)?.gen; if (genId) annalsTell(genId, t); },
+      onEnd: async (win, finalStack, summary) => {
+        const rec = P.practice[arena.id] || { seen: 0, won: 0 };
+        rec.seen++;
+        if (win) rec.won++;
+        P.practice[arena.id] = rec;
+        for (const opponent of summary.opponents || []) if (opponent.gen) annalsRecord(opponent.gen, win);
+        SC.saveProgress(P);
+        ui.banner(win ? '野史练笔 · 此局你赢' : '野史练笔 · 此局你输',
+          `${arena.name} · 练习簿 ${rec.won} 胜 / ${rec.seen - rec.won} 负`);
+        await wait(1.6);
+        show('scroll');
+        openPractice(P, startPracticeArena);
+        resolve(win);
+      },
+    });
+  });
+}
+initPracticeModal(P, startPracticeArena);
 
 // ---------------- 列传(观阵录持久化) ----------------
 function annals() { return P.annals || (P.annals = {}); }

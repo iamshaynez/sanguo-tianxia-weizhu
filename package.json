@@ -8,7 +8,7 @@
     "build": "node scripts/build.mjs",
     "test": "npm run lint:content && npm run test:analysis && npm run eval:ai && npm run test:e2e",
     "test:analysis": "node tests/analysis/run.mjs && node tests/analysis/client.mjs",
-    "lint:content": "node tests/content/chapters.lint.mjs && node tests/content/tell-lines.lint.mjs",
+    "lint:content": "node tests/content/chapters.lint.mjs && node tests/content/practice.lint.mjs && node tests/content/tell-lines.lint.mjs",
     "eval:ai": "node tests/ai-eval/run.mjs",
     "gen:preflop": "node scripts/generate-preflop-table.mjs",
     "gen:og": "node scripts/generate-og-card.mjs",
