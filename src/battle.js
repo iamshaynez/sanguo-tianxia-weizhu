@@ -47,10 +47,14 @@ function renderStack(el, count, tone) {
   }
 }
 
-function opponentX(index, count) {
-  if (count === 1) return 50;
-  if (count === 2) return [31, 69][index];
-  return [20, 50, 80][index] || (12 + index * 76 / Math.max(1, count - 1));
+// 对手席位坐标(牌桌百分比)。1-3 人沿用原设计位;4 人以上沿弧线展开,
+// 两端席位更低(更靠近玩家)、中路更高,避免相邻手牌与下注堆重叠。
+function opponentSpot(index, count) {
+  if (count === 1) return { x: 50, y: 27 };
+  if (count === 2) return { x: [31, 69][index], y: 22 };
+  if (count === 3) return { x: [20, 50, 80][index], y: 22 };
+  const t = index / (count - 1);
+  return { x: 8 + t * 84, y: Math.round(13 + 21 * (1 - Math.sin(Math.PI * t))) };
 }
 
 export function startBattle(opts) {
@@ -141,13 +145,13 @@ export function startBattle(opts) {
       return SLOTS.stackP;
     }
     const index = opponents.indexOf(seat), count = opponents.length;
-    const x = opponentX(index, count);
+    const spot = opponentSpot(index, count);
     if (kind === 'hole') {
-      const offset = window.innerWidth <= 640 ? 8 : 5.5;
-      return { x: x + (cardIndex ? offset : -offset), y: count === 1 ? 27 : 22 };
+      const offset = window.innerWidth <= 640 ? (count >= 4 ? 6 : 8) : (count >= 4 ? 4.5 : 5.5);
+      return { x: spot.x + (cardIndex ? offset : -offset), y: spot.y };
     }
-    if (kind === 'bet') return { x, y: count === 1 ? 26 : 30 };
-    return { x: count === 1 ? 11 : x, y: count === 1 ? 13 : 11 };
+    if (kind === 'bet') return { x: spot.x, y: count === 1 ? 26 : spot.y + 8 };
+    return { x: count === 1 ? 11 : spot.x, y: count === 1 ? 13 : Math.max(3, spot.y - 11) };
   }
   function slotPos(slot, el) {
     const r = cardLayer.getBoundingClientRect(), er = el.getBoundingClientRect();
@@ -224,8 +228,9 @@ export function startBattle(opts) {
     button.dataset.seatId = seat.id;
     if (seat.isHero) { button.style.left = '36%'; button.style.top = '82%'; }
     else {
-      button.style.left = `${opponentX(opponents.indexOf(seat), opponents.length)}%`;
-      button.style.top = '17%';
+      const spot = opponentSpot(opponents.indexOf(seat), opponents.length);
+      button.style.left = `${spot.x}%`;
+      button.style.top = `${spot.y - (opponents.length === 1 ? 10 : 5)}%`;
     }
   }
   function refreshFoldState(seat) {

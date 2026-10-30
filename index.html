@@ -79,6 +79,7 @@
     <div class="scroll-title-wrap"><span class="title-seal">卷</span><div><h2 class="screen-title">英 雄 记</h2><p class="screen-subtitle">以牌为刃 · 重写意难平</p></div></div>
     <p class="runinfo" id="codexProgress"></p>
     <div id="codexTools">
+      <button id="practiceBtn" class="ghost">野战练习场</button>
       <button id="annalsBtn" class="ghost">观 阵 录</button>
       <button id="saveBtn" class="ghost">存 档</button>
       <button id="pwaInstallBtn" class="ghost hidden" type="button">安装 App</button>
@@ -301,6 +302,17 @@
     <div id="finaleQ" class="ev-opts"></div>
     <p id="finaleText" class="annals gold"></p>
     <button id="finaleHome">合 上 残 卷</button>
+  </div>
+</div>
+
+<!-- 野战练习场:不进卷、不改史,等筹码典故对局 -->
+<div id="practiceModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="practiceTitle">
+  <div class="modal-box practice-box">
+    <p class="modal-kicker">野战练习场</p>
+    <h3 id="practiceTitle">择地对局 · 不改史册</h3>
+    <p class="practice-intro">三十三处典故牌桌,2 至 8 人不等。军资全员等额,胜负只记练习簿与列传,不动正卷。</p>
+    <div id="practiceList"></div>
+    <button id="practiceClose" class="ghost" type="button">合 卷</button>
   </div>
 </div>
 

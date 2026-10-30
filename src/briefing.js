@@ -86,30 +86,38 @@ export function createBattleBriefing({ audio, reduced = false } = {}) {
   back.addEventListener('click', () => finish(false));
   enter.addEventListener('click', () => finish(true));
 
-  function show({ chapter, node, roster, round = 1, rounds = 1, revive = false, allowBack = true }) {
+  function show({ chapter, node, roster, round = 1, rounds = 1, revive = false, allowBack = true, practice = null }) {
     if (current) return current.promise;
-    const boss = node.type === 'boss';
+    const boss = practice ? true : node.type === 'boss';
     const primary = roster[0];
-    const brief = resolveBriefing(chapter, { boss, round, revive, opponent: primary.name });
+    const brief = practice || resolveBriefing(chapter, { boss, round, revive, opponent: primary.name });
     const text = brief.battle;
     const opponentLabel = roster.length > 1 ? `${primary.name} 等 ${roster.length} 将` : primary.name;
 
-    $('briefingKicker').textContent = `${chapter.year || '残卷深处'} · ${chapter.name} · ${revive ? '回马战书' : boss ? '关底战书' : '遭遇战书'}`;
+    if (practice) {
+      $('briefingKicker').textContent = `${practice.year} · ${practice.name} · 野战战书`;
+      $('briefingRound').textContent = `${roster.length + 1} 人同桌 · 军资各 ${roster[0].stack}`;
+      $('briefingBack').textContent = '返回选关';
+    } else {
+      $('briefingKicker').textContent = `${chapter.year || '残卷深处'} · ${chapter.name} · ${revive ? '回马战书' : boss ? '关底战书' : '遭遇战书'}`;
+      $('briefingRound').textContent = revive ? '七进七出 · 回马再战' : rounds > 1 ? `第 ${round} / ${rounds} 阵 · 军资相随` : boss ? '关底决胜 · 胜则改页' : '行军遭遇 · 败亦入卷';
+      $('briefingBack').textContent = '返回行军';
+    }
     $('briefingEra').textContent = brief.era;
     $('briefingSource').textContent = brief.source;
     title.textContent = text.title;
-    $('briefingPlace').textContent = `战地 · ${node.name}`;
-    $('briefingRound').textContent = revive ? '七进七出 · 回马再战' : rounds > 1 ? `第 ${round} / ${rounds} 阵 · 军资相随` : boss ? '关底决胜 · 胜则改页' : '行军遭遇 · 败亦入卷';
+    $('briefingPlace').textContent = `战地 · ${practice ? practice.place : node.name}`;
     $('briefingReason').textContent = text.why;
     $('briefingWin').textContent = text.win;
     $('briefingLoss').textContent = text.loss;
-    $('briefingRule').textContent = chapter.ruleText || '';
-    $('briefingRule').classList.toggle('hidden', !chapter.ruleText);
+    const ruleText = practice ? practice.ruleText : chapter.ruleText;
+    $('briefingRule').textContent = ruleText || '';
+    $('briefingRule').classList.toggle('hidden', !ruleText);
     $('briefingEnterDetail').textContent = `进入牌桌 · 对战${opponentLabel}`;
     $('briefingRoster').innerHTML = roster.map((member, index) => `
       <article class="briefing-enemy">
         <div class="briefing-enemy-art">${portraitImage(member.skin)}<span>${index + 1}</span></div>
-        <div><b>${member.name}</b><small>${boss ? '关底敌将' : '遭遇敌将'} · 军资 ${member.stack}</small></div>
+        <div><b>${member.name}</b><small>${practice ? '野战敌将' : boss ? '关底敌将' : '遭遇敌将'} · 军资 ${member.stack}</small></div>
       </article>`).join('');
 
     const backgrounds = [...document.querySelectorAll('.screen')]

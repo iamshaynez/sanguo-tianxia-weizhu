@@ -589,6 +589,33 @@ button.ghost:hover { border-color: #b7a578; }
 .opponent-seat.is-eliminated { opacity: .38; filter: grayscale(.85); }
 .opponent-seat.is-eliminated .seat-card { cursor: default; }
 
+/* ---------------- 野战练习场 ---------------- */
+.practice-box { width: min(880px, 94vw); max-height: 88vh; text-align: left; }
+.practice-box > h3 { text-align: center; }
+.practice-intro { margin-top: 12px; color: #a9a184; font-size: 12px; line-height: 1.9; letter-spacing: .05em; text-align: center; }
+.practice-group { margin-top: 18px; }
+.practice-group h3 { display: flex; align-items: baseline; gap: 10px; padding: 0 2px 8px; color: #cbb482; border-bottom: 1px solid #554b34; font: 16px var(--serif); letter-spacing: .22em; }
+.practice-group h3 small { color: #777563; font-size: 10px; letter-spacing: .15em; }
+.practice-arena { position: relative; display: grid; grid-template-columns: 30px 1fr 64px; align-items: center; gap: 14px; width: 100%; margin-top: 10px; padding: 12px 14px; text-align: left; background: #1b1e16; border: 1px solid #514a34; cursor: pointer; }
+.practice-arena:hover { background: #232719; border-color: #a08a55; }
+.practice-arena:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
+.practice-arena.is-won { border-color: #7a6a3d; box-shadow: inset 0 0 24px #b8863215; }
+.pa-mark { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 28px; color: #6b6757; background: #2a2d21; border: 1px solid #8f856b; font: 13px var(--serif); }
+.practice-arena.is-won .pa-mark { color: #94392c; border-color: #a34b39; }
+.pa-main { min-width: 0; }
+.pa-name { display: block; color: #e2d2ac; font: 16px var(--serif); letter-spacing: .1em; }
+.pa-meta { display: block; margin-top: 3px; color: #85816c; font-size: 10px; letter-spacing: .08em; }
+.pa-opp { display: block; margin-top: 5px; overflow: hidden; color: #a5a28a; font-size: 11px; letter-spacing: .04em; text-overflow: ellipsis; white-space: nowrap; }
+.pa-rec { position: absolute; top: 8px; right: 84px; color: #d5b573; font-size: 11px; white-space: nowrap; }
+.pa-portrait { width: 64px; height: 72px; object-fit: contain; object-position: center; background: radial-gradient(circle at 50% 30%, #625b3d, #252a20 75%); border: 1px solid #6c5c3c; filter: saturate(.88) contrast(1.04); }
+#practiceClose { display: block; margin: 20px auto 0; padding: 10px 30px; }
+@media (max-width: 640px) {
+  .practice-box { padding: 24px 18px; }
+  .practice-arena { grid-template-columns: 26px 1fr 52px; gap: 10px; padding: 10px; }
+  .pa-portrait { width: 52px; height: 60px; }
+  .pa-rec { right: 70px; }
+}
+
 /* ---------------- 剧情与渐进引导 ---------------- */
 #intro .intro-inner { max-height: 94vh; overflow-y: auto; scrollbar-width: thin; }
 #intro .intro-lesson { margin-top: 30px; color: #e0c58e; font: 22px/1.6 var(--serif); letter-spacing: .1em; }
