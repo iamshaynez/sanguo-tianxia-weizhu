@@ -62,6 +62,11 @@ test.describe('摊牌与图鉴', () => {
     await installDriver(page, 'station'); // 跟注站必然打到摊牌
     // 等真正的摊牌,而非章节开场/机制横幅
     await expect(page.locator('#cardLayer .card[data-seat-id="opponent"].flipped')).toHaveCount(2, { timeout: 90_000 });
+    // 摊牌判印:对手立绘上盖出牌型章,且定谳输赢色泽
+    const stamp = page.locator('#oppPlate .seat-showdown');
+    await expect(stamp).toBeVisible({ timeout: 10_000 });
+    await expect(stamp).toHaveText(/高牌|一对|两对|三条|顺子|同花|葫芦|四条|同花顺/);
+    await expect(stamp).toHaveAttribute('data-tone', /win|lose/, { timeout: 10_000 });
     // 赢家 5 张高亮
     await expect(page.locator('#cardLayer .card.hl')).toHaveCount(5, { timeout: 10_000 }).catch(() => {
       // 平分底池时双方都亮:允许 10 张
