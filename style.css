@@ -589,31 +589,67 @@ button.ghost:hover { border-color: #b7a578; }
 .opponent-seat.is-eliminated { opacity: .38; filter: grayscale(.85); }
 .opponent-seat.is-eliminated .seat-card { cursor: default; }
 
-/* ---------------- 野战练习场 ---------------- */
-.practice-box { width: min(880px, 94vw); max-height: 88vh; text-align: left; }
-.practice-box > h3 { text-align: center; }
-.practice-intro { margin-top: 12px; color: #a9a184; font-size: 12px; line-height: 1.9; letter-spacing: .05em; text-align: center; }
-.practice-group { margin-top: 18px; }
-.practice-group h3 { display: flex; align-items: baseline; gap: 10px; padding: 0 2px 8px; color: #cbb482; border-bottom: 1px solid #554b34; font: 16px var(--serif); letter-spacing: .22em; }
-.practice-group h3 small { color: #777563; font-size: 10px; letter-spacing: .15em; }
-.practice-arena { position: relative; display: grid; grid-template-columns: 30px 1fr 64px; align-items: center; gap: 14px; width: 100%; margin-top: 10px; padding: 12px 14px; text-align: left; background: #1b1e16; border: 1px solid #514a34; cursor: pointer; }
-.practice-arena:hover { background: #232719; border-color: #a08a55; }
+/* ---------------- 野战练习场:目录门枢 + 全屏点兵台 ---------------- */
+.practiceGate { margin-top: 26px; }
+.practiceGate-head { display: flex; align-items: center; gap: 10px; padding: 12px 0 8px; color: #c9b07a; border-bottom: 1px solid #554b34; font: 16px var(--serif); letter-spacing: .22em; }
+.practiceGate-head .title-seal { width: 26px; height: 32px; font-size: 15px; }
+.practiceGate-btn { position: relative; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 20px; width: 100%; margin-top: 12px; padding: 16px 22px; text-align: left; background: linear-gradient(120deg, #2a2417, #1c2015 55%, #241f13); border: 1px solid #8c7548; box-shadow: inset 0 0 0 4px #14170f, inset 0 0 0 5px #4c4531, 0 10px 30px #0008; cursor: pointer; }
+.practiceGate-btn:hover { border-color: #c8a868; background: linear-gradient(120deg, #332a19, #202516 55%, #2a2415); }
+.practiceGate-btn:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+.pg-art { display: flex; }
+.pg-art .portrait-img { width: 74px; height: 84px; object-fit: contain; object-position: center; background: radial-gradient(circle at 50% 30%, #625b3d, #252a20 75%); border: 1px solid #6c5c3c; filter: saturate(.9) contrast(1.05); }
+.pg-art .portrait-img + .portrait-img { margin-left: -22px; }
+.pg-art .portrait-img:first-child { z-index: 1; } .pg-art .portrait-img:nth-child(2) { z-index: 2; } .pg-art .portrait-img:nth-child(3) { z-index: 3; } .pg-art .portrait-img:nth-child(4) { z-index: 4; }
+.pg-main b { display: block; color: #e8d8b2; font: 19px var(--serif); letter-spacing: .18em; }
+.pg-main small { display: block; margin-top: 7px; color: #8f8a73; font-size: 11px; letter-spacing: .14em; }
+.pg-go { padding: 12px 18px; color: #141109; background: linear-gradient(180deg, #d8bd85, #b2914f); border: 1px solid #e8d3a0; font: 15px var(--serif); letter-spacing: .3em; text-align: center; white-space: nowrap; }
+.pg-go small { display: block; margin-top: 3px; font-size: 9px; letter-spacing: .2em; opacity: .75; }
+.practiceGate-btn:hover .pg-go { background: linear-gradient(180deg, #e6cd96, #c2a160); }
+
+#practice { overflow: hidden; }
+.practice-mast { position: relative; z-index: 3; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 26px; width: min(1180px, 100%); margin: 0 auto; padding: 0 0 20px; border-bottom: 1px solid #615538; }
+.practice-title-wrap { display: flex; align-items: center; gap: 16px; }
+.practice-seal { background: #6d3a26; border-color: #a2603f; }
+.practice-mast-side { display: flex; align-items: center; gap: 18px; }
+#practice .screen-title { font-size: 31px; }
+#practiceBack { padding: 10px 16px; font-size: 12px; }
+.practice-scroll { height: calc(100% - 96px); overflow-y: auto; scrollbar-width: thin; }
+.practice-lead { width: fit-content; max-width: 640px; margin: 26px auto 4px; padding: 10px 26px; color: #9d9179; background: #8d79500c; border-left: 2px solid #9a4a3855; border-right: 2px solid #9a4a3855; font: 13px/1.9 var(--serif); letter-spacing: .1em; text-align: center; }
+#practiceList { width: min(1180px, 100%); margin: 0 auto; padding: 8px 0 60px; }
+.practice-tier { margin-top: 30px; }
+.practice-tier-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 14px; padding: 0 2px 10px; border-bottom: 1px solid #554b34; }
+.practice-tier-head h3 { color: #cbb482; font: 18px var(--serif); letter-spacing: .24em; }
+.practice-tier-head h3 small { margin-left: 8px; padding: 2px 8px; color: #b0703c; background: #3a2a1a; border: 1px solid #7a4a2c; font-size: 10px; letter-spacing: .18em; }
+.practice-tier-head p { flex-basis: 100%; color: #7d7a66; font-size: 11px; letter-spacing: .1em; }
+.practice-tier-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 12px; margin-top: 14px; }
+.practice-arena { position: relative; display: grid; grid-template-columns: 76px 1fr auto; align-items: center; gap: 15px; padding: 13px 15px 13px 13px; text-align: left; background: #1b1e16; border: 1px solid #514a34; cursor: pointer; transition: border-color .15s, background .15s, transform .15s; }
+.practice-arena:hover { background: #232719; border-color: #a08a55; transform: translateY(-2px); }
 .practice-arena:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 2px; }
-.practice-arena.is-won { border-color: #7a6a3d; box-shadow: inset 0 0 24px #b8863215; }
-.pa-mark { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 28px; color: #6b6757; background: #2a2d21; border: 1px solid #8f856b; font: 13px var(--serif); }
-.practice-arena.is-won .pa-mark { color: #94392c; border-color: #a34b39; }
+.practice-arena.is-won { border-color: #7a6a3d; background: linear-gradient(135deg, #221f15, #1b1e16 60%); }
+.pa-art { position: relative; }
+.pa-portrait { display: block; width: 76px; height: 86px; object-fit: contain; object-position: center; background: radial-gradient(circle at 50% 30%, #625b3d, #252a20 75%); border: 1px solid #6c5c3c; filter: saturate(.9) contrast(1.05); }
+.pa-count { position: absolute; right: -6px; bottom: 6px; padding: 2px 6px; color: #d8c9a2; background: #14170fdd; border: 1px solid #6c5c3c; font-style: normal; font-size: 10px; letter-spacing: .1em; white-space: nowrap; }
+.pa-seal { position: absolute; top: -7px; left: -7px; display: flex; align-items: center; justify-content: center; width: 24px; height: 26px; color: #f0d9c9; background: #82352b; border: 1px solid #b2634d; transform: rotate(-8deg); font: 14px var(--serif); box-shadow: 0 3px 8px #0008; }
 .pa-main { min-width: 0; }
-.pa-name { display: block; color: #e2d2ac; font: 16px var(--serif); letter-spacing: .1em; }
-.pa-meta { display: block; margin-top: 3px; color: #85816c; font-size: 10px; letter-spacing: .08em; }
-.pa-opp { display: block; margin-top: 5px; overflow: hidden; color: #a5a28a; font-size: 11px; letter-spacing: .04em; text-overflow: ellipsis; white-space: nowrap; }
-.pa-rec { position: absolute; top: 8px; right: 84px; color: #d5b573; font-size: 11px; white-space: nowrap; }
-.pa-portrait { width: 64px; height: 72px; object-fit: contain; object-position: center; background: radial-gradient(circle at 50% 30%, #625b3d, #252a20 75%); border: 1px solid #6c5c3c; filter: saturate(.88) contrast(1.04); }
-#practiceClose { display: block; margin: 20px auto 0; padding: 10px 30px; }
+.pa-name { display: block; color: #e2d2ac; font: 17px var(--serif); letter-spacing: .12em; }
+.pa-meta { display: block; margin-top: 4px; color: #85816c; font-size: 10px; letter-spacing: .06em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pa-opp { display: block; margin-top: 6px; overflow: hidden; color: #a5a28a; font-size: 11px; letter-spacing: .04em; text-overflow: ellipsis; white-space: nowrap; }
+.pa-side { display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 44px; padding: 8px 6px; background: #14170f; border: 1px solid #4c4734; }
+.pa-side b { color: #d5b573; font: 20px var(--serif); }
+.pa-side small { color: #777563; font-size: 9px; letter-spacing: .1em; white-space: nowrap; }
+.practice-arena.is-won .pa-side b { color: #d98a6a; }
 @media (max-width: 640px) {
-  .practice-box { padding: 24px 18px; }
-  .practice-arena { grid-template-columns: 26px 1fr 52px; gap: 10px; padding: 10px; }
-  .pa-portrait { width: 52px; height: 60px; }
-  .pa-rec { right: 70px; }
+  .practice-mast { grid-template-columns: 1fr; gap: 12px; padding-bottom: 14px; }
+  .practice-mast-side { justify-content: space-between; width: 100%; }
+  .practice-lead { margin-top: 18px; padding: 8px 14px; font-size: 12px; }
+  .practice-tier-row { grid-template-columns: 1fr; gap: 10px; margin-top: 12px; }
+  .practice-arena { grid-template-columns: 56px 1fr auto; gap: 11px; padding: 10px 11px; }
+  .pa-portrait { width: 56px; height: 66px; }
+  .pa-name { font-size: 15px; }
+  .practiceGate-btn { grid-template-columns: 1fr; gap: 12px; padding: 14px; }
+  .pg-art .portrait-img { width: 58px; height: 66px; }
+  .pg-art .portrait-img + .portrait-img { margin-left: -18px; }
+  .pg-go { justify-self: end; padding: 9px 14px; }
 }
 
 /* ---------------- 剧情与渐进引导 ---------------- */
