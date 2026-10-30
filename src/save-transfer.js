@@ -8,9 +8,9 @@ const isRecord = value => value && typeof value === 'object' && !Array.isArray(v
 
 function assertProgress(value) {
   if (!isRecord(value)) throw new Error(INVALID_MESSAGE);
-  const known = ['version', 'pages', 'endings', 'annals', 'flags', 'apocWins', 'settings', 'story', 'tutorial'];
+  const known = ['version', 'pages', 'endings', 'annals', 'practice', 'flags', 'apocWins', 'settings', 'story', 'tutorial'];
   if (!known.some(key => Object.hasOwn(value, key))) throw new Error(INVALID_MESSAGE);
-  for (const key of ['pages', 'annals', 'flags', 'settings', 'story', 'tutorial']) {
+  for (const key of ['pages', 'annals', 'practice', 'flags', 'settings', 'story', 'tutorial']) {
     if (value[key] !== undefined && !isRecord(value[key])) throw new Error(INVALID_MESSAGE);
   }
   if (value.endings !== undefined && !Array.isArray(value.endings)) throw new Error(INVALID_MESSAGE);
@@ -52,7 +52,8 @@ export function downloadSave(progress) {
 
 function summaryOf(progress) {
   const pages = Object.values(progress.pages).filter(state => ['yeshi', 'yeshiB', 'yeshiAB'].includes(state)).length;
-  return { pages, generals: Object.keys(progress.annals).length, endings: progress.endings.length };
+  const practice = Object.values(progress.practice || {}).reduce((sum, rec) => sum + rec.seen, 0);
+  return { pages, generals: Object.keys(progress.annals).length, endings: progress.endings.length, practice };
 }
 
 export function createSaveTransfer({ read, onImported }) {
@@ -94,7 +95,7 @@ export function createSaveTransfer({ read, onImported }) {
       pending = imported;
       const summary = summaryOf(imported.progress);
       const date = imported.exportedAt ? ` · ${new Date(imported.exportedAt).toLocaleString('zh-CN', { hour12: false })}` : '';
-      $('saveImportSummary').textContent = `已改写 ${summary.pages} 页 · ${summary.generals} 位武将列传 · ${summary.endings} 种终局${date}`;
+      $('saveImportSummary').textContent = `已改写 ${summary.pages} 页 · ${summary.generals} 位武将列传 · ${summary.endings} 种终局 · 野战 ${summary.practice} 场${date}`;
       preview.classList.remove('hidden');
       $('saveMessage').textContent = '请核对摘要，确认后再覆盖当前进度。';
     } catch (error) {
