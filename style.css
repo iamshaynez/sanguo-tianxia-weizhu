@@ -795,15 +795,17 @@ button.ghost:hover { border-color: #b7a578; }
   #youPlate { bottom: 39%; left: 8px; padding: 6px 10px; font-size: 11px; }
   #youPlate .pname { margin-right: 8px; }
   #youPlate .pstack { font-size: 14px; }
+  #oppChar { top: 52px; } /* 席位上移,给牌桌与底部操作区让出纵向空间 */
+  #oppChar.is-multi { margin-top: -8px; }
   #blindLabel, #luckLabel { top: 12px; padding: 6px; font-size: 9px; }
-  #blindLabel { left: 8px; letter-spacing: .03em; white-space: nowrap; } #luckLabel { top: 12px; right: 8px; }
+  #blindLabel { left: 8px; max-width: 54%; letter-spacing: .03em; white-space: nowrap; } #luckLabel { top: 12px; right: 8px; }
   #potLabel { top: 40%; }
-  #codex { top: 240px; left: 8px; width: 150px; padding: 8px; transition: opacity .25s; }
-  #oppChar.is-multi ~ #codex { top: 240px; width: 150px; }
+  #codex { top: 226px; left: 8px; width: 150px; padding: 8px; transition: opacity .25s; }
+  #oppChar.is-multi ~ #codex { top: 226px; width: 150px; }
   #scene:has(.opponent-seat.speaking) #codex { opacity: .12; }
   #codex ul { max-height: 64px; }
   #codex li { font-size: 9px; }
-  #oddsPanel { top: 194px; right: 8px; width: calc(50vw - 12px); padding: 9px 9px 8px; }
+  #oddsPanel { top: 178px; right: 8px; width: calc(50vw - 12px); padding: 9px 9px 8px; }
   .odds-panel-heading { gap: 5px; padding-bottom: 6px; }
   .odds-panel-heading h3 { font-size: 10px; }
   .odds-panel-heading > span { font-size: 7px; }
@@ -823,14 +825,18 @@ button.ghost:hover { border-color: #b7a578; }
   #oddsDetails { margin-top: 7px; padding-top: 7px; }
   #oddsDetails summary { font-size: 9px; }
   .odds-details-body { width: min(330px, calc(100vw - 16px)); max-height: 55vh; max-height: 55dvh; }
-  #actions { right: 50%; transform: translateX(50%); bottom: 4%; gap: 5px; width: max-content; max-width: 96vw; }
+  #actions { right: 50%; transform: translateX(50%); bottom: calc(46px + env(safe-area-inset-bottom)); gap: 5px; width: max-content; max-width: 96vw; }
   #actions button, #raiseOpts button { flex: 0 0 auto; padding: 11px 9px; font-size: 12px; letter-spacing: .08em; white-space: nowrap; }
   #actions button b, #raiseOpts button b { margin-left: 3px; }
-  #raiseOpts { right: 50%; transform: translateX(50%); bottom: 12%; width: max-content; max-width: 96vw; flex-wrap: wrap; justify-content: center; }
-  #handLabel { right: 8px; bottom: 15%; font-size: 10px; }
-  #tauntBtn { left: 8px; bottom: 13%; }
-  #seedLabel { left: 8px; bottom: 10px; max-width: 70%; overflow: hidden; white-space: nowrap; }
+  #raiseOpts { right: 50%; transform: translateX(50%); bottom: calc(88px + env(safe-area-inset-bottom)); width: max-content; max-width: 96vw; flex-wrap: wrap; justify-content: center; }
+  #handLabel { right: 8px; bottom: calc(100px + env(safe-area-inset-bottom)); font-size: 10px; }
+  #tauntBtn { left: 8px; bottom: calc(96px + env(safe-area-inset-bottom)); }
+  #luckLabel { display: none; } /* 手机端让出顶部右栏,种子行上移顶替 */
+  #seedLabel { left: auto; right: 8px; top: 40px; bottom: auto; max-width: 62%; overflow: hidden; white-space: nowrap; text-align: right; font-size: 8px; }
   #playerCardsHint { display: none; }
+  /* 版本栏收成单行(隐藏时间戳),给牌桌底部操作区让出净空 */
+  .app-version { flex-wrap: nowrap; max-width: calc(100vw - 12px); overflow: hidden; white-space: nowrap; }
+  .app-version time { display: none; }
   .seat-bubble { top: calc(100% + 8px); left: 50%; transform: translateX(-50%); width: max-content; max-width: calc(100vw - 32px); font-size: 11px; text-align: center; }
   .seat-bubble b { font-size: 12px; }
   .seat-bubble i { font-size: 9px; }
@@ -922,9 +928,9 @@ button.ghost:hover { border-color: #b7a578; }
   #oppChar.is-multi .seat-art { flex-basis: 48px; }
   #oppChar.is-multi .seat-art .portrait-img { width: 48px; height: 48px; }
   #oppChar.is-multi .seat-body { padding: 4px 7px; }
-  #codex { top: 206px; }
-  #oppChar.is-multi ~ #codex { top: 206px; }
-  #oddsPanel { top: 162px; padding: 6px 8px; }
+  #codex { top: 196px; }
+  #oppChar.is-multi ~ #codex { top: 196px; }
+  #oddsPanel { top: 154px; padding: 6px 8px; }
   .odds-panel-heading { padding-bottom: 4px; }
   .odds-primary { margin: 5px 0; }
   .odds-win-block strong { font-size: 22px; }
