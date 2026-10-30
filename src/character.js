@@ -52,6 +52,7 @@ export function createOpponent(mount) {
           ${portraitImage(player.skin || 'default', 'seat-portrait-img')}
           <span class="seat-rank">敌</span>
           <span class="seat-turn">行动</span>
+          <span class="seat-showdown" hidden></span>
         </div>
         <span class="seat-roles hidden" aria-label="席位角色"></span>
         <span class="seat-fold-status" hidden>已弃牌</span>
@@ -178,6 +179,23 @@ export function createOpponent(mount) {
       el.hidden = false;
       el.dataset.lies = String(record.lies || 0);
       el.textContent = `识破${record.hit}/${record.n}${record.lies ? ` 诓${record.lies}` : ''}`;
+    },
+    // 摊牌判印:亮牌后压在立绘上的牌型章。tone:'' 亮牌 / 'win' 赢 / 'lose' 输。
+    setShowdown(text, tone = '', id = primaryId) {
+      const seat = getSeat(id);
+      if (!seat) return;
+      const el = seat.el.querySelector('.seat-showdown');
+      el.hidden = !text;
+      el.textContent = text || '';
+      el.dataset.tone = tone;
+    },
+    clearShowdown(id = primaryId) {
+      const seat = seats.get(id);
+      if (!seat) return;
+      const el = seat.el.querySelector('.seat-showdown');
+      el.hidden = true;
+      el.textContent = '';
+      delete el.dataset.tone;
     },
     setActive(on, id = primaryId) {
       const seat = getSeat(id);
