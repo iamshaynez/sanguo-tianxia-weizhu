@@ -148,11 +148,17 @@ test.describe('通用武将卡', () => {
     const overlaps = boxes.map(box => Math.max(0, Math.min(plate.x + plate.width, box.x + box.width) - Math.max(plate.x, box.x))
       * Math.max(0, Math.min(plate.y + plate.height, box.y + box.height) - Math.max(plate.y, box.y)));
     expect(overlaps).toEqual([0, 0]);
+    // 手机端运势标签让位于种子行(顶部右栏);隐藏即无重叠,可见时才需断言
     const opp = await page.locator('#oppPlate').boundingBox();
-    const luck = await page.locator('#luckLabel').boundingBox();
-    const topOverlap = Math.max(0, Math.min(opp.x + opp.width, luck.x + luck.width) - Math.max(opp.x, luck.x))
-      * Math.max(0, Math.min(opp.y + opp.height, luck.y + luck.height) - Math.max(opp.y, luck.y));
-    expect(topOverlap).toBe(0);
+    const luck = await page.locator('#luckLabel');
+    if (await luck.isVisible()) {
+      const luckBox = await luck.boundingBox();
+      const topOverlap = Math.max(0, Math.min(opp.x + opp.width, luckBox.x + luckBox.width) - Math.max(opp.x, luckBox.x))
+        * Math.max(0, Math.min(opp.y + opp.height, luckBox.y + luckBox.height) - Math.max(opp.y, luckBox.y));
+      expect(topOverlap).toBe(0);
+    } else {
+      await expect(luck).toBeHidden();
+    }
     const playerPile = await page.locator('#stStackP').boundingBox();
     const oppPile = await page.locator('#stStackO').boundingBox();
     expect(playerPile.x + playerPile.width).toBeLessThanOrEqual(390);
