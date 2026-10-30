@@ -537,15 +537,15 @@ export const PRACTICE_ARENAS = [
   },
 ];
 
-// 桌型分档:目录分组与难度暗示
+// 桌型分档:目录分组与难度暗示;desc 为选关页的一句白描
 export const PRACTICE_TIERS = [
-  { size: 2, label: '单挑 · 对酌' },
-  { size: 3, label: '鼎足' },
-  { size: 4, label: '四战' },
-  { size: 5, label: '五虎' },
-  { size: 6, label: '六合' },
-  { size: 7, label: '七星' },
-  { size: 8, label: '八荒' },
+  { size: 2, label: '单挑 · 对酌', desc: '一盏酒的工夫,与一名武将分高下' },
+  { size: 3, label: '鼎足', desc: '三人之局,多一张脸就多一分变数' },
+  { size: 4, label: '四战', desc: '围而不乱,先挑最弱的打' },
+  { size: 5, label: '五虎', desc: '满座名将,连破绽都排着队' },
+  { size: 6, label: '六合', desc: '五路兵马,一轮就要看清六个人' },
+  { size: 7, label: '七星', desc: '六将环伺,你的每次下注都有六个观众' },
+  { size: 8, label: '八荒', desc: '七雄同席,残卷里也没有的大场面' },
 ];
 
 export function getArena(id) {

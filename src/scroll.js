@@ -4,6 +4,7 @@ import { traitGrid } from './general-card.js';
 import { portraitImage } from './portrait.js';
 import { normalizeStoryState, coldOpenFor, storyFor, speakerName, outcomeVariant } from './story-engine.js';
 import { chapterEncounters } from './encounters.js';
+import { renderPracticeGate } from './practice.js';
 import { briefingFor } from './story-data/runtime.js';
 
 const $ = id => document.getElementById(id);
@@ -68,7 +69,8 @@ export function finaleUnlocked(p) {
 
 // ---------------- 目录 ----------------
 const STATE_MARK = { unread: '○', history: '原', yeshi: '野', yeshiB: '野', yeshiAB: '全' };
-export function renderCodex(p, onPick) {
+// onPractice:野战练习场入口(与正史各卷并列,永不上锁)
+export function renderCodex(p, onPick, onPractice = null) {
   $('codexProgress').innerHTML =
     `已改写 <b>${yeshiCount(p)}</b> / ${NORMAL_IDS.length} 页` +
     (finaleUnlocked(p) ? ' · <b class="gold">最后一页已现</b>' : '');
@@ -101,6 +103,7 @@ export function renderCodex(p, onPick) {
     group.appendChild(row);
     box.appendChild(group);
   }
+  if (onPractice) renderPracticeGate(box, onPractice);
 }
 
 // ---------------- 翻页题记 ----------------

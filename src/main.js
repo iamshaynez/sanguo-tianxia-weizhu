@@ -10,7 +10,7 @@ import { getGeneral, GENERALS } from './generals.js';
 import { renderGeneralCard } from './general-card.js';
 import { rosterOf, roundConfig, chapterEncounters } from './encounters.js';
 import { PRACTICE_ARENAS, arenaRoster, practiceBrief } from './practice-data.js';
-import { initPracticeModal, openPractice, closePractice } from './practice.js';
+import { renderPractice, initPracticeScreen } from './practice.js';
 import * as SC from './scroll.js';
 import { createOnboarding } from './onboarding.js';
 import { createBattleBriefing } from './briefing.js';
@@ -154,7 +154,7 @@ $('oppChar').addEventListener('seatinspect', e => {
 });
 
 // ---------------- 屏幕切换 ----------------
-const SCREENS = ['intro', 'scroll', 'page', 'map', 'battle'];
+const SCREENS = ['intro', 'scroll', 'practice', 'page', 'map', 'battle'];
 function show(name) {
   for (const s of SCREENS) $(s).classList.toggle('hidden', s !== name);
   document.body.dataset.screen = name;
@@ -305,7 +305,13 @@ function showCodex() {
   $('chapterLoadStatus').classList.add('hidden');
   $('chapterLoadRetry').classList.add('hidden');
   show('scroll');
-  SC.renderCodex(P, openChapterPage);
+  SC.renderCodex(P, openChapterPage, enterPractice);
+}
+
+// ---------------- 野战练习场:与正史并列的全屏点兵台 ----------------
+function enterPractice() {
+  show('practice');
+  renderPractice(P, startPracticeArena);
 }
 
 function renderChapterPage(chapter) {
@@ -571,17 +577,16 @@ async function enterBoss(node) {
   return endChapter(true);
 }
 
-// ---------------- 野战练习场:不进卷、不改史 ----------------
-// 等筹码典故对局:战书 → 牌桌 → 练习簿记一笔(顺带入列传),再回选关。
+// ---------------- 野战练习场对局 ----------------
+// 等筹码典故对局:战书 → 牌桌 → 练习簿记一笔(顺带入列传),再回点兵台。
 async function startPracticeArena(arena) {
-  closePractice();
   const roster = arenaRoster(arena);
   onboarding.hideTip();
   const accepted = await battleBriefing.show({
     practice: practiceBrief(arena), roster, allowBack: true,
     node: { type: 'battle', name: arena.place }, chapter: null, // practice 分支不读章节
   });
-  if (!accepted) return openPractice(P, startPracticeArena);
+  if (!accepted) return enterPractice();
 
   const members = roster.map(member => ({
     id: member.id, name: member.name, stack: member.stack,
@@ -631,14 +636,13 @@ async function startPracticeArena(arena) {
         ui.banner(win ? '野史练笔 · 此局你赢' : '野史练笔 · 此局你输',
           `${arena.name} · 练习簿 ${rec.won} 胜 / ${rec.seen - rec.won} 负`);
         await wait(1.6);
-        show('scroll');
-        openPractice(P, startPracticeArena);
+        enterPractice();
         resolve(win);
       },
     });
   });
 }
-initPracticeModal(P, startPracticeArena);
+initPracticeScreen(showCodex);
 
 // ---------------- 列传(观阵录持久化) ----------------
 function annals() { return P.annals || (P.annals = {}); }

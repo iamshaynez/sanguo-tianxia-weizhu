@@ -79,7 +79,6 @@
     <div class="scroll-title-wrap"><span class="title-seal">卷</span><div><h2 class="screen-title">英 雄 记</h2><p class="screen-subtitle">以牌为刃 · 重写意难平</p></div></div>
     <p class="runinfo" id="codexProgress"></p>
     <div id="codexTools">
-      <button id="practiceBtn" class="ghost">野战练习场</button>
       <button id="annalsBtn" class="ghost">观 阵 录</button>
       <button id="saveBtn" class="ghost">存 档</button>
       <button id="pwaInstallBtn" class="ghost hidden" type="button">安装 App</button>
@@ -305,14 +304,20 @@
   </div>
 </div>
 
-<!-- 野战练习场:不进卷、不改史,等筹码典故对局 -->
-<div id="practiceModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="practiceTitle">
-  <div class="modal-box practice-box">
-    <p class="modal-kicker">野战练习场</p>
-    <h3 id="practiceTitle">择地对局 · 不改史册</h3>
-    <p class="practice-intro">三十三处典故牌桌,2 至 8 人不等。军资全员等额,胜负只记练习簿与列传,不动正卷。</p>
+<!-- 野战练习场:与正史并列的全屏点兵台 -->
+<div id="practice" class="screen hidden">
+  <header class="practice-mast">
+    <div class="practice-title-wrap"><span class="title-seal practice-seal">野</span>
+      <div><h2 class="screen-title">野战练习场</h2><p class="screen-subtitle">沙场点兵 · 不载史册</p></div>
+    </div>
+    <div class="practice-mast-side">
+      <p class="runinfo" id="practiceStats"></p>
+      <button id="practiceBack" class="ghost" type="button">回 目 录</button>
+    </div>
+  </header>
+  <div class="practice-scroll">
+    <p class="practice-lead">残卷之外，另有沙场。三十三处典故，点兵即战——军资等额，胜负随手，不动正卷一页。</p>
     <div id="practiceList"></div>
-    <button id="practiceClose" class="ghost" type="button">合 卷</button>
   </div>
 </div>
 
