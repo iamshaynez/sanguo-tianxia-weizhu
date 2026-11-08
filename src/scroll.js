@@ -6,6 +6,7 @@ import { normalizeStoryState, coldOpenFor, storyFor, speakerName, outcomeVariant
 import { chapterEncounters } from './encounters.js';
 import { renderPracticeGate } from './practice.js';
 import { briefingFor } from './story-data/runtime.js';
+import { t, localizeChapter } from './i18n.js';
 
 const $ = id => document.getElementById(id);
 export const SAVE_KEY = 'yxj_v1';
@@ -87,17 +88,19 @@ export function renderCodex(p, onPick, onPractice = null) {
     const group = document.createElement('div');
     group.className = 'scrollGroup' + (unlocked ? '' : ' locked');
     group.dataset.scroll = s;
-    const title = s === 5 ? '最后一页' : `卷${'一二三四'[s - 1]} · ${SCROLLS[s - 1]}`;
+    const scrollKeys = ['scroll1', 'scroll2', 'scroll3', 'scroll4'];
+    const title = s === 5 ? (t('toc.lastPage') || '最后一页') : (t(`toc.${scrollKeys[s - 1]}`) || `卷${'一二三四'[s - 1]} · ${SCROLLS[s - 1]}`);
     group.innerHTML = `<h3 class="scrollHead">${unlocked ? title : title + ' 🔒'}</h3>`;
     const row = document.createElement('div');
     row.className = 'chips';
     for (const c of CHAPTERS.filter(c => c.scroll === s)) {
+      const locChap = getChapter(c.id) || c;
       const st = pageState(p, c.id);
       const b = document.createElement('button');
       b.className = `chip st-${isYeshi(st) ? 'yeshi' : st}` + (unlocked ? '' : ' locked');
       b.dataset.ch = c.id;
-      b.innerHTML = `<i>${STATE_MARK[st] || '○'}</i>${c.name}`;
-      if (unlocked) b.addEventListener('click', () => onPick(c));
+      b.innerHTML = `<i>${STATE_MARK[st] || '○'}</i>${locChap.name}`;
+      if (unlocked) b.addEventListener('click', () => onPick(locChap));
       row.appendChild(b);
     }
     group.appendChild(row);
@@ -108,8 +111,9 @@ export function renderCodex(p, onPick, onPractice = null) {
 
 // ---------------- 翻页题记 ----------------
 // opts: { premise, note } 因果覆盖;{ alt: { label, start } } 追加入口(执子之手)
-export function renderPage(chapter, onStart, onBack, opts = {}) {
-  $('pageYear').textContent = chapter.year ? chapter.year : '残卷深处';
+export function renderPage(rawChapter, onStart, onBack, opts = {}) {
+  const chapter = localizeChapter(rawChapter);
+  $('pageYear').textContent = chapter.year ? chapter.year : (t('toc.deepScroll') || '残卷深处');
   $('pageName').textContent = chapter.name;
   $('pagePremise').textContent = opts.premise || chapter.premise;
   const brief = briefingFor(chapter);
