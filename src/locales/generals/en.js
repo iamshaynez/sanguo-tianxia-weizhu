@@ -1,73 +1,73 @@
 export default {
   "lvbu": {
     "name": "Lu Bu",
-    "bio": "天下第一,不肯低头。",
+    "bio": "Unrivaled under heaven; bows his head to no one.",
     "tells": {
-      "strong": "[Strong Tell] 画戟横于膝上,指节发白",
-      "weak": "[Weak Tell] 赤兔不安地刨蹄"
+      "strong": "Halberd rested across knees, knuckles whitening.",
+      "weak": "Red Hare stamps its hooves with impatience."
     },
     "barks": {
-      "open": "I am Lu Bu! Let the battle commence!",
-      "taunt": "Is this the best challenge you can offer?",
-      "tilt": "Inconceivable! How dare you cross me!",
-      "smug": "The realm bends to the resolute!",
+      "open": "I am Lu Bu! Who dares wager with me?!",
+      "taunt": "Cowards! Is this the best card you can muster?",
+      "tilt": "Inconceivable! Even the skies cannot bar my way!",
+      "smug": "Hahaha! Unrivaled under heaven!",
       "badbeat": "Impossible... to be undone by such a hand!"
     }
   },
   "liubei": {
     "name": "Liu Bei",
-    "bio": "屡败屡起，最懂人心未凉。",
+    "bio": "Rising repeatedly from defeat; understands the warmth of human spirit.",
     "tells": {
-      "strong": "[Strong Tell] 双剑并放，眉目温和",
-      "weak": "[Weak Tell] 袖中拇指反复摩挲"
+      "strong": "Twin swords laid flat, countenance calm and benevolent.",
+      "weak": "Thumb repeatedly rubbing the sleeve hem in silence."
     },
     "barks": {
-      "open": "I am Liu Bei! Let the battle commence!",
-      "taunt": "Is this the best challenge you can offer?",
-      "tilt": "Inconceivable! How dare you cross me!",
-      "smug": "The realm bends to the resolute!",
-      "badbeat": "Impossible... to be undone by such a hand!"
+      "open": "Liu Bei is here to seek wisdom from my esteemed rival.",
+      "taunt": "Though mountains stand between us, righteousness never yields.",
+      "tilt": "Heaven tests the Han once more... but I shall endure.",
+      "smug": "The benevolence of heaven smiles upon our bond.",
+      "badbeat": "Man proposes, Heaven disposes... a bitter river to cross."
     }
   },
   "guanyu": {
     "name": "Guan Yu",
-    "bio": "青龙偃月，一诺重于千钧。",
+    "bio": "Green Dragon blade in hand; a promise weighs heavier than ten thousand gold.",
     "tells": {
-      "strong": "[Strong Tell] 丹凤眼微睁，抚须不语",
-      "weak": "[Weak Tell] 刀尖向下一垂"
+      "strong": "Phoenix eyes open slightly, stroking his beard in silence.",
+      "weak": "The tip of his blade tilts downward by a fraction."
     },
     "barks": {
-      "open": "I am Guan Yu! Let the battle commence!",
-      "taunt": "Is this the best challenge you can offer?",
-      "tilt": "Inconceivable! How dare you cross me!",
-      "smug": "The realm bends to the resolute!",
-      "badbeat": "Impossible... to be undone by such a hand!"
+      "open": "Guan Yu of Hedong stands here. Play your hand.",
+      "taunt": "A warrior of straw and clay; hardly worth drawing steel.",
+      "tilt": "An oversight! Carelessness clouded my judgment!",
+      "smug": "Righteousness towers like the peaks of Mount Tai.",
+      "badbeat": "To fall before such deceit... unforgettable bitter lesson."
     }
   },
   "zhangfei": {
     "name": "Zhang Fei",
-    "bio": "豹头环眼，粗中亦有细。",
+    "bio": "Round-eyed and fearless; blunt on the outside, subtle within.",
     "tells": {
-      "strong": "[Strong Tell] 环眼圆睁，向前倾身",
-      "weak": "[Weak Tell] 摸起酒碗又放下"
+      "strong": "Eyes wide like copper bells, leaning forward across the felt.",
+      "weak": "Lifts the wine bowl to drink, then sets it down untouched."
     },
     "barks": {
-      "open": "I am Zhang Fei! Let the battle commence!",
-      "taunt": "Is this the best challenge you can offer?",
-      "tilt": "Inconceivable! How dare you cross me!",
-      "smug": "The realm bends to the resolute!",
-      "badbeat": "Impossible... to be undone by such a hand!"
+      "open": "Yan of the Swallow is here! Who dares match my chips?!",
+      "taunt": "Hahaha! Don't run with your tail between your legs!",
+      "tilt": "Pah! What kind of cursed deck is this?!",
+      "smug": "Drink with me! Today we celebrate a crushing triumph!",
+      "badbeat": "Cheat! Did someone swap the cards behind my back?!"
     }
   },
   "chengong": {
-    "name": "Chen Gong",
-    "bio": "谋士所争，常是主公一念。",
+    "name": "Chengong",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 合袖正坐，目光不移",
-      "weak": "[Weak Tell] 望向城图一角"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Chen Gong! Let the battle commence!",
+      "open": "I am Chengong! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -75,14 +75,14 @@ export default {
     }
   },
   "zhaoyun": {
-    "name": "Zhao Yun",
-    "bio": "一身是胆，长坂护主。",
+    "name": "Zhaoyun",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 枪锋收在身后，呼吸绵长",
-      "weak": "[Weak Tell] 护住怀中襁褓"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhao Yun! Let the battle commence!",
+      "open": "I am Zhaoyun! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -90,14 +90,14 @@ export default {
     }
   },
   "dianwei": {
-    "name": "Dian Wei",
-    "bio": "双戟在手，营门便在。",
+    "name": "Dianwei",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 双戟顿地，寸步不退",
-      "weak": "[Weak Tell] 回头望了一眼营门"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Dian Wei! Let the battle commence!",
+      "open": "I am Dianwei! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -106,10 +106,10 @@ export default {
   },
   "diaochan": {
     "name": "Diaochan",
-    "bio": "连环计中，最自由的一步。",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 眼波未动，笑意不减",
-      "weak": "[Weak Tell] 指尖掠过袖中短刃"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
       "open": "I am Diaochan! Let the battle commence!",
@@ -120,14 +120,14 @@ export default {
     }
   },
   "sunquan": {
-    "name": "Sun Quan",
-    "bio": "坐断东南，善择人和。",
+    "name": "Sunquan",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 按剑听潮，不置一词",
-      "weak": "[Weak Tell] 反复权衡左右神色"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Sun Quan! Let the battle commence!",
+      "open": "I am Sunquan! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -135,14 +135,14 @@ export default {
     }
   },
   "lusu": {
-    "name": "Lu Su",
-    "bio": "榻上之策，厚道亦有锋。",
+    "name": "Lusu",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 拱手微笑，言辞笃定",
-      "weak": "[Weak Tell] 欲言又止，望向江北"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Lu Su! Let the battle commence!",
+      "open": "I am Lusu! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -150,14 +150,14 @@ export default {
     }
   },
   "pangtong": {
-    "name": "Pang Tong",
-    "bio": "凤雏不栖枯枝。",
+    "name": "Pangtong",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 负手大笑，目光犀利",
-      "weak": "[Weak Tell] 咳嗽一声，避开坡名"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Pang Tong! Let the battle commence!",
+      "open": "I am Pangtong! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -165,14 +165,14 @@ export default {
     }
   },
   "huangzhong": {
-    "name": "Huang Zhong",
-    "bio": "老将开弓，不服春秋。",
+    "name": "Huangzhong",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 弓满如月，臂不摇",
-      "weak": "[Weak Tell] 揉了揉右肩"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Huang Zhong! Let the battle commence!",
+      "open": "I am Huangzhong! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -180,14 +180,14 @@ export default {
     }
   },
   "masuo": {
-    "name": "Ma Su",
-    "bio": "纸上兵势，山上孤寨。",
+    "name": "Masuo",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 谈兵不止，手指山河",
-      "weak": "[Weak Tell] 反复寻找水源"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Ma Su! Let the battle commence!",
+      "open": "I am Masuo! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -195,14 +195,14 @@ export default {
     }
   },
   "wangping": {
-    "name": "Wang Ping",
-    "bio": "沉实善守，知何时进。",
+    "name": "Wangping",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 阵列齐整，呼吸沉稳",
-      "weak": "[Weak Tell] 低声清点水源"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Wang Ping! Let the battle commence!",
+      "open": "I am Wangping! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -210,14 +210,14 @@ export default {
     }
   },
   "jiangwei": {
-    "name": "Jiang Wei",
-    "bio": "幼麟继志，锐气未折。",
+    "name": "Jiangwei",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 挺枪直视，神采逼人",
-      "weak": "[Weak Tell] 短暂望向汉中"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Jiang Wei! Let the battle commence!",
+      "open": "I am Jiangwei! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -225,14 +225,14 @@ export default {
     }
   },
   "caoshuang": {
-    "name": "Cao Shuang",
-    "bio": "权柄在手，疑心在门。",
+    "name": "Caoshuang",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 凭几而坐，号令随意",
-      "weak": "[Weak Tell] 频频探问府外"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Cao Shuang! Let the battle commence!",
+      "open": "I am Caoshuang! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -240,14 +240,14 @@ export default {
     }
   },
   "yufan": {
-    "name": "Yu Fan",
-    "bio": "江东直士，话里藏针。",
+    "name": "Yufan",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 拂袖反问，声调愈高",
-      "weak": "[Weak Tell] 捻须停顿片刻"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Yu Fan! Let the battle commence!",
+      "open": "I am Yufan! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -255,14 +255,14 @@ export default {
     }
   },
   "luji": {
-    "name": "Lu Ji",
-    "bio": "陆郎怀橘，少年有锋。",
+    "name": "Luji",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 正襟反问，寸步不让",
-      "weak": "[Weak Tell] 看向案上橘核"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Lu Ji! Let the battle commence!",
+      "open": "I am Luji! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -270,14 +270,14 @@ export default {
     }
   },
   "kongxiu": {
-    "name": "Kong Xiu",
-    "bio": "东岭守将，一关亦一诺。",
+    "name": "Kongxiu",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 横刀关上，脚跟不动",
-      "weak": "[Weak Tell] 回望身后印信"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Kong Xiu! Let the battle commence!",
+      "open": "I am Kongxiu! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -285,14 +285,14 @@ export default {
     }
   },
   "hanfu": {
-    "name": "Han Fu",
-    "bio": "洛阳关吏，刀快心虚。",
+    "name": "Hanfu",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 拔刀抢先，声势逼人",
-      "weak": "[Weak Tell] 频繁擦拭掌心"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Han Fu! Let the battle commence!",
+      "open": "I am Hanfu! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -300,14 +300,14 @@ export default {
     }
   },
   "bianxi": {
-    "name": "Bian Xi",
-    "bio": "镇国寺僧，袈裟藏刃。",
+    "name": "Bianxi",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 合十低眉，气息沉稳",
-      "weak": "[Weak Tell] 袖中刀环轻响"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Bian Xi! Let the battle commence!",
+      "open": "I am Bianxi! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -315,14 +315,14 @@ export default {
     }
   },
   "wangzhi": {
-    "name": "Wang Zhi",
-    "bio": "荥阳太守，笑里设局。",
+    "name": "Wangzhi",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 笑容不改，杯盏极稳",
-      "weak": "[Weak Tell] 瞥向廊下伏兵"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Wang Zhi! Let the battle commence!",
+      "open": "I am Wangzhi! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -330,14 +330,14 @@ export default {
     }
   },
   "qinqi": {
-    "name": "Qin Qi",
-    "bio": "黄河渡口，最后一声喝。",
+    "name": "Qinqi",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 横刀立马，目光直迫",
-      "weak": "[Weak Tell] 握缰的手收紧"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Qin Qi! Let the battle commence!",
+      "open": "I am Qinqi! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -345,14 +345,14 @@ export default {
     }
   },
   "huaxiong": {
-    "name": "Hua Xiong",
-    "bio": "温酒未寒时的那个人。",
+    "name": "Huaxiong",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 按刀而立,纹丝不动",
-      "weak": "[Weak Tell] 频频回望关门"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Hua Xiong! Let the battle commence!",
+      "open": "I am Huaxiong! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -360,14 +360,14 @@ export default {
     }
   },
   "dongzhuo": {
-    "name": "Dong Zhuo",
-    "bio": "郿坞深池,酒池肉林。",
+    "name": "Dongzhuo",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 抚腹大笑,冠缨乱颤",
-      "weak": "[Weak Tell] 肥硕的手捂住钱袋"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Dong Zhuo! Let the battle commence!",
+      "open": "I am Dongzhuo! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -375,14 +375,14 @@ export default {
     }
   },
   "jiling": {
-    "name": "Ji Ling",
-    "bio": "袁术头号打手。",
+    "name": "Jiling",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 大刀顿地,声如闷雷",
-      "weak": "[Weak Tell] 眼神瞟向自家营门"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Ji Ling! Let the battle commence!",
+      "open": "I am Jiling! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -390,14 +390,14 @@ export default {
     }
   },
   "zhangxiu": {
-    "name": "Zhang Xiu",
-    "bio": "北地枪王,降而复叛。",
+    "name": "Zhangxiu",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 枪尖垂地,稳如磐石",
-      "weak": "[Weak Tell] 舔了舔干裂的唇"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhang Xiu! Let the battle commence!",
+      "open": "I am Zhangxiu! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -406,28 +406,28 @@ export default {
   },
   "caocao": {
     "name": "Cao Cao",
-    "bio": "治世能臣,乱世奸雄。",
+    "bio": "Better to let the world bend to me than bend to the world; supreme ambition in a shifting era.",
     "tells": {
-      "strong": "[Strong Tell] 横槊赋诗,旁若无人",
-      "weak": "[Weak Tell] 抚须沉吟,目光游移"
+      "strong": "Laughs heartily with eyes narrowed, tapping the table rhythmically.",
+      "weak": "Grips his short sword pommel tightly beneath the cloak."
     },
     "barks": {
-      "open": "I am Cao Cao! Let the battle commence!",
-      "taunt": "Is this the best challenge you can offer?",
-      "tilt": "Inconceivable! How dare you cross me!",
-      "smug": "The realm bends to the resolute!",
-      "badbeat": "Impossible... to be undone by such a hand!"
+      "open": "Let us discuss heroes over wine today. Show me your hand.",
+      "taunt": "A scholar who hesitates will find his head parted from his neck.",
+      "tilt": "Hmph! Even the cleverest bird can be blinded by mist.",
+      "smug": "The realm bends to the resolute. As I foresaw.",
+      "badbeat": "Splendid! Truly an opponent worthy of my admiration."
     }
   },
   "yuanshao": {
-    "name": "Yuan Shao",
-    "bio": "四世三公,色厉内荏。",
+    "name": "Yuanshao",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 四世三公,腰板笔直",
-      "weak": "[Weak Tell] 不停地看向左右"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Yuan Shao! Let the battle commence!",
+      "open": "I am Yuanshao! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -436,28 +436,28 @@ export default {
   },
   "zhuge": {
     "name": "Zhuge Liang",
-    "bio": "卧龙。",
+    "bio": "Devoting his entire being until his dying breath; peerless intellect guiding the Han.",
     "tells": {
-      "strong": "[Strong Tell] 羽扇轻摇,不急不缓",
-      "weak": "[Weak Tell] 扇面停了一瞬"
+      "strong": "Fans gently with feather plume, eyes calm like ancient waters.",
+      "weak": "Pauses his feather fan in midair, gazing toward the sky."
     },
     "barks": {
-      "open": "I am Zhuge Liang! Let the battle commence!",
-      "taunt": "Is this the best challenge you can offer?",
-      "tilt": "Inconceivable! How dare you cross me!",
-      "smug": "The realm bends to the resolute!",
-      "badbeat": "Impossible... to be undone by such a hand!"
+      "open": "Zhuge Liang of Longzhong offers this humble game of wits.",
+      "taunt": "The movement of the heavens and earth has long foretold this outcome.",
+      "tilt": "Man proposes, Heaven disposes... an unexpected turn of fate.",
+      "smug": "The river wind blows southeast; victory was ordained.",
+      "badbeat": "Deep calculations still leave room for the whims of fortune."
     }
   },
   "xiahoudun": {
-    "name": "Xiahou Dun",
-    "bio": "拔矢啖睛的独目将军。",
+    "name": "Xiahoudun",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 独目如电,一瞬不瞬",
-      "weak": "[Weak Tell] 独目避开了你"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Xiahou Dun! Let the battle commence!",
+      "open": "I am Xiahoudun! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -465,14 +465,14 @@ export default {
     }
   },
   "zhangzhao": {
-    "name": "Zhang Zhao",
-    "bio": "江东文胆。",
+    "name": "Zhangzhao",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 正襟危坐,引经据典",
-      "weak": "[Weak Tell] 袖中的手在抖"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhang Zhao! Let the battle commence!",
+      "open": "I am Zhangzhao! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -480,14 +480,14 @@ export default {
     }
   },
   "zhouyu": {
-    "name": "Zhou Yu",
-    "bio": "江东周郎,才情与火气并盛。",
+    "name": "Zhouyu",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 抚琴的手按住了剑",
-      "weak": "[Weak Tell] 箭疮隐隐作痛"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhou Yu! Let the battle commence!",
+      "open": "I am Zhouyu! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -495,14 +495,14 @@ export default {
     }
   },
   "zhangren": {
-    "name": "Zhang Ren",
-    "bio": "西川第一忠勇。",
+    "name": "Zhangren",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 弓已满弦,纹丝不动",
-      "weak": "[Weak Tell] 瞥了一眼落凤坡"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhang Ren! Let the battle commence!",
+      "open": "I am Zhangren! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -510,14 +510,14 @@ export default {
     }
   },
   "xiahouyuan": {
-    "name": "Xiahou Yuan",
-    "bio": "兵贵神速,性如烈火。",
+    "name": "Xiahouyuan",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 虎步碾地,跃跃欲试",
-      "weak": "[Weak Tell] 频频催促快些发牌"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Xiahou Yuan! Let the battle commence!",
+      "open": "I am Xiahouyuan! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -525,14 +525,14 @@ export default {
     }
   },
   "yujin": {
-    "name": "Yu Jin",
-    "bio": "泰山之稳,晚节之痛。",
+    "name": "Yujin",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 军阵严整,呼吸不乱",
-      "weak": "[Weak Tell] 望了一眼低洼处"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Yu Jin! Let the battle commence!",
+      "open": "I am Yujin! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -540,14 +540,14 @@ export default {
     }
   },
   "lvmeng": {
-    "name": "Lu Meng",
-    "bio": "白衣渡江,刮目相看。",
+    "name": "Lvmeng",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 白衣执卷,气定神闲",
-      "weak": "[Weak Tell] 咳嗽声压得很低"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Lu Meng! Let the battle commence!",
+      "open": "I am Lvmeng! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -555,14 +555,14 @@ export default {
     }
   },
   "luxun": {
-    "name": "Lu Xun",
-    "bio": "儒生都督,火烧连营。",
+    "name": "Luxun",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 负手观火,岿然不动",
-      "weak": "[Weak Tell] 袖中掐算,迟迟不决"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Lu Xun! Let the battle commence!",
+      "open": "I am Luxun! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -570,14 +570,14 @@ export default {
     }
   },
   "menghuo": {
-    "name": "Meng Huo",
-    "bio": "七擒七纵的南王。",
+    "name": "Menghuo",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 拍案而起,碗盏乱跳",
-      "weak": "[Weak Tell] 挠头,嘿嘿干笑"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Meng Huo! Let the battle commence!",
+      "open": "I am Menghuo! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -585,14 +585,14 @@ export default {
     }
   },
   "caozhen": {
-    "name": "Cao Zhen",
-    "bio": "曹魏宗室名将。",
+    "name": "Caozhen",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 按剑正坐,不动如山",
-      "weak": "[Weak Tell] 挪动了一下坐姿"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Cao Zhen! Let the battle commence!",
+      "open": "I am Caozhen! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -600,14 +600,14 @@ export default {
     }
   },
   "zhanghe": {
-    "name": "Zhang He",
-    "bio": "巧变善战的名将。",
+    "name": "Zhanghe",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 坐姿前倾,如狐伺兔",
-      "weak": "[Weak Tell] 后退半步,重新打量你"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhang He! Let the battle commence!",
+      "open": "I am Zhanghe! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -615,14 +615,14 @@ export default {
     }
   },
   "simayi": {
-    "name": "Sima Yi",
-    "bio": "冢虎。耗得起的,都赢了。",
+    "name": "Simayi",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 闭目养神,呼吸绵长",
-      "weak": "[Weak Tell] 指节叩桌,三短一长"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Sima Yi! Let the battle commence!",
+      "open": "I am Simayi! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -630,14 +630,14 @@ export default {
     }
   },
   "dengai": {
-    "name": "Deng Ai",
-    "bio": "偷渡阴平的口吃将军。",
+    "name": "Dengai",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 口吃,目光却如炬",
-      "weak": "[Weak Tell] 搓着衣角,结巴得更厉害"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Deng Ai! Let the battle commence!",
+      "open": "I am Dengai! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -645,14 +645,14 @@ export default {
     }
   },
   "simayan": {
-    "name": "Sima Yan",
-    "bio": "三分归一的晋武帝。",
+    "name": "Simayan",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 冕旒不动,居高临下",
-      "weak": "[Weak Tell] 频频看向殿外"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Sima Yan! Let the battle commence!",
+      "open": "I am Simayan! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -660,14 +660,14 @@ export default {
     }
   },
   "machao": {
-    "name": "Ma Chao",
-    "bio": "锦袍银枪,西凉之怒。",
+    "name": "Machao",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 枪杆横在膝上,杀气不藏",
-      "weak": "[Weak Tell] 回头看了一眼西凉来的兵"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Ma Chao! Let the battle commence!",
+      "open": "I am Machao! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -675,14 +675,14 @@ export default {
     }
   },
   "yanliang": {
-    "name": "Yan Liang",
-    "bio": "河北第一刀,势不可当。",
+    "name": "Yanliang",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 大刀平举,连营肃静",
-      "weak": "[Weak Tell] 阵前来回踱步,等得不耐"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Yan Liang! Let the battle commence!",
+      "open": "I am Yanliang! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -690,14 +690,14 @@ export default {
     }
   },
   "wenchou": {
-    "name": "Wen Chou",
-    "bio": "河北双壁,与颜良并驱。",
+    "name": "Wenchou",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 铁枪顿地,目中无人",
-      "weak": "[Weak Tell] 听见「颜良」二字便咬牙"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Wen Chou! Let the battle commence!",
+      "open": "I am Wenchou! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -705,14 +705,14 @@ export default {
     }
   },
   "xuchu": {
-    "name": "Xu Chu",
-    "bio": "虎痴。力大,心更直。",
+    "name": "Xuchu",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 赤膊拍案,声震屋瓦",
-      "weak": "[Weak Tell] 挠头,想不明白就再看一眼"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Xu Chu! Let the battle commence!",
+      "open": "I am Xuchu! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -720,14 +720,14 @@ export default {
     }
   },
   "zhangliao": {
-    "name": "Zhang Liao",
-    "bio": "八百破十万的那个人。",
+    "name": "Zhangliao",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 按辔不动,先数你的营",
-      "weak": "[Weak Tell] 笑声里透出一丝疲惫"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhang Liao! Let the battle commence!",
+      "open": "I am Zhangliao! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -735,14 +735,14 @@ export default {
     }
   },
   "pangde": {
-    "name": "Pang De",
-    "bio": "抬榇决死战,不回头。",
+    "name": "Pangde",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 抬棺的手,稳过握刀的手",
-      "weak": "[Weak Tell] 摩挲腰间空了的酒葫芦"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Pang De! Let the battle commence!",
+      "open": "I am Pangde! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -750,14 +750,14 @@ export default {
     }
   },
   "taishici": {
-    "name": "Taishi Ci",
-    "bio": "猿臂善射,信义为先。",
+    "name": "Taishici",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 短戟在袖,背弓不卸",
-      "weak": "[Weak Tell] 望了一眼旧主的营"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Taishi Ci! Let the battle commence!",
+      "open": "I am Taishici! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -765,14 +765,14 @@ export default {
     }
   },
   "ganning": {
-    "name": "Gan Ning",
-    "bio": "锦帆贼出身的斗将。",
+    "name": "Ganning",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 铃铛一响,刀已出鞘",
-      "weak": "[Weak Tell] 摩挲着颈上的铜铃"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Gan Ning! Let the battle commence!",
+      "open": "I am Ganning! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -780,14 +780,14 @@ export default {
     }
   },
   "huangzu": {
-    "name": "Huang Zu",
-    "bio": "守江夏的旧将,记仇。",
+    "name": "Huangzu",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 伏在垛后,只等一箭",
-      "weak": "[Weak Tell] 频频擦汗,望着上游"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Huang Zu! Let the battle commence!",
+      "open": "I am Huangzu! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -795,14 +795,14 @@ export default {
     }
   },
   "caimao": {
-    "name": "Cai Mao",
-    "bio": "荆州水军,看姐姐脸色。",
+    "name": "Caimao",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 水图在袖,谈笑布阵",
-      "weak": "[Weak Tell] 回头请示后堂"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Cai Mao! Let the battle commence!",
+      "open": "I am Caimao! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -810,14 +810,14 @@ export default {
     }
   },
   "simashi": {
-    "name": "Sima Shi",
-    "bio": "眼睛里有瘤,眼里更有天下。",
+    "name": "Simashi",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 按剑而坐,目不斜视",
-      "weak": "[Weak Tell] 抬手按了按眼上的纱布"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Sima Shi! Let the battle commence!",
+      "open": "I am Simashi! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -825,14 +825,14 @@ export default {
     }
   },
   "simazhao": {
-    "name": "Sima Zhao",
-    "bio": "之心,路人皆知。",
+    "name": "Simazhao",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 抚剑微笑,话里让三分",
-      "weak": "[Weak Tell] 指尖在案上轻叩,数着人心"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Sima Zhao! Let the battle commence!",
+      "open": "I am Simazhao! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -840,14 +840,14 @@ export default {
     }
   },
   "gongsunzan": {
-    "name": "Gongsun Zan",
-    "bio": "白马将军,守北疆。",
+    "name": "Gongsunzan",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 白马列阵,弓骑齐张",
-      "weak": "[Weak Tell] 望向高墙,算着存粮"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Gongsun Zan! Let the battle commence!",
+      "open": "I am Gongsunzan! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -855,14 +855,14 @@ export default {
     }
   },
   "quyi": {
-    "name": "Qu Yi",
-    "bio": "先登死士,骄而善战。",
+    "name": "Quyi",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 盾墙一沉,静得可怕",
-      "weak": "[Weak Tell] 嫌后排跟得太慢"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Qu Yi! Let the battle commence!",
+      "open": "I am Quyi! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -870,14 +870,14 @@ export default {
     }
   },
   "caoren": {
-    "name": "Cao Ren",
-    "bio": "天人之勇,守城如山。",
+    "name": "Caoren",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 飞马绕城,亲数你的旗",
-      "weak": "[Weak Tell] 轻抚旧甲上的箭痕"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Cao Ren! Let the battle commence!",
+      "open": "I am Caoren! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -885,14 +885,14 @@ export default {
     }
   },
   "caohong": {
-    "name": "Cao Hong",
-    "bio": "让马的兄弟,护主的将。",
+    "name": "Caohong",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 横刀立马,堵住退路",
-      "weak": "[Weak Tell] 数着主公走远了没有"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Cao Hong! Let the battle commence!",
+      "open": "I am Caohong! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -900,14 +900,14 @@ export default {
     }
   },
   "xuhuang": {
-    "name": "Xu Huang",
-    "bio": "周亚夫之风,治军严。",
+    "name": "Xuhuang",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 斧戟并持,阵列如林",
-      "weak": "[Weak Tell] 不动声色地重整旗鼓"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Xu Huang! Let the battle commence!",
+      "open": "I am Xuhuang! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -915,14 +915,14 @@ export default {
     }
   },
   "lejin": {
-    "name": "Yue Jin",
-    "bio": "每战先登,个子矮锋刃长。",
+    "name": "Lejin",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 身先士卒,寸步不退",
-      "weak": "[Weak Tell] 勒马回望本阵"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Yue Jin! Let the battle commence!",
+      "open": "I am Lejin! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -930,14 +930,14 @@ export default {
     }
   },
   "lidian": {
-    "name": "Li Dian",
-    "bio": "儒将,顾全大局。",
+    "name": "Lidian",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 按卷不读,先看地势",
-      "weak": "[Weak Tell] 欲谏,又收住了话"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Li Dian! Let the battle commence!",
+      "open": "I am Lidian! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -945,14 +945,14 @@ export default {
     }
   },
   "haozhao": {
-    "name": "Hao Zhao",
-    "bio": "千人守陈仓,守成传说。",
+    "name": "Haozhao",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 连弩上弦,城头无声",
-      "weak": "[Weak Tell] 数着城下的云梯"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Hao Zhao! Let the battle commence!",
+      "open": "I am Haozhao! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -960,14 +960,14 @@ export default {
     }
   },
   "wangshuang": {
-    "name": "Wang Shuang",
-    "bio": "陇西大汉,流星锤。",
+    "name": "Wangshuang",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 大锤拄地,地都一颤",
-      "weak": "[Weak Tell] 回头找主力在哪里"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Wang Shuang! Let the battle commence!",
+      "open": "I am Wangshuang! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -975,14 +975,14 @@ export default {
     }
   },
   "gaoshun": {
-    "name": "Gao Shun",
-    "bio": "陷阵营,每战必克。",
+    "name": "Gaoshun",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 陷阵旗展,枪如墙进",
-      "weak": "[Weak Tell] 叹息一声,仍向前"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Gao Shun! Let the battle commence!",
+      "open": "I am Gaoshun! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -990,14 +990,14 @@ export default {
     }
   },
   "songxian": {
-    "name": "Song Xian",
-    "bio": "吕布旧部,心事重重。",
+    "name": "Songxian",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 抖擞精神,刀花不乱",
-      "weak": "[Weak Tell] 和魏续交换了一个眼色"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Song Xian! Let the battle commence!",
+      "open": "I am Songxian! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1005,14 +1005,14 @@ export default {
     }
   },
   "gaolan": {
-    "name": "Gao Lan",
-    "bio": "河北名将,后路常悬。",
+    "name": "Gaolan",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 枪沉马稳,河北气度",
-      "weak": "[Weak Tell] 留意着主将的旗往哪倒"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Gao Lan! Let the battle commence!",
+      "open": "I am Gaolan! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1020,14 +1020,14 @@ export default {
     }
   },
   "wenpin": {
-    "name": "Wen Pin",
-    "bio": "守荆州的忠,先主之惭。",
+    "name": "Wenpin",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 勒马横枪,礼数不失",
-      "weak": "[Weak Tell] 垂首,不敢直视旧主家眷"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Wen Pin! Let the battle commence!",
+      "open": "I am Wenpin! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1035,14 +1035,14 @@ export default {
     }
   },
   "guohuai": {
-    "name": "Guo Huai",
-    "bio": "关西宿将,善识风色。",
+    "name": "Guohuai",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 按图沉思,落子极慢",
-      "weak": "[Weak Tell] 揉着旧伤的腿"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Guo Huai! Let the battle commence!",
+      "open": "I am Guohuai! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1050,14 +1050,14 @@ export default {
     }
   },
   "wangshen": {
-    "name": "Wang Shen",
-    "bio": "把密谋写成奏表的笔。",
+    "name": "Wangshen",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 笔不离手,言辞滴水不漏",
-      "weak": "[Weak Tell] 墨迹未干,先掂量权柄"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Wang Shen! Let the battle commence!",
+      "open": "I am Wangshen! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1065,14 +1065,14 @@ export default {
     }
   },
   "leshen": {
-    "name": "Yue Chen",
-    "bio": "名将之子,守淮南。",
+    "name": "Leshen",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 按父阵法,一板一眼",
-      "weak": "[Weak Tell] 觉得寿春城墙不够厚"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Yue Chen! Let the battle commence!",
+      "open": "I am Leshen! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1080,14 +1080,14 @@ export default {
     }
   },
   "guanqiujian": {
-    "name": "Guanqiu Jian",
-    "bio": "辽东刻石的名将,忠于魏。",
+    "name": "Guanqiujian",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 按剑诵读讨贼檄",
-      "weak": "[Weak Tell] 望着洛阳,老泪纵横"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Guanqiu Jian! Let the battle commence!",
+      "open": "I am Guanqiujian! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1095,14 +1095,14 @@ export default {
     }
   },
   "wenqin": {
-    "name": "Wen Qin",
-    "bio": "勇而少谋,父子同仇。",
+    "name": "Wenqin",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 嗓门先到,刀随后至",
-      "weak": "[Weak Tell] 和儿子抢着出战"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Wen Qin! Let the battle commence!",
+      "open": "I am Wenqin! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1110,14 +1110,14 @@ export default {
     }
   },
   "wenyang": {
-    "name": "Wen Yang",
-    "bio": "单骑退追兵的少年。",
+    "name": "Wenyang",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 鞭梢一指,千军让路",
-      "weak": "[Weak Tell] 回头数追兵还剩几个"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Wen Yang! Let the battle commence!",
+      "open": "I am Wenyang! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1125,14 +1125,14 @@ export default {
     }
   },
   "zhugedan": {
-    "name": "Zhuge Dan",
-    "bio": "以卵击石,反得最烈。",
+    "name": "Zhugedan",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 抚麾而立,淮南部曲山呼",
-      "weak": "[Weak Tell] 反复摩挲诸葛家的家书"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhuge Dan! Let the battle commence!",
+      "open": "I am Zhugedan! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1140,14 +1140,14 @@ export default {
     }
   },
   "jiachong": {
-    "name": "Jia Chong",
-    "bio": "成济那把刀的执刀人。",
+    "name": "Jiachong",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 袖手立于主公身后",
-      "weak": "[Weak Tell] 推了推身边人的手肘"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Jia Chong! Let the battle commence!",
+      "open": "I am Jiachong! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1155,14 +1155,14 @@ export default {
     }
   },
   "zhonghui": {
-    "name": "Zhong Hui",
-    "bio": "书法家的野心,剑藏笔底。",
+    "name": "Zhonghui",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 笔走龙蛇,落子成阵",
-      "weak": "[Weak Tell] 把别人的捷报又读一遍"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhong Hui! Let the battle commence!",
+      "open": "I am Zhonghui! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1170,14 +1170,14 @@ export default {
     }
   },
   "dengzhong": {
-    "name": "Deng Zhong",
-    "bio": "虎父之子,初阵绵竹。",
+    "name": "Dengzhong",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 学父亲结巴前先出枪",
-      "weak": "[Weak Tell] 偷看父亲的神色"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Deng Zhong! Let the battle commence!",
+      "open": "I am Dengzhong! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1185,14 +1185,14 @@ export default {
     }
   },
   "caomao": {
-    "name": "Cao Mao",
-    "bio": "司马昭之心,路人皆知。",
+    "name": "Caomao",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 仗剑登辇,龙旗在前",
-      "weak": "[Weak Tell] 抚着案上的《潜龙》诗"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Cao Mao! Let the battle commence!",
+      "open": "I am Caomao! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1200,14 +1200,14 @@ export default {
     }
   },
   "yanghu": {
-    "name": "Yang Hu",
-    "bio": "轻裘缓带,以信猎城。",
+    "name": "Yanghu",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 围猎收拢,只取己物",
-      "weak": "[Weak Tell] 对着药壶轻轻摇头"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Yang Hu! Let the battle commence!",
+      "open": "I am Yanghu! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1215,14 +1215,14 @@ export default {
     }
   },
   "lukang": {
-    "name": "Lu Kang",
-    "bio": "吴国最后的长城。",
+    "name": "Lukang",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 筑围如山,粮道分明",
-      "weak": "[Weak Tell] 望着建业,叹而不言"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Lu Kang! Let the battle commence!",
+      "open": "I am Lukang! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1230,14 +1230,14 @@ export default {
     }
   },
   "wangjun": {
-    "name": "Wang Jun",
-    "bio": "楼船下益州,收金陵王气。",
+    "name": "Wangjun",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 把楼船图又改一稿",
-      "weak": "[Weak Tell] 数着江上的铁锁还剩几道"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Wang Jun! Let the battle commence!",
+      "open": "I am Wangjun! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1245,14 +1245,14 @@ export default {
     }
   },
   "sunjian": {
-    "name": "Sun Jian",
-    "bio": "江东猛虎,怀璧其罪。",
+    "name": "Sunjian",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 古锭刀一指,身先士卒",
-      "weak": "[Weak Tell] 摩挲怀中的传国玉玺"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Sun Jian! Let the battle commence!",
+      "open": "I am Sunjian! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1260,14 +1260,14 @@ export default {
     }
   },
   "sunce": {
-    "name": "Sun Ce",
-    "bio": "小霸王,以玉玺换江山。",
+    "name": "Sunce",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 枪挑盔缨,笑得像少年",
-      "weak": "[Weak Tell] 按了按颊上的箭伤"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Sun Ce! Let the battle commence!",
+      "open": "I am Sunce! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1275,14 +1275,14 @@ export default {
     }
   },
   "huanggai": {
-    "name": "Huang Gai",
-    "bio": "三世老臣,苦肉的火种。",
+    "name": "Huanggai",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 铁鞭在握,脊背挺直",
-      "weak": "[Weak Tell] 揉了揉背上未愈的杖痕"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Huang Gai! Let the battle commence!",
+      "open": "I am Huanggai! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1290,14 +1290,14 @@ export default {
     }
   },
   "chengpu": {
-    "name": "Cheng Pu",
-    "bio": "三朝元老,铁脊蛇矛。",
+    "name": "Chengpu",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 蛇矛拄地,老而弥坚",
-      "weak": "[Weak Tell] 叹一句「周郎小儿」又收住"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Cheng Pu! Let the battle commence!",
+      "open": "I am Chengpu! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1305,14 +1305,14 @@ export default {
     }
   },
   "handang": {
-    "name": "Han Dang",
-    "bio": "义从老兵,弓马不辍。",
+    "name": "Handang",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 弓开满月,大呼陷阵",
-      "weak": "[Weak Tell] 默默替士卒紧甲"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Han Dang! Let the battle commence!",
+      "open": "I am Handang! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1320,14 +1320,14 @@ export default {
     }
   },
   "zhoutai": {
-    "name": "Zhou Tai",
-    "bio": "十二处伤,换主公一命。",
+    "name": "Zhoutai",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 解甲示疤,浑身是胆",
-      "weak": "[Weak Tell] 把主公往身后拢了拢"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhou Tai! Let the battle commence!",
+      "open": "I am Zhoutai! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1335,14 +1335,14 @@ export default {
     }
   },
   "lingtong": {
-    "name": "Ling Tong",
-    "bio": "父仇在心,公义在前。",
+    "name": "Lingtong",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 咬着牙出枪,快而狠",
-      "weak": "[Weak Tell] 听见甘宁的铃就攥紧拳"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Ling Tong! Let the battle commence!",
+      "open": "I am Lingtong! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1350,14 +1350,14 @@ export default {
     }
   },
   "dingfeng": {
-    "name": "Ding Feng",
-    "bio": "雪中奋短兵的老将。",
+    "name": "Dingfeng",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 脱甲提刀,雪里列队",
-      "weak": "[Weak Tell] 眯眼算风向与敌粮"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Ding Feng! Let the battle commence!",
+      "open": "I am Dingfeng! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1365,14 +1365,14 @@ export default {
     }
   },
   "panzhang": {
-    "name": "Pan Zhang",
-    "bio": "截粮擒将,不择手段。",
+    "name": "Panzhang",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 刀横在窄路上,狞笑",
-      "weak": "[Weak Tell] 盯着别人的好刀好马"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Pan Zhang! Let the battle commence!",
+      "open": "I am Panzhang! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1380,14 +1380,14 @@ export default {
     }
   },
   "zhuran": {
-    "name": "Zhu Ran",
-    "bio": "坚守江陵,火中不乱。",
+    "name": "Zhuran",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 城中粮册翻得极熟",
-      "weak": "[Weak Tell] 数着城外又添了几层围"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhu Ran! Let the battle commence!",
+      "open": "I am Zhuran! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1395,14 +1395,14 @@ export default {
     }
   },
   "weiyan": {
-    "name": "Wei Yan",
-    "bio": "子午谷一条路,没人肯走。",
+    "name": "Weiyan",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 按剑而立,眼里全是长安",
-      "weak": "[Weak Tell] 又一次收起自请的战书"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Wei Yan! Let the battle commence!",
+      "open": "I am Weiyan! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1410,14 +1410,14 @@ export default {
     }
   },
   "madai": {
-    "name": "Ma Dai",
-    "bio": "堂弟,断后与补刀都稳。",
+    "name": "Madai",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 刀法沉实,不抢不慌",
-      "weak": "[Weak Tell] 留意兄长的战马去向"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Ma Dai! Let the battle commence!",
+      "open": "I am Madai! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1425,14 +1425,14 @@ export default {
     }
   },
   "guanping": {
-    "name": "Guan Ping",
-    "bio": "义子,刀法与心性同正。",
+    "name": "Guanping",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 横刀护在父亲侧后",
-      "weak": "[Weak Tell] 替父亲拢了拢披风"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Guan Ping! Let the battle commence!",
+      "open": "I am Guanping! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1440,14 +1440,14 @@ export default {
     }
   },
   "zhoucang": {
-    "name": "Zhou Cang",
-    "bio": "扛刀的,脚程天下第一。",
+    "name": "Zhoucang",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 扛着八十二斤如提竹杖",
-      "weak": "[Weak Tell] 望着水军旗帜直咬牙"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhou Cang! Let the battle commence!",
+      "open": "I am Zhoucang! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1455,14 +1455,14 @@ export default {
     }
   },
   "zhangbao": {
-    "name": "Zhang Bao",
-    "bio": "虎父之子,蛇矛新主。",
+    "name": "Zhangbao",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 矛出如虎,大喝开路",
-      "weak": "[Weak Tell] 与关兴争功时红了脸"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhang Bao! Let the battle commence!",
+      "open": "I am Zhangbao! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1470,14 +1470,14 @@ export default {
     }
   },
   "guanxing": {
-    "name": "Guan Xing",
-    "bio": "青龙刀的第二次出鞘。",
+    "name": "Guanxing",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 刀随身走,快而不乱",
-      "weak": "[Weak Tell] 抚过刀鞘上父亲的旧痕"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Guan Xing! Let the battle commence!",
+      "open": "I am Guanxing! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1485,14 +1485,14 @@ export default {
     }
   },
   "fazheng": {
-    "name": "Fa Zheng",
-    "bio": "睚眦必报,奇谋亦必报。",
+    "name": "Fazheng",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 以目示意,锋藏在袖",
-      "weak": "[Weak Tell] 轻咳,按住胸口旧疾"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Fa Zheng! Let the battle commence!",
+      "open": "I am Fazheng! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1500,14 +1500,14 @@ export default {
     }
   },
   "yanyan": {
-    "name": "Yan Yan",
-    "bio": "断头将军,不降之骨。",
+    "name": "Yanyan",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 拄刀而立,白发不乱",
-      "weak": "[Weak Tell] 替身后的新附兵留了退路"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Yan Yan! Let the battle commence!",
+      "open": "I am Yanyan! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1515,14 +1515,14 @@ export default {
     }
   },
   "huangquan": {
-    "name": "Huang Quan",
-    "bio": "归魏不归吴,两全之难。",
+    "name": "Huangquan",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 按图直谏,声不高而理重",
-      "weak": "[Weak Tell] 望着江北,久久不语"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Huang Quan! Let the battle commence!",
+      "open": "I am Huangquan! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1530,14 +1530,14 @@ export default {
     }
   },
   "maliang": {
-    "name": "Ma Liang",
-    "bio": "白眉最良,执笔随军。",
+    "name": "Maliang",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 白眉一扬,笔下成阵",
-      "weak": "[Weak Tell] 把五溪的图又核了一遍"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Ma Liang! Let the battle commence!",
+      "open": "I am Maliang! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1546,10 +1546,10 @@ export default {
   },
   "shamoke": {
     "name": "Shamoke",
-    "bio": "五溪番王,铁蒺藜骨朵。",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 骨朵挂腰,赤膊披发",
-      "weak": "[Weak Tell] 听不懂汉营的将令,皱眉"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
       "open": "I am Shamoke! Let the battle commence!",
@@ -1560,14 +1560,14 @@ export default {
     }
   },
   "liaohua": {
-    "name": "Liao Hua",
-    "bio": "从麦城活到剑阁的人。",
+    "name": "Liaohua",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 老而弥坚,刀仍提得动",
-      "weak": "[Weak Tell] 数着还剩几个蜀中故人"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Liao Hua! Let the battle commence!",
+      "open": "I am Liaohua! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1575,14 +1575,14 @@ export default {
     }
   },
   "zhangyi": {
-    "name": "Zhang Ni",
-    "bio": "谏而后战,战不还顾。",
+    "name": "Zhangyi",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 按剑而谏,字字如钉",
-      "weak": "[Weak Tell] 抚着剑穗上旧年的结"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhang Ni! Let the battle commence!",
+      "open": "I am Zhangyi! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1590,14 +1590,14 @@ export default {
     }
   },
   "xiahouba": {
-    "name": "Xiahou Ba",
-    "bio": "投蜀的曹家旧将。",
+    "name": "Xiahouba",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 弓刀并举,家传的狠",
-      "weak": "[Weak Tell] 望见魏旗,手停了一瞬"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Xiahou Ba! Let the battle commence!",
+      "open": "I am Xiahouba! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1605,14 +1605,14 @@ export default {
     }
   },
   "yangyi": {
-    "name": "Yang Yi",
-    "bio": "能理事,不能容人。",
+    "name": "Yangyi",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 粮册军册,一口报清",
-      "weak": "[Weak Tell] 斜眼盯着同僚的功劳簿"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Yang Yi! Let the battle commence!",
+      "open": "I am Yangyi! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1620,14 +1620,14 @@ export default {
     }
   },
   "zhugezhan": {
-    "name": "Zhuge Zhan",
-    "bio": "丞相之子,绵竹最后一阵。",
+    "name": "Zhugezhan",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 执父旧扇,身正影直",
-      "weak": "[Weak Tell] 怕自己不配这个姓氏"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhuge Zhan! Let the battle commence!",
+      "open": "I am Zhugezhan! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1635,14 +1635,14 @@ export default {
     }
   },
   "zhugeshang": {
-    "name": "Zhuge Shang",
-    "bio": "将门孙,先登赴死。",
+    "name": "Zhugeshang",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 束甲紧了又紧,一步不退",
-      "weak": "[Weak Tell] 回望成都,眼眶通红"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Zhuge Shang! Let the battle commence!",
+      "open": "I am Zhugeshang! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1650,14 +1650,14 @@ export default {
     }
   },
   "guojia": {
-    "name": "Guo Jia",
-    "bio": "鬼才,算尽十年不敢算寿。",
+    "name": "Guojia",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 掩袖轻咳,落子却狠",
-      "weak": "[Weak Tell] 药盏凉了也没喝"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Guo Jia! Let the battle commence!",
+      "open": "I am Guojia! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1665,14 +1665,14 @@ export default {
     }
   },
   "xunyu": {
-    "name": "Xun Yu",
-    "bio": "王佐之才,持的是汉。",
+    "name": "Xunyu",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 端坐如仪,进言有条",
-      "weak": "[Weak Tell] 摩挲着空食盒的盖"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Xun Yu! Let the battle commence!",
+      "open": "I am Xunyu! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1680,14 +1680,14 @@ export default {
     }
   },
   "jiaxu": {
-    "name": "Jia Xu",
-    "bio": "一言乱天下,再言全身退。",
+    "name": "Jiaxu",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 垂目似睡,话最少",
-      "weak": "[Weak Tell] 把话在嘴里又滚了一遍"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Jia Xu! Let the battle commence!",
+      "open": "I am Jiaxu! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1695,14 +1695,14 @@ export default {
     }
   },
   "tianfeng": {
-    "name": "Tian Feng",
-    "bio": "直言的谋士,狱中待胜。",
+    "name": "Tianfeng",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 长揖到地,直言不讳",
-      "weak": "[Weak Tell] 镣铐声里仍在推演"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Tian Feng! Let the battle commence!",
+      "open": "I am Tianfeng! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1710,14 +1710,14 @@ export default {
     }
   },
   "jushou": {
-    "name": "Ju Shou",
-    "bio": "缓战之策,没人肯听。",
+    "name": "Jushou",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 抱策而立,眼神如炬",
-      "weak": "[Weak Tell] 望着渡河的大军叹气"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Ju Shou! Let the battle commence!",
+      "open": "I am Jushou! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1725,14 +1725,14 @@ export default {
     }
   },
   "xuyou": {
-    "name": "Xu You",
-    "bio": "一个背主的名字,一把火。",
+    "name": "Xuyou",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 拍着旧交的名帖大笑",
-      "weak": "[Weak Tell] 摸着空了的酒杯四下找人"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Xu You! Let the battle commence!",
+      "open": "I am Xuyou! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1740,14 +1740,14 @@ export default {
     }
   },
   "liubiao": {
-    "name": "Liu Biao",
-    "bio": "坐谈之客,守成之主。",
+    "name": "Liubiao",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 抚琴自若,宾礼不失",
-      "weak": "[Weak Tell] 问过夫人,又问舅兄"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Liu Biao! Let the battle commence!",
+      "open": "I am Liubiao! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1755,14 +1755,14 @@ export default {
     }
   },
   "sunhao": {
-    "name": "Sun Hao",
-    "bio": "暴虐的末帝,归命侯。",
+    "name": "Sunhao",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 掷杯而起,眼中有火",
-      "weak": "[Weak Tell] 数着忠臣还剩几个"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Sun Hao! Let the battle commence!",
+      "open": "I am Sunhao! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1770,14 +1770,14 @@ export default {
     }
   },
   "cenhun": {
-    "name": "Cen Hun",
-    "bio": "侫臣,以铁锁封江。",
+    "name": "Cenhun",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 呈上图谶,言之凿凿",
-      "weak": "[Weak Tell] 被武士拖走时还在喊冤"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Cen Hun! Let the battle commence!",
+      "open": "I am Cenhun! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1785,14 +1785,14 @@ export default {
     }
   },
   "duyu": {
-    "name": "Du Yu",
-    "bio": "左传癖,马不停蹄。",
+    "name": "Duyu",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 把注好的书卷搁在鞍上",
-      "weak": "[Weak Tell] 数着旬日,催问水情"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Du Yu! Let the battle commence!",
+      "open": "I am Duyu! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1800,14 +1800,14 @@ export default {
     }
   },
   "mengyou": {
-    "name": "Meng You",
-    "bio": "孟获之弟,与兄同进退。",
+    "name": "Mengyou",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 跟着兄长的鼓点起舞",
-      "weak": "[Weak Tell] 酒碗还没放下就上阵"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Meng You! Let the battle commence!",
+      "open": "I am Mengyou! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1815,14 +1815,14 @@ export default {
     }
   },
   "zhurong": {
-    "name": "Lady Zhurong",
-    "bio": "火神后裔,飞刀索命。",
+    "name": "Zhurong",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 背插飞刀,笑得从容",
-      "weak": "[Weak Tell] 留意着孩子的营帐"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Lady Zhurong! Let the battle commence!",
+      "open": "I am Zhurong! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1831,10 +1831,10 @@ export default {
   },
   "wutugu": {
     "name": "Wutugu",
-    "bio": "乌戈国王,藤甲之主。",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 藤甲哗哗作响,身高丈二",
-      "weak": "[Weak Tell] 闻见桐油味就皱眉"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
       "open": "I am Wutugu! Let the battle commence!",
@@ -1845,14 +1845,14 @@ export default {
     }
   },
   "dailai": {
-    "name": "Dailai Dongzhu",
-    "bio": "八纳洞主,请藤甲的人。",
+    "name": "Dailai",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 献计时眼珠灵活地转",
-      "weak": "[Weak Tell] 把功劳往自己身上揽"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Dailai Dongzhu! Let the battle commence!",
+      "open": "I am Dailai! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1860,14 +1860,14 @@ export default {
     }
   },
   "chengyuanzhi": {
-    "name": "Cheng Yuanzhi",
-    "bio": "黄巾头领,大业的起点。",
+    "name": "Chengyuanzhi",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 挥刀大呼,人多势众",
-      "weak": "[Weak Tell] 回头看副将还在不在"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Cheng Yuanzhi! Let the battle commence!",
+      "open": "I am Chengyuanzhi! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1876,10 +1876,10 @@ export default {
   },
   "hucheer": {
     "name": "Hucheer",
-    "bio": "能负五百斤的盗戟人。",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 敬酒的手稳得反常",
-      "weak": "[Weak Tell] 眼神一直落在兵器架上"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
       "open": "I am Hucheer! Let the battle commence!",
@@ -1890,14 +1890,14 @@ export default {
     }
   },
   "caizhong": {
-    "name": "Cai Zhong",
-    "bio": "诈降的双生子之一。",
+    "name": "Caizhong",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 和弟弟口径一致,滴水不漏",
-      "weak": "[Weak Tell] 兄弟俩暗号总差半拍"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Cai Zhong! Let the battle commence!",
+      "open": "I am Caizhong! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1905,14 +1905,14 @@ export default {
     }
   },
   "yuanshu": {
-    "name": "Yuan Shu",
-    "bio": "冢中枯骨,怀璧称孤。",
+    "name": "Yuanshu",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 捧着玉玺,指节发亮",
-      "weak": "[Weak Tell] 数着粮车,又数了一遍"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Yuan Shu! Let the battle commence!",
+      "open": "I am Yuanshu! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1920,14 +1920,14 @@ export default {
     }
   },
   "caopi": {
-    "name": "Cao Pi",
-    "bio": "受禅台上的魏文帝。",
+    "name": "Caopi",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 受禅诏书在手,字字千钧",
-      "weak": "[Weak Tell] 回望邺城旧年的梨"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Cao Pi! Let the battle commence!",
+      "open": "I am Caopi! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",
@@ -1935,14 +1935,14 @@ export default {
     }
   },
   "liuzhang": {
-    "name": "Liu Zhang",
-    "bio": "守成之主,开门之日。",
+    "name": "Liuzhang",
+    "bio": "A stalwart general of the Three Kingdoms era.",
     "tells": {
-      "strong": "[Strong Tell] 捧册垂泪,礼数不乱",
-      "weak": "[Weak Tell] 望着满城父老,语塞"
+      "strong": "Countenance calm and resolute.",
+      "weak": "Hesitates slightly before taking action."
     },
     "barks": {
-      "open": "I am Liu Zhang! Let the battle commence!",
+      "open": "I am Liuzhang! Let the battle commence!",
       "taunt": "Is this the best challenge you can offer?",
       "tilt": "Inconceivable! How dare you cross me!",
       "smug": "The realm bends to the resolute!",

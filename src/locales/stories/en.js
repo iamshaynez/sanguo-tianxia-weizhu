@@ -6,49 +6,49 @@ export default {
         "guanyu",
         "zhangfei"
       ],
-      "objective": "在黄巾乱兵中护住乡勇，也让三个陌生人的誓约经得住第一场败仗。",
+      "objective": "Protect the volunteer militia amidst the chaos of the Yellow Turbans, and ensure the oath of three strangers can withstand its first defeat.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "涿郡的桃花落在告示上，黄巾二字被雨浸开。三个人同时伸手去揭，指尖碰在一处。"
+          "text": "Peach blossoms of Zhuo Commandery drifted upon the recruitment notice, rain blurring the ink of 'Yellow Turbans'. Three men reached out to tear it down at the exact same instant, their fingertips brushing together."
         },
         {
           "speaker": "liubei",
-          "text": "备只有一双草鞋、一腔热血。二位若愿同行，先把这条命借给乡亲。"
+          "text": "I possess only a pair of straw sandals and a heart of burning blood. If you two are willing to walk beside me, let us first lend our lives to the common folk."
         },
         {
           "speaker": "zhangfei",
-          "text": "俺有酒，有矛，最不怕把命押上！只是输了以后，谁来替俺们收尸？"
+          "text": "I have wine, and I have a serpent spear—wagering my life is what I do best! But if we lose, who will be left to gather our bones?"
         },
         {
           "speaker": "guanyu",
-          "text": "所以今日不求同胜，先约一件事：无论谁退，另外两人都要接他回来。"
+          "text": "Then let us not swear for shared glory today, but pledge one solemn pact: whoever falls back, the other two must ride out and bring him home."
         }
       ],
       "map": [
         {
           "id": "peach-oath",
           "node": 1,
-          "title": "桃林 · 先约退路",
+          "title": "Peach Grove · Pledge of Mutual Cover",
           "lines": [
             {
               "speaker": "zhangfei",
-              "text": "结义还不先喝酒？俺连今后埋在哪座山头都不怕！"
+              "text": "Swearing brotherhood without drinking first? What nonsense! I don't give a damn which hill they bury my bones in!"
             },
             {
               "speaker": "guanyu",
-              "text": "不怕死容易。难的是看见兄弟败了，肯放下自己的胜名去接。"
+              "text": "Facing death without fear is easy. What is difficult is watching a brother fall and casting aside your own glory to bring him home."
             },
             {
               "speaker": "liubei",
-              "text": "那便把这一条放在同年同月之前。能回来，才有下一次同行。"
+              "text": "Then let us place this pact before the vow of the same day and year. Only by returning alive can we ride together again."
             }
           ],
           "choices": [
             {
               "id": "mutual-cover",
-              "text": "把“接回彼此”写进誓约",
-              "detail": "敌军起手士气 -1，记住互救之约",
+              "text": "Inscribe 'bring each other home' into the oath",
+              "detail": "Enemy starting Morale -1; remember the vow of mutual rescue",
               "effects": {
                 "sow": 1,
                 "fact": "taoyuan_cover"
@@ -56,8 +56,8 @@ export default {
             },
             {
               "id": "village-rearguard",
-              "text": "先教乡勇辨认退路",
-              "detail": "本回看破提升，记住乡勇退路",
+              "text": "Teach the militia how to identify escape routes first",
+              "detail": "Insight increased this round; remember the militia's retreat path",
               "effects": {
                 "keenEye": true,
                 "fact": "taoyuan_rearguard"
@@ -71,37 +71,41 @@ export default {
           "id": "taoyuan-open",
           "at": "start",
           "speaker": "zhangfei",
-          "text": "俺先冲！你们可别跟得太慢，叫黄巾看了笑话！"
+          "text": "I charge first! Don't drag your feet behind me, or the Yellow Turbans will laugh at us!"
         },
         {
           "id": "taoyuan-cover",
           "at": "hand:2",
           "speaker": "guanyu",
-          "text": "益德逼阵，玄德护住乡勇。别三人同时向前，把退路空给敌人。"
+          "text": "Yide press their lines, Xuande shield the militia. Do not all three push forward together and leave our retreat open to the enemy."
         },
         {
           "id": "taoyuan-low-oath",
           "at": "low",
           "speaker": "liubei",
-          "text": "翼德，回来！你答应过，败了也有人接，不许把誓约只用在别人身上。",
-          "when": "fact:taoyuan_cover"
+          "when": "fact:taoyuan_cover",
+          "text": "Yide, fall back! You promised that whoever falls will be rescued—do not apply that oath only to others!"
         },
         {
           "id": "taoyuan-low",
           "at": "low",
           "speaker": "liubei",
-          "text": "别盯着倒下的旗。先看清谁还在等同伴伸手。"
+          "text": "Do not stare at the fallen banners. Look closely at who is still waiting for a comrade's reaching hand."
         }
       ],
       "win": {
-        "text": "桃花落在三只碗里，刘备把第四只推给你，却没有请你改口叫兄长。“今日你看见我们如何开始；他日若有人走散，替我们记得回来。”",
-        "hook": "桃园酒未醒，酸枣诸侯已会盟。下一杯，要在一个叫华雄的人面前保持温热。"
+        "text": "Peach blossoms settled into three bowls. Liu Bei slid the fourth toward you, yet did not ask you to call him elder brother. 'Today you have witnessed how we began; if ever we are scattered in the days ahead, remind us of the way back.'",
+        "hook": "Before the wine of the Peach Garden has faded, the lords have rallied at Suanzao. The next cup must remain warm before a man named Hua Xiong."
       },
       "loss": {
-        "text": "酒还温着，三人却各自被困在一处。你终于明白，同生共死若只是同时向前，便只是三场互不相见的孤战。",
-        "clue": "史鉴 · 互救不是三人一起全押：有人逼阵，便要有人留后。重开军资 +150，先给同伴留退路。",
+        "text": "The wine remained warm, yet the three were trapped in separate pockets of battle. At last you understand: if living and dying together merely means charging forward at the same time, it is nothing more than three lonely battles fought in blindness.",
+        "clue": "Historical Record · Mutual rescue is not all three going all-in together: if one presses the line, another must hold the rear. Restart with +150 Supplies; secure a path of retreat for your brothers first.",
         "clueFx": "supply"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "sishui": {
       "cast": [
@@ -111,36 +115,36 @@ export default {
         "caocao",
         "huaxiong"
       ],
-      "objective": "在诸侯的轻视与华雄的连胜里，替关羽争到一杯仍未凉的出战机会。",
+      "objective": "Amidst the contempt of the coalition lords and the unbroken victories of Hua Xiong, secure for Guan Yu the chance to ride out before a cup of wine grows cold.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "诸侯帐中摆着十九路酒杯，关外华雄连斩两将。第三杯酒斟好了，却没人肯起身。"
+          "text": "Nineteen cups of wine lined the lords' great tent, while outside the pass Hua Xiong severed two champions in rapid succession. A third cup was poured, yet not a single warlord dared to rise."
         },
         {
           "speaker": "caocao",
-          "text": "这酒我斟。谁能取华雄首级，回来便还是温的。"
+          "text": "I pour this wine myself. Whoever brings Hua Xiong's head shall find it still warm upon his return."
         },
         {
           "speaker": "guanyu",
-          "text": "桃园之约，不是叫兄弟替我去死。此杯请留，关某自己回来喝。",
-          "when": "page:taoyuan:yeshi"
+          "when": "page:taoyuan:yeshi",
+          "text": "The oath of the Peach Garden was not made so my brothers could die in my stead. Pray keep this cup; Guan Mou shall return to drink it himself."
         },
         {
           "speaker": "zhangfei",
-          "text": "二哥，俺替你擂鼓。你若不回来，酒再热俺也不饮！"
+          "text": "Second Brother, I will beat the war drums for you! If you don't come back, I won't drink a drop no matter how hot the wine is!"
         }
       ],
       "intros": {
         "huaxiong": [
           {
             "when": "seen:huaxiong",
-            "bio": "他记得上次那杯没有凉的酒，更记得是谁没有急。",
-            "quote": "又斟酒？这次，我让它开席便冷。"
+            "bio": "He remembers that cup of wine that never went cold, and remembers even more clearly who refused to rush.",
+            "quote": "Pouring wine again? This time, I will make it turn ice-cold before the feast even begins."
           },
           {
-            "bio": "连胜让他相信，每一个挑战者都会比上一个更急。",
-            "quote": "酒温正好。你的首级，也正好。"
+            "bio": "A string of easy victories convinced him that every challenger would be more reckless than the last.",
+            "quote": "The wine is suitably warm. And your head is suitably ripe."
           }
         ]
       },
@@ -148,22 +152,22 @@ export default {
         {
           "id": "warm-cup",
           "node": 1,
-          "title": "汜水关 · 杯酒为凭",
+          "title": "Sishui Pass · Wine as Pledge",
           "lines": [
             {
               "speaker": "caocao",
-              "text": "满帐都在数华雄杀了几人，只有云长在看他杀完以后往哪里回头。"
+              "text": "The whole tent merely counts how many Hua Xiong has slain; only Yunchang watches where he wheels his horse after each kill."
             },
             {
               "speaker": "guanyu",
-              "text": "他靠下一阵连胜压住诸侯。若我不替自己急，他便要替我急。"
+              "text": "He relies on unbroken victories to cow the lords. If I refuse to panic, it is he who will grow frantic."
             }
           ],
           "choices": [
             {
               "id": "leave-wine",
-              "text": "把酒留在帐中，不发豪言",
-              "detail": "华雄起手士气 -1，记住这杯归约",
+              "text": "Leave the wine in the tent without boastful words",
+              "detail": "Hua Xiong starting Morale -1; remember the vow of return for this cup",
               "effects": {
                 "sow": 1,
                 "fact": "sishui_return_cup"
@@ -171,8 +175,8 @@ export default {
             },
             {
               "id": "watch-reins",
-              "text": "先看华雄如何勒马回头",
-              "detail": "本回看破提升，记住他的回望",
+              "text": "Observe how Hua Xiong reins in his steed and turns back",
+              "detail": "Insight increased this round; remember his backward glance",
               "effects": {
                 "keenEye": true,
                 "fact": "sishui_horse_reins"
@@ -186,69 +190,73 @@ export default {
           "id": "sishui-open",
           "at": "start",
           "speaker": "huaxiong",
-          "text": "又来一个借酒出名的。酒冷之前，够你败三次。"
+          "text": "Yet another fool trying to buy fame with wine! Before that cup turns cold, you will have died three times over!"
         },
         {
           "id": "sishui-cup",
           "at": "hand:2",
           "speaker": "caocao",
-          "text": "酒面还静。云长，满帐催的是鼓，不是你的刀。"
+          "text": "The surface of the wine remains still. Yunchang, what the tent urges on is their drum, not your blade."
         },
         {
           "id": "sishui-low",
           "at": "low",
           "speaker": "guanyu",
-          "text": "关某不急。他若只敢在连胜时挥刀，酒凉之前，急的一定是他。"
+          "text": "Guan Mou feels no haste. If he only dares swing his blade while riding the crest of momentum, it is he who will grow frantic before the wine turns cold."
         }
       ],
       "win": {
-        "text": "关羽把酒杯递回曹操手中，酒面仍暖。刘备替他解下染尘的披风，张飞的鼓直到此刻才停。曹操却看向你：“方才满帐都急，只有你肯等他。”",
-        "hook": "华雄已退，虎牢关门却开了。吕布只问一句：方才温酒的人，敢不敢再来？"
+        "text": "Guan Yu returned the cup into Cao Cao's hands, its surface still steaming. Liu Bei untied his dust-stained cloak, and only now did Zhang Fei's thunderous drumfall cease. Cao Cao turned to you: 'Just now the entire tent was consumed with panic—only you were willing to wait for him.'",
+        "hook": "Hua Xiong has fallen, yet the gates of Hulao Pass have creaked open. Lu Bu asks but one question: Does the man who warmed the wine dare step forward once more?"
       },
       "loss": {
-        "text": "酒彻底冷了，帐内无人再提第二杯。你不是败给华雄的快刀，是把“回来喝酒”误听成了“必须立刻赢”。",
-        "clue": "史鉴 · 温酒不是催你速胜，而是相信能回来。华雄靠连胜逼人抢攻；让他先急，重开时其起手士气 -1。",
+        "text": "The wine went utterly cold, and not a single soul in the tent mentioned a second cup. You were not defeated by Hua Xiong's swift blade, but by mistaking 'returning to drink' for 'needing to win instantly.'",
+        "clue": "Historical Record · Warming wine was never an urge to rush, but faith that one will return. Hua Xiong relies on his winning streak to bait rushed assaults; let him grow frantic first. On restart, his starting Morale is -1.",
         "clueFx": "sow"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "hulao": {
       "cast": [
-        "lvbu",
         "liubei",
         "guanyu",
-        "zhangfei"
+        "zhangfei",
+        "lvbu"
       ],
-      "objective": "看清吕布的进退，在虎牢关前赢下第一场“不可能”。",
+      "objective": "Read Lu Bu's advances and retreats, and win the first 'impossible' battle before Hulao Pass.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "关上画戟一指，诸侯的旗号便矮了半截。你刚到，刘备却把一杯酒推到你面前。"
+          "text": "As the halberd pointed from atop the pass, the banners of the warlords lowered by half. The moment you arrived, Liu Bei slid a cup of wine before you."
         },
         {
           "speaker": "liubei",
-          "text": "我二弟的酒曾斩华雄。今日这一杯，你敢不敢接？"
+          "text": "My second brother's wine once severed Hua Xiong. Today over this cup, do you dare accept?"
         },
         {
           "speaker": "writer",
-          "text": "这一页人人知道结局。可没有人知道，你为何也在场。",
-          "when": "!seen:lvbu"
+          "when": "!seen:lvbu",
+          "text": "Everyone knows the outcome of this page. Yet none knew why you were also present."
         },
         {
           "speaker": "lvbu",
-          "text": "又是你。上次没打完的，今日一并算。",
-          "when": "seen:lvbu"
+          "when": "seen:lvbu",
+          "text": "You again. What went unfinished last time shall be settled together today."
         }
       ],
       "intros": {
         "lvbu": [
           {
             "when": "seen:lvbu",
-            "bio": "他记得你上一次坐在对面，也记得你怎样赢下底池。",
-            "quote": "别拿诸侯吓唬我。你，一个人上来。"
+            "bio": "He remembers you sitting across the table last time, and remembers how you seized the pot.",
+            "quote": "Do not attempt to scare me with coalition lords. You—come face me alone."
           },
           {
-            "bio": "虎牢关前，他把“天下无双”当作最短的战书。",
-            "quote": "三英一起来，或你一个人来。别让我等。"
+            "bio": "Before Hulao Pass, he wielded 'Peerless Under Heaven' as the briefest declaration of war.",
+            "quote": "Let the three heroes come together, or come alone yourself. Do not keep me waiting."
           }
         ]
       },
@@ -256,22 +264,22 @@ export default {
         {
           "id": "three-heroes",
           "node": 1,
-          "title": "汜水 · 三英旧约",
+          "title": "Sishui · Ancient Oath of Three Heroes",
           "lines": [
             {
               "speaker": "guanyu",
-              "text": "他的强，不在每一手都进；在你怕了以后，他不必再有牌。"
+              "text": "His strength lies not in betting on every hand; once fear grips your heart, he needs no cards at all."
             },
             {
               "speaker": "zhangfei",
-              "text": "说这些作甚！俺先替你掀他一阵！"
+              "text": "Why waste breath on this! Let me flip his table first!"
             }
           ],
           "choices": [
             {
               "id": "allies",
-              "text": "请三英掠阵",
-              "detail": "军资 +100，吕布起手士气 -1",
+              "text": "Invite the three heroes to support the flank",
+              "detail": "Supplies +100, Lu Bu starting Morale -1",
               "effects": {
                 "chips": 100,
                 "sow": 1,
@@ -280,8 +288,8 @@ export default {
             },
             {
               "id": "watch",
-              "text": "独自看他打完一手",
-              "detail": "本回假破绽减少",
+              "text": "Watch him play out a full hand alone",
+              "detail": "False bluffs reduced this round",
               "effects": {
                 "keenEye": true,
                 "fact": "hulao_watch"
@@ -295,520 +303,42 @@ export default {
           "id": "hulao-open",
           "at": "start",
           "speaker": "lvbu",
-          "text": "你的筹码像诸侯的胆子——看着不少。"
+          "text": "Your chips are just like the courage of these lords—plentiful only in appearance."
         },
         {
           "id": "hulao-read",
           "at": "hand:2",
           "speaker": "guanyu",
-          "text": "他越顺，越会把强牌写在眉上。别急着替他怕。"
+          "text": "The smoother his run, the more his strong hand is written upon his brow. Be in no haste to fear him."
         },
         {
           "id": "hulao-low",
           "at": "low",
           "speaker": "lvbu",
-          "text": "好！这才配叫虎牢！",
-          "when": "!fact:hulao_watch"
+          "when": "!fact:hulao_watch",
+          "text": "Splendid! Only this is worthy of being called Hulao!"
         },
         {
           "id": "hulao-low-watch",
           "at": "low",
           "speaker": "you",
-          "text": "原来“只进不退”不是勇，是他只会这一种赢法。",
-          "when": "fact:hulao_watch"
+          "when": "fact:hulao_watch",
+          "text": "So 'only advance and never retreat' was not courage—it was simply the only way he knew how to win."
         }
       ],
       "win": {
-        "text": "画戟坠地，诸侯却没有欢呼。刘备先扶住你，关羽拾起了那杯始终未动的酒。",
-        "hook": "吕布败走前记住了你的名字。下一次相见，不会还在虎牢。"
+        "text": "The halberd crashed to the earth, yet the coalition lords did not cheer. Liu Bei held you steady first, while Guan Yu lifted the cup of wine that had remained untouched throughout.",
+        "hook": "Before Lu Bu retreated in defeat, he remembered your name. Your next encounter will not be here at Hulao."
       },
       "loss": {
-        "text": "你跟着诸侯一起退了。直到离开虎牢，你才懂：他一直在逼你把“天下第一”当成第五张公共牌。",
-        "clue": "史鉴 · 吕布靠连续施压放大恐惧；重开时，他的假破绽会减少。",
+        "text": "You fell back along with the coalition lords. Only after leaving Hulao Pass did you realize: he had been compelling you all along to treat 'Peerless Under Heaven' as a fifth community card.",
+        "clue": "Historical Record · Lu Bu magnifies dread through unrelenting pressure. Upon restart, his false bluffs will decrease.",
         "clueFx": "keenEye"
-      }
-    },
-    "fengyiting": {
-      "cast": [
-        "diaochan",
-        "dongzhuo",
-        "lvbu"
-      ],
-      "objective": "让董卓与吕布在同一张桌上互相猜疑，替貂蝉把连环计走完最后一步。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "凤仪亭的荷花开得极静。董卓在亭外等美人，吕布在假山后等一个解释，貂蝉却只等他们同席。"
-        },
-        {
-          "speaker": "diaochan",
-          "text": "太师要我的归顺，将军要我的誓言。今日我不答，我要他们听见彼此的答案。"
-        },
-        {
-          "speaker": "lvbu",
-          "text": "虎牢你逼我退一步，今日若叫我再退，走的便不是我，是这整座郿坞。",
-          "when": "page:hulao:yeshi"
-        },
-        {
-          "speaker": "dongzhuo",
-          "text": "奉先，咱家待你不薄。连你也要隔着珠帘看她么？"
-        }
-      ],
-      "intros": {
-        "dongzhuo": [
-          {
-            "when": "seen:dongzhuo",
-            "bio": "郿坞的门换过锁，他仍以为所有真心都能收入库中。",
-            "quote": "又来挑唆？咱家这次先看你，再看奉先。"
-          },
-          {
-            "bio": "他把恩情写成账簿，也要吕布用顺从逐笔偿还。",
-            "quote": "父子同席，有什么话不能明着说？"
-          }
-        ],
-        "lvbu": [
-          {
-            "when": "page:hulao:yeshi",
-            "bio": "虎牢之后他肯退一次，却不肯再让任何人替他决定去处。",
-            "quote": "上次你赢我的戟。这次，别替她选。"
-          },
-          {
-            "when": "seen:lvbu",
-            "bio": "旧败没有磨去锋芒，只让他更难忍受被当作他人之物。",
-            "quote": "我认得你。也认得你眼里那种“为我好”。"
-          },
-          {
-            "bio": "方天画戟立在亭外，他最怕的却是亭内一句含糊的话。",
-            "quote": "让她说清楚。你也一样。"
-          }
-        ]
       },
-      "map": [
-        {
-          "id": "two-listeners",
-          "node": 1,
-          "title": "凤仪亭 · 一句话两人听",
-          "lines": [
-            {
-              "speaker": "diaochan",
-              "text": "他们若各自来问，我只能各答一半。同席以后，太师加注要看奉先脸色，奉先弃牌也要听太师笑声。"
-            },
-            {
-              "speaker": "you",
-              "text": "所以你不必骗两个人，只要让同一句真话有两种听法。"
-            },
-            {
-              "speaker": "diaochan",
-              "text": "不。我还要他们终于明白，我不是那句真话里的酬劳。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "tell-dong",
-              "text": "让董卓先看见吕布的迟疑",
-              "detail": "本回看破提升，记住太师的疑",
-              "effects": {
-                "keenEye": true,
-                "fact": "fengyi_dong_doubt"
-              }
-            },
-            {
-              "id": "tell-lvbu",
-              "text": "让吕布听见董卓的占有",
-              "detail": "敌军起手士气 -1，记住奉先的怒",
-              "effects": {
-                "sow": 1,
-                "fact": "fengyi_lvbu_rage"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "fengyi-open-multi",
-          "at": "start",
-          "speaker": "diaochan",
-          "text": "今日没有两张底牌，只有一道父子名分。谁先把对方当敌人，谁便替我开了局。",
-          "when": "multi"
-        },
-        {
-          "id": "fengyi-dong",
-          "at": "hand:2",
-          "speaker": "dongzhuo",
-          "text": "奉先，你跟她走，还是跟咱家走？想清楚再下注。",
-          "when": "multi"
-        },
-        {
-          "id": "fengyi-lvbu",
-          "at": "hand:3",
-          "speaker": "lvbu",
-          "text": "义父口口声声待我不薄，原来我的一切，都记得这么清楚。",
-          "when": "multi"
-        },
-        {
-          "id": "fengyi-low",
-          "at": "low",
-          "speaker": "diaochan",
-          "text": "别看我。看你们自己：一个怕失去权，一个怕从来不是自己。",
-          "when": "multi"
-        }
-      ],
-      "win": {
-        "text": "貂蝉推开亭门，第一次不必借谁的眼色说话。董卓与吕布仍盯着彼此，直到父子之名只剩一张撕开的请帖。她没有奔向任何一人，只把自己的路走出了郿坞。",
-        "hook": "凤仪亭一别，吕布与貂蝉都离开了郿坞。小沛来的使者却在路上——下回，他要替两家解仇。"
-      },
-      "loss": {
-        "text": "董卓只当你争宠，吕布只当你欺瞒。貂蝉摘下耳珰，没有哭：你想替她赢下两个男人，却忘了她真正要赢的是不再属于任何人的一句话。",
-        "clue": "史鉴 · 别分头猜董卓与吕布的牌；要看一人下注时另一人先望向谁。连环计的缝隙在两人之间，重开后假破绽减少。",
-        "clueFx": "keenEye"
-      }
-    },
-    "yuanshemen": {
-      "cast": [
-        "lvbu",
-        "jiling",
-        "yuanshu",
-        "liubei",
-        "guanyu",
-        "zhangfei"
-      ],
-      "objective": "让纪灵与刘备都保住退路，也逼吕布证明那一箭不是另一种恃强。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "辕门外的画戟只有小枝可中，辕门内却坐着两支随时会厮杀的大军。吕布把弓放在桌上，先请你发牌。"
-        },
-        {
-          "speaker": "lvbu",
-          "text": "虎牢你说我只知进。今日两家都在，看我如何用一支箭叫他们退。",
-          "when": "page:hulao:yeshi"
-        },
-        {
-          "speaker": "yuanshu",
-          "text": "纪灵听令:小沛若不下,休回淮南!孤的玉玺要配的是天下,不是一个吕布的情面。",
-          "when": "!seen:yuanshu"
-        },
-        {
-          "speaker": "jiling",
-          "text": "纪某奉主公之命，不因一箭退兵。除非满座都承认，这一箭赌得起。"
-        },
-        {
-          "speaker": "liubei",
-          "text": "备不愿拿小沛百姓的命，替任何人证明箭术。"
-        }
-      ],
-      "intros": {
-        "jiling": [
-          {
-            "when": "seen:jiling",
-            "bio": "他仍不服那一箭，却开始认真衡量箭下的另一条命。",
-            "quote": "再赌可以。先把两家的条件一字不改地说清。"
-          },
-          {
-            "bio": "三尖刀压着军令，他不能退得像一个被神箭吓走的人。",
-            "quote": "吕将军有神射，纪某也有军令。"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "shared-wager",
-          "node": 1,
-          "title": "辕门 · 共认一注",
-          "lines": [
-            {
-              "speaker": "zhangfei",
-              "text": "一箭便叫俺大哥免于刀兵？若射不中，俺先掀了他的弓！"
-            },
-            {
-              "speaker": "guanyu",
-              "text": "所以最难不在射中，在射失以后两家也认这笔账。"
-            },
-            {
-              "speaker": "lvbu",
-              "text": "那就把不中怎么办也说清。吕某今日不靠别人替我自信。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "name-the-miss",
-              "text": "先说箭若不中，两家如何收兵",
-              "detail": "本回看破提升，记住共同的赌注",
-              "effects": {
-                "keenEye": true,
-                "fact": "yuanshemen_named_miss"
-              }
-            },
-            {
-              "id": "seat-the-rivals",
-              "text": "请玄德与纪灵同坐一侧",
-              "detail": "纪灵起手士气 -1，记住同席之义",
-              "effects": {
-                "sow": 1,
-                "fact": "yuanshemen_shared_seat"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "yuanmen-open",
-          "at": "start",
-          "speaker": "jiling",
-          "text": "先别谈神射。我若赢了这一手，你敢不敢也让玄德出城一战？"
-        },
-        {
-          "id": "yuanmen-arrow",
-          "at": "hand:2",
-          "speaker": "lvbu",
-          "text": "我若射不中，自然依你。可你若只想看我出丑，便没听懂这局。"
-        },
-        {
-          "id": "yuanmen-low",
-          "at": "low",
-          "speaker": "liubei",
-          "text": "纪将军，今日要赢的不是你的军令，是你回去以后仍能向士卒交代。"
-        }
-      ],
-      "win": {
-        "text": "箭离弦时，纪灵没有看小枝，先看刘备。刘备把面前的刀推远一寸，他才终于收兵。吕布大笑，只有你看见他掌心也有汗：这一箭若只是神技，救不了任何人。",
-        "hook": "辕门保住了小沛，却保不住吕布自己的下邳；而许都来的曹操，已先一步走向宛城。"
-      },
-      "loss": {
-        "text": "箭还未离弦，纪灵与刘备已经各自起身。你忙着替吕布保证必中，忘了问另外两人是否愿意把军令与百姓押在同一句话上。",
-        "clue": "史鉴 · 和事不是两边都不得罪，而是先让两边承认同一个赌注。箭未离弦前别说满；重开后假破绽减少。",
-        "clueFx": "keenEye"
-      }
-    },
-    "wancheng": {
-      "cast": [
-        "caocao",
-        "dianwei",
-        "zhangxiu"
-      ],
-      "objective": "在张绣降而复叛的一夜，先看住典韦的双戟，再替曹操留住最后一条退路。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "宛城降旗尚未收起，曹营的宴席已经唱到深夜。典韦抱着双戟坐在帐外，只有你看见墙影里多了一双脚。"
-        },
-        {
-          "speaker": "caocao",
-          "text": "汜水那杯温酒，孤至今记得。可惜今夜人心比酒凉得快，孤竟没尝出来。",
-          "when": "page:sishui:yeshi"
-        },
-        {
-          "speaker": "dianwei",
-          "text": "主公安睡。典某不懂牌，只懂这扇门：人在，戟在，门便在。"
-        },
-        {
-          "speaker": "zhangxiu",
-          "text": "降将的酒，是不是总要低头才配喝？曹公，你也来算算这一夜谁欠谁。"
-        }
-      ],
-      "intros": {
-        "zhangxiu": [
-          {
-            "when": "seen:zhangxiu",
-            "bio": "降旗可以再次升起，被当作无声的屈辱却再难收回。",
-            "quote": "这次莫问双戟。先问你还肯不肯听我说完。"
-          },
-          {
-            "bio": "北地枪王已经降过一次，再出手时便不会留第二次犹豫。",
-            "quote": "白日受降，夜里听枪。曹公请坐。"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "twin-halberds",
-          "node": 1,
-          "title": "宛城 · 双戟未失",
-          "lines": [
-            {
-              "speaker": "dianwei",
-              "text": "胡车儿今夜敬了我三碗酒，眼睛却总落在戟上。兵器若失，我拿什么替主公争一条退路？"
-            },
-            {
-              "speaker": "caocao",
-              "text": "张绣既降，为何还像坐在针毡？孤是不是把“归顺”误听成了“无话可说”。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "guard-arms",
-              "text": "与典韦同守双戟和后营马道",
-              "detail": "本回看破提升，双戟与退路同守",
-              "effects": {
-                "keenEye": true,
-                "fact": "wancheng_arms_ready"
-              }
-            },
-            {
-              "id": "return-camps",
-              "text": "让降卒各归旧营，不夺其械",
-              "detail": "张绣起手士气 -1，记住降卒之心",
-              "effects": {
-                "sow": 1,
-                "fact": "wancheng_respect"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "wancheng-open",
-          "at": "start",
-          "speaker": "zhangxiu",
-          "text": "白日你受我的降，夜里却当我无话可说。张绣这一枪，现在才递出去。"
-        },
-        {
-          "id": "wancheng-regret",
-          "at": "hand:2",
-          "speaker": "caocao",
-          "text": "孤错算了张绣，还是错算了自己？典韦，先莫让任何人进帐。"
-        },
-        {
-          "id": "wancheng-low-ready",
-          "at": "low",
-          "speaker": "dianwei",
-          "text": "主公先走！双戟还在，今夜便没有人能叫典某空手守门。",
-          "when": "fact:wancheng_arms_ready"
-        },
-        {
-          "id": "wancheng-low",
-          "at": "low",
-          "speaker": "dianwei",
-          "text": "主公先走！莫问典某还能站多久，只问马是否备好。"
-        }
-      ],
-      "win": {
-        "text": "双戟仍在典韦手中，张绣的火没能封住营门。曹操走出很远才回头，第一次没有问损失多少兵马，只问：“典韦可还站在原处？”身后的壮汉举了举戟，算是回答。",
-        "hook": "宛城的门守住了，曹操却来不及学乖。他已兵临下邳；这一次，被围的是吕布。"
-      },
-      "loss": {
-        "text": "双戟被盗那刻，你才懂张绣等的不是曹操熟睡，是他把别人的屈辱当作安全。营门还亮着火，典韦没有再退。",
-        "clue": "史鉴 · 张绣决意，在他不再看曹操时便已写下。别只盯枪尖，先守营门与双戟；重开后假破绽减少。",
-        "clueFx": "keenEye"
-      }
-    },
-    "baimenlou": {
-      "cast": [
-        "lvbu",
-        "chengong",
-        "caocao",
-        "liubei"
-      ],
-      "objective": "在吕布与陈宫之间找出真正的死局，决定下邳还有没有明天。",
-      "coldOpen": [
-        {
-          "speaker": "chengong",
-          "text": "城外是曹军，城内是渴了三日的兵。温侯仍说，只要他肯出战，便没有输。"
-        },
-        {
-          "speaker": "lvbu",
-          "text": "虎牢那次，你赢的是牌。今日敢拿命再赌一次？",
-          "when": "page:hulao:yeshi"
-        },
-        {
-          "speaker": "chengong",
-          "text": "你来了。虎牢那页我读过——可这一回，要救的不是他的胜名。",
-          "when": "page:hulao:yeshi"
-        },
-        {
-          "speaker": "writer",
-          "text": "白门楼的绳子悬在页外。你每赢一手，它便清楚一分。"
-        }
-      ],
-      "intros": {
-        "lvbu": [
-          {
-            "when": "page:hulao:yeshi",
-            "bio": "虎牢败过一次的吕布，更不肯承认自己已被困死。",
-            "quote": "你能让我败，能不能让我活？"
-          },
-          {
-            "bio": "泗水淹城，天下第一仍在等一个可以冲锋的方向。",
-            "quote": "让开。我再去杀一条路。"
-          }
-        ],
-        "chengong": [
-          {
-            "bio": "他不是来替吕布求胜，是来替下邳求一条退路。",
-            "quote": "若只会赢牌，你救不了他。"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "last-counsel",
-          "node": 1,
-          "title": "泗水 · 最后一策",
-          "lines": [
-            {
-              "speaker": "chengong",
-              "text": "我劝他出城，他问我出城以后还是不是吕布。你看，这才是他的牢。"
-            },
-            {
-              "speaker": "caocao",
-              "text": "玄德也在楼上。你若救下奉先，他日谁来制他？"
-            }
-          ],
-          "choices": [
-            {
-              "id": "chen-plan",
-              "text": "替陈宫说完那一条退路",
-              "detail": "看破提升，记住陈宫之谋",
-              "effects": {
-                "keenEye": true,
-                "fact": "chen_plan"
-              }
-            },
-            {
-              "id": "lvbu-oath",
-              "text": "让吕布亲口许诺不再轻进",
-              "detail": "敌军起手士气 -1",
-              "effects": {
-                "sow": 1,
-                "fact": "lvbu_oath"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "baimen-open",
-          "at": "start",
-          "speaker": "chengong",
-          "text": "看他筹码少于三成时。困兽会把最后一丝理智也压上去。"
-        },
-        {
-          "id": "baimen-low",
-          "at": "low",
-          "speaker": "lvbu",
-          "text": "陈宫！若我这次听了你的，世人会不会笑我？"
-        },
-        {
-          "id": "baimen-answer",
-          "at": "low",
-          "speaker": "chengong",
-          "text": "会。可活着的人，才轮得到被笑话。"
-        }
-      ],
-      "win": {
-        "text": "吕布终于没有冲向城门。他摘下束发金冠，第一次问陈宫：“往哪里退？”下邳的哭声停了一夜。",
-        "hook": "许都青梅将熟。曹操已经听说：天下第一没有死，而你就在那张桌边。",
-        "choiceFact": "lvbu_lives"
-      },
-      "loss": {
-        "text": "绳索收紧时，你才发现自己一直在回答“怎样赢吕布”，却从没回答“吕布怎样才肯活”。",
-        "clue": "史鉴 · 陈宫看穿了困兽的节奏；重开时假破绽减少。",
-        "clueFx": "keenEye"
-      }
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "xianshan": {
       "cast": [
@@ -818,51 +348,51 @@ export default {
         "handang",
         "liubiao"
       ],
-      "objective": "在岘山的竹影里替孙坚读出那一箭,让江东的火种不灭在起笔。",
+      "objective": "Read that fatal arrow amidst the bamboo shadows of Mount Xian for Sun Jian, keeping Jiangdong's ember from being snuffed out at its very inception.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "洛阳的余烬未冷,传国玉玺贴着孙坚的胸口发烫。襄阳城头,刘表的第二支箭已经搭上弦。"
+          "text": "The embers of Luoyang were not yet cold, and the Imperial Jade Seal burned against Sun Jian's chest. Atop the battlements of Xiangyang, Liu Biao had already nocked his second arrow."
         },
         {
           "speaker": "sunjian",
-          "text": "孤从长沙杀到洛阳,没输过一阵。刘景升凭一座城、几支箭,就想留下江东的虎?"
+          "text": "I have fought all the way from Changsha to Luoyang without tasting a single defeat! Does Liu Jingsheng truly believe a single citadel and a handful of arrows can bring down the Tiger of Jiangdong?!"
         },
         {
           "speaker": "chengpu",
-          "text": "主公,岘山竹密,追兵不宜尽出。不如先遣人探路,老臣压阵。"
+          "text": "My Lord, the bamboo of Mount Xian is dense; we must not commit all our pursuit at once. Better to dispatch scouts ahead while this old subject anchors the rear."
         },
         {
           "speaker": "huanggai",
-          "text": "德谋谨慎过了头。那「吕公」跑得连盔都歪了,再不追,刘表就真寻着援军了!"
+          "text": "Demou, you are cautious to a fault! That Lu Gong fled so frantically his helmet was crooked! If we do not give chase now, Liu Biao will surely rally his reinforcements!"
         },
         {
           "speaker": "writer",
-          "text": "野史里,猛虎常死于最信任自己爪牙的那一天。",
-          "when": "!seen:sunjian"
+          "when": "!seen:sunjian",
+          "text": "In the forgotten histories, the fiercest tiger always meets its end on the day it trusts its own claws most blindly."
         }
       ],
       "intros": {
         "huangzu": [
           {
             "when": "seen:huangzu",
-            "bio": "他记得孙坚的刀有多快,这次把伏兵埋得更深。",
-            "quote": "又来一只孙家的虎。岘山的箭,管够。"
+            "bio": "He remembers how terrifyingly swift Sun Jian's blade was, and this time he buried his ambush even deeper.",
+            "quote": "Another tiger of the Sun clan arrives. The arrows of Mount Xian are plentiful enough for all."
           },
           {
-            "bio": "他打不过孙坚,但他认得孙坚的性子——猛虎从不绕路。",
-            "quote": "江夏的箭,等这一天等了两年。"
+            "bio": "He cannot best Sun Jian in single combat, but he knows the man's temperament—a tiger never detours.",
+            "quote": "The arrows of Jiangxia have waited two long years for this very day."
           }
         ],
         "caimao": [
           {
             "when": "seen:caimao",
-            "bio": "水军布好了退路,他只剩一件事:别让蔡家陪葬。",
-            "quote": "这次我守水路。山里的事,黄将军请自便。"
+            "bio": "With retreat paths prepared for the naval fleet, only one task remains for him: do not let the Cai clan go down with the ship.",
+            "quote": "This time I guard the waterways. As for affairs in the mountains, General Huang, do as you please."
           },
           {
-            "bio": "他把姐姐的枕风与姐夫的兵符都换成了筹码。",
-            "quote": "荆州的水养不了虎。将军,别白费箭。"
+            "bio": "He traded his sister's pillow whispers and his brother-in-law's military tally into bargaining chips.",
+            "quote": "The waters of Jingzhou cannot nourish a tiger. General, waste no arrows in vain."
           }
         ]
       },
@@ -870,26 +400,26 @@ export default {
         {
           "id": "bamboo-veil",
           "node": 1,
-          "title": "邓塞 · 竹影疑兵",
+          "title": "Dengsai · Shadowed Bamboo Deception",
           "lines": [
             {
               "speaker": "handang",
-              "text": "竹影里有人影,数不清。末将愿带义从先探,主公压后。"
+              "text": "There are shadows amidst the bamboo groves, countless in number. This general is willing to lead our volunteers to scout ahead while my Lord holds the rear."
             },
             {
               "speaker": "sunjian",
-              "text": "义公的话,孤听见了。可若孤压后,将士便会替孤慢半拍。"
+              "text": "I hear your words, Yigong. But if I linger behind, my warriors will hesitate half a beat on my behalf."
             },
             {
               "speaker": "you",
-              "text": "虎的胆气在阵前,虎的活路却常常在回头的那一眼。"
+              "text": "A tiger's courage lies before the lines, yet its path to survival often rests in that single backward glance."
             }
           ],
           "choices": [
             {
               "id": "scout-first",
-              "text": "先遣韩当探竹,全军缓进",
-              "detail": "本回看破提升,记住竹影之疑",
+              "text": "Send Han Dang to scout the bamboo first and advance slowly",
+              "detail": "Insight increased this round; remember the ambush in the bamboo shadows",
               "effects": {
                 "keenEye": true,
                 "fact": "xianshan_scout"
@@ -897,8 +427,8 @@ export default {
             },
             {
               "id": "tiger-charge",
-              "text": "随猛虎直接凿穿竹阵",
-              "detail": "军资 +100,敌军起手士气 -1",
+              "text": "Follow the Tiger to pierce straight through the bamboo thicket",
+              "detail": "Supplies +100, enemy starting Morale -1",
               "effects": {
                 "chips": 100,
                 "sow": 1,
@@ -913,38 +443,42 @@ export default {
           "id": "xianshan-open",
           "at": "start",
           "speaker": "huangzu",
-          "text": "孙坚!你追了两天,箭也追了你两天!"
+          "text": "Sun Jian! You have pursued us for two days, and our arrows have shadowed you for two days as well!"
         },
         {
           "id": "xianshan-slow",
           "at": "hand:2",
           "speaker": "chengpu",
-          "text": "别急着回应每一声鼓。竹子会响,响的不都是人。",
-          "when": "fact:xianshan_scout"
+          "when": "fact:xianshan_scout",
+          "text": "Do not rush to answer every war drum. The bamboo clatters, but not every rustle comes from men."
         },
         {
           "id": "xianshan-rain",
           "at": "hand:2",
           "speaker": "sunjian",
-          "text": "箭雨将至。看旗不看他——旗倒的方向,才是伏兵真处。",
-          "when": "!fact:xianshan_scout"
+          "when": "!fact:xianshan_scout",
+          "text": "A storm of arrows approaches! Watch the banners, not the man—the direction the banners fall reveals the true ambush."
         },
         {
           "id": "xianshan-low",
           "at": "low",
           "speaker": "huanggai",
-          "text": "主公,换马!公覆的背,还挡得住一轮!"
+          "text": "My Lord, switch mounts! Gongfu's back can still weather another volley!"
         }
       ],
       "win": {
-        "text": "竹影里的箭一一落空,黄祖被按在马下时还在喊\"不可能\"。孙坚没有杀他,只折断了他两支箭:\"回去告诉刘景升,襄阳的城门,孤明年再来敲。\"江东的火种,就这样越过了岘山。",
-        "hook": "猛虎既全,江东的故事有了下一个名字——界桥的白马,正朝幽州奔去。"
+        "text": "The arrows loosed from the bamboo shadows fell harmlessly into the earth. Even as Huang Zu was pinned beneath his horse, he screamed 'Impossible!' Sun Jian did not take his life, only snapped two of his arrows: 'Return and tell Liu Jingsheng that next year, I shall come knocking on Xiangyang's gates once more.' Thus did Jiangdong's ember blaze past Mount Xian.",
+        "hook": "With the Fierce Tiger preserved, the tale of Jiangdong has earned its next name—at Jieqiao, the white steeds gallop toward Youzhou."
       },
       "loss": {
-        "text": "箭入竹影的那一刻,你才看清那阵\"溃逃\"有多整齐。猛虎死于追击,而江东还要等一个少年接住这个名字。",
-        "clue": "史鉴 · 黄祖的伏兵靠「乱」诱你全押:竹响时先看旗。重开后他的假破绽会减少。",
+        "text": "The moment the arrows whistled through the bamboo shadows, you finally realized how deceptively orderly that 'rout' had been. The Fierce Tiger fell in hot pursuit, leaving Jiangdong to wait for a youth to inherit his legendary name.",
+        "clue": "Historical Record · Huang Zu's ambush relies on chaos to lure your all-in: when the bamboo rustles, watch the banners first. Upon restart, his false bluffs will decrease.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "jieqiao": {
       "cast": [
@@ -953,57 +487,57 @@ export default {
         "quyi",
         "wenchou"
       ],
-      "objective": "在界桥替白马义从挡下先登的弩,也替赵云挣到第一次被看清的出手。",
+      "objective": "At Jieqiao, shield the White Horse Volunteers from the heavy crossbows of the Vanguard, and earn Zhao Yun his first chance to be truly seen.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "幽州的白马义从号称天下第一骑,直到界桥对岸,八百先登营沉默地张开了弩。"
+          "text": "The White Horse Volunteers of Youzhou were hailed as the realm's foremost cavalry—until across the river at Jieqiao, eight hundred men of the Vanguard Corps silently raised their heavy crossbows."
         },
         {
           "speaker": "gongsunzan",
-          "text": "白马义从,冲一次,河北就安静十年。伯圭在幽州见过最强的是狼,没见过会等人的狼。"
+          "text": "A single charge from the White Horse Volunteers keeps Hebei quiet for a decade! In Youzhou, Bogui has fought the fiercest wolves, but never wolves that know how to lie in wait."
         },
         {
           "speaker": "zhaoyun",
-          "text": "云自常山来,投的是守土之军,不是送死之军。将军,敌阵不齐,必有后变。"
+          "text": "Yun hails from Changshan, joining an army to defend our soil, not one thrown needlessly to slaughter. General, their lines are uneven; treachery surely lies in wait."
         },
         {
           "speaker": "quyi",
-          "text": "骑兵?过了河,就是一排排会喘气的靶子。",
-          "when": "seen:quyi"
+          "when": "seen:quyi",
+          "text": "Cavalry? Once they cross the shallows, they are nothing more than breathing targets."
         },
         {
           "speaker": "wenchou",
-          "text": "袁公说,河北的枪,今日要教幽州人怎么用。",
-          "when": "!seen:wenchou"
+          "when": "!seen:wenchou",
+          "text": "Lord Yuan decrees: today, the spears of Hebei shall teach the men of Youzhou how war is waged."
         }
       ],
       "intros": {
         "quyi": [
           {
             "when": "seen:quyi",
-            "bio": "他记得上一次你的白马怎样绕开弩阵,这次把盾压得更低。",
-            "quote": "又想绕?我的弩,不止一排。"
+            "bio": "He remembers how your white steeds wheeled around his crossbow ranks last time; now he plants his shields even lower.",
+            "quote": "Trying to outflank again? My crossbows are lined more than one rank deep."
           },
           {
-            "bio": "他麾下八百人,人人见过血,个个不怕骑。",
-            "quote": "过河吧。我的弩等你很久了。"
+            "bio": "His eight hundred veterans have all tasted blood, and not one flinches before charging horsemen.",
+            "quote": "Cross the river, then. My crossbows have waited for you long enough."
           }
         ],
         "wenchou": [
           {
             "when": "page:baima:yeshi",
-            "bio": "颜良的名字是他的伤疤,也是他的火——他听说那阵输得不明不白。",
-            "quote": "河北双壁,少了一壁。今日我来补上。"
+            "bio": "The name of Yan Liang is both his scar and his fury—he heard that defeat was baffling and unjust.",
+            "quote": "The Twin Pillars of Hebei lost a pillar. Today, I stand in to make it whole."
           },
           {
             "when": "seen:wenchou",
-            "bio": "他仍不服上一阵,枪却收起了三分轻敌。",
-            "quote": "这次,我先等你过河。"
+            "bio": "Still refusing to accept the prior bout, his spear holds back a fraction of its former conceit.",
+            "quote": "This time, I shall wait for you to cross the river first."
           },
           {
-            "bio": "他与颜良并称河北双壁,唯一胜过颜良的,是耐心。",
-            "quote": "我不急。枪比你长,我等得起。"
+            "bio": "Revered alongside Yan Liang as the Twin Pillars of Hebei, his sole advantage over Yan Liang is his patience.",
+            "quote": "I feel no haste. My spear is longer than yours; I have all the time in the world."
           }
         ]
       },
@@ -1011,26 +545,26 @@ export default {
         {
           "id": "river-read",
           "node": 1,
-          "title": "界桥 · 半渡之机",
+          "title": "Jieqiao · Crossing the Shallows",
           "lines": [
             {
               "speaker": "zhaoyun",
-              "text": "桥窄,马密。若先登趁我半渡放弩,白马再多也挤不成阵。"
+              "text": "The bridge is narrow and the horses packed tight. If the Vanguard looses their crossbows while we are half-across, no number of white steeds can form ranks."
             },
             {
               "speaker": "gongsunzan",
-              "text": "子龙太谨慎。当年孤带着几十骑,就敢凿穿鲜卑的狼群。"
+              "text": "Zilong, you are overly timid! In years past, I pierced through wolf packs of Xianbei riders with a mere few dozen mounts!"
             },
             {
               "speaker": "you",
-              "text": "凿穿靠的是出其不意。今日对岸的人,专等你们冲。"
+              "text": "Piercing lines relies on surprise. Today, the men across the river are waiting specifically for your charge."
             }
           ],
           "choices": [
             {
               "id": "dismount-line",
-              "text": "令前锋下马结盾,牵马过桥",
-              "detail": "本回看破提升,记住半渡之险",
+              "text": "Order vanguard to dismount, lock shields, and lead horses across",
+              "detail": "Insight increased this round; remember the perils of crossing",
               "effects": {
                 "keenEye": true,
                 "fact": "jieqiao_dismount"
@@ -1038,8 +572,8 @@ export default {
             },
             {
               "id": "white-storm",
-              "text": "白马全速,直扑先登",
-              "detail": "军资 +100,先登起手士气 -1",
+              "text": "Full gallop with the white steeds, charging headlong at the Vanguard",
+              "detail": "Supplies +100, Vanguard starting Morale -1",
               "effects": {
                 "chips": 100,
                 "sow": 1,
@@ -1054,37 +588,181 @@ export default {
           "id": "jieqiao-open",
           "at": "start",
           "speaker": "quyi",
-          "text": "盾——起!弩——抬!让幽州人见识什么叫先登!"
+          "text": "Shields—up! Crossbows—level! Let these Youzhou bumpkins see what Vanguard truly means!"
         },
         {
           "id": "jieqiao-shield",
           "at": "hand:2",
           "speaker": "zhaoyun",
-          "text": "他的盾每落一次,弩就要重上一弦。数他的节拍,别数他的箭。",
-          "when": "fact:jieqiao_dismount"
+          "when": "fact:jieqiao_dismount",
+          "text": "Each time their shields dip, their crossbows wind a new notch. Count their rhythm, not their bolts."
         },
         {
           "id": "jieqiao-wen",
           "at": "hand:3",
           "speaker": "wenchou",
-          "text": "白马乱了!河北的枪,收账!"
+          "text": "The white steeds are thrown into disarray! Spears of Hebei, collect the debt!"
         },
         {
           "id": "jieqiao-low",
           "at": "low",
           "speaker": "gongsunzan",
-          "text": "义从折损过半……子龙,你说得对,是伯圭急了。"
+          "text": "Over half the volunteers fallen... Zilong, you spoke true. Bogui was too impatient."
         }
       ],
       "win": {
-        "text": "弩阵的节拍被你数尽,白马分三队轮冲,先登的盾墙终于裂开一角。文丑挺枪来救时,赵云一枪逼住他:\"将军的枪很稳,可惜为骄人而用。\"袁绍的中军退回河北,界桥两岸,从此都知道了常山赵子龙的名字。",
-        "hook": "公孙瓒胜了这一阵,却败给了自己的高墙。而在郿坞的凤仪亭,另一场父子裂痕正待花开。"
+        "text": "Having deciphered every rhythm of their crossbow volleys, the white steeds charged in three rotational waves until the Vanguard's wall of shields fractured. When Wen Chou thrust his spear to the rescue, Zhao Yun pinned him with a single stroke: 'General, your spear is steady, but pity it serves an arrogant master.' Yuan Shao's center army fell back into Hebei; from that day forth, both banks of the Jieqiao river remembered the name of Zhao Zilong of Changshan.",
+        "hook": "Gongsun Zan prevailed in this bout, yet ultimately fell victim to his own towering battlements. Meanwhile, at the Phoenix Pavilion in Meiwu, another rift between father and son was about to blossom."
       },
       "loss": {
-        "text": "半渡时弩声齐响,白马成排倒在河里。赵云断后救回公孙瓒,回头看你一眼,没有说话。",
-        "clue": "史鉴 · 麹义的弩阵赢在「等你冲」。重开后他的假破绽减少;别在半渡时把义从全部推上。",
+        "text": "As the river was half-crossed, a thunder of crossbows cracked in unison, and rows of white steeds collapsed into the currents. Zhao Yun held the rear to pull Gongsun Zan from the jaws of death; glancing back at you, he spoke not a word.",
+        "clue": "Historical Record · Qu Yi's crossbow phalanx triumphs by 'waiting for your charge'. Upon restart, his false bluffs decrease; do not push all your cavalry forward mid-crossing.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "fengyiting": {
+      "cast": [
+        "diaochan",
+        "dongzhuo",
+        "lvbu"
+      ],
+      "objective": "Sow suspicion between Dong Zhuo and Lu Bu at the very same table, completing the final step of the Interlocking Stratagem for Diaochan.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "The lotuses of the Phoenix Pavilion bloomed in eerie silence. Outside the pavilion, Dong Zhuo awaited his beauty; behind the artificial rockery, Lu Bu awaited an explanation; yet Diaochan awaited only the moment they sat together."
+        },
+        {
+          "speaker": "diaochan",
+          "text": "The Imperial Preceptor demands my surrender; the General demands my vows. Today I answer neither—I shall make them hear each other's truth."
+        },
+        {
+          "speaker": "lvbu",
+          "when": "page:hulao:yeshi",
+          "text": "At Hulao you forced me to yield a step. If you demand I retreat once more today, what departs will not be me, but the whole of Meiwu itself."
+        },
+        {
+          "speaker": "dongzhuo",
+          "text": "Fengxian, I have treated you with utmost generosity. Must even you gaze upon her through my beaded curtains?!"
+        }
+      ],
+      "intros": {
+        "dongzhuo": [
+          {
+            "when": "seen:dongzhuo",
+            "bio": "The gates of Meiwu have had their locks replaced, yet he still believes all sincerity can be locked inside his treasury.",
+            "quote": "Scheming again? This time, I shall watch you first before eyeing Fengxian."
+          },
+          {
+            "bio": "He keeps gratitude logged like an accountant's ledger, demanding Lu Bu repay every entry with obedience.",
+            "quote": "Father and son sit at one table—what words cannot be spoken plainly?"
+          }
+        ],
+        "lvbu": [
+          {
+            "when": "page:hulao:yeshi",
+            "bio": "After Hulao he was willing to retreat once, but he refuses to let anyone dictate his path ever again.",
+            "quote": "Last time you bested my halberd. This time, do not presume to choose for her."
+          },
+          {
+            "when": "seen:lvbu",
+            "bio": "Past defeats never dulled his edge; they only made him loathe being treated as someone else's possession.",
+            "quote": "I know you. And I know that look in your eyes, claiming to act 'for my own good'."
+          },
+          {
+            "bio": "The Sky Piercer halberd stands outside the pavilion; what he fears most is an ambiguous whisper from within.",
+            "quote": "Let her speak plainly. And you do the same."
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "two-listeners",
+          "node": 1,
+          "title": "Phoenix Pavilion · One Word, Two Listeners",
+          "lines": [
+            {
+              "speaker": "diaochan",
+              "text": "If they question me separately, I can only give each half an answer. Once seated together, the Preceptor must check Fengxian's face to raise, and Fengxian must bear the Preceptor's laughter to fold."
+            },
+            {
+              "speaker": "you",
+              "text": "So you need not deceive two men; you only need a single truth that bears two meanings."
+            },
+            {
+              "speaker": "diaochan",
+              "text": "No. I also want them to finally understand: I am not the bounty promised in that truth."
+            }
+          ],
+          "choices": [
+            {
+              "id": "tell-dong",
+              "text": "Let Dong Zhuo notice Lu Bu's hesitation first",
+              "detail": "Insight increased this round; remember the Preceptor's doubt",
+              "effects": {
+                "keenEye": true,
+                "fact": "fengyi_dong_doubt"
+              }
+            },
+            {
+              "id": "tell-lvbu",
+              "text": "Let Lu Bu overhear Dong Zhuo's claim of possession",
+              "detail": "Enemy starting Morale -1; remember Fengxian's rage",
+              "effects": {
+                "sow": 1,
+                "fact": "fengyi_lvbu_rage"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "fengyi-open-multi",
+          "at": "start",
+          "speaker": "diaochan",
+          "when": "multi",
+          "text": "Today there are no two hole cards, only the bond of father and son. Whichever treats the other as an enemy first opens the game for me."
+        },
+        {
+          "id": "fengyi-dong",
+          "at": "hand:2",
+          "speaker": "dongzhuo",
+          "when": "multi",
+          "text": "Fengxian, do you follow her, or do you follow me? Think carefully before you wager."
+        },
+        {
+          "id": "fengyi-lvbu",
+          "at": "hand:3",
+          "speaker": "lvbu",
+          "when": "multi",
+          "text": "Foster Father claims you have treated me so well—yet it turns out everything I possess has been tabulated so neatly!"
+        },
+        {
+          "id": "fengyi-low",
+          "at": "low",
+          "speaker": "diaochan",
+          "when": "multi",
+          "text": "Do not look at me. Look into yourselves: one fears losing his grip on power, while the other fears he was never truly his own master."
+        }
+      ],
+      "win": {
+        "text": "Diaochan pushed open the pavilion doors, for the first time free from speaking in deference to any man's gaze. Dong Zhuo and Lu Bu glared at one another until the bond of father and son was reduced to a torn banquet invitation. She ran to neither, but walked her own path out of Meiwu.",
+        "hook": "Parting at the Phoenix Pavilion, both Lu Bu and Diaochan walked away from Meiwu. Yet an envoy from Xiaopei is already on the road—next time, he must mediate a feud between two houses."
+      },
+      "loss": {
+        "text": "Dong Zhuo took it as petty jealousy for favor; Lu Bu saw only betrayal and deceit. Diaochan took off her earrings without a tear: you tried to win two men for her, forgetting that what she truly sought was the freedom to never belong to anyone.",
+        "clue": "Historical Record · Do not guess Dong Zhuo's and Lu Bu's cards separately; watch whom one glances at when the other bets. The fissure of the Interlocking Stratagem lies between them. Upon restart, false bluffs decrease.",
+        "clueFx": "keenEye"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "shenting": {
       "cast": [
@@ -1093,40 +771,40 @@ export default {
         "zhouyu",
         "chengpu"
       ],
-      "objective": "在神亭岭让两件兵器打完整场,替孙策与太史慈都留下体面。",
+      "objective": "At Shenting Ridge, let both weapons clash through the entire duel, preserving honor and dignity for both Sun Ce and Taishi Ci.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "曲阿城外,斥候来报:孙策只带十二骑,去探刘繇大营。太史慈提枪上马,身后只跟了一个会打鼓的小卒。"
+          "text": "Outside the walls of Qu'a, scouts reported: Sun Ce had ridden out with a mere twelve horsemen to reconnoiter Liu Yao's main encampment. Taishi Ci gripped his spear, mounted his steed, and rode out with only a drum-beating stripling at his back."
         },
         {
           "speaker": "sunce",
-          "text": "人人都叫我小霸王。今日岭上无阵无鼓,正好看看,名号底下还剩什么。"
+          "text": "All call me the Little Conqueror. Today on this ridge there are no battle lines and no drums—the perfect chance to see what remains beneath the title!"
         },
         {
           "speaker": "taishici",
-          "text": "东莱太史慈,饭都吃不饱的人,偏偏枪不输人。战便战,谁怕谁!"
+          "text": "Taishi Ci of Donglai, a man who could barely afford a meal, yet yields to no living soul with a spear! If we fight, we fight—who fears whom?!"
         },
         {
           "speaker": "zhouyu",
-          "text": "伯符,神亭岭的风向不对。这一仗打到一半,必来第三拨人。"
+          "text": "Bofu, the wind on Shenting Ridge is shifting. When this duel is halfway done, a third party is bound to arrive."
         }
       ],
       "intros": {
         "taishici": [
           {
             "when": "seen:taishici",
-            "bio": "上一次的戟与甲让他记住了你的名字,也记住了你的公平。",
-            "quote": "又是你。这次,借你的眼看谁更配赢。"
+            "bio": "The shattered halberd and torn armor from last time engraved your name in his mind, as well as your fairness.",
+            "quote": "You again. This time, lend your eyes to judge who is truly worthy to win."
           },
           {
             "when": "page:jieqiao:yeshi",
-            "bio": "他听说过界桥那个数节拍的读卷人,枪下便多了三分敬。",
-            "quote": "数得清弩阵的人,应该也数得清我的枪。"
+            "bio": "Having heard of the reader who counted the volleys at Jieqiao, his spear carries an extra touch of respect.",
+            "quote": "One who can count a crossbow barrage can surely count the thrusts of my spear."
           },
           {
-            "bio": "他一生只认两个东西:母亲的教诲,和打得赢的对手。",
-            "quote": "神亭岭的风大。兵器拿稳了!"
+            "bio": "In all his life he acknowledges only two things: his mother's teachings, and a rival worthy of battle.",
+            "quote": "The wind on Shenting Ridge blows fierce. Grip your weapon tight!"
           }
         ]
       },
@@ -1134,26 +812,26 @@ export default {
         {
           "id": "no-flags",
           "node": 2,
-          "title": "神亭岭 · 无鼓之阵",
+          "title": "Shenting Ridge · Formation without Drums",
           "lines": [
             {
               "speaker": "taishici",
-              "text": "此间没有军令,没有阵图。你若替谁出谋,这一架便不干净了。"
+              "text": "Here there are no military orders, no tactical diagrams. If you scheme for either side, this fight becomes tainted."
             },
             {
               "speaker": "sunce",
-              "text": "好!那便让开战场。公瑾退后三十步——今日单挑,谁插手我跟谁急!"
+              "text": "Agreed! Clear the field! Gongjin, fall back thirty paces—this is a duel today, and whoever interferes answers to me!"
             },
             {
               "speaker": "you",
-              "text": "那我押在一旁看。看谁先露出真本事,也看谁先露出真性情。"
+              "text": "Then I shall watch from the sidelines. Let us see who displays true skill first, and who reveals true character."
             }
           ],
           "choices": [
             {
               "id": "fair-watch",
-              "text": "袖手旁观,记下二人枪路",
-              "detail": "本回看破提升,记住神亭枪路",
+              "text": "Stand by with folded arms, committing their spear paths to memory",
+              "detail": "Insight increased this round; remember the spear paths of Shenting",
               "effects": {
                 "keenEye": true,
                 "fact": "shenting_watch"
@@ -1161,8 +839,8 @@ export default {
             },
             {
               "id": "drink-bet",
-              "text": "在岭头摆酒,赌谁先脱力",
-              "detail": "军资 +120,二人战意更盛",
+              "text": "Set out wine atop the ridge, wagering who tires first",
+              "detail": "Supplies +120; both men's fighting spirit burns hotter",
               "effects": {
                 "chips": 120,
                 "sow": 1,
@@ -1177,77 +855,437 @@ export default {
           "id": "shenting-open",
           "at": "start",
           "speaker": "taishici",
-          "text": "小霸王,接枪!别叫旁人小看了你我!"
+          "text": "Little Conqueror, meet my spear! Let no onlooker look down on what we are!"
         },
         {
           "id": "shenting-halberd",
           "at": "hand:2",
           "speaker": "sunce",
-          "text": "好戟法!枪再快些——我孙家的手,还没抖!"
+          "text": "Magnificent technique! Faster with your spear—the hands of the Sun clan do not tremble!"
         },
         {
           "id": "shenting-armor",
           "at": "hand:3",
           "speaker": "taishici",
-          "text": "盔给你扯了,甲也快了。还想打?我陪到底!"
+          "text": "I ripped your helmet away, and your breastplate is next! Still eager to fight? I will see you to the bitter end!"
         },
         {
           "id": "shenting-low",
           "at": "low",
           "speaker": "zhouyu",
-          "text": "两虎相争,必有一伤——而伤的那个,明日还要守城。"
+          "text": "When two tigers clash, one is bound to be mauled—and whichever falls wounded must still defend the city tomorrow."
         }
       ],
       "win": {
-        "text": "戟折了,甲裂了,两人抱着兵器躺在岭上喘气,忽然同时大笑。太史慈翻身坐起:\"孙郎,明日阵前再见,我可不让你。\"孙策把断戟扔给他:\"留着。修好了,再来。\"你把岭头的酒分作两碗,一碗给了赢家,一碗给了没输的人。",
-        "hook": "神亭的笑声未落,江东的版图正待铺开。而在小沛,一支画戟又要替两家人说和。"
+        "text": "The halberd snapped, the breastplates cracked, and both men lay collapsed on the ridge clutching their weapons, panting until they burst into uproarious laughter together. Taishi Ci rolled upright: 'Young Master Sun, when we meet before the lines tomorrow, I will show no mercy.' Sun Ce tossed the broken halberd to him: 'Keep it. Once mended, come at me again.' You poured the wine atop the ridge into two bowls—one for the victor, and one for the man who never lost.",
+        "hook": "Before the laughter on Shenting Ridge faded, the canvas of Jiangdong was waiting to unfold. Meanwhile in Xiaopei, a painted halberd was about to broker peace between two warring houses."
       },
       "loss": {
-        "text": "你的插手让单挑变了味,两件兵器同时指住了你。太史慈失望地收枪:\"原来读卷人,也会掀桌。\"",
-        "clue": "史鉴 · 这一页要的不是速胜,是让二人打满全场。重开时,先看谁先脱力再落注。",
+        "text": "Your meddling soured the duel, turning both weapons against you in unison. Taishi Ci withdrew his spear in bitter disappointment: 'So even a reader of scrolls knows how to flip the gaming table.'",
+        "clue": "Historical Record · This page asks not for a swift triumph, but for both heroes to duel to the very limit. Upon restart, observe who exhausts their strength first before placing your bet.",
         "clueFx": "keenEye"
-      }
-    }
-  },
-  "2": {
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "yuanshemen": {
+      "cast": [
+        "lvbu",
+        "jiling",
+        "yuanshu",
+        "liubei",
+        "guanyu",
+        "zhangfei"
+      ],
+      "objective": "Ensure both Ji Ling and Liu Bei retain a path of retreat, while compelling Lu Bu to prove his arrow is not merely another display of tyranny.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "Outside the camp gates stood the halberd with only a slender side-prong to strike; within the gates sat two massive armies coiled to slaughter each other. Lu Bu set his bow upon the table and invited you to deal the cards first."
+        },
+        {
+          "speaker": "lvbu",
+          "when": "page:hulao:yeshi",
+          "text": "At Hulao you claimed I knew only how to advance. Today both armies are present—watch how I use a single arrow to make them both withdraw."
+        },
+        {
+          "speaker": "yuanshu",
+          "when": "!seen:yuanshu",
+          "text": "Ji Ling, hear my decree: If Xiaopei does not fall, do not dare return to Huainan! My Imperial Seal belongs to the realm under heaven, not to the sentimental favor of a Lu Bu!"
+        },
+        {
+          "speaker": "jiling",
+          "text": "Ji serves the decree of my lord; I will not pull back my troops for a single arrow. Unless all seated here agree that this arrow is a wager worth taking."
+        },
+        {
+          "speaker": "liubei",
+          "text": "I have no desire to gamble the lives of Xiaopei's people just to validate any man's archery."
+        }
+      ],
+      "intros": {
+        "jiling": [
+          {
+            "when": "seen:jiling",
+            "bio": "Still refusing to yield to that single arrow, he now weighs carefully the lives hanging beneath its trajectory.",
+            "quote": "Wagering again is fine. But state the terms of both armies plainly, word for word."
+          },
+          {
+            "bio": "With his three-pointed blade weighed down by lordly orders, he cannot retreat like a coward frightened by miraculous archery.",
+            "quote": "General Lu possesses miraculous archery, but Ji also possesses his lord's command."
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "shared-wager",
+          "node": 1,
+          "title": "Camp Gate · A Shared Stake",
+          "lines": [
+            {
+              "speaker": "zhangfei",
+              "text": "A single arrow to spare my Eldest Brother from war? If he misses, I will smash his bow across his face first!"
+            },
+            {
+              "speaker": "guanyu",
+              "text": "Hence the truest challenge lies not in hitting the mark, but in ensuring both sides honor the debt even should it miss."
+            },
+            {
+              "speaker": "lvbu",
+              "text": "Then let us state plainly what follows a miss as well. Lu Mou does not rely on others to manufacture his confidence."
+            }
+          ],
+          "choices": [
+            {
+              "id": "name-the-miss",
+              "text": "Stipulate how both sides withdraw if the arrow misses",
+              "detail": "Insight increased this round; remember the shared wager",
+              "effects": {
+                "keenEye": true,
+                "fact": "yuanshemen_named_miss"
+              }
+            },
+            {
+              "id": "seat-the-rivals",
+              "text": "Seat Xuande and Ji Ling on the same side",
+              "detail": "Ji Ling starting Morale -1; remember the bond of sitting together",
+              "effects": {
+                "sow": 1,
+                "fact": "yuanshemen_shared_seat"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "yuanmen-open",
+          "at": "start",
+          "speaker": "jiling",
+          "text": "Speak not of miraculous shots yet! If I win this hand, do you dare let Xuande ride out for an open field battle?!"
+        },
+        {
+          "id": "yuanmen-arrow",
+          "at": "hand:2",
+          "speaker": "lvbu",
+          "text": "If I miss the prong, I shall naturally comply with your terms. But if you only wish to see me humiliated, you have fundamentally misread this table."
+        },
+        {
+          "id": "yuanmen-low",
+          "at": "low",
+          "speaker": "liubei",
+          "text": "General Ji, what we must win today is not defiance of your orders, but a reason you can hold your head high before your soldiers upon your return."
+        }
+      ],
+      "win": {
+        "text": "As the arrow left the bowstring, Ji Ling looked not at the halberd's prong, but first at Liu Bei. Only when Liu Bei pushed the blade before him an inch away did Ji Ling finally withdraw his troops. Lu Bu laughed thunderously, yet only you noticed the sweat glistening on his palms: had this arrow been merely a boast of skill, it could have saved no one.",
+        "hook": "The shot at the gate preserved Xiaopei, yet could not preserve Lu Bu's own Xiapi; meanwhile Cao Cao from Xuchang has already set out toward Wancheng."
+      },
+      "loss": {
+        "text": "Before the arrow had even left the bowstring, Ji Ling and Liu Bei were already on their feet. In your haste to guarantee Lu Bu could not miss, you forgot to ask whether the other two were willing to stake military commands and common lives on a single boast.",
+        "clue": "Historical Record · Mediating peace is not about flattering both sides, but getting both to accept a shared stake. Do not promise too much before the arrow flies; upon restart, false bluffs decrease.",
+        "clueFx": "keenEye"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "wancheng": {
+      "cast": [
+        "caocao",
+        "dianwei",
+        "zhangxiu"
+      ],
+      "objective": "On the night Zhang Xiu surrendered only to rebel, guard Dian Wei's twin halberds first, and secure a final line of retreat for Cao Cao.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "The surrender banners of Wancheng were not yet taken down, yet feasts in Cao Cao's camp dragged into the dead of night. Dian Wei sat cradling his twin halberds outside the tent, while only you noticed an extra pair of feet lurking in the shadows along the wall."
+        },
+        {
+          "speaker": "caocao",
+          "when": "page:sishui:yeshi",
+          "text": "That cup of warm wine at Sishui remains etched in my mind to this day. Alas, tonight men's hearts turn cold faster than wine, and I failed to taste it in time."
+        },
+        {
+          "speaker": "dianwei",
+          "text": "Rest peacefully, my Lord. Dian understands nothing of cards—I know only this gate: so long as I stand and my halberds remain, this threshold holds."
+        },
+        {
+          "speaker": "zhangxiu",
+          "text": "Must the wine of a surrendered general always be drunk with bowed head? Lord Cao, come tally the ledger tonight and see who owes whom!"
+        }
+      ],
+      "intros": {
+        "zhangxiu": [
+          {
+            "when": "seen:zhangxiu",
+            "bio": "A banner of surrender can be raised once more, but the silent humiliation suffered can never be undone.",
+            "quote": "Ask not of the twin halberds this time. Ask whether you are still willing to hear me out."
+          },
+          {
+            "bio": "The Spear King of the Northern Border has surrendered once; striking again, he will harbor not a shred of hesitation.",
+            "quote": "By daylight you accept my surrender; by night you answer to my spear. Lord Cao, pray be seated."
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "twin-halberds",
+          "node": 1,
+          "title": "Wancheng · Twin Halberds Unguarded",
+          "lines": [
+            {
+              "speaker": "dianwei",
+              "text": "Hu Che'er toasted me with three bowls of wine tonight, but his eyes never left my halberds. If my weapons are lost, how can I secure an escape for my Lord?!"
+            },
+            {
+              "speaker": "caocao",
+              "text": "Since Zhang Xiu surrendered, why does he look as though he sits upon needles? Did I mistake 'submission' for 'having nothing left to say'?"
+            }
+          ],
+          "choices": [
+            {
+              "id": "guard-arms",
+              "text": "Stand guard with Dian Wei over the twin halberds and rear horse trail",
+              "detail": "Insight increased this round; halberds and escape path both secured",
+              "effects": {
+                "keenEye": true,
+                "fact": "wancheng_arms_ready"
+              }
+            },
+            {
+              "id": "return-camps",
+              "text": "Allow surrendered troops to return to former camps without disarming them",
+              "detail": "Zhang Xiu starting Morale -1; remember the hearts of surrendered men",
+              "effects": {
+                "sow": 1,
+                "fact": "wancheng_respect"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "wancheng-open",
+          "at": "start",
+          "speaker": "zhangxiu",
+          "text": "By day you accepted my surrender, yet by night you took me for a mute dog! This spear of Zhang Xiu is only now striking home!"
+        },
+        {
+          "id": "wancheng-regret",
+          "at": "hand:2",
+          "speaker": "caocao",
+          "text": "Did I miscalculate Zhang Xiu, or did I misjudge myself? Dian Wei, let no man breach this tent!"
+        },
+        {
+          "id": "wancheng-low-ready",
+          "at": "low",
+          "speaker": "dianwei",
+          "when": "fact:wancheng_arms_ready",
+          "text": "My Lord, flee! With my twin halberds in hand, no man shall force Dian to guard this gate barehanded tonight!"
+        },
+        {
+          "id": "wancheng-low",
+          "at": "low",
+          "speaker": "dianwei",
+          "text": "My Lord, flee! Ask not how much longer Dian can remain standing—ask only whether your steed is ready!"
+        }
+      ],
+      "win": {
+        "text": "The twin halberds remained in Dian Wei's grasp, and Zhang Xiu's fire failed to seal the camp gate. Having fled far into the dark, Cao Cao looked back for the first time without asking how many troops were lost, asking only: 'Does Dian Wei still stand where he was?' In the distance, the giant lifted a bloodied halberd in silent reply.",
+        "hook": "The gate of Wancheng held, yet Cao Cao had no leisure to heed the lesson. His legions are already at Xiapi; this time, the one encircled is Lu Bu."
+      },
+      "loss": {
+        "text": "The moment the halberds were stolen, you realized Zhang Xiu was not waiting for Cao Cao to fall asleep, but for him to mistake another man's humiliation for safety. Flames still burned at the gate; Dian Wei yielded not another step.",
+        "clue": "Historical Record · Zhang Xiu's resolve was written the moment he stopped looking at Cao Cao. Do not merely watch his spearpoint; guard the camp gate and twin halberds first. Upon restart, false bluffs decrease.",
+        "clueFx": "keenEye"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "baimenlou": {
+      "cast": [
+        "lvbu",
+        "chengong",
+        "caocao",
+        "liubei"
+      ],
+      "objective": "Unravel the true deadlock between Lu Bu and Chen Gong, and decide whether Xiapi has a tomorrow.",
+      "coldOpen": [
+        {
+          "speaker": "chengong",
+          "text": "Outside lie Cao Cao's hordes; inside are soldiers parched of water for three days. Yet the Marquis still proclaims that so long as he takes the field, defeat does not exist."
+        },
+        {
+          "speaker": "lvbu",
+          "when": "page:hulao:yeshi",
+          "text": "At Hulao, what you won was mere cards. Today, do you dare gamble with life itself once more?!"
+        },
+        {
+          "speaker": "chengong",
+          "when": "page:hulao:yeshi",
+          "text": "You have come. I have read that chapter of Hulao—yet this time, what must be saved is not his martial glory."
+        },
+        {
+          "speaker": "writer",
+          "text": "The noose of White Gate Tower dangles just beyond the page. With each hand you win, its knot tightens into sharper focus."
+        }
+      ],
+      "intros": {
+        "lvbu": [
+          {
+            "when": "page:hulao:yeshi",
+            "bio": "Having tasted defeat once at Hulao, Lu Bu is all the more desperate to deny he is trapped like a beast.",
+            "quote": "You made me taste defeat—can you find a way to let me live?!"
+          },
+          {
+            "bio": "The waters of the Si submerge the city walls, yet the Peerless Under Heaven still waits for a heading to charge.",
+            "quote": "Out of my way. I will carve out another bloody path!"
+          }
+        ],
+        "chengong": [
+          {
+            "bio": "He came not to seek victory for Lu Bu, but to secure a route of escape for Xiapi.",
+            "quote": "If you know only how to win hands, you cannot save him."
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "last-counsel",
+          "node": 1,
+          "title": "Sishui · The Final Counsel",
+          "lines": [
+            {
+              "speaker": "chengong",
+              "text": "I urged him to take his camp outside the walls; he asked me whether he would still be Lu Bu once outside. You see, that arrogance is his true prison."
+            },
+            {
+              "speaker": "caocao",
+              "text": "Xuande stands upon the tower as well. If you spare Fengxian today, who under heaven will hold him in check tomorrow?"
+            }
+          ],
+          "choices": [
+            {
+              "id": "chen-plan",
+              "text": "Finish articulating Chen Gong's strategy for retreat",
+              "detail": "Insight increased; remember Chen Gong's counsel",
+              "effects": {
+                "keenEye": true,
+                "fact": "chen_plan"
+              }
+            },
+            {
+              "id": "lvbu-oath",
+              "text": "Compel Lu Bu to swear aloud never to charge blindly again",
+              "detail": "Enemy starting Morale -1",
+              "effects": {
+                "sow": 1,
+                "fact": "lvbu_oath"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "baimen-open",
+          "at": "start",
+          "speaker": "chengong",
+          "text": "Watch when his chips dwindle beneath thirty percent. A cornered beast will stake even his last sliver of sanity on the table."
+        },
+        {
+          "id": "baimen-low",
+          "at": "low",
+          "speaker": "lvbu",
+          "text": "Chen Gong! If I listen to you this time, will the world mock me as a coward?!"
+        },
+        {
+          "id": "baimen-answer",
+          "at": "low",
+          "speaker": "chengong",
+          "text": "They will. But only the living possess the luxury of being mocked."
+        }
+      ],
+      "win": {
+        "text": "At last, Lu Bu did not make a frantic charge for the gates. Removing his golden hair-cap, he asked Chen Gong for the very first time: 'Where do we retreat?' The weeping across Xiapi fell silent for the night.",
+        "hook": "In Xuchang, the green plums are ripening. Cao Cao has already heard: the Peerless Under Heaven did not perish, and you sat at that very table.",
+        "choiceFact": "lvbu_lives"
+      },
+      "loss": {
+        "text": "As the noose cinched tight, you realized with dread that you had only ever answered 'how to defeat Lu Bu', while never answering 'how Lu Bu could be willing to live'.",
+        "clue": "Historical Record · Chen Gong saw through the rhythm of the trapped beast. Upon restart, false bluffs decrease.",
+        "clueFx": "keenEye"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
     "zhujiu": {
       "cast": [
         "caocao",
         "liubei",
         "lvbu"
       ],
-      "objective": "藏住自己的答案，也听清曹操没有说出口的那一句。",
+      "objective": "Conceal your own true answer, and listen closely for the words Cao Cao left unsaid.",
       "coldOpen": [
         {
           "speaker": "caocao",
-          "text": "白门楼上你替他选了一条活路。今日这杯酒，我想知道你替自己选什么。",
-          "when": "page:baimenlou:yeshi"
+          "when": "page:baimenlou:yeshi",
+          "text": "Upon White Gate Tower you chose a path of survival for him. Over this cup of wine today, I want to know what you choose for yourself."
         },
         {
           "speaker": "liubei",
-          "text": "他若提起奉先，别急着答。先听他把天下说到第几个人。",
-          "when": "page:baimenlou:yeshi"
+          "when": "page:baimenlou:yeshi",
+          "text": "If he mentions Fengxian, do not rush to answer. First listen to how many men of the realm he names before us."
         },
         {
           "speaker": "caocao",
-          "text": "白门楼一别，玄德愈发谨慎了。谨慎的人，最适合对酌。",
-          "when": "page:baimenlou:history"
+          "when": "page:baimenlou:history",
+          "text": "Since our parting at White Gate Tower, Xuande has grown all the more cautious. And a cautious man makes the finest drinking companion."
         },
         {
           "speaker": "narrator",
-          "text": "青梅过小盏，远处一声雷。你忽然明白，这桌酒没有一题是问天下。"
+          "text": "Green plums floated in small cups as thunder rumbled in the distance. Suddenly you realize: not a single riddle at this table is truly about the realm."
         }
       ],
       "intros": {
         "caocao": [
           {
             "when": "page:baimenlou:yeshi",
-            "bio": "他记得白门楼的每一个选择，尤其记得你让谁活了下来。",
-            "quote": "奉先未死，玄德在座。今日英雄，恐怕不止两个。"
+            "bio": "He remembers every decision made atop White Gate Tower, especially remembering whom you allowed to live.",
+            "quote": "Fengxian lives, and Xuande is seated here. Today, I fear there are more than two heroes under heaven."
           },
           {
-            "bio": "青梅煮酒，他把每个人的野心都当作可以试出的底牌。",
-            "quote": "莫怕雷。怕我接下来这句。"
+            "bio": "Boiling wine over green plums, he treats every man's ambition as a hole card to be tested and revealed.",
+            "quote": "Fear not the thunder. Fear what I speak next."
           }
         ]
       },
@@ -1255,26 +1293,26 @@ export default {
         {
           "id": "green-plum",
           "node": 1,
-          "title": "青梅亭 · 未问先答",
+          "title": "Plum Pavilion · Answer Before Asked",
           "lines": [
             {
               "speaker": "liubei",
-              "text": "他说你是英雄时，你若只谦虚，他便知道你听懂了。"
+              "text": "When he calls you a hero, if you merely offer modest denials, he will instantly know you understood his trap."
             },
             {
               "speaker": "you",
-              "text": "那我该装作不懂？"
+              "text": "Then should I pretend ignorance?"
             },
             {
               "speaker": "liubei",
-              "text": "不。让他以为你只懂牌。"
+              "text": "No. Make him believe you understand nothing beyond the cards in your hand."
             }
           ],
           "choices": [
             {
               "id": "thunder",
-              "text": "借雷声藏住神情",
-              "detail": "曹操起手士气 -1",
+              "text": "Use the clash of thunder to veil your expression",
+              "detail": "Cao Cao starting Morale -1",
               "effects": {
                 "sow": 1,
                 "fact": "thunder_mask"
@@ -1282,8 +1320,8 @@ export default {
             },
             {
               "id": "watch-cao",
-              "text": "反问他白门楼最怕什么",
-              "detail": "本回看破提升",
+              "text": "Counter by asking what he feared most at White Gate Tower",
+              "detail": "Insight increased this round",
               "effects": {
                 "keenEye": true,
                 "fact": "watch_cao"
@@ -1297,862 +1335,96 @@ export default {
           "id": "zhujiu-open",
           "at": "start",
           "speaker": "caocao",
-          "text": "牌如人。先看，莫急着认。"
+          "text": "Cards are like men. Watch them first; do not rush to call."
         },
         {
           "id": "zhujiu-mid",
           "at": "hand:2",
           "speaker": "caocao",
-          "text": "今天下英雄——你觉得，我会先说谁？"
+          "text": "Of heroes under heaven today—whom do you think I shall name first?"
         },
         {
           "id": "zhujiu-low",
           "at": "low",
           "speaker": "liubei",
-          "text": "雷要来了。你该落筷了。"
+          "text": "The thunder is upon us. It is time for your chopsticks to drop."
         }
       ],
       "win": {
-        "text": "筷落，雷止。曹操笑着替你斟酒，没有再问第二遍。刘备知道，方才有一瞬，你们三人都看见了彼此的底牌。",
-        "hook": "关羽即将挂印封金。许都这一局，曹操记住了你的藏锋。"
+        "text": "The chopsticks fell; the thunder ceased. Cao Cao chuckled and poured your wine, asking not a single question more. Liu Bei knew that for one fleeting heartbeat, all three of you had glimpsed each other's hidden cards.",
+        "hook": "Guan Yu is soon to seal his gold and hang up his seal of office. In this duel in Xuchang, Cao Cao remembered your concealed edge."
       },
       "loss": {
-        "text": "你回答了“谁是英雄”，却没听出他真正问的是“你愿不愿与我为敌”。酒未毒，话已经把你围住。",
-        "clue": "史鉴 · 曹操会在第二手开始读你的下注；重开时他的假破绽减少。",
+        "text": "You answered 'who is a hero', but failed to hear that his true question was 'do you intend to become my enemy?'. The wine held no poison, yet his words had already tightened an inescapable ring around you.",
+        "clue": "Historical Record · Cao Cao begins reading your bets on the second hand. Upon restart, his false bluffs decrease.",
         "clueFx": "keenEye"
-      }
-    },
-    "qianli": {
-      "cast": [
-        "guanyu",
-        "liubei",
-        "zhangfei",
-        "caocao",
-        "kongxiu",
-        "hanfu",
-        "bianxi",
-        "wangzhi",
-        "qinqi"
-      ],
-      "objective": "护送车仗穿过五关，辨认孔秀、韩福、卞喜、王植、秦琪各自的拦法，把最后一点气力留给古城重逢。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "许都城门在身后，印绶高悬，金帛未动。关羽只带车仗与一柄不愿再受人情的刀。"
-        },
-        {
-          "speaker": "caocao",
-          "text": "那日煮酒，玄德借雷藏锋；今日云长要去寻他，孤该放行，还是再留一顿酒？",
-          "when": "page:zhujiu:yeshi"
-        },
-        {
-          "speaker": "guanyu",
-          "text": "丞相之义，关某记在心里；兄长之约，却在前面等我。"
-        },
-        {
-          "speaker": "liubei",
-          "text": "云长，见字如面。莫以我为念，亦莫以我为负。能来便来，古城有人等你。"
-        }
-      ],
-      "intros": {
-        "kongxiu": [
-          {
-            "bio": "东岭关的锁只认文书，他把职责守得比性命更窄。",
-            "quote": "没有丞相文凭，关云长也不能过。"
-          }
-        ],
-        "hanfu": [
-          {
-            "bio": "他把敬重藏在弓弦后，放箭之前仍想保住一份旧情。",
-            "quote": "关将军，韩某敬你，却不能弃关。"
-          }
-        ],
-        "bianxi": [
-          {
-            "bio": "镇国寺的香火压不住杀气，他的平安路只通向埋伏。",
-            "quote": "刀留佛前，酒入口中，将军便可安睡。"
-          }
-        ],
-        "wangzhi": [
-          {
-            "bio": "荥阳的馆舍过于齐整，每一扇门都已想好何时上锁。",
-            "quote": "夜长路远，何不住到火起——住到天明？"
-          }
-        ],
-        "qinqi": [
-          {
-            "bio": "黄河渡口的最后一道军令，他把旧交与风浪都挡在岸上。",
-            "quote": "过了四关又如何？黄河只认秦某这一面旗。"
-          }
-        ]
       },
-      "map": [
-        {
-          "id": "two-kinds-of-gates",
-          "node": 2,
-          "title": "洛阳 · 明暗两关",
-          "lines": [
-            {
-              "speaker": "guanyu",
-              "text": "孔秀要文凭，韩福藏冷箭，卞喜却把酒摆到佛前。关隘不同，拦人的理由也不同。"
-            },
-            {
-              "speaker": "narrator",
-              "text": "车仗里没有催促。关羽回望来路，把刀从右手换到左手，只为让赶车的人安心。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "share-rations",
-              "text": "以干粮换百姓口述五关地形",
-              "detail": "本回看破提升，记住沿途人心",
-              "effects": {
-                "keenEye": true,
-                "fact": "qianli_guides"
-              }
-            },
-            {
-              "id": "guard-the-rear",
-              "text": "亲自断后，让车仗先行",
-              "detail": "守将起手士气 -1，记住断后之诺",
-              "effects": {
-                "sow": 1,
-                "fact": "qianli_rearguard"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "qianli-kongxiu",
-          "at": "start",
-          "speaker": "kongxiu",
-          "text": "东岭关只认丞相文凭，不认你的旧名。没有文书，青龙刀也得留下。",
-          "when": "round:1"
-        },
-        {
-          "id": "qianli-hanfu",
-          "at": "start",
-          "speaker": "hanfu",
-          "text": "关将军，韩某敬你之名，却不能弃守关之责。这一箭之后，莫怪我。",
-          "when": "round:2"
-        },
-        {
-          "id": "qianli-bianxi",
-          "at": "start",
-          "speaker": "bianxi",
-          "text": "镇国寺酒已温。将军把刀留在佛前，卞某便让你看一条平安路。",
-          "when": "round:3"
-        },
-        {
-          "id": "qianli-wangzhi",
-          "at": "start",
-          "speaker": "wangzhi",
-          "text": "荥阳馆舍洁净，夜色也长。将军何不住下，等我把各处的门都替你关好？",
-          "when": "round:4"
-        },
-        {
-          "id": "qianli-qinqi",
-          "at": "start",
-          "speaker": "qinqi",
-          "text": "黄河在此。四关的人情到这里用尽；秦琪只认夏侯将军的军令。",
-          "when": "round:5"
-        },
-        {
-          "id": "qianli-no-sixth-grave",
-          "at": "hand:2",
-          "speaker": "guanyu",
-          "text": "五关各有锁，人心却未必都是锁。能绕过的杀念，便别把它变成第六座坟。"
-        },
-        {
-          "id": "qianli-drums",
-          "at": "low",
-          "speaker": "zhangfei",
-          "text": "二哥，听见鼓没有？五关不必再替谁守了，回来与俺击这一面！",
-          "when": "round:5"
-        }
-      ],
-      "win": {
-        "text": "秦琪倒下时，黄河浪声盖过了刀声。关羽没有数第五颗首级，只回身扶稳车仗。古城门下，张飞扔了鼓槌便来抱马；刘备赶到时，关羽只说“来迟了”。三双眼睛都在回答：回来便好。",
-        "hook": "古城鼓声未歇，北方的袁曹已经相持。下一场不再是一人过五关，而是两军争一口气。"
-      },
-      "loss": {
-        "text": "你在某一关赢得了刀光，却把车仗、筹码与归期都留在身后。千里最难的从不是杀出一条直路，是到古城时仍有资格说一句“都平安”。",
-        "clue": "史鉴 · 孔秀耗令、韩福冷箭、卞喜设宴、王植借火、秦琪守渡。五关共用一条命，莫为一关押尽路费；重开军资 +150。",
-        "clueFx": "supply"
-      }
-    },
-    "guandu": {
-      "cast": [
-        "caocao",
-        "yuanshao",
-        "guojia",
-        "xuyou",
-        "tianfeng",
-        "jushou"
-      ],
-      "objective": "让袁绍的雄厚军资变成迟疑，在盲注吞尽曹军之前找到乌巢真正的软肋。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "官渡的粮簿比战报更薄。曹操每划掉一日，袁绍帐中便多一位自称有策的谋士。"
-        },
-        {
-          "speaker": "yuanshao",
-          "text": "孟德，你我自幼相识。你的脾气我清楚，你的粮草，我更清楚。"
-        },
-        {
-          "speaker": "caocao",
-          "text": "云长终究还是去找玄德了。孤留得住赤兔，留不住人心；本初，你却连人心都未看清。",
-          "when": "page:qianli:yeshi"
-        },
-        {
-          "speaker": "guojia",
-          "text": "明公，袁氏十胜十败之说，嘉只敢保证前九。最后一胜，要你亲自去赢。"
-        },
-        {
-          "speaker": "tianfeng",
-          "text": "主公若胜，丰必死；若败，丰亦死。冀州的牢里，元皓已替你们把话写好了。",
-          "when": "!seen:tianfeng"
-        },
-        {
-          "speaker": "caocao",
-          "text": "许攸来了便请他坐。孤可以只穿一只鞋迎他，却不能让全军看见孤只剩三日粮。"
-        }
-      ],
-      "intros": {
-        "yuanshao": [
-          {
-            "when": "page:zhujiu:yeshi",
-            "bio": "他听说青梅亭只论了刘曹，偏要把旧友局变成天下的答辩。",
-            "quote": "孟德，今日再数一次英雄，可还有袁本初？"
-          },
-          {
-            "when": "seen:yuanshao",
-            "bio": "他仍带千军与满腹计策归来，仍缺一个肯为决定署名的人。",
-            "quote": "上次众议未决。这次，你听谁？"
-          },
-          {
-            "bio": "四世三公给了他太多谋士，也给了他永远不必先认错的位置。",
-            "quote": "河北兵精粮足。孟德，你拿什么拖？"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "true-ledger",
-          "node": 2,
-          "title": "官渡 · 真账假账",
-          "lines": [
-            {
-              "speaker": "caocao",
-              "text": "许攸问孤还有几粮。孤若说实话，他或许给乌巢；若说假话，他今夜便会走。"
-            },
-            {
-              "speaker": "narrator",
-              "text": "帐外袁绍的催战鼓一声近过一声。曹操把真账推给你：这回要烧的不是粮，是他让别人替自己作主的习惯。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "true-account",
-              "text": "以真实粮数换许攸一句真话",
-              "detail": "本回看破提升，记住赤足相迎",
-              "effects": {
-                "keenEye": true,
-                "fact": "guandu_true_account"
-              }
-            },
-            {
-              "id": "feint-wuchao",
-              "text": "分兵佯攻，只留乌巢一路实棋",
-              "detail": "袁绍起手军资 -200，记住乌巢奇袭",
-              "effects": {
-                "raid": true,
-                "fact": "guandu_feint"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "guandu-open",
-          "at": "start",
-          "speaker": "yuanshao",
-          "text": "你每一手都在算还能活几日，我只需等。河北最不怕的，就是多开一次军议。"
-        },
-        {
-          "id": "guandu-old-friend",
-          "at": "hand:2",
-          "speaker": "caocao",
-          "text": "本初，你不是不知该听谁，是只怕听错以后无人可怪。"
-        },
-        {
-          "id": "guandu-unsigned",
-          "at": "hand:3",
-          "speaker": "narrator",
-          "text": "乌巢未燃，河北诸将却都在等别人先改口。千条计策，忽然没有一条肯署名。"
-        },
-        {
-          "id": "guandu-low",
-          "at": "low",
-          "speaker": "yuanshao",
-          "text": "田丰、沮授、许攸……究竟是谁误我？孟德，你先说！"
-        }
-      ],
-      "win": {
-        "text": "乌巢没有火，袁绍帐中的灯却一盏盏灭了。曹操没有趁胜追骂旧友，只把写满虚假余粮的账簿合上：“本初，你输在人人都在等别人先认。”",
-        "hook": "北方将定，刘备却在新野等一场雪。曹操已有谋士满帐，他连一个肯开门的人还未寻到。"
-      },
-      "loss": {
-        "text": "乌巢的火终究没有烧起来。袁绍仍坐在成堆军报之后，每一份都有道理，每一份都不必由他负责。你的粮却真的一日日尽了。",
-        "clue": "史鉴 · 袁绍的筹码多不是弱点，怕独自担责才是。逼他在盲注升高前自己选；重开先劫乌巢，敌军军资 -200。",
-        "clueFx": "raid"
-      }
-    },
-    "sangu": {
-      "cast": [
-        "liubei",
-        "guanyu",
-        "zhangfei",
-        "zhuge"
-      ],
-      "objective": "让三次敲门各有来意：前两次无论胜败都肯再访，第三次才听懂卧龙真正要问的天下。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "新野到隆中的路，刘备已经走过两遍。张飞把第三次风雪叫作折腾，关羽却替兄长又掸了一遍名刺。"
-        },
-        {
-          "speaker": "zhangfei",
-          "text": "二哥千里回来，俺才懂路远不怕。可一个先生，凭什么叫俺们走三回？",
-          "when": "page:qianli:yeshi"
-        },
-        {
-          "speaker": "liubei",
-          "text": "因为他若肯为百姓出山，备多走几次，又算得了什么。"
-        },
-        {
-          "speaker": "guanyu",
-          "text": "胜败可以催，开门不能催。翼德，把火折子收起来。"
-        }
-      ],
-      "intros": {
-        "zhuge": [
-          {
-            "when": "page:bowang:yeshi",
-            "bio": "博望之后，他不再只看你有没有耐心，也看你能否容别人立功。",
-            "quote": "草堂一别，你已会退。今日可还肯等？"
-          },
-          {
-            "when": "seen:zhuge",
-            "bio": "前两顾的输赢他都记得，唯独不拿它们当开门的钥匙。",
-            "quote": "胜败我看见了。今日，你为何还来？"
-          },
-          {
-            "bio": "他在门后听了两次风雪，第三次才把天下摆上桌。",
-            "quote": "将军请进。先莫问天下，可还坐得住？"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "leave-the-door-unforced",
-          "node": 1,
-          "title": "隆中 · 门不可催",
-          "lines": [
-            {
-              "speaker": "liubei",
-              "text": "今日若仍不见，备便把名刺留下。求贤不是叫天下人都按刘备的时辰起身。"
-            },
-            {
-              "speaker": "zhangfei",
-              "text": "那俺在外面等！若等得不耐烦，便数雪，不数他的过错。"
-            },
-            {
-              "speaker": "guanyu",
-              "text": "你能这样等，大哥这一趟便已没有白来。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "disarm-and-wait",
-              "text": "命全军解甲，只在门外静候",
-              "detail": "卧龙起手士气 -1，记住解甲之礼",
-              "effects": {
-                "sow": 1,
-                "fact": "sangu_disarmed_wait"
-              }
-            },
-            {
-              "id": "ask-the-sleep",
-              "text": "不问天下，先问先生睡得可安稳",
-              "detail": "本回看破提升，记住不催之问",
-              "effects": {
-                "keenEye": true,
-                "fact": "sangu_gentle_question"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "sangu-first-door",
-          "at": "start",
-          "speaker": "unknown",
-          "text": "第一顾，先生不在。你可以赢这一局，却不能替他答应相见。",
-          "when": "round:1"
-        },
-        {
-          "id": "sangu-first-return",
-          "at": "hand:2",
-          "speaker": "zhangfei",
-          "text": "输了便输了，大哥，俺们明日再来。总比在这里替他守门强！",
-          "when": "round:1"
-        },
-        {
-          "id": "sangu-second-snow",
-          "at": "start",
-          "speaker": "unknown",
-          "text": "第二顾，雪满草庐。你昨日又来了——这一次，你为求胜，还是为求人？",
-          "when": "round:2"
-        },
-        {
-          "id": "sangu-second-intent",
-          "at": "hand:2",
-          "speaker": "liubei",
-          "text": "云长，翼德，雪大便靠近些。先生可以不见，我们不可失了来意。",
-          "when": "round:2"
-        },
-        {
-          "id": "sangu-third-reveal",
-          "at": "start",
-          "speaker": "zhuge",
-          "text": "前两局的书童与冷遇，都是亮借来问你的：胜后会不会狂，败后还肯不肯来。你来了三次，门便该开了。",
-          "when": "round:3"
-        },
-        {
-          "id": "sangu-third-world",
-          "at": "hand:2",
-          "speaker": "zhuge",
-          "text": "现在莫问牌。将军要荆益二州，还是要一个让百姓不必再逃的天下？",
-          "when": "round:3"
-        },
-        {
-          "id": "sangu-third-answer",
-          "at": "hand:3",
-          "speaker": "liubei",
-          "text": "先生若不出山，备仍去；先生若肯同行，这条路便不只属于备。",
-          "when": "round:3"
-        }
-      ],
-      "win": {
-        "text": "诸葛亮把荆襄与益州写在同一盏灯下，却没有写下谁是主、谁是客。刘备起身长揖，关羽收刀，张飞替你搬来第四张凳子：这一局，终于不是为了请谁认输。",
-        "hook": "隆中对策已定，曹操的先锋也到了新野。卧龙出山第一把火，要先让最不服他的两个人心服。"
-      },
-      "loss": {
-        "text": "第三顾你终于见到隆中图，却还在翻前两局的旧账。诸葛亮收扇不语：耐心不是多走两趟，是见到答案以后仍肯听别人说完。",
-        "clue": "史鉴 · 前两顾输了也会再访，不必为每阵强撑；把气力留到第三顾。重开军资 +150。",
-        "clueFx": "supply"
-      }
-    },
-    "bowang": {
-      "cast": [
-        "liubei",
-        "guanyu",
-        "zhangfei",
-        "zhaoyun",
-        "zhuge",
-        "xiahoudun"
-      ],
-      "objective": "让关羽张飞心服用兵，让夏侯惇把每一次追击都当成自己的主意。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "博望坡的草干得正好。诸葛亮把火折子压在地图下，先给每个人派了一条必须败着走完的路。"
-        },
-        {
-          "speaker": "zhangfei",
-          "text": "三顾时俺服的是大哥的礼。今日你若只会叫俺退，俺可不服！",
-          "when": "page:sangu:yeshi"
-        },
-        {
-          "speaker": "zhuge",
-          "text": "益德，退到你能听见云长的金声便停。火攻之前，先莫把诱饵做成真败。"
-        },
-        {
-          "speaker": "liubei",
-          "text": "备请先生出山，不是请他替你们逞强，是请他教你们不必白白逞强。"
-        }
-      ],
-      "intros": {
-        "xiahoudun": [
-          {
-            "when": "seen:xiahoudun",
-            "bio": "他记得上一次的伏兵，却仍不愿承认追击也能被人牵着走。",
-            "quote": "同一道坡，我不会再替你看第二次。"
-          },
-          {
-            "bio": "独目只肯向前看，他把每一次后退都读成敌人的胆怯。",
-            "quote": "新野若只有火，便让它先烧刘备自己。"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "planned-retreat",
-          "node": 1,
-          "title": "博望坡 · 退到何处",
-          "lines": [
-            {
-              "speaker": "guanyu",
-              "text": "军师要我们各退几步，却连停在哪一棵树后都写清了。看来这“败”字，比胜还难演。"
-            },
-            {
-              "speaker": "zhaoyun",
-              "text": "我的枪先露给夏侯惇。他若咬住我，云长与翼德才有真正的伏兵。"
-            },
-            {
-              "speaker": "zhangfei",
-              "text": "好！俺便输得像些。可谁先忍不住真逃，谁回来替全军洗矛！"
-            }
-          ],
-          "choices": [
-            {
-              "id": "brothers-ambush",
-              "text": "令云长益德互以金声为号",
-              "detail": "夏侯惇起手士气 -1，记住兄弟伏兵",
-              "effects": {
-                "sow": 1,
-                "fact": "bowang_brothers_ambush"
-              }
-            },
-            {
-              "id": "zhaoyun-route",
-              "text": "与子龙逐段走完诱敌退路",
-              "detail": "本回看破提升，记住每段伏兵",
-              "effects": {
-                "keenEye": true,
-                "fact": "bowang_zhaoyun_route"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "bowang-open",
-          "at": "start",
-          "speaker": "xiahoudun",
-          "text": "刘玄德新得军师，便只会后退？那我便一路追到你们无坡可伏。"
-        },
-        {
-          "id": "bowang-bait",
-          "at": "hand:2",
-          "speaker": "zhaoyun",
-          "text": "夏侯惇已咬住我的枪。军师，火还未到吗？"
-        },
-        {
-          "id": "bowang-wait",
-          "at": "hand:3",
-          "speaker": "zhuge",
-          "text": "不急。他还在赢，才会继续追；火要烧的是他确信自己正确的这一刻。"
-        },
-        {
-          "id": "bowang-low",
-          "at": "low",
-          "speaker": "zhangfei",
-          "text": "俺懂了！这一退不是把路让给他，是把他的路越让越窄。"
-        }
-      ],
-      "win": {
-        "text": "张飞先收矛，关羽随后抱拳。诸葛亮没有受这一拜，只把烧弯的军旗交给子龙。刘备笑了：从今日起，他们争的不是谁先来，是谁肯最后一个退。",
-        "hook": "博望的火让曹军记住了新野。下一回来得更快：子龙将抱着阿斗，从熟悉的伏兵图里反向杀出。"
-      },
-      "loss": {
-        "text": "夏侯惇没有冲进火里，因为你的败退太像真的败退：伏兵急着救，诱兵忘了停。博望坡只剩烟，没有一个曹军走进计中。",
-        "clue": "史鉴 · 退不是逃；每次示弱都要保留下一段伏兵与回本的钱。重开军资 +150，别把诱敌变成真败。",
-        "clueFx": "supply"
-      }
-    },
-    "changban": {
-      "cast": [
-        "liubei",
-        "zhaoyun",
-        "zhangfei",
-        "caocao",
-        "xiahoudun",
-        "zhanghe",
-        "wenpin"
-      ],
-      "objective": "在曹操、夏侯惇、张郃同桌追剿下，让赵云带回阿斗、张飞守住当阳桥。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "长坂的尘土里，百姓、辎重和败兵挤成一条路。赵云逆向而行，张飞却勒马停在桥头。"
-        },
-        {
-          "speaker": "zhaoyun",
-          "text": "主公，夫人与阿斗还在后面。云去去便回——若不回，翼德替我守桥。"
-        },
-        {
-          "speaker": "zhangfei",
-          "text": "俺不要你替！回来，自己守！"
-        },
-        {
-          "speaker": "wenpin",
-          "text": "常山赵子龙……文聘奉命拦截，却不忍逼之过死。这一枪，聘自留三分。",
-          "when": "!seen:wenpin"
-        },
-        {
-          "speaker": "caocao",
-          "text": "传令，赵云要活的。至于桥上的黑脸将军——孤要亲自看看，他凭什么叫三军停下。"
-        }
-      ],
-      "intros": {
-        "wenpin": [
-          {
-            "when": "page:chibi:yeshi",
-            "bio": "赤壁之后他守着荆州旧地，深知追与不追都写进史笔。",
-            "quote": "当年长坂追与不追，聘如今仍未想明白。"
-          },
-          {
-            "when": "seen:wenpin",
-            "bio": "他还记得长坂那半式收回的枪，出手便不再留情面。",
-            "quote": "这次不让你过。对不住旧主的家眷。"
-          },
-          {
-            "bio": "新附曹营的荆州旧将，枪一寸寸都在尽忠与旧义之间。",
-            "quote": "聘奉命巡此。长坂的路，不通。"
-          }
-        ],
-        "caocao": [
-          {
-            "when": "page:zhujiu:yeshi",
-            "bio": "青梅亭后他仍记得那声雷，如今要用千军逼出藏住的答案。",
-            "quote": "那次让你借雷藏住了。今日，孤看千军替你开牌。"
-          },
-          {
-            "when": "page:bowang:yeshi",
-            "bio": "博望新败让他更谨慎，也更不肯给刘备第二次整军的机会。",
-            "quote": "一把火赢不了第二次。追。"
-          },
-          {
-            "bio": "他要的不只是玄德的败，还要看看什么人值得败军仍然回头。",
-            "quote": "赵云要活的。其余人，不必留。"
-          }
-        ],
-        "xiahoudun": [
-          {
-            "when": "page:bowang:yeshi",
-            "bio": "博望坡的火还留在独目里，他把子龙的回马看作同一道伏兵。",
-            "quote": "诸葛不在桥上。今日看谁还能救你。"
-          },
-          {
-            "when": "seen:xiahoudun",
-            "bio": "他与你重逢仍只肯向前，却开始防着每一条过分好走的退路。",
-            "quote": "这次你退，我先看你身后。"
-          },
-          {
-            "bio": "独目将军带着博望的旧怒，最先追上赵云，也最容易追过头。",
-            "quote": "长坂之前，先还博望一箭。"
-          }
-        ],
-        "zhanghe": [
-          {
-            "when": "seen:zhanghe",
-            "bio": "他记得你上次怎样找路，这次先把所有回路都标进阵图。",
-            "quote": "上次让你走脱的路，这次我亲自封。"
-          },
-          {
-            "bio": "他不与夏侯惇争先，只计算赵云和张飞之间还剩几步。",
-            "quote": "一个救人，一个守桥。分开他们。"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "rescue-route",
-          "node": 1,
-          "title": "当阳 · 逆行人潮",
-          "lines": [
-            {
-              "speaker": "liubei",
-              "text": "子龙，备不能命你舍百姓而救我儿。若只带回阿斗，却把他们留在刀下，这仗仍是我败。"
-            },
-            {
-              "speaker": "zhaoyun",
-              "text": "云明白。七进七出不是七次逞勇，是每一次回来，都知道还有人等。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "people-first",
-              "text": "先护百姓，再循哭声寻阿斗",
-              "detail": "本回看破提升，记住逆行之义",
-              "effects": {
-                "keenEye": true,
-                "fact": "changban_people_first"
-              }
-            },
-            {
-              "id": "bridge-mark",
-              "text": "与子龙约定只认翼德旗色回桥",
-              "detail": "追军起手士气 -1，记住回桥之约",
-              "effects": {
-                "sow": 1,
-                "fact": "changban_bridge_mark"
-              }
-            }
-          ]
-        },
-        {
-          "id": "bridge-signal",
-          "node": 2,
-          "title": "长坂坡 · 一桥三令",
-          "lines": [
-            {
-              "speaker": "zhangfei",
-              "text": "桥后尘土少了，曹操必疑；尘土多了，百姓又无路。子龙还没回来，俺连断桥都不能痛痛快快断！"
-            },
-            {
-              "speaker": "zhaoyun",
-              "text": "翼德，留一道只容单骑的缝。曹军若三人同追，便叫他们先争谁先过桥。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "single-file-gap",
-              "text": "断桥之前先留一条单骑马道",
-              "detail": "本回看破提升，记住一线生机",
-              "effects": {
-                "keenEye": true,
-                "fact": "changban_single_file"
-              }
-            },
-            {
-              "id": "split-banners",
-              "text": "移动三面残旗，分开三路追兵",
-              "detail": "曹操起手军资 -150，记住分追之策",
-              "effects": {
-                "oppChips": -150,
-                "fact": "changban_split_pursuit"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "changban-open",
-          "at": "start",
-          "speaker": "caocao",
-          "text": "元让追子龙，儁乂断归桥。孤只要玄德走投无路。",
-          "when": "multi"
-        },
-        {
-          "id": "changban-zhaoyun",
-          "at": "hand:2",
-          "speaker": "zhaoyun",
-          "text": "阿斗在怀，枪便不能只为取胜。翼德，桥还在吗？",
-          "when": "multi"
-        },
-        {
-          "id": "changban-zhanghe",
-          "at": "hand:3",
-          "speaker": "zhanghe",
-          "text": "他每次回马都在找同一个人。别追枪，追他要回的那座桥。",
-          "when": "multi"
-        },
-        {
-          "id": "changban-xiahoudun",
-          "at": "hand:4",
-          "speaker": "xiahoudun",
-          "text": "博望那把火，今日拿你的退路来还！",
-          "when": "multi"
-        },
-        {
-          "id": "changban-low",
-          "at": "low",
-          "speaker": "zhangfei",
-          "text": "俺只要还站在这里，他们的十万兵就得一个一个来！",
-          "when": "multi"
-        }
-      ],
-      "win": {
-        "text": "赵云把孩子递回刘备怀里，张飞才肯退下桥头。曹操没有责罚夏侯惇与张郃，只望着那道断桥：“他们一个敢回来，一个肯不走。我输的不是追兵。”",
-        "hook": "汉津舟楫已近，曹操也记住了这座桥。下一路要走江东：刘备需要一句能让孙权出兵的话。"
-      },
-      "loss": {
-        "text": "赵云找回了阿斗，却找不到回桥的路；张飞喝住了追兵，却喝不住三支军令同时分开。孤勇能赢一阵，救不了所有人。",
-        "clue": "史鉴 · 曹操要活口，元让要报仇，张郃要截桥。让他们争同一条追击线，别把三人各推向一条退路；重开敌军士气 -1。",
-        "clueFx": "sow"
-      }
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "baima": {
       "cast": [
-        "guanyu",
         "caocao",
+        "guanyu",
         "guojia",
         "xunyu",
         "yanliang",
         "wenchou"
       ],
-      "objective": "在白马与延津两阵之间,替关羽把两场大功,赢成一条回家的路。",
+      "objective": "Between the twin battlefronts of Baima and Yanjin, forge two monumental triumphs into Guan Yu's road back to his brothers.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "白马坡前,颜良连斩宋宪魏续,二十合败徐晃,曹营诸将栗然。曹操把目光投向了那个始终背对着战报的人。"
+          "text": "Before the slopes of Baima, Yan Liang slew Song Xian and Wei Xu in rapid succession, defeating Xu Huang in twenty bouts until Cao Cao's commanders trembled in dismay. Cao Cao turned his gaze toward the lone man who stood with his back turned to the battle reports."
         },
         {
           "speaker": "caocao",
-          "text": "云长,孤知道你人在心不在。可颜良的刀,如今悬在孤所有将军的头上。"
+          "text": "Yunchang, I know your body is here while your heart is elsewhere. But Yan Liang's scimitar now hangs over the neck of every general I command."
         },
         {
           "speaker": "guanyu",
-          "text": "关某答应过,立功便走。此阵之后,请丞相守信——备的下落,孤已听说了。"
+          "text": "Guan Mou gave my word: once I repay your kindness with merit, I depart. After this battle, pray keep your promise, Prime Minister—I have already heard word of Xuande's whereabouts."
         },
         {
           "speaker": "guojia",
-          "text": "颜良之勇不可力敌,文丑之躁可以计取。奉孝只担心一件事:云长这两刀砍完,天下再无人留得住他。",
-          "when": "!seen:guojia"
+          "when": "!seen:guojia",
+          "text": "Yan Liang's ferocity cannot be matched by raw force; Wen Chou's rashness can be exploited through guile. Fengxiao fears only one thing: once Yunchang delivers these two fatal blows, no one under heaven will ever be able to retain him."
         },
         {
           "speaker": "yanliang",
-          "text": "曹营无人了吗?叫那个红脸的马弓手上来看看。",
-          "when": "!seen:yanliang"
+          "when": "!seen:yanliang",
+          "text": "Has Cao's camp run out of men?! Call forth that red-faced mounted archer to let me test his mettle!"
         }
       ],
       "intros": {
         "yanliang": [
           {
             "when": "seen:yanliang",
-            "bio": "他记得那次快得看不清的刀光,这次把营垒扎得更深。",
-            "quote": "那口刀……这次,我要看清它来路。"
+            "bio": "He remembers that blindingly swift crescent blade; this time he entrenches his fortifications even deeper.",
+            "quote": "That blade... this time, I shall see its stroke clearly."
           },
           {
-            "bio": "河北第一刀,连胜让他相信天下没有第二口更快的刀。",
-            "quote": "连营十里,谁来谁死。"
+            "bio": "Foremost blade of Hebei; a string of swift victories convinced him that no faster blade exists under heaven.",
+            "quote": "My camp stretches ten leagues unbroken; whoever dares approach shall perish."
           }
         ],
         "wenchou": [
           {
             "when": "seen:wenchou",
-            "bio": "界桥之后他学会等,延津却又要他追——他最恨这种矛盾。",
-            "quote": "你教会我数节拍。那这次,换你数我的马蹄。"
+            "bio": "After Jieqiao he learned to wait, yet at Yanjin he was ordered to pursue—he despises such contradictions.",
+            "quote": "You taught me how to count rhythms. Now, it is your turn to count my thundering hooves."
           },
           {
-            "bio": "为颜良复仇的心比枪更重,辎重散落一地也拦不住他的冲锋。",
-            "quote": "白马的账,延津清。"
+            "bio": "The burning desire to avenge Yan Liang weighs heavier than his spear; supply wagons strewn across the dirt cannot stall his charge.",
+            "quote": "The debt of Baima shall be settled here at Yanjin."
           }
         ],
         "songxian": [
           {
-            "bio": "他从吕布的旧梦里醒来,急着向新主证明自己。",
-            "quote": "温侯旧部,不是孬种!看我的!"
+            "bio": "Awakened from the broken dream of Lu Bu, he burns to prove his worth to his new master.",
+            "quote": "The veterans of Marquis Wen are no cowards! Watch me!"
           }
         ]
       },
@@ -2160,26 +1432,26 @@ export default {
         {
           "id": "two-blades",
           "node": 1,
-          "title": "黎阳 · 两阵之间",
+          "title": "Liyang · Between Two Fronts",
           "lines": [
             {
               "speaker": "xunyu",
-              "text": "颜良兵精而不识变,文丑勇而性躁。两阵之间,真正要读的是云长的心。"
+              "text": "Yan Liang's soldiers are elite but rigid; Wen Chou is fierce but rash. Between these two battle lines, what must truly be read is Yunchang's heart."
             },
             {
               "speaker": "guanyu",
-              "text": "荀令君放心。关某的刀只为丞相砍这一回,砍完,便去寻兄。"
+              "text": "Rest easy, Lord Xun. Guan Mou strikes this blow only to repay the Prime Minister; once delivered, I depart to seek my brother."
             },
             {
               "speaker": "you",
-              "text": "两阵两刀,刀刀都要干净。拖泥带水,走的路就长了。"
+              "text": "Two battles, two strokes—each stroke must be clean and decisive. Any hesitation will make the road back unbearably long."
             }
           ],
           "choices": [
             {
               "id": "feed-few",
-              "text": "以老弱为饵,佯弃辎重",
-              "detail": "文丑军起手军资 -200,记住饵兵之计",
+              "text": "Bait with weak units, feigning abandonment of baggage",
+              "detail": "Wen Chou army starting Supplies -200; remember the bait stratagem",
               "effects": {
                 "raid": true,
                 "fact": "baima_bait"
@@ -2187,8 +1459,8 @@ export default {
             },
             {
               "id": "watch-blade",
-              "text": "陪关羽先看清颜良的麾盖",
-              "detail": "本回看破提升,记住麾盖之下",
+              "text": "Accompany Guan Yu to spot Yan Liang's command canopy first",
+              "detail": "Insight increased this round; remember what lies beneath the canopy",
               "effects": {
                 "keenEye": true,
                 "fact": "baima_watch"
@@ -2202,47 +1474,840 @@ export default {
           "id": "baima-open",
           "at": "start",
           "speaker": "yanliang",
-          "text": "又来?宋宪魏续的刀,还在我马上挂着!"
+          "text": "Another fool?! The blades of Song Xian and Wei Xu are still dangling from my saddle!"
         },
         {
           "id": "baima-ride",
           "at": "hand:2",
           "speaker": "narrator",
-          "text": "赤兔马从土山后转出,颜良的麾盖在阵前孤零零亮着——他想问来将何人,刀已经到了。",
-          "when": "fact:baima_watch"
+          "when": "fact:baima_watch",
+          "text": "The Red Hare galloped from behind the earthen hill; Yan Liang's command canopy stood stark and solitary before the ranks. Before he could demand the rider's name, the crescent blade had already arrived."
         },
         {
           "id": "baima-clash",
           "at": "hand:2",
           "speaker": "guanyu",
-          "text": "麾盖之下,便是他要护的军心。破了他的旗,这一阵就完了。",
-          "when": "!fact:baima_watch"
+          "when": "!fact:baima_watch",
+          "text": "Beneath the canopy is the morale he strives to protect. Shatter his banner, and this battle is ended."
         },
         {
           "id": "baima-wen",
           "at": "hand:3",
           "speaker": "wenchou",
-          "text": "马快!文丑的枪还没热,你跑什么?!"
+          "text": "Swift steed! Wen Chou's spear has barely warmed—why do you flee?!"
         },
         {
           "id": "baima-low",
           "at": "low",
           "speaker": "guojia",
-          "text": "两阵之间最忌恋战。云长,酒在这里,路也在这里。"
+          "text": "Between two fronts, lingering in battle is most fatal. Yunchang, your wine is here, and your road home is here."
         }
       ],
       "win": {
-        "text": "白马的麾盖倒下时,延津的文丑还在马蹄声里数你的节拍。两阵两刀,干净得像关羽的刀背。曹操亲斟的酒他没有喝,只拱了拱手:\"丞相,关某去也。\"袖中那封寻兄的书信,终于用上了。",
-        "hook": "两阵大功换来一纸放行。前方五关六将,没有一人读过这封信。"
+        "text": "As the canopy at Baima crashed down, Wen Chou at Yanjin was still counting your beats amidst the thunder of hooves. Two fronts, two strokes—clean as the spine of Guan Yu's crescent blade. He did not drink the wine Cao Cao personally poured, merely cupping his fists: 'Prime Minister, Guan Mou takes his leave.' The letter in his sleeve seeking his brother was at last unfolded.",
+        "hook": "Two glorious triumphs earned a single pass of departure. Ahead lie five passes and six commanders—and not a single one has read that decree."
       },
       "loss": {
-        "text": "第一阵的胜利让你贪了第二阵的快。文丑的铁骑漫过河滩时,你才想起郭嘉那句\"两阵之间,真正要读的是云长的心\"。",
-        "clue": "史鉴 · 颜良输给轻敌,文丑赢在等你急。重开时先弃辎重乱其军心:文丑起手军资 -200。",
+        "text": "Victory in the first clash lured you into rushing the second. As Wen Chou's armored cavalry swept over the river flats, only then did you remember Guo Jia's warning: 'Between two fronts, what must truly be read is Yunchang's heart.'",
+        "clue": "Historical Record · Yan Liang fell to arrogance; Wen Chou triumphs by waiting for you to rush. Upon restart, abandon baggage first to throw their ranks into confusion: Wen Chou starting Supplies -200.",
         "clueFx": "raid"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "qianli": {
+      "cast": [
+        "guanyu",
+        "kongxiu",
+        "hanfu",
+        "bianxi",
+        "wangzhi",
+        "qinqi",
+        "zhangfei",
+        "liubei",
+        "caocao"
+      ],
+      "objective": "Escort the carriages through five fortified passes, unravel the distinct traps of Kong Xiu, Han Fu, Bian Xi, Wang Zhi, and Qin Qi, and preserve your final ounce of strength for the reunion at the Ancient City.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "The gates of Xuchang receded behind; seals hung high, gold and silks untouched. Guan Yu brought only carriages and a blade unwilling to bear any more debts of sentiment."
+        },
+        {
+          "speaker": "caocao",
+          "text": "That day over boiling wine, Xuande hid his brilliance beneath the thunder. Today Yunchang departs to seek him—should I grant passage, or detain you for one final feast?"
+        },
+        {
+          "speaker": "guanyu",
+          "text": "The Prime Minister's benevolence is etched upon Guan Mou's heart; yet the oath sworn to my brother waits for me on the road ahead."
+        },
+        {
+          "speaker": "liubei",
+          "text": "Yunchang, let these words be as if we met face to face. Do not let thoughts of me burden your heart, nor treat me as a debt. Come if you can; in the Ancient City, someone waits for you."
+        }
+      ],
+      "intros": {
+        "kongxiu": [
+          {
+            "bio": "The locks of Dongling Pass acknowledge only official decrees; he guards his duty within boundaries narrower than life itself.",
+            "quote": "Without official permits from the Prime Minister, not even Guan Yunchang may pass."
+          }
+        ],
+        "hanfu": [
+          {
+            "bio": "He conceals his reverence behind a drawn bowstring, seeking to cling to old courtesies even as he prepares to loose an arrow.",
+            "quote": "General Guan, Han respects your name, yet cannot abandon my post."
+          }
+        ],
+        "bianxi": [
+          {
+            "bio": "The burning incense of Zhenguo Temple cannot mask the killing intent; his offered 'path of peace' leads straight into an ambush.",
+            "quote": "Leave your blade before the Buddha and drink the cup; then, General, you may rest peacefully."
+          }
+        ],
+        "wangzhi": [
+          {
+            "bio": "The guest quarters of Xingyang are suspiciously immaculate; every doorway was designed with the exact hour of its barricade in mind.",
+            "quote": "The night is long and the road perilous—why not lodge until fire erupts—ah, until dawn breaks?"
+          }
+        ],
+        "qinqi": [
+          {
+            "bio": "The final military post at the Yellow River ferry; he shuts out both past kinship and rising storm surges at the shoreline.",
+            "quote": "What of passing four gates?! The Yellow River answers only to Qin's banner!"
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "two-kinds-of-gates",
+          "node": 2,
+          "title": "Luoyang · Gates Open and Veiled",
+          "lines": [
+            {
+              "speaker": "guanyu",
+              "text": "Kong Xiu demands paperwork, Han Fu hides cold arrows, while Bian Xi sets out wine before the Buddha. Different passes, yet each harbors its own pretext to bar our way."
+            },
+            {
+              "speaker": "narrator",
+              "text": "Not a word of haste came from the carriage. Guan Yu glanced back along the road, shifting his blade from his right hand to his left, solely to put the drivers at ease."
+            }
+          ],
+          "choices": [
+            {
+              "id": "share-rations",
+              "text": "Trade dry rations for local villagers' knowledge of the five passes",
+              "detail": "Insight increased this round; remember the sentiments of folk along the way",
+              "effects": {
+                "keenEye": true,
+                "fact": "qianli_guides"
+              }
+            },
+            {
+              "id": "guard-the-rear",
+              "text": "Personally guard the rear, allowing the carriages to proceed ahead",
+              "detail": "Defending commanders starting Morale -1; remember the rearguard pledge",
+              "effects": {
+                "sow": 1,
+                "fact": "qianli_rearguard"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "qianli-kongxiu",
+          "at": "start",
+          "speaker": "kongxiu",
+          "when": "round:1",
+          "text": "Dongling Pass recognizes only the Prime Minister's official seal, not your past renown. Without official scrolls, even the Green Dragon Crescent Blade stays behind!"
+        },
+        {
+          "id": "qianli-hanfu",
+          "at": "start",
+          "speaker": "hanfu",
+          "when": "round:2",
+          "text": "General Guan, Han respects your storied name, yet cannot abandon the duty of defending this pass. After this arrow flies, hold no grudge against me."
+        },
+        {
+          "id": "qianli-bianxi",
+          "at": "start",
+          "speaker": "bianxi",
+          "when": "round:3",
+          "text": "The wine at Zhenguo Temple is warm. Leave your blade before the altar of the Buddha, and Bian shall show you a path of safe passage."
+        },
+        {
+          "id": "qianli-wangzhi",
+          "at": "start",
+          "speaker": "wangzhi",
+          "when": "round:4",
+          "text": "The lodge at Xingyang is spotless and the night is long. Why does the General not stay, while I secure every door shut on your behalf?"
+        },
+        {
+          "id": "qianli-qinqi",
+          "at": "start",
+          "speaker": "qinqi",
+          "when": "round:5",
+          "text": "The Yellow River lies before you. Whatever favors you enjoyed across four passes expire here; Qin Qi obeys only General Xiahou's command!"
+        },
+        {
+          "id": "qianli-no-sixth-grave",
+          "at": "hand:2",
+          "speaker": "guanyu",
+          "text": "Five passes bear five locks, yet the hearts of men need not be shackles. Where bloodshed can be bypassed, let us not carve a sixth grave into this road."
+        },
+        {
+          "id": "qianli-drums",
+          "at": "low",
+          "speaker": "zhangfei",
+          "when": "round:5",
+          "text": "Second Brother, do you hear the war drums?! You need guard no pass for any master anymore—come back and strike this drum alongside me!"
+        }
+      ],
+      "win": {
+        "text": "As Qin Qi fell, the roar of the Yellow River drowned out the clash of steel. Guan Yu did not count the fifth severed head, only turning to steady the carriage. Beneath the gates of the Ancient City, Zhang Fei cast down his drumsticks and rushed forward to embrace the warhorse; when Liu Bei arrived, Guan Yu murmured only 'I have arrived late.' Three pairs of eyes gave the single answer: 'You have returned, and that is all that matters.'",
+        "hook": "Before the drums of the Ancient City subsided, Yuan Shao and Cao Cao were locked in stalemate in the north. The next clash is no longer one man riding through five passes, but two colossal armies fighting for their breath."
+      },
+      "loss": {
+        "text": "You triumphed in steel at one pass, yet left the carriages, chips, and appointed return behind in the dust. The hardest trial of a thousand leagues was never carving a straight bloody road, but arriving at the Ancient City with the right to say: 'All are safe.'",
+        "clue": "Historical Record · Kong Xiu drains tokens, Han Fu snipes with hidden arrows, Bian Xi sets banquets, Wang Zhi borrows fire, Qin Qi blocks the ferry. Five passes share a single life—do not exhaust your travel toll at a single gate. On restart, Supplies +150.",
+        "clueFx": "supply"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     }
   },
-  "3": {
+  "2": {
+    "guandu": {
+      "cast": [
+        "caocao",
+        "yuanshao",
+        "guojia",
+        "xuyou",
+        "tianfeng",
+        "jushou"
+      ],
+      "objective": "Turn Yuan Shao's vast war chest into hesitation, and uncover the true vulnerability of Wuchao before rising blinds consume Cao Cao's army.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "At Guandu, the grain ledgers were thinner than the battle reports. For every day Cao Cao crossed off, another strategist claiming a flawless plan appeared in Yuan Shao's tent."
+        },
+        {
+          "speaker": "yuanshao",
+          "text": "Mengde, we have known each other since youth. I know your temper well—and I know your grain reserves even better."
+        },
+        {
+          "speaker": "caocao",
+          "text": "Yunchang has departed for Xuande after all. I could keep Red Hare, but not his heart. Yet you, Benchu, have never even seen into the hearts of men.",
+          "when": "page:qianli:yeshi"
+        },
+        {
+          "speaker": "guojia",
+          "text": "My Lord, of the ten victories over Yuan Shao I spoke of, I can guarantee only the first nine. The final victory you must seize with your own hands."
+        },
+        {
+          "speaker": "tianfeng",
+          "text": "If my lord triumphs, I die; if my lord fails, I die all the same. Here in Jizhou's prison, Yuanhao has already inscribed the fate of you all.",
+          "when": "!seen:tianfeng"
+        },
+        {
+          "speaker": "caocao",
+          "text": "If Xu You arrives, invite him to sit. I may run out with only one shoe to greet him, but I cannot let my whole army see that only three days of grain remain."
+        }
+      ],
+      "intros": {
+        "yuanshao": [
+          {
+            "when": "page:zhujiu:yeshi",
+            "bio": "He heard that only Liu and Cao were deemed heroes over boiled plums, and burns to turn an old rivalry into an audit of the entire realm.",
+            "quote": "Mengde, if we count heroes under heaven once more today, is there still room for Yuan Benchu?"
+          },
+          {
+            "when": "seen:yuanshao",
+            "bio": "Returning with thousands of troops and endless strategies, he still lacks a single man willing to sign his name to a decision.",
+            "quote": "Last time the council reached no verdict. Whose counsel will you heed this time?"
+          },
+          {
+            "bio": "Four generations of the Three Excellencies gifted him countless advisors, yet left him in a seat where he never has to admit fault first.",
+            "quote": "The soldiers of Hebei are elite and our grain is boundless. Mengde, with what can you possibly stall?"
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "true-ledger",
+          "node": 2,
+          "title": "Guandu · True and False Ledgers",
+          "lines": [
+            {
+              "speaker": "caocao",
+              "text": "Xu You asks how much grain I have left. Tell the truth, and he may reveal Wuchao; lie, and he slips into the night."
+            },
+            {
+              "speaker": "narrator",
+              "text": "Outside the tent, Yuan Shao's battle drums thunder closer by the heartbeat. Cao Cao slides the true ledger toward you: what burns tonight is not merely grain, but Yuan Shao's habit of letting others decide his fate."
+            }
+          ],
+          "choices": [
+            {
+              "id": "true-account",
+              "text": "Trade the true grain count for a single truth from Xu You",
+              "detail": "Insight improved this chapter; remember greeting him barefoot",
+              "effects": {
+                "keenEye": true,
+                "fact": "guandu_true_account"
+              }
+            },
+            {
+              "id": "feint-wuchao",
+              "text": "Feign attacks on multiple fronts, committing real force only to Wuchao",
+              "detail": "Yuan Shao starting war chest -200; remember the raid on Wuchao",
+              "effects": {
+                "raid": true,
+                "fact": "guandu_feint"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "guandu-open",
+          "at": "start",
+          "speaker": "yuanshao",
+          "text": "With every play you calculate how many days you can survive. I need only wait. What Hebei fears least of all is holding one more council of war."
+        },
+        {
+          "id": "guandu-old-friend",
+          "at": "hand:2",
+          "speaker": "caocao",
+          "text": "Benchu, it is not that you do not know who to heed. You merely dread that when mistakes are made, there will be no one left to blame."
+        },
+        {
+          "id": "guandu-unsigned",
+          "at": "hand:3",
+          "speaker": "narrator",
+          "text": "Wuchao has not yet caught flame, yet Hebei's generals all wait for another to speak first. Out of a thousand strategies, suddenly not one bears a signature."
+        },
+        {
+          "id": "guandu-low",
+          "at": "low",
+          "speaker": "yuanshao",
+          "text": "Tian Feng, Ju Shou, Xu You... who among them betrayed me? Mengde, you tell me first!"
+        }
+      ],
+      "win": {
+        "text": "No fire reached Wuchao, yet the lamps in Yuan Shao's pavilion went out one by one. Cao Cao did not mock his old friend in triumph, but quietly closed the ledger filled with fictitious grain: \"Benchu, you lost because every man under you was waiting for someone else to concede first.\"",
+        "hook": "The north draws near to unity, yet Liu Bei waits for falling snow at Xinye. Cao Cao commands a tent brimming with strategists, while Liu has yet to find a single soul willing to open a cottage door."
+      },
+      "loss": {
+        "text": "The flames of Wuchao never rose. Yuan Shao remained seated behind mountains of war reports—every single one sensible, and not a single one his responsibility. Meanwhile, your grain truly dwindled day by day into nothingness.",
+        "clue": "Historical Note: Yuan Shao's immense chip stack is not his strength, but his dread of personal accountability is his flaw. Force his hand before blinds climb; restart with a raid on Wuchao to reduce enemy war chest by 200.",
+        "clueFx": "raid"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "sangu": {
+      "cast": [
+        "liubei",
+        "guanyu",
+        "zhangfei",
+        "zhuge"
+      ],
+      "objective": "Give distinct purpose to each of the three knocks: return faithfully win or lose for the first two, and on the third, truly comprehend the realm the Sleeping Dragon envisions.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "Twice already had Liu Bei trodden the road from Xinye to Longzhong. Zhang Fei called this third journey through wind and snow pointless torment, yet Guan Yu gently dusted his elder brother's calling card once more."
+        },
+        {
+          "speaker": "zhangfei",
+          "text": "Second Brother rode a thousand leagues to return—that showed me no distance is too great. But why must a mere scholar make us trek three times through the blizzard?",
+          "when": "page:qianli:yeshi"
+        },
+        {
+          "speaker": "liubei",
+          "text": "If he is willing to leave his mountains for the common folk, what does it matter if Bei walks this road a few more times?"
+        },
+        {
+          "speaker": "guanyu",
+          "text": "Victory or defeat may be urged, but an open door cannot be rushed. Yide, put away your flint."
+        }
+      ],
+      "intros": {
+        "zhuge": [
+          {
+            "when": "page:bowang:yeshi",
+            "bio": "After Bowang, he gauges not only your patience, but whether you can grant others room to claim glory.",
+            "quote": "Since parting at the thatched cottage, you have learned when to yield. Are you still willing to wait today?"
+          },
+          {
+            "when": "seen:zhuge",
+            "bio": "He remembers the triumphs and defeats of the first two visits, yet refuses to use them as the key to unlock his gate.",
+            "quote": "I witnessed your victories and defeats. Tell me, why do you return today?"
+          },
+          {
+            "bio": "Behind closed doors he listened twice to the howling snow, waiting until the third visit to spread the realm before you on the table.",
+            "quote": "Please enter, General. Before asking of the realm, can you still sit in silence?"
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "leave-the-door-unforced",
+          "node": 1,
+          "title": "Longzhong · An Unforced Door",
+          "lines": [
+            {
+              "speaker": "liubei",
+              "text": "If he still will not receive us today, I shall simply leave my calling card. Seeking virtuous counsel does not mean compelling the world to wake on Liu Bei's schedule."
+            },
+            {
+              "speaker": "zhangfei",
+              "text": "Then I shall wait outside! If I grow restless, I will count the snowflakes, not his faults!"
+            },
+            {
+              "speaker": "guanyu",
+              "text": "If you can wait with such grace, Brother's journey has already borne fruit."
+            }
+          ],
+          "choices": [
+            {
+              "id": "disarm-and-wait",
+              "text": "Order the troops to disarm and wait quietly outside the gate",
+              "detail": "Sleeping Dragon starting morale -1; remember the courtesy of disarming",
+              "effects": {
+                "sow": 1,
+                "fact": "sangu_disarmed_wait"
+              }
+            },
+            {
+              "id": "ask-the-sleep",
+              "text": "Ask not of the realm, but inquire gently if the master slept well",
+              "detail": "Insight improved this chapter; remember the patient inquiry",
+              "effects": {
+                "keenEye": true,
+                "fact": "sangu_gentle_question"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "sangu-first-door",
+          "at": "start",
+          "speaker": "unknown",
+          "text": "First visit: the master is away. You may win this hand, but you cannot compel his promise to meet.",
+          "when": "round:1"
+        },
+        {
+          "id": "sangu-first-return",
+          "at": "hand:2",
+          "speaker": "zhangfei",
+          "text": "A loss is just a loss, Brother! We shall return tomorrow. Anything is better than playing sentry at his porch!",
+          "when": "round:1"
+        },
+        {
+          "id": "sangu-second-snow",
+          "at": "start",
+          "speaker": "unknown",
+          "text": "Second visit: snow blankets the thatched cottage. You return once more—do you seek triumph, or do you seek the man?",
+          "when": "round:2"
+        },
+        {
+          "id": "sangu-second-intent",
+          "at": "hand:2",
+          "speaker": "liubei",
+          "text": "Yunchang, Yide, step closer against the blizzard. The master may choose not to see us, but we must never lose the sincerity of our purpose.",
+          "when": "round:2"
+        },
+        {
+          "id": "sangu-third-reveal",
+          "at": "start",
+          "speaker": "zhuge",
+          "text": "The servant's refusal and cold dismissals of the first two visits were tests to see if victory breeds arrogance and defeat breeds despair. You have come three times; the door now stands open.",
+          "when": "round:3"
+        },
+        {
+          "id": "sangu-third-world",
+          "at": "hand:2",
+          "speaker": "zhuge",
+          "text": "Ask not of cards for now. Does the General seek Jing and Yi provinces, or a world where common folk no longer need to flee?",
+          "when": "round:3"
+        },
+        {
+          "id": "sangu-third-answer",
+          "at": "hand:3",
+          "speaker": "liubei",
+          "text": "If the master remains in seclusion, Bei shall walk on alone. But if the master walks beside me, this path belongs to us both.",
+          "when": "round:3"
+        }
+      ],
+      "win": {
+        "text": "Zhuge Liang placed Jingzhou and Yizhou beneath a single lamp, never designating who was master and who was guest. Liu Bei bowed deeply, Guan Yu sheathed his blade, and Zhang Fei pulled up a fourth stool for you: at last, this hand was not played to force anyone's surrender.",
+        "hook": "With the Longzhong Plan sealed, Cao Cao's vanguard descends upon Xinye. The Sleeping Dragon's first blaze must convince the two brothers who doubted him most."
+      },
+      "loss": {
+        "text": "On the third visit you finally beheld the Longzhong scroll, yet you still dwelled upon old scores from the first two rounds. Zhuge Liang folded his feather fan in silence: true patience is not pacing extra miles, but listening with an open heart even after the answer is revealed.",
+        "clue": "Historical Note: Defeats in the first two visits still lead to another call; do not exhaust yourself clinging to early skirmishes. Save your strength for the third visit; restart with +150 war chest.",
+        "clueFx": "supply"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "bowang": {
+      "cast": [
+        "liubei",
+        "guanyu",
+        "zhangfei",
+        "zhaoyun",
+        "zhuge",
+        "xiahoudun"
+      ],
+      "objective": "Win the genuine respect of Guan Yu and Zhang Fei, while making Xiahou Dun believe every step of his pursuit is entirely his own idea.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "The grass on Bowang Slope was dry and crisp. Zhuge Liang set his fire strikers beneath the map, charting for each warrior a retreat they were bound to endure in apparent defeat."
+        },
+        {
+          "speaker": "zhangfei",
+          "text": "At the cottage I yielded to my elder brother's courtesy. But today, if you only know how to tell me to run, I will not obey!",
+          "when": "page:sangu:yeshi"
+        },
+        {
+          "speaker": "zhuge",
+          "text": "Yide, fall back until you hear Yunchang's bronze gong, then halt. Before the fire is struck, do not let our bait turn into genuine collapse."
+        },
+        {
+          "speaker": "liubei",
+          "text": "I invited the master down the mountain not to indulge your bravado, but to teach you how not to throw your lives away in vain."
+        }
+      ],
+      "intros": {
+        "xiahoudun": [
+          {
+            "when": "seen:xiahoudun",
+            "bio": "He remembers the ambush of before, yet still refuses to believe that an aggressive charge could be manipulated like a puppet.",
+            "quote": "On this same slope, I will not let you trick me twice."
+          },
+          {
+            "bio": "His single eye gazes only forward, reading every enemy retreat as simple cowardice.",
+            "quote": "If Xinye relies only on fire, let it scorch Liu Bei first!"
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "planned-retreat",
+          "node": 1,
+          "title": "Bowang Slope · How Far to Retreat",
+          "lines": [
+            {
+              "speaker": "guanyu",
+              "text": "The Military Advisor ordered each of us to yield specific paces, detailing even which tree to halt behind. It seems feigning defeat is far harder than winning."
+            },
+            {
+              "speaker": "zhaoyun",
+              "text": "My spear shall draw Xiahou Dun first. Only if he fixates on me will Yunchang and Yide's ambush spring true."
+            },
+            {
+              "speaker": "zhangfei",
+              "text": "Very well! I will make my loss look convincing. But whoever loses his nerve and truly runs, he will wash everyone's spears when we return!"
+            }
+          ],
+          "choices": [
+            {
+              "id": "brothers-ambush",
+              "text": "Coordinate Yunchang and Yide's ambush with bronze gongs",
+              "detail": "Xiahou Dun starting morale -1; remember the brothers' ambush",
+              "effects": {
+                "sow": 1,
+                "fact": "bowang_brothers_ambush"
+              }
+            },
+            {
+              "id": "zhaoyun-route",
+              "text": "Chart every phase of the decoy retreat route alongside Zilong",
+              "detail": "Insight improved this chapter; remember every stage of the ambush",
+              "effects": {
+                "keenEye": true,
+                "fact": "bowang_zhaoyun_route"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "bowang-open",
+          "at": "start",
+          "speaker": "xiahoudun",
+          "text": "Has Liu Xuande taken a new strategist only to learn how to flee? Then I shall pursue you until there is nowhere left to hide!"
+        },
+        {
+          "id": "bowang-bait",
+          "at": "hand:2",
+          "speaker": "zhaoyun",
+          "text": "Xiahou Dun has bitten onto my spear. Military Advisor, is the fire not yet ready?"
+        },
+        {
+          "id": "bowang-wait",
+          "at": "hand:3",
+          "speaker": "zhuge",
+          "text": "Have patience. Only while he believes he is winning will he plunge forward. The fire is meant to ignite the very instant he feels utterly invincible."
+        },
+        {
+          "id": "bowang-low",
+          "at": "low",
+          "speaker": "zhangfei",
+          "text": "Now I see! Falling back was not ceding the path to him, but squeezing his throat narrower with every step!"
+        }
+      ],
+      "win": {
+        "text": "Zhang Fei sheathed his serpent spear first, followed by Guan Yu's respectful clasp of fists. Zhuge Liang did not accept their bows as tribute, but quietly handed the scorched banner to Zilong. Liu Bei smiled: from this day forward, they fought not over who stood first, but who would be the last to retreat.",
+        "hook": "The inferno of Bowang carved Xinye into Cao Cao's memory. The next storm gathers swifter: clutching baby Adou close to his chest, Zilong must carve his way out in reverse from a landscape bristling with pursuit."
+      },
+      "loss": {
+        "text": "Xiahou Dun did not plunge into the flames because your retreat appeared too much like genuine panic: the ambushers rushed to rescue, and the decoy forgot to hold ground. Bowang Slope held only choking smoke, and not a single Cao soldier fell into the trap.",
+        "clue": "Historical Note: Falling back is not fleeing; preserve your ambush lines and chips at each stage of feigned weakness. Restart with +150 war chest; do not let your lure become real collapse.",
+        "clueFx": "supply"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "changban": {
+      "cast": [
+        "liubei",
+        "zhaoyun",
+        "zhangfei",
+        "caocao",
+        "xiahoudun",
+        "zhanghe",
+        "wenpin"
+      ],
+      "objective": "Under the coordinated pursuit of Cao Cao, Xiahou Dun, and Zhang He at the same table, ensure Zhao Yun retrieves Adou and Zhang Fei holds Dangyang Bridge.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "Amidst the dust of Changban, civilians, baggage wagons, and routed soldiers jammed into a single road. Zhao Yun rode against the tide, while Zhang Fei reined in his steed at the bridgehead."
+        },
+        {
+          "speaker": "zhaoyun",
+          "text": "My Lord, the lady and Adou are still behind. Yun shall return swiftly—if I do not return, let Yide hold the bridge in my stead."
+        },
+        {
+          "speaker": "zhangfei",
+          "text": "I won't hold it for you! Come back and guard it yourself!"
+        },
+        {
+          "speaker": "wenpin",
+          "text": "Zhao Zilong of Changshan... Wen Pin was ordered to intercept, yet cannot bear to drive you to the death. With this spear, Pin withholds three measures.",
+          "when": "!seen:wenpin"
+        },
+        {
+          "speaker": "caocao",
+          "text": "Pass the order: Zhao Yun must be taken alive. As for the dark-faced general upon the bridge—I wish to see with my own eyes what gives him the audacity to halt my three armies."
+        }
+      ],
+      "intros": {
+        "wenpin": [
+          {
+            "when": "page:chibi:yeshi",
+            "bio": "After Red Cliffs, he held the old domain of Jingzhou, acutely aware that whether to pursue or let go is inscribed forever in historical annals.",
+            "quote": "Whether I should have pursued at Changban that year, Pin still cannot find an answer."
+          },
+          {
+            "when": "seen:wenpin",
+            "bio": "Remembering that half-held spear at Changban, this time his strikes offer no mercy.",
+            "quote": "This time I will not let you pass. I owe no further apology to the family of my former lord."
+          },
+          {
+            "bio": "A former Jingzhou general newly sworn to Cao Cao's camp, every inch of his spear wavers between duty to his new master and old loyalty.",
+            "quote": "Pin is ordered to patrol this route. The road through Changban is closed."
+          }
+        ],
+        "caocao": [
+          {
+            "when": "page:zhujiu:yeshi",
+            "bio": "Ever since the Green Plum Pavilion he remembers the clap of thunder; now he brings thousands of troops to force out the hidden answer.",
+            "quote": "That day you hid behind the thunder. Today, I watch my legions force your hand."
+          },
+          {
+            "when": "page:bowang:yeshi",
+            "bio": "The fresh sting of defeat at Bowang made him more cautious, and far less willing to grant Liu Bei another chance to regroup.",
+            "quote": "A single flame cannot win twice. Pursue!"
+          },
+          {
+            "bio": "He seeks not merely Xuande's defeat, but to see what manner of man is worth turning back for in the face of a shattered army.",
+            "quote": "Zhao Yun must be taken alive. As for the rest, spare none."
+          }
+        ],
+        "xiahoudun": [
+          {
+            "when": "page:bowang:yeshi",
+            "bio": "The fire of Bowang Slope still burns in his single eye; he views Zilong's wheeled horse as another ambush in disguise.",
+            "quote": "Zhuge is not on the bridge today. Let us see who can save you now!"
+          },
+          {
+            "when": "seen:xiahoudun",
+            "bio": "Reunited with you, he still charges ahead, yet watches every overly convenient path of escape with suspicion.",
+            "quote": "This time if you retreat, I will look behind you first."
+          },
+          {
+            "bio": "The one-eyed general carries lingering fury from Bowang, quick to catch Zhao Yun and just as prone to overshooting.",
+            "quote": "Before Changban, settle the debt of Bowang's flames!"
+          }
+        ],
+        "zhanghe": [
+          {
+            "when": "seen:zhanghe",
+            "bio": "He remembers how you broke through last time, this time marking every loop in the terrain onto his battle formation.",
+            "quote": "The path you escaped by last time, I shall seal with my own hands."
+          },
+          {
+            "bio": "He refrains from racing Xiahou Dun for glory, calculating only the paces remaining between Zhao Yun and Zhang Fei.",
+            "quote": "One rescues a child, one guards the bridge. Keep them severed."
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "rescue-route",
+          "node": 1,
+          "title": "Dangyang · Against the Tide of Refugees",
+          "lines": [
+            {
+              "speaker": "liubei",
+              "text": "Zilong, Bei cannot order you to abandon the people to save my son. If you return only with Adou while leaving our folk under the blade, this battle is still my defeat."
+            },
+            {
+              "speaker": "zhaoyun",
+              "text": "Yun understands. Seven times in and seven times out is not boasting of valor, but returning each time knowing someone is still waiting."
+            }
+          ],
+          "choices": [
+            {
+              "id": "people-first",
+              "text": "Shield the civilians first, then trace the crying child",
+              "detail": "Insight improved this chapter; remember righteous counter-flow",
+              "effects": {
+                "keenEye": true,
+                "fact": "changban_people_first"
+              }
+            },
+            {
+              "id": "bridge-mark",
+              "text": "Agree with Zilong to navigate back solely by Yide's war banner",
+              "detail": "Pursuers starting morale -1; remember bridge rendezvous",
+              "effects": {
+                "sow": 1,
+                "fact": "changban_bridge_mark"
+              }
+            }
+          ]
+        },
+        {
+          "id": "bridge-signal",
+          "node": 2,
+          "title": "Changban Slope · Three Orders for One Bridge",
+          "lines": [
+            {
+              "speaker": "zhangfei",
+              "text": "If the dust behind the bridge thins, Cao Cao will suspect an ambush; if it rises too thick, the fleeing people lose their way. Zilong has not returned, and I cannot even break the bridge in good conscience!"
+            },
+            {
+              "speaker": "zhaoyun",
+              "text": "Yide, leave a single-rider gap. If three Cao generals pursue together, make them fight over who crosses first."
+            }
+          ],
+          "choices": [
+            {
+              "id": "single-file-gap",
+              "text": "Leave a narrow bridle path before cutting the bridge timbers",
+              "detail": "Insight improved this chapter; remember the thread of life",
+              "effects": {
+                "keenEye": true,
+                "fact": "changban_single_file"
+              }
+            },
+            {
+              "id": "split-banners",
+              "text": "Shift three decoy banners to divide the three pursuing columns",
+              "detail": "Cao Cao starting war chest -150; remember diversion strategy",
+              "effects": {
+                "oppChips": -150,
+                "fact": "changban_split_pursuit"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "changban-open",
+          "at": "start",
+          "speaker": "caocao",
+          "text": "Yuanrang pursues Zilong; Junyi cuts off the bridge. I want only Xuande driven into utter ruin.",
+          "when": "multi"
+        },
+        {
+          "id": "changban-zhaoyun",
+          "at": "hand:2",
+          "speaker": "zhaoyun",
+          "text": "With Adou in my arms, my spear cannot fight merely for victory. Yide, does the bridge still stand?",
+          "when": "multi"
+        },
+        {
+          "id": "changban-zhanghe",
+          "at": "hand:3",
+          "speaker": "zhanghe",
+          "text": "Every time he wheels his horse, he looks for the same person. Stop chasing his spear—chase the bridge he must return to!",
+          "when": "multi"
+        },
+        {
+          "id": "changban-xiahoudun",
+          "at": "hand:4",
+          "speaker": "xiahoudun",
+          "text": "The fire of Bowang shall be repaid today with your lifeblood and your severed retreat!",
+          "when": "multi"
+        },
+        {
+          "id": "changban-low",
+          "at": "low",
+          "speaker": "zhangfei",
+          "text": "As long as I stand upon this bridge, their hundred thousand troops must face me one by one!",
+          "when": "multi"
+        }
+      ],
+      "win": {
+        "text": "Only when Zhao Yun placed the child safely into Liu Bei's arms did Zhang Fei finally agree to step down from the bridgehead. Cao Cao did not reprimand Xiahou Dun or Zhang He, but merely gazed at the ruined span: \"One dared to ride back alone, and the other refused to take a single step back. I was not defeated by their soldiers.\"",
+        "hook": "The boats of Han Jin are near, and Cao Cao has etched this bridge deep into his mind. The next road turns toward Jiangdong: Liu Bei needs words powerful enough to move Sun Quan's banners."
+      },
+      "loss": {
+        "text": "Zhao Yun found Adou, but lost his path back to the bridge; Zhang Fei's roar halted the vanguard, but could not check three separate pursuit columns closing in. Solitary bravery may triumph for a moment, but it cannot save everyone.",
+        "clue": "Historical Note: Cao Cao desires a live capture, Yuanrang seeks vengeance, and Zhang He targets the bridge. Force them to crowd the same line of pursuit rather than cutting off three escapes; restart with enemy morale -1.",
+        "clueFx": "sow"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
     "shezhan": {
       "cast": [
         "zhangzhao",
@@ -2251,47 +2316,47 @@ export default {
         "zhuge",
         "sunquan"
       ],
-      "objective": "拆穿“降曹保江东”的退路，让孙权听见群臣没有说出口的恐惧。",
+      "objective": "Expose the false shelter of \"surrendering to Cao to preserve Jiangdong,\" and force Sun Quan to hear the unspoken terror within his courtiers' hearts.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "议事厅里摆着四张案，三张堆满经书，唯独你的案上只有一柄羽扇。张昭先问刘备几败，虞翻已替你把“丧家”二字写在唇边。"
+          "text": "Four tables stood in the council hall; three were piled high with Confucian classics, while yours bore only a single feather fan. Zhang Zhao pressed immediately on how many times Liu Bei had fled, while Yu Fan had already framed the insult of \"homeless wanderer\" upon his lips."
         },
         {
           "speaker": "zhangzhao",
-          "text": "曹公拥百万之众，先生以何御之？莫把隆中一对，当作救命符。"
+          "text": "Lord Cao commands a host of a million; with what does the gentleman intend to resist him? Do not mistake your Longzhong dialogue for an amulet of salvation."
         },
         {
           "speaker": "sunquan",
-          "text": "先生，孤要听的不是谁的经熟，是谁敢担江东的明日。"
+          "text": "Sir, what I wish to hear is not who has memorized the classics best, but who dares to shoulder Jiangdong's tomorrow."
         },
         {
           "speaker": "zhuge",
-          "text": "隆中你问的是天下，今日他们问的是输赢。别答反了。"
+          "text": "At Longzhong you inquired of the entire realm; today they ask merely of winning and losing. Do not confuse the two."
         }
       ],
       "intros": {
         "zhangzhao": [
           {
             "when": "seen:zhangzhao",
-            "bio": "他记得你上次怎样拆题，这次先把每部经典都摆成了盾。",
-            "quote": "典故可以重引。先生，败绩也能重答么？"
+            "bio": "Remembering how you disassembled his arguments last time, he arranges every ancient classic into a defensive bulwark.",
+            "quote": "Ancient precedents can be cited again. Sir, can a record of repeated defeats be answered again?"
           },
           {
-            "bio": "江东文胆，以经典为城，以主和为最后一道门。",
-            "quote": "先不论兵。刘豫州屡败，可是事实？"
+            "bio": "The literary cornerstone of Jiangdong, building fortresses from classic texts and treating capitulation as the final sanctuary.",
+            "quote": "Set military matters aside. Is it not fact that Liu Yuzhou has suffered defeat after defeat?"
           }
         ],
         "yufan": [
           {
-            "bio": "他的话不绕弯，专挑对手最狼狈的地方落刃。",
-            "quote": "避难的人，也敢来谈救人？"
+            "bio": "His words waste no polite circles, striking directly at the rawest wounds of his opponents.",
+            "quote": "Does a refugee fleeing disaster dare lecture us on salvation?"
           }
         ],
         "luji": [
           {
-            "bio": "他把名分说得端正，袖中却藏着不敢独担的降书。",
-            "quote": "抗曹之前，先答我何谓汉臣。"
+            "bio": "Framing legitimacy with pristine dignity, yet hiding in his sleeve a surrender petition he dares not bear alone.",
+            "quote": "Before resisting Cao Cao, answer me first: what is a loyal servant of the Han?"
           }
         ]
       },
@@ -2299,26 +2364,26 @@ export default {
         {
           "id": "three-questions",
           "node": 1,
-          "title": "馆驿 · 三问同锁",
+          "title": "Guest Lodge · Three Locked Questions",
           "lines": [
             {
               "speaker": "yufan",
-              "text": "张公问强弱，陆公问名分。我只问你：败到夏口的人，凭什么谈救别人？"
+              "text": "Master Zhang questions strength; Master Lu questions legitimacy. I ask only this: what right has a routed fugitive from Xiakou to speak of saving others?"
             },
             {
               "speaker": "luji",
-              "text": "曹丞相奉天子以令不臣。你要抗的，究竟是曹军，还是朝廷？"
+              "text": "Chancellor Cao commands the Emperor to discipline unruly vassals. Are you defying Cao's army, or defying the Imperial Court itself?"
             },
             {
               "speaker": "you",
-              "text": "三道题共用一把锁：先让我承认，自己已经输了。"
+              "text": "All three questions share a single lock: to force my confession that we are already vanquished."
             }
           ],
           "choices": [
             {
               "id": "ask-burden",
-              "text": "追问“降后谁担江东”",
-              "detail": "看破提升，记住共同前提",
+              "text": "Demand: \"Who shoulders Jiangdong after surrender?\"",
+              "detail": "Insight improved; remember the shared terror",
               "effects": {
                 "keenEye": true,
                 "fact": "shezhan_common_fear"
@@ -2326,8 +2391,8 @@ export default {
             },
             {
               "id": "sign-surrender",
-              "text": "请主和者各写一个降字",
-              "detail": "众儒起手士气 -1，记住署名",
+              "text": "Challenge each peace advocate to sign their own name to surrender",
+              "detail": "Courtiers starting morale -1; remember individual signatures",
               "effects": {
                 "sow": 1,
                 "fact": "shezhan_signed"
@@ -2342,51 +2407,55 @@ export default {
           "at": "start",
           "speaker": "zhangzhao",
           "when": "multi",
-          "text": "我们三人依次问。先生若有一处语塞，便不必再谈抗曹。"
+          "text": "The three of us shall question you in turn. If you falter on a single word, speak no more of resisting Cao Cao."
         },
         {
           "id": "shezhan-open-single",
           "at": "start",
           "speaker": "zhangzhao",
           "when": "single",
-          "text": "曹操之强，史书可查。先生要拿主公性命，替自己立名么？"
+          "text": "Cao Cao's might is recorded in the annals of history. Does the gentleman intend to gamble our lord's life merely to build his own reputation?"
         },
         {
           "id": "shezhan-defeats",
           "at": "hand:2",
           "speaker": "yufan",
-          "text": "你莫绕。刘豫州一败再败，难道不是事实？"
+          "text": "Do not dodge the issue! Is it not true that Liu Yuzhou suffered defeat after defeat?"
         },
         {
           "id": "shezhan-name",
           "at": "hand:3",
           "speaker": "luji",
-          "text": "汉室倾颓，正需识时务者。你连名分都不顾，还谈什么兴复？"
+          "text": "The House of Han totters on the brink; true wisdom lies in recognizing the times. You disregard legitimacy entirely—how dare you speak of restoration?"
         },
         {
           "id": "shezhan-low-fear",
           "at": "low",
           "speaker": "you",
           "when": "fact:shezhan_common_fear",
-          "text": "你们说江东不可赌，原来是怕自己的名字留在抗曹那一页。"
+          "text": "You claim Jiangdong cannot be gambled with, but in truth, you simply fear leaving your own names upon the page of resistance."
         },
         {
           "id": "shezhan-low-sign",
           "at": "low",
           "speaker": "zhuge",
           "when": "fact:shezhan_signed",
-          "text": "他们不肯独书一个降字，却敢替万民同写。子布，这算谁的江东？"
+          "text": "Not one of them dares write the word \"surrender\" alone, yet together they presume to sign away the lives of millions. Zibu, to whom does this Jiangdong belong?"
         }
       ],
       "win": {
-        "text": "孙权将案上的“降”字翻扣，命人取来战图。张昭没有再问曹操有多少兵，只问江东还有多少可战之船。群臣仍有异议，却再不能把主和说成一个不必负责的答案。",
-        "hook": "鲁肃已在江边备船。诸葛亮尚需十万支箭，而曹操的箭，比江东的耐心多。"
+        "text": "Sun Quan turned face down the character for \"Surrender\" upon his desk and ordered the battle maps brought forward. Zhang Zhao asked no more about the size of Cao Cao's army, but inquired how many battle-ready vessels Jiangdong could muster. Dissenting whispers remained, but none dared present surrender as a cost-free escape again.",
+        "hook": "Lu Su has readied vessels by the riverbank. Zhuge Liang still requires one hundred thousand arrows, and Cao Cao's quivers are far more plentiful than Jiangdong's patience."
       },
       "loss": {
-        "text": "你逐条答完了典故，却没让他们承认惧意。孙权只听见一场争吵，没听见谁愿意承担抗曹的后果。",
-        "clue": "史鉴 · 群儒会轮流转问，把争胜变成消耗；先拆共同前提，重开时看破提升。",
+        "text": "You answered every classical allusion with precision, yet failed to expose their inner dread. Sun Quan heard only a loud salon debate, not a soul willing to shoulder the consequences of standing firm.",
+        "clue": "Historical Note: The scholars take turns to wear you down through attrition; dismantle their shared premise first. Restart with improved insight.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "caochuan": {
       "cast": [
@@ -2395,51 +2464,51 @@ export default {
         "caocao",
         "caizhong"
       ],
-      "objective": "在雾散前让曹军自己决定放箭，把曹操的多疑借成江东的军需。",
+      "objective": "Before the river mist clears, compel Cao Cao's army to loose their arrows of their own accord, transforming his paranoia into military supplies for Jiangdong.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "第三更，鲁肃摸着船上的稻草人，终于明白诸葛亮要借的不只是箭，还有曹操不敢出兵的那一颗心。"
+          "text": "At the third night watch, Lu Su touched the straw mannequins lined along the gunwales, finally understanding that what Zhuge Liang sought to borrow was not merely arrows, but Cao Cao's dread of marching into the unknown."
         },
         {
           "speaker": "lusu",
-          "text": "若雾突然散了呢？子敬可以陪你冒险，江东不能陪你陪葬。"
+          "text": "What if the fog suddenly scatters? Zijing can risk his life beside you, but Jiangdong cannot be dragged into an early grave!"
         },
         {
           "speaker": "caizhong",
-          "text": "丞相放心,小人兄弟早把江东水路摸熟了——这雾夜里,他们绝不敢出船。",
+          "text": "Rest assured, Chancellor! My brother and I know Jiangdong's waterways like our own hands—in this heavy fog, they would never dare launch a single boat!",
           "when": "!seen:caizhong"
         },
         {
           "speaker": "zhuge",
-          "text": "堂上既已请江东主战，箭便不能只在账上。子敬，这一船是还愿，不是赌命。"
+          "text": "Since we urged Jiangdong to wage war in the hall, our arrows must not remain mere figures in a ledger. Zijing, this voyage fulfills a vow; it is not a gamble of despair."
         },
         {
           "speaker": "you",
-          "text": "雾只负责遮船。让曹操看见什么，还得由我们来说。"
+          "text": "The mist only conceals the hulls. What Cao Cao sees through the haze is for us to orchestrate."
         }
       ],
       "intros": {
         "caizhong": [
           {
             "when": "seen:caizhong",
-            "bio": "诈降的兄弟档又换了一套装束,口径却仍旧差半拍。",
-            "quote": "这、这次弟弟没来。情报,小人一个人包了。"
+            "bio": "The fake defectors have donned a new disguise, yet their story remains half a beat out of sync.",
+            "quote": "T-this time my brother couldn't make it. I'll handle the intelligence myself!"
           },
           {
-            "bio": "蔡夫人族中小子,降书里的每一个字都商量好了,唯独彼此没商量。",
-            "quote": "降卒蔡中,愿为丞相效犬马!"
+            "bio": "A petty kinsman of Lady Cai; every word of his surrender letter was rehearsed, except for coordinating with each other.",
+            "quote": "Defector Cai Zhong stands ready to serve the Prime Minister like a dog or horse!"
           }
         ],
         "caocao": [
           {
             "when": "page:zhujiu:yeshi",
-            "bio": "他在青梅亭读过你的藏锋，如今更不信江上的每一次试探。",
-            "quote": "青梅旧友，也学会借雾藏锋了？"
+            "bio": "Having observed your hidden edge at the Green Plum Pavilion, he trusts river probes least of all.",
+            "quote": "Old friend of the plum wine, have you learned to veil your blade within the river mist?"
           },
           {
-            "bio": "北岸水寨，他把每一声鼓都当成一句没说完的谎话。",
-            "quote": "雾夜来船，必有深意。先莫出击。"
+            "bio": "Within his northern water fortress, he hears every drumbeat as an unfinished deception.",
+            "quote": "Boats appearing in night mist must conceal deep treachery. Hold position—do not sortie!"
           }
         ]
       },
@@ -2447,26 +2516,26 @@ export default {
         {
           "id": "fog-cadence",
           "node": 1,
-          "title": "江雾 · 留白令敌",
+          "title": "River Mist · Leaving Space for the Foe",
           "lines": [
             {
               "speaker": "lusu",
-              "text": "箭垛、船只、更次都齐了，只差曹操肯不肯。若他看出是草人呢？"
+              "text": "Quivers, boats, watches are all arranged—all hinges on whether Cao Cao takes the bait. What if he realizes they are straw dummies?"
             },
             {
               "speaker": "zhuge",
-              "text": "所以不能只让他看不清。要让他觉得，自己看得比我们更远。"
+              "text": "Therefore we cannot leave him entirely blind. We must make him feel he sees further than we do."
             },
             {
               "speaker": "you",
-              "text": "雾遮住船，鼓声替他补出一支伏兵。"
+              "text": "While mist veils the ships, our war drums paint the phantoms of an ambush in his mind."
             }
           ],
           "choices": [
             {
               "id": "full-drums",
-              "text": "二十船同擂，假装主力",
-              "detail": "曹军起手士气 -1，记住鼓阵",
+              "text": "Beat drums across twenty ships at once, feigning the main fleet",
+              "detail": "Cao Cao starting morale -1; remember drum cadence",
               "effects": {
                 "sow": 1,
                 "fact": "caochuan_full_drums"
@@ -2474,8 +2543,8 @@ export default {
             },
             {
               "id": "answering-drums",
-              "text": "首尾应鼓，留出空船",
-              "detail": "看破提升，记住雾中留白",
+              "text": "Echo drums between bow and stern, leaving hollow vessels in between",
+              "detail": "Insight improved; remember leaving space in mist",
               "effects": {
                 "keenEye": true,
                 "fact": "caochuan_empty_space"
@@ -2489,44 +2558,48 @@ export default {
           "id": "caochuan-open",
           "at": "start",
           "speaker": "caocao",
-          "text": "水寨不出，弓弩向前。孤倒要看，雾里藏了多少人。"
+          "text": "Keep the fleet moored; archers to the front! I will see how many men lurk within this fog!"
         },
         {
           "id": "caochuan-drums",
           "at": "hand:2",
           "speaker": "zhuge",
           "when": "fact:caochuan_full_drums",
-          "text": "现在撤下一半鼓。曹操听见势弱，反会认定我们开始收网。"
+          "text": "Now quiet half the drums. Hearing our thunder fade, Cao Cao will conclude our trap is springing shut."
         },
         {
           "id": "caochuan-space",
           "at": "hand:2",
           "speaker": "lusu",
           "when": "fact:caochuan_empty_space",
-          "text": "空船转到外舷了。曹操不看鼓声最密处，偏要猜最静的地方。"
+          "text": "The empty hulls have turned outward. Cao Cao looks away from the loudest beats, obsessing over the quietest shadows."
         },
         {
           "id": "caochuan-more-arrows",
           "at": "hand:3",
           "speaker": "caocao",
-          "text": "鼓声虚了。莫追，添箭——他们若退，便是有诈。"
+          "text": "Their drums falter! Do not pursue—pour on more arrows! If they withdraw, it is surely a trap!"
         },
         {
           "id": "caochuan-low",
           "at": "low",
           "speaker": "you",
-          "text": "箭不是骗来的，是他替自己心里的伏兵预备的。"
+          "text": "These arrows were never stolen; they were prepared by Cao Cao for the phantoms in his own mind."
         }
       ],
       "win": {
-        "text": "雾散时，各船草人都已满箭。鲁肃不再问若雾早退怎么办，只忙着催人报数；诸葛亮折下一枚簇尖收进袖中。箭已够用，下一页要借的是火。",
-        "hook": "箭已备，东风未至。周瑜在赤壁等你，也等诸葛亮露出一丝来不及。"
+        "text": "As the mist cleared, every straw mannequin bristled with arrows. Lu Su ceased asking what might happen if the fog lifted too early, occupied with tallying the haul; Zhuge Liang plucked a single arrowpoint and tucked it into his sleeve. The arrows were secured; next, they must borrow fire.",
+        "hook": "The arrows are ready, yet the southeast wind has not arrived. Zhou Yu awaits at Red Cliffs, watching for any flicker of hesitation from Zhuge Liang."
       },
       "loss": {
-        "text": "雾未散，曹操先停了箭。你把多疑当成一道不会更改的命令，忘了多疑的人最擅长改主意；鲁肃只好带你退回空船。",
-        "clue": "史鉴 · 曹操会根据鼓声重新判断虚实；别把同一种试探用到底，重开时看破提升。",
+        "text": "Before the mist parted, Cao Cao halted his archers. You treated suspicion as an immutable law, forgetting that a paranoid man excels above all at changing his mind. Lu Su could only steer your empty ships back into the gloom.",
+        "clue": "Historical Note: Cao Cao adjusts his assessment of reality based on drumbeats; do not rely on a single deception to the end. Restart with improved insight.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "chibi": {
       "cast": [
@@ -2534,57 +2607,57 @@ export default {
         "zhouyu",
         "zhuge"
       ],
-      "objective": "在三方各怀胜负的牌局里，让火船、东南风与曹操的疑心同时到位。",
+      "objective": "In a three-sided contest where each harbors their own vision of victory, bring the fire ships, the southeast wind, and Cao Cao's suspicion into alignment at the exact same moment.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "曹操的连舫在北，周瑜的火船在南，诸葛亮的七星坛夹在两者之间。三方同桌，却没有任何两人的胜利完全相同。"
+          "text": "Cao Cao's chained flotilla stretched across the north, Zhou Yu's fire ships waited in the south, and Zhuge Liang's Seven Star Altar stood between them. Three powers shared the table, yet no two pursued the same victory."
         },
         {
           "speaker": "caocao",
-          "text": "连舫稳如平地。孤倒要听听，东吴还能拿什么来烧。"
+          "text": "My chained vessels are steady as dry earth. I would hear what Dongwu can possibly bring to burn them!"
         },
         {
           "speaker": "zhouyu",
-          "text": "孔明若借不来风，火攻便止；你若只赢他，曹操照样过江。"
+          "text": "If Kongming cannot summon the wind, the fire attack dies here. If you defeat only him, Cao Cao still crosses the river."
         },
         {
           "speaker": "zhuge",
-          "text": "所以这一局没有盟友。只有谁先看见，风已在谁的袖中。"
+          "text": "Therefore this table holds no allies—only the question of who first perceives the wind already stirring within their sleeve."
         }
       ],
       "intros": {
         "caocao": [
           {
             "when": "page:zhujiu:yeshi",
-            "bio": "从青梅到赤壁，他仍想逼你把藏住的答案押上桌面。",
-            "quote": "煮酒能藏雷，今日烈火往哪里藏？"
+            "bio": "From boiled plums to Red Cliffs, he still seeks to force your concealed answers onto the table.",
+            "quote": "Boiled wine could mask the thunder, but where will you hide from this inferno today?"
           },
           {
-            "bio": "八十万连舫，他要北方从此不必再懂水战。",
-            "quote": "船已相连，江上也是孤的中原。"
+            "bio": "With eight hundred thousand men chained across the river, he aims to ensure the North never needs to fear water battles again.",
+            "quote": "The ships are chained; this river is now my Central Plains!"
           }
         ],
         "zhouyu": [
           {
             "when": "page:caochuan:yeshi",
-            "bio": "他看见十万支箭如约而至，更不肯让孔明独占赤壁。",
-            "quote": "箭你借到了。火，还得听我的。"
+            "bio": "Having seen the hundred thousand arrows arrive as promised, he refuses all the more to let Kongming claim Red Cliffs alone.",
+            "quote": "You borrowed the arrows. But the fire answers to me!"
           },
           {
-            "bio": "他的火攻万事俱备，唯独不愿承认自己也在等风。",
-            "quote": "曲有误，周郎顾；风若误呢？"
+            "bio": "His fire attack is prepared down to the last detail, yet he refuses to admit that he, too, is waiting on the wind.",
+            "quote": "When a tune errs, Zhou Yu turns his head; but what if the wind itself errs?"
           }
         ],
         "zhuge": [
           {
             "when": "seen:zhuge",
-            "bio": "他记得隆中的天下，也记得你怎样把一场对话变成战局。",
-            "quote": "今日不论谁先胜，先论风何时起。"
+            "bio": "Remembering the vision of Longzhong, he recalls how you turned a quiet conversation into a deciding conflict.",
+            "quote": "Today, speak not of who triumphs first—ask only when the wind arises."
           },
           {
-            "bio": "七星坛上，他把最难借的东西说得像已经入袖。",
-            "quote": "风会来。人未必肯等。"
+            "bio": "Atop the Seven Star Altar, he speaks of nature's most elusive force as though it already rested in his sleeve.",
+            "quote": "The wind shall arrive. Whether men possess the patience to wait is another matter."
           }
         ]
       },
@@ -2592,26 +2665,26 @@ export default {
         {
           "id": "three-fuses",
           "node": 1,
-          "title": "乌林 · 三方引信",
+          "title": "Wulin · Three Fuses",
           "lines": [
             {
               "speaker": "zhouyu",
-              "text": "火船只能烧一次。孔明先离场，风未必来；孟德先离场，他会带走主力。"
+              "text": "The fire ships can burn but once. If Kongming leaves the table first, the wind may never blow; if Mengde leaves first, his main fleet retreats intact."
             },
             {
               "speaker": "caocao",
-              "text": "你们都等风。孤已把船锁在一起，风来，也不过多照几处灯火。"
+              "text": "You both wait for the wind. But I have chained my fleet into an iron shield—even if the wind comes, it will merely illuminate a few more lanterns."
             },
             {
               "speaker": "you",
-              "text": "要赢的不是三份筹码，是让三个人都不能提前离席。"
+              "text": "What we must win is not three separate piles of chips, but ensuring no player can leave the table early."
             }
           ],
           "choices": [
             {
               "id": "loose-chain",
-              "text": "暗解一节连环索",
-              "detail": "曹军起手军资 -200，记住暗索",
+              "text": "Secretly unfasten a single section of the iron chain",
+              "detail": "Cao Cao starting war chest -200; remember unchained link",
               "effects": {
                 "raid": true,
                 "fact": "chibi_loose_chain"
@@ -2619,8 +2692,8 @@ export default {
             },
             {
               "id": "empty-jars",
-              "text": "把火油换成空坛示弱",
-              "detail": "看破提升，记住空坛真火",
+              "text": "Replace fire oil with empty jars to feign weakness",
+              "detail": "Insight improved; remember empty jars concealing true fire",
               "effects": {
                 "keenEye": true,
                 "fact": "chibi_empty_jars"
@@ -2635,46 +2708,50 @@ export default {
           "at": "start",
           "speaker": "caocao",
           "when": "multi",
-          "text": "一个借风，一个纵火，一个无名之辈。很好，孤一桌收拾。"
+          "text": "One borrowing the wind, one playing with fire, and one nameless wanderer. Excellent—I shall sweep you all from the board at once!"
         },
         {
           "id": "chibi-read",
           "at": "hand:2",
           "speaker": "zhouyu",
           "when": "multi",
-          "text": "先碰孔明，还是先碰我？你每赢一家，另一家都在读你的牌。"
+          "text": "Do you strike Kongming first, or test me? For every player you best, the other is reading your hand."
         },
         {
           "id": "chibi-chain",
           "at": "hand:3",
           "speaker": "zhuge",
           "when": "fact:chibi_loose_chain",
-          "text": "断索让他以为船可散逃。可命令传到各舰之前，火已经替他做了决定。"
+          "text": "The severed chain made him believe his ships could scatter safely. Yet before orders reach the decks, fire has already made the decision for him."
         },
         {
           "id": "chibi-jars",
           "at": "hand:3",
           "speaker": "zhuge",
           "when": "fact:chibi_empty_jars",
-          "text": "空坛不是无火，是让公瑾以为你没有后手。现在，把真火油推出来。"
+          "text": "The empty jars were not lack of oil, but to convince Gongjin that you held no further moves. Now—push forward the real oil!"
         },
         {
           "id": "chibi-low",
           "at": "low",
           "speaker": "you",
           "when": "multi",
-          "text": "曹操怕埋伏，周瑜怕无功，孔明怕风失期。火起的空隙，就在三种恐惧之间。"
+          "text": "Cao Cao fears ambush, Zhou Yu fears irrelevance, and Kongming fears the wind missing its hour. The gap where the fire ignites lies precisely between those three fears."
         }
       ],
       "win": {
-        "text": "最后一名对手离席时，东南风才越过旗角。火船借风撞入连舫，周瑜没有看你，诸葛亮却已收扇——两人都明白，你方才留住的不是三份筹码，是同一刻。",
-        "hook": "曹操败向华容。关羽的刀已等在那里，而诸葛亮说，今夜还欠他一份人情。"
+        "text": "Just as the last opponent departed the table, the southeast wind swept past the corner of the banner. Fire ships crashed into the chained fleet on the roaring gale. Zhou Yu did not meet your gaze, but Zhuge Liang had already folded his fan—both understood that what you had held onto was not three separate fortunes, but that single, indispensable moment.",
+        "hook": "Cao Cao flees toward Huarong Path. Guan Yu's blade awaits in the marsh, and Zhuge Liang murmurs that tonight, a debt of honor must finally be weighed."
       },
       "loss": {
-        "text": "你先清掉周瑜，曹操便收船；你先压住曹操，诸葛亮便不再等风。赤壁没有败给某一张牌，败给三方从未同时入局。",
-        "clue": "史鉴 · 多方会彼此读取你的下注，先清一家会给另一家收帆的机会；重开时看破提升。",
+        "text": "If you eliminate Zhou Yu first, Cao Cao pulls back his fleet; if you suppress Cao Cao first, Zhuge Liang stops waiting for the wind. Red Cliffs was not lost to a single card, but to the reality that all three powers never truly entered the fray together.",
+        "clue": "Historical Note: Multi-sided battles read each other's bets; eliminating one too early gives another the chance to strike sail. Restart with improved insight.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "huarong": {
       "cast": [
@@ -2682,46 +2759,46 @@ export default {
         "guanyu",
         "zhuge"
       ],
-      "objective": "赢下穷途之后仍要亲手选择：让旧账随刀落，还是让义成为麦城必须偿还的债。",
+      "objective": "After conquering the desperate road, you must still make the choice with your own hands: let old debts fall with the blade, or let righteousness become a debt that Mai Castle must repay.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "曹操的坐骑陷在泥里，身后只剩十几骑。关羽横刀立马，却没看你，也没看那条通往江陵的空路。"
+          "text": "Cao Cao's warhorse was mired deep in mud, with barely a dozen riders at his back. Guan Yu held his Green Dragon Crescent Blade athwart his saddle, looking neither at you nor at the open trail leading to Jiangling."
         },
         {
           "speaker": "caocao",
-          "text": "赤壁能烧连舫，烧不尽旧账。云长，今日这桌上只剩你我了吗？"
+          "text": "The fires of Red Cliffs burned my chained fleet, but they cannot burn away old debts. Yunchang, does this table hold only you and me today?"
         },
         {
           "speaker": "guanyu",
-          "text": "军令在此，旧恩也在此。关某只问一句：这一刀，你替谁看？"
+          "text": "The military oath is here, and past generosity is here as well. Guan asks but one thing: for whose sake do you watch this descending blade?"
         },
         {
           "speaker": "zhuge",
-          "text": "别替他选。你赢下的，只是让选择真的发生。"
+          "text": "Do not choose for him. What you won was merely the right for the choice to truly exist."
         }
       ],
       "intros": {
         "caocao": [
           {
             "when": "page:zhujiu:yeshi",
-            "bio": "从青梅到赤壁，他每次穷途都仍记得怎样与你谈旧情。",
-            "quote": "青梅酒、连舫火。你我又走到窄路了。"
+            "bio": "From boiled wine to Red Cliffs, at the end of every desperate path he still knows how to speak of old ties.",
+            "quote": "Boiled wine, burning ships... You and I have reached the narrow pass once more."
           },
           {
-            "bio": "败军不足以护驾，他便把昔日恩情也编成了亲军。",
-            "quote": "孤今日不讲天下，只讲故人。"
+            "bio": "His broken army can no longer shield him, so he rallies bygone kindness into his personal bodyguard.",
+            "quote": "Today I speak not of the empire, but of old friends."
           }
         ],
         "guanyu": [
           {
             "when": "seen:guanyu",
-            "bio": "从虎牢到华容，他的一诺始终比刀更重，也更难放下。",
-            "quote": "你已知关某如何出刀。今日且看为何收刀。"
+            "bio": "From Hulao Pass to Huarong, his single word has always weighed heavier than his blade, and proved far harder to put down.",
+            "quote": "You already know how Guan strikes with his blade. Today, see why he sheathes it."
           },
           {
-            "bio": "军令状在怀，旧恩在心，他不肯让任何一笔由旁人代签。",
-            "quote": "关某在此。忠与义，都不许借名。"
+            "bio": "The death-warrant oath rests in his breast, old debts in his heart; he refuses to let anyone sign his name for him.",
+            "quote": "Guan is here. Neither loyalty nor righteousness may be borrowed in another's name."
           }
         ]
       },
@@ -2729,26 +2806,26 @@ export default {
         {
           "id": "two-debts",
           "node": 1,
-          "title": "华容 · 刀下两账",
+          "title": "Huarong · Two Debts Beneath the Blade",
           "lines": [
             {
               "speaker": "caocao",
-              "text": "云长杀我，是奉军令；放我，是还旧恩。可你要他替哪一笔担罪？"
+              "text": "If Yunchang slays me, he upholds military law; if he spares me, he repays old kindness. But for which debt would you have him bear the guilt?"
             },
             {
               "speaker": "guanyu",
-              "text": "他把活路说成了两笔债。你听着，像哪一笔？"
+              "text": "He speaks of survival as two distinct debts. To your ears, which does it resemble?"
             },
             {
               "speaker": "you",
-              "text": "都不是。刀在活人手里，就不该由死去的情分替今日决定。"
+              "text": "Neither. The blade rests in the hands of the living—dead sentiments must not dictate the choice of today."
             }
           ],
           "choices": [
             {
               "id": "weigh-oath",
-              "text": "展开军令状，先念军法",
-              "detail": "曹军起手士气 -1，记住军令",
+              "text": "Unroll the military oath and recite the law of the army",
+              "detail": "Cao Cao starting morale -1; remember military oath",
               "effects": {
                 "sow": 1,
                 "fact": "huarong_oath"
@@ -2756,8 +2833,8 @@ export default {
             },
             {
               "id": "weigh-debt",
-              "text": "收起军令状，只听旧恩",
-              "detail": "看破提升，记住旧恩",
+              "text": "Put away the military oath and listen only to bygone kindness",
+              "detail": "Insight improved; remember bygone debt",
               "effects": {
                 "keenEye": true,
                 "fact": "huarong_debt"
@@ -2771,788 +2848,48 @@ export default {
           "id": "huarong-open",
           "at": "start",
           "speaker": "caocao",
-          "text": "赤壁你懂得让三家都不能先走。今日只剩你我，反倒难了吧？"
+          "text": "At Red Cliffs you knew how to keep all three powers at the table. Now that only you and I remain, has it become harder instead?"
         },
         {
           "id": "huarong-oath",
           "at": "hand:2",
           "speaker": "guanyu",
           "when": "fact:huarong_oath",
-          "text": "军令我立，罪我领。你若只把军法推给我，仍是让旁人替你落刀。"
+          "text": "The oath was mine to pledge, and the penalty mine to bear. If you push only military law upon me, you are still letting others strike the blow for you."
         },
         {
           "id": "huarong-debt",
           "at": "hand:2",
           "speaker": "guanyu",
           "when": "fact:huarong_debt",
-          "text": "恩是关某欠的，命是三军争来的。别拿一个义字，替所有人免单。"
+          "text": "Kindness is what Guan owes; life is what the three armies fought to take. Do not use the word 'righteousness' to wipe everyone's debts clean."
         },
         {
           "id": "huarong-unwritten",
           "at": "hand:3",
           "speaker": "zhuge",
-          "text": "我算到曹操命不该绝，却算不到你怎样选。这一页，终于轮到人胜天一着。"
+          "text": "I foresaw that Cao Cao's destiny had not run dry, yet I could not foresee how you would choose. On this page, mortal will finally prevails over Heaven."
         },
         {
           "id": "huarong-low",
           "at": "low",
           "speaker": "you",
-          "text": "他已不谈天下，只谈旧情。穷途上的曹操，仍知道什么能当筹码。"
+          "text": "He speaks no longer of the empire, but only of past grace. Even at the end of the road, Cao Cao still knows what serves as bargaining chips."
         }
       ],
       "win": {
-        "text": "曹操的筹码尽散，泥路静得能听见刀环。关羽终于看向你。前方无人阻拦，后方军令犹在；赢牌没有替你写下结局，只把刀落与不落都留成了你的亲手之笔。",
-        "hook": "这一刀无论落未落，都会沿荆州传到麦城。冬天还远，账已经记下了。"
+        "text": "Cao Cao's chips were entirely spent, and the muddy pass grew so silent that one could hear the rattle of the blade's ring. Guan Yu turned his gaze to you at last. Ahead, the path was clear; behind, the military oath remained. Winning the hand did not write the ending for you—it merely ensured that whether the blade fell or stayed, it remained your own deliberate choice.",
+        "hook": "Whether that blade fell or was stayed, its echo will travel down the river from Jingzhou to Mai Castle. Winter is still far off, but the account has already been inscribed."
       },
       "loss": {
-        "text": "曹操仍从泥里走出。你忙着替关羽计算忠义，却忘了他最擅长让别人替他争一个活口。",
-        "clue": "史鉴 · 穷途曹操会把军令与旧恩轮流推上桌；重开时看破提升，终局选择仍由你作出。",
+        "text": "Cao Cao walked out from the mud once more. You were so busy calculating loyalty and righteousness for Guan Yu that you forgot Cao Cao's greatest gift is making others fight over keeping him alive.",
+        "clue": "Historical Note: At the end of his rope, Cao Cao will alternate between pushing military oaths and past debts; restart with improved insight. The final choice remains yours to make.",
         "clueFx": "keenEye"
-      }
-    },
-    "sanqi": {
-      "cast": [
-        "zhouyu",
-        "zhuge",
-        "lusu",
-        "liubei"
-      ],
-      "objective": "不再用第三激杀人，而让周瑜在最难堪的一手里看见自己的生路。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "巴丘的药已经煎黑，周瑜却把第三封战书压在琴下。前两气让他失血，第三气却先让他笑了。"
-        },
-        {
-          "speaker": "zhouyu",
-          "text": "赤壁同桌，你拿风作了引信。今日又想拿什么，点我的箭疮？"
-        },
-        {
-          "speaker": "lusu",
-          "text": "孔明来书只有四字：何必如此。公瑾看完，便把你的名字写了三遍。"
-        },
-        {
-          "speaker": "zhuge",
-          "text": "若只想赢他，再激一次就够。若想让他活，得先让他有一次不失态。"
-        }
-      ],
-      "intros": {
-        "zhouyu": [
-          {
-            "when": "page:chibi:yeshi",
-            "bio": "赤壁的火赢了曹操，也烧亮了他不肯居于人后的心。",
-            "quote": "江上你留住同一刻。巴丘呢，等我先乱？"
-          },
-          {
-            "bio": "箭疮未愈，他把每一次迟疑都听成了曲误。",
-            "quote": "第三封书来了？念。看我还能气几次。"
-          }
-        ]
       },
-      "map": [
-        {
-          "id": "third-letter",
-          "node": 1,
-          "title": "柴桑 · 第三封书",
-          "lines": [
-            {
-              "speaker": "lusu",
-              "text": "他认定你每一步都在笑他。你送药，他先找毒；你退兵，他先找伏。"
-            },
-            {
-              "speaker": "zhuge",
-              "text": "所以第三封书里，我一句也没有辩解。只写了赤壁那一手，他本可怎样赢我。"
-            },
-            {
-              "speaker": "you",
-              "text": "把胜法还给对手，比把罪名塞给他更难。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "write-way-out",
-              "text": "在信尾写清他的胜机",
-              "detail": "看破提升，记住第三解",
-              "effects": {
-                "keenEye": true,
-                "fact": "sanqi_way_out"
-              }
-            },
-            {
-              "id": "remove-taunts",
-              "text": "请鲁肃收走所有激将话",
-              "detail": "周瑜起手士气 -1，记住不激",
-              "effects": {
-                "sow": 1,
-                "fact": "sanqi_no_taunt"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "sanqi-open",
-          "at": "start",
-          "speaker": "zhouyu",
-          "text": "你又带着孔明的信来。说罢，这次是哪座城、哪一句既生瑜？"
-        },
-        {
-          "id": "sanqi-way-out",
-          "at": "hand:2",
-          "speaker": "zhuge",
-          "when": "fact:sanqi_way_out",
-          "text": "看他弃掉好牌的那一手。他不是让你，是在逼自己承认还有下局。"
-        },
-        {
-          "id": "sanqi-no-taunt",
-          "at": "hand:2",
-          "speaker": "lusu",
-          "when": "fact:sanqi_no_taunt",
-          "text": "他等你讥讽，你便只报牌。没有人接怒，火便只能烧回他自己。"
-        },
-        {
-          "id": "sanqi-silence",
-          "at": "hand:3",
-          "speaker": "zhouyu",
-          "text": "你为何不笑？我若连怒都无处落，岂不成了你琴上一根断弦？"
-        },
-        {
-          "id": "sanqi-low",
-          "at": "low",
-          "speaker": "you",
-          "text": "第三气不必是一句话。让他发现，败也可以不成为笑话。"
-        }
-      ],
-      "win": {
-        "text": "周瑜没有再喊“既生瑜”。他把那封写着自己胜机的信压在琴上，慢慢弹错一音，又自己笑了一声。鲁肃听见笑声，才敢让医官进帐。",
-        "hook": "周郎暂离巴丘，入蜀的山路却正向庞统收拢。落凤坡这个地名，诸葛亮看了很久。"
-      },
-      "loss": {
-        "text": "你把他的失态当作唯一的胜门，第三激终于奏效，也永远关上了所有下局。琴没有断，听琴的人先散了。",
-        "clue": "史鉴 · 周瑜会等你先出讥讽再反扑；少接他的怒，重开时看破提升。",
-        "clueFx": "keenEye"
-      }
-    },
-    "luofengpo": {
-      "cast": [
-        "pangtong",
-        "liubei",
-        "zhangren",
-        "liuzhang"
-      ],
-      "objective": "利用的卢与张任对凤雏的执念，让伏兵射中一个错误的目标。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "落凤坡前，的卢不肯踏过白石道。庞统翻身下马，将缰绳递回刘备手里，忽然问张任要杀的究竟是马，还是人。"
-        },
-        {
-          "speaker": "pangtong",
-          "text": "孔明来信只说将帅多凶少吉。他连我也一并算了，却忘了伏兵也要先认人。"
-        },
-        {
-          "speaker": "liuzhang",
-          "text": "父兄守了三十年的蜀道,竟真有人打进来……任儿,成都的门,拜托你了。",
-          "when": "!seen:liuzhang"
-        },
-        {
-          "speaker": "liubei",
-          "text": "士元，换马本是好意。若这好意正好替你写了死籍呢？"
-        },
-        {
-          "speaker": "zhangren",
-          "text": "不见的卢，不许放箭。我要刘备，莫伤错了人。"
-        }
-      ],
-      "intros": {
-        "zhangren": [
-          {
-            "when": "seen:zhangren",
-            "bio": "他记得伏兵怎样扑空，这一次把每面旗号都问得更细。",
-            "quote": "旗号可以换。守土的心，你换不了。"
-          },
-          {
-            "bio": "西川第一忠勇，谨慎是他守城的墙，也是伏兵的号令。",
-            "quote": "白马未现，诸军不得擅发一箭。"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "false-phoenix",
-          "node": 1,
-          "title": "落凤坡 · 反借伏眼",
-          "lines": [
-            {
-              "speaker": "zhangren",
-              "text": "林深，马快。可我伏兵的号令只有一个：白马入坡，万箭齐发。"
-            },
-            {
-              "speaker": "pangtong",
-              "text": "他要射的是刘备必骑的卢这个成见。地名未必克我，人名却会骗人。"
-            },
-            {
-              "speaker": "liubei",
-              "text": "那就让这成见，最后一次替我们带路。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "horse-decoy",
-              "text": "空缰牵的卢走前队",
-              "detail": "看破伏兵，记住白马诱饵",
-              "effects": {
-                "keenEye": true,
-                "fact": "luofengpo_horse_decoy"
-              }
-            },
-            {
-              "id": "banner-decoy",
-              "text": "以凤翎旗引偏箭雨",
-              "detail": "伏兵起手军资 -200，记住假旗",
-              "effects": {
-                "raid": true,
-                "fact": "luofengpo_banner_decoy"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "luofengpo-open",
-          "at": "start",
-          "speaker": "zhangren",
-          "text": "庞统，你若真懂趋吉避凶，便不该走进这座坡。"
-        },
-        {
-          "id": "luofengpo-horse",
-          "at": "hand:2",
-          "speaker": "pangtong",
-          "when": "fact:luofengpo_horse_decoy",
-          "text": "听，箭都追着的卢去了。张任守的是刘备必骑白马，不是落凤坡。"
-        },
-        {
-          "id": "luofengpo-banner",
-          "at": "hand:2",
-          "speaker": "pangtong",
-          "when": "fact:luofengpo_banner_decoy",
-          "text": "凤旗向东，伏兵便向东。所谓落凤，也可以由我指定落在哪处。"
-        },
-        {
-          "id": "luofengpo-turn",
-          "at": "hand:3",
-          "speaker": "zhangren",
-          "text": "白马是假，旗号也是假。你们拿我的谨慎，做了自己的弓。"
-        },
-        {
-          "id": "luofengpo-low",
-          "at": "low",
-          "speaker": "liubei",
-          "text": "士元，伏兵已乱。今日不换马，换一条他们没写过的路。"
-        }
-      ],
-      "win": {
-        "text": "箭雨落在空马与假旗之后，庞统从侧坡踏上高处。他没有庆幸地名失效，只在那封“多凶少吉”的信后添了四字：人心亦然。成都的关门，第一次为凤雏露出缝隙。",
-        "hook": "凤雏入蜀，汉中随之成为下一张必争之牌。定军山上，黄忠正在擦拭一把不肯老的刀。"
-      },
-      "loss": {
-        "text": "你只顾离开的卢，却仍沿张任预设的山道前行。避开了被认出的马，没有避开被算准的人；第二轮箭雨不再等候号令。",
-        "clue": "史鉴 · 张任先认旗号再下令，伏兵齐射前有一次错认；重开时看破提升。",
-        "clueFx": "keenEye"
-      }
-    },
-    "dingjunshan": {
-      "cast": [
-        "huangzhong",
-        "xiahouyuan",
-        "zhanghe",
-        "fazheng",
-        "yanyan"
-      ],
-      "objective": "借夏侯渊的快与张郃的变互相牵制，让老将一刀落在两人换防的半拍。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "定军山上下各有一面鼓。夏侯渊催人快攻，张郃却按兵测路；两面鼓总差半拍，黄忠听了三遍，解下了弓。"
-        },
-        {
-          "speaker": "huangzhong",
-          "text": "他们说老将只剩一刀。够是够，只怕有人快得撞上来，有人巧得不肯来。"
-        },
-        {
-          "speaker": "fazheng",
-          "text": "汉升,山上两将不和,便是天给你的第三条路。孝直在旌旗上,只写一个「待」字。",
-          "when": "!seen:fazheng"
-        },
-        {
-          "speaker": "yanyan",
-          "text": "老哥哥,当年蜀道上一声「断头将军」,今日原样奉还。你的侧翼,严颜包了。"
-        },
-        {
-          "speaker": "xiahouyuan",
-          "text": "年迈还敢居高？天明的鼓未响，我便先上山取你的刀。"
-        },
-        {
-          "speaker": "zhanghe",
-          "text": "妙才，居高者故意示弱。你若只会快，便正好替他省去诱敌。"
-        }
-      ],
-      "intros": {
-        "xiahouyuan": [
-          {
-            "bio": "兵贵神速是他的军令，也是别人最容易拨快的那面鼓。",
-            "quote": "张郃善变，夏侯善速。你先接哪一个？"
-          }
-        ],
-        "zhanghe": [
-          {
-            "bio": "巧变名将，最会改阵，却未必改得了同袍的急性。",
-            "quote": "兵无常势。可惜妙才只认一种快。"
-          }
-        ],
-        "huangzhong": [
-          {
-            "bio": "老将不与人争脚力，只争敌人迈入刀势的那一步。",
-            "quote": "老的是年岁，不是这一刀。"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "half-beat",
-          "node": 1,
-          "title": "定军山 · 换防半拍",
-          "lines": [
-            {
-              "speaker": "zhanghe",
-              "text": "我若向左补防，妙才必从右路抢功。你站得越高，他越不肯等我的旗。"
-            },
-            {
-              "speaker": "xiahouyuan",
-              "text": "等你阵成，黄忠早跑了！速战便是最稳的阵。"
-            },
-            {
-              "speaker": "huangzhong",
-              "text": "不必盼他们和睦。一快一慢，正好替老朽数刀。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "measure-beats",
-              "text": "先测两营更鼓，再布刀阵",
-              "detail": "看破提升，记住半拍",
-              "effects": {
-                "keenEye": true,
-                "fact": "dingjunshan_measured_beats"
-              }
-            },
-            {
-              "id": "leave-antlers",
-              "text": "留一段残破鹿角诱敌抢修",
-              "detail": "曹军起手军资 -200，记住假隙",
-              "effects": {
-                "raid": true,
-                "fact": "dingjunshan_repair_bait"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "dingjunshan-open",
-          "at": "start",
-          "speaker": "xiahouyuan",
-          "when": "multi",
-          "text": "张郃你看住侧翼。至于你——接得住我三次快攻，再谈年迈不年迈。"
-        },
-        {
-          "id": "dingjunshan-change",
-          "at": "hand:2",
-          "speaker": "zhanghe",
-          "when": "multi",
-          "text": "他越催，你越该看我。妙才的刀从正面来，我的阵可从你背后合。"
-        },
-        {
-          "id": "dingjunshan-measured",
-          "at": "hand:3",
-          "speaker": "huangzhong",
-          "when": "fact:dingjunshan_measured_beats",
-          "text": "你量的不是山，是妙才听见快字以后，不肯回头的那半拍。"
-        },
-        {
-          "id": "dingjunshan-bait",
-          "at": "hand:3",
-          "speaker": "huangzhong",
-          "when": "fact:dingjunshan_repair_bait",
-          "text": "你补的不是鹿角，是给妙才一条非快不可的理由。现在，等他冲开门。"
-        },
-        {
-          "id": "dingjunshan-low",
-          "at": "low",
-          "speaker": "huangzhong",
-          "when": "multi",
-          "text": "一个要我快，一个要他慢。老朽只需站在两令之间。"
-        }
-      ],
-      "win": {
-        "text": "夏侯渊冲进那半拍时，张郃的新阵尚未转身。黄忠没有追第二刀，只把刀背在肩上一横，汉中各营便同时改旗。山上的两面鼓，终于只敲出一个更次。",
-        "hook": "汉中的胜利把关羽推上威震华夏的高处。沔水秋雨将至，盛名也会成为最醒目的一面旗。"
-      },
-      "loss": {
-        "text": "夏侯渊的快逼你仓促，张郃的变又封住退路。你等着他们相撞，却先被两种节奏轮流拖走；老将的刀始终没有出鞘。",
-        "clue": "史鉴 · 两人会交替抢速与变阵，等一方行动后再读另一方；重开时看破提升。",
-        "clueFx": "keenEye"
-      }
-    },
-    "shuiyan": {
-      "cast": [
-        "guanyu",
-        "yujin",
-        "pangde"
-      ],
-      "objective": "蓄水而不恃水，在七军改营前锁住高地与退路，把天时变成军令。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "沔水已经漫过旧界石，于禁仍把营垒排得一线不乱。庞德的棺木停在辕门外，漆色比乌云更沉。"
-        },
-        {
-          "speaker": "guanyu",
-          "text": "七军之稳，在令行禁止；七军之险，也在无人敢先违令移营。"
-        },
-        {
-          "speaker": "yujin",
-          "text": "关云长，天时未必助你。营中粮尚可支十日，你若久等，先乱的是樊城外。"
-        },
-        {
-          "speaker": "pangde",
-          "text": "于将军,庞某此来,榇已在营外。你我同守,守的不是魏土,是各自主帅的名字。",
-          "when": "!seen:pangde"
-        },
-        {
-          "speaker": "you",
-          "text": "他要等雨停。我不必让雨更早，只要让他舍不得先动。"
-        }
-      ],
-      "intros": {
-        "yujin": [
-          {
-            "when": "seen:yujin",
-            "bio": "他记得低洼怎样吞掉军阵，这次仍不肯让一次擅动毁去严名。",
-            "quote": "水涨可测。军心，不可先乱。"
-          },
-          {
-            "bio": "泰山之稳，最信军令，也最晚承认军令已经过时。",
-            "quote": "各营听令，无令不得移驻一步。"
-          }
-        ],
-        "pangde": [
-          {
-            "when": "seen:pangde",
-            "bio": "西凉旧部出身的他不信天命,只信手中刀与营外那口棺。",
-            "quote": "再战一场。棺未用,人未还。"
-          },
-          {
-            "when": "page:tongguan:yeshi",
-            "bio": "他记得西凉的散与聚,如今把不服换成了决死的忠。",
-            "quote": "马儿败在西凉。庞某,不会败在这里。"
-          },
-          {
-            "bio": "抬榇而来的降将,每一箭都在替自己的名节还债。",
-            "quote": "榇在此。关公,请全力。"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "dry-order",
-          "node": 1,
-          "title": "罾口川 · 水未先攻",
-          "lines": [
-            {
-              "speaker": "yujin",
-              "text": "你若决堤，我军便上高处；你若久围，樊城先求援。雨再大，也不能替我下令。"
-            },
-            {
-              "speaker": "guanyu",
-              "text": "他最需要的不只是高地，还有一道仍允许他守住体面的军令。"
-            },
-            {
-              "speaker": "you",
-              "text": "那就给他一条看似不必移营的退路。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "old-channel",
-              "text": "留出旧河道，示弱不封",
-              "detail": "看破退路，记住旧河道",
-              "effects": {
-                "keenEye": true,
-                "fact": "shuiyan_old_channel"
-              }
-            },
-            {
-              "id": "highland-stakes",
-              "text": "暗桩封住高地渡口",
-              "detail": "于禁起手军资 -200，记住暗桩",
-              "effects": {
-                "raid": true,
-                "fact": "shuiyan_highland_stakes"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "shuiyan-open",
-          "at": "start",
-          "speaker": "yujin",
-          "text": "军阵未乱，水便只是水。关羽盛名在外，也不过要等天替他交战。"
-        },
-        {
-          "id": "shuiyan-channel",
-          "at": "hand:2",
-          "speaker": "guanyu",
-          "when": "fact:shuiyan_old_channel",
-          "text": "旧河道看似能退，其实最浅。于禁不肯弃营，你便把这条稳路走成绝路。"
-        },
-        {
-          "id": "shuiyan-stakes",
-          "at": "hand:2",
-          "speaker": "guanyu",
-          "when": "fact:shuiyan_highland_stakes",
-          "text": "暗桩已沉。他仍说高地可登，只因还没看见水下那道门已经关了。"
-        },
-        {
-          "id": "shuiyan-no-reply",
-          "at": "hand:3",
-          "speaker": "yujin",
-          "text": "水位过膝，各军仍不得擅动。等等——传令高地，为何不回报？"
-        },
-        {
-          "id": "shuiyan-low",
-          "at": "low",
-          "speaker": "guanyu",
-          "text": "水不是刀。令他不能退的是军令如山，水只负责把山淹了。"
-        }
-      ],
-      "win": {
-        "text": "七军旗帜一面面没入浑水，于禁放下剑时，关羽先命人递去一条干舟，而非绳索。威震华夏的呼声到夜里才起；他却独自回望上游，像已看见盛名之后那条更窄的雪路。",
-        "hook": "于禁已擒，许都震动。吕蒙却在江东脱下战袍、换上白衣，陆逊把一封极恭顺的信送往荆州。"
-      },
-      "loss": {
-        "text": "雨终于来了，你却把涨水当成已经获胜。于禁依令退上高地，七军虽湿未乱；关羽的楼船反而被堵在自己准备的河道里。",
-        "clue": "史鉴 · 水势只压低阵型，不等于封死退路；先夺高地，重开时看破提升。",
-        "clueFx": "keenEye"
-      }
-    },
-    "maicheng": {
-      "cast": [
-        "guanyu",
-        "lvmeng",
-        "luxun",
-        "guanping",
-        "zhoucang",
-        "panzhang"
-      ],
-      "objective": "拆穿白衣与卑辞共同织成的旧我之局，让关羽不以华容的旧账决定麦城的活路。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "麦城的雪盖住烽火台，吕蒙的白衣与陆逊的绶带一前一后入帐。关羽案上，摆着当年华容留下的一截刀穗。"
-        },
-        {
-          "speaker": "guanyu",
-          "when": "choice:huarong:yeshiB",
-          "text": "那日刀未落，曹军今日在北按兵。关某放下的义，原来会沿地图回来要账。"
-        },
-        {
-          "speaker": "guanyu",
-          "when": "choice:huarong:yeshi",
-          "text": "那日刀落，北方诸侯各怀心思，求援的信到临沮便没了下文。恩义清了，路却未宽。"
-        },
-        {
-          "speaker": "guanping",
-          "text": "父亲,平儿探过路了:北面小道可走,唯临沮一带林密,恐有吴人设网。"
-        },
-        {
-          "speaker": "zhoucang",
-          "text": "俺的腿快过他们的马!将军上马,俺扛刀开路——谁挡,俺踩谁!"
-        },
-        {
-          "speaker": "lvmeng",
-          "text": "云长，你最盛时水淹七军；可盟友与旧敌，都从那场水里学会了怎样对付你。"
-        }
-      ],
-      "intros": {
-        "panzhang": [
-          {
-            "when": "seen:panzhang",
-            "bio": "他惦记的从来不只是城,还有城里那口八十二斤的刀。",
-            "quote": "青龙刀……这次,该换个主人了。"
-          },
-          {
-            "bio": "设网的人先算的不是兵,是走投无路者的习惯。",
-            "quote": "雪夜赶路的人,总爱挑最近的那条。"
-          }
-        ],
-        "lvmeng": [
-          {
-            "when": "choice:huarong:yeshiB",
-            "bio": "他知道你曾放曹操北归，便把这段旧义也算进了求援路。",
-            "quote": "你能纵虎，能否走过我留给义气的路？"
-          },
-          {
-            "when": "choice:huarong:yeshi",
-            "bio": "他记得华容刀落，不再指望旧恩能拖住你的刀。",
-            "quote": "你既杀过曹操，便该知道我无旧恩可还。"
-          },
-          {
-            "bio": "白衣之下不是商贾，是一个把关羽读得太熟的人。",
-            "quote": "士别三日。云长，可还认得吕蒙？"
-          }
-        ],
-        "luxun": [
-          {
-            "when": "page:sanqi:yeshi",
-            "bio": "公瑾因你而活，他却要证明救命之恩改变不了荆州之争。",
-            "quote": "你救得公瑾，未必救得荆州。"
-          },
-          {
-            "bio": "他把恭顺写得越低，麦城四周的网便收得越慢、越紧。",
-            "quote": "后生陆逊，特来向威震华夏者请教。"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "old-self-road",
-          "node": 1,
-          "title": "临沮 · 雪路旧账",
-          "lines": [
-            {
-              "speaker": "lvmeng",
-              "text": "我们不必猜关羽会不会降。只要算出他还相信谁，麦城便没有第二扇门。"
-            },
-            {
-              "speaker": "guanyu",
-              "text": "荆州之失，不在一城一将。是每个人都把旧日的我，当成了今日的路标。"
-            },
-            {
-              "speaker": "lvmeng",
-              "when": "choice:huarong:yeshiB",
-              "text": "华容刀未落，曹操便欠你一命。可他按兵，是要还情，还是要等吴蜀两伤？"
-            },
-            {
-              "speaker": "luxun",
-              "when": "choice:huarong:yeshi",
-              "text": "华容刀落，北方自顾不暇。你烧掉一条外援，也烧掉了敌人对你的旧判断。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "split-letters",
-              "text": "把求援信分送北、西两路",
-              "detail": "军资 +150，吕蒙军资 +100，记住分信",
-              "effects": {
-                "chips": 150,
-                "oppChips": 100,
-                "fact": "maicheng_split_letters"
-              }
-            },
-            {
-              "id": "burn-letters",
-              "text": "烧掉旧信，只带精锐突围",
-              "detail": "看破提升，记住焚信",
-              "effects": {
-                "keenEye": true,
-                "fact": "maicheng_burn_letters"
-              }
-            },
-            {
-              "id": "false-beacons",
-              "text": "重燃烽燧，假作仍在坚守",
-              "detail": "吴军起手军资 -200，记住空烽",
-              "effects": {
-                "raid": true,
-                "fact": "maicheng_false_beacons"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "maicheng-open",
-          "at": "start",
-          "speaker": "lvmeng",
-          "when": "multi",
-          "text": "陆逊让你以为还有时间，我负责让时间走完。云长，该换一种看法了。"
-        },
-        {
-          "id": "maicheng-letters",
-          "at": "hand:2",
-          "speaker": "luxun",
-          "when": "multi",
-          "text": "你每次求援，我都先替收信人想一遍。等你想通，路已成了我的阵。"
-        },
-        {
-          "id": "maicheng-spared",
-          "at": "hand:3",
-          "speaker": "guanyu",
-          "when": "choice:huarong:yeshiB",
-          "text": "华容那一放，不是叫曹操今日替我活。关某的义，从不向北国收利。"
-        },
-        {
-          "id": "maicheng-slain",
-          "at": "hand:3",
-          "speaker": "guanyu",
-          "when": "choice:huarong:yeshi",
-          "text": "华容那一落，关某未曾后悔。今日才懂，杀一人不能杀尽天下的算计。"
-        },
-        {
-          "id": "maicheng-zhouyu",
-          "at": "hand:4",
-          "speaker": "lvmeng",
-          "when": "page:sanqi:yeshi",
-          "text": "你让公瑾多活十年，却没让江东忘掉荆州。他欠你一命，我不能替他还一城。"
-        },
-        {
-          "id": "maicheng-low-split",
-          "at": "low",
-          "speaker": "you",
-          "when": "fact:maicheng_split_letters",
-          "text": "分信不是等谁来救，是让吴军不知该堵哪路。援书未至，疑兵已经出城。"
-        },
-        {
-          "id": "maicheng-low-burn",
-          "at": "low",
-          "speaker": "you",
-          "when": "fact:maicheng_burn_letters",
-          "text": "旧信烧尽，吕蒙只能猜今日的关羽。突围，也要先让旧我消失。"
-        },
-        {
-          "id": "maicheng-low-beacon",
-          "at": "low",
-          "speaker": "you",
-          "when": "fact:maicheng_false_beacons",
-          "text": "烽火仍亮，吕蒙回头望城的一瞬，雪下小路才不是他算好的那页。"
-        }
-      ],
-      "win": {
-        "text": "麦城西门在雪停前打开，关羽带残军突出临沮。华容那一刀，无论落过或未落，都没有替今日开门；他把旧刀穗留在雪中，活着的人不再拿旧账抵新命。荆州尚有来路，季汉也尚有一局。",
-        "hook": "荆州未失，复仇之名却未必会散。夷陵的营火与白帝城的托孤，都在下一卷等你改写。"
-      },
-      "loss": {
-        "text": "吕蒙算你的旧义，陆逊算你的新断。一个封住求援，一个等你犹豫；雪停时，麦城仍只记住了那个不肯改变的关羽。",
-        "clue": "史鉴 · 吕蒙与陆逊会分别利用旧恩与退路；重开时看破提升，华容的选择仍会留下不同劝谏。",
-        "clueFx": "keenEye"
-      }
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "nanjun": {
       "cast": [
@@ -3562,46 +2899,46 @@ export default {
         "ganning",
         "lusu"
       ],
-      "objective": "在江陵城下与曹仁对读,让周瑜的箭疮不必第二次裂开。",
+      "objective": "Read Cao Ren across the walls of Jiangling, and ensure Zhou Yu's arrow wound does not burst open a second time.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "赤壁的火光才熄,南郡的旗还在曹仁手里。周瑜披甲临江,箭疮尚未收口,曹仁却在城头摆开了嘲讽的鼓。"
+          "text": "The fires of Red Cliffs had barely cooled, yet the banner of Nanjun remained firmly in Cao Ren's grip. Zhou Yu stood by the river in full armor, his arrow wound unhealed, while Cao Ren beat mocking war drums atop the ramparts."
         },
         {
           "speaker": "zhouyu",
-          "text": "曹子孝守城,十年不倦。要取南郡,先要赢他不肯出城的那颗心。"
+          "text": "Cao Zixiao has defended cities for ten tireless years. To take Nanjun, one must first overcome his stubborn resolve never to step beyond the gates."
         },
         {
           "speaker": "caoren",
-          "text": "都督箭疮未愈吧?本将这面鼓,专为你擂。你若动气,城门便为你开。",
+          "text": "The Commander's arrow wound has not healed, has it? This drum of mine beats solely for you! Lose your temper, and these gates will swing open just for you!",
           "when": "!seen:caoren"
         },
         {
           "speaker": "ganning",
-          "text": "都督,把夷陵交给兴霸。铃响之处,便是吴军又进一步。"
+          "text": "Commander, leave Yiling to Xingba! Wherever our bells chime, Wu's army advances another step!"
         },
         {
           "speaker": "chengpu",
-          "text": "公瑾,老夫陪你压阵。箭疮这东西,最怕的不是箭,是气。"
+          "text": "Gongjin, this old soldier stands beside you to anchor the line. With an arrow wound, the deadliest foe is not the iron tip, but your own fury."
         }
       ],
       "intros": {
         "caoren": [
           {
             "when": "seen:caoren",
-            "bio": "他记得你怎样替周瑜挡下怒气,这次连鼓都懒得擂了。",
-            "quote": "又来?这次我连激你的兴致都省了。"
+            "bio": "Remembering how you shielded Zhou Yu from rage, this time he does not even bother beating the drum.",
+            "quote": "Back again? This time I won't even waste the energy trying to provoke you."
           },
           {
-            "bio": "他把守城写成一门手艺:不赌气,不侥幸,不心疼一砖一瓦。",
-            "quote": "江陵的砖,一块一块都数过。来。"
+            "bio": "He turned defending fortresses into a master craft: never acting on spite, never gambling on chance, and never mourning a single brick.",
+            "quote": "Every single brick of Jiangling has been counted. Come, if you dare."
           }
         ],
         "caohong": [
           {
-            "bio": "他替兄长守夷陵道,信奉的道理只有一条:主公的退路比自己的命长。",
-            "quote": "这道口,姓曹。想过?留下买路的东西。"
+            "bio": "Holding the Yiling path for his brother, he believes in only one truth: his lord's retreat must outlast his own life.",
+            "quote": "This pass belongs to the Cao clan! If you wish to cross, leave your toll behind!"
           }
         ]
       },
@@ -3609,26 +2946,26 @@ export default {
         {
           "id": "outside-mock",
           "node": 1,
-          "title": "江陵 · 城下之鼓",
+          "title": "Jiangling · Drums Beneath the Walls",
           "lines": [
             {
               "speaker": "zhouyu",
-              "text": "他每日擂鼓骂我箭疮,要我拔营决战。我若应战,疮裂;我若不应,军心馁。"
+              "text": "Daily he beats his drums to mock my wound, daring me to march out for decisive battle. If I accept, the wound ruptures; if I decline, morale collapses."
             },
             {
               "speaker": "lusu",
-              "text": "都督不如把他擂给你的每一面鼓,都记成他出城的日子。"
+              "text": "Why not let the Commander count every drumbeat directed at you as the day he must finally march out?"
             },
             {
               "speaker": "you",
-              "text": "鼓声是他的表,不是你的。让鼓替你数他的换防。"
+              "text": "The drum rhythm belongs to his clock, not yours. Let his drums count his own garrison shifts for you."
             }
           ],
           "choices": [
             {
               "id": "count-drums",
-              "text": "记录鼓点与垛口换防",
-              "detail": "本回看破提升,记住换防之隙",
+              "text": "Chart drum cadences and battlement watch shifts",
+              "detail": "Insight improved this chapter; remember shift intervals",
               "effects": {
                 "keenEye": true,
                 "fact": "nanjun_count"
@@ -3636,8 +2973,8 @@ export default {
             },
             {
               "id": "yiling-feint",
-              "text": "佯攻夷陵,分其兵势",
-              "detail": "曹军起手军资 -200,记住分兵",
+              "text": "Feign an assault on Yiling to split their force",
+              "detail": "Cao army starting war chest -200; remember divided force",
               "effects": {
                 "raid": true,
                 "fact": "nanjun_feint"
@@ -3651,37 +2988,169 @@ export default {
           "id": "nanjun-open",
           "at": "start",
           "speaker": "caoren",
-          "text": "周郎!箭疮好些了吗?本将的鼓,今日擂得更响!"
+          "text": "Master Zhou! Has your arrow wound improved? My drums beat even louder today!"
         },
         {
           "id": "nanjun-anger",
           "at": "hand:2",
           "speaker": "zhouyu",
-          "text": "他把鼓擂给我,我便把怒气记在他账上。等他换了第三班守军——"
+          "text": "He beats his drum for me, so I tally my fury onto his bill. When his third shift of guards rotates—"
         },
         {
           "id": "nanjun-gap",
           "at": "hand:3",
           "speaker": "ganning",
-          "text": "夷陵铃响了!曹洪分兵了,江陵的墙薄了一层!",
-          "when": "fact:nanjun_feint"
+          "when": "fact:nanjun_feint",
+          "text": "The bells of Yiling are ringing! Cao Hong has split his troops, and Jiangling's walls have grown one layer thinner!"
         },
         {
           "id": "nanjun-low",
           "at": "low",
           "speaker": "chengpu",
-          "text": "都督的脸白了。老夫替你压住阵脚——这一阵,赢了再养伤!"
+          "text": "The Commander's face has gone pale. This old soldier holds the line for you—win this battle before tending to your wound!"
         }
       ],
       "win": {
-        "text": "曹仁弃城西走的那夜,周瑜按着箭伤登上了江陵城头。他没有接受欢呼,只让人把城头那面嘲弄过他的鼓抬来,亲手敲了三下,又送还曹仁:\"替我谢谢它,守住了我的耐心。\"南郡,终于姓孙。",
-        "hook": "南郡到手,荆州的账才翻开了第一页。而北方的马蹄声,已带着一腔仇恨碾向潼关。"
+        "text": "On the night Cao Ren abandoned the citadel and fled west, Zhou Yu pressed his hand against his arrow wound and ascended Jiangling's ramparts. Refusing all cheers, he ordered brought forward the drum that had mocked him from the walls, struck it three times with his own hand, and sent it back to Cao Ren: \"Give it my thanks—it preserved my patience.\" Nanjun at last belonged to the House of Sun.",
+        "hook": "Nanjun was secured, yet the account book of Jingzhou had only turned its very first page. In the north, iron hooves charged toward Tong Pass with unquenchable vengeance."
       },
       "loss": {
-        "text": "鼓声第三次响起时,周瑜提枪上马,箭疮在甲缝里裂开。你扶住他的一瞬,江陵城门轰然大开——曹仁等的正是这一刻。",
-        "clue": "史鉴 · 曹仁的鼓是给你情绪上的枷。重开后他的假破绽减少;数他的换防,别数他的挑衅。",
+        "text": "When the drum echoed for the third time, Zhou Yu leaped into his saddle spear in hand, the wound tearing open through his armor plates. The moment you rushed to support him, Jiangling's iron gates groaned wide—the exact opportunity Cao Ren had awaited all along.",
+        "clue": "Historical Note: Cao Ren's drums are emotional shackles; restart reduces his feigned flaws. Count his garrison shifts, not his provocations.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "sanqi": {
+      "cast": [
+        "zhouyu",
+        "zhuge",
+        "lusu",
+        "liubei"
+      ],
+      "objective": "Refrain from using a third provocation to kill; instead, let Zhou Yu perceive his own path forward within his most unbearable hand.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "At Baqiu the herbal brew had boiled black, yet Zhou Yu pressed the third challenge letter beneath his zither. The first two insults had made him bleed; the third provoked only a hollow smile."
+        },
+        {
+          "speaker": "zhouyu",
+          "text": "Sharing the board at Red Cliffs, you turned the wind into a fuse. What do you intend to ignite my arrow wound with today?"
+        },
+        {
+          "speaker": "lusu",
+          "text": "Kongming's letter contained only four words: 'Why must this be?' After reading it, Gongjin wrote your name three times in silence."
+        },
+        {
+          "speaker": "zhuge",
+          "text": "If the goal were merely to defeat him, one more taunt would suffice. But if we wish him to live, we must grant him one departure without losing dignity."
+        }
+      ],
+      "intros": {
+        "zhouyu": [
+          {
+            "when": "page:chibi:yeshi",
+            "bio": "The fire of Red Cliffs triumphed over Cao Cao, but also set ablaze his refusal to stand beneath any other mortal under heaven.",
+            "quote": "On the river you seized that singular moment. Here at Baqiu, do you wait for me to unravel first?"
+          },
+          {
+            "bio": "His arrow wound unhealed, he hears every hesitation as an out-of-tune chord.",
+            "quote": "The third letter has arrived? Read it! Let us see how many more times I can be provoked!"
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "third-letter",
+          "node": 1,
+          "title": "Chaisang · The Third Letter",
+          "lines": [
+            {
+              "speaker": "lusu",
+              "text": "He is convinced that every step you take is laughing at him. If you send medicine, he suspects poison; if you withdraw, he searches for ambushes."
+            },
+            {
+              "speaker": "zhuge",
+              "text": "Therefore, in this third letter, I offer not a single word of argument. I wrote only how he could have defeated me at Red Cliffs."
+            },
+            {
+              "speaker": "you",
+              "text": "Returning the path of victory to an opponent is far harder than heaping accusations upon him."
+            }
+          ],
+          "choices": [
+            {
+              "id": "write-way-out",
+              "text": "Inscribe his true winning lines at the letter's end",
+              "detail": "Insight improved; remember the third solution",
+              "effects": {
+                "keenEye": true,
+                "fact": "sanqi_way_out"
+              }
+            },
+            {
+              "id": "remove-taunts",
+              "text": "Ask Lu Su to strip away every provocative phrase",
+              "detail": "Zhou Yu starting morale -1; remember forbearance",
+              "effects": {
+                "sow": 1,
+                "fact": "sanqi_no_taunt"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "sanqi-open",
+          "at": "start",
+          "speaker": "zhouyu",
+          "text": "You come again bearing Kongming's letter. Speak—which fortress is it this time, and which repetition of 'Since Heaven gave birth to Yu'?"
+        },
+        {
+          "id": "sanqi-way-out",
+          "at": "hand:2",
+          "speaker": "zhuge",
+          "when": "fact:sanqi_way_out",
+          "text": "Look at that hand where he discarded his best cards. He was not yielding to you; he was compelling himself to admit another round remains."
+        },
+        {
+          "id": "sanqi-no-taunt",
+          "at": "hand:2",
+          "speaker": "lusu",
+          "when": "fact:sanqi_no_taunt",
+          "text": "He waits for your taunt, so simply state your cards. When no one catches his fury, the fire can only burn back upon itself."
+        },
+        {
+          "id": "sanqi-silence",
+          "at": "hand:3",
+          "speaker": "zhouyu",
+          "text": "Why do you not laugh? If I have nowhere left to direct my wrath, do I become nothing more than a snapped string upon your zither?"
+        },
+        {
+          "id": "sanqi-low",
+          "at": "low",
+          "speaker": "you",
+          "text": "The third anger does not need to be an insult. Show him that defeat does not have to become a laughingstock."
+        }
+      ],
+      "win": {
+        "text": "Zhou Yu did not cry out 'Since Heaven gave birth to Yu' again. He placed the letter detailing his winning lines upon his zither, plucked a single discordant note, and chuckled softly to himself. Only upon hearing that laugh did Lu Su dare beckon the physician into the tent.",
+        "hook": "Master Zhou departs Baqiu for a time, yet the mountain path into Shu closes around Pang Tong. At the name 'Fallen Phoenix Slope,' Zhuge Liang stared in brooding contemplation for a long time."
+      },
+      "loss": {
+        "text": "You treated his loss of composure as the only gateway to victory; the third provocation succeeded, but closed the door forever on all future matches. The zither did not break, yet the listeners had dispersed into the mist.",
+        "clue": "Historical Note: Zhou Yu waits for your mockery to launch a counterstrike; absorb his fury with restraint. Restart with improved insight.",
+        "clueFx": "keenEye"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "tongguan": {
       "cast": [
@@ -3691,27 +3160,27 @@ export default {
         "jiaxu",
         "xuhuang"
       ],
-      "objective": "在西凉铁骑的怒火里护住曹操,也让马超的仇有一个说得出口的去处。",
+      "objective": "Shield Cao Cao amidst the fury of the Xiliang iron cavalry, and give Ma Chao's vengeance an outlet that can bear the light of day.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "潼关的风卷着沙,马超的白袍在阵前来回,像一杆不肯倒的旗。曹操的中军帐里,贾诩慢慢研着墨。"
+          "text": "The wind of Tong Pass swirled with grit. Ma Chao's white robe wheeled before the lines like an unyielding banner. Within Cao Cao's central pavilion, Jia Xu slowly ground ink."
         },
         {
           "speaker": "machao",
-          "text": "曹瞒!杀父之仇,欺天之恨!今日不把你剁在潼关,马超誓不为人!"
+          "text": "Cao Ah-man! Murderer of my father, usurper of Heaven! If I do not hack you to pieces at Tong Pass today, Ma Chao is no true man!"
         },
         {
           "speaker": "caocao",
-          "text": "马儿不死,孤无葬地也。诸公,谁替孤挡住这阵风?"
+          "text": "If this horse-cub does not die, I shall have no ground left for my burial! Gentlemen, who will turn aside this whirlwind for me?"
         },
         {
           "speaker": "xuchu",
-          "text": "主公下帐,退后!虎痴在此——马儿,过来!"
+          "text": "My Lord, step down and fall back! The Tiger Fool is here—come, horse-cub, face me!"
         },
         {
           "speaker": "jiaxu",
-          "text": "明公莫慌。西凉人多,心却不齐。文和的墨,比虎痴的刀慢,却更毒。",
+          "text": "Do not panic, My Lord. Xiliang has numbers, but their hearts are divided. Wenhe's ink moves slower than Xu Chu's blade, yet cuts far deeper.",
           "when": "!seen:jiaxu"
         }
       ],
@@ -3719,28 +3188,28 @@ export default {
         "machao": [
           {
             "when": "seen:machao",
-            "bio": "他记得渭水那夜的冰与火,恨意未减,枪却更沉了。",
-            "quote": "又来挡我?先问过我手里的枪!"
+            "bio": "Remembering the ice and fire of the Wei River, his hatred has not cooled, and his spear weighs heavier than ever.",
+            "quote": "Standing in my way again? Ask my spear first!"
           },
           {
             "when": "page:jiameng:yeshi",
-            "bio": "葭萌的火盆边他曾放下过枪,此刻枪尖却在微微发抖。",
-            "quote": "你见过我放下枪的样子……别再提!"
+            "bio": "Beside the brazier at Jiameng Pass he once laid down his spear, yet now the steel tip quivers faintly.",
+            "quote": "You saw me lay down my weapon... speak of it no more!"
           },
           {
-            "bio": "锦袍银枪,半生都在替死去的父叔讨一个说法。",
-            "quote": "父债子偿,天经地义。让开!"
+            "bio": "In brocade robe and silver spear, he spent half his life demanding justice for his slaughtered kin.",
+            "quote": "A son avenges his father—it is the law of Heaven and Earth. Out of my way!"
           }
         ],
         "xuchu": [
           {
             "when": "seen:xuchu",
-            "bio": "渭水之战让他记住了你,这次把腰间的绳又紧了三圈。",
-            "quote": "再来!俺的力气还没用完!"
+            "bio": "The Battle of the Wei River made him remember you, and this time he cinches the cord at his waist three turns tighter.",
+            "quote": "Come again! My strength hasn't even begun to run dry!"
           },
           {
-            "bio": "他不懂什么离间计,只认一个理:主公在身后,就不能退。",
-            "quote": "马儿的枪快?俺的命更硬!"
+            "bio": "Blind to stratagems of division, he knows only one iron rule: with his lord behind him, retreat is unthinkable.",
+            "quote": "The horse-cub's spear is swift? My life is tougher!"
           }
         ]
       },
@@ -3748,26 +3217,26 @@ export default {
         {
           "id": "weishui-ice",
           "node": 1,
-          "title": "渭南 · 冰城疑云",
+          "title": "South of the Wei · Clouds Over the Ice Fortress",
           "lines": [
             {
               "speaker": "xuhuang",
-              "text": "一夜寒风,渭水结出了冰沙。若连夜筑城,天明便有一座冰营——马超的骑兵,冲不动冰。"
+              "text": "A night of bitter wind turned the Wei River into slush. If we pour water through the night, morning will bring an ice fortress—Ma Chao's cavalry cannot pierce solid ice."
             },
             {
               "speaker": "jiaxu",
-              "text": "冰城只能挡马,挡不住恨。要拆西凉,须先拆韩遂与马超的情分——一封信,够了。"
+              "text": "An ice wall blocks horses, but cannot block hatred. To dismantle Xiliang, we must sever the bond between Han Sui and Ma Chao—a single letter suffices."
             },
             {
               "speaker": "you",
-              "text": "让他先把怒气全押上来,再让他看见信上的墨点。"
+              "text": "Let him wager all his fury first, then reveal the blotted ink upon the letter."
             }
           ],
           "choices": [
             {
               "id": "ice-wall",
-              "text": "连夜筑冰城,以静制动",
-              "detail": "本回看破提升,记住冰城之利",
+              "text": "Build the ice fortress overnight to master motion through stillness",
+              "detail": "Insight improved this chapter; remember advantage of the ice wall",
               "effects": {
                 "keenEye": true,
                 "fact": "tongguan_ice"
@@ -3775,8 +3244,8 @@ export default {
             },
             {
               "id": "letter-smudge",
-              "text": "在离间信上留下涂改的墨点",
-              "detail": "西凉军起手士气 -1,记住墨点之疑",
+              "text": "Smudge black ink blots across the forged letter of discord",
+              "detail": "Xiliang cavalry starting morale -1; remember suspicion of the ink blot",
               "effects": {
                 "sow": 1,
                 "fact": "tongguan_smudge"
@@ -3790,38 +3259,42 @@ export default {
           "id": "tongguan-open",
           "at": "start",
           "speaker": "machao",
-          "text": "曹瞒!你修的冰城,挡得住马,挡不住仇!"
+          "text": "Cao Ah-man! Your ice wall may stop horses, but it can never stop vengeance!"
         },
         {
           "id": "tongguan-bare",
           "at": "hand:2",
           "speaker": "xuchu",
-          "text": "马儿,认得俺吗?虎侯今天,就站你面前!",
-          "when": "multi"
+          "when": "multi",
+          "text": "Horse-cub, do you know me? The Tiger Marquis stands right before you today!"
         },
         {
           "id": "tongguan-letter",
           "at": "hand:3",
           "speaker": "narrator",
-          "text": "韩遂捧着那封信,手指停在墨点上。马超瞥见的那一眼,比曹操的千军更冷。",
-          "when": "fact:tongguan_smudge"
+          "when": "fact:tongguan_smudge",
+          "text": "Han Sui held the letter, his fingers frozen upon the ink blots. The sidelong glance Ma Chao cast was colder than Cao Cao's entire army."
         },
         {
           "id": "tongguan-low",
           "at": "low",
           "speaker": "caocao",
-          "text": "马儿,孤知你不服。可你父之死——你真敢把账全算在孤一人身上吗?"
+          "text": "Horse-cub, I know you refuse to bow. But your father's death—do you truly dare lay the entire account at my feet alone?"
         }
       ],
       "win": {
-        "text": "渭南的风停时,西凉的营自己烧了起来——不是曹操的火,是那封信上的墨点。马超单骑立在残阵之前,枪指曹操,久久没有落下,最终调头向西。曹操抚着胡须轻声说:\"孤赢的不是他,是他终于开始想,那笔账到底该找谁算。\"",
-        "hook": "西凉散了,仇恨却还在寻找一个骑手。它会在葭萌关的火盆边,再等马超三年。"
+        "text": "When the wind over the southern Wei died down, the Xiliang encampment burned with its own fires—ignited not by Cao Cao's torches, but by the ink blots upon that letter. Ma Chao stood alone before the broken lines, spear leveled at Cao Cao; after a long stillness, he lowered his weapon and turned westward. Cao Cao stroked his beard and whispered: \"I did not conquer him; he simply began to wonder to whom that blood debt truly belongs.\"",
+        "hook": "Xiliang dissolved, yet vengeance still sought a rider. It would wait three more years for Ma Chao beside the charcoal fires of Jiameng Pass."
       },
       "loss": {
-        "text": "马超的怒火没有等你的离间计生效。铁骑三冲,冰城四裂,曹操割须弃袍的那一刻,你在乱军中只看见了虎痴的背影。",
-        "clue": "史鉴 · 马超的强在于怒气换筹码。重开后他的假破绽减少;先用冰城耗,再用墨点疑。",
+        "text": "Ma Chao's volcanic rage did not wait for your discord to take root. With three cavalry charges the ice fortress shattered, and as Cao Cao cut his beard and shed his robe, you caught sight only of the Tiger Fool's bloodied back in the chaos.",
+        "clue": "Historical Note: Ma Chao's might lies in trading raw fury for chips; restart reduces his feigned flaws. Wear him down with the ice wall first, then sow doubt with the ink blot.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "ruxu": {
       "cast": [
@@ -3831,57 +3304,57 @@ export default {
         "lingtong",
         "caocao"
       ],
-      "objective": "护住百骑劫营的每一声铃响,让曹操的四十万大军自乱一夜。",
+      "objective": "Shield every chime of the hundred riders' bells during the night raid, throwing Cao Cao's host of four hundred thousand into chaos from within.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "曹操四十万大军压向濡须,孙权帐中鸦雀无声。甘宁把一百枚铜铃摆上案,一枚一枚,摆成一条线。"
+          "text": "Cao Cao's four hundred thousand troops bore down upon Ruxu, plunging Sun Quan's pavilion into utter silence. Gan Ning laid one hundred bronze bells upon the table, aligning them one by one into an unbroken line."
         },
         {
           "speaker": "sunquan",
-          "text": "孟德有张辽,孤有兴霸。可一百骑进四十万人的营,兴霸,孤要你活着回来。"
+          "text": "Mengde boasts Zhang Liao; I have Xingba! Yet to enter a camp of four hundred thousand with only a hundred horsemen—Xingba, I demand you return alive."
         },
         {
           "speaker": "ganning",
-          "text": "主公放心。铃响则进,铃停则回——兴霸带的不是一百个送死的,是一百个来记账的!"
+          "text": "Rest easy, My Lord! Advance while the bells ring, retreat when the bells cease—Xingba leads not one hundred sacrifices, but one hundred warriors who come to settle the score!"
         },
         {
           "speaker": "lingtong",
-          "text": "甘宁!你又抢头阵!我父亲的旧部,还没死绝!",
+          "text": "Gan Ning! Snatching the vanguard again! My father's veterans have not all perished yet!",
           "when": "!seen:ganning"
         },
         {
           "speaker": "zhoutai",
-          "text": "都尉少说一句。这一百骑里,有公绩你父亲的老兄弟。"
+          "text": "Hold your tongue, Commandant. Among these hundred riders are comrades who fought beside your father."
         }
       ],
       "intros": {
         "caocao": [
           {
             "when": "page:caochuan:yeshi",
-            "bio": "草船的雾与今夜的铃,让他把江东的胆量重新记了一账。",
-            "quote": "借了孤的箭,又来借孤的营。好胆!"
+            "bio": "The mist of the thatched boats and the bells of tonight make him recalibrate Jiangdong's sheer audacity once more.",
+            "quote": "Having borrowed my arrows, you come to borrow my encampment? What insolence!"
           },
           {
             "when": "seen:caocao",
-            "bio": "他记得你每次都借他的多疑,这次索性把疑心布满四十万营。",
-            "quote": "孤的营,今夜谁碰谁死——问题是谁来碰?"
+            "bio": "Remembering how you exploit his suspicious nature, this time he blankets his entire army of four hundred thousand with paranoia.",
+            "quote": "Whoever touches my camp tonight dies—the question is, who dares come?"
           },
           {
-            "bio": "四十万人的营火,把江面照成了白昼,也把每一条影子都放大成敌。",
-            "quote": "江东鼠辈,只会借雾借火。正面,孤等他们。"
+            "bio": "Campfires of four hundred thousand turn the river surface into day, yet amplify every shifting shadow into an approaching army.",
+            "quote": "Rats of Jiangdong only know how to borrow fog and fire. Face to face, I await them."
           }
         ],
         "xuhuang": [
           {
-            "bio": "他布的阵讲究一个「整」字,连劫营者都会被整阵逼回原路。",
-            "quote": "来劫营?先过我这排整齐的拒马。"
+            "bio": "His formations epitomize discipline, capable of forcing even sudden night raiders back along their own tracks.",
+            "quote": "Raiding our camp? Cross my barricades first!"
           }
         ],
         "lejin": [
           {
-            "bio": "文谦的名字取「进」,人也一样——前锋永远比军令快一步。",
-            "quote": "先锋营,先登!江东人,尝尝乐进的刀!"
+            "bio": "His name Wenqian means \"advance,\" and his deeds match—the vanguard commander whose blade always outpaces the military order.",
+            "quote": "Vanguard camp, scale the works! Men of Jiangdong, taste Yue Jin's steel!"
           }
         ]
       },
@@ -3889,26 +3362,26 @@ export default {
         {
           "id": "hundred-bells",
           "node": 1,
-          "title": "横江 · 铃响为号",
+          "title": "Hengjiang · The Bell Signal",
           "lines": [
             {
               "speaker": "ganning",
-              "text": "每人一根白鹅翎,衔在嘴里。进营不杀人,只砍旗、放火、擂他们的鼓。"
+              "text": "Each man clenches a white goose feather in his teeth. Enter the camp not to slaughter, but to topple banners, set fires, and beat their own war drums!"
             },
             {
               "speaker": "zhoutai",
-              "text": "幼平守坞门。铃响第二遍,无论回来几个,坞门都开。"
+              "text": "Youping will guard the dock gates. At the second chime of bells, however many return, the gates swing open!"
             },
             {
               "speaker": "you",
-              "text": "四十万人的营,最怕的不是一百骑,是「不知来了多少骑」。"
+              "text": "What a camp of four hundred thousand fears most is not a hundred horsemen, but not knowing how many riders have breached the perimeter."
             }
           ],
           "choices": [
             {
               "id": "feather-quiet",
-              "text": "衔枚裹铃,先静后炸",
-              "detail": "本回看破提升,记住静默之利",
+              "text": "Gag the mounts and muffle the bells: silence before the tempest",
+              "detail": "Insight improved this chapter; remember the virtue of silence",
               "effects": {
                 "keenEye": true,
                 "fact": "ruxu_quiet"
@@ -3916,8 +3389,8 @@ export default {
             },
             {
               "id": "three-fires",
-              "text": "三处举火,令其自相惊扰",
-              "detail": "曹军起手军资 -200,记住火号",
+              "text": "Ignite fires in three separate sectors to sow mutual panic",
+              "detail": "Cao army starting war chest -200; remember fire signal",
               "effects": {
                 "raid": true,
                 "fact": "ruxu_fires"
@@ -3931,37 +3404,176 @@ export default {
           "id": "ruxu-open",
           "at": "start",
           "speaker": "caocao",
-          "text": "江上静得反常。传令各营:今夜有警,先守,后动,别中了疑兵!"
+          "text": "The river is unnaturally still. Order all sectors: if alarms sound tonight, hold position first before moving—do not fall for deception!"
         },
         {
           "id": "ruxu-bells",
           "at": "hand:2",
           "speaker": "ganning",
-          "text": "铃——响!兄弟们,让曹营自己踩自己!"
+          "text": "Bells—chime! Brothers, make Cao's camp trample itself!"
         },
         {
           "id": "ruxu-chaos",
           "at": "hand:3",
           "speaker": "narrator",
-          "text": "三处火起,四十万营帐的鼓互相擂响了。没有一支箭知道该射向哪里。",
-          "when": "fact:ruxu_fires"
+          "when": "fact:ruxu_fires",
+          "text": "Fires erupted in three sectors, and the drums across four hundred thousand tents hammered in mutual alarm. Not a single arrow knew where it should fly."
         },
         {
           "id": "ruxu-low",
           "at": "low",
           "speaker": "sunquan",
-          "text": "铃停了……数一数,回来几个?一个、两个……都在。都在就好。"
+          "text": "The bells have stopped... Count how many have returned. One, two... all here. All here—that is all that matters."
         }
       ],
       "win": {
-        "text": "天明时清点,一百骑连人带铃,一枚不少。曹操望着一夜自相踩踏的营盘,对左右说:\"孙权治军如此,孤不可急图也。\"遂班师。孙权亲自替甘宁斟酒:\"孟德有张辽,孤有兴霸——足矣。\"",
-        "hook": "濡须的铃声让合肥的名字更加滚烫。张辽在那里等着,把「吴」字写成江东儿郎的梦魇。"
+        "text": "At daybreak the headcount was taken: all one hundred riders and all one hundred bells were accounted for, not one missing. Surveying the shattered campgrounds trampled by his own panicked men, Cao Cao told his generals: \"Sun Quan governs his army with such discipline; I cannot take him in haste.\" With that, he ordered the withdrawal. Sun Quan poured wine for Gan Ning with his own hands: \"Mengde has Zhang Liao, but I have Xingba—it is more than enough.\"",
+        "hook": "The chimes of Ruxu made the name of Hefei burn even hotter. Zhang Liao waited there, ready to inscribe the character 'Wu' as the eternal nightmare of Jiangdong's youth."
       },
       "loss": {
-        "text": "铃响得太早,四十万营从慌乱里醒过来。回来的铃,只有七十枚。甘宁把缺了三十枚的铃串收进怀里,从此再没提过这一夜。",
-        "clue": "史鉴 · 百骑劫营赢在「乱其耳目」而非「战其兵锋」。重开时先静后炸;曹操的多疑是你唯一的内应。",
+        "text": "The bells rang too early, and the camp of four hundred thousand woke from confusion into grim order. Only seventy bells returned. Gan Ning tucked the string of bells missing thirty into his breast, and never spoke of that night again.",
+        "clue": "Historical Note: The night raid of a hundred riders triumphs by blinding the enemy's senses, not by trading blows. Restart with silence before detonation; Cao Cao's suspicion is your only inside agent.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    }
+  },
+  "3": {
+    "luofengpo": {
+      "cast": [
+        "pangtong",
+        "liubei",
+        "zhangren",
+        "liuzhang"
+      ],
+      "objective": "Exploit Hex Mark and Zhang Ren's obsession with the Phoenix Fledgling to make the ambushing archers strike the wrong target.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "Before Fallen Phoenix Slope, Hex Mark refused to tread across the white stone path. Pang Tong swung down from the saddle, handing the reins back to Liu Bei, suddenly asking whether Zhang Ren sought to kill the steed or the rider."
+        },
+        {
+          "speaker": "pangtong",
+          "text": "Kongming's letter warned only that fortune leans grim for commander and host. He took me into his calculations, yet forgot that ambushers must first tell one man from another."
+        },
+        {
+          "speaker": "liuzhang",
+          "text": "My father and brother guarded Shu's mountain passes for thirty years; to think an invader has pierced our realm... Ren'er, the gates of Chengdu rest in your hands.",
+          "when": "!seen:liuzhang"
+        },
+        {
+          "speaker": "liubei",
+          "text": "Shiyuan, offering my horse was born of goodwill. What if this goodwill has inscribed your name upon death's register?"
+        },
+        {
+          "speaker": "zhangren",
+          "text": "Until Hex Mark appears, hold all arrows. My quarry is Liu Bei—harm no other man."
+        }
+      ],
+      "intros": {
+        "zhangren": [
+          {
+            "when": "seen:zhangren",
+            "bio": "He remembers how his ambush struck empty air, and now questions every fluttering standard with sharper scrutiny.",
+            "quote": "Banners may be swapped. A heart sworn to defend its realm cannot be traded."
+          },
+          {
+            "bio": "Foremost in loyalty and valor across Western Chuan; caution is the rampart of his bastion, and the signal horn of his ambush.",
+            "quote": "Until the white steed reveals itself, no soldier shall loose a single shaft."
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "false-phoenix",
+          "node": 1,
+          "title": "Fallen Phoenix Slope · Turning the Watcher's Eye",
+          "lines": [
+            {
+              "speaker": "zhangren",
+              "text": "The forest is deep, the steed swift. Yet my ambush heeds but one command: the moment the white horse enters the gorge, ten thousand arrows shall loose in unison."
+            },
+            {
+              "speaker": "pangtong",
+              "text": "He aims not at me, but at the preconception that Liu Bei must ride Hex Mark. The land's omen might not curse me, but names deceive mortal men."
+            },
+            {
+              "speaker": "liubei",
+              "text": "Then let that preconception guide our vanguard one final time."
+            }
+          ],
+          "choices": [
+            {
+              "id": "horse-decoy",
+              "text": "Send Hex Mark forward with empty reins",
+              "detail": "See through the ambush; record the white steed decoy",
+              "effects": {
+                "keenEye": true,
+                "fact": "luofengpo_horse_decoy"
+              }
+            },
+            {
+              "id": "banner-decoy",
+              "text": "Divert the arrow storm with phoenix feather banners",
+              "detail": "Enemy starting war chest -200; record the decoy banner",
+              "effects": {
+                "raid": true,
+                "fact": "luofengpo_banner_decoy"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "luofengpo-open",
+          "at": "start",
+          "speaker": "zhangren",
+          "text": "Pang Tong, if you truly understood omens and fortune, you would never have stepped foot into this slope."
+        },
+        {
+          "id": "luofengpo-horse",
+          "at": "hand:2",
+          "speaker": "pangtong",
+          "when": "fact:luofengpo_horse_decoy",
+          "text": "Hark, the arrows chase after Hex Mark. Zhang Ren guards the notion that Liu Bei rides a white steed, not Fallen Phoenix Slope."
+        },
+        {
+          "id": "luofengpo-banner",
+          "at": "hand:2",
+          "speaker": "pangtong",
+          "when": "fact:luofengpo_banner_decoy",
+          "text": "Where the phoenix banner veers east, the ambuscade follows east. This so-called fall of the phoenix can be decreed by my own design."
+        },
+        {
+          "id": "luofengpo-turn",
+          "at": "hand:3",
+          "speaker": "zhangren",
+          "text": "The white horse was a phantom, the banner a ruse. You turned my very caution into a bow against me!"
+        },
+        {
+          "id": "luofengpo-low",
+          "at": "low",
+          "speaker": "liubei",
+          "text": "Shiyuan, their ambush is in disarray. Today we swap no steeds—we forge a path never written in their plans."
+        }
+      ],
+      "win": {
+        "text": "The rain of arrows fell uselessly upon an unmounted steed and false standards as Pang Tong ascended the heights along the flanking ridge. He celebrated no defiance of geography; he merely added four words to Kongming's grim missive: 'So too human hearts.' For the very first time, the gates of Chengdu cracked open before the Phoenix Fledgling.",
+        "hook": "With the Phoenix Fledgling entering Shu, Hanzhong loomed as the next contested prize on the board. Atop Mount Dingjun, Huang Zhong was already honing a blade that refused to grow old."
+      },
+      "loss": {
+        "text": "In your haste to part with Hex Mark, you still marched along the canyon trail Zhang Ren had foreseen. You spared the horse from being targeted, yet failed to spare the man whose mind was read; the second volley of arrows awaited no command.",
+        "clue": "Historical Chronicle · Zhang Ren verifies banners before giving the command; the ambuscade falters on a single misidentification. Keen Eye increases on restart.",
+        "clueFx": "keenEye"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "jiameng": {
       "cast": [
@@ -3970,28 +3582,28 @@ export default {
         "zhuge",
         "weiyan"
       ],
-      "objective": "在葭萌关的火盆边,让两杆天下最烈的枪打完,再谈谁跟谁走。",
+      "objective": "Beside the braziers of Jiameng Pass, let the realm's two fiercest spears finish their clash before deciding who walks with whom.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "渭南的败兵投了张鲁,马超领兵来到葭萌关下。关上的张飞听说来的是他,先大笑三声,再让人把戒酒的誓书压在案下。"
+          "text": "The defeated soldiers of Weinan surrendered to Zhang Lu, and Ma Chao marched his vanguard beneath Jiameng Pass. Atop the battlements, Zhang Fei heard who had arrived; he roared with laughter thrice, then tucked his pledge to abstain from wine beneath the desk."
         },
         {
           "speaker": "zhangfei",
-          "text": "马超!听说你在潼关追得曹操割须?好!俺老张遇强则喜——来来来,大战三百回合!"
+          "text": "Ma Chao! I heard that at Tong Pass you chased Cao Cao until he shaved his beard and threw off his robe! Splendid! Old Zhang only rejoices when facing the strong—come, let us duel three hundred rounds!"
         },
         {
           "speaker": "machao",
-          "text": "燕人张飞?潼关之后,人人都说天下只有你的三弟配和我一战。放马过来!"
+          "text": "Zhang Fei of Yan? Ever since Tong Pass, all under heaven claim only your third brother is worthy of crossing spears with me. Gallop forth!"
         },
         {
           "speaker": "zhuge",
-          "text": "翼德,此人恨极而勇,不可力取。亮只要你记住:打满,别打死。",
+          "text": "Yide, this man fights with desperate fury born of grief and wrath; he cannot be bested by raw force alone. I ask only one thing: fight to the full, but do not slay him.",
           "when": "!fact:jiameng_done"
         },
         {
           "speaker": "weiyan",
-          "text": "军师,文长愿领一军绕后。若张将军有个闪失——",
+          "text": "Military Advisor, Wenchang requests to lead a force to circle behind them. Should General Zhang suffer any mishap—",
           "when": "seen:weiyan"
         }
       ],
@@ -3999,28 +3611,28 @@ export default {
         "machao": [
           {
             "when": "page:tongguan:yeshi",
-            "bio": "渭南的墨点他至今没想透,这份恨意使他的枪少了三分方向。",
-            "quote": "离间计赢不了两次。这次,只论枪!"
+            "bio": "He still has not deciphered that blot of ink south of the Wei River; that lingering grievance robbed his spear of three parts of its true direction.",
+            "quote": "A trick of sowing discord will not prevail twice. Today, spears alone shall speak!"
           },
           {
             "when": "seen:machao",
-            "bio": "他与张飞一战之后,枪里多了些说不清的东西。",
-            "quote": "又见面了。这次,先打完,再说话。"
+            "bio": "Following his duel with Zhang Fei, his spearpoint carried an unspoken weight.",
+            "quote": "We meet once more. This time, let the duel finish before words begin."
           },
           {
-            "bio": "败军之将,把最后的体面都押在了这杆枪上。",
-            "quote": "西凉已失,家已无。我只有这场仗。"
+            "bio": "A defeated general who staked his remaining dignity upon this solitary silver spear.",
+            "quote": "West Liang is lost, my kin wiped out. All that remains to me is this battle."
           }
         ],
         "madai": [
           {
             "when": "seen:madai",
-            "bio": "他护着堂兄的侧翼,也护着马家最后的人丁。",
-            "quote": "我兄长的事,便是我马岱的事。"
+            "bio": "He guards his cousin's flank, and shields the last living branch of the Ma lineage.",
+            "quote": "Whatever concerns my elder brother concerns Ma Dai as well."
           },
           {
-            "bio": "话不多的西凉刀客,刀法与心事一样沉。",
-            "quote": "先过我这一关。"
+            "bio": "A taciturn blade of West Liang, whose saber runs as heavy as the burdens in his heart.",
+            "quote": "You must first cross through me."
           }
         ]
       },
@@ -4028,26 +3640,26 @@ export default {
         {
           "id": "lamp-duel",
           "node": 1,
-          "title": "葭萌关 · 挑灯夜战",
+          "title": "Jiameng Pass · Duel by Torchlight",
           "lines": [
             {
               "speaker": "zhangfei",
-              "text": "天黑了打不痛快!来人,点起火把,两百盏!俺们夜战!"
+              "text": "Dusk falls and we cannot fight to our hearts' content! Men, light the torches—two hundred lanterns! We duel through the night!"
             },
             {
               "speaker": "machao",
-              "text": "好气魄!张飞,你比我听闻的更像条汉子!"
+              "text": "Magnificent spirit! Zhang Fei, you are far more of a true man than the tales recounted!"
             },
             {
               "speaker": "you",
-              "text": "火把照得亮枪,也照得亮人心。打到后来,枪会说话。"
+              "text": "Torches illuminate spears, but they also lay bare the heart. In the final bouts, spears speak true."
             }
           ],
           "choices": [
             {
               "id": "keep-count",
-              "text": "替张飞数回合,严控体力",
-              "detail": "本回看破提升,记住二百回合",
+              "text": "Count rounds for Zhang Fei and pace his stamina",
+              "detail": "Keen Eye increases this round; remember the two hundred passes",
               "effects": {
                 "keenEye": true,
                 "fact": "jiameng_count"
@@ -4055,8 +3667,8 @@ export default {
             },
             {
               "id": "warm-wine",
-              "text": "温两碗酒候在场边",
-              "detail": "军资 +120,二人愈战愈敬",
+              "text": "Warm two bowls of wine and wait at the arena rim",
+              "detail": "War chest +120; mutual respect deepens with every clash",
               "effects": {
                 "chips": 120,
                 "sow": 1,
@@ -4071,44 +3683,48 @@ export default {
           "id": "jiameng-open",
           "at": "start",
           "speaker": "zhangfei",
-          "text": "马超!接矛!今日不喝倒你,俺老张不姓张!"
+          "text": "Ma Chao! Receive my spear! If I cannot drink you beneath the table today, old Zhang will renounce his name!"
         },
         {
           "id": "jiameng-fire",
           "at": "hand:2",
           "speaker": "narrator",
-          "text": "两百盏火把把战场照成了白昼。两杆枪在光里绞了又绞,看台上的人渐渐忘了喝彩。"
+          "text": "Two hundred torches turned the battleground into midday sun. The two spears intertwined and flashed in the blaze until the onlookers forgot even to cheer."
         },
         {
           "id": "jiameng-madai",
           "at": "hand:3",
           "speaker": "madai",
-          "text": "兄长,退吧!张鲁的援兵到不了,西凉的人也剩不多了!",
+          "text": "Brother, fall back! Zhang Lu's reinforcements will not arrive, and few sons of West Liang remain!",
           "when": "!fact:jiameng_wine"
         },
         {
           "id": "jiameng-wine",
           "at": "hand:3",
           "speaker": "machao",
-          "text": "……场边那两碗酒,是给谁的?",
+          "text": "...Those two bowls of warmed wine at the field's edge—for whom are they poured?",
           "when": "fact:jiameng_wine"
         },
         {
           "id": "jiameng-low",
           "at": "low",
           "speaker": "zhuge",
-          "text": "翼德,收三分力。此人心中有事,枪再烈,也撑到头了。"
+          "text": "Yide, withhold three parts of your might. His heart carries a heavy sorrow; no matter how fierce the spear, it has reached its limit."
         }
       ],
       "win": {
-        "text": "两百余合之后,火把烧短了半截。张飞把矛往地上一拄:\"马超,歇一夜,明日再打!\"马超在马上沉默良久,忽然问:\"张将军,刘皇叔……真能容下我这身仇?\"场边那两碗温酒,最终三个人分了——你,翼德,和一杆放平的枪。",
-        "hook": "葭萌的火盆边,西凉的枪找到了新的方向。而在荆州,鲁肃正为一张借据,请云长过江。"
+        "text": "After more than two hundred rounds, the torches had burned down by half. Zhang Fei planted his serpent spear into the soil: 'Ma Chao, rest for the night, and tomorrow we fight again!' Ma Chao sat silent upon his steed for a long while, then suddenly asked: 'General Zhang... can Imperial Uncle Liu truly harbor a man consumed by vengeance like me?' Those two bowls of warm wine by the ring were shared at last among three: you, Yide, and a lowered spear.",
+        "hook": "Beside the braziers of Jiameng Pass, the spear of West Liang discovered a new compass. Meanwhile in Jingzhou, Lu Su was crossing the river with an old receipt, inviting Guan Yu to a fateful banquet."
       },
       "loss": {
-        "text": "你急着替张飞找胜机,反而打断了那杆枪想说的话。马超勒马回阵,从此闭门不出,谁也请不动。",
-        "clue": "史鉴 · 这一页的胜负在枪外。重开时让两人打满:数回合者得全局,温酒者得人心。",
+        "text": "In your rush to engineer an opening for Zhang Fei, you interrupted the dialogue that the two spears were speaking. Ma Chao wheeled his mount back to his lines and shut his gates, refusing to emerge for any envoy.",
+        "clue": "Historical Chronicle · The true victory on this page lies beyond the spearpoints. On restart, let them duel to the full: he who counts rounds masters the battle; he who warms wine wins the man.",
         "clueFx": "sow"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "daodan": {
       "cast": [
@@ -4118,50 +3734,50 @@ export default {
         "zhoucang",
         "zhuge"
       ],
-      "objective": "在陆口的酒宴上,让鲁肃讨不到荆州,也让关羽不必拔刀。",
+      "objective": "At the banquet of Lukou, prevent Lu Su from recovering Jingzhou while ensuring Guan Yu never needs to draw his blade.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "鲁肃的请帖写了三遍,措辞一遍比一遍客气。江心的船已备好,舱里坐着刀斧手,帖上却只写了一个「叙旧」。"
+          "text": "Lu Su penned the invitation thrice, each draft far more deferential than the last. The vessel in the river's center stood ready with axemen concealed within the hold, yet the parchment bore only the words 'reminiscing on old friendship.'"
         },
         {
           "speaker": "lusu",
-          "text": "云长,肃别无他意,只求把荆州的账,当面算清。"
+          "text": "Yunchang, Su harbors no ulterior design, seeking only to settle the account of Jingzhou face to face."
         },
         {
           "speaker": "guanyu",
-          "text": "子敬相邀,关某岂敢不来。平儿,随我赴宴;周仓,扛刀。"
+          "text": "Since Zijing invites me, how could Guan refuse? Ping'er, accompany me to the feast; Zhou Cang, shoulder the blade."
         },
         {
           "speaker": "guanping",
-          "text": "父亲,临行前军师嘱托:此宴在酒,不在荆州;在信,不在刀。"
+          "text": "Father, before our departure the Military Advisor instructed: this banquet is about wine, not Jingzhou; it is about trust, not the sword."
         },
         {
           "speaker": "zhoucang",
-          "text": "俺就把刀立在船头,让江东人看看分量!"
+          "text": "I will plant the Green Dragon Crescent Blade upon the ship's prow and let the men of Eastern Wu witness its true weight!"
         }
       ],
       "intros": {
         "lusu": [
           {
             "when": "seen:lusu",
-            "bio": "他上次没能讨回荆州,这一次把道理磨得更圆,刀斧手埋得更深。",
-            "quote": "云长,这次肃要的仍不是降,是一个「还」字。"
+            "bio": "He failed to reclaim Jingzhou last time; now his arguments are polished smoother, and the axemen lurk deeper.",
+            "quote": "Yunchang, what Su seeks today is still not surrender, but the single word 'return.'"
           },
           {
-            "bio": "江东最厚道的人,也终于学会了在酒里设局。",
-            "quote": "借据在此。云长,请过目。"
+            "bio": "The most honest gentleman in Eastern Wu has finally learned to weave an ambush into cups of wine.",
+            "quote": "The promissory note is here. Yunchang, please look upon it."
           }
         ],
         "dingfeng": [
           {
             "when": "seen:dingfeng",
-            "bio": "他埋伏的位置换了三次,却始终没等到那声摔杯。",
-            "quote": "再等等……主将的杯子,怎么还不落地?"
+            "bio": "He shifted his ambush position thrice, yet never heard the cup shatter upon the floor.",
+            "quote": "Wait a little longer... why has the commander's cup not fallen?"
           },
           {
-            "bio": "雪中奋短兵的老将,此刻把短兵藏在了案几之下。",
-            "quote": "酒过三巡,听杯为号。"
+            "bio": "The veteran commander famed for charging through snow with short blades now hides those blades beneath the banquet tables.",
+            "quote": "After three rounds of wine, heed the shatter of the cup."
           }
         ]
       },
@@ -4169,26 +3785,26 @@ export default {
         {
           "id": "river-feast",
           "node": 1,
-          "title": "陆口 · 江心一宴",
+          "title": "Lukou · Mid-River Banquet",
           "lines": [
             {
               "speaker": "lusu",
-              "text": "云长,席间只有你我旧谊,别无他事——肃先干为敬。"
+              "text": "Yunchang, at this table there is only our past fellowship, nothing else—Su drinks first to show his good faith."
             },
             {
               "speaker": "guanyu",
-              "text": "子敬的酒,关某喝。荆州的账,醉后再说。"
+              "text": "Guan will gladly drink Zijing's wine. As for the accounts of Jingzhou, we shall speak once we are merry."
             },
             {
               "speaker": "you",
-              "text": "借据压在他袖底,刀斧手压在船板下。谁先急,谁先输。"
+              "text": "The covenant is hidden beneath his sleeve; the axemen lie beneath the deck. Whoever shows impatience first has lost."
             }
           ],
           "choices": [
             {
               "id": "count-cups",
-              "text": "数鲁肃斟酒的节奏与眼神",
-              "detail": "本回看破提升,记住斟酒之律",
+              "text": "Observe Lu Su's pouring rhythm and glancing eyes",
+              "detail": "Keen Eye increases this round; remember the rhythm of pouring",
               "effects": {
                 "keenEye": true,
                 "fact": "daodan_count"
@@ -4196,8 +3812,8 @@ export default {
             },
             {
               "id": "hold-scabbard",
-              "text": "按住周仓的刀鞘,先礼后兵",
-              "detail": "东吴伏兵起手士气 -1,记住按刀之义",
+              "text": "Rest a hand on Zhou Cang's scabbard: courtesy before arms",
+              "detail": "Eastern Wu ambush initial morale -1; remember the honor of staying the blade",
               "effects": {
                 "sow": 1,
                 "fact": "daodan_hold"
@@ -4211,44 +3827,48 @@ export default {
           "id": "daodan-open",
           "at": "start",
           "speaker": "lusu",
-          "text": "云长,今日只谈旧谊。来,满饮此杯——"
+          "text": "Yunchang, today we speak only of old days. Come, drink this cup to the lees—"
         },
         {
           "id": "daodan-deed",
           "at": "hand:2",
           "speaker": "guanyu",
-          "text": "子敬,酒是好酒。只是这借据上的墨,关某记得比你清楚。"
+          "text": "Zijing, the wine is exquisite. Yet the ink upon that promissory note is remembered far more clearly by Guan than by you."
         },
         {
           "id": "daodan-blade",
           "at": "hand:3",
           "speaker": "zhoucang",
-          "text": "船板底下有脚步声!将军,俺的刀——",
+          "text": "Footsteps rustle beneath the floorboards! General, my blade—",
           "when": "!fact:daodan_hold"
         },
         {
           "id": "daodan-hold",
           "at": "hand:3",
           "speaker": "guanyu",
-          "text": "周仓,退后。今日这把刀,只陪关某喝酒。",
+          "text": "Zhou Cang, step back. Today this blade drinks wine only in Guan's company.",
           "when": "fact:daodan_hold"
         },
         {
           "id": "daodan-low",
           "at": "low",
           "speaker": "guanping",
-          "text": "父亲,鲁肃亲自送我们到船头了。他的手,一直在袖子里攥着那份借据。"
+          "text": "Father, Lu Su personally escorted us to the prow. His fingers inside his sleeve have been clutching that covenant all along."
         }
       ],
       "win": {
-        "text": "船离江心,鲁肃立在渡口,久久望着那口八十二斤的刀远去。他没有摔杯,因为关羽临走时说:\"子敬,荆州之约,关某记下了。你保的不是借据,是两家还没破裂的信。\"回营的船上汽笛无声,只有你知道,这杯酒替荆州又买了几年。",
-        "hook": "单刀会散,两家的账却没散。合肥的方向,一声更比一声紧的战鼓,正在等孙权。"
+        "text": "As the boat pulled away from mid-river, Lu Su stood upon the pier, gazing long after that eighty-two-catty crescent blade drifting into the mist. He never smashed his cup, for Guan Yu had spoken upon parting: 'Zijing, Guan remembers our Jingzhou covenant. What you preserve today is not a deed of debt, but the unbroken trust between our two houses.' Across the quiet river, only you knew that this cup had bought Jingzhou several more precious years.",
+        "hook": "The single blade banquet adjourned, yet the ledger between the two houses remained unclosed. Toward Hefei, war drums beating with frantic haste awaited Sun Quan."
       },
       "loss": {
-        "text": "刀出鞘的那一瞬,宴席就输了。你没能按住那八十二斤的火气,也没能按住船板下的短兵。江水把「单刀赴会」冲成了「两败俱伤」。",
-        "clue": "史鉴 · 鲁肃要的是「信」不是「城」,伏兵等的是「刀」不是「理」。重开后看破提升,先按刀,再算账。",
+        "text": "The moment cold steel cleared its scabbard, the banquet was already lost. You failed to restrain eighty-two catties of wrath, and failed to stay the daggers beneath the deck. The currents of the Yangtze washed 'attending a feast with a single blade' into a mutual ruin.",
+        "clue": "Historical Chronicle · Lu Su sought 'trust' rather than 'conquest'; the ambush waited for 'steel' rather than 'reason.' Keen Eye increases on restart; stay the blade first before settling accounts.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "xiaoyaojin": {
       "cast": [
@@ -4258,51 +3878,51 @@ export default {
         "ganning",
         "zhoutai"
       ],
-      "objective": "在逍遥津的窄桥边,让张辽的八百冲不散十万,也护住凌统的断后。",
+      "objective": "Beside the narrow bridge of Xiaoyao Ford, prevent Zhang Liao's eight hundred from shattering one hundred thousand, and protect Ling Tong's rearguard.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "合肥城头,张辽把八百死士列在门前,甲叶上一滴水都没有——他们已等了一夜。城外,吴军十万,刚拔完营。"
+          "text": "Astride the walls of Hefei, Zhang Liao arrayed eight hundred death-sworn warriors before the gate, their armor bone-dry—they had waited through the entire night. Beyond the moat, Wu's host of one hundred thousand had just broken camp."
         },
         {
           "speaker": "zhangliao",
-          "text": "吴人新至,营垒未立。此刻冲阵,八百人能当八万。随我——冲!"
+          "text": "The Wu men have just arrived, their palisades not yet pitched. If we strike now, eight hundred can rival eighty thousand. Follow me—charge!"
         },
         {
           "speaker": "sunquan",
-          "text": "张辽?!他怎么敢出城!各营勿慌,先稳住——甘宁,凌统,护住侧翼!"
+          "text": "Zhang Liao?! How dares he sally from the city! Formations, do not panic, hold firm—Gan Ning, Ling Tong, cover the flanks!"
         },
         {
           "speaker": "lingtong",
-          "text": "主公先走!凌家三百亲兵,还够挡一阵!"
+          "text": "My lord, flee first! The three hundred retainers of the Ling clan are enough to hold him off!"
         },
         {
           "speaker": "ganning",
-          "text": "公绩!别逞英雄!你的三百人,不是拿来换主公一程的!"
+          "text": "Gongji! Do not play the martyr! Your three hundred men are not pawns to be traded for my lord's escape!"
         }
       ],
       "intros": {
         "zhangliao": [
           {
             "when": "seen:zhangliao",
-            "bio": "他记得你的阵怎样在半渡时稳住,这次把冲锋的时机又提前了半刻。",
-            "quote": "又想稳住阵脚?我的刀,不给你列阵的时间。"
+            "bio": "He remembers how your lines held firm during the river crossing; this time he advances the charge by half a quarter-hour.",
+            "quote": "Seeking to steady your ranks again? My blade will grant you no time to deploy."
           },
           {
-            "bio": "八百人的胆,是他一夜一夜喂出来的。",
-            "quote": "辽来十年,只为今日这一冲!"
+            "bio": "The valor of eight hundred warriors was nurtured night after sleepless night through his own fierce resolve.",
+            "quote": "Liao has waited ten years for this single charge!"
           }
         ],
         "lejin": [
           {
-            "bio": "他与张辽、李典共守合肥,三人面和心齐,刀却各自藏锋。",
-            "quote": "张将军冲前,乐某守后——合肥的门,进得来出不去。"
+            "bio": "Together with Zhang Liao and Li Dian he holds Hefei; outwardly united and inwardly concordant, their blades conceal distinct edges.",
+            "quote": "General Zhang charges the vanguard while Yue holds the rear—the gates of Hefei are entered easily, but none depart alive."
           }
         ],
         "lidian": [
           {
-            "bio": "他劝张辽「先折其盛气」时不带私怨,布阵最重「余地」二字。",
-            "quote": "李曼成不与你斗狠。我只封你要退的路。"
+            "bio": "When advising Zhang Liao to break their spirits first, he harbored no personal enmity; his formations emphasize leaving room for maneuver above all.",
+            "quote": "Li Mancheng competes not in ferocity. I seal only the path along which you hope to retreat."
           }
         ]
       },
@@ -4310,26 +3930,26 @@ export default {
         {
           "id": "half-ford",
           "node": 1,
-          "title": "逍遥津 · 半渡之桥",
+          "title": "Xiaoyao Ford · Bridge of the Half-Crossing",
           "lines": [
             {
               "speaker": "zhoutai",
-              "text": "主公,津桥的板朽了两块,马不能疾驰。幼平先背主公过桥!"
+              "text": "My lord, two planks of the ford bridge have rotted away; the steed cannot leap at speed. Youping shall carry my lord across the bridge upon his back!"
             },
             {
               "speaker": "lingtong",
-              "text": "幼平带主公走!我挡张辽!"
+              "text": "Youping, take my lord away! I shall hold Zhang Liao!"
             },
             {
               "speaker": "you",
-              "text": "张辽要的不是杀孙权,是「吴军自乱」四个字。别把十万人的心,输给八百人的胆。"
+              "text": "What Zhang Liao craves is not Sun Quan's life, but the complete unraveling of Wu's host. Do not surrender the hearts of one hundred thousand to the audacity of eight hundred."
             }
           ],
           "choices": [
             {
               "id": "hold-line",
-              "text": "教十万军先结阵,再渡桥",
-              "detail": "本回看破提升,记住结阵渡桥",
+              "text": "Command the host to form lines before crossing",
+              "detail": "Keen Eye increases this round; remember formation before ford",
               "effects": {
                 "keenEye": true,
                 "fact": "xiaoyaojin_line"
@@ -4337,8 +3957,8 @@ export default {
             },
             {
               "id": "rear-guard",
-              "text": "亲领断后,换主公先渡",
-              "detail": "军资 +100,张辽军起手士气 -1",
+              "text": "Personally lead the rearguard to let my lord cross first",
+              "detail": "War chest +100; Zhang Liao host starting morale -1",
               "effects": {
                 "chips": 100,
                 "sow": 1,
@@ -4353,39 +3973,544 @@ export default {
           "id": "xiaoyaojin-open",
           "at": "start",
           "speaker": "zhangliao",
-          "text": "张辽在此!吴军听着——今日,只取你们阵中最乱的一处!"
+          "text": "Zhang Liao is here! Hearken, men of Wu—today, my blade strikes only where your battle line is most disordered!"
         },
         {
           "id": "xiaoyaojin-charge",
           "at": "hand:2",
           "speaker": "narrator",
-          "text": "八百人凿进吴阵,像一柄锥子。所过之处,十万人的旗自己在倒。"
+          "text": "Eight hundred horsemen bored into Wu's formations like an iron chisel. Wherever they thundered, the banners of one hundred thousand toppled of their own accord."
         },
         {
           "id": "xiaoyaojin-ling",
           "at": "hand:3",
           "speaker": "lingtong",
-          "text": "主公过了桥!三百亲兵……还剩几十。够了,够再挡一阵!"
+          "text": "My lord has crossed the bridge! Of my three hundred retainers... only a few score remain. It is enough—enough to hold for another round!"
         },
         {
           "id": "xiaoyaojin-low",
           "at": "low",
           "speaker": "sunquan",
-          "text": "公绩回来!凌统——回来!孤的江东,不能靠你们一个个用命换!"
+          "text": "Gongji, come back! Ling Tong—return! My Eastern Wu cannot rely on you shedding your lives one by one!"
         }
       ],
       "win": {
-        "text": "津桥修复的那一瞬,吴军十万终于列成了阵。张辽在城头望见,收刀入鞘:\"吴人能稳住了,此城不可再出。\"凌统浑身是血地踏上桥板,孙权亲自下马扶住他。回建业的路上再无笑声,只有孙权的一句:\"孤记住了合肥,记住了张文远。\"",
-        "hook": "逍遥津的教训,让江东把目光彻底收回荆州。而刘备的汉中鼓声,已经敲到了定军山下。"
+        "text": "The instant the ford bridge was repaired, Wu's host finally locked shields into an unbroken bulwark. Watching from atop the ramparts, Zhang Liao sheathed his blade: 'The Wu men have regained their footing; we can sortie no longer.' Bathed in blood, Ling Tong stepped onto the planks, and Sun Quan dismounted to clasp his hands in tears. On the march back to Jianye, laughter was absent, replaced by Sun Quan's vow: 'I shall never forget Hefei, nor Zhang Wenyuan.'",
+        "hook": "The bitter lesson of Xiaoyao Ford forced Eastern Wu to turn its gaze wholly back toward Jingzhou. Meanwhile, Liu Bei's war drums for Hanzhong were already resounding beneath Mount Dingjun."
       },
       "loss": {
-        "text": "十万人的阵,终究没能挡住八百人的胆。津桥一断,凌统的三百亲兵留在了对岸,张辽的名字从此压在江东六岁孩童的哭声里。",
-        "clue": "史鉴 · 张辽赢在「趁乱」不在「兵多」。重开时先结阵再渡桥;他冲不乱你,就轮到他不敢单独出城。",
+        "text": "A host of one hundred thousand was broken by the audacity of eight hundred. The moment the ford bridge collapsed, Ling Tong's three hundred retainers perished on the far bank, and Zhang Liao's name became a nightmare that silenced the crying infants of Eastern Wu for generations.",
+        "clue": "Historical Chronicle · Zhang Liao won by exploiting chaos, not numbers. On restart, form ranks before crossing the bridge; if he cannot break your line, he will not dare venture forth alone.",
         "clueFx": "keenEye"
-      }
-    }
-  },
-  "4": {
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "dingjunshan": {
+      "cast": [
+        "huangzhong",
+        "xiahouyuan",
+        "zhanghe",
+        "fazheng",
+        "yanyan"
+      ],
+      "objective": "Pit Xiahou Yuan's speed against Zhang He's flexibility, striking with the veteran's blade in the half-beat of their relief.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "Above and below Mount Dingjun, two war drums thundered. Xiahou Yuan urged his hosts to charge, while Zhang He held his ranks to survey the mountain roads; the two rhythms were perpetually out of step by half a beat. Listening thrice, Huang Zhong unslung his bow."
+        },
+        {
+          "speaker": "huangzhong",
+          "text": "They say this veteran has only one blade strike left. One is plenty, provided one foe charges in blindly while the other cunningly refuses to engage."
+        },
+        {
+          "speaker": "fazheng",
+          "text": "Hansheng, discord between the enemy generals on the ridge is heaven's third road granted to you. Upon our banner, Xiaozhi writes only one word: 'Wait.'",
+          "when": "!seen:fazheng"
+        },
+        {
+          "speaker": "yanyan",
+          "text": "Elder brother, that cry of 'unyielding headless general' on the Shu roads of old is returned in kind today. Your flank is safe in Yan Yan's hands."
+        },
+        {
+          "speaker": "xiahouyuan",
+          "text": "Withered with age, yet you dare claim the high ground? Before the drums of dawn roll, I shall charge the heights and take your blade!"
+        },
+        {
+          "speaker": "zhanghe",
+          "text": "Miaocai, he who holds the high ground feigns weakness by design. If you know only haste, you merely spare him the trouble of luring you out."
+        }
+      ],
+      "intros": {
+        "xiahouyuan": [
+          {
+            "bio": "Speed as sovereign virtue is his military doctrine, and also the war drum that foes can most easily hurry.",
+            "quote": "Zhang He excels in guile, Xiahou in swiftness. Which will you face first?"
+          }
+        ],
+        "zhanghe": [
+          {
+            "bio": "A general famed for cunning adaptations; unmatched in shifting formations, yet powerless to curb his comrade's rash temper.",
+            "quote": "Warfare knows no constant form. Pity that Miaocai recognizes only a single speed."
+          }
+        ],
+        "huangzhong": [
+          {
+            "bio": "The veteran general does not vie in foot races; he vies only for the single stride when the enemy steps into his blade's arc.",
+            "quote": "What has grown old is the passage of years, not this blade."
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "half-beat",
+          "node": 1,
+          "title": "Mount Dingjun · Half-Beat of Relief",
+          "lines": [
+            {
+              "speaker": "zhanghe",
+              "text": "If I shift left to bolster defenses, Miaocai will surely rush the right to snatch glory. The higher you stand, the less he will heed my signals."
+            },
+            {
+              "speaker": "xiahouyuan",
+              "text": "By the time your formation locks shields, Huang Zhong will have long escaped! Swift battle is the firmest of formations."
+            },
+            {
+              "speaker": "huangzhong",
+              "text": "No need to hope for harmony between them. One fast, one slow—just right to measure my strike."
+            }
+          ],
+          "choices": [
+            {
+              "id": "measure-beats",
+              "text": "Measure the watch drums of both camps before setting the blade",
+              "detail": "Keen Eye increases; remember the half-beat cadence",
+              "effects": {
+                "keenEye": true,
+                "fact": "dingjunshan_measured_beats"
+              }
+            },
+            {
+              "id": "leave-antlers",
+              "text": "Leave a breached palisade to bait an urgent repair",
+              "detail": "Cao host initial war chest -200; remember the false breach",
+              "effects": {
+                "raid": true,
+                "fact": "dingjunshan_repair_bait"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "dingjunshan-open",
+          "at": "start",
+          "speaker": "xiahouyuan",
+          "when": "multi",
+          "text": "Zhang He, guard the flank. As for you—withstand three of my charges before babbling about old age!"
+        },
+        {
+          "id": "dingjunshan-change",
+          "at": "hand:2",
+          "speaker": "zhanghe",
+          "when": "multi",
+          "text": "The more he urges haste, the more you should watch me. Miaocai strikes your front, but my lines envelop your rear."
+        },
+        {
+          "id": "dingjunshan-measured",
+          "at": "hand:3",
+          "speaker": "huangzhong",
+          "when": "fact:dingjunshan_measured_beats",
+          "text": "What you measured was not the mountain, but that half-beat where Miaocai hears 'charge' and refuses to look back."
+        },
+        {
+          "id": "dingjunshan-bait",
+          "at": "hand:3",
+          "speaker": "huangzhong",
+          "when": "fact:dingjunshan_repair_bait",
+          "text": "What you repaired was not wooden antlers, but a compulsion that forced Miaocai to rush. Now, wait as he breaches the gate."
+        },
+        {
+          "id": "dingjunshan-low",
+          "at": "low",
+          "speaker": "huangzhong",
+          "when": "multi",
+          "text": "One commands me to hurry; one commands him to slow. This old soldier needs only stand in the breath between them."
+        }
+      ],
+      "win": {
+        "text": "The moment Xiahou Yuan lunged into that half-beat gap, Zhang He's repositioned line had not yet turned. Huang Zhong delivered no second blow; he merely rested his great saber across his shoulder, and the garrisons throughout Hanzhong shifted their colors in unison. High upon the mountain, the two drums at last struck a single watch.",
+        "hook": "Triumph in Hanzhong elevated Guan Yu's renown to shake all of China. Yet as the autumn rains of the Mian River gathered, fame itself would become the most perilous beacon."
+      },
+      "loss": {
+        "text": "Xiahou Yuan's swiftness harried your vanguard, while Zhang He's cunning sealed your retreat. Waiting for them to collide, you were instead torn between two disparate tempos; the veteran's blade never had the chance to leave its scabbard.",
+        "clue": "Historical Chronicle · The two commanders alternate between swift assaults and shifting lines; await one movement before reading the other. Keen Eye increases on restart.",
+        "clueFx": "keenEye"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "shuiyan": {
+      "cast": [
+        "guanyu",
+        "yujin",
+        "pangde"
+      ],
+      "objective": "Harness the waters without relying on nature alone; seal the heights and retreats before the seven armies relocate, turning heaven's weather into military decree.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "The Mian River had already submerged the ancient boundary markers, yet Yu Jin still kept his encampments aligned without a single flaw. Outside the camp gates rested Pang De's coffin, its dark lacquer heavier than the thunderclouds."
+        },
+        {
+          "speaker": "guanyu",
+          "text": "The strength of the seven armies lies in absolute discipline; their peril lies in that none dare violate orders to relocate to safety."
+        },
+        {
+          "speaker": "yujin",
+          "text": "Guan Yunchang, heaven's seasons may not favor you. Our provisions can endure ten more days; if you hesitate, the siege outside Fancheng will crumble first."
+        },
+        {
+          "speaker": "pangde",
+          "text": "General Yu, Pang arrived with his coffin parked outside the gate. We hold this ground not for Wei soil, but for the honor of our lords.",
+          "when": "!seen:pangde"
+        },
+        {
+          "speaker": "you",
+          "text": "He waits for the rain to cease. I need not rush the rain; I need only make him reluctant to take the first step."
+        }
+      ],
+      "intros": {
+        "yujin": [
+          {
+            "when": "seen:yujin",
+            "bio": "He remembers how low ground swallowed whole legions, yet still refuses to let an unsanctioned movement tarnish his reputation for strict order.",
+            "quote": "Rising water can be measured. The army's discipline must not waver first."
+          },
+          {
+            "bio": "Steadfast as Mount Tai, he places absolute trust in military orders, and is the last to admit when an order has become fatal.",
+            "quote": "All battalions heed my word: without orders, no man steps back one pace."
+          }
+        ],
+        "pangde": [
+          {
+            "when": "seen:pangde",
+            "bio": "Born of the West Liang hosts, he trusts not in destiny, but only in the blade in his grasp and the coffin outside the stockade.",
+            "quote": "Fight once more. The coffin remains empty; the warrior has not yet returned."
+          },
+          {
+            "when": "page:tongguan:yeshi",
+            "bio": "He remembers the scattering of West Liang, now transforming stubborn defiance into death-sworn loyalty.",
+            "quote": "Ma Chao fell in West Liang. Pang De shall not fall here."
+          },
+          {
+            "bio": "A surrendered general who carried his own coffin to the front, paying off his debts of honor with every loosed arrow.",
+            "quote": "The coffin is here. Lord Guan, unleash your full might."
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "dry-order",
+          "node": 1,
+          "title": "Zengkouchuan · Strike Before the Deluge",
+          "lines": [
+            {
+              "speaker": "yujin",
+              "text": "If you breach the dyke, my army ascends the heights; if you lay prolonged siege, Fancheng calls for aid. However torrential the rain, it cannot issue orders on my behalf."
+            },
+            {
+              "speaker": "guanyu",
+              "text": "What he requires is not merely high ground, but an order that allows him to preserve his pride."
+            },
+            {
+              "speaker": "you",
+              "text": "Then offer him a path of retreat that appears to demand no abandonment of camp."
+            }
+          ],
+          "choices": [
+            {
+              "id": "old-channel",
+              "text": "Leave the old river channel open, feigning weakness",
+              "detail": "See through the retreat route; remember the old channel",
+              "effects": {
+                "keenEye": true,
+                "fact": "shuiyan_old_channel"
+              }
+            },
+            {
+              "id": "highland-stakes",
+              "text": "Drive sunken stakes to seal the highland fords",
+              "detail": "Yu Jin starting war chest -200; remember the sunken stakes",
+              "effects": {
+                "raid": true,
+                "fact": "shuiyan_highland_stakes"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "shuiyan-open",
+          "at": "start",
+          "speaker": "yujin",
+          "text": "So long as our lines remain unbroken, water is merely water. Renowned as Guan Yu may be, he merely waits for heaven to fight his war."
+        },
+        {
+          "id": "shuiyan-channel",
+          "at": "hand:2",
+          "speaker": "guanyu",
+          "when": "fact:shuiyan_old_channel",
+          "text": "The old riverbed appears safe, yet its depths are treacherous. Since Yu Jin refused to yield his ground, that sure path has become his tomb."
+        },
+        {
+          "id": "shuiyan-stakes",
+          "at": "hand:2",
+          "speaker": "guanyu",
+          "when": "fact:shuiyan_highland_stakes",
+          "text": "The stakes are submerged. He still boasts that the heights can be scaled, only because he has not seen that the underwater gate is already barred."
+        },
+        {
+          "id": "shuiyan-no-reply",
+          "at": "hand:3",
+          "speaker": "yujin",
+          "text": "Water reaches our knees, yet no unit shall move without orders! Wait—messengers sent to the heights, why do they bring no reply?"
+        },
+        {
+          "id": "shuiyan-low",
+          "at": "low",
+          "speaker": "guanyu",
+          "text": "Water is no blade. What prevented his retreat was discipline as unyielding as a mountain; the deluge merely swallowed the mountain whole."
+        }
+      ],
+      "win": {
+        "text": "Banners of the seven armies sank one after another into the swirling torrents. When Yu Jin cast down his sword, Guan Yu ordered dry boats brought to him rather than cords of binding. The acclaim of shaking China arose only as night fell; yet Guan Yu gazed upstream in solitude, as though he had already glimpsed the narrower, snowbound path lying beyond glory.",
+        "hook": "Yu Jin was taken and Xuchang trembled. Yet in Eastern Wu, Lu Meng stripped off his armor to don white merchant robes, while Lu Xun dispatched an exceedingly deferential missive toward Jingzhou."
+      },
+      "loss": {
+        "text": "The deluge finally burst forth, yet you mistook the rising tide for guaranteed triumph. Yu Jin retreated systematically to the heights; though soaked, the seven armies stood firm, and Guan Yu's tower ships were stranded upon the very waterways he had prepared.",
+        "clue": "Historical Chronicle · Rising water suppresses battle lines but does not seal off escape routes; seize the heights first. Keen Eye increases on restart.",
+        "clueFx": "keenEye"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "maicheng": {
+      "cast": [
+        "guanyu",
+        "lvmeng",
+        "luxun",
+        "guanping",
+        "zhoucang",
+        "panzhang"
+      ],
+      "objective": "Shatter the snare woven of white merchant robes and honeyed flatteries, so Guan Yu will not let the debts of Huarong Pass dictate the path of survival at Maicheng.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "The snows of Maicheng blanketed the beacon towers. Lu Meng's white merchant garb and Lu Xun's silken sashes entered the tent in succession. Upon Guan Yu's desk rested a severed sword tassel from Huarong Pass of years long past."
+        },
+        {
+          "speaker": "guanyu",
+          "when": "choice:huarong:yeshiB",
+          "text": "On that day my blade did not fall, and today Cao's host halts in the north. The debt of honor I laid down has traversed the map to demand repayment."
+        },
+        {
+          "speaker": "guanyu",
+          "when": "choice:huarong:yeshi",
+          "text": "On that day my blade fell, and the northern lords harbor their own designs. Letters seeking relief reached Linju and vanished without reply. Honor was balanced, yet the road grew no wider."
+        },
+        {
+          "speaker": "guanping",
+          "text": "Father, Ping has scouted the terrain: the northern trail is passable, yet the forests of Linju are dense—Wu snares surely lie in wait."
+        },
+        {
+          "speaker": "zhoucang",
+          "text": "My legs outrun their steeds! General, mount your horse while I shoulder the blade and forge the path—whoever stands in our way, I shall trample underfoot!"
+        },
+        {
+          "speaker": "lvmeng",
+          "text": "Yunchang, at your pinnacle you drowned the seven armies; yet from that very flood, both allies and old foes learned how to bring you down."
+        }
+      ],
+      "intros": {
+        "panzhang": [
+          {
+            "when": "seen:panzhang",
+            "bio": "He craves far more than the fortress; his eyes have always hungered for that eighty-two-catty blade within.",
+            "quote": "The Green Dragon Crescent Blade... this time, it changes masters."
+          },
+          {
+            "bio": "He who lays snares calculates not numbers, but the ingrained habits of desperate men.",
+            "quote": "Those who hasten through snowy nights invariably choose the shortest trail."
+          }
+        ],
+        "lvmeng": [
+          {
+            "when": "choice:huarong:yeshiB",
+            "bio": "Knowing you once allowed Cao Cao to return north, he calculated that ancient debt into your path of seeking aid.",
+            "quote": "You could release the tiger, but can you walk the path I have laid for your honor?"
+          },
+          {
+            "when": "choice:huarong:yeshi",
+            "bio": "Remembering the blade that fell at Huarong Pass, he no longer hopes that past mercy will check your steel.",
+            "quote": "Since you slew Cao Cao, you must know I owe you no debts of the past."
+          },
+          {
+            "bio": "Beneath the white merchant robes stands no trader, but a general who has read Guan Yu too thoroughly.",
+            "quote": "Parted for three days, scholars must be viewed with new eyes. Yunchang, do you still recognize Lu Meng?"
+          }
+        ],
+        "luxun": [
+          {
+            "when": "page:sanqi:yeshi",
+            "bio": "Zhou Yu survived because of you, yet Lu Xun seeks to prove that a debt of life changes nothing in the contest for Jingzhou.",
+            "quote": "You saved Zhou Yu, yet you cannot save Jingzhou."
+          },
+          {
+            "bio": "The lower he bows in flattering letters, the slower and tighter the net closes around Maicheng.",
+            "quote": "Junior Lu Xun comes specially to seek counsel from the warrior whose name shakes all of China."
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "old-self-road",
+          "node": 1,
+          "title": "Linju · Old Ledgers in the Snow",
+          "lines": [
+            {
+              "speaker": "lvmeng",
+              "text": "We need not guess whether Guan Yu will surrender. As long as we fathom who he still trusts, Maicheng has no second gate."
+            },
+            {
+              "speaker": "guanyu",
+              "text": "The loss of Jingzhou lies not in one fortress or one captain. It is that everyone took my past self as a road marker for today."
+            },
+            {
+              "speaker": "lvmeng",
+              "when": "choice:huarong:yeshiB",
+              "text": "At Huarong Pass your blade stayed, and Cao Cao owed you a life. Yet does he hold back to repay kindness, or to watch Wu and Shu bleed together?"
+            },
+            {
+              "speaker": "luxun",
+              "when": "choice:huarong:yeshi",
+              "text": "At Huarong Pass your blade struck, and the north is mired in its own chaos. You burned external aid, but you also burned their past assumptions of you."
+            }
+          ],
+          "choices": [
+            {
+              "id": "split-letters",
+              "text": "Send pleas for relief along northern and western routes",
+              "detail": "War chest +150, Lu Meng war chest +100; remember dividing the dispatches",
+              "effects": {
+                "chips": 150,
+                "oppChips": 100,
+                "fact": "maicheng_split_letters"
+              }
+            },
+            {
+              "id": "burn-letters",
+              "text": "Burn old missives and break out with elite cavalry only",
+              "detail": "Keen Eye increases; remember incinerating the letters",
+              "effects": {
+                "keenEye": true,
+                "fact": "maicheng_burn_letters"
+              }
+            },
+            {
+              "id": "false-beacons",
+              "text": "Rekindle beacon towers to feign prolonged defense",
+              "detail": "Wu host starting war chest -200; remember the empty beacons",
+              "effects": {
+                "raid": true,
+                "fact": "maicheng_false_beacons"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "maicheng-open",
+          "at": "start",
+          "speaker": "lvmeng",
+          "when": "multi",
+          "text": "Lu Xun made you believe time remained; my duty is to run that time dry. Yunchang, it is time for a new perspective."
+        },
+        {
+          "id": "maicheng-letters",
+          "at": "hand:2",
+          "speaker": "luxun",
+          "when": "multi",
+          "text": "Every time you seek aid, I deliberate first on behalf of the recipient. By the time you understand, the road has become my formation."
+        },
+        {
+          "id": "maicheng-spared",
+          "at": "hand:3",
+          "speaker": "guanyu",
+          "when": "choice:huarong:yeshiB",
+          "text": "Sparing him at Huarong was never to make Cao Cao preserve my life today. Guan's honor never collects interest from northern realms."
+        },
+        {
+          "id": "maicheng-slain",
+          "at": "hand:3",
+          "speaker": "guanyu",
+          "when": "choice:huarong:yeshi",
+          "text": "Striking him down at Huarong is a deed Guan never regretted. Only today do I realize that slaying one tyrant cannot slay all the scheming under heaven."
+        },
+        {
+          "id": "maicheng-zhouyu",
+          "at": "hand:4",
+          "speaker": "lvmeng",
+          "when": "page:sanqi:yeshi",
+          "text": "You allowed Zhou Yu ten more years of breath, yet failed to make Eastern Wu forget Jingzhou. He owed you his life, but I cannot trade a province for it."
+        },
+        {
+          "id": "maicheng-low-split",
+          "at": "low",
+          "speaker": "you",
+          "when": "fact:maicheng_split_letters",
+          "text": "Dividing the dispatches was not to await rescuers, but to leave Wu commanders baffled as to which road to block. Before the couriers arrived, decoy forces had sallied."
+        },
+        {
+          "id": "maicheng-low-burn",
+          "at": "low",
+          "speaker": "you",
+          "when": "fact:maicheng_burn_letters",
+          "text": "With the letters reduced to ash, Lu Meng can only guess at today's Guan Yu. To break the siege, one's past self must first vanish."
+        },
+        {
+          "id": "maicheng-low-beacon",
+          "at": "low",
+          "speaker": "you",
+          "when": "fact:maicheng_false_beacons",
+          "text": "The beacons still blaze. In the instant Lu Meng glances back at the ramparts, the mountain trail beneath the snow slips free of his design."
+        }
+      ],
+      "win": {
+        "text": "The west gate of Maicheng swung wide before the snow ceased, and Guan Yu led his remaining vanguard through the crags of Linju. That blade at Huarong Pass, whether it fell or stayed, opened no gates for today; he cast his frayed sword tassel into the snow, and those who survived no longer balanced ancient ledgers against fresh blood. Jingzhou still held a way forward, and the Han had yet another round to play.",
+        "hook": "Though Jingzhou was not lost, the dark specter of vengeance remained unquenched. The campfires of Yiling and the final entrustment at Baidi City both await your hand in the next scroll."
+      },
+      "loss": {
+        "text": "Lu Meng calculated your past honor, while Lu Xun calculated your new resolve. One barred your path to relief, while the other awaited your hesitation; when the snowfall cleared, Maicheng remembered only the Guan Yu who refused to change.",
+        "clue": "Historical Chronicle · Lu Meng and Lu Xun exploit past favors and retreat routes respectively; Keen Eye increases on restart. The choices made at Huarong Pass yield different counsels.",
+        "clueFx": "keenEye"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
     "yiling": {
       "cast": [
         "liubei",
@@ -4396,50 +4521,50 @@ export default {
         "maliang",
         "shamoke"
       ],
-      "objective": "拆开七百里连营，在陆逊点火之前，让刘备看见复仇之外还有多少条命。",
+      "objective": "Dismantle the seven-hundred-li linked camps before Lu Xun sparks the conflagration, showing Liu Bei how many lives exist beyond vengeance.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "猇亭的林叶密得透不过风。每一座营盘都挨着下一座，像有人把七百里怨气铺成了一根火绳。"
+          "text": "The canopy of Xiaoting was so dense that not a breath of wind could pierce it. Each stockade bordered the next, as though someone had laid seven hundred li of bitter grievance into a single fuse of fire."
         },
         {
           "speaker": "guanyu",
-          "text": "麦城那条命，是你替我夺回来的。今日若还要东征，便别再拿我当报仇的理由。",
+          "text": "My life at Maicheng was reclaimed by your hand. If you still must march east today, do not use me as your justification for vengeance.",
           "when": "page:maicheng:yeshi"
         },
         {
           "speaker": "liubei",
-          "text": "云长的首级送到洛阳时，朕没有哭。如今每一座营里都有人喊他，朕便不能再退。",
+          "text": "When Yunchang's severed head was carried into Luoyang, I shed no tears. Now, with every camp crying out his name, I can retreat no longer.",
           "when": "!page:maicheng:yeshi"
         },
         {
           "speaker": "huangquan",
-          "text": "陛下,水军当为前锋,沿江直下;若舍船就陆,连营林木之间,是把七百里的命交给天时。",
+          "text": "Your Majesty, our navy should spearhead the advance straight downriver; abandoning our vessels to camp amidst dense timber surrenders seven hundred li of living souls to heaven's whims.",
           "when": "!seen:huangquan"
         },
         {
           "speaker": "maliang",
-          "text": "五溪番王沙摩柯已到,夷陵道上的图,马良又核了一遍。陛下,只差您一句「移营」。"
+          "text": "King Shamoke of the Five Streams has arrived, and I have re-verified the tactical maps along the Yiling pass. Your Majesty, we await only your single order to relocate camp."
         },
         {
           "speaker": "shamoke",
-          "text": "汉家皇帝替俺们撑腰,这一仗,番王的骨朵不认吴人的水!"
+          "text": "The Emperor of the Great Han stands behind us! In this battle, the spiked mace of the tribal king yields nothing to Wu's waters!"
         },
         {
           "speaker": "luxun",
-          "text": "我不怕刘使君怒。他越怒，越会把山林、连营和人心，亲手摆成一堆柴。"
+          "text": "I fear not Lord Liu's fury. The greater his wrath, the more surely he will arrange mountains, forests, linked camps, and mortal hearts into a funeral pyre with his own hands."
         }
       ],
       "intros": {
         "luxun": [
           {
             "when": "page:maicheng:yeshi",
-            "bio": "荆州无恙，他仍守着江东；这一战不再只是复仇，却仍可能毁于意气。",
-            "quote": "关将军尚在，这仗便不该只为一口气。"
+            "bio": "Jingzhou remained intact, yet he still stands guard over Eastern Wu; this confrontation is no longer merely about revenge, yet it can still perish in rash pride.",
+            "quote": "Since General Guan still lives, this campaign should not be waged purely for wounded pride."
           },
           {
-            "bio": "他把少年意气藏进儒生衣袖，等刘备自己把胜机连成火路。",
-            "quote": "你家主公要仇，我要江东。火该落在何处？"
+            "bio": "He cloaks youthful audacity within the robes of a scholar, waiting as Liu Bei links every chance of victory into an infernal fuse.",
+            "quote": "Your master demands blood; I demand the safety of Eastern Wu. Where then shall the fire fall?"
           }
         ]
       },
@@ -4447,22 +4572,22 @@ export default {
         {
           "id": "move-camps",
           "node": 1,
-          "title": "猇亭 · 火未到先移营",
+          "title": "Xiaoting · Moving Camp Before the Blaze",
           "lines": [
             {
               "speaker": "liubei",
-              "text": "将士避暑入林，是朕的令。今日移营，便是叫他们以为朕怕了陆逊。"
+              "text": "Ordering the host into the shade of the forest to escape the summer swelter was my decree. To move camp today would make them believe their Emperor quails before Lu Xun."
             },
             {
               "speaker": "zhuge",
-              "text": "陛下，陆逊固守不是怯，是在等我们自己把营盘摆成柴。可退一座孤营，不可退七百里人心。"
+              "text": "Your Majesty, Lu Xun's steadfast defense is not cowardice; he waits for us to array our own stockades into firewood. A single isolated outpost may be yielded, but the devotion of seven hundred li cannot be forsaken."
             }
           ],
           "choices": [
             {
               "id": "high-ground",
-              "text": "弃林就高，拆开相连营垒",
-              "detail": "本回看破提升，记住移营之策",
+              "text": "Abandon the woods for high ground, severing linked stockades",
+              "detail": "Keen Eye increases this round; remember the tactic of relocating camps",
               "effects": {
                 "keenEye": true,
                 "fact": "yiling_high_camp"
@@ -4470,8 +4595,8 @@ export default {
             },
             {
               "id": "fire-oil",
-              "text": "夜袭吴军火油队",
-              "detail": "陆逊军资 -200，记住火油所在",
+              "text": "Launch a night raid against Wu flammable oil convoys",
+              "detail": "Lu Xun war chest -200; remember the cache of oil",
               "effects": {
                 "raid": true,
                 "fact": "yiling_fireoil"
@@ -4485,45 +4610,49 @@ export default {
           "id": "yiling-open",
           "at": "start",
           "speaker": "luxun",
-          "text": "你催得越急，我越不必急。你押上的不是军资，是蜀营还能忍几日。"
+          "text": "The more you hasten the assault, the less I need to hurry. What you wager is not military coin, but how many more days the Shu camp can endure."
         },
         {
           "id": "yiling-anguish",
           "at": "hand:2",
           "speaker": "liubei",
-          "text": "我若在此退一步，是否便对不起那些随我入蜀、又随我东征的人？"
+          "text": "If I yield half a step here, will I not betray all those who followed me into Shu and marched east by my side?"
         },
         {
           "id": "yiling-brother",
           "at": "hand:3",
           "speaker": "guanyu",
-          "text": "大哥，我的命尚在。别再拿别人的命祭我。",
+          "text": "Elder Brother, my life is still here. Do not sacrifice more lives upon my altar.",
           "when": "page:maicheng:yeshi"
         },
         {
           "id": "yiling-counsel",
           "at": "hand:3",
           "speaker": "zhuge",
-          "text": "亡者不会因多死几人便归来。先看火油，再看你的仇。",
+          "text": "The dead do not return merely because more join them in the grave. Look upon the pitch and oil before you gaze upon your vengeance.",
           "when": "!page:maicheng:yeshi"
         },
         {
           "id": "yiling-low",
           "at": "low",
           "speaker": "luxun",
-          "text": "你终于肯看营外了。可惜火烧起来以后，再清醒的将令也会慢一步。"
+          "text": "At last you deign to look beyond your palisades. Pity that once the blaze roars, even the clearest military decree arrives one step too late."
         }
       ],
       "win": {
-        "text": "第一支火箭落下时，旧营已经空了。陆逊隔江望着分散的高垒，终于收起那柄始终未点的火折。刘备没有乘胜追杀，只命人逐营清点归乡的姓名。",
-        "hook": "夷陵没有烧成灰烬，刘备却倒在了永安宫。下一页，对手连姓名也没有。",
+        "text": "When the first fire arrow arched across the dusk, the old forest encampments were already desolate. Across the river, Lu Xun gazed upon the scattered redoubts stationed upon the high ridges, finally pocketing the flint he had never struck. Liu Bei pressed no pursuit, commanding his captains merely to tally the names of the living who would return home.",
+        "hook": "Yiling did not burn to ash, yet Liu Bei collapsed within Yong'an Palace. On the next page, your adversary bears not even a human name.",
         "choiceFact": "yiling_fire_avoided"
       },
       "loss": {
-        "text": "火沿营盘奔去，比任何一道军令都快。你护着刘备退向白帝，才懂陆逊等的从来不是东风，而是你因愤怒而不肯改变的那一夜。",
-        "clue": "史鉴 · 陆逊以固守拖高盲注，再赌你急于求成；重开时假破绽减少，先拆连营之势。",
+        "text": "The sea of fire raced along the linked stockades, outrunning every panicked dispatch. Shielding Liu Bei as you retreated toward Baidi City, you finally grasped that Lu Xun had never waited for the east wind—he waited only for the stubborn night when your wrath refused to change.",
+        "clue": "Historical Chronicle · Lu Xun uses steadfast defense to drag out blinds, betting upon your reckless haste. False tells decrease on restart; sever the linked camps first.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "baidicheng": {
       "cast": [
@@ -4532,24 +4661,24 @@ export default {
         "guanyu",
         "caopi"
       ],
-      "objective": "同沉疴争回刘备的时间，也让那句托孤从试探与重担，变回真正的信任。",
+      "objective": "Wrest time back for Liu Bei from mortal sickness, transforming the final entrustment from suspicion and crushing burden back into sacred trust.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "永安宫的药香压不住江潮。刘备枕边放着写了一半的遗诏，最后几个字迟迟不肯落下。"
+          "text": "The medicinal scent of Yong'an Palace could not stifle the roar of the Yangtze surges. By Liu Bei's pillow rested a half-written imperial testament, its final characters hesitating to touch the silk."
         },
         {
           "speaker": "narrator",
-          "text": "两年前，曹丕在受禅台上接过汉家玉玺。消息传到成都，满朝劝进——先主登基，为的是续汉，也为了一句「汉可不亡」。"
+          "text": "Two years earlier, Cao Pi received the jade seal of the Great Han atop the altar of abdication. When the report reached Chengdu, the court pleaded in tears—Liu Bei ascended the throne to preserve the lineage, and for that single cry: 'The Han shall not perish!'"
         },
         {
           "speaker": "caopi",
-          "text": "舜禹之事,朕知之矣。汉四百年,终须有人替它合上书页——玄德,你不肯吗?",
+          "text": "The succession of Shun and Yu—now I understand it fully. After four hundred years, someone must close the chronicles of Han. Xuande, do you still refuse?",
           "when": "!seen:caopi"
         },
         {
           "speaker": "liubei",
-          "text": "云长还活着，夷陵也没烧起来。可我为何还是躺到了这里？原来人躲过自己的错，也躲不过岁月。",
+          "text": "Yunchang still lives, and Yiling never burned. Yet why am I still lying here? It turns out a man can avoid his mistakes, but he cannot outrun the passage of years.",
           "when": [
             "page:maicheng:yeshi",
             "page:yiling:yeshi"
@@ -4557,7 +4686,7 @@ export default {
         },
         {
           "speaker": "liubei",
-          "text": "云长还活着，夷陵的火却仍旧烧过。原来救下一个名字，并不会替我们免去下一场错。",
+          "text": "Yunchang survived, yet the fires of Yiling still raged. Rescuing one beloved name does not exempt us from making the next tragic error.",
           "when": [
             "page:maicheng:yeshi",
             "!page:yiling:yeshi"
@@ -4565,24 +4694,24 @@ export default {
         },
         {
           "speaker": "liubei",
-          "text": "二弟走后，我总觉得每一天都是借来的。今日连借也没处借了，只得把阿斗和孔明都叫来。",
+          "text": "Ever since my second brother departed, I felt every day was merely borrowed time. Today, there is nowhere left to borrow from, and I have summoned Adou and Kongming to my bedside.",
           "when": "!page:maicheng:yeshi"
         },
         {
           "speaker": "zhuge",
-          "text": "陛下，病可医，话不可反着留。您今日想见的是臣，还是一个能替您背完蜀汉的人？"
+          "text": "Your Majesty, sickness can be healed, but last words must not be spoken in twisted tests. Whom do you wish to see today—your devoted minister, or a soul to carry the entire realm of Shu on his shoulders alone?"
         }
       ],
       "intros": {
-        "天命 · 沉疴": [
+        "Destiny · Failing Health": [
           {
             "when": "page:yiling:yeshi",
-            "bio": "夷陵的火没能烧尽季汉，它便换作药碗与更漏，慢慢收走刘备。",
-            "quote": "人可躲过战火，未必躲得过岁月。"
+            "bio": "Though the flames of Yiling failed to consume the Han, fate substituted medicine bowls and water clocks, slowly claiming Liu Bei breath by breath.",
+            "quote": "A man may evade the fires of war, but none escape the march of years."
           },
           {
-            "bio": "它不用兵，也不出千，只把每一天都从病榻前拿走一点。",
-            "quote": "你能赢群雄，可能赢一场病？"
+            "bio": "It deploys no legions and plays no false tricks; it merely steals a fraction of life each day from before the sickbed.",
+            "quote": "You could vanquish rival lords, but can you vanquish mortal illness?"
           }
         ]
       },
@@ -4590,22 +4719,22 @@ export default {
         {
           "id": "last-words",
           "node": 1,
-          "title": "永安宫 · 遗诏未落笔",
+          "title": "Yong'an Palace · Unfinished Testament",
           "lines": [
             {
               "speaker": "liubei",
-              "text": "我若说“君可自取”，是信你，还是把我不敢放下的江山压给你？孔明，你猜我写这句话时怕不怕？"
+              "text": "If I utter 'take the throne yourself if my son proves unworthy,' is it pure trust, or am I crushing you with an empire I cannot bear to release? Kongming, guess whether my brush trembled when writing those words."
             },
             {
               "speaker": "zhuge",
-              "text": "主公若真信亮，便别把信任写成一道不许拒绝的命。臣要的不是自取，是您把阿斗该担的也留给他。"
+              "text": "If my lord truly trusts Liang, do not frame trust as an iron decree that forbids refusal. What I desire is not to usurp the realm, but for you to bequeath to Adou the burdens he must rightfully shoulder."
             }
           ],
           "choices": [
             {
               "id": "plain-words",
-              "text": "请他当面说尽未言之语",
-              "detail": "本回看破提升，记住病榻真言",
+              "text": "Urge him to speak all unspoken truths face to face",
+              "detail": "Keen Eye increases this round; remember the sickbed truth",
               "effects": {
                 "keenEye": true,
                 "fact": "baidi_plain_words"
@@ -4613,8 +4742,8 @@ export default {
             },
             {
               "id": "adou-duty",
-              "text": "让阿斗先自己读完奏章",
-              "detail": "天命起手士气 -1，记住少主亲政",
+              "text": "Have Adou read the imperial memorials himself",
+              "detail": "Destiny starting morale -1; remember the young master governing",
               "effects": {
                 "sow": 1,
                 "fact": "baidi_adou_duty"
@@ -4628,81 +4757,85 @@ export default {
           "id": "baidi-open",
           "at": "start",
           "speaker": "unknown",
-          "text": "你改得了人的命，改得了日出日落吗？"
+          "text": "You can alter the fates of mortal men, but can you alter the rising and setting of the sun?"
         },
         {
           "id": "baidi-trust",
           "at": "hand:2",
           "speaker": "liubei",
-          "text": "我这一生卖过草鞋，也坐过皇位。临到最后，最怕的竟是阿斗离了人便站不住。"
+          "text": "In this life I wove straw sandals, and I sat upon the imperial throne. At the very end, what terrifies me most is that Adou cannot stand without someone propping him up."
         },
         {
           "id": "baidi-answer",
           "at": "hand:3",
           "speaker": "zhuge",
-          "text": "那便让他今日自己站起来。臣能辅他，不能替他活。"
+          "text": "Then let him stand on his own two feet today. Liang can counsel and guide him, but Liang cannot live his life for him."
         },
         {
           "id": "baidi-brother",
           "at": "low",
           "speaker": "guanyu",
-          "text": "大哥，麦城你没丢下我。今日也不许先丢下自己。",
+          "text": "Elder Brother, at Maicheng you did not abandon me. Today you are forbidden from abandoning yourself.",
           "when": "page:maicheng:yeshi"
         },
         {
           "id": "baidi-memory",
           "at": "low",
           "speaker": "liubei",
-          "text": "云长，若你还在，会不会又骂我只会哭？",
+          "text": "Yunchang, if you were still by my side, would you scold me again for knowing only how to weep?",
           "when": "!page:maicheng:yeshi"
         }
       ],
       "win": {
-        "text": "天光透进永安宫时，刘备推开药碗，自己坐了起来。他把“君可自取”四字从遗诏上划去，只写阿斗当亲政、孔明当尽言。那句沉重得无人敢接的托付，终于没有说出口。",
-        "hook": "病榻之后，南中又来急报。孟获不服王化，孔明却说要先擒住他的心。",
+        "text": "As morning light filtered through Yong'an Palace, Liu Bei pushed aside the bitter bowl and sat upright by his own strength. He struck out the four words 'take the throne yourself' from the testament, writing only that Adou must govern in person and Kongming must speak candidly without reserve. That crushing entrustment that no mortal dared receive was never spoken after all.",
+        "hook": "Beyond the sickbed, urgent riders arrived from Nanzhong. Meng Huo refused to submit to imperial authority, yet Kongming declared that the southern king's heart must be captured first.",
         "choiceFact": "liubei_survives"
       },
       "loss": {
-        "text": "遗诏还是写完了。诸葛亮俯身接诏，刘备终于安心，却也把一座江山从此压在了他一个人的晨起与夜寐上。",
-        "clue": "史鉴 · 沉疴靠长久消耗取胜；重开时军资 +150，先保住自己的底池，再谈托孤之外的可能。",
+        "text": "The testament was completed after all. Zhuge Liang bowed low to receive the decree; Liu Bei finally found peace, yet an entire empire was crushed onto the sleepless nights of one solitary chancellor.",
+        "clue": "Historical Chronicle · Lingering malady triumphs through attrition. War chest +150 on restart; protect your own chips first before seeking possibilities beyond entrustment.",
         "clueFx": "supply"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "qiqin": {
       "cast": [
         "zhuge",
         "menghuo"
       ],
-      "objective": "七战不只擒人，更要让孟获从恼怒、猜疑到自省，亲口决定南中的明天。",
+      "objective": "Seven battles to capture not just his person, but to guide Meng Huo from fury and suspicion to profound reflection, deciding Nanzhong's dawn with his own lips.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "泸水瘴气未散，第一根绊马索已经备好。诸葛亮却命人连孟获的酒碗也一并洗净。"
+          "text": "Before the poisonous mists of the Lu River had cleared, the first tripwire had already been strung. Yet Zhuge Liang ordered Meng Huo's wine cup washed clean as well."
         },
         {
           "speaker": "menghuo",
-          "text": "你带多少兵，我借多少山。南中不是你地图上一块空着的地方！"
+          "text": "However many legions you bring, I have as many mountains to call upon! Nanzhong is no empty wasteland on your parchment maps!"
         },
         {
           "speaker": "zhuge",
-          "text": "我若只要你的降表，擒一次便够。我要的是你回去以后，不必再靠造反证明自己。"
+          "text": "If I merely sought your formal surrender, a single capture would suffice. What I desire is that once you return, you will never need rebellion to prove your worth."
         }
       ],
       "intros": {
         "menghuo": [
           {
             "when": "page:qiqin:yeshi",
-            "bio": "南中已经心服，他却仍愿回到泸水，看看那次服气是不是偶然。",
-            "quote": "服过一回，不等于让你再赢七回！"
+            "bio": "Nanzhong's heart was already won, yet he still willingly returns to the Lu River to see if that genuine submission was a fluke.",
+            "quote": "Yielding once does not mean I will let you win seven times again!"
           },
           {
             "when": "seen:menghuo",
-            "bio": "他记得上次未被擒满的七局，也记得你每一次把他放到何处。",
-            "quote": "上次没打完。南王说话算数，从头来！"
+            "bio": "He remembers the seven rounds left unfinished last time, and remembers where you released him after every capture.",
+            "quote": "Last time we did not finish. The Southern King keeps his word—start from the beginning!"
           },
           {
-            "bio": "他有山的硬、酒的直，也有一句宁死不肯先说出口的“服”。",
-            "quote": "先赢我，再跟我讲什么攻心！"
+            "bio": "He has the unyielding stubbornness of his crags and the frankness of strong wine, alongside a proud vow to die rather than whisper 'I submit.'",
+            "quote": "Defeat me first before lecturing me about winning hearts!"
           }
         ]
       },
@@ -4710,22 +4843,22 @@ export default {
         {
           "id": "heart-of-nanzhong",
           "node": 1,
-          "title": "泸水 · 放人与收心",
+          "title": "Lu River · Releasing the Man, Winning the Soul",
           "lines": [
             {
               "speaker": "menghuo",
-              "text": "你们汉人擒了王，不斩便囚。你若真放我，不怕我带更多人回来？"
+              "text": "When you Han people capture a king, you either execute or imprison him. If you truly release me, are you not afraid I will return with even more warriors?"
             },
             {
               "speaker": "zhuge",
-              "text": "怕。所以我不只放你，还要让你的族人看清：回去以后，盐粮归谁，山路归谁，明日归谁。"
+              "text": "I am. That is why I do not merely release you—I want your people to see clearly: upon your return, who controls the salt and grain, who commands the mountain roads, and to whom tomorrow belongs."
             }
           ],
           "choices": [
             {
               "id": "listen-elders",
-              "text": "先听南中长者说完旧俗",
-              "detail": "本回看破提升，记住南中之约",
+              "text": "Listen to Nanzhong elders recount ancient customs first",
+              "detail": "Keen Eye increases this round; remember the Nanzhong covenant",
               "effects": {
                 "keenEye": true,
                 "fact": "qiqin_listen"
@@ -4733,8 +4866,8 @@ export default {
             },
             {
               "id": "return-salt",
-              "text": "分出军粮盐巴，送俘虏回乡",
-              "detail": "军资 -100，孟获士气 -1",
+              "text": "Distribute grain and salt, sending captives home",
+              "detail": "War chest -100, Meng Huo morale -1",
               "effects": {
                 "chips": -100,
                 "sow": 1,
@@ -4749,82 +4882,86 @@ export default {
           "id": "qiqin-r1",
           "at": "start",
           "speaker": "menghuo",
-          "text": "一场便想让我低头？南中的山都不答应！",
+          "text": "You think a single bout can make me bow my head? The very crags of Nanzhong refuse to submit!",
           "when": "round:1"
         },
         {
           "id": "qiqin-r2",
           "at": "start",
           "speaker": "menghuo",
-          "text": "上次是绊马索，不是真本事。有胆再擒我一次！",
+          "text": "Last time was a hidden tripwire, not true martial skill. If you have the guts, capture me once more!",
           "when": "round:2"
         },
         {
           "id": "qiqin-r3",
           "at": "start",
           "speaker": "menghuo",
-          "text": "我输在自己轻敌，不输你。下次我把藤甲、毒泉和旧友都带来。",
+          "text": "I lost because of my own carelessness, not to your genius. Next time I will bring rattan armor, venomous springs, and old allies!",
           "when": "round:3"
         },
         {
           "id": "qiqin-r4",
           "at": "start",
           "speaker": "menghuo",
-          "text": "你烧的是藤甲，不是南中人的心。我还是不服！",
+          "text": "You burned our rattan armor, but you cannot burn the heart of Nanzhong! I still yield nothing!",
           "when": "round:4"
         },
         {
           "id": "qiqin-r5",
           "at": "start",
           "speaker": "menghuo",
-          "text": "为何每次擒了都放？你到底要我服你，还是服你的汉律？",
+          "text": "Why do you release me every time I am taken? Do you want me to submit to you, or submit to your Han statutes?",
           "when": "round:5"
         },
         {
           "id": "qiqin-r6",
           "at": "start",
           "speaker": "menghuo",
-          "text": "我若再回去起兵，倒显得南中只识刀枪。且坐下，把这一局打完。",
+          "text": "If I march back and raise arms again, it would make Nanzhong seem as though we know nothing but violence. Sit down, and let us finish this game.",
           "when": "round:6"
         },
         {
           "id": "qiqin-r7",
           "at": "start",
           "speaker": "menghuo",
-          "text": "不必再放。今日我若输，替南中认你；我若赢，你也留下喝我一碗酒。",
+          "text": "No need to release me again. If I lose today, I acknowledge you on behalf of all Nanzhong; if I win, you remain behind to drink a bowl of wine with me.",
           "when": "round:7"
         },
         {
           "id": "qiqin-answer",
           "at": "hand:2",
           "speaker": "zhuge",
-          "text": "他每怒一次，便多问一次为何。别堵住他的问题，攻心才有门。"
+          "text": "Every time his fury erupts, he questions 'why' once more. Do not silence his questioning; winning hearts begins with honest answers."
         },
         {
           "id": "qiqin-low",
           "at": "low",
           "speaker": "menghuo",
-          "text": "你赢的是底池，我还没输南中。再来！",
+          "text": "You won the chips on the table, but I have not yet surrendered Nanzhong. Again!",
           "when": "!round:7"
         },
         {
           "id": "qiqin-low-seven",
           "at": "low",
           "speaker": "menghuo",
-          "text": "我若此刻翻脸，先对不起的是那六次回去的路。",
+          "text": "If I turn against you now, I would betray those six long roads on which you sent me safely home.",
           "when": "round:7"
         }
       ],
       "win": {
-        "text": "第七次，孟获没有等兵士解绳，自己把王冠放在案上：“丞相，七次不是我的耻辱，是你七次肯信我还能明理。”他转身向族人挥手，南中的鼓声第一次不为迎战而响。",
-        "hook": "南中既安，汉中灯亮。诸葛亮展开《出师表》，祁山在纸背等一条新路。",
-        "choiceFact": "nanzhong_at_peace"
+        "text": "On the seventh capture, Meng Huo did not await soldiers to untie his cords; he placed his feathered headdress upon the table with his own hands: 'Chancellor, seven captures are not my disgrace; they are the seven times you believed that I could still heed reason.' He turned and waved toward his kinsmen, and the drums of Nanzhong sounded for the first time not to summon war, but to welcome peace.",
+        "hook": "With the south pacified, lanterns blazed in Hanzhong. Zhuge Liang unrolled the 'Memorial on Departing the Army,' preparing to cross the northern ridges.",
+        "choiceFact": "menghuo_submits"
       },
       "loss": {
-        "text": "孟获又一次走出营门，这次却没有回头。不是他不服，是你只记住了要放六次，忘了每一次都该让他多明白一点。",
-        "clue": "史鉴 · 七场连战会耗尽底池，擒人之前先留退路；重开时军资 +150，别为一时痛快孤注一掷。",
-        "clueFx": "supply"
-      }
+        "text": "Seven releases were worn away into mutual resentment. You captured his body, yet left behind a scarred land of unresolved anger; when the Han legions marched north, plumes of smoke rose once more from the southern mountains.",
+        "clue": "Historical Chronicle · Meng Huo's strength increases round by round, yet his doubts also deepen. On restart, hear out his grievances; winning the heart is supreme.",
+        "clueFx": "sow"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "qishan": {
       "cast": [
@@ -4832,37 +4969,37 @@ export default {
         "zhaoyun",
         "caozhen"
       ],
-      "objective": "把《出师表》从遗言写成开端，在祁山打通一条粮道与人心都能久行的北伐路。",
+      "objective": "Transform the 'Memorial on Departing the Army' from an epitaph into a beginning, establishing a northern supply road on Mount Qi where both grain and mortal hearts can endure.",
       "coldOpen": [
         {
           "speaker": "zhuge",
-          "text": "隆中那一日，我说天下可分。如今先主把未尽之言交给我，我才懂三分不是答案，只是让人少流血的起点。",
+          "text": "That day in Longzhong, I spoke of the realm dividing threefold. Now that the Late Emperor has bequeathed his unfinished dream into my hands, I understand that the three kingdoms were never an ultimate answer—only a starting point to lessen the shedding of blood.",
           "when": "page:sangu:yeshi"
         },
         {
           "speaker": "zhuge",
-          "text": "草堂门开了多少次，我便欠门外人多少句答复。今日出师，不为证明卧龙多智，只为不再只写“来日”。",
+          "text": "As many times as the cottage gate swung open, I owed the visitor outside that many answers. Setting forth today is not to prove the Sleeping Dragon's cunning, but to cease writing only of 'tomorrow.'",
           "when": "!page:sangu:yeshi"
         },
         {
           "speaker": "zhaoyun",
-          "text": "丞相，常山赵子龙还能请先登。别因我白了头，便把我写成一面只供人回望的旧旗。"
+          "text": "Chancellor, Zhao Zilong of Changshan can still volunteer for the vanguard. Do not inscribe me as an ancient banner merely gazed upon because my brow has frosted with white."
         },
         {
           "speaker": "caozhen",
-          "text": "诸葛亮，你把国事写成一表，我把祁山写成一堵墙。看谁先被自己的字困住。"
+          "text": "Zhuge Liang, you inscribed statecraft into a memorial; I have fashioned Mount Qi into a fortress wall. Let us see who is trapped first by their own hand."
         }
       ],
       "intros": {
         "caozhen": [
           {
             "when": "page:qishan:yeshi",
-            "bio": "祁山曾被走通过一次，他不再只守关隘，而要找出那条重新续上的粮路。",
-            "quote": "同样的山路，我不会让你走通第二次。"
+            "bio": "Mount Qi was once breached; he no longer guards passes alone, focusing on locating that newly reconnected grain route.",
+            "quote": "Along this very mountain road, I will not permit you passage a second time."
           },
           {
-            "bio": "他守住的不是一座祁山，而是魏国以逸待劳、耗空季汉的老办法。",
-            "quote": "表写得再好，粮车也不会自己过山。"
+            "bio": "What he defends is not merely Mount Qi, but Wei's established strategy of resting at ease while exhausting the fragile resources of Shu.",
+            "quote": "No matter how eloquently the memorial is written, grain wagons do not roll over mountains of their own accord."
           }
         ]
       },
@@ -4870,22 +5007,22 @@ export default {
         {
           "id": "road-beyond-fire",
           "node": 1,
-          "title": "祁山 · 不用火的进军",
+          "title": "Mount Qi · March Without Fire",
           "lines": [
             {
               "speaker": "zhaoyun",
-              "text": "曹真把我的旗号都画在册上，却把我白发的数目画多了。他以为老将只能做疑兵。"
+              "text": "Cao Zhen painted every one of my banners into his ledger, yet drew too many white hairs upon my head. He imagines a veteran general can only serve as a decoy."
             },
             {
               "speaker": "zhuge",
-              "text": "博望初用火时，诸将只问我何时再烧。今日偏不烧——祁山要争的是一条明年还能走的道。"
+              "text": "When we first employed fire at Bowang, the generals asked only when we would ignite the woods again. Today we shall use no flame—what Mount Qi contends for is a road that can still be marched next year."
             }
           ],
           "choices": [
             {
               "id": "zhaoyun-feint",
-              "text": "让子龙以旧旗佯攻斜谷",
-              "detail": "曹真起手士气 -1，记住常山疑兵",
+              "text": "Have Zilong feign an advance at Xie Gorge with veteran banners",
+              "detail": "Cao Zhen starting morale -1; remember the Changshan feint",
               "effects": {
                 "sow": 1,
                 "fact": "qishan_zhaoyun_feint"
@@ -4893,8 +5030,8 @@ export default {
             },
             {
               "id": "grain-road",
-              "text": "先修粮站，再谈进兵",
-              "detail": "军资 +200，记住祁山粮道",
+              "text": "Establish supply waystations before advancing the host",
+              "detail": "War chest +200; remember the Mount Qi supply route",
               "effects": {
                 "chips": 200,
                 "fact": "qishan_grain_road"
@@ -4908,958 +5045,41 @@ export default {
           "id": "qishan-open",
           "at": "start",
           "speaker": "caozhen",
-          "text": "六出祁山？你若能出六次，我便能守六次。季汉耗得起几个六年？"
+          "text": "Six expeditions to Mount Qi? If you can march six times, I can hold six times. How many six-year spans can your fragile kingdom afford to squander?"
         },
         {
           "id": "qishan-patience",
           "at": "hand:2",
           "speaker": "zhuge",
-          "text": "他以为持久便是原地不动。非也。能让粮与人持续向前，才叫持久。"
+          "text": "He imagines endurance means standing motionless. Far from it. Ensuring that grain and men advance continuously forward—that alone is true endurance."
         },
         {
           "id": "qishan-veteran",
           "at": "hand:3",
           "speaker": "zhaoyun",
-          "text": "长坂坡我七进七出，不是为了让后人只记住一个“勇”字。今日看我怎样回来。"
+          "text": "At Changban Slope I charged seven times in and seven times out, never so posterity would remember only the word 'valor.' Behold today how I return!"
         },
         {
           "id": "qishan-low",
           "at": "low",
           "speaker": "caozhen",
-          "text": "你不火攻，不奇袭，竟真把一步一营走成了攻势？"
+          "text": "You employ neither fire nor sudden ambuscade; can it be that marching step by step, camp by camp, has truly become an unstoppable offensive?"
         }
       ],
       "win": {
-        "text": "祁山关门未破，山路却先活了：粮站一站接一站，赵云的旧旗从斜谷安然折返。曹真这才发现，诸葛亮要的不是一次入关，而是以后每次都能再来。",
-        "hook": "路既通，下一道门叫街亭。马谡已在帐中铺开地图，把山上圈得极重。",
+        "text": "Before the gates of Mount Qi were breached, the mountain passes came alive: supply depots linked one to the next, while Zhao Yun's veteran standards returned safely from Xie Gorge. Only then did Cao Zhen realize that Zhuge Liang sought not a single breakthrough, but the certainty that he could return every season thereafter.",
+        "hook": "With the road opened, the next gateway was named Jieting. Inside his tent, Ma Su had already unfurled his maps, circling the hilltop with bold, heavy ink.",
         "choiceFact": "qishan_road_open"
       },
       "loss": {
-        "text": "《出师表》被风掀回案上。你不是败在曹真那一堵墙，而是把北伐当成一局必须立刻赢下的豪赌，忘了山路要留给下一年。",
-        "clue": "史鉴 · 曹真借祁山消耗你的耐心；重开时假破绽减少，辨清他何时真守、何时等你抢进。",
+        "text": "The 'Memorial on Departing the Army' was swept back onto the desk by mountain gusts. You were bested not by Cao Zhen's ramparts, but by treating the Northern Expedition as a desperate gamble that had to be won in a single stroke, forgetting that mountain paths must be preserved for the years to come.",
+        "clue": "Historical Chronicle · Cao Zhen uses Mount Qi to exhaust your patience. False tells decrease on restart; discern when he genuinely holds firm and when he baits you to overextend.",
         "clueFx": "keenEye"
-      }
-    },
-    "jieting": {
-      "cast": [
-        "zhuge",
-        "masuo",
-        "wangping",
-        "zhanghe"
-      ],
-      "objective": "让马谡把“高处必胜”改写成当道与水源，在张郃抵达前守住街亭，也守住他的命。",
-      "coldOpen": [
-        {
-          "speaker": "masuo",
-          "text": "丞相，置之死地而后生，兵书写得明白。山上俯瞰街亭，张郃来多少，我便破多少。"
-        },
-        {
-          "speaker": "wangping",
-          "text": "马参军，兵书也写水源。你圈的山头那么高，可曾看见士兵要下山几日才喝到水？"
-        },
-        {
-          "speaker": "zhuge",
-          "text": "幼常，我让你守的不是一幅好看的阵图。今日若再无人敢驳你，错便先在我。"
-        },
-        {
-          "speaker": "zhanghe",
-          "text": "山上的旗越整齐越好。那样我只需围住山下，等他替我军渴死。"
-        }
-      ],
-      "intros": {
-        "zhanghe": [
-          {
-            "when": "page:jieting:history",
-            "bio": "他已在街亭等到过一次山上的破绽，这一次连水道会从哪里断都知道。",
-            "quote": "山与水，你还会把哪一个留给敌人？"
-          },
-          {
-            "bio": "张郃不与你争一处漂亮阵地，只逼你承认地形之外还有时日与渴。",
-            "quote": "兵无常势。你却把山当成了常势。"
-          }
-        ]
       },
-      "map": [
-        {
-          "id": "water-before-height",
-          "node": 1,
-          "title": "街亭 · 先看水后看山",
-          "lines": [
-            {
-              "speaker": "masuo",
-              "text": "若我今日听王平，是全军都会说我纸上谈兵，还是我终于敢承认自己也有一页没读懂？"
-            },
-            {
-              "speaker": "wangping",
-              "text": "参军，肯改军令不是丢脸。让弟兄们活着看见明早，才轮得到你我的脸面。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "joint-order",
-              "text": "让马谡与王平共签守寨军令",
-              "detail": "张郃起手士气 -1，记住两人共守",
-              "effects": {
-                "sow": 1,
-                "fact": "jieting_joint_order"
-              }
-            },
-            {
-              "id": "survey-water",
-              "text": "带马谡亲自踏勘山下取水路",
-              "detail": "本回看破提升，记住水源军图",
-              "effects": {
-                "keenEye": true,
-                "fact": "jieting_water_survey"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "jieting-open",
-          "at": "start",
-          "speaker": "zhanghe",
-          "text": "马谡在山上？那我不必急着仰攻。先问他营中水囊，还够几局。"
-        },
-        {
-          "id": "jieting-wangping",
-          "at": "hand:2",
-          "speaker": "wangping",
-          "text": "他切粮道是假，试水道是真。别追那一面来回晃的旗。"
-        },
-        {
-          "id": "jieting-masuo",
-          "at": "hand:3",
-          "speaker": "masuo",
-          "text": "传令，下寨当道。不是王平胜了我，是街亭比我的胜负要紧。"
-        },
-        {
-          "id": "jieting-low",
-          "at": "low",
-          "speaker": "zhanghe",
-          "text": "你肯从山上下来，我便少了一半胜算。诸葛亮身边，竟有人肯认错。"
-        }
-      ],
-      "win": {
-        "text": "张郃抵达时，当道营寨已经咬住山口，取水队从后沟安然往返。马谡亲手划去图上的山顶大寨，诸葛亮没有挥泪，只让他与王平同坐，重写那份军令。",
-        "hook": "街亭守住，司马懿却转向西城。那里没有马谡，只有一张琴和敞开的门。",
-        "choiceFact": "jieting_held"
-      },
-      "loss": {
-        "text": "山上的喊声先乱，随后才是刀兵。诸葛亮要斩的似乎不只是马谡，还有那个明知他爱逞才、却仍把街亭交给他的自己。",
-        "clue": "史鉴 · 张郃会假攻粮道、实困水源；重开时其起手士气 -1，先守住底池再图反击。",
-        "clueFx": "sow"
-      }
-    },
-    "kongcheng": {
-      "cast": [
-        "zhuge",
-        "simayi"
-      ],
-      "objective": "把无兵可守变成司马懿不敢承受的代价，让琴声、城门与他的多疑各守一道防线。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "西城的门轴上了油，连一声吱呀也不肯出。城中老弱洒扫，城上只摆一张琴。"
-        },
-        {
-          "speaker": "simayi",
-          "text": "博望的火、赤壁的风，我都复盘过。孔明，你今日又替我备了什么？"
-        },
-        {
-          "speaker": "zhuge",
-          "text": "街亭未失，他却仍咬住西城。看来他不是来捉马谡，是来逼我亲手承认无兵。",
-          "when": "page:jieting:yeshi"
-        },
-        {
-          "speaker": "zhuge",
-          "text": "街亭的败报在袖中，城中的老弱在门下。仲达要看我的破绽，便给他一个最像真的。",
-          "when": "!page:jieting:yeshi"
-        }
-      ],
-      "intros": {
-        "simayi": [
-          {
-            "when": "page:kongcheng:yeshi",
-            "bio": "他曾在西城退过一次，此后每一声琴都像在提醒那次不敢输。",
-            "quote": "同一座城，我不会再替你退第二次。"
-          },
-          {
-            "when": "page:jieting:yeshi",
-            "bio": "街亭没有替他耗空蜀军，他便亲自来读诸葛亮最险的一笔。",
-            "quote": "马谡没败，你便以为我也看不穿西城？"
-          },
-          {
-            "when": "seen:simayi",
-            "bio": "他记得你的下注，也记得自己曾因算得太深而放走一座城。",
-            "quote": "这次我会少算一层，还是多算一层？"
-          },
-          {
-            "bio": "冢虎第一次坐到卧龙对面，最利的武器不是兵，而是肯多想一层。",
-            "quote": "城中若无人，你为何敢请我进？"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "tune-for-sima",
-          "node": 1,
-          "title": "城楼 · 琴要弹给谁听",
-          "lines": [
-            {
-              "speaker": "zhuge",
-              "text": "他若进城，我输；他若因不敢输而退，我们便赢。把城门再擦净些，别留半分欲盖弥彰。"
-            },
-            {
-              "speaker": "you",
-              "text": "若他这次宁可犯错，也要进来看一看呢？"
-            },
-            {
-              "speaker": "zhuge",
-              "text": "所以琴不能只求镇定，要让他听见：我已经把他不肯认错的后路，也算进伏兵里。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "slow-qin",
-              "text": "把最后一遍琴弹得更慢",
-              "detail": "司马懿起手士气 -1，记住慢琴",
-              "effects": {
-                "sow": 1,
-                "fact": "kongcheng_slow_qin"
-              }
-            },
-            {
-              "id": "dust-reinforce",
-              "text": "令斜谷尘土佯作援军",
-              "detail": "司马懿军资 -200，记住疑兵尘影",
-              "effects": {
-                "raid": true,
-                "fact": "kongcheng_dust"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "kongcheng-open",
-          "at": "start",
-          "speaker": "simayi",
-          "text": "城中无人，你便是虚；城中有伏，你便是险。我只需决定，哪一种错更便宜。"
-        },
-        {
-          "id": "kongcheng-zhuge",
-          "at": "hand:2",
-          "speaker": "zhuge",
-          "text": "别看他的手，看他每加注一次便多怕一分的后果。空城卖的是他的顾忌。"
-        },
-        {
-          "id": "kongcheng-you",
-          "at": "hand:3",
-          "speaker": "you",
-          "text": "他怕的不是伏兵，是一旦攻错，天下都会说他输给了空城。"
-        },
-        {
-          "id": "kongcheng-low",
-          "at": "low",
-          "speaker": "simayi",
-          "text": "琴弦若断，我进；琴弦不断，我便还要想。孔明，你连断弦也舍得拿来骗我。"
-        }
-      ],
-      "win": {
-        "text": "琴音落到城下，司马懿终于勒马。他在三十里外回望空门：“我不是输给伏兵，是输给了不敢输。”诸葛亮掌心全是汗，却只让书童再添一炉香。",
-        "hook": "空城各输一口气，五丈原再算总账。这一次，司马懿决定连琴也不听。",
-        "choiceFact": "kongcheng_retreat"
-      },
-      "loss": {
-        "text": "魏军踏过城门时，琴声还维持着最后一个音。司马懿没有笑，只说：“你赌我怕错，我这次偏要付一次错的代价。”",
-        "clue": "史鉴 · 司马懿会衡量诈唬的代价，而非只看气势；重开时假破绽减少，别重复同一条下注线。",
-        "clueFx": "keenEye"
-      }
-    },
-    "wuzhangyuan": {
-      "cast": [
-        "zhuge",
-        "simayi",
-        "jiangwei"
-      ],
-      "objective": "在粮尽与秋风之前逼司马懿作答，并把诸葛亮从既定的星落里带回人间。",
-      "coldOpen": [
-        {
-          "speaker": "zhuge",
-          "text": "博望借火，赤壁借风，我一生都在借天时。此次不借了。你替我争一日，我便把这一日活完。"
-        },
-        {
-          "speaker": "simayi",
-          "text": "西城我退得太快，这次我连你的琴也不听。你粮尽之日，便是我出兵之时。",
-          "when": "page:kongcheng:yeshi"
-        },
-        {
-          "speaker": "simayi",
-          "text": "我不问你有何伏兵，也不问你有何妙计。五丈原只比一件事：谁先耗尽。",
-          "when": "!page:kongcheng:yeshi"
-        },
-        {
-          "speaker": "jiangwei",
-          "text": "丞相，药又凉了。您总说看完这道军报，可军报永远没有最后一道。"
-        }
-      ],
-      "intros": {
-        "simayi": [
-          {
-            "when": "asZhuge",
-            "bio": "这一次你亲手执起羽扇，冢虎终于不必隔着蜀营猜测卧龙的神色。",
-            "quote": "孔明，你终于肯亲自坐在我对面。"
-          },
-          {
-            "when": "page:wuzhangyuan:yeshi",
-            "bio": "东南星明以后，他知道命数也会被赢走，却仍相信自己最懂消耗。",
-            "quote": "多活的岁月，也是岁月。我仍耗得起。"
-          },
-          {
-            "when": "page:kongcheng:yeshi",
-            "bio": "空城的退兵成了他的旧伤；如今他用坚壁把旧伤磨成耐心。",
-            "quote": "上次我算你的城，这次我只算你的粮。"
-          },
-          {
-            "bio": "他把不战当作最长久的一注，等秋风替自己清掉对面的筹码。",
-            "quote": "你可以赢每一阵，我只要等到最后一夜。"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "one-more-day",
-          "node": 1,
-          "title": "武功水 · 向人间借一日",
-          "lines": [
-            {
-              "speaker": "jiangwei",
-              "text": "他不接战，军中便都劝丞相再催。可愈催，愈像替他证明秋风真的站在魏营。"
-            },
-            {
-              "speaker": "zhuge",
-              "text": "伯约，屯田不是认输。让兵士知道明年有粮，让百姓知道今年不扰，我才不必向夜空多借那几年。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "tuntian",
-              "text": "与民屯田，让粮道自己生长",
-              "detail": "军资 +200，记住渭滨屯田",
-              "effects": {
-                "chips": 200,
-                "fact": "wuzhang_tuntian"
-              }
-            },
-            {
-              "id": "raid-grain",
-              "text": "斜谷出奇兵，反断魏军粮路",
-              "detail": "司马懿军资 -200，记住反客为主",
-              "effects": {
-                "raid": true,
-                "fact": "wuzhang_counterraid"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "wuzhang-open",
-          "at": "start",
-          "speaker": "simayi",
-          "text": "你送女装来，我便穿给诸将看。能让丈夫羞怒的，从来不叫胜负。"
-        },
-        {
-          "id": "wuzhang-zhuge",
-          "at": "hand:2",
-          "speaker": "zhuge",
-          "text": "他不是无胆，是把我的命也算作盲注。别陪他等，要让他每不应一次都付出军资。"
-        },
-        {
-          "id": "wuzhang-jiangwei",
-          "at": "hand:7",
-          "speaker": "jiangwei",
-          "text": "丞相，东南星还未暗。您先喝药，这一手我陪您看。"
-        },
-        {
-          "id": "wuzhang-tuntian-low",
-          "at": "low",
-          "speaker": "zhuge",
-          "text": "仲达，新粮已经入仓。你等的那阵秋风，今年怕要迟到了。",
-          "when": "fact:wuzhang_tuntian"
-        },
-        {
-          "id": "wuzhang-sima-low",
-          "at": "low",
-          "speaker": "simayi",
-          "text": "你要星星再亮十年，我只等它暗一刻。看谁先撑不住。",
-          "when": "!fact:wuzhang_tuntian"
-        }
-      ],
-      "win": {
-        "text": "五丈原的灯没有灭。司马懿终于出战，又在武功水畔折损先手；诸葛亮趁隙让大军与粮道一同向前。天亮时，他推开药碗，写下另一篇出师表——不是借来十年，而是不再把每一天交给命数。",
-        "hook": "十四年很快。洛阳有人开始装病；这一次，卧龙尚在，旧局未清。",
-        "choiceFact": "zhuge_survives"
-      },
-      "loss": {
-        "text": "东南星暗下去时，司马懿仍没有出战。他不是赢了某一手，只是让你把所有“明日再做”都拖成了秋风里的盲注。",
-        "clue": "史鉴 · 坚壁把盲注拖成刀；重开时军资 +150，先手争粮，莫与他比谁更能空耗。",
-        "clueFx": "supply"
-      }
-    },
-    "gaopingling": {
-      "cast": [
-        "simayi",
-        "caoshuang",
-        "simashi",
-        "zhuge"
-      ],
-      "objective": "拆穿一坛专给曹爽看的病，在司马懿睁眼之前守住诏书、武库与曹魏最后的选择。",
-      "coldOpen": [
-        {
-          "speaker": "zhuge",
-          "text": "五丈原后，我与他又通了许多年的信。今日只寄来四字：勿信其病。他不是等死，是等你先把他当死人。",
-          "when": "page:wuzhangyuan:yeshi"
-        },
-        {
-          "speaker": "writer",
-          "text": "五丈原的星已经落过。如今没人替你看冢虎，只剩一碗故意洒在手背上的粥。",
-          "when": "!page:wuzhangyuan:yeshi"
-        },
-        {
-          "speaker": "caoshuang",
-          "text": "他连粥都喂不进，还能夺我的兵权？我去看过三次，三次都是如此。"
-        },
-        {
-          "speaker": "simashi",
-          "text": "父亲病成这样,师儿只能先持家中馈。将军若疑,何不亲自再探一次?",
-          "when": "!seen:simashi"
-        },
-        {
-          "speaker": "simayi",
-          "text": "大将军……老朽只有一事，不放心。来日……还请你多照看我的两个儿子。"
-        }
-      ],
-      "intros": {
-        "simayi": [
-          {
-            "when": "page:gaopingling:yeshi",
-            "bio": "高平陵败过一次后，他不再只装病，连你的疑心也可能被他拿来布局。",
-            "quote": "同一帖药，我不会再煎第二遍。"
-          },
-          {
-            "when": "page:wuzhangyuan:yeshi",
-            "bio": "五丈原没能熬走卧龙，他便把耐心带回洛阳，等另一个轻敌的人。",
-            "quote": "孔明尚在，正好。我要让他看看，熬得住不只是命。"
-          },
-          {
-            "bio": "他熬走过太多对手，如今把衰老演成最后一层甲，把曹爽的轻视养成刀。",
-            "quote": "老朽病得很重。大将军，你当然可以放心。"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "medicine-and-armory",
-          "node": 1,
-          "title": "高平陵 · 病榻外有刀",
-          "lines": [
-            {
-              "speaker": "caoshuang",
-              "text": "他若装病，骗的是我；他若真病，我此时动手，便坐实了欺辱老臣。你要我怎么办？"
-            },
-            {
-              "speaker": "zhuge",
-              "text": "五丈原后我只教他一件事：耐心也是下注。你若不看底牌，便会把他的忍耐当成天命。",
-              "when": "page:wuzhangyuan:yeshi"
-            },
-            {
-              "speaker": "writer",
-              "text": "没有卧龙隔江提醒，你只能自己分辨：那碗粥喂给了病人，还是喂给了你的轻视。",
-              "when": "!page:wuzhangyuan:yeshi"
-            }
-          ],
-          "choices": [
-            {
-              "id": "read-prescription",
-              "text": "对照药方、更次与喂粥的人",
-              "detail": "本回看破提升，记住病榻伪证",
-              "effects": {
-                "keenEye": true,
-                "fact": "gaoping_medicine"
-              }
-            },
-            {
-              "id": "guard-armory",
-              "text": "先护太后诏书与洛阳武库",
-              "detail": "司马懿军资 -150，记住先手守门",
-              "effects": {
-                "oppChips": -150,
-                "fact": "gaoping_armory"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "gaoping-open-alive",
-          "at": "start",
-          "speaker": "simayi",
-          "text": "孔明还活着，你也还爱多事。看来五丈原那一局，我确实输得不甘心。",
-          "when": "page:wuzhangyuan:yeshi"
-        },
-        {
-          "id": "gaoping-open-fallen",
-          "at": "start",
-          "speaker": "simayi",
-          "text": "孔明已不在。你们还有谁，肯把一个将死之人当作对手？",
-          "when": "!page:wuzhangyuan:yeshi"
-        },
-        {
-          "id": "gaoping-caoshuang",
-          "at": "hand:2",
-          "speaker": "caoshuang",
-          "text": "他是在装？可满朝都看见了……你为何不早说！"
-        },
-        {
-          "id": "gaoping-letter",
-          "at": "hand:3",
-          "speaker": "zhuge",
-          "text": "你若只会等他死，便永远看不见他怎样活。",
-          "when": "page:wuzhangyuan:yeshi"
-        },
-        {
-          "id": "gaoping-low",
-          "at": "low",
-          "speaker": "simayi",
-          "text": "你识破我的病，却识不破百官的怕。刀出鞘以后，他们自会站到我这边。"
-        }
-      ],
-      "win": {
-        "text": "粥碗落地，司马懿翻身而起，却见武库门已闭、太后诏已读。曹爽没有交出印绶，满朝也没有等来一场只能站队的清洗。冢虎第一次发现，满座聪明人并不都愿意陪他装睡。",
-        "hook": "司马家的刀暂回鞘中，三国却未停手。多年后，阴平小道响起裹毡滚崖之声。",
-        "choiceFact": "sima_coup_stopped"
-      },
-      "loss": {
-        "text": "曹爽交印时还相信能做个富家翁。司马懿没有立刻杀他，只让他慢慢想明白：那坛病不是骗一个人的眼睛，是喂大一群人的侥幸。",
-        "clue": "史鉴 · 他的虚弱多是诱饵，真正的强注藏在病后；重开时假破绽减少，别因摊牌前的示弱松手。",
-        "clueFx": "keenEye"
-      }
-    },
-    "yinping": {
-      "cast": [
-        "dengai",
-        "dengzhong",
-        "jiangwei",
-        "zhugezhan",
-        "zhugeshang",
-        "zhuge"
-      ],
-      "objective": "从摩天岭到绵竹设下两重回答，让邓艾的孤军无处落地，诸葛父子不必以死守名。",
-      "coldOpen": [
-        {
-          "speaker": "narrator",
-          "text": "阴平没有路，只有被雨冲淡的兽迹。邓艾命人裹毡滚崖，把自己的命也卷进了那层旧毡。"
-        },
-        {
-          "speaker": "dengai",
-          "text": "都、都说阴平无路。无路，才没人拦我。"
-        },
-        {
-          "speaker": "dengzhong",
-          "text": "父、父亲,忠先下探。绵竹若破,成都不战自降——这一程,儿替您蹚。",
-          "when": "!seen:dengzhong"
-        },
-        {
-          "speaker": "zhugezhan",
-          "text": "父相在时,常叹我等生于安乐。今日绵竹在身后,成都岁余,瞻,退无可退。"
-        },
-        {
-          "speaker": "zhugeshang",
-          "text": "祖父,父亲,儿孙三代之名,系于今日。尚,愿先登!"
-        },
-        {
-          "speaker": "jiangwei",
-          "text": "沓中不能丢，成都也不能丢。最怕的不是两线作战，是每一处都以为另一处有人。"
-        }
-      ],
-      "intros": {
-        "dengai": [
-          {
-            "when": "page:yinping:yeshi",
-            "bio": "阴平曾让他撞上伏守，他却更相信绝境里总还有第二条兽径。",
-            "quote": "这、这次我换一处下山。你还等得到吗？"
-          },
-          {
-            "bio": "他说得结巴，行得决绝；所有人口中的不可能，都是他敢孤注一掷的理由。",
-            "quote": "山、山不会让人。可人会绕过山。"
-          }
-        ],
-        "dengzhong": [
-          {
-            "when": "seen:dengzhong",
-            "bio": "初阵绵竹让他尝过血,这次把父亲的险棋又往前推了一格。",
-            "quote": "父、父亲教我的,我教给你。"
-          },
-          {
-            "bio": "虎父之下的少年,急于证明「邓」字不只属于上一辈。",
-            "quote": "家父面前,休得无礼!"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "light-on-cliff",
-          "node": 1,
-          "title": "阴平 · 无人处先点灯",
-          "lines": [
-            {
-              "speaker": "zhuge",
-              "text": "旧札只有一句：阴平非道，守江油者不可撤。当年人人说它多虑，如今纸页比崖石还重。"
-            },
-            {
-              "speaker": "jiangwei",
-              "text": "守住了哨位，还要守哨位之间的回音。否则一盏灯灭，百里仍以为自己看得见。"
-            },
-            {
-              "speaker": "zhugezhan",
-              "text": "父相旧札我读了三遍:「阴平非道,守江油者不可撤」。哨位要设在能互相看见的地方。",
-              "when": "page:jieting:yeshi"
-            }
-          ],
-          "choices": [
-            {
-              "id": "three-beacons",
-              "text": "依旧札设三处互望烽哨",
-              "detail": "本回看破提升，记住绝壁灯火",
-              "effects": {
-                "keenEye": true,
-                "fact": "yinping_beacons"
-              }
-            },
-            {
-              "id": "grain-ambush",
-              "text": "迁走江油粮道，反设空仓诱敌",
-              "detail": "邓艾军资 -200，记住空仓之计",
-              "effects": {
-                "raid": true,
-                "fact": "yinping_empty_granary"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "yinping-open",
-          "at": "start",
-          "speaker": "dengai",
-          "text": "我、我身后没有粮，脚下没有路。你猜我除了向前，还能往哪儿退？"
-        },
-        {
-          "id": "yinping-jiangwei",
-          "at": "hand:2",
-          "speaker": "jiangwei",
-          "text": "别追他的将旗。裹着毡的才是他，走得最慢的辎重才藏着全军活路。"
-        },
-        {
-          "id": "yinping-zhan",
-          "at": "hand:3",
-          "speaker": "zhugezhan",
-          "text": "高处不是胜势,能守住水与退路才是。绵竹的阵,瞻替父相补上这一课。",
-          "when": "page:jieting:yeshi"
-        },
-        {
-          "id": "yinping-shang",
-          "at": "hand:3",
-          "speaker": "zhugeshang",
-          "text": "邓忠!我祖我父之名在此——我的枪,比你的快!",
-          "when": "multi"
-        },
-        {
-          "id": "yinping-low",
-          "at": "low",
-          "speaker": "dengai",
-          "text": "山都让我过了，你、你以为几堆石头便能留住我？"
-        }
-      ],
-      "win": {
-        "text": "摩天岭上先有灯，再有滚木。邓艾抬头时，江油的空仓也已落锁；这条以命换出来的奇路，终于成了绝路。姜维收好旧札，没有庆功，只先给三处烽哨添了灯油。",
-        "hook": "蜀地守住，建业的潮声却渐低。旧史只剩最后一句：三分归晋。",
-        "choiceFact": "yinping_held"
-      },
-      "loss": {
-        "text": "邓艾落地时，身后只剩一层磨穿的毡。江油开门不是因为城中无勇，而是所有人都把阴平的那一句“不可能”当成了守备。",
-        "clue": "史鉴 · 邓艾以孤军不断抢进，退守只会替他省粮；重开时敌军军资 -200，抢先压住他的落地之势。",
-        "clueFx": "raid"
-      }
-    },
-    "guijin": {
-      "cast": [
-        "simayan",
-        "wangjun",
-        "duyu",
-        "sunhao",
-        "cenhun",
-        "writer"
-      ],
-      "objective": "在“天下归一”落笔前打完三国最后一局，证明合并不必等于抹掉所有人的名字。",
-      "coldOpen": [
-        {
-          "speaker": "simayan",
-          "text": "华容那一刀早落过，北方却照样换了人间。你们总说能改命，最后不还是由我司马氏收场？",
-          "when": [
-            "choice:huarong:yeshi",
-            "!choice:huarong:yeshiB"
-          ]
-        },
-        {
-          "speaker": "simayan",
-          "text": "华容你肯放曹操，是给魏续了一口气。可惜那口气最后姓了司马，你的“义”又救了谁？",
-          "when": "choice:huarong:yeshiB"
-        },
-        {
-          "speaker": "wangjun",
-          "text": "楼船百丈,铁锁千寻。王濬在益州造了七年船,只为这一趟顺流。",
-          "when": "!seen:wangjun"
-        },
-        {
-          "speaker": "duyu",
-          "text": "羊公临终荐预。荆州的人心他已经收好了,预只欠一场水涨。",
-          "when": "!seen:duyu"
-        },
-        {
-          "speaker": "sunhao",
-          "text": "铁锁横江,天堑自在。晋人的楼船?让他们先问过江里的石头!"
-        },
-        {
-          "speaker": "cenhun",
-          "text": "陛下放心,岑昏再加三道锁,火烧不断,水淹不透!"
-        },
-        {
-          "speaker": "writer",
-          "text": "这是旧史最后一页。你若赢，“天下归一”便不再是唯一能写完的句子。"
-        }
-      ],
-      "intros": {
-        "simayan": [
-          {
-            "when": "page:guijin:yeshi",
-            "bio": "他曾被迫承认归并非唯一结局，因此再来时更想把所有可能一并收回。",
-            "quote": "上次你留下三面旗。这次朕连旗杆也要收走。"
-          },
-          {
-            "bio": "他继承的不只是三国疆土，还有祖父最懂的那种等待：等所有人都厌倦。",
-            "quote": "你们打了一辈子，最后还不是要一个“合”字？"
-          }
-        ],
-        "wangjun": [
-          {
-            "when": "seen:wangjun",
-            "bio": "上一场江风让他记住了你,这次连火炬都备了两份。",
-            "quote": "烧、烧不断的是我的船。再来!"
-          },
-          {
-            "bio": "七十岁还想封侯的老将,把半生都押在了这条江上。",
-            "quote": "楼船下益州。金陵王气,收在此行。"
-          }
-        ]
-      },
-      "map": [
-        {
-          "id": "names-under-unification",
-          "node": 1,
-          "title": "石头城 · 降表外的姓名",
-          "lines": [
-            {
-              "speaker": "simayan",
-              "text": "朕给建业留全城性命，给蜀主留安乐封号。你们还要什么？难道割据一生的名字，比太平更要紧？"
-            },
-            {
-              "speaker": "you",
-              "text": "太平若只准一个人命名，下一次分裂时，便又只有刀能说话。"
-            },
-            {
-              "speaker": "writer",
-              "text": "别只替英雄争座位。看看降表背面，那些没被写进去的人，才真正等了三代。"
-            }
-          ],
-          "choices": [
-            {
-              "id": "record-people",
-              "text": "先记下降表背后的百姓姓名",
-              "detail": "本回看破提升，记住万民之史",
-              "effects": {
-                "keenEye": true,
-                "fact": "guijin_people"
-              }
-            },
-            {
-              "id": "three-flags",
-              "text": "重列三国旧旗，再争最后一局",
-              "detail": "司马炎起手士气 -1，记住三分余响",
-              "effects": {
-                "sow": 1,
-                "fact": "guijin_three_flags"
-              }
-            }
-          ]
-        }
-      ],
-      "battle": [
-        {
-          "id": "guijin-open",
-          "at": "start",
-          "speaker": "simayan",
-          "text": "魏熬走了蜀，晋又接过了魏。你看，等待比你们的奇谋都长久。"
-        },
-        {
-          "id": "guijin-writer",
-          "at": "hand:2",
-          "speaker": "writer",
-          "text": "他把“归一”当作底牌，你便不必比他更像天命。让他证明，凭什么只能如此。"
-        },
-        {
-          "id": "guijin-you",
-          "at": "hand:3",
-          "speaker": "you",
-          "text": "合不是把三个名字磨成一个，是让下一个名字出现时，不必先掀起一场乱世。"
-        },
-        {
-          "id": "guijin-low",
-          "at": "low",
-          "speaker": "simayan",
-          "text": "没有朕来收场，你们还要打多少年？你敢把这句话也说给城中百姓听吗？"
-        }
-      ],
-      "win": {
-        "text": "楼船在江心停下，建业没有献出降表。司马炎看着三分旧旗，第一次问：“若天下不是一件战利品，朕还能留下什么？”没有人能替他作答，但城中粮市第二天照常开了门。",
-        "hook": "卷四写尽，纸背却还有一页。写卷人已摆好牌：他要与你谈谈这些被改过的命。",
-        "choiceFact": "jin_unification_stopped"
-      },
-      "loss": {
-        "text": "石头城终于挂出晋旗。百姓确实等来了太平，只是旧史把所有人的名字越写越小，最后只留下“归晋”二字。",
-        "clue": "史鉴 · 司马炎借归一大势持续施压；重开时敌军军资 -200，别替他提前相信结局。",
-        "clueFx": "raid"
-      }
-    },
-    "zuizhong": {
-      "cast": [
-        "writer"
-      ],
-      "objective": "让写卷人承认你不是他的注脚；赢下最后一局，在封卷、还史、撕卷之间决定全书的去处。",
-      "coldOpen": [
-        {
-          "speaker": "writer",
-          "text": "白门楼你让吕布活下，后来每个人都多了一条本不该有的路。你以为我没看见？我每一笔都记着。",
-          "when": "fact:lvbu_lives"
-        },
-        {
-          "speaker": "writer",
-          "text": "麦城你救下关羽，我便看着夷陵少了理由、白帝城少了遗恨。可你没有救下所有遗憾，对不对？",
-          "when": "page:maicheng:yeshi"
-        },
-        {
-          "speaker": "writer",
-          "text": "麦城的雪仍在，夷陵的火也曾等着。你救过一些人，也亲手翻过一些来不及救的页。",
-          "when": "!page:maicheng:yeshi"
-        },
-        {
-          "speaker": "writer",
-          "text": "封卷，留住你的野史；还史，归还原来的命；撕卷，让往后不再有人预知。赢我，这三件事才轮得到你。"
-        }
-      ],
-      "intros": {
-        "写卷人": [
-          {
-            "when": "page:zuizhong:yeshi",
-            "bio": "他记得你曾把结局带出这一页，却仍不肯承认书只能有一种归处。",
-            "quote": "又回来改答案？这次连我也不替你记着。"
-          },
-          {
-            "when": "fact:zhuge_survives",
-            "bio": "他看见东南星仍亮，也知道你救下孔明之后，历史并没有因此变轻。",
-            "quote": "你救过他一次，便真懂怎样救人了吗？"
-          },
-          {
-            "bio": "他知道你翻过的每一页，却第一次坐在只能验牌、不能预设结果的位置。",
-            "quote": "我写过你的来路。现在，让我看看你的选择。"
-          }
-        ]
-      },
-      "map": [],
-      "battle": [
-        {
-          "id": "zuizhong-open-survivor",
-          "at": "start",
-          "speaker": "writer",
-          "text": "五丈原那颗星还亮着。你以为救下孔明是答案？那只是让仲达多了一个不能靠等待赢的人。",
-          "when": "fact:zhuge_survives"
-        },
-        {
-          "id": "zuizhong-open-fallen",
-          "at": "start",
-          "speaker": "writer",
-          "text": "五丈原的秋风我留着。你可以赢司马懿，却未必背得动一个非死不可的人。",
-          "when": "!fact:zhuge_survives"
-        },
-        {
-          "id": "zuizhong-seal",
-          "at": "hand:2",
-          "speaker": "writer",
-          "text": "封卷，我把这些野史装帧成书。他们会活在你改过的那一页，却永远到不了下一页。"
-        },
-        {
-          "id": "zuizhong-return",
-          "at": "hand:3",
-          "speaker": "writer",
-          "text": "还史，我把笔墨收回。麦城的雪、五丈原的风照旧，你只带走自己见过他们的记忆。"
-        },
-        {
-          "id": "zuizhong-tear",
-          "at": "hand:4",
-          "speaker": "writer",
-          "text": "撕卷，谁都可能再活一次，谁都可能再死一次。没有底稿，也没有我替你兜底。"
-        },
-        {
-          "id": "zuizhong-huarong-spare",
-          "at": "hand:5",
-          "speaker": "writer",
-          "text": "华容你放走曹操，信一个“义”字能抵过后患。今日再问你：敢不敢信未知也能抵过结局？",
-          "when": "choice:huarong:yeshiB"
-        },
-        {
-          "id": "zuizhong-huarong-strike",
-          "at": "hand:5",
-          "speaker": "writer",
-          "text": "华容你让刀落下，改了一个奸雄的命，改不了后人争位。撕卷也不会替你免去选择。",
-          "when": [
-            "choice:huarong:yeshi",
-            "!choice:huarong:yeshiB"
-          ]
-        },
-        {
-          "id": "zuizhong-low",
-          "at": "low",
-          "speaker": "writer",
-          "text": "我知你每一张旧牌，却不知下一张。读者，这就是我肯坐下与你赌的原因。"
-        }
-      ],
-      "win": {
-        "text": "写卷人推开牌，第一次没有替你写结局。桌上并排放着封绳、旧史与一把无刃的裁纸刀：封卷，留住所改；还史，承担所失；撕卷，交还未知。你伸手时，整本书都在等。",
-        "hook": "三个答案都在下一问里。你选择的不是结局，而是谁有权写下结局。"
-      },
-      "loss": {
-        "text": "他提笔在你的名字旁添了一个“又”字，所有改写便退回页边。可他没有抹去你坐过的位置——那说明下一次，他仍需要你来。",
-        "clue": "史鉴 · 写卷人熟知你的旧策，却只能按牌理下注；重开时假破绽减少，别被他的全知语气吓退。",
-        "clueFx": "keenEye"
-      }
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "tianshui": {
       "cast": [
@@ -5870,39 +5090,39 @@ export default {
         "guanxing",
         "zhangbao"
       ],
-      "objective": "识破冀城少年的每一步先手,把北伐最大的意外之得,请进蜀营。",
+      "objective": "Discern every opening gambit of the youth of Jicheng, welcoming the Northern Expedition's greatest unforeseen treasure into the Shu camp.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "一出祁山,三郡响应。诸葛亮亲自设伏天水,却见城头一少年按图布防,把丞相的疑兵一一识破。"
+          "text": "Upon the first expedition to Mount Qi, three commanderies responded in submission. Zhuge Liang personally laid an ambush at Tianshui, only to witness a young officer atop the ramparts deploying troops by textbook strategy, seeing through each of the Chancellor's decoys in turn."
         },
         {
           "speaker": "zhaoyun",
-          "text": "某自长坂以来,未逢敌手。今日天水城下,这少年的枪,竟逼得某拨马而回。"
+          "text": "Ever since Changban Slope, I have rarely met my match. Yet today beneath Tianshui, this youth's spear actually forced me to wheel my mount and withdraw."
         },
         {
           "speaker": "jiangwei",
-          "text": "老将军莫怪。维自幼读丞相兵法,今日不过是,替守城的弟兄们,把它原样还回去。"
+          "text": "Old General, take no offense. Jiang Wei has studied the Chancellor's treatises since childhood; today, I merely return them in kind on behalf of my comrades guarding the ramparts."
         },
         {
           "speaker": "zhuge",
-          "text": "子龙一生谨慎,能令他「拨马而回」的人,亮必亲往会之。"
+          "text": "Zilong has been prudent throughout his entire life; any warrior who could force him to 'wheel his mount' is one whom Liang must meet in person."
         },
         {
           "speaker": "guanxing",
-          "text": "丞相,兴愿随军!听说是同辈人,某这口刀,也想会会他。"
+          "text": "Chancellor, Xing requests to join the host! Hearing he is of my generation, this blade of mine yearns to cross paths with his steel."
         }
       ],
       "intros": {
         "jiangwei": [
           {
             "when": "seen:jiangwei",
-            "bio": "他记得你怎样一步步卸掉他的先手,这次把阵扎在了你要来的路上。",
-            "quote": "又来?这次,先手在我。"
+            "bio": "He remembers how you dismantled his opening moves step by step, and now pitches his camp directly along the path you must tread.",
+            "quote": "Coming again? This time, the opening move belongs to me."
           },
           {
-            "bio": "冀城天水之间的少年郡吏,兵法是偷学的,忠义是自家的。",
-            "quote": "姜维在此。丞相的计,某接得住。"
+            "bio": "A youthful commandery officer between Jicheng and Tianshui; his military doctrine was self-taught, but his loyalty is born of his own heart.",
+            "quote": "Jiang Wei is here. Whatever stratagem the Chancellor devises, I shall meet it."
           }
         ]
       },
@@ -5910,30 +5130,30 @@ export default {
         {
           "id": "young-reader",
           "node": 1,
-          "title": "天水 · 他在读你",
+          "title": "Tianshui · He Is Reading You",
           "lines": [
             {
               "speaker": "zhuge",
-              "text": "亮布疑兵,他识疑兵;亮调粮道,他护粮道。此子用兵,倒像是把亮的旧稿先读了一遍。"
+              "text": "When Liang deploys decoys, he discerns the deception; when Liang shifts supply routes, he shields the granaries. This youth wages war as though he had read my past treatises page by page."
             },
             {
               "speaker": "weiyan",
-              "text": "丞相,何须费事?文长领一军,连夜拿下冀城,人自然到手!"
+              "text": "Chancellor, why expend such trouble? Wenchang shall lead a strike force, storm Jicheng by night, and take him captive in hand!"
             },
             {
               "speaker": "zhangbao",
-              "text": "魏将军急什么!丞相要的不是城,是那个人。俺爹说过,抢来的不服,请来的才真。"
+              "text": "Why is General Wei in such a hurry? What the Chancellor desires is not the stone walls, but the man. My father used to say: what is snatched by force will never yield; what is courted with sincerity endures."
             },
             {
               "speaker": "you",
-              "text": "他现在守的,是郡守的命令。要赢他,得先让他发现,自己真正想守的是什么。"
+              "text": "What he currently defends is merely the magistrate's order. To win him, you must first let him discover what his heart truly longs to protect."
             }
           ],
           "choices": [
             {
               "id": "mirror-plan",
-              "text": "以丞相旧稿反设一局",
-              "detail": "本回看破提升,记住镜像之局",
+              "text": "Counter his tactics using the Chancellor's former treatises",
+              "detail": "Keen Eye increases this round; remember the mirror stratagem",
               "effects": {
                 "keenEye": true,
                 "fact": "tianshui_mirror"
@@ -5941,8 +5161,8 @@ export default {
             },
             {
               "id": "open-letter",
-              "text": "阵前递去丞相手书一封",
-              "detail": "军资 +120,姜维起手士气 -1",
+              "text": "Deliver a personal handwritten letter from the Chancellor",
+              "detail": "War chest +120; Jiang Wei starting morale -1",
               "effects": {
                 "chips": 120,
                 "sow": 1,
@@ -5957,37 +5177,291 @@ export default {
           "id": "tianshui-open",
           "at": "start",
           "speaker": "jiangwei",
-          "text": "丞相的疑兵,某已拆过一遍。你,是第二遍吗?"
+          "text": "The Chancellor's feints have already been dismantled once by my hand. Are you here for a second lesson?"
         },
         {
           "id": "tianshui-zhaoyun",
           "at": "hand:2",
           "speaker": "zhaoyun",
-          "text": "少年,你的枪是快。可你在守的是马遵的城,不是你自己的心。"
+          "text": "Young man, your spear is swift indeed. Yet you fight to guard Ma Zun's fortress, not the calling of your own heart."
         },
         {
           "id": "tianshui-mirror",
           "at": "hand:3",
           "speaker": "narrator",
-          "text": "他照旧稿布的阵,被你用同一份旧稿反锁。少年盯着阵图,忽然发现自己烂熟于胸的,竟是蜀营的路数。",
+          "text": "The formation he arranged from old military texts was countered and locked by that very same text. Staring at the tactical scroll, the youth suddenly realized that what he knew by heart was the soul of the Shu camp.",
           "when": "fact:tianshui_mirror"
         },
         {
           "id": "tianshui-low",
           "at": "low",
           "speaker": "zhuge",
-          "text": "伯约,亮不夺你的城。亮只想问你一句:你的兵法,可愿有个用它的天下?"
+          "text": "Boyue, Liang seeks not to wrest your fortress away. Liang asks only one question: does your art of war long for a realm worthy of wielding it?"
         }
       ],
       "win": {
-        "text": "冀城开城的那天,姜维单骑出降,甲胄未卸,先向蜀营深深一揖。诸葛亮下车扶住他:\"亮平生所学,今有传人。\"赵云在一旁按枪而笑。此后北伐的每一次点将,名单上多了一个年轻的、读遍丞相旧稿的名字。",
-        "hook": "得了姜维,北伐的旗更急。可街亭的名字,已在军图上冷冷地亮了起来。"
+        "text": "On the day the gates of Jicheng swung open, Jiang Wei rode forth alone to surrender, bowing deeply toward the Shu camp before removing his armor. Zhuge Liang stepped down from his carriage to clasp his hands: 'All that Liang has learned in this life has found its true heir.' Zhao Yun leaned upon his spear and smiled warmly. Henceforth, whenever the Northern Expedition summoned its generals, the roll call featured a youthful name who had read every word of the Chancellor's writings.",
+        "hook": "Having gained Jiang Wei, the banners of the Northern Expedition surged forward with renewed fire. Yet upon the war map, the name of Jieting had already begun to glow with an ominous chill."
       },
       "loss": {
-        "text": "你急于收服,反被少年将计就计。天水城门合拢的那一刻,他站在城头轻声说:\"丞相之才,某敬佩。可某的枪,只为守土而出。\"",
-        "clue": "史鉴 · 姜维赢在先手,不在兵多。重开时先递信、后设局;让他自己走过来,别去追他。",
+        "text": "Eager to win him over, you fell into the youth's counter-stratagem instead. As the gates of Tianshui swung shut, he stood upon the battlements and murmured: 'The Chancellor's genius commands my deepest respect. Yet my spear is drawn only to protect this soil.'",
+        "clue": "Historical Chronicle · Jiang Wei triumphs through holding the initiative, not numerical superiority. On restart, send the letter first before setting the snare; let him step forward on his own rather than pursuing him.",
         "clueFx": "sow"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "jieting": {
+      "cast": [
+        "zhuge",
+        "masuo",
+        "wangping",
+        "zhanghe"
+      ],
+      "objective": "Guide Ma Su to rewrite 'victory from the heights' into securing the road and water source, holding Jieting and preserving his life before Zhang He arrives.",
+      "coldOpen": [
+        {
+          "speaker": "masuo",
+          "text": "Chancellor, 'placing troops in mortal danger to ensure survival' is plainly written in the treatises of war. Gazing down upon Jieting from the summit, however many troops Zhang He brings, I shall shatter them all!"
+        },
+        {
+          "speaker": "wangping",
+          "text": "Counselor Ma, the treatises also write of water sources! You circle a peak so high—have you measured how many days a soldier must march downhill just to draw a single cup of water?"
+        },
+        {
+          "speaker": "zhuge",
+          "text": "Youchang, what I tasked you to guard is not an elegant tactical diagram upon silk. If today no man dares rebuke your folly, the fault begins with me."
+        },
+        {
+          "speaker": "zhanghe",
+          "text": "The more immaculate his banners on the summit, the better. That way, I need only encircle the base of the mountain and wait for thirst to slaughter his host on my behalf."
+        }
+      ],
+      "intros": {
+        "zhanghe": [
+          {
+            "when": "page:jieting:history",
+            "bio": "He has already waited out a fatal flaw on the heights of Jieting once; this time, he knows precisely where the water routes will be severed.",
+            "quote": "Between the mountain and the water, which one will you surrender to your enemy this time?"
+          },
+          {
+            "bio": "Zhang He contends not for a picturesque hilltop position, but forces you to acknowledge that beyond terrain lie time and mortal thirst.",
+            "quote": "Warfare knows no constant form. Yet you treated the mountain as an eternal truth."
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "water-before-height",
+          "node": 1,
+          "title": "Jieting · Water Before Heights",
+          "lines": [
+            {
+              "speaker": "masuo",
+              "text": "If I heed Wang Ping today, will the entire host mock me as a mere armchair strategist, or will I finally find the courage to admit there was a single page I failed to understand?"
+            },
+            {
+              "speaker": "wangping",
+              "text": "Counselor, amending a command brings no dishonor. Ensuring that our brothers live to behold tomorrow's dawn—that alone earns you and me the right to speak of honor."
+            }
+          ],
+          "choices": [
+            {
+              "id": "joint-order",
+              "text": "Have Ma Su and Wang Ping co-sign the defense order",
+              "detail": "Zhang He starting morale -1; remember joint command",
+              "effects": {
+                "sow": 1,
+                "fact": "jieting_joint_order"
+              }
+            },
+            {
+              "id": "survey-water",
+              "text": "Accompany Ma Su in person to survey the water route",
+              "detail": "Keen Eye increases this round; remember water source map",
+              "effects": {
+                "keenEye": true,
+                "fact": "jieting_water_survey"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "jieting-open",
+          "at": "start",
+          "speaker": "zhanghe",
+          "text": "Ma Su is camped upon the heights? Then I need not rush an uphill assault. First let me ask how many rounds his waterskins can endure."
+        },
+        {
+          "id": "jieting-wangping",
+          "at": "hand:2",
+          "speaker": "wangping",
+          "text": "Severing the supply road is his feint; testing the water route is his true aim. Do not chase that fluttering decoy banner!"
+        },
+        {
+          "id": "jieting-masuo",
+          "at": "hand:3",
+          "speaker": "masuo",
+          "text": "Relay my order: pitch camp across the main thoroughfare! It is not Wang Ping who has bested me; it is that Jieting matters far more than my personal pride."
+        },
+        {
+          "id": "jieting-low",
+          "at": "low",
+          "speaker": "zhanghe",
+          "text": "The moment you descended the heights, half my victory vanished. To think that beside Zhuge Liang, there still lives someone willing to confess an error."
+        }
+      ],
+      "win": {
+        "text": "When Zhang He arrived, the stockade straddling the main road had already locked the pass in an iron grip, while water convoys traveled peacefully through the rear ravine. Ma Su personally struck out the mountaintop redoubt from his map. Zhuge Liang shed no tears; he seated Ma Su beside Wang Ping, guiding them to re-write the defense decree together.",
+        "hook": "Jieting held, yet Sima Yi pivoted toward Xicheng. There lay no Ma Su—only a lone zither and gates thrown wide open.",
+        "choiceFact": "jieting_held"
+      },
+      "loss": {
+        "text": "Cries of chaos erupted first upon the mountain heights, followed swiftly by cold steel. What Zhuge Liang wept to execute was seemingly not merely Ma Su, but himself—who knew Ma Su loved to flaunt talent, yet still entrusted Jieting into his hands.",
+        "clue": "Historical Chronicle · Zhang He feigns attacks on supply routes while genuinely blockading water. On restart, his starting morale is -1; secure your chips first before mounting a counterattack.",
+        "clueFx": "sow"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    }
+  },
+  "4": {
+    "kongcheng": {
+      "cast": [
+        "zhuge",
+        "simayi"
+      ],
+      "objective": "Turn an undefended fortress into an unbearable cost for Sima Yi, using the zither's notes, the wide-open gates, and his own profound suspicion as triple lines of defense.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "The hinges of Xicheng's gates had been freshly oiled, opening without the faintest groan. Within, the elderly and feeble swept the dust; atop the parapet sat a solitary zither."
+        },
+        {
+          "speaker": "simayi",
+          "text": "I have dissected the flames of Bowang and the winds of Chibi. Kongming, what ambush have you devised for me today?"
+        },
+        {
+          "speaker": "zhuge",
+          "text": "Even without taking Jieting, he still pursues Xicheng like a hound. He comes not to capture Ma Su, but to force me to confess my absolute helplessness.",
+          "when": "page:jieting:yeshi"
+        },
+        {
+          "speaker": "zhuge",
+          "text": "The grim report of Jieting lies in my sleeve; only the frail and weary sweep below the gate. Zhongda seeks my flaw—so let us present him with one that seems entirely too real.",
+          "when": "!page:jieting:yeshi"
+        }
+      ],
+      "intros": {
+        "simayi": [
+          {
+            "when": "page:kongcheng:yeshi",
+            "bio": "Having once retreated before Xicheng, every chime of the zither echoes as a reminder of the battle he dared not lose.",
+            "quote": "Before the same gates, I will not turn my horse a second time."
+          },
+          {
+            "when": "page:jieting:yeshi",
+            "bio": "Denied a swift victory at Jieting, he has come in person to decipher Zhuge Liang's most desperate gambit.",
+            "quote": "Because Ma Su stood firm, did you think I could not see through Xicheng?"
+          },
+          {
+            "when": "seen:simayi",
+            "bio": "He remembers your wagers, and how his own excessive caution once cost him an undefended prize.",
+            "quote": "Will I calculate one layer too few this time, or one layer too deep?"
+          },
+          {
+            "bio": "The Crouching Tiger sits opposite the Sleeping Dragon for the first time, wielding not spear or horse, but the deadly habit of overthinking.",
+            "quote": "If the city is truly empty, why dare invite me inside?"
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "tune-for-sima",
+          "node": 1,
+          "title": "The Battlements: For Whom the Zither Plays",
+          "lines": [
+            {
+              "speaker": "zhuge",
+              "text": "If he advances, I am undone; if he retreats from fear of defeat, we prevail. Clean the gates once more—leave not the slightest trace of deliberate concealment."
+            },
+            {
+              "speaker": "you",
+              "text": "What if this time he would rather err than wonder, and marches in just to look?"
+            },
+            {
+              "speaker": "zhuge",
+              "text": "Therefore the music cannot merely mimic calm. It must convince his ears that I have factored his refusal to back down into my waiting trap."
+            }
+          ],
+          "choices": [
+            {
+              "id": "slow-qin",
+              "text": "Play the final refrain at a slower, deliberate tempo",
+              "detail": "Sima Yi starting Morale -1; remember Slow Melody",
+              "effects": {
+                "sow": 1,
+                "fact": "kongcheng_slow_qin"
+              }
+            },
+            {
+              "id": "dust-reinforce",
+              "text": "Stir dust along Xie Valley to feign approaching relief forces",
+              "detail": "Sima Yi War Funds -200; remember Phantom Dust",
+              "effects": {
+                "raid": true,
+                "fact": "kongcheng_dust"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "kongcheng-open",
+          "at": "start",
+          "speaker": "simayi",
+          "text": "If the city is vacant, you are hollow; if an ambush lurks within, you are lethal. I need only decide which mistake costs me less."
+        },
+        {
+          "id": "kongcheng-zhuge",
+          "at": "hand:2",
+          "speaker": "zhuge",
+          "text": "Watch not his hands, but the burden of dread that mounts with every raise. The empty fort sells nothing but his own hesitation."
+        },
+        {
+          "id": "kongcheng-you",
+          "at": "hand:3",
+          "speaker": "you",
+          "text": "He fears not the ambush, but that should he blunder, the world will laugh that he fled an empty gate."
+        },
+        {
+          "id": "kongcheng-low",
+          "at": "low",
+          "speaker": "simayi",
+          "text": "If the string snaps, I advance; if it plays unbroken, I must weigh it still. Kongming, even a broken chord is a deceit you would dare wield against me!"
+        }
+      ],
+      "win": {
+        "text": "As the zither's dying notes drifted down the stone walls, Sima Yi finally pulled his reins. Ten miles distant, he looked back at the gaping portal: 'I did not lose to hidden soldiers; I lost to the terror of defeat.' Zhuge Liang's palms were soaked with cold sweat, yet he merely bade his attendant light another stick of incense.",
+        "hook": "Both held their breath at the Empty Fort, saving the final reckoning for Wuzhangyuan. Next time, Sima Yi will not listen even to a single chord.",
+        "choiceFact": "kongcheng_retreat"
+      },
+      "loss": {
+        "text": "When the Wei cavalry thundered through the gate, the zither still vibrated with its last trembling note. Sima Yi did not laugh, but said softly: 'You wagered I feared failure; this time, I chose to pay the price of being wrong.'",
+        "clue": "Historical Mirror: Sima Yi calculates the cost of calling a bluff rather than just posturing. Upon retry, false tells decrease; avoid repeating identical betting lines.",
+        "clueFx": "keenEye"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "chencang": {
       "cast": [
@@ -5997,50 +5471,50 @@ export default {
         "jiangwei",
         "guanxing"
       ],
-      "objective": "在云梯与火箭之间,找到郝昭守城的理由,再决定陈仓该不该破。",
+      "objective": "Between cloud ladders and fire arrows, uncover Hao Zhao's true reason for holding the bastion, and decide whether Chencang should ever be breached.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "陈仓城小而坚,守将郝昭,不过千人。蜀军云梯、冲车、地道轮番上阵,城头的火箭一一点名。"
+          "text": "Chencang was small yet unyielding, garrisoned by barely a thousand men under Hao Zhao. The Shu forces brought cloud ladders, battering rams, and sapping tunnels in turns, only to have fire arrows strike each down with unerring precision."
         },
         {
           "speaker": "haozhao",
-          "text": "诸葛丞相的攻具,昭领教二十日了。城小,好在要守的也少。"
+          "text": "For twenty days I have tasted Chancellor Zhuge's siege machines. The city is small, but that means there is all the less to defend."
         },
         {
           "speaker": "zhuge",
-          "text": "郝伯道守城有法,强攻徒损将士。伯约,你说,困城先困什么?"
+          "text": "Hao Bodao defends with peerless skill; brute assault only squanders our soldiers' blood. Boyue, tell me: to besiege a fortress, what must be besieged first?"
         },
         {
           "speaker": "jiangwei",
-          "text": "维以为,困城先困心。郝昭同乡靳详在军中,可先劝降,探他守志。"
+          "text": "I believe one must first besiege the heart. Hao Zhao's kinsman Jin Xiang is in our ranks; we can send him to urge surrender and test Bodao's resolve."
         },
         {
           "speaker": "weiyan",
-          "text": "二十日了!再劝下去,长安的援军就到了。丞相,给文长三日益,必破此城!"
+          "text": "Twenty days already! If we keep talking, reinforcements from Chang'an will arrive. Chancellor, grant Wen Zhang three days, and I swear I shall tear down this wall!"
         }
       ],
       "intros": {
         "haozhao": [
           {
             "when": "seen:haozhao",
-            "bio": "他记得你的每一种攻具,城头又添了三排火箭。",
-            "quote": "云梯?冲车?还是地道?我都备好了。"
+            "bio": "Remembering every one of your siege engines, he has lined the ramparts with three fresh tiers of flame arrows.",
+            "quote": "Cloud ladders? Battering rams? Or tunnels underground? I have prepared for them all."
           },
           {
-            "bio": "千人守孤城,守的从来不是城,是一个「信」字。",
-            "quote": "昭受魏恩,城在人在。请丞相换法子吧。"
+            "bio": "A thousand men holding a lonely fortress defend not stone and mortar, but a solitary pledge of honor.",
+            "quote": "Zhao owes his life to Wei; the city stands as long as I draw breath. Pray seek another path, Chancellor."
           }
         ],
         "wangshuang": [
           {
             "when": "seen:wangshuang",
-            "bio": "他的流星锤记过你的将,也记过自己的轻进。",
-            "quote": "这次跟紧大队!锤下不留情!"
+            "bio": "His meteor hammer remembers your officers, but also his own reckless charge.",
+            "quote": "Stay close to the vanguard this time! My hammer shows no mercy!"
           },
           {
-            "bio": "陇西大汉,先登的奖赏他背了一路。",
-            "quote": "王双在此!谁的头,配我的锤?"
+            "bio": "The giant of Longxi has carried the glory of the vanguard across every frontier.",
+            "quote": "Wang Shuang is here! Whose skull is worthy of my hammer?"
           }
         ]
       },
@@ -6048,30 +5522,30 @@ export default {
         {
           "id": "siege-letters",
           "node": 1,
-          "title": "散关 · 云梯与书信",
+          "title": "San Pass: Cloud Ladders and Letters",
           "lines": [
             {
               "speaker": "haozhao",
-              "text": "昭知丞相必得陈仓而后去。只可惜,陛下给的城,昭一寸也不让。"
+              "text": "Zhao knows the Chancellor must take Chencang before advancing. Regrettably, this city was entrusted by His Majesty, and Zhao yields not an inch."
             },
             {
               "speaker": "zhuge",
-              "text": "他不肯降,是信魏,还是信他身后无人肯守?攻具要继续,信,也要继续。"
+              "text": "Does he refuse to yield out of loyalty to Wei, or because he believes no one behind him will stand? The siege weapons must press on, and so too must our letters."
             },
             {
               "speaker": "guanxing",
-              "text": "丞相,兴押粮时数过:城中炊烟,一日淡过一日。"
+              "text": "Chancellor, while escorting grain I counted: the smoke from the city's cooking fires thins with each passing day."
             },
             {
               "speaker": "you",
-              "text": "那就比谁先到——他的粮尽,还是长安的援军。"
+              "text": "Then let it be a race against time: his provisions running dry, or the vanguard from Chang'an."
             }
           ],
           "choices": [
             {
               "id": "count-smoke",
-              "text": "以炊烟计城中存粮",
-              "detail": "本回看破提升,记住炊烟之数",
+              "text": "Gauge the fortress supplies by counting cooking smoke",
+              "detail": "Keen Eye boosted this round; remember Smoke Count",
               "effects": {
                 "keenEye": true,
                 "fact": "chencang_smoke"
@@ -6079,8 +5553,8 @@ export default {
             },
             {
               "id": "cut-relief",
-              "text": "伏兵散关,截长安援军",
-              "detail": "魏军起手军资 -200,记住断援",
+              "text": "Ambush San Pass to intercept the Chang'an relief army",
+              "detail": "Wei forces starting War Funds -200; remember Severed Relief",
               "effects": {
                 "raid": true,
                 "fact": "chencang_cut"
@@ -6094,36 +5568,40 @@ export default {
           "id": "chencang-open",
           "at": "start",
           "speaker": "haozhao",
-          "text": "又是云梯。昭说过了——换法子吧,丞相。"
+          "text": "Ladders again. Zhao has said it before—try another way, Chancellor."
         },
         {
           "id": "chencang-fire",
           "at": "hand:2",
           "speaker": "narrator",
-          "text": "火箭如雨,云梯成排地烧。城头那个瘦削的身影,二十日来没有离开过一步。"
+          "text": "Fire arrows rained like a deluge, burning the cloud ladders row by row. On the ramparts, that gaunt figure had not retreated half a step in twenty days."
         },
         {
           "id": "chencang-shuang",
           "at": "hand:3",
           "speaker": "wangshuang",
-          "text": "郝昭撑住!王双的援军到了——呔!追兵也敢跟这么紧?!"
+          "text": "Hold fast, Hao Zhao! Wang Shuang's relief force has arrived—Curses! How dare the pursuers press so hard?!"
         },
         {
           "id": "chencang-low",
           "at": "low",
           "speaker": "zhuge",
-          "text": "罢。传令:敛兵,回汉中。陈仓虽在,郝伯道之名,亮记下了。"
+          "text": "Enough. Sound the recall; return to Hanzhong. Though Chencang stands, Liang shall not forget the name of Hao Bodao."
         }
       ],
       "win": {
-        "text": "退军的路上,王双追来,却一头撞进你布在散关的伏兵。斩王双,退大军,陈仓的城头,郝昭扶着垛口望了许久。他守住了城,诸葛亮赢得了整个陇右的从容——这一仗,两人都没有输。",
-        "hook": "陈仓虽退,北伐的心没有退。渭水上游,一场更大的对峙正在蓄水——这一次,对手是司马。"
+        "text": "On the retreat road, Wang Shuang gave furious chase, only to crash headlong into the ambush laid at San Pass. With Wang Shuang slain and the Wei host checked, Hao Zhao rested against the parapet, gazing long into the distance. He had held his fortress, while Zhuge Liang preserved the composure of Longxi—in this clash, neither man suffered defeat.",
+        "hook": "Though Chencang held, the Northern Expedition did not falter. Upstream along the Wei River, an even grander confrontation gathered its waters—against Sima Yi."
       },
       "loss": {
-        "text": "攻城的第二十日,云梯烧尽了,长安的援军也到了。你在陈仓城下学会了同一件事:有些城,强攻不动;有些将,劝降不动。",
-        "clue": "史鉴 · 郝昭以「守」待「攻」,你的每一步攻具都在替他点名。重开时先断援军、再数炊烟,等他的粮替你说话。",
+        "text": "On the twentieth day of the siege, the ladders were reduced to ash, and the relief host from Chang'an descended upon the valley. Beneath the walls of Chencang, you learned the hard truth: some strongholds cannot be stormed, and some commanders cannot be swayed.",
+        "clue": "Historical Mirror: Hao Zhao turns defense into an offensive counter, punishing each assault engine. Upon retry, sever reinforcements first and monitor the smoke; let his provisions speak for you.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "shangfanggu": {
       "cast": [
@@ -6133,55 +5611,55 @@ export default {
         "weiyan",
         "yangyi"
       ],
-      "objective": "把司马懿父子诱入葫芦谷,在雨落下之前,让火替蜀军说最后一句话。",
+      "objective": "Lure Sima Yi and his sons into Gourd Valley, and before the deluge falls, let fire speak the final words for Shu.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "渭水南岸,蜀军屯田,魏军筑垒。上方谷口堆满干柴,只等司马懿自己走进来。"
+          "text": "On the southern bank of the Wei River, the Shu army cultivated fields while Wei fortified their ramparts. Gourd Valley was stacked high with dry kindling, waiting only for Sima Yi to step inside."
         },
         {
           "speaker": "simayi",
-          "text": "孔明屯田,是邀孤决战;孤偏不战。他若退,孤追——只追到谷口为止。"
+          "text": "Kongming's farming is an invitation to decisive battle; I shall refuse him. If he retreats, I pursue—but only as far as the mouth of the valley."
         },
         {
           "speaker": "simazhao",
-          "text": "父亲,蜀军粮车连日向北原移动,孩儿愿领一军,探他虚实。"
+          "text": "Father, the Shu supply carts have been moving towards the Northern Plains for days. Allow me to lead a force to test their reality."
         },
         {
           "speaker": "zhuge",
-          "text": "司马懿不是不肯来,是不肯一个人来。那就给他的儿子,一个非来不可的理由。"
+          "text": "Sima Yi does not refuse to come; he merely refuses to come alone. Then give his son a reason that cannot be ignored."
         },
         {
           "speaker": "yangyi",
-          "text": "丞相,木牛流马三十车已备,每车都做了记号——威公保证,一车都不会真丢。"
+          "text": "Chancellor, thirty wooden oxen and flowing horses are primed, each discreetly marked. Weigong guarantees not a single one shall truly be lost."
         }
       ],
       "intros": {
         "simayi": [
           {
             "when": "page:kongcheng:yeshi",
-            "bio": "西城的琴声之后,他更信「孔明之退皆有伏」,这份疑心,正是你要的锁。",
-            "quote": "琴我听过一次。这次,我只信我的眼睛。"
+            "bio": "After the zither notes of Xicheng, he believed all the more that 'Kongming's retreat hides an ambush'—a suspicion that became your ultimate snare.",
+            "quote": "I listened to your zither once. This time, I trust only my eyes."
           },
           {
             "when": "seen:simayi",
-            "bio": "他仍旧闭目养神,可耳听八方——你在谷口做的每一处记号,他都想知道。",
-            "quote": "把你的粮车再往前挪一里。孤,看着。"
+            "bio": "He still rests his eyes in contemplation, yet his ears strain to catch every echo—desperate to know every mark you left at the valley mouth.",
+            "quote": "Nudge your grain wagons another mile forward. I am watching."
           },
           {
-            "bio": "冢虎不出洞,除非洞外的人,替他把洞口的石头搬开。",
-            "quote": "孔明啊孔明,你的耐心,终究要输给岁数。"
+            "bio": "The Crouching Tiger never leaves his lair unless someone outside removes the stone blocking the cave.",
+            "quote": "Kongming, oh Kongming, your patience must inevitably yield to your fleeting years."
           }
         ],
         "simazhao": [
           {
             "when": "seen:simazhao",
-            "bio": "他领教过你的伏笔,这次把父亲的谨慎折了一半,添进自己的果决。",
-            "quote": "父亲的谨慎我学一半。另一半,我改。"
+            "bio": "Having tasted your traps, he halved his father's caution and doubled his own decisive ambition.",
+            "quote": "I take half of my father's prudence. The other half, I rewrite."
           },
           {
-            "bio": "随军的次子,眼睛却总盯着帅帐里那把还没坐热的椅子。",
-            "quote": "小将军司马昭,代父巡谷。"
+            "bio": "Accompanying the host, the second son's gaze rests unceasingly on the commander's seat that has scarcely grown warm.",
+            "quote": "General Sima Zhao scouts the valley on my father's behalf."
           }
         ]
       },
@@ -6189,30 +5667,30 @@ export default {
         {
           "id": "granary-carts",
           "node": 1,
-          "title": "北原 · 粮车之饵",
+          "title": "Northern Plains: The Bait of Grain Carts",
           "lines": [
             {
               "speaker": "weiyan",
-              "text": "丞相,诱敌的差事,该文长去了!司马懿若肯入谷,文长愿领五百人,替他关谷门!"
+              "text": "Chancellor, the task of luring the prey belongs to Wen Zhang! If Sima Yi enters the gorge, I will lead five hundred men to slam the canyon gates shut!"
             },
             {
               "speaker": "zhuge",
-              "text": "文长守谷门,孤放心。只是记住——火起之后,门要关得快,开得更快。"
+              "text": "With Wen Zhang at the gate, I am at ease. Only remember—once the fires roar, shut the gates swiftly, but reopen them swifter still."
             },
             {
               "speaker": "yangyi",
-              "text": "粮车、干柴、火油,账目在此。丞相,威公只提醒一句:天,三月无雨了。"
+              "text": "Grain wagons, kindling, and oil—the ledger is complete. Chancellor, Weigong merely offers one reminder: the heavens have seen no rain for three moons."
             },
             {
               "speaker": "you",
-              "text": "无雨的天,是火的朋友,也是雨的前奏。这一局,要赢得比天气快。"
+              "text": "A rainless sky is fire's ally, but also the prelude to a storm. In this hand, we must win faster than the weather."
             }
           ],
           "choices": [
             {
               "id": "watch-sky",
-              "text": "先观云脚,择干燥日纵火",
-              "detail": "本回看破提升,记住天时之择",
+              "text": "Read the cloud patterns and choose an arid day to strike",
+              "detail": "Keen Eye boosted this round; remember Celestial Reading",
               "effects": {
                 "keenEye": true,
                 "fact": "shangfanggu_sky"
@@ -6220,8 +5698,8 @@ export default {
             },
             {
               "id": "burn-carts",
-              "text": "弃三十车粮,佯败入谷",
-              "detail": "魏军起手军资 -200,记住弃粮之饵",
+              "text": "Abandon thirty wagons of grain to feign a panicked rout",
+              "detail": "Wei forces starting War Funds -200; remember Grain Bait",
               "effects": {
                 "raid": true,
                 "fact": "shangfanggu_carts"
@@ -6235,37 +5713,321 @@ export default {
           "id": "shangfanggu-open",
           "at": "start",
           "speaker": "simayi",
-          "text": "粮车北移,营垒东倾。孔明,你的每一步,都在请孤入谷。"
+          "text": "Grain wagons rolling north, fortifications tilting east. Kongming, every step you take invites me into this gorge."
         },
         {
           "id": "shangfanggu-zhao",
           "at": "hand:2",
           "speaker": "simazhao",
-          "text": "父亲!粮车乱了,蜀军真的败了——追不追,就在此刻!",
+          "text": "Father! Their wagons are in chaos, the Shu soldiers are truly fleeing—pursue or hold, the moment is now!",
           "when": "multi"
         },
         {
           "id": "shangfanggu-fire",
           "at": "hand:3",
           "speaker": "weiyan",
-          "text": "谷门——落!火箭,上!今日便叫魏军知道,什么叫进得来,出不去!"
+          "text": "Drop the valley gates! Launch the fire arrows! Today we teach the Wei host what it means to enter a tomb with no exit!"
         },
         {
           "id": "shangfanggu-low",
           "at": "low",
           "speaker": "simayi",
-          "text": "中计了……我父子三人,竟要毕命于此谷?罢了,罢了!"
+          "text": "Trapped... Are father and sons to perish together in this cursed ravine? So be it... so be it!"
         }
       ],
       "win": {
-        "text": "火起时,谷口的牌局已经收官。司马懿仰头看天,乌云正从山后压过来——可这次,雨落在火烧完之后。他从灰烬里被扶出来,半晌只说了一句:「天意犹在,人事先尽。」渭南的魏军,从此再不出垒。",
-        "hook": "上方谷的火没能烧尽司马氏,却烧掉了他们的傲气。渭滨的秋风,就要替这场对峙收尾。"
+        "text": "When the inferno flared, the game at the canyon mouth had already concluded. Sima Yi raised his eyes to the heavens, dark clouds looming over the ridges—yet this time, the rain fell only after the flames had consumed their toll. Hauled from the embers, he uttered after a long silence: 'Heaven's will endures, but mortal will took the lead.' The Wei host south of the Wei River never ventured forth again.",
+        "hook": "The fires of Gourd Valley failed to consume the House of Sima, but burned away their haughty pride. The autumn winds of Wuzhangyuan would soon write the final chapter of this stalemate."
       },
       "loss": {
-        "text": "雨比你的火快了半刻。谷中父子在雨里放声大笑,笑声比火更烫。你终于明白:算尽了人事的人,输给天时,最痛。",
-        "clue": "史鉴 · 司马懿入谷前会反复试探。重开时先观云再纵火,弃粮之饵能减其军资 200——别让天气先亮牌。",
+        "text": "The deluge arrived half a moment before your fire caught. In the drenching rain, father and sons laughed like madmen, their laughter burning hotter than flames. You finally understood: for those who have calculated every mortal factor, losing to the sky cuts the deepest.",
+        "clue": "Historical Mirror: Sima Yi probes repeatedly before committing to the gorge. Upon retry, read the sky before lighting the fire; the grain bait reduces his funds by 200—do not let the storm reveal your hand first.",
         "clueFx": "raid"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "wuzhangyuan": {
+      "cast": [
+        "zhuge",
+        "simayi",
+        "jiangwei"
+      ],
+      "objective": "Force Sima Yi to answer before the provisions run out and the autumn wind turns cold, and guide Zhuge Liang back from his fated falling star.",
+      "coldOpen": [
+        {
+          "speaker": "zhuge",
+          "text": "At Bowang I borrowed fire; at Chibi I borrowed the wind. All my life I have borrowed from the heavens. No longer. If you contest a single day for me, I shall live that day to its fullest."
+        },
+        {
+          "speaker": "simayi",
+          "text": "At Xicheng I turned back too hastily; this time, I will not even listen to your zither. The day your grain runs out is the hour my army strikes.",
+          "when": "page:kongcheng:yeshi"
+        },
+        {
+          "speaker": "simayi",
+          "text": "I ask not what ambush you hide, nor what brilliant stratagem you brew. At Wuzhangyuan, there is only one contest: who depletes first.",
+          "when": "!page:kongcheng:yeshi"
+        },
+        {
+          "speaker": "jiangwei",
+          "text": "Chancellor, the medicinal brew has cooled again. You always promise to finish just one more dispatch, yet the dispatches never end."
+        }
+      ],
+      "intros": {
+        "simayi": [
+          {
+            "when": "asZhuge",
+            "bio": "This time you raise the feather fan with your own hand; the Crouching Tiger need no longer guess at the Sleeping Dragon's visage across the river.",
+            "quote": "Kongming, you have finally deigned to sit across from me in person."
+          },
+          {
+            "when": "page:wuzhangyuan:yeshi",
+            "bio": "Having seen the southeastern star stay ablaze, he knows destiny can be wrested away, yet still believes he understands attrition better than any man.",
+            "quote": "Borrowed years are still years. I can still outlast you."
+          },
+          {
+            "when": "page:kongcheng:yeshi",
+            "bio": "His retreat at the Empty Fort left an enduring scar; now he tempers that wound into inexhaustible patience behind stone ramparts.",
+            "quote": "Last time I calculated your city; this time, I calculate only your grain."
+          },
+          {
+            "bio": "Treating refusal to engage as his longest-held wager, he waits for the autumn wind to sweep away the chips across the table.",
+            "quote": "You may win every skirmish; I need only outlive the final night."
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "one-more-day",
+          "node": 1,
+          "title": "Wugong Waters: Borrowing a Day from the World",
+          "lines": [
+            {
+              "speaker": "jiangwei",
+              "text": "As he refuses battle, the officers urge the Chancellor to provoke him again. Yet the more we press, the more it seems the autumn wind favors the Wei camp."
+            },
+            {
+              "speaker": "zhuge",
+              "text": "Boyue, cultivating the fields is no surrender. If the soldiers know next year brings grain, and the common folk know this year brings peace, I need not plead with the night sky for more years."
+            }
+          ],
+          "choices": [
+            {
+              "id": "tuntian",
+              "text": "Tillage among the people: let the supply lines grow from the soil",
+              "detail": "War Funds +200; remember Wei River Tillage",
+              "effects": {
+                "chips": 200,
+                "fact": "wuzhang_tuntian"
+              }
+            },
+            {
+              "id": "raid-grain",
+              "text": "Launch a strike through Xie Valley to sever the Wei supply line",
+              "detail": "Sima Yi War Funds -200; remember Counter-Raid",
+              "effects": {
+                "raid": true,
+                "fact": "wuzhang_counterraid"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "wuzhang-open",
+          "at": "start",
+          "speaker": "simayi",
+          "text": "Send women's garments, and I will don them before all my generals. That which provokes a man to wrath is never victory or defeat."
+        },
+        {
+          "id": "wuzhang-zhuge",
+          "at": "hand:2",
+          "speaker": "zhuge",
+          "text": "He lacks not courage; he has simply priced my mortality into his blinds. Do not wait with him—force him to bleed silver every time he folds."
+        },
+        {
+          "id": "wuzhang-jiangwei",
+          "at": "hand:7",
+          "speaker": "jiangwei",
+          "text": "Chancellor, the southeastern star has not faded! Drink your medicine; I will stand with you through this hand."
+        },
+        {
+          "id": "wuzhang-tuntian-low",
+          "at": "low",
+          "speaker": "zhuge",
+          "text": "Zhongda, the autumn harvest fills our granaries. The cold wind you have been awaiting will arrive late this year.",
+          "when": "fact:wuzhang_tuntian"
+        },
+        {
+          "id": "wuzhang-sima-low",
+          "at": "low",
+          "speaker": "simayi",
+          "text": "You wish the star to blaze for another ten years; I only need it to dim for a single heartbeat. Let us see who breaks first.",
+          "when": "!fact:wuzhang_tuntian"
+        }
+      ],
+      "win": {
+        "text": "The lamp at Wuzhangyuan did not go out. Sima Yi finally rode forth, only to lose his vanguard along the banks of the Wugong River; Zhuge Liang seized the moment to press army and supply lines forward in unison. At dawn, he pushed aside his medicine bowl and drafted a different Memorial on the Northern Expedition—not pleading for another decade, but resolving never again to surrender tomorrow to fate.",
+        "hook": "Fourteen years pass like a dream. In Luoyang, an old fox begins to feign illness; this time, the Sleeping Dragon still breathes, and the grand game remains unsettled.",
+        "choiceFact": "zhuge_survives"
+      },
+      "loss": {
+        "text": "When the southeastern star dimmed into darkness, Sima Yi still had not left his camp. He did not defeat you in any single clash; he merely dragged every 'tomorrow' into a cold blind under the autumn wind.",
+        "clue": "Historical Mirror: Defensive walls grind blinds into daggers. Upon retry, War Funds +150; seize provisions early, and never match him in a contest of starvation.",
+        "clueFx": "supply"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "gaopingling": {
+      "cast": [
+        "simayi",
+        "caoshuang",
+        "simashi",
+        "zhuge"
+      ],
+      "objective": "See through an illness staged purely for Cao Shuang's eyes; safeguard the imperial edict, the armory, and the final choices of Cao Wei before Sima Yi opens his eyes.",
+      "coldOpen": [
+        {
+          "speaker": "zhuge",
+          "text": "After Wuzhangyuan, he and I exchanged letters for many years. Today, only four words arrived: 'Doubt his ailment.' He is not awaiting death; he is waiting for you to treat him as a corpse.",
+          "when": "page:wuzhangyuan:yeshi"
+        },
+        {
+          "speaker": "writer",
+          "text": "The star of Wuzhangyuan has already fallen. Now no one watches the Crouching Tiger for you, leaving only a bowl of porridge deliberately spilled across trembling hands.",
+          "when": "!page:wuzhangyuan:yeshi"
+        },
+        {
+          "speaker": "caoshuang",
+          "text": "He cannot even swallow porridge; how could he seize my military command? I visited him three times, and found the same pitiful sight each time."
+        },
+        {
+          "speaker": "simashi",
+          "text": "With father so gravely stricken, I must shoulder the family burdens alone. If the General harbors doubts, why not pay another visit yourself?",
+          "when": "!seen:simashi"
+        },
+        {
+          "speaker": "simayi",
+          "text": "Grand General... this old decrepit has only one lingering worry. When tomorrow comes... I pray you will look after my two sons."
+        }
+      ],
+      "intros": {
+        "simayi": [
+          {
+            "when": "page:gaopingling:yeshi",
+            "bio": "Having suffered defeat at Gaoping Tomb once, he no longer merely feigns illness; your very skepticism may become a piece in his grand design.",
+            "quote": "The same draught of medicine will not be brewed a second time."
+          },
+          {
+            "when": "page:wuzhangyuan:yeshi",
+            "bio": "Unable to outlast the Sleeping Dragon at Wuzhangyuan, he brought his bottomless patience back to Luoyang, lying in wait for an arrogant prey.",
+            "quote": "Kongming still lives? Splendid. I shall show him that enduring is more than mere longevity."
+          },
+          {
+            "bio": "Having outlived countess rivals, he disguises frailty as his ultimate armor, nurturing Cao Shuang's contempt into a fatal blade.",
+            "quote": "This old fool is terribly sick. Grand General, you may naturally rest at ease."
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "medicine-and-armory",
+          "node": 1,
+          "title": "Gaoping Tomb: Blades Beyond the Sickbed",
+          "lines": [
+            {
+              "speaker": "caoshuang",
+              "text": "If he feigns illness, he fools me; if he is truly ill and I strike now, I stand condemned for bullying a venerable elder. What would you have me do?"
+            },
+            {
+              "speaker": "zhuge",
+              "text": "After Wuzhangyuan, I taught him only one lesson: patience is also a wager. If you refuse to check the hole cards, you will mistake his forbearance for heaven's decree.",
+              "when": "page:wuzhangyuan:yeshi"
+            },
+            {
+              "speaker": "writer",
+              "text": "Without the Sleeping Dragon's warning across the river, you must discern for yourself: was that porridge fed to a dying invalid, or to your fatal conceit?",
+              "when": "!page:wuzhangyuan:yeshi"
+            }
+          ],
+          "choices": [
+            {
+              "id": "read-prescription",
+              "text": "Compare medicinal formulas, guard shifts, and servants feeding the porridge",
+              "detail": "Keen Eye boosted this round; remember Sickbed Forgery",
+              "effects": {
+                "keenEye": true,
+                "fact": "gaoping_medicine"
+              }
+            },
+            {
+              "id": "guard-armory",
+              "text": "Secure the Empress Dowager's edict and the Luoyang Armory beforehand",
+              "detail": "Sima Yi War Funds -150; remember Seizing the Gate",
+              "effects": {
+                "oppChips": -150,
+                "fact": "gaoping_armory"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "gaoping-open-alive",
+          "at": "start",
+          "speaker": "simayi",
+          "text": "Kongming still lives, and you still love to meddle. It seems I truly conceded that hand at Wuzhangyuan with great reluctance.",
+          "when": "page:wuzhangyuan:yeshi"
+        },
+        {
+          "id": "gaoping-open-fallen",
+          "at": "start",
+          "speaker": "simayi",
+          "text": "Kongming is gone. Who among you still dares to regard a dying old man as a worthy adversary?",
+          "when": "!page:wuzhangyuan:yeshi"
+        },
+        {
+          "id": "gaoping-caoshuang",
+          "at": "hand:2",
+          "speaker": "caoshuang",
+          "text": "He was pretending all along?! But the entire court saw him... why did you not speak sooner?!"
+        },
+        {
+          "id": "gaoping-letter",
+          "at": "hand:3",
+          "speaker": "zhuge",
+          "text": "If you only wait for him to die, you will never perceive how he truly lives.",
+          "when": "page:wuzhangyuan:yeshi"
+        },
+        {
+          "id": "gaoping-low",
+          "at": "low",
+          "speaker": "simayi",
+          "text": "You saw through my infirmity, but not the terror of the court. Once the blades are drawn, they will naturally flock to my side."
+        }
+      ],
+      "win": {
+        "text": "The porridge bowl shattered on the floor, and Sima Yi leapt to his feet—only to find the armory gates bolted and the Empress Dowager's edict proclaimed aloud. Cao Shuang did not surrender his seals, and the court was spared a bloody purge where men were forced to choose sides. For the first time, the Crouching Tiger realized that a room full of clever ministers would not all willingly play along with his slumber.",
+        "hook": "The blades of the Sima clan returned temporarily to their sheaths, yet the Three Kingdoms knew no rest. Years later, down the treacherous precipices of Yinping, rolled the thunder of sheepskin-wrapped warriors.",
+        "choiceFact": "sima_coup_stopped"
+      },
+      "loss": {
+        "text": "Before the altar of the Luoshui River, Sima Yi pointed to the flowing waters and swore: 'I seek only the General's surrender of arms.' Cao Shuang threw down his sword, but the butcher's knife showed no mercy for naive trust. Three clans were erased in a single night; the era of Wei had lost its surname.",
+        "clue": "Historical Mirror: Sima Yi's greatest weapon at Gaoping Tomb is 'waiting for you to drop your guard.' Upon retry, read the prescriptions first and secure the armory; never trade with a tiger at an altar.",
+        "clueFx": "keenEye"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "tielongshan": {
       "cast": [
@@ -6275,56 +6037,56 @@ export default {
         "xiahouba",
         "zhangyi"
       ],
-      "objective": "围住铁笼山的人,先要算赢解围的人——替姜维保住陇右这一手棋。",
+      "objective": "To besiege Mt. Tielong, one must first outmaneuver those who come to break the siege—preserve this vital piece in Longxi for Jiang Wei.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "姜维背水列阵,大破魏军于洮水,把司马昭围在了铁笼山上。山上无水,山下的人却带来了羌兵的火。"
+          "text": "Jiang Wei formed ranks with his back to the river, crushing the Wei host at the Tao River and trapping Sima Zhao atop Mt. Tielong. The mountain lacked water, yet the valley below brought the fire of Qiang tribesmen."
         },
         {
           "speaker": "jiangwei",
-          "text": "司马昭困守无水之山,三日内必降。维只担心一件事——郭淮的援军,会借羌人的路。"
+          "text": "Sima Zhao is stranded upon a waterless crag; he must yield within three days. My only dread is Guo Huai's relief column borrowing passage through the Qiang lands."
         },
         {
           "speaker": "simazhao",
-          "text": "山上掘三丈不得泉……父亲常说,困局先算援手。郭伯济,你会来吗?"
+          "text": "Digging thirty cubits into rock yields not a drop... Father always said, in desperation, calculate the rescue first. Guo Boji, will you arrive in time?"
         },
         {
           "speaker": "guohuai",
-          "text": "羌人反复,魏蜀皆用。老夫此去,不必破姜维,只要让羌人的火,烧回他自己的营。",
+          "text": "The Qiang are fickle, serving Wei or Shu as fortune blows. I need not crush Jiang Wei in battle; I need only turn the Qiang fire against his own camp.",
           "when": "!seen:guohuai"
         },
         {
           "speaker": "xiahouba",
-          "text": "伯约!夏侯霸降蜀三年,今日方知:陇右的每一寸,都是旧相识。"
+          "text": "Boyue! Xiahou Ba has served Shu for three years, and only today do I understand: every inch of Longxi is an old acquaintance."
         }
       ],
       "intros": {
         "guohuai": [
           {
             "when": "seen:guohuai",
-            "bio": "定军山的老对手还记得你的山,这次把援军藏进了羌帐。",
-            "quote": "上次你占了高地。这次,我借了风。"
+            "bio": "The veteran of Dingjun Mountain still remembers your ridges, this time hiding his relief army within Qiang pavilions.",
+            "quote": "Last time you seized the high ground. This time, I borrowed the wind."
           },
           {
-            "bio": "关西三十年,他最懂「借」字——借羌,借水,借你围城的耐心。",
-            "quote": "郭淮不与你斗围。我只拆你的围。"
+            "bio": "Thirty years in the western marches, he understands the art of borrowing: borrowing the Qiang, borrowing the water, borrowing your patience in the siege.",
+            "quote": "Guo Huai does not contest your siege. I merely dismantle it."
           }
         ],
         "simazhao": [
           {
             "when": "page:shangfanggu:yeshi",
-            "bio": "上方谷的雨救过他一次,他从此信「困局自有天意」。",
-            "quote": "又困我?上次的雨,这次也会来。"
+            "bio": "The rain at Gourd Valley saved him once; ever since, he believes 'desperate traps carry heaven's grace.'",
+            "quote": "Trapping me again? The rain from last time will fall once more."
           },
           {
             "when": "seen:simazhao",
-            "bio": "他尝过被围的滋味,这次在山上镇定得反常。",
-            "quote": "困我三日?我等得起。你呢?"
+            "bio": "Having tasted the misery of encirclement, his composure on the peak is unnervingly unnatural.",
+            "quote": "Surround me for three days? I can wait. Can you?"
           },
           {
-            "bio": "被围的次子不慌,因为他的镇定本身就是疑兵。",
-            "quote": "姜将军,山高风大,你的粮,吹得散。"
+            "bio": "The besieged second son does not panic, for his very tranquility serves as a phantom garrison.",
+            "quote": "General Jiang, the mountain is high and the wind is fierce; your grain will scatter in the breeze."
           }
         ]
       },
@@ -6332,30 +6094,30 @@ export default {
         {
           "id": "qiang-road",
           "node": 1,
-          "title": "洮水 · 羌人的路",
+          "title": "Tao River: The Road of the Qiang",
           "lines": [
             {
               "speaker": "xiahouba",
-              "text": "伯约,羌人与魏人眉来眼去三日了。雍州的事,仲权看了半辈子——他们只认粮,不认旗。"
+              "text": "Boyue, the Qiang and the Wei have traded glances for three days. Zhongquan has watched Yongzhou for half a lifetime—they recognize grain, not banners."
             },
             {
               "speaker": "jiangwei",
-              "text": "维背水一战,已无退路。若羌人倒向郭淮,山上山下,就要换一个围法。"
+              "text": "I fight with my back to the river and have no retreat. If the Qiang tilt toward Guo Huai, the mountain siege will reverse its teeth."
             },
             {
               "speaker": "zhangyi",
-              "text": "将军,张翼愿领一军扼住羌道。翼位卑,可这一步棋,差不得。"
+              "text": "General, Zhang Yi is willing to lead a detachment to choke the Qiang path. My rank is humble, but this move cannot falter."
             },
             {
               "speaker": "you",
-              "text": "围山的人最怕两件事:山上的水,和山外的路。水他没找到,路,还在你手里。"
+              "text": "A besieger fears two things: water on the mountain, and roads outside the gorge. He has found no water; the road remains in your hands."
             }
           ],
           "choices": [
             {
               "id": "hold-qiang",
-              "text": "先稳羌部,断郭淮之援",
-              "detail": "本回看破提升,记住羌道之要",
+              "text": "Stabilize the Qiang tribes first to sever Guo Huai's passage",
+              "detail": "Keen Eye boosted this round; remember Value of the Qiang Road",
               "effects": {
                 "keenEye": true,
                 "fact": "tielongshan_qiang"
@@ -6363,8 +6125,8 @@ export default {
             },
             {
               "id": "rush-hill",
-              "text": "趁无水速攻,先取山寨",
-              "detail": "军资 +150,山上守军士气 -1",
+              "text": "Storm the mountain camp swiftly while they thirst for water",
+              "detail": "War Funds +150; mountain defenders Morale -1",
               "effects": {
                 "chips": 150,
                 "sow": 1,
@@ -6379,37 +6141,41 @@ export default {
           "id": "tielongshan-open",
           "at": "start",
           "speaker": "simazhao",
-          "text": "姜维,你围得住山,围不住天。三日后,自有你的败报。"
+          "text": "Jiang Wei, you can bottle up the mountain, but you cannot bottle up the sky. In three days, news of your defeat will arrive."
         },
         {
           "id": "tielongshan-guo",
           "at": "hand:2",
           "speaker": "guohuai",
-          "text": "羌帐已应老夫。姜将军,你的背后,还站得住人吗?"
+          "text": "The Qiang tents have answered my summons. General Jiang, does anyone still guard your back?"
         },
         {
           "id": "tielongshan-wing",
           "at": "hand:3",
           "speaker": "zhangyi",
-          "text": "羌道还在我手里!将军只管攻山——张翼的阵地,羌人过不来!",
+          "text": "The Qiang road remains under my grip! General, focus on the heights—no Qiang warrior breaches Zhang Yi's line!",
           "when": "fact:tielongshan_qiang"
         },
         {
           "id": "tielongshan-low",
           "at": "low",
           "speaker": "jiangwei",
-          "text": "丞相,维又差一步……不,还差的那一步,维自己走!"
+          "text": "Chancellor, Wei has fallen one step short again... No! That missing step, Wei shall cross on my own feet!"
         }
       ],
       "win": {
-        "text": "羌道未失,郭淮的「借」字落了空。铁笼山上,司马昭捧着最后一皮囊水解了渴,然后望着山下纹丝不动的蜀军营垒,第一次主动议和退兵。姜维没有追——洮水大胜,陇右的城一座座开了门,北伐的路,又宽了一程。",
-        "hook": "陇右烽烟未熄,淮南的檄文已至洛阳——魏国的土地上,连着三年,燃起了三把同名的火。"
+        "text": "The Qiang road held firm, and Guo Huai's gambit collapsed. Atop Mt. Tielong, Sima Zhao quenched his parched lips with the very last drops of water, then gazed down upon the immovable Shu fortifications before offering terms of withdrawal. Jiang Wei did not pursue—with the Tao River secured, fortress after fortress across Longxi opened its gates, broadening the Northern Expedition's horizon once more.",
+        "hook": "Before the smoke of Longxi could settle, rebellious proclamations from Huainan reached Luoyang—across four years, three identical fires would blaze across the realm of Wei."
       },
       "loss": {
-        "text": "羌人的火从你背后烧起,铁笼山上的司马昭在雨里大笑。姜维引兵退回剑阁时,回头看了一眼那座山——围局如牌局,他终于信了这句话。",
-        "clue": "史鉴 · 郭淮赢在「借外势」,不在兵锋。重开时先定羌部再攻山;你的围,输给的一定是山外的路。",
+        "text": "The Qiang flames swept from your rear, and Guo Huai's iron cavalry shattered the siege. Down the slopes rushed Sima Zhao's refreshed host, pinning Jiang Wei against the Tao River. You learned once more: a cage without a lock traps only yourself.",
+        "clue": "Historical Mirror: Mt. Tielong hinges on 'intercepting relief rather than rushing the peak.' Upon retry, hold the Qiang road and check Guo Huai; do not exhaust your chips on the mountain walls.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "huainan": {
       "cast": [
@@ -6420,68 +6186,68 @@ export default {
         "zhugedan",
         "wenyang"
       ],
-      "objective": "在淮南三叛的连局里,读出忠义与侥幸的分界,替檄文找到它该送达的人。",
+      "objective": "In the chained uprisings of Huainan, discern the fine boundary between righteous loyalty and sheer opportunism, and guide the manifesto to where it belongs.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "司马懿死后第二年,淮南第一道讨贼檄文竖起。此后四年,同样的火在这片土地上烧了三次。"
+          "text": "Two years after Sima Yi's death, the first manifesto condemning the traitors was hoisted in Huainan. Across the following four years, the identical flame flared three times upon this soil."
         },
         {
           "speaker": "guanqiujian",
-          "text": "司马师废帝自立,天地不容!淮南六军,今日只问一句:魏,还是司马?"
+          "text": "Sima Shi deposes the Emperor and usurps authority—heaven and earth cannot tolerate this! The six armies of Huainan ask only one question today: do you stand with Wei, or with Sima?"
         },
         {
           "speaker": "simashi",
-          "text": "淮南又反。父亲留下的局面,师来收。眼疾再痛,也得亲征。"
+          "text": "Huainan rebels once more. The mantle left by my father shall be gathered by Shi. Though the tumor in my eye pains me to the bone, I must command this campaign in person."
         },
         {
           "speaker": "wenqin",
-          "text": "毌丘将军,文钦父子三千骑,愿为先锋!冲中军,擒司马师!"
+          "text": "General Guanqiu, Wen Qin and my son lead three thousand cavalry, eager to serve as vanguard! We will strike their center and take Sima Shi alive!"
         },
         {
           "speaker": "wenyang",
-          "text": "爹,夜里劫营,儿的枪先出。乐嘉城的魏旗,一夜就换!"
+          "text": "Father, during the night raid, my spear will strike first. The Wei banners over Yuejia shall change before morning!"
         }
       ],
       "intros": {
         "guanqiujian": [
           {
             "when": "seen:guanqiujian",
-            "bio": "辽东刻石的老将仍在等,等第二封没人敢回的檄文。",
-            "quote": "石头再硬,也要刻第二遍。"
+            "bio": "The veteran general who carved stone in Liaodong still waits for a second manifesto that none dare answer.",
+            "quote": "No matter how hard the stone, it must be carved a second time."
           },
           {
-            "bio": "他刻过辽东的功勋,如今要刻司马氏的罪。",
-            "quote": "此檄一出,成败在天,名义在我。"
+            "bio": "He etched glory in Liaodong; now he carves the treason of the Sima clan.",
+            "quote": "Once this manifesto flies, success lies with heaven, but righteousness remains mine."
           }
         ],
         "wenqin": [
           {
-            "bio": "勇而无谋的谯郡男儿,嗓门与胆气一样大。",
-            "quote": "怕死的不姓文!冲!"
+            "bio": "A brave yet rash warrior of Qiao Commandery, whose roar is as vast as his courage.",
+            "quote": "Those who fear death bear not the name Wen! Charge!"
           }
         ],
         "zhugedan": [
           {
             "when": "seen:zhugedan",
-            "bio": "寿春的火他见过一次,这次把城墙又加高了三尺。",
-            "quote": "再守一次。反正天下人只记得我反了。"
+            "bio": "Having witnessed the blaze of Shouchun once, he raised the city walls another three paces.",
+            "quote": "Defend once more. After all, the world only remembers that I rebelled."
           },
           {
-            "bio": "诸葛家的「狗」,咬得最凶,也最孤独。",
-            "quote": "宁作断头鬼,不姓司马!"
+            "bio": "The 'hound' of the Zhuge clan snaps the fiercest, and stands the loneliest.",
+            "quote": "Better to be a headless ghost of Wei than take the name of Sima!"
           }
         ],
         "wenyang": [
           {
-            "bio": "十八岁的枪,追兵的梦。",
-            "quote": "谁敢追?文鸯在此!"
+            "bio": "An eighteen-year-old spear, the waking nightmare of all who pursue.",
+            "quote": "Who dares give chase? Wen Yang is here!"
           }
         ],
         "leshen": [
           {
-            "bio": "他守着父亲留下的淮南,守着乐进家的门楣。",
-            "quote": "家父的阵,我一步没改。"
+            "bio": "He holds the Huainan left by his father, safeguarding the lintel of Yue Jin's lineage.",
+            "quote": "I have not altered my father's battle formation by half a step."
           }
         ]
       },
@@ -6489,30 +6255,30 @@ export default {
         {
           "id": "three-fires",
           "node": 1,
-          "title": "项城 · 同名的火",
+          "title": "Xiangcheng: The Fires of a Common Name",
           "lines": [
             {
               "speaker": "simazhao",
-              "text": "兄长眼里有瘤,仍要亲征淮南。我留在洛阳——不是怯,是要看着朝堂上每一双眼睛。"
+              "text": "My elder brother bears a tumor in his eye, yet marches in person to Huainan. I remain in Luoyang—not from cowardice, but to watch every pair of eyes in the imperial court."
             },
             {
               "speaker": "guanqiujian",
-              "text": "第一叛败于粮,第二叛败于疑,第三叛……老夫等不到了。后来的人,替我把檄文写完。"
+              "text": "The first revolt fell to supplies, the second to distrust, and the third... this old man will not live to see. Let those who come after complete my manifesto."
             },
             {
               "speaker": "wenyang",
-              "text": "寿春城破那日,儿单骑七进七出。爹叫我走,我就走——留这条命,接着反!"
+              "text": "The day Shouchun fell, I rode alone, breaking their ranks seven times in and out. When father bade me flee, I fled—to keep this life, and rebel again!"
             },
             {
               "speaker": "you",
-              "text": "三把火,烧的是同一句话。你要读的是:哪一缕烟,是忠;哪一缕,只是不甘。"
+              "text": "Three fires burn for the same cause. What you must read is: which plume of smoke is loyalty, and which is merely resentment."
             }
           ],
           "choices": [
             {
               "id": "read-manifesto",
-              "text": "细读檄文署名与粮册",
-              "detail": "本回看破提升,记住檄文之别",
+              "text": "Scrutinize the manifesto signatures and the grain ledgers",
+              "detail": "Keen Eye boosted this round; remember Truth of the Manifesto",
               "effects": {
                 "keenEye": true,
                 "fact": "huainan_read"
@@ -6520,8 +6286,8 @@ export default {
             },
             {
               "id": "aid-shouchun",
-              "text": "护檄文东传,连结东吴",
-              "detail": "军资 +150,记住外援之约",
+              "text": "Escort the manifesto east to forge an alliance with Eastern Wu",
+              "detail": "War Funds +150; remember Alliance Covenant",
               "effects": {
                 "chips": 150,
                 "fact": "huainan_wu"
@@ -6535,38 +6301,42 @@ export default {
           "id": "huainan-open",
           "at": "start",
           "speaker": "guanqiujian",
-          "text": "魏的将,司马的兵——诸位,你们的刀,究竟听谁的?!"
+          "text": "Generals of Wei, soldiers of Sima—gentlemen, whose command does your blade truly serve?!"
         },
         {
           "id": "huainan-yang",
           "at": "hand:2",
           "speaker": "wenyang",
-          "text": "追兵百骑?文鸯回头——一枪一个,排好队!",
+          "text": "A hundred riders in pursuit? Wen Yang turns his horse—form a line, and take your turns at my spear!",
           "when": "round:2"
         },
         {
           "id": "huainan-dan",
           "at": "hand:3",
           "speaker": "zhugedan",
-          "text": "寿春的粮,够守一年。你们司马家的刀,先钝!先冷!",
+          "text": "Shouchun has grain enough for a year. The Sima family's blades will blunt and freeze long before we yield!",
           "when": "round:2"
         },
         {
           "id": "huainan-low",
           "at": "low",
           "speaker": "simazhao",
-          "text": "杀他们的,不是我。是「等」字——等援军,等天命,等别人先拼命。"
+          "text": "It was not I who killed them. It was the word 'wait'—waiting for relief, waiting for fate, waiting for others to gamble their lives first."
         }
       ],
       "win": {
-        "text": "檄文送到了洛阳,也送进了史官的梦里。三把火没有烧倒司马氏,却把「魏」字的笔画一根根烫深:连他们的兵都开始记住,自己曾经姓曹。司马师摘掉眼上的纱布,发现痛的不只是眼疾。",
-        "hook": "淮南的火三次燃尽,洛阳的天子坐不住了——他要亲手,把龙旗打出宫门。"
+        "text": "The manifesto reached Luoyang, haunting the dreams of the imperial historians. Three fires failed to bring down the Sima family, yet branded the characters of 'Wei' deeper into the stone: even their soldiers began to remember that they had once served Cao. Sima Shi pulled the bandages from his ruined eye, realizing the pain ran far deeper than flesh.",
+        "hook": "With the flames of Huainan extinguished thrice, the young Emperor in Luoyang could endure no longer—he resolved to lead the dragon banner through the palace gates with his own hands."
       },
       "loss": {
-        "text": "三叛相继败亡,寿春城头三次换旗。你记住了每一份檄文的抬头,却没算到:东吴的援兵,每次都晚到一步,而司马氏的刀,一次比一次快。",
-        "clue": "史鉴 · 淮南之败不在寡助,在「各等各的」。重开时先读檄文分清主从;文鸯之勇是最后的门,别把他当成整座城。",
+        "text": "The three rebellions collapsed one after another, and Shouchun changed banners thrice. You remembered the header of each fiery manifesto, yet failed to anticipate: Wu's reinforcements always arrived a moment too late, while the Sima clan's executioner swung swifter each time.",
+        "clue": "Historical Mirror: The defeat of Huainan stemmed not from lack of support, but from 'everyone waiting on someone else.' Upon retry, read the manifesto first to distinguish leader from follower; Wen Yang's spear is the final defense, not the entire city.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "ganlu": {
       "cast": [
@@ -6575,67 +6345,67 @@ export default {
         "jiachong",
         "wangshen"
       ],
-      "objective": "在南阙之前替天子留住最后一步退路——或者,一场问心无愧的死战。",
+      "objective": "Preserve a final retreat for the Emperor before the Southern Gate—or an unyielding death worthy of the history scrolls.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "甘露五年,洛阳。二十岁的天子在陵云台写了最后一首诗,题目叫《潜龙》。诗成,他把笔一折。"
+          "text": "In the fifth year of Ganlu, the twenty-year-old Emperor Cao Mao unsheathed his sword in the palace hall, declaring before his ministers: 'Sima Zhao's ambition is known to every passerby on the street.'"
         },
         {
           "speaker": "caomao",
-          "text": "司马昭之心,路人皆知!朕不能坐受废辱——今日,卿等随朕,亲讨此贼!"
+          "text": "I cannot sit and wait for deposition. Today I march with you to punish this traitor!"
         },
         {
           "speaker": "jiachong",
-          "text": "殿下勿慌。天子亲自持剑,不过是个孩子的把戏。养兵千日——用在此刻。",
+          "text": "Your Grace, do not be alarmed. The Emperor wielding a sword is nothing more than a child's tantrum. Feeding soldiers for a thousand days is meant for this single hour.",
           "when": "!seen:jiachong"
         },
         {
           "speaker": "wangshen",
-          "text": "陛下……沈,沈万死。可这件事,沈只能,只能先走一步了。"
+          "text": "Your Majesty... Shen deserves ten thousand deaths. Yet in this matter, Shen... Shen must depart first."
         },
         {
           "speaker": "caomao",
-          "text": "朕意已决。纵使今日血溅宫墙,史笔之上,「魏」字仍在!"
+          "text": "My resolve is taken. Even should imperial blood stain the palace walls today, upon the historian's brush, the name of 'Wei' shall never fade!"
         }
       ],
       "intros": {
         "jiachong": [
           {
             "when": "seen:jiachong",
-            "bio": "他记得上次那杆停在半空的戟,这次连「停」的口令都不下了。",
-            "quote": "这次,不留手。变数,先除。"
+            "bio": "Remembering the spear that hesitated mid-air last time, he issues no order to halt this day.",
+            "quote": "No mercy this time. Eliminate the variable first."
           },
           {
-            "bio": "他从不亲手拿刀,只负责把刀递到最合适的手里。",
-            "quote": "贾充在此。陛下,别让下人为难。"
+            "bio": "He never holds a blade with his own hands, only ensuring the weapon is placed into the most compliant grip.",
+            "quote": "Jia Chong is here. Your Majesty, do not make things difficult for your servants."
           }
         ],
         "simazhao": [
           {
             "when": "page:tielongshan:yeshi",
-            "bio": "铁笼山的困局让他学会了谦卑的外壳,如今壳更厚,刀更近。",
-            "quote": "困过我的人,都得死。天子,也不例外?"
+            "bio": "The siege at Mt. Tielong taught him a shell of modesty; now the shell is thicker, and the blade is closer.",
+            "quote": "All who have trapped me must die. Does the Emperor believe himself an exception?"
           },
           {
             "when": "seen:simazhao",
-            "bio": "他与你交手多次,这次背靠的是整个司马氏的门楣。",
-            "quote": "又来。你的「改写」,朕…我,倒要看看能改到哪一页。"
+            "bio": "Having crossed blades with you many times, he leans this time upon the grand threshold of the entire Sima lineage.",
+            "quote": "Again? Your 'rewriting'... I wish to see which page it can reach."
           },
           {
-            "bio": "离皇位一步的人,最恨别人提醒他「名不正」。",
-            "quote": "天子亲征?好大的阵仗。可惜,兵符在我。"
+            "bio": "The man standing one pace from the throne despises nothing more than being reminded that his mandate lacks legitimacy.",
+            "quote": "The Emperor's personal expedition? What a grand show. A pity the tally of arms rests with me."
           }
         ],
         "wangshen": [
           {
             "when": "seen:wangshen",
-            "bio": "他的笔上次没能等到天亮,这次蘸墨蘸得更早。",
-            "quote": "沈的奏表,已誊了两份。给晋公的那份,先行一步。"
+            "bio": "His brush could not wait until dawn last time, dipping into ink even earlier tonight.",
+            "quote": "Shen's memorials have already been drafted in duplicate. The one meant for the Duke of Jin departs first."
           },
           {
-            "bio": "史学世家的笔,在名节与门第之间,落了个干净利落。",
-            "quote": "王沈,有一表上奏。"
+            "bio": "The brush of a noble historian lineage falls decisively between honor and family prestige.",
+            "quote": "Wang Shen has a memorial to present."
           }
         ]
       },
@@ -6643,30 +6413,30 @@ export default {
         {
           "id": "dragon-poem",
           "node": 1,
-          "title": "太极殿 · 潜龙之诗",
+          "title": "Taiji Hall: Poem of the Submerged Dragon",
           "lines": [
             {
               "speaker": "caomao",
-              "text": "「伤哉龙受困,不能越深渊。」……写得再好,也不过是替自己哭丧。"
+              "text": "'Grievous is the dragon trapped, unable to leap the abyss.' ...No matter how finely phrased, it is merely mourning my own tomb."
             },
             {
               "speaker": "you",
-              "text": "陛下,诗可以留,路不能只剩一条。宫墙之外,还有人肯听天子的吗?"
+              "text": "Your Majesty, poems can endure, but you cannot leave yourself with only one path. Beyond these palace walls, does anyone still heed the Emperor?"
             },
             {
               "speaker": "caomao",
-              "text": "有没有,朕都要走这一遭。史官,带上你的笔——今日每一笔,都直书!"
+              "text": "Whether they heed or not, I must make this charge. Imperial scribe, take your brush—record every stroke truthfully today!"
             },
             {
               "speaker": "jiachong",
-              "text": "南阙的甲士,只听成济的。而成济——只听我的。"
+              "text": "The soldiers at the Southern Gate answer only to Cheng Ji. And Cheng Ji answers only to me."
             }
           ],
           "choices": [
             {
               "id": "rally-old-guard",
-              "text": "先聚三千宿卫旧臣",
-              "detail": "军资 +150,记住旧臣之心",
+              "text": "Rally the three thousand veterans of the imperial guard",
+              "detail": "War Funds +150; remember Heart of the Old Court",
               "effects": {
                 "chips": 150,
                 "fact": "ganlu_rally"
@@ -6674,8 +6444,8 @@ export default {
             },
             {
               "id": "read-halberd",
-              "text": "盯住成济握戟的手",
-              "detail": "本回看破提升,记住那杆戟",
+              "text": "Keep eyes locked on Cheng Ji's grip upon his halberd",
+              "detail": "Keen Eye boosted this round; remember The Poised Halberd",
               "effects": {
                 "keenEye": true,
                 "fact": "ganlu_halberd"
@@ -6689,38 +6459,42 @@ export default {
           "id": "ganlu-open",
           "at": "start",
           "speaker": "caomao",
-          "text": "朕乃天子!谁敢弑君——谁敢?!"
+          "text": "I am the Son of Heaven! Who dares commit regicide—who dares?!"
         },
         {
           "id": "ganlu-chee",
           "at": "hand:2",
           "speaker": "jiachong",
-          "text": "司马公养你们,不就是为了今日吗?!动手——",
+          "text": "The Duke of Sima has fed you all for this very day! Strike down the chariot!",
           "when": "multi"
         },
         {
           "id": "ganlu-halberd",
           "at": "hand:3",
           "speaker": "narrator",
-          "text": "成济的戟抬起来了。满街的甲士都在看着——看天子,也看这杆戟,究竟听谁的。",
+          "text": "Cheng Ji's halberd rose. Every armored warrior across the avenue watched—looking at their Emperor, and looking at the spear, waiting to see whom it obeyed.",
           "when": "fact:ganlu_halberd"
         },
         {
           "id": "ganlu-low",
           "at": "low",
           "speaker": "caomao",
-          "text": "戟若落,史笔在;朕若死,「魏」字在。来啊——朕在此!"
+          "text": "If the halberd strikes, the history brush records; if I die, the name of 'Wei' endures. Come then—I stand here!"
         }
       ],
       "win": {
-        "text": "南阙之下,成济的戟最终没有落下——你当街唤出了他父亲的名字,喊破了那道只认「主公」的军令。甲士哗然退散,贾充的袖子第一次空了。天子持剑立于宫门,史官蘸墨:「甘露五年,帝亲讨贼,贼党溃。」魏,还剩一口气;这口气,姓曹。",
-        "hook": "天子的血没有流,司马氏的耐心却到了头。魏蜀吴三家最后的名字,都将写进同一部史书。"
+        "text": "Beneath the Southern Gate, Cheng Ji's halberd never fell—you cried out his father's name before the crowd, tearing through the ruthless order that recognized only a warlord. The armored ranks parted in clamorous hesitation; Jia Chong's sleeves hung empty for the first time. Sword in hand, the Emperor stood tall at the palace gate, and the scribe dipped his brush in fresh ink: 'In the fifth year of Ganlu, the Emperor attacked the traitors, and the usurpers scattered.' The state of Wei still breathed—and that breath bore the name of Cao.",
+        "hook": "The Emperor's blood did not spill, yet the patience of the Sima clan reached its breaking point. The final names of Wei, Shu, and Wu would soon be gathered into a single chronicle."
       },
       "loss": {
-        "text": "戟落了。天子的血溅在南阙的砖上,三日不褪。司马昭闻讯「大惊」,诛了成济三族——把刀和罪,一起收回了鞘。",
-        "clue": "史鉴 · 贾充赢在「先断你的耳目」。重开时盯住那杆戟、聚拢旧臣;胜负之外,这一页赌的是史笔的下一行。",
+        "text": "The halberd struck. Imperial blood splashed across the paving stones of the Southern Gate, refusing to fade for three days. Hearing the news, Sima Zhao feigned profound shock and executed Cheng Ji's three clans—sheathing both the blade and the guilt in one clean stroke.",
+        "clue": "Historical Mirror: Jia Chong triumphs by 'severing your senses first.' Upon retry, watch the halberd and rally the veterans; beyond victory or defeat, this page wagers on the next line of history.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "jiange": {
       "cast": [
@@ -6729,39 +6503,39 @@ export default {
         "liaohua",
         "zhangyi"
       ],
-      "objective": "在剑阁天险挡住钟会的大军,也要替蜀汉挡住「侧面」两个字。",
+      "objective": "Stem Zhong Hui's grand host at the natural rampart of Sword Gate Pass, and guard the Shu Han against the fatal word: 'flank'.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "十八万魏军压向剑阁,姜维凭险拒守。钟会的檄书写得漂亮,可惜剑门关只认得箭。"
+          "text": "One hundred and eighty thousand Wei troops pressed upon Sword Gate Pass, where Jiang Wei held the gorge. Zhong Hui's declarations were elegantly worded, yet Sword Gate answered only with arrows."
         },
         {
           "speaker": "zhonghui",
-          "text": "姜伯约,孤城之守,守的是忠,还是不甘?献关者,会保你封侯。"
+          "text": "Jiang Boyue, in defending a solitary pass, do you defend loyalty or bitter resentment? Surrender the gates, and I guarantee you a marquisate."
         },
         {
           "speaker": "jiangwei",
-          "text": "钟士季的檄文,比你的云梯好看。剑阁的路,却只有一条——你的兵,铺不开。"
+          "text": "Zhong Shiji's prose is prettier than your scaling ladders. Yet Sword Gate has only one path—your army cannot deploy."
         },
         {
           "speaker": "liaohua",
-          "text": "老夫从麦城一路退到剑阁,退了四十年。这一关,元俭不退了!"
+          "text": "I have retreated all the way from Maicheng to Sword Gate over forty long years. At this pass, Yuanjian retreats no more!"
         },
         {
           "speaker": "zhangyi",
-          "text": "将军,张翼再进一言:阴平小道,不可不防。艾若偷渡,剑阁再险也是空门!"
+          "text": "General, Zhang Yi must speak once more: the Yinping trail must not be left unguarded! If Deng Ai slips past, no matter how steep Sword Gate is, it will become an open door!"
         }
       ],
       "intros": {
         "zhonghui": [
           {
             "when": "seen:zhonghui",
-            "bio": "他记过关前的每一面旗,这次把劝降书又多写了三页。",
-            "quote": "这次,孤连你劝降的退路都想好了。"
+            "bio": "Remembering every banner before the pass, he has written three additional pages to his letters of surrender.",
+            "quote": "This time, I have conceived even the retreat road for your surrender."
           },
           {
-            "bio": "颍川的贵公子,笔比剑快,野心比两者都快。",
-            "quote": "取蜀如摘冠。诸位,竞相摘之。"
+            "bio": "The pampered prodigy of Yingchuan, his brush quicker than his sword, and his ambition quicker than both.",
+            "quote": "Taking Shu is like plucking a plum from a bough. Compete, gentlemen, to claim the crown!"
           }
         ]
       },
@@ -6769,30 +6543,30 @@ export default {
         {
           "id": "pass-and-flank",
           "node": 1,
-          "title": "剑阁 · 关与侧翼",
+          "title": "Sword Gate: The Pass and the Flank",
           "lines": [
             {
               "speaker": "zhangyi",
-              "text": "将军,正面交给我。可翼把丑话说完:邓艾在沓中,他若不走大道——"
+              "text": "General, leave the front to me. But I must say the ugly truth: Deng Ai is at Tazhong, and if he bypasses the main road—"
             },
             {
               "speaker": "jiangwei",
-              "text": "伯恭放心。维在阴平留了哨,在江油留了眼。剑阁守的不是门,是整面墙。"
+              "text": "Rest easy, Bogong. I left sentries at Yinping and scouts at Jiangyou. Sword Gate defends not merely a gateway, but an entire wall."
             },
             {
               "speaker": "liaohua",
-              "text": "墙再厚,也得有人肯站上来。老夫这把骨头,先靠上去了。"
+              "text": "No matter how thick the wall, someone must stand upon it. These old bones of mine will lean against it first."
             },
             {
               "speaker": "you",
-              "text": "钟会要的只是你回头。你一回头,正面就薄了——让他喊,别让他牵动。"
+              "text": "Zhong Hui only wants you to look back. The moment you turn, the front thins out—let him shout, but do not let him sway you."
             }
           ],
           "choices": [
             {
               "id": "hold-wall",
-              "text": "死守正面,不受檄文牵动",
-              "detail": "本回看破提升,记住墙式守御",
+              "text": "Hold the front with iron resolve, ignoring his manifestos",
+              "detail": "Keen Eye boosted this round; remember Wall Defense",
               "effects": {
                 "keenEye": true,
                 "fact": "jiange_wall"
@@ -6800,8 +6574,8 @@ export default {
             },
             {
               "id": "flank-beacons",
-              "text": "分兵三哨,盯死阴平道",
-              "detail": "钟会起手军资 -200,记住侧翼之眼",
+              "text": "Detach three outposts to watch the Yinping trail",
+              "detail": "Zhong Hui starting War Funds -200; remember Eye on the Flank",
               "effects": {
                 "raid": true,
                 "fact": "jiange_beacons"
@@ -6815,76 +6589,232 @@ export default {
           "id": "jiange-open",
           "at": "start",
           "speaker": "zhonghui",
-          "text": "姜维!剑阁虽险,你的粮,比我的笔先竭!"
+          "text": "Jiang Wei! Steep as Sword Gate is, your provisions will dry up long before my ink!"
         },
         {
           "id": "jiange-lao",
           "at": "hand:2",
           "speaker": "liaohua",
-          "text": "老夫守的这段墙,四十年了没让人过去!小辈,再加把劲!"
+          "text": "This section of the wall I have held for forty years without letting a single soul pass! Young whelp, put some muscle into it!"
         },
         {
           "id": "jiange-flank",
           "at": "hand:3",
           "speaker": "zhangyi",
-          "text": "阴平三哨,灯都亮着!将军,正面放心——墙,是整面!",
+          "text": "All three outposts at Yinping have lit their beacons! General, fight freely on the front—the wall stands intact!",
           "when": "fact:jiange_beacons"
         },
         {
           "id": "jiange-low",
           "at": "low",
           "speaker": "jiangwei",
-          "text": "钟士季,你的檄文写得再好,也翻不过这道山。回去告诉司马昭:蜀,还有人在。"
+          "text": "Zhong Shiji, no matter how brilliantly your letters are written, they cannot scale this mountain. Return and tell Sima Zhao: Shu still has men standing!"
         }
       ],
       "win": {
-        "text": "钟会围关二十余日,粮草先尽,檄文写尽了最后的修辞。拔营西退那日,他回望剑门,把姜维的名字写进了自己的笔记:「取蜀不难,难在此人。」而剑阁的墙上,老将廖化靠着长刀睡着了——四十年,他第一次在关前睡着。",
-        "hook": "剑阁守住了正面,可摩天岭的雪线上,还有一支裹毡而下的孤军——那是下一页的风。"
+        "text": "Zhong Hui besieged the pass for twenty days until his grain ran dry and his prose exhausted its last rhetorical flourish. The day he struck camp and retreated west, he looked back upon Sword Gate, recording Jiang Wei's name in his personal journal: 'Taking Shu is simple; the hardship lies with this one man.' Atop the ramparts of Sword Gate, the old general Liao Hua leaned against his polearm and drifted into slumber—for the first time in forty years, he slept peacefully before the pass.",
+        "hook": "Sword Gate held the front, yet along the snowline of Mt. Motian, an isolated company wrapped in sheepskins was tumbling down the abyss—that was the chill wind of the next page."
       },
       "loss": {
-        "text": "钟会的佯攻牵走了你的哨兵,剑门的正面在一夜之间薄成了一层纸。关破时姜维没有回望,只朝阴平的方向一抱拳:「伯恭,是维负了你。」",
-        "clue": "史鉴 · 钟会以「势」压「险」,劝降与强攻轮番上。重开时先定墙后设哨;他的檄文,是他最便宜的一种云梯。",
+        "text": "Zhong Hui's feigned attacks drew away your sentries, and Sword Gate's front thinned overnight to the frailty of parchment. When the gates fell, Jiang Wei did not look back, merely clasping his fists toward Yinping: 'Bogong, it is Wei who has failed you.'",
+        "clue": "Historical Mirror: Zhong Hui leverages sheer momentum against natural defense, alternating between honeyed words and violent assaults. Upon retry, anchor the wall before setting outposts; his manifesto is merely his cheapest siege ladder.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "yinping": {
+      "cast": [
+        "dengai",
+        "dengzhong",
+        "jiangwei",
+        "zhugezhan",
+        "zhugeshang",
+        "zhuge"
+      ],
+      "objective": "Set a double response from Mt. Motian to Mianzhu, leaving Deng Ai's desperate gamble nowhere to land, so the Zhuge father and son need not die merely for a name.",
+      "coldOpen": [
+        {
+          "speaker": "narrator",
+          "text": "There were no roads in Yinping, only game trails washed faint by rain. Deng Ai ordered his men to wrap themselves in felt blankets and roll down the precipice, tumbling their very lives into that worn cloth."
+        },
+        {
+          "speaker": "dengai",
+          "text": "All... all say Yinping has no road. Because there is no road, no one will block me."
+        },
+        {
+          "speaker": "dengzhong",
+          "text": "Fa-father, Zhong shall scout ahead. If Mianzhu falls, Chengdu will yield without a fight—let your son forge this trail for you.",
+          "when": "!seen:dengzhong"
+        },
+        {
+          "speaker": "zhugezhan",
+          "text": "When my father was alive, he often lamented that we grew up in comfort. Today Mianzhu stands at our backs and Chengdu is within reach; Zhan has nowhere left to retreat."
+        },
+        {
+          "speaker": "zhugeshang",
+          "text": "Grandfather, Father, the honor of three generations rests upon this day. Shang requests to take the vanguard!"
+        },
+        {
+          "speaker": "jiangwei",
+          "text": "Tazhong cannot be lost, nor can Chengdu. The greatest terror is not a two-front war, but each front believing someone else stands guard."
+        }
+      ],
+      "intros": {
+        "dengai": [
+          {
+            "when": "page:yinping:yeshi",
+            "bio": "Having run into an ambush at Yinping once, he believes all the more that in desperate straits, there is always a second beast trail.",
+            "quote": "Th-this time I descend from another ridge. Can you still wait for me?"
+          },
+          {
+            "bio": "He stutters in speech, yet acts with ferocious resolve; what all men deem impossible is his very reason to stake everything on one cast.",
+            "quote": "M-mountains will not yield to men. But men can circle around mountains."
+          }
+        ],
+        "dengzhong": [
+          {
+            "when": "seen:dengzhong",
+            "bio": "His first clash at Mianzhu gave him a taste of blood; this time he pushes his father's dangerous pawn another square forward.",
+            "quote": "Wh-what my father taught me, I shall teach to you."
+          },
+          {
+            "bio": "The youth under a fierce father's shadow burns to prove that the name 'Deng' belongs not only to the generation before.",
+            "quote": "Show some respect before my father!"
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "light-on-cliff",
+          "node": 1,
+          "title": "Yinping: Lighting Beacons in the Wilds",
+          "lines": [
+            {
+              "speaker": "zhuge",
+              "text": "The old note contained only one sentence: 'Yinping is no road, yet those holding Jiangyou must never withdraw.' Back then all called it overcautious; today the parchment weighs heavier than cliff rock."
+            },
+            {
+              "speaker": "jiangwei",
+              "text": "To hold the sentry posts, we must also hold the echoes between them. Otherwise, if one lamp dies, a hundred leagues will still assume they can see."
+            },
+            {
+              "speaker": "zhugezhan",
+              "text": "I read my father's old note three times: 'Yinping is no road, yet those holding Jiangyou must never withdraw.' Sentries must be placed where they can see one another.",
+              "when": "page:jieting:yeshi"
+            }
+          ],
+          "choices": [
+            {
+              "id": "three-beacons",
+              "text": "Station three interdependent beacon towers per the ancient notes",
+              "detail": "Keen Eye boosted this round; remember Cliffside Beacons",
+              "effects": {
+                "keenEye": true,
+                "fact": "yinping_beacons"
+              }
+            },
+            {
+              "id": "grain-ambush",
+              "text": "Divert Jiangyou supplies and prepare an empty granary trap",
+              "detail": "Deng Ai War Funds -200; remember Empty Granary Ruse",
+              "effects": {
+                "raid": true,
+                "fact": "yinping_empty_granary"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "yinping-open",
+          "at": "start",
+          "speaker": "dengai",
+          "text": "I... I have no food behind me, and no road beneath my feet. Guess where I can retreat, other than forward?"
+        },
+        {
+          "id": "yinping-jiangwei",
+          "at": "hand:2",
+          "speaker": "jiangwei",
+          "text": "Do not chase his general's banner. The man wrapped in felt is Deng Ai, and the slowest baggage train holds the life of their whole army."
+        },
+        {
+          "id": "yinping-zhan",
+          "at": "hand:3",
+          "speaker": "zhugezhan",
+          "text": "The heights do not guarantee victory; holding water and the retreat road does. Zhan shall make up for this lesson on my father's behalf.",
+          "when": "page:jieting:yeshi"
+        },
+        {
+          "id": "yinping-shang",
+          "at": "hand:3",
+          "speaker": "zhugeshang",
+          "text": "Deng Zhong! The honor of my ancestors stands here—my spear is swifter than yours!",
+          "when": "multi"
+        },
+        {
+          "id": "yinping-low",
+          "at": "low",
+          "speaker": "dengai",
+          "text": "Even the mountains let me through! Do y-you think a few piles of stone can hold me?!"
+        }
+      ],
+      "win": {
+        "text": "Atop Mt. Motian, lanterns flared first, followed by a torrent of rolling logs. When Deng Ai looked up, the empty granaries of Jiangyou were already padlocked; this miracle road bought with blood and bone had finally closed into an inescapable dead end. Jiang Wei rolled up the ancient note without celebration, merely adding oil to the three clifftop beacon towers.",
+        "hook": "The lands of Shu were preserved, yet the tides of Jianye grew faint. The old chronicle held only its final words: Three Kingdoms Return to Jin.",
+        "choiceFact": "yinping_held"
+      },
+      "loss": {
+        "text": "The felt-wrapped phantoms tumbled through the cliffs, and Jiangyou surrendered without firing an arrow. Beneath the walls of Mianzhu, Zhuge Zhan and his son charged into the center of the Wei host; their deaths preserved the peerless honor of the Marquis of Wu, yet left the passes of Chengdu wide open to the enemy.",
+        "clue": "Historical Mirror: Deng Ai bets everything on a single plunge, risking all on momentum. Upon retry, light beacons early and clear the granaries; do not let his desperate host feed upon your supplies.",
+        "clueFx": "keenEye"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     },
     "yanglu": {
       "cast": [
         "lukang",
         "yanghu"
       ],
-      "objective": "与羊祜对境两年,赢下「不战之战」,替吴国留住最后的将,也留住最后的信。",
+      "objective": "Face Yang Hu across the border for two years, winning the 'war of no battle' to preserve the last general of Wu, and the final bond of honor.",
       "coldOpen": [
         {
           "speaker": "narrator",
-          "text": "荆州边境,两军对垒,却两年无战。吴人打猎,猎物逃入晋境,羊祜必遣人送还;陆抗病了,羊祜送药,陆抗当众服下。"
+          "text": "Along the border of Jingzhou, two armies confronted one another, yet two years passed without a battle. When Wu hunters pursued game that fled into Jin territory, Yang Hu always returned the quarry; when Lu Kang fell ill, Yang Hu sent medicine, and Lu Kang took it openly before his men."
         },
         {
           "speaker": "yanghu",
-          "text": "陆将军,祜不欺丧乱之人,亦不欺有病之将。药在此,信亦在此。"
+          "text": "General Lu, Hu does not deceive those in mourning, nor do I take advantage of a stricken commander. Here is the medicine, and here is my good faith."
         },
         {
           "speaker": "lukang",
-          "text": "羊公赠药,抗岂疑之?倒是抗有一问:将军以信猎城,猎的究竟是吴地,还是吴心?"
+          "text": "Duke Yang bestows medicine; how could Lu Kang doubt it? Yet I have one question: the Duke hunts cities with virtue, but do you hunt Wu's territory, or Wu's heart?"
         },
         {
           "speaker": "lukang",
-          "text": "建业来的诏书,比襄阳的兵更急。他们要抗出战,抗,偏要再守一年。"
+          "text": "The edicts from Jianye are more pressing than the legions of Xiangyang. They demand that Kang march out, yet I resolve to hold for another year."
         },
         {
           "speaker": "narrator",
-          "text": "西陵城下,步阐举城降晋。陆抗的围城,围的已是自家的叛城。"
+          "text": "Beneath Xiling, Bu Chan surrendered the city to Jin. Lu Kang's siege now surrounded what had been his own fortress."
         }
       ],
       "intros": {
         "yanghu": [
           {
             "when": "seen:yanghu",
-            "bio": "他把你的阵图读了两遍,仍只把围猎的网收紧一寸。",
-            "quote": "急什么?祜的网,一年只收一寸。"
+            "bio": "Having studied your deployments twice, he still tightens the hunting net by a mere inch.",
+            "quote": "Why the haste? Hu's net tightens only an inch each year."
           },
           {
-            "bio": "轻裘缓带的名将,以信为饵,以德为钩。",
-            "quote": "祜不与你斗刀兵。祜,只等人心自己过江。"
+            "bio": "The famed commander in light robes and easy sash uses trust as bait and virtue as his hook.",
+            "quote": "Hu does not contest with weapons. Hu merely waits for men's hearts to cross the river on their own."
           }
         ]
       },
@@ -6892,26 +6822,26 @@ export default {
         {
           "id": "border-trust",
           "node": 1,
-          "title": "襄阳 · 各安其境",
+          "title": "Xiangyang: Peace on the Frontier",
           "lines": [
             {
               "speaker": "yanghu",
-              "text": "祜每次会战,只与你约期而阵,不掩不袭。有人骂祜迂——他们不懂,这才是最快的刀。"
+              "text": "Whenever Hu proposes battle, I only arrange an appointed date in open field, never ambushing or raiding. Some call me foolish—they do not understand this is the sharpest blade of all."
             },
             {
               "speaker": "lukang",
-              "text": "羊公以信待我,抗以信还之。可西陵一叛,两境的信,就要经受火了。"
+              "text": "Duke Yang treats me with good faith, and Kang returns the same. Yet with Xiling in revolt, the trust between our borders must withstand the fire."
             },
             {
               "speaker": "you",
-              "text": "他赢的方式是「不战」。你若急着开战,便替他把人心送过江去。"
+              "text": "His way of winning is 'not fighting'. If you rush into battle, you will hand the people's hearts across the river for him."
             }
           ],
           "choices": [
             {
               "id": "siege-xiling",
-              "text": "先克西陵,再论边境",
-              "detail": "晋军起手军资 -200,记住先定内",
+              "text": "Subdue Xiling first before addressing the border",
+              "detail": "Jin forces starting War Funds -200; remember Calming the Interior",
               "effects": {
                 "raid": true,
                 "fact": "yanglu_xiling"
@@ -6919,8 +6849,8 @@ export default {
             },
             {
               "id": "keep-compact",
-              "text": "守与羊公之约,不开边衅",
-              "detail": "本回看破提升,记住两年之信",
+              "text": "Honor the pact with Duke Yang and avoid border clashes",
+              "detail": "Keen Eye boosted this round; remember Two Years of Trust",
               "effects": {
                 "keenEye": true,
                 "fact": "yanglu_pact"
@@ -6934,38 +6864,313 @@ export default {
           "id": "yanglu-open",
           "at": "start",
           "speaker": "yanghu",
-          "text": "陆将军,今日又免一战。祜备了新茶——江陵的,你尝得出来。"
+          "text": "General Lu, today we spare another battle. Hu has prepared fresh tea—from Jiangling, as you can surely taste."
         },
         {
           "id": "yanglu-city",
           "at": "hand:2",
           "speaker": "lukang",
-          "text": "西陵城破了。步阐的人头,抗亲自送还建业。晋公的算盘,少了一颗关键的子。",
+          "text": "Xiling has fallen. Bu Chan's head has been sent to Jianye by Kang's own hand. The Duke of Jin's abacus is missing a vital bead.",
           "when": "fact:yanglu_xiling"
         },
         {
           "id": "yanglu-tea",
           "at": "hand:3",
           "speaker": "yanghu",
-          "text": "茶要趁热,城要等熟。将军,祜等得起——你等得起建业吗?",
+          "text": "Tea must be savored hot; cities must wait until ripe. General, Hu can afford to wait—can you wait for Jianye?",
           "when": "fact:yanglu_pact"
         },
         {
           "id": "yanglu-low",
           "at": "low",
           "speaker": "lukang",
-          "text": "抗常胜于外,而困于内。羊公……你围的从来不是我,是我的朝廷,对吗?"
+          "text": "Kang has ever triumphed abroad, yet remained trapped from within. Duke Yang... you were never besieging me, but my imperial court, were you not?"
         }
       ],
       "win": {
-        "text": "西陵既定,边信未破。羊祜临终前上表请伐吴,把一生的准备与一怀的药味一并交给了杜预;陆抗也在同一年病逝,吴人立碑,碑上无「败」字。两块碑隔江相望——你赢了这一页:两个名字,谁也没有输给谁。",
-        "hook": "羊陆之后,再无名将可守。益州的楼船已下水,建业的铁锁,正在一寸寸生锈。"
+        "text": "Xiling was subdued, yet the frontier trust remained unbroken. Before his passing, Yang Hu presented a memorial urging the conquest of Wu, entrusting a lifetime of preparation and the faint scent of medicinal herbs to Du Yu; Lu Kang died of illness that very same year, and the men of Wu erected a monument bearing no word of 'defeat'. The two steles faced one another across the Yangtze—you prevailed on this page: between the two great names, neither man yielded to the other.",
+        "hook": "After Yang Hu and Lu Kang, no great commanders remained to guard the realm. In Yizhou, grand tower ships were launched, while the iron chains of Jianye rusted away inch by inch."
       },
       "loss": {
-        "text": "建业催战的诏书终于压过了边境的信。你出兵的那一日,江边百姓指着晋营说:「羊公之德,不掠我禾。」仗还没打,城外的人心已先过江。",
-        "clue": "史鉴 · 羊祜的刀是「信」,急攻正中其怀。重开时先定西陵、再守其约;他输得起时间,你输不起人心。",
+        "text": "The urgent edicts from Jianye finally crushed the fragile trust upon the border. On the day you marched forth, the common folk along the river pointed to the Jin banners and whispered: 'Duke Yang's virtue spares our harvest.' Before a single spear clashed, the hearts beyond the walls had already crossed the river.",
+        "clue": "Historical Mirror: Yang Hu's weapon is 'virtue', and reckless assault plays directly into his hands. Upon retry, secure Xiling first and maintain the covenant; he can afford time, but you cannot afford to lose the people.",
         "clueFx": "keenEye"
-      }
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    },
+    "guijin": {
+      "cast": [
+        "simayan",
+        "wangjun",
+        "duyu",
+        "sunhao",
+        "cenhun",
+        "writer"
+      ],
+      "objective": "Finish the final hand of the Three Kingdoms before 'All Under Heaven Returns to One' is penned, proving that unity need not mean erasing every name.",
+      "coldOpen": [
+        {
+          "speaker": "simayan",
+          "text": "At Huarong you ordered the blade to fall, yet Cao Pi still proclaimed himself Emperor, and the realm still fragmented. Was that grand turmoil meant only for my Sima clan to gather the pieces?",
+          "when": [
+            "choice:huarong:yeshi",
+            "!choice:huarong:yeshiB"
+          ]
+        },
+        {
+          "speaker": "simayan",
+          "text": "At Huarong you spared Cao Cao, granting Wei a prolonged breath. A pity that breath ultimately took the surname of Sima; whom did your 'righteousness' truly save?",
+          "when": "choice:huarong:yeshiB"
+        },
+        {
+          "speaker": "wangjun",
+          "text": "Tower ships a hundred fathoms tall, iron chains spanning thousand-fold depths. Wang Jun built vessels in Yizhou for seven years, solely for this downstream sweep.",
+          "when": "!seen:wangjun"
+        },
+        {
+          "speaker": "duyu",
+          "text": "Duke Yang recommended me on his deathbed. He had already gathered the hearts of Jingzhou; all Du Yu needed was the rising tide.",
+          "when": "!seen:duyu"
+        },
+        {
+          "speaker": "sunhao",
+          "text": "Iron chains span the river, an impenetrable natural moat. The tower ships of the Jin? Let them ask the stones beneath the current first!"
+        },
+        {
+          "speaker": "cenhun",
+          "text": "Your Majesty, rest at ease. Cen Hun shall add three more chains—unbroken by flame, unpenetrated by flood!"
+        },
+        {
+          "speaker": "writer",
+          "text": "This is the final page of the old history. If you win, 'All Under Heaven Returns to One' will no longer be the only sentence that can be written."
+        }
+      ],
+      "intros": {
+        "simayan": [
+          {
+            "when": "page:guijin:yeshi",
+            "bio": "Having once been forced to concede that unification was not the only outcome, his return is fueled by a desire to reclaim every possibility.",
+            "quote": "Last time you left three banners standing. This time I shall strip even the flagpoles away."
+          },
+          {
+            "bio": "He inherits not merely the lands of the Three Kingdoms, but the very patience his grandfather understood best: waiting until everyone grows weary.",
+            "quote": "You fought for a lifetime; in the end, did you not all desire the single word 'Union'?"
+          }
+        ],
+        "wangjun": [
+          {
+            "when": "seen:wangjun",
+            "bio": "Remembering you from the last river gale, he prepared double the torches this time.",
+            "quote": "Wh-what cannot be burned are my ships. Come on!"
+          },
+          {
+            "bio": "The seventy-year-old veteran still seeking ennoblement staked half his life upon this very river.",
+            "quote": "Tower ships descend from Yizhou. The imperial aura of Jinling gathers in this voyage."
+          }
+        ]
+      },
+      "map": [
+        {
+          "id": "names-under-unification",
+          "node": 1,
+          "title": "Stone Fortress: Names Beyond the Surrender Document",
+          "lines": [
+            {
+              "speaker": "simayan",
+              "text": "I spare every life in Jianye, and grant the Lord of Shu the title of Duke Anle. What more do you desire? Could the names of lifelong warlords matter more than peace?"
+            },
+            {
+              "speaker": "you",
+              "text": "If peace can be named by only one man, then when the next division comes, only blades will speak once more."
+            },
+            {
+              "speaker": "writer",
+              "text": "Do not contest seats only for the heroes. Look behind the surrender scrolls—those whose names were never penned have truly waited for three generations."
+            }
+          ],
+          "choices": [
+            {
+              "id": "record-people",
+              "text": "Record the names of the common folk behind the surrender roll",
+              "detail": "Keen Eye boosted this round; remember History of the People",
+              "effects": {
+                "keenEye": true,
+                "fact": "guijin_people"
+              }
+            },
+            {
+              "id": "three-flags",
+              "text": "Raise the three banners of old once more for the final round",
+              "detail": "Sima Yan starting Morale -1; remember Resonances of the Three",
+              "effects": {
+                "sow": 1,
+                "fact": "guijin_three_flags"
+              }
+            }
+          ]
+        }
+      ],
+      "battle": [
+        {
+          "id": "guijin-open",
+          "at": "start",
+          "speaker": "simayan",
+          "text": "Wei outlasted Shu, and Jin inherited Wei. You see, patience outlives all your brilliant schemes."
+        },
+        {
+          "id": "guijin-writer",
+          "at": "hand:2",
+          "speaker": "writer",
+          "text": "He treats 'Unification' as his hole card, so you need not mimic destiny more than he. Make him prove why it must only be so."
+        },
+        {
+          "id": "guijin-you",
+          "at": "hand:3",
+          "speaker": "you",
+          "text": "Unification does not mean grinding three names into one; it means when the next name arises, it need not unleash another age of blood."
+        },
+        {
+          "id": "guijin-low",
+          "at": "low",
+          "speaker": "simayan",
+          "text": "Without me to close the stage, how many more years would you bleed? Do you dare speak that question to the commoners in the city?"
+        }
+      ],
+      "win": {
+        "text": "The tower ships halted in midstream, and Jianye never presented its surrender scroll. Looking upon the three ancient banners, Sima Yan asked for the first time: 'If the world is not a trophy of conquest, what else can I leave behind?' None could answer for him, yet on the morrow, the city's grain markets opened as usual.",
+        "hook": "Scroll Four is fully penned, yet another page lies behind the parchment. The Chronicler has arranged the cards: he wishes to speak with you of these altered destinies.",
+        "choiceFact": "jin_unification_stopped"
+      },
+      "loss": {
+        "text": "At last, the Jin banner was hoisted above the Stone Fortress. The commoners indeed received their long-awaited peace, yet the old annals shrank every mortal name smaller and smaller, until only the words 'Returned to Jin' remained.",
+        "clue": "Historical Mirror: Sima Yan presses relentlessly with the momentum of inevitable unification. Upon retry, enemy funds -200; do not believe in the ending before he has earned it.",
+        "clueFx": "raid"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
+    }
+  },
+  "5": {
+    "zuizhong": {
+      "cast": [
+        "writer"
+      ],
+      "objective": "Compel the Chronicler to acknowledge you are not his footnote; win the final hand, and choose the destiny of the entire scroll among Sealing, Restoring, and Tearing.",
+      "coldOpen": [
+        {
+          "speaker": "writer",
+          "text": "At Baimen Tower you allowed Lu Bu to live, and thereafter everyone walked a path that was never meant to be. Did you think I didn't see? I recorded every single stroke.",
+          "when": "fact:lvbu_lives"
+        },
+        {
+          "speaker": "writer",
+          "text": "At Maicheng you rescued Guan Yu, and so I watched Yiling lose its reason, and Baidicheng lose its sorrow. Yet you could not save every regret, could you?",
+          "when": "page:maicheng:yeshi"
+        },
+        {
+          "speaker": "writer",
+          "text": "The snows of Maicheng still linger, and the fires of Yiling once waited. You saved some souls, yet turned with your own hands pages that could not be saved in time.",
+          "when": "!page:maicheng:yeshi"
+        },
+        {
+          "speaker": "writer",
+          "text": "Seal the scroll, and preserve your apocrypha; restore history, and return each mortal fate; tear the scroll, and let no one foreknow tomorrow. Only by defeating me do you earn the right to choose."
+        }
+      ],
+      "intros": {
+        "writer": [
+          {
+            "when": "page:zuizhong:yeshi",
+            "bio": "He remembers you carrying the ending out of this page, yet still refuses to admit a book can have only one conclusion.",
+            "quote": "Back to change your answer again? This time, not even I will record it for you."
+          },
+          {
+            "when": "fact:zhuge_survives",
+            "bio": "He sees the southeastern star still burning bright, knowing that after you saved Kongming, history did not become any lighter.",
+            "quote": "Having saved him once, do you truly think you understand how to save mankind?"
+          },
+          {
+            "bio": "He knows every page you have ever turned, yet for the first time sits where cards must be verified, not preordained.",
+            "quote": "I wrote the road you traveled. Now, show me the choice you make."
+          }
+        ]
+      },
+      "map": [],
+      "battle": [
+        {
+          "id": "zuizhong-open-survivor",
+          "at": "start",
+          "speaker": "writer",
+          "text": "That star above Wuzhangyuan still shines. Did you think saving Kongming was the answer? It merely gave Zhongda one more rival he could not defeat by waiting.",
+          "when": "fact:zhuge_survives"
+        },
+        {
+          "id": "zuizhong-open-fallen",
+          "at": "start",
+          "speaker": "writer",
+          "text": "I kept the autumn wind of Wuzhangyuan. You can defeat Sima Yi, yet you cannot necessarily bear the weight of a man fated to die.",
+          "when": "!fact:zhuge_survives"
+        },
+        {
+          "id": "zuizhong-seal",
+          "at": "hand:2",
+          "speaker": "writer",
+          "text": "Seal the scroll, and I bind these apocryphal tales into book form. They will live within the page you altered, yet never reach the next."
+        },
+        {
+          "id": "zuizhong-return",
+          "at": "hand:3",
+          "speaker": "writer",
+          "text": "Restore history, and I retract my brush and ink. The snow of Maicheng and the wind of Wuzhangyuan resume as before; you depart with only the memories of having met them."
+        },
+        {
+          "id": "zuizhong-tear",
+          "at": "hand:4",
+          "speaker": "writer",
+          "text": "Tear the scroll, and anyone might live again, or die once more. There will be no draft, and no chronicler to catch you when you fall."
+        },
+        {
+          "id": "zuizhong-huarong-spare",
+          "at": "hand:5",
+          "speaker": "writer",
+          "text": "At Huarong you let Cao Cao go, trusting that 'righteousness' could outweigh future calamity. Today I ask you once more: dare you trust that the unknown can outweigh destiny?",
+          "when": "choice:huarong:yeshiB"
+        },
+        {
+          "id": "zuizhong-huarong-strike",
+          "at": "hand:5",
+          "speaker": "writer",
+          "text": "At Huarong you let the blade fall, altering a villain's fate without preventing the scramble for the throne. Tearing the scroll will not spare you from choosing either.",
+          "when": [
+            "choice:huarong:yeshi",
+            "!choice:huarong:yeshiB"
+          ]
+        },
+        {
+          "id": "zuizhong-low",
+          "at": "low",
+          "speaker": "writer",
+          "text": "I know every old card in your hand, yet not the next. Reader, that is the sole reason I agreed to sit and play this hand with you."
+        }
+      ],
+      "win": {
+        "text": "The Chronicler pushed aside his cards, for the first time leaving the ending unwritten. Upon the desk side by side lay the sealing cord, the ancient chronicle, and an edgeless paper knife: seal the scroll to keep what was rewritten; restore history to bear what was lost; tear the scroll to surrender all to the unknown. As you reach out your hand, the entire book waits in breathless silence.",
+        "hook": "All three answers await in the question ahead. What you choose is not merely an ending, but who holds the right to write it."
+      },
+      "loss": {
+        "text": "He lifted his brush and added the word 'again' beside your name, sending every rewritten line retreating to the margins. Yet he did not erase the seat where you sat—a silent sign that next time, he will still need you to come.",
+        "clue": "Historical Mirror: The Chronicler knows your former strategies, yet must still bet by the logic of the cards. Upon retry, false tells decrease; do not be intimidated by his omniscient tone.",
+        "clueFx": "keenEye"
+      },
+      "skirmishIntro": [],
+      "skirmishOutcomes": {},
+      "bossIntro": [],
+      "bossOutcomes": {}
     }
   }
 };

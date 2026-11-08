@@ -20,24 +20,17 @@ const STORAGE_KEY = 'sanguo_poker_language';
 const listeners = new Set();
 
 function resolveInitialLocale() {
+  if (typeof window === 'undefined') {
+    return 'zh-CN';
+  }
   try {
+    const params = new URLSearchParams(window.location.search);
+    const qLang = params.get('lang') || params.get('locale');
+    if (qLang && SUPPORTED_LOCALES.includes(qLang)) return qLang;
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved && SUPPORTED_LOCALES.includes(saved)) return saved;
   } catch {}
 
-  const nav = (navigator.languages?.[0] || navigator.language || '').toLowerCase();
-  if (nav.startsWith('zh-tw') || nav.startsWith('zh-hk') || nav.startsWith('zh-mo') || nav.includes('hant')) {
-    return 'zh-TW';
-  }
-  if (nav.startsWith('zh')) {
-    return 'zh-CN';
-  }
-  if (nav.startsWith('ja')) {
-    return 'ja';
-  }
-  if (nav.startsWith('en')) {
-    return 'en';
-  }
   return 'zh-CN';
 }
 
@@ -160,6 +153,71 @@ export function translatePage() {
 
   const fullscreenToggle = document.getElementById('fullscreenToggle');
   if (fullscreenToggle) fullscreenToggle.textContent = t('app.fullscreen');
+
+  // 书卷与战令印信本地化
+  const pageSpine = document.getElementById('pageSpine');
+  if (pageSpine) {
+    if (currentLocale === 'en') {
+      pageSpine.innerHTML = '<span>H</span><span>E</span><span>R</span><span>O</span><span>E</span><span>S</span>';
+    } else if (currentLocale === 'zh-TW' || currentLocale === 'ja') {
+      pageSpine.innerHTML = '<span>英</span><span>雄</span><span>記</span>';
+    } else {
+      pageSpine.innerHTML = '<span>英</span><span>雄</span><span>记</span>';
+    }
+  }
+
+  const pageDividerSeal = document.getElementById('pageDividerSeal');
+  if (pageDividerSeal) pageDividerSeal.textContent = currentLocale === 'en' ? 'IF' : '若';
+
+  const pageStamp = document.getElementById('pageStamp');
+  if (pageStamp) pageStamp.textContent = currentLocale === 'en' ? 'FATE' : '改';
+
+  const briefingSeal = document.getElementById('briefingSeal');
+  if (briefingSeal) {
+    briefingSeal.textContent = currentLocale === 'en' ? 'WAR' : (currentLocale === 'ja' ? '戦' : (currentLocale === 'zh-TW' ? '戰' : '战'));
+  }
+
+  const dealerBtn = document.getElementById('dealerBtn');
+  if (dealerBtn) {
+    dealerBtn.textContent = currentLocale === 'en' ? 'D' : (currentLocale === 'ja' ? '親' : (currentLocale === 'zh-TW' ? '莊' : '庄'));
+  }
+
+  const deckSig = document.getElementById('deckSig');
+  if (deckSig) {
+    deckSig.textContent = currentLocale === 'en' ? 'HAN' : (currentLocale === 'zh-CN' ? '汉' : '漢');
+  }
+
+  const feltMain = document.getElementById('feltMain');
+  const feltSub = document.getElementById('feltSub');
+  if (feltMain && feltSub) {
+    feltMain.textContent = t('battle.emblemMain');
+    feltSub.textContent = t('battle.emblemSub');
+  }
+
+  const potLabelText = document.getElementById('potLabelText');
+  if (potLabelText) potLabelText.textContent = t('battle.pot');
+
+  const pageHistoryLabel = document.getElementById('pageHistoryLabel');
+  if (pageHistoryLabel) pageHistoryLabel.textContent = t('page.historyLabel');
+
+  const pageAdaptationLabel = document.getElementById('pageAdaptationLabel');
+  if (pageAdaptationLabel) pageAdaptationLabel.textContent = t('page.adaptationLabel');
+
+  const openPage = document.getElementById('openPage');
+  if (openPage) openPage.textContent = t('page.depart');
+
+  const pageBack = document.getElementById('pageBack');
+  if (pageBack) pageBack.textContent = t('page.back');
+
+  const scrollTitleSeal = document.getElementById('scrollTitleSeal');
+  if (scrollTitleSeal) {
+    scrollTitleSeal.textContent = currentLocale === 'en' ? 'VOL' : (currentLocale === 'zh-CN' ? '卷' : '卷');
+  }
+
+  const practiceSeal = document.getElementById('practiceSeal');
+  if (practiceSeal) {
+    practiceSeal.textContent = currentLocale === 'en' ? 'WAR' : '野';
+  }
 }
 
 // ======================== 数据对象本地化适配器 ========================
@@ -300,6 +358,20 @@ export function localizeBriefing(briefing, chapterId) {
       win: loc.boss?.win || briefing.boss.win,
       loss: loc.boss?.loss || briefing.boss.loss,
     } : briefing.boss,
+    rounds: loc.rounds ? briefing.rounds?.map((r, idx) => ({
+      ...r,
+      title: loc.rounds?.[idx]?.title || r.title,
+      why: loc.rounds?.[idx]?.why || r.why,
+      win: loc.rounds?.[idx]?.win || r.win,
+      loss: loc.rounds?.[idx]?.loss || r.loss,
+    })) : briefing.rounds,
+    revive: loc.revive ? {
+      ...briefing.revive,
+      title: loc.revive.title || briefing.revive?.title,
+      why: loc.revive.why || briefing.revive?.why,
+      win: loc.revive.win || briefing.revive?.win,
+      loss: loc.revive.loss || briefing.revive?.loss,
+    } : briefing.revive,
   };
 }
 
@@ -309,7 +381,15 @@ export function localizeStory(story, chapterId, scrollId) {
   if (currentLocale === 'zh-CN') return story;
 
   const scrollStories = STORY_LOCALES[currentLocale]?.[scrollId];
-  const loc = scrollStories?.[chapterId];
+  let loc = scrollStories?.[chapterId];
+  if (!loc && STORY_LOCALES[currentLocale]) {
+    for (const s of Object.values(STORY_LOCALES[currentLocale])) {
+      if (s && s[chapterId]) {
+        loc = s[chapterId];
+        break;
+      }
+    }
+  }
   if (!loc) return story;
 
   return {
@@ -324,5 +404,9 @@ export function localizeStory(story, chapterId, scrollId) {
     epilogue: loc.epilogue || story.epilogue,
     choicePrompt: loc.choicePrompt || story.choicePrompt,
     choices: loc.choices || story.choices,
+    battle: loc.battle || story.battle,
+    win: loc.win || story.win,
+    loss: loc.loss || story.loss,
+    intros: loc.intros || story.intros,
   };
 }

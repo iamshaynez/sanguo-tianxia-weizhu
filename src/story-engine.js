@@ -94,7 +94,7 @@ export function mapSceneFor(chapter, node) {
 
 export function introFor(chapter, cfg, ctx = {}) {
   const story = storyFor(chapter);
-  const entries = story?.intros?.[cfg.gen] || story?.intros?.[cfg.name] || [];
+  const entries = story?.intros?.[cfg.gen] || story?.intros?.[cfg.name] || (cfg.name === '写卷人' ? (story?.intros?.writer || story?.intros?.['写卷人']) : undefined) || [];
   const list = Array.isArray(entries) ? entries : [entries];
   return list.find(entry => matchesWhen(entry.when, ctx)) || list.find(entry => !entry.when) || {};
 }

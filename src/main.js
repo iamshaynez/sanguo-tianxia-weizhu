@@ -46,10 +46,13 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 });
 onLocaleChange(() => {
   if (!$('scroll').classList.contains('hidden')) {
-    SC.renderCodex(P, enterChapter, showScrollStory);
+    SC.renderCodex(P, openChapterPage, enterPractice);
+  }
+  if ($('page') && !$('page').classList.contains('hidden') && currentChapter) {
+    renderChapterPage(currentChapter);
   }
   if ($('practice') && !$('practice').classList.contains('hidden')) {
-    renderPractice(P, arena => enterChapter(arena, 'practice'));
+    renderPractice(P, startPracticeArena);
   }
 });
 
@@ -116,9 +119,11 @@ const ui = {
       for (const b of fresh) {
         const act = b.dataset.act;
         b.style.display = vis[act] ? '' : 'none';
-        if (act === 'call') b.innerHTML = toCall >= stack ? `全压跟注 <b>${stack}</b>` : `跟注 <b>${toCall}</b>`;
-        if (act === 'raise') b.textContent = toCall > 0 ? '加注' : '下注';
-        if (act === 'allin') b.innerHTML = `全 压 <b>${stack}</b>`;
+        if (act === 'fold') b.textContent = t('poker.actions.fold');
+        if (act === 'check') b.textContent = t('poker.actions.check');
+        if (act === 'call') b.innerHTML = toCall >= stack ? `${t('poker.actions.allInCall')} <b>${stack}</b>` : `${t('poker.actions.call')} <b>${toCall}</b>`;
+        if (act === 'raise') b.textContent = toCall > 0 ? t('poker.actions.raise') : t('poker.actions.bet');
+        if (act === 'allin') b.innerHTML = `${t('poker.actions.allIn')} <b>${stack}</b>`;
         b.addEventListener('click', () => {
           if (act === 'raise') {
             raiseOpts.innerHTML = '';
@@ -130,7 +135,7 @@ const ui = {
               raiseOpts.appendChild(pb);
             }
             const cancel = document.createElement('button');
-            cancel.textContent = '返回';
+            cancel.textContent = t('poker.actions.cancel');
             cancel.addEventListener('click', () => raiseOpts.classList.add('hidden'));
             raiseOpts.appendChild(cancel);
           } else {
@@ -333,7 +338,9 @@ function enterPractice() {
   renderPractice(P, startPracticeArena);
 }
 
+let currentChapter = null;
 function renderChapterPage(chapter) {
+  currentChapter = chapter;
   const ov = SC.causalFor(P, chapter); // 页间因果:前页改写,此页题记随变
   const alt = chapter.id === 'wuzhangyuan' && SC.isYeshi(SC.pageState(P, 'wuzhangyuan'));
   const begin = (asZhuge) => async () => {
@@ -413,7 +420,8 @@ function startMarch(chapter, omenFx, { asZhuge = false } = {}) {
       R.current = R.nodes[targetIndex - 1]?.id || null;
     }
   }
-  $('marchTitle').textContent = `行 军 图 · ${chapter.name}`;
+  const mapTitle = t('map.title') || '行 军 图';
+  $('marchTitle').textContent = `${mapTitle} · ${chapter.name}`;
   show('map');
   map.render();
   onboarding.tip('map');
