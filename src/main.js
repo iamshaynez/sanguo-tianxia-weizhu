@@ -24,6 +24,7 @@ import { createOddsPanel } from './odds-panel.js';
 import {
   storyFor, mapSceneFor, introFor, outcomeFor, markSceneSeen, sceneSeen, choiceFor,
 } from './story-engine.js';
+import { t, getLocale, setLocale, translatePage, onLocaleChange } from './i18n.js';
 
 const $ = id => document.getElementById(id);
 window.addEventListener('error', e => { $('errBox').textContent += e.message + '\n'; });
@@ -34,6 +35,24 @@ initRuntimeInfo();
 watchRuntimeVersion();
 document.getElementById('forceRefresh')?.addEventListener('click', () => { void forceReloadLatest(); });
 initFullscreen($('fullscreenToggle'));
+
+// 初始化多语言界面与切换监听
+translatePage();
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const locale = btn.dataset.locale;
+    setLocale(locale);
+  });
+});
+onLocaleChange(() => {
+  if (!$('scroll').classList.contains('hidden')) {
+    SC.renderCodex(P, enterChapter, showScrollStory);
+  }
+  if ($('practice') && !$('practice').classList.contains('hidden')) {
+    renderPractice(P, arena => enterChapter(arena, 'practice'));
+  }
+});
+
 const audio = new AudioFX();
 const oppChar = createOpponent($('oppChar'));
 const oddsPanel = createOddsPanel();
@@ -46,13 +65,13 @@ const ui = {
   setStacks(you, opp) { $('youStack').textContent = you; oppChar.setStack(opp); },
   setPot(n) { $('potNum').textContent = n; },
   setBlind(t) { $('blindLabel').textContent = t; },
-  setHand(t) { $('handLabel').textContent = '当前牌型 ' + t; },
+  setHand(str) { $('handLabel').textContent = t('poker.handDesc.lead') + ' ' + (str || t('poker.handDesc.none')); },
   setSeed(t) { $('seedVal').textContent = t; },
   setTilt(n) { oppChar.setTilt(n); },
-  setPlayerName(n) { $('youName').textContent = n || '你'; },
-  setTauntLabel(t) { $('tauntBtn').textContent = t || '攻 心'; },
+  setPlayerName(n) { $('youName').textContent = n || t('app.playerName', { default: '你' }); },
+  setTauntLabel(lbl) { $('tauntBtn').textContent = lbl || t('poker.actions.taunt'); },
   enableTaunt(v) { $('tauntBtn').disabled = !v; },
-  clearCodex() { $('codexList').innerHTML = '<li class="empty">尚无记录 —— 盯住他的手。</li>'; },
+  clearCodex() { $('codexList').innerHTML = `<li class="empty">${t('battle.emptyLog')}</li>`; },
   codexAdd(html) {
     const list = $('codexList');
     list.querySelector('.empty')?.remove();

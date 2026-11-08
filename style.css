@@ -1039,3 +1039,69 @@ button.ghost:hover { border-color: #b7a578; }
 }
 .update-toast button { padding: 6px 14px; font-size: 13px; letter-spacing: .3em; }
 @keyframes update-toast-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ================= 多语言支持 (i18n) 样式适配 ================= */
+:root[data-lang="zh-TW"], html[lang="zh-TW"] {
+  --serif: "Noto Serif CJK TC", "LiSong Pro", "Songti TC", "BiauKai", serif;
+  --song: "Noto Serif CJK TC", "Songti TC", "LiSong Pro", serif;
+}
+
+:root[data-lang="ja"], html[lang="ja"] {
+  --serif: "Yu Mincho", "Hiragino Mincho ProN", "Noto Serif CJK JP", serif;
+  --song: "Yu Mincho", "Noto Serif CJK JP", serif;
+}
+
+:root[data-lang="en"], html[lang="en"] {
+  --serif: "Cinzel", "Baskerville", "Georgia", "Times New Roman", serif;
+  --song: "Georgia", "Baskerville", "Times New Roman", serif;
+}
+
+:root[data-lang="en"] button {
+  letter-spacing: 0.08em;
+}
+:root[data-lang="en"] .screen-title {
+  letter-spacing: 0.12em;
+}
+:root[data-lang="en"] .intro-foot,
+:root[data-lang="en"] .art-caption {
+  writing-mode: horizontal-tb !important;
+  letter-spacing: normal !important;
+}
+
+.lang-bar {
+  position: fixed;
+  top: 14px;
+  right: 18px;
+  z-index: 95;
+  display: inline-flex;
+  gap: 4px;
+  background: #141712d0;
+  border: 1px solid #77623a88;
+  border-radius: 4px;
+  padding: 3px 5px;
+  box-shadow: 0 4px 16px #0008;
+  backdrop-filter: blur(4px);
+}
+.lang-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #a49779;
+  font-family: var(--serif);
+  font-size: 12px;
+  padding: 2px 8px;
+  letter-spacing: 0.05em;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.lang-btn:hover {
+  color: #f1e2c3;
+  border-color: #8c7349;
+}
+.lang-btn.active {
+  background: #79352b;
+  color: #faeed4;
+  border-color: #ba5d49;
+  font-weight: bold;
+}
+

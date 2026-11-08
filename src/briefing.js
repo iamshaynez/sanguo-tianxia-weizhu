@@ -1,6 +1,7 @@
 // briefing.js —— 每场牌局前的史诗战书;只呈现与返回选择,不写剧情结果
 import { briefingFor } from './story-data/runtime.js';
 import { portraitImage } from './portrait.js';
+import { t, localizeChapter } from './i18n.js';
 
 const $ = id => document.getElementById(id);
 
