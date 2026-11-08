@@ -9,7 +9,20 @@ export const TELL_LOCALES = {
 };
 
 export const INTENT_NOTES_LOCALES = {
-  'zh-TW': zhTW.intent,
-  ja: ja.intent,
-  en: en.intent,
+  'zh-CN': {
+    bluff: '指尖泄了密——他在演',
+    trap: '按兵太久了——他在等你上钩',
+  },
+  'zh-TW': {
+    bluff: '指尖洩了密——他在演',
+    trap: '按兵太久了——他在等你上鉤',
+  },
+  ja: {
+    bluff: '指先が語る――虚勢（ブラフ）を演じておる',
+    trap: '動かざること山の如し――罠を張って待っておる',
+  },
+  en: {
+    bluff: 'Fingertips betray him — he is bluffing',
+    trap: 'Held back too long — he is setting a trap',
+  },
 };

@@ -1,971 +1,1063 @@
 export default {
   "taoyuan": {
-    "era": "184 年",
-    "source": "《三国志·先主传》·《三国演义》第一回",
-    "record": "中平元年黄巾起事，刘备在涿郡聚集乡勇，随官军参与镇压。乱世并非从三国鼎立开始，而从无数郡县的自保开始。",
-    "adaptation": "桃园结义采用演义叙事。写卷人让你以同行者身份入局，先替乡勇与三位故人争一条共同进退的路。",
-    "lead": "残卷第一页没有帝王，只有一张被雨浸湿的募兵告示。你要先弄明白，英雄为何愿意把命交给彼此。",
+    "era": "184 AD",
+    "source": "Records of the Three Kingdoms · Book of Shu / Romance of the Three Kingdoms Ch. 1",
+    "record": "In 184 AD, the Yellow Turban Rebellion erupted. Liu Bei gathered local volunteers in Zhuo Commandery to join imperial forces in quelling the uprising. The age of chaos began not with the grand division of Three Kingdoms, but with countless townships taking up arms for survival.",
+    "adaptation": "The Peach Garden oath follows the narrative lore of Romance of the Three Kingdoms. The chronicler places you as a comrade at the table, securing a path of mutual survival for the militia and three brothers.",
+    "lead": "The first page of the remnant scroll features no emperors, only a rain-soaked recruitment notice. You must first understand why heroes were willing to entrust their lives to one another.",
     "skirmish": {
-      "title": "Skirmish: 涿郡 · 乡勇首阵",
-      "why": "黄巾游骑逼近乡道，新兵尚未成阵。你得先截住前锋，让乡勇有时间护住百姓与退路。",
-      "win": "乡道守住，乡勇愿意随你继续向桃林集结，三个陌生人也有了第一次并肩作战的信任。",
-      "loss": "乡勇被冲散，桃园尚未结义便先尝到各自为战的代价；此页归回原卷，你带史鉴重来。"
+      "title": "Zhuo Commandery · First Stand of Volunteers",
+      "why": "Yellow Turban raiders approach the township roads while recruits have yet to form ranks. You must intercept their vanguard to give civilians and volunteers time to secure their retreat.",
+      "win": "The township road is held. The volunteers follow you toward the peach grove, forging the first bond of battle-tested trust among three strangers.",
+      "loss": "The volunteers are scattered. Before taking their oath, the brothers taste the bitter price of fighting alone. This page resets, returning you to historical records."
     },
     "boss": {
-      "title": "Climax: 广宗 · 渠帅之局",
-      "why": "渠帅以乱兵人数压阵，要击溃这支刚聚起的队伍。只有让他离席，乡勇才算真正站稳。",
-      "win": "桃园誓约经住了第一场败仗，野史由此落印；你将沿诸侯会盟的烽烟走向汜水。",
-      "loss": "黄巾之势仍按原卷蔓延，刚结下的誓约被乱军拆开；兵败亦会留下互救与留后的史鉴。"
+      "title": "Guangzong · Clash with the Chief",
+      "why": "The bandit chief uses overwhelming numbers to crush this newly formed militia. Only by forcing him from the table can the volunteer brothers truly secure their footing.",
+      "win": "The peach garden oath withstands its very first battle. Lore is stamped into the chronicle, guiding your path along coalition beacons toward Sishui.",
+      "loss": "The Yellow Turban tide spreads as recorded in history, tearing apart the fledgling oath. Yet failure leaves behind the wisdom of mutual cover."
     }
   },
   "sishui": {
-    "era": "190–191 年",
-    "source": "《三国志·孙破虏讨逆传》·《三国演义》第五回",
-    "record": "初平元年关东诸郡起兵讨董。华雄是董卓部将，后在阳人之战中被孙坚军击败斩杀，并非关羽所斩。",
-    "adaptation": "本回沿用演义“温酒斩华雄”，把诸侯的轻视、关羽的请战与一杯酒压成同一场牌局。",
-    "lead": "桃园的酒尚温，酸枣的诸侯却各怀心思。下一杯必须由名不见经传的人亲手端回来。",
+    "era": "190–191 AD",
+    "source": "Records of the Three Kingdoms · Book of Wu / Romance of the Three Kingdoms Ch. 5",
+    "record": "In 190–191 AD, warlords of the eastern commanderies raised armies against Dong Zhuo. Hua Xiong was Dong Zhuo's general who was defeated and slain by Sun Jian's army at the Battle of Yangren, rather than by Guan Yu.",
+    "adaptation": "This chapter adopts the dramatization of 'slaying Hua Xiong over warm wine', condensing the scorn of the lords, Guan Yu's pledge, and a steaming cup into a single high-stakes poker hand.",
+    "lead": "The wine of the peach garden is still warm, but the lords at Suanzao harbor their own ambitions. The next cup must be brought back by an unknown hero with his own hands.",
     "skirmish": {
-      "title": "Skirmish: 酸枣 · 诸侯阵前",
-      "why": "西凉骁骑正在试探联军的胆气。你若连游骑都拦不住，关羽便没有走到帐前请战的机会。",
-      "win": "前哨被压回汜水，诸侯终于愿意听一个马弓手说话，那杯温酒也有了主人。",
-      "loss": "联军先失一阵，帐中只剩互相推让；华雄的连胜继续压着每一个人的名字。"
+      "title": "Suanzao · Frontline of the Lords",
+      "why": "Xiliang cavalry are probing the courage of the coalition. If you cannot halt their scouts, Guan Yu will never have the chance to step before the tent and request battle.",
+      "win": "The vanguard is driven back to Sishui. The lords are finally willing to listen to a mounted archer, and the warm wine finds its champion.",
+      "loss": "The alliance loses its first skirmish. The warlords squabble in hesitation, while Hua Xiong's win streak weighs heavily on every heart."
     },
     "boss": {
-      "title": "Climax: 汜水关 · 温酒未寒",
-      "why": "华雄要用连胜逼对手抢攻，关羽则要替自己争到一次不等身份许可的出战。",
-      "win": "华雄败退，杯酒未凉，诸侯再不能只用出身衡量英雄；虎牢关的画戟随即向你指来。",
-      "loss": "酒冷关未破，原卷里的遗憾再次落下；你会明白这一局忌的是被他的连胜催急。"
+      "title": "Sishui Pass · Wine Not Yet Cold",
+      "why": "Hua Xiong uses consecutive victories to provoke desperate attacks, while Guan Yu must win an ungranted chance to fight on his own terms.",
+      "win": "Hua Xiong is vanquished before the cup cools. The lords can no longer judge heroes by birth alone, and the halberd of Hulao points toward you.",
+      "loss": "The wine grows cold and the pass remains shut. You realize that haste and falling for his aggressive streaks is fatal."
     }
   },
   "hulao": {
-    "era": "190 年",
-    "source": "《三国志·董卓传》《吕布传》·《三国演义》第五回",
-    "record": "讨董联军与董卓军相持，吕布确以骁勇闻名，但刘备、关羽、张飞三英同战吕布并非史籍所载。",
-    "adaptation": "虎牢与三英战吕布采用演义写法。牌桌上的吕布“只进不退”，把天下第一的压迫感变成可阅读的下注节奏。",
-    "lead": "华雄一退，诸侯还没来得及争功，虎牢关已开门。真正的天下第一不屑等你的名声。",
+    "era": "190 AD",
+    "source": "Records of the Three Kingdoms · Biographies of Dong Zhuo & Lu Bu / Romance of the Three Kingdoms Ch. 5",
+    "record": "The coalition clashed with Dong Zhuo's forces. Lu Bu was indeed renowned for unrivaled martial prowess, though the duel of the Three Brothers fighting Lu Bu together is romance lore rather than documented history.",
+    "adaptation": "Hulao Pass adopts the Romance narrative. At the table, Lu Bu 'only advances and never retreats', translating the pressure of the supreme warrior into relentless betting tempo.",
+    "lead": "Hua Xiong retreats, and before the lords can quarrel over spoils, the gates of Hulao Pass swing wide. The undisputed champion under heaven cares nothing for your renown.",
     "skirmish": {
-      "title": "Skirmish: 虎牢道 · 狼骑试锋",
-      "why": "并州狼骑在关前巡猎，专追先露怯的军旗。你要先稳住阵脚，才有资格看清吕布的戟。",
-      "win": "狼骑没能冲散阵形，三英与你找到共同掠阵的位置，虎牢关门前的路被让开。",
-      "loss": "诸侯旗号先后退避，吕布甚至不必亲自出关；恐惧已经替他赢了一局。"
+      "title": "Hulao Trail · Wolf Cavalry Probing",
+      "why": "Bingzhou wolf cavalry patrol before the pass, hunting flags that show the slightest hesitation. You must steady your lines before you earn the right to face Lu Bu's halberd.",
+      "win": "The cavalry fail to shatter the formation. You and the three brothers find your flanking positions, clearing the road before Hulao Pass.",
+      "loss": "The lords withdraw their banners in dread. Lu Bu does not even need to ride forth; fear has already won the battle for him."
     },
     "boss": {
-      "title": "Climax: 虎牢关 · 天下第一",
-      "why": "吕布要诸侯承认无人可敌，你要证明勇猛并非只能有一种进法，也不是不可阅读的命数。",
-      "win": "画戟坠地，天下第一记住了你的名字；下邳与凤仪亭的旧页因此有了新的可能。",
-      "loss": "吕布仍以无敌之姿立在关前，原卷不改；史鉴会提醒你，别把他的威名当成自己的第五张牌。"
+      "title": "Hulao Pass · Peerless Under Heaven",
+      "why": "Lu Bu demands that the lords confess none can match him; you must prove that valor is not a fixed destiny, nor beyond reading.",
+      "win": "The painted halberd falls, and the mightiest warrior remembers your name. New possibilities open for Xiapi and Fengyi Pavilion.",
+      "loss": "Lu Bu stands invincible before the gate, leaving the original text unchanged. Historical records remind you never to mistake his fearsome name for your own fifth card."
     }
   },
   "fengyiting": {
-    "era": "192 年",
-    "source": "《三国志·吕布传》·《三国演义》第八、九回",
-    "record": "初平三年，王允等与吕布合谋诛杀董卓。史书未载凤仪亭相会，也没有演义中那位以连环计周旋其间的貂蝉。",
-    "adaptation": "本回采用演义人物与凤仪亭情境，让董卓、吕布同桌相疑；写卷人更在意貂蝉能否取回自己的话语。",
-    "lead": "虎牢之后，吕布回到郿坞。外敌可以一戟破局，父子名分里的裂痕却不能用蛮力挑开。",
+    "era": "192 AD",
+    "source": "Records of the Three Kingdoms · Biography of Lu Bu / Romance of the Three Kingdoms Ch. 8-9",
+    "record": "In 192 AD, Wang Yun and Lu Bu conspired to assassinate Dong Zhuo. Historical records do not mention Fengyi Pavilion or the romance tale of Diaochan's chain-link intrigue.",
+    "adaptation": "Adopting the dramatic framework of the Romance, Dong Zhuo and Lu Bu share the same table of mutual suspicion; the chronicler aims to grant Diaochan agency over her own destiny.",
+    "lead": "After Hulao, Lu Bu returned to Mei Citadel. External foes can be pierced by a halberd, but fractures between nominal father and son cannot be pried open by brute force.",
     "skirmish": {
-      "title": "Skirmish: 郿坞 · 珠帘之外",
-      "why": "董府侍卫封住亭外语路，任何一句传错的话都会让连环计先变成争风吃醋的闲话。",
-      "win": "侍卫被引开，董卓与吕布终于能在同一张桌前听见彼此，貂蝉也保住了自己的安排。",
-      "loss": "话尚未传到亭中便已走样，二人只会把疑心安到你身上；计谋在开局前败露。"
+      "title": "Mei Citadel · Beyond the Pearl Curtains",
+      "why": "Guards patrol outside the pavilion. Any misplaced word will reduce the grand stratagem into petty palace gossip. You must lure away the guards to let whispers work.",
+      "win": "The guards are distracted. Dong Zhuo and Lu Bu sit facing each other with growing suspicion, while Diaochan preserves her plans.",
+      "loss": "Rumors distort before reaching the pavilion. The tyrants turn their wrath on you, exposing the plot before it begins."
     },
     "boss": {
-      "title": "Climax: 凤仪亭 · 父子同席",
-      "why": "董卓以恩情占有，吕布以顺从偿债。你要让两人的猜疑彼此加压，而不是替貂蝉选择归宿。",
-      "win": "父子名分裂开，董卓与吕布再难同席；貂蝉走出郿坞，吕布的去向也脱离原卷一步。",
-      "loss": "连环计被当成低劣挑唆，二人先合力逐你出局；貂蝉仍被困在别人的答案里。"
+      "title": "Fengyi Pavilion · Father and Son at the Table",
+      "why": "Dong Zhuo claims possession by patronage; Lu Bu repays debt with sullen obedience. You must pit their paranoia against one another rather than deciding for Diaochan.",
+      "win": "The bond of father and son shatters irreparably. Dong Zhuo and Lu Bu turn their blades upon each other; Diaochan steps free into history.",
+      "loss": "The plot is dismissed as clumsy provocation. Dong Zhuo and Lu Bu unite to crush you from the table, sealing Diaochan's tragic fate."
     }
   },
   "yuanshemen": {
-    "era": "196 年",
-    "source": "《三国志·吕布传》",
-    "record": "袁术遣纪灵攻刘备，吕布设宴调停，以箭中辕门画戟小枝为约。箭中之后，纪灵等罢兵，这是史籍有载的神射。",
-    "adaptation": "本回保留辕门射戟的史实骨架，把两家是否承认同一赌注写成牌局：一箭能解危，也要给射失留下交代。",
-    "lead": "离开郿坞的吕布到了小沛。昔日只肯冲锋的人，这次要用一支箭让两支军队各退一步。",
+    "era": "196 AD",
+    "source": "Records of the Three Kingdoms · Biography of Lu Bu",
+    "record": "Yuan Shu sent Ji Ling to attack Liu Bei. Lu Bu hosted a banquet to mediate, wagering on hitting the small side prong of his halberd at the camp gate with a single arrow. He struck the target, and Ji Ling withdrew.",
+    "adaptation": "Preserving the historical archery feat, the poker match reflects whether both factions accept the same wager: a single shot resolves crisis, but one must prepare for failure.",
+    "lead": "Leaving Mei Citadel, Lu Bu arrived at Xiaopei. The man who once knew only how to charge must now use a single arrow to make two hostile hosts step back.",
     "skirmish": {
-      "title": "Skirmish: 小沛 · 两军之间",
-      "why": "纪灵部曲已经压到小沛，任何一次误冲都可能让调停失去名义。先稳住前锋，才能摆下辕门之宴。",
-      "win": "双方暂止攻杀，纪灵愿意带军令入席，刘备也不必拿全城百姓陪人赌勇。",
-      "loss": "误会先变成交战，小沛被卷进两军冲突；辕门的一箭再无可以落脚的空地。"
+      "title": "Xiaopei · Between Two Hosts",
+      "why": "Ji Ling's army presses close to Xiaopei. Any skirmish could destroy all pretext of mediation. You must steady the vanguard before the feast can be held.",
+      "win": "Both sides pause their advance. Ji Ling agrees to attend the feast, sparing Liu Bei from wagering his citizens' lives.",
+      "loss": "Tensions boil into open clash. Xiaopei is swallowed by warfare, and the camp gate archery wager loses its stage."
     },
     "boss": {
-      "title": "Climax: 辕门 · 一箭共约",
-      "why": "纪灵不能因一场表演擅退大军。你要让他承认赌注，也逼吕布先说清箭若不中该当如何。",
-      "win": "两家罢兵，小沛得缓；吕布证明自己也能解局，而不只会把局面杀穿。",
-      "loss": "箭约未立，纪灵与刘备各自备战；调停者成了第三位讨债人，原卷的和局未能出现。"
+      "title": "Camp Gate · The Single Arrow Covenant",
+      "why": "Ji Ling cannot withdraw a massive host merely for a show. You must make him respect the wager, while forcing Lu Bu to declare what happens if he misses.",
+      "win": "The arrow pierces the halberd prong! Both armies stand down and Xiaopei breathes again. Lu Bu proves he can resolve crises through finesse as well as force.",
+      "loss": "The wager is rejected, and Ji Ling resumes battle. The mediator becomes another enemy, and the historical truce vanishes."
     }
   },
   "wancheng": {
-    "era": "197 年",
-    "source": "《三国志·武帝纪》《典韦传》",
-    "record": "张绣降而复叛，夜袭曹营。典韦死守营门，曹昂、曹安民亦遇难，是曹操在宛城付出的惨重代价。",
-    "adaptation": "本回把典韦双戟与后营退路化作战书核心。胡车儿盗戟等细节沿用演义，让你有机会守住那一夜。",
-    "lead": "辕门救得下小沛，却救不了所有轻慢。曹操在宛城把归顺当成无言，夜色已经替降将作答。",
+    "era": "197 AD",
+    "source": "Records of the Three Kingdoms · Biographies of Cao Cao & Dian Wei",
+    "record": "Zhang Xiu surrendered and then revolted, launching a surprise night raid on Cao Cao's camp. Dian Wei fought desperately to guard the camp gate; Cao Ang and Cao Anmin were also killed, exacting a terrible price from Cao Cao.",
+    "adaptation": "This chapter places Dian Wei's twin halberds and the rear retreat at the center of the conflict. Details such as Hu Che'er stealing the weapons follow the Romance narrative, giving you a chance to hold the line that fateful night.",
+    "lead": "The feat at the camp gate saved Xiaopei, but could not save Cao Cao from his own arrogance. Treating surrender as silent submission, the darkness of night answers on behalf of the rebels.",
     "skirmish": {
-      "title": "Skirmish: 淯水 · 降营夜动",
-      "why": "白日才降的部曲在夜里重新集结。你要辨清他们是被迫归营还是已决意反叛，给典韦留下预警。",
-      "win": "夜动被提前看穿，双戟与马道都有人把守，曹操不再把宴席当成绝对安全。",
-      "loss": "降营的动静被当成寻常巡夜，火起到营门时，所有退路都已成别人的伏兵。"
+      "title": "Yu River · Night Stirrings in the Rebel Camp",
+      "why": "Troops who surrendered by day regroup in the dead of night. You must discern whether they are merely restless or preparing full-scale mutiny to sound an early alarm for Dian Wei.",
+      "win": "The night movement is uncovered in time. The twin halberds and escape routes are secured, and Cao Cao ceases to treat the banquet as safe haven.",
+      "loss": "The stirrings are dismissed as routine patrol. By the time fire reaches the gates, all avenues of retreat are blocked by ambushes."
     },
     "boss": {
-      "title": "Climax: 宛城 · 双戟未失",
-      "why": "张绣要讨回被轻慢的屈辱，曹操却需要一个活着离营的机会。你要以典韦为门，而不是拿他的命换时间。",
-      "win": "双戟仍在，营门未破，典韦与曹操都能走出火夜；下邳的白门楼随后展开。",
-      "loss": "营门仍由典韦以死守下，原卷的伤势与死亡一项不少；史鉴会留下兵器和退路的警示。"
+      "title": "Wancheng · The Halberds Undefiled",
+      "why": "Zhang Xiu seeks vengeance for perceived dishonor, while Cao Cao needs a chance to escape alive. You must stand as the gate alongside Dian Wei rather than trading his life for time.",
+      "win": "The halberds remain in hand, the camp gate holds, and both Dian Wei and Cao Cao escape the inferno. The White Gate Tower awaits next.",
+      "loss": "Dian Wei perishes as recorded in history, sacrificing his life to hold the breach. Historical lessons leave a stark warning about vigilance and secure retreat."
     }
   },
   "baimenlou": {
-    "era": "198 年",
-    "source": "《三国志·吕布传》",
-    "record": "曹操围下邳，吕布在陈宫等人相伴的困局中出降，最终被缢杀，陈宫亦被处死。白门楼不是一场单纯以勇决胜的战斗。",
-    "adaptation": "本回把吕布与陈宫放上同一敌阵：你要赢的不只是吕布的军资，还要让两个互相执拗的人承认退路。",
-    "lead": "宛城的火尚未熄，曹操已围下邳。虎牢那个只想向前的人，终于遇到了画戟刺不穿的城墙。",
+    "era": "198 AD",
+    "source": "Records of the Three Kingdoms · Biography of Lu Bu",
+    "record": "Cao Cao besieged Xiapi. Trapped and deserted, Lu Bu surrendered alongside Chen Gong and was ultimately executed by hanging. Chen Gong also chose death. The White Gate Tower was far more than a simple duel of martial valor.",
+    "adaptation": "This chapter pairs Lu Bu and Chen Gong on the same side: you must not only deplete Lu Bu's chip stack, but force two stubborn souls to acknowledge their true exit.",
+    "lead": "The fires of Wancheng have barely dimmed, and Cao Cao already encircles Xiapi. The man of Hulao who knew only forward charge finally meets walls that halberds cannot pierce.",
     "skirmish": {
-      "title": "Skirmish: 泗水 · 困城前哨",
-      "why": "陷阵营仍在寻找突围方向，城中水困与饥饿却日日加重。先挡住这次轻进，陈宫的话才有人肯听。",
-      "win": "突围被止住，吕布暂时没有再用士卒换胜名；你可以带最后一策登上白门楼。",
-      "loss": "一次毫无方向的冲锋耗尽守城余力，陈宫的计谋再精妙也无人可执行。"
+      "title": "Si River · Outpost of the Besieged City",
+      "why": "The elite Camp Formation searches desperately for a breakout route while floods and starvation mount daily. Halt this reckless sortie so Chen Gong's counsel can be heard.",
+      "win": "The rash charge is checked. Lu Bu avoids wasting men for fleeting glory, allowing you to carry one final stratagem to the White Gate Tower.",
+      "loss": "An aimless charge exhausts the city's last strength. No matter how brilliant Chen Gong's intellect, none remain to carry it out."
     },
     "boss": {
-      "title": "Climax: 白门楼 · 困兽与谋士",
-      "why": "吕布怕低头便不再是自己，陈宫怕再胜一阵便全城同葬。你要同时拆破这两个死局。",
-      "win": "吕布肯问“往哪里退”，下邳争得另一条活路；许都的曹操也会因此重新估量你。",
-      "loss": "绳索仍在白门楼收紧，吕布与陈宫归回原卷结局；此卷大关不改，后续旧页照旧。"
+      "title": "White Gate Tower · Cornered Beast and Strategist",
+      "why": "Lu Bu fears that bowing his head means ceasing to be himself; Chen Gong fears another hollow victory will bury the whole city. You must unravel both impasses at once.",
+      "win": "Lu Bu finally asks 'Where should we retreat?', securing an alternative path for Xiapi. Cao Cao in Xudu will re-evaluate your worth.",
+      "loss": "The ropes tighten atop the White Gate Tower as history decreed. The chapter ends in tragedy, leaving subsequent scrolls unchanged."
     }
   },
   "zhujiu": {
-    "era": "199 年",
-    "source": "《三国志·先主传》·《三国演义》第二十一回",
-    "record": "曹操对刘备说“今天下英雄，唯使君与操耳”，见于《三国志》。青梅煮酒、闻雷失箸等场景则经演义铺陈。",
-    "adaptation": "本回保留论英雄的心理交锋，让曹操以读人下注；若白门楼已改，他还会拿未死的吕布试探你。",
-    "lead": "你带着下邳的答案来到许都。曹操不再问谁能冲锋，只问你心中谁配称为英雄。",
+    "era": "199 AD",
+    "source": "Records of the Three Kingdoms · Biography of Liu Bei / Romance of the Three Kingdoms Ch. 21",
+    "record": "Cao Cao famously told Liu Bei, 'Of all the heroes in the empire today, there are only you and I,' an exchange documented in the Records of the Three Kingdoms. The green plums, warming wine, and dropping chopsticks at thunder were dramatic expansions in the Romance.",
+    "adaptation": "This chapter preserves the psychological duel of defining heroism, having Cao Cao bet by reading the player's true character. If Xiapi was altered, he will even probe you with the fate of Lu Bu.",
+    "lead": "You arrive in Xudu carrying the answers of Xiapi. Cao Cao no longer asks who can charge the line, but who in your heart deserves the title of hero.",
     "skirmish": {
-      "title": "Skirmish: 许都 · 门吏问名",
-      "why": "门吏盘查的不是路引，而是你近来见过谁、救过谁。答得太满，青梅亭尚未开席便已泄露底牌。",
-      "win": "你穿过盘问而未露来意，得以坐进青梅亭；曹操只能当面读你，不能先听别人替你作答。",
-      "loss": "话语中的裂缝先被送去曹府，煮酒尚未开始，你便已成为被审查的人。"
+      "title": "Xudu · Gatekeeper's Interrogation",
+      "why": "The gatekeeper checks not travel permits, but whom you met and whom you aided. If you speak too freely, your hand will be revealed before the pavilion banquet begins.",
+      "win": "You pass the inspection without giving away your purpose, earning your seat in the plum pavilion where Cao Cao must read you in person.",
+      "loss": "Cracks in your answers are reported to Cao Cao's manor. Before the wine is poured, you are already placed under suspicion."
     },
     "boss": {
-      "title": "Climax: 青梅亭 · 英雄对酌",
-      "why": "曹操以一句“使君”逼你承认志向。你要藏住惊慌，也要看清他究竟是在赞人还是在定价。",
-      "win": "筷落而心不落，你带着未被说破的答案离开许都；下一页，有人将挂印封金。",
-      "loss": "曹操从你的每一次跟注里读出恐惧，青梅酒变成审问；原卷仍由他定义英雄。"
+      "title": "Plum Pavilion · Heroes Over Shared Wine",
+      "why": "Cao Cao forces you to declare your ambitions with a single address. You must hide your alarm and see whether he is praising you or setting your price.",
+      "win": "Chopsticks drop while your composure remains unshaken. You leave Xudu with your secrets intact; in the next chapter, someone will hang up his seal.",
+      "loss": "Cao Cao reads fear from every call you make. The shared wine turns into an interrogation, leaving him to define heroism on his own terms."
     }
   },
   "qianli": {
-    "era": "200 年",
-    "source": "《三国志·关羽传》·《三国演义》第二十六至二十八回",
-    "record": "关羽离开曹操、奔归刘备，史有其事；东岭、洛阳等五关与孔秀等六将则主要来自演义，不能一并当作史实路线。",
-    "adaptation": "本回采用演义五关叙事并收束为五场连战。军资一路相随，每一关都写清守将为何阻拦、放行的代价。",
-    "lead": "青梅亭的身份终究藏不久。关羽封还所赐，带着旧约上路；你要让千里归途不被一道道关名截断。",
+    "era": "200 AD",
+    "source": "Records of the Three Kingdoms · Biography of Guan Yu / Romance of the Three Kingdoms Ch. 26-28",
+    "record": "Guan Yu departed Cao Cao to reunite with Liu Bei, a historical fact. The five passes and six slain commanders are literary dramatizations from the Romance rather than documented itineraries.",
+    "adaptation": "Adopting the Romance narrative of the five passes, this chapter compresses the journey into five consecutive bouts. Chips carry through each stage, forcing every pass commander to reveal why he blocks the road and the cost of passage.",
+    "lead": "The pretenses of the plum pavilion could not last forever. Guan Yu surrendered all honors and gifts, taking to the road to fulfill an ancient pledge. You must keep the thousand-li journey from being severed at the checkpoints.",
     "skirmish": {
-      "title": "Skirmish: 许都郊外 · 第一道路卡",
-      "why": "关隘守将要以通行文书换忠诚。关羽既已封金挂印，便不能再用曹操的官印替自己开路。",
-      "win": "第一道路卡被越过，车马与随行之人得以东行，五关连战正式开始。",
-      "loss": "归途停在许都之外，放行与守义不能两全；千里之志先败在一纸文书上。"
+      "title": "Xudu Outskirts · The First Checkpoint",
+      "why": "The garrison officer demands official permits in exchange for passage. Having surrendered his official seal, Guan Yu cannot use Cao Cao's authority to clear his way.",
+      "win": "The first roadblock is bypassed. The carriages and companions head eastward, officially beginning the five-pass gauntlet.",
+      "loss": "The journey halts outside Xudu. Duty and loyalty cannot both be preserved, and the thousand-li march fails at the first slip of paper."
     },
     "boss": {
-      "title": "Climax: 五关 · 千里归约",
-      "why": "五关各奉军令，关羽既要守旧约又不能让随行之人困死途中。连破五阵，才能把归路走完。",
-      "win": "五关皆过，古城鼓声在望；这场改写不是多杀几人，而是让归约不再被关隘消耗。",
-      "loss": "一阵受阻，军资与归路一同中断；整卷需重新启程，已过的关不能替你保留胜势。"
-    }
+      "title": "The Five Passes · A Thousand Li Covenant",
+      "why": "Each of the five passes obeys military orders. Guan Yu must honor his ancient oath without letting his companions perish. Only by breaking through all five can the road be completed.",
+      "win": "All five passes are traversed! The gate to Gucheng stands open, and the green dragon blade fulfills its solemn promise across mountains and rivers.",
+      "loss": "Exhausted at the final pass, your chip stack runs dry. The legend of riding alone across a thousand li fades into silence."
+    },
+    "rounds": [
+      {
+        "title": "Dongling Pass · Kong Xiu",
+        "why": "Kong Xiu refuses passage without official permits. The first pass tests whether Guan Yu will bow for his ancient oath.",
+        "win": "Passed through Dongling. The journey is no longer bound by slips of paper, and word reaches Luoyang ahead.",
+        "loss": "Kong Xiu shuts the pass, stopping the journey at its very first inch. You must restart from Dongling."
+      },
+      {
+        "title": "Luoyang · Han Fu",
+        "why": "Han Fu defends the city while aiming to claim glory through hidden arrows. You cannot watch only the blades in the open.",
+        "win": "The concealed bolt is parried and Han Fu falls. The gates of Luoyang swing open before the carriage.",
+        "loss": "A treacherous arrow from the dark finds its mark, ending the journey beneath the walls of Luoyang."
+      },
+      {
+        "title": "Zhenguo Temple · Bian Xi",
+        "why": "Bian Xi hides assassins behind a banquet of welcome. If you are blinded by courtesy, you will be taken when most relaxed.",
+        "win": "The monk's whisper reveals the daggers behind the tapestries. Guan Yu strikes down the deceit and leaves with clean hands.",
+        "loss": "Poison and axes strike at the banquet table. Courtesy becomes the fatal shroud of the journey."
+      },
+      {
+        "title": "Xingyang · Wang Zhi",
+        "why": "Wang Zhi shows courteous hospitality while secretly preparing to burn your lodging. You must depart before his fire traps the exits.",
+        "win": "Forewarned by Hu Ban, Guan Yu leaves before the torches catch, cutting down Wang Zhi as he gives chase.",
+        "loss": "Flames engulf the courtyard in the dead of night, incinerating the carriage and all companions."
+      },
+      {
+        "title": "Yellow River Ferry · Qin Qi",
+        "why": "Qin Qi guards the final ferry in Xiahou Dun's name, refusing boats. Only by overcoming him can you cross the river to freedom.",
+        "win": "The final pass is cleared and the ferry crosses north. The five passes and six commanders are left behind in legend.",
+        "loss": "Trapped before the river, Xiahou Dun's pursuing cavalry arrives to surround the exhausted brothers."
+      }
+    ]
   },
   "guandu": {
-    "era": "200 年",
-    "source": "《三国志·武帝纪》《袁绍传》",
-    "record": "曹操与袁绍相持官渡，兵少粮尽。许攸来投、乌巢粮草被烧成为转折，袁绍军随之大溃，北方格局由此改变。",
-    "adaptation": "本回把兵力与补给差化为袁绍的高军资和加速盲注。你可以借许攸与乌巢，也可以赢在对方人心先散。",
-    "lead": "关羽北归之时，北方两强已在官渡相持。下一场要押上的不是一关一将，而是此后十年的北方。",
+    "era": "200 AD",
+    "source": "Records of the Three Kingdoms · Biographies of Cao Cao & Yuan Shao",
+    "record": "Cao Cao and Yuan Shao faced off at Guandu. Outnumbered in supplies and men, Cao Cao heeded Xu You's defection, made a daring night raid on Wuchao to burn Yuan Shao's grain, and shattered Yuan Shao's host.",
+    "adaptation": "A battle of asymmetric endurance. Yuan Shao possesses deep chip stacks and patience, while you face escalating blinds. You must read Xu You's intel and seize the single turn to ignite Wuchao.",
+    "lead": "Northern horsemen encircle the central plains. In Cao Cao's camp, rations can last only days, while Yuan Shao's granaries stretch across Wuchao. Time is the harshest opponent at this table.",
     "skirmish": {
-      "title": "Skirmish: 白马延津 · 粮道前哨",
-      "why": "河北游骑不断切断侦骑与粮道。若连真实账目都送不进官渡，乌巢之火只会是帐中传说。",
-      "win": "粮道与情报重新接通，你能分清袁军账面人数与真正可战之力。",
-      "loss": "游骑封住消息，曹营只剩越来越短的粮簿；未等袁绍决战，自己先被拖空。"
+      "title": "Guan River · The Grain Escort Duel",
+      "why": "Yuan Shao's patrols constantly probe Cao Cao's supply line. You must protect the incoming carts to buy the critical hands needed for Xu You to defect.",
+      "win": "The grain carts reach camp safely, extending Cao Cao's breathing room and prompting Xu You to slip away into the night.",
+      "loss": "The supply convoy is captured. With rations depleted, Cao Cao is forced into a desperate, premature gamble before Wuchao is exposed."
     },
     "boss": {
-      "title": "Climax: 官渡 · 乌巢夜火",
-      "why": "袁绍要用雄厚军资拖到你先犯错。你必须在盲注涨空前找出粮道与人心之间的薄弱处。",
-      "win": "乌巢势解，袁军大阵自内松动，北方旧页被改写；下回草庐中将有三分之策。",
-      "loss": "曹军粮尽先溃，原卷的压力变成你的结局；史鉴会指出这一回不能与他比消耗。"
+      "title": "Guandu · Fire Over Wuchao",
+      "why": "Yuan Shao uses vast resources to wear down your bets. You must stake your chips on a swift, lethal strike against his grain depot before your blinds run out.",
+      "win": "Wuchao burns bright against the midnight sky! Deprived of food, Yuan Shao's 100,000 army dissolves, sealing the reunification of the north.",
+      "loss": "The raid on Wuchao fails to break through. Starvation overwhelms the camp, and Yuan Shao claims the heartland as fate originally threatened."
     }
   },
   "sangu": {
-    "era": "207–208 年",
-    "source": "《三国志·诸葛亮传》·《三国演义》第三十七、三十八回",
-    "record": "刘备经徐庶推荐拜访诸葛亮，凡三往乃见，隆中对提出跨有荆益、联吴抗曹的构想。“三顾”有文献依据，风雪等细节经文学加工。",
-    "adaptation": "三顾被写成三次不同考问。前两顾败也前进，不是孔明拿乔，而是让你证明求贤不是只肯接受一个顺从的答案。",
-    "lead": "官渡之后，北方渐定，寄居新野的刘备却仍缺一条长远道路。答案不在百万军账里，而在草庐。",
+    "era": "207–208 AD",
+    "source": "Records of the Three Kingdoms · Zhuge Liang / Romance of the Three Kingdoms Ch. 37-38",
+    "record": "Liu Bei visited Zhuge Liang three times in Longzhong, winning his devotion and receiving the Longzhong Plan to divide the empire into three. The phrase 'three visits to the thatched cottage' became the eternal archetype of seeking talent.",
+    "adaptation": "Presented as a three-stage pilgrimage. Sincerity and patience are the sole currency; hasty or aggressive betting will close the cottage door forever.",
+    "lead": "Cao Cao consolidated the north, and the southern plains lie wide open. In Longzhong, a sleeping dragon observes the world from behind closed bamboo gates.",
     "skirmish": {
-      "title": "Skirmish: 新野 · 隆中问路",
-      "why": "隆中书童先问你来求名声还是求天下。若连一个守门人的问题都答不下去，草堂不会为你开门。",
-      "win": "你放下“务必请出”的急切，得以沿山径再访；真正的考问也从书童移到卧龙。",
-      "loss": "你把求贤当成完成差事，书童只回报一句先生不在；此访没有抵达问题本身。"
+      "title": "Longzhong Trail · Whispers of the Pine Wind",
+      "why": "Locals and herd boys sing verses full of cryptic wisdom. You must listen carefully without displaying haughty warlord arrogance.",
+      "win": "You treat the mountain folk with humble respect, earning directions toward the quiet thatched cottage nestled in the misty peaks.",
+      "loss": "Impatient escorts brush aside the locals. Misdirected into mountain fog, you miss the auspicious hour for the first visit."
     },
     "boss": {
-      "title": "Climax: 卧龙岗 · 三顾草庐",
-      "why": "诸葛亮要看的不是三次登门的形式，而是你能否在连续冷遇后仍认真听一套不逢迎的天下之策。",
-      "win": "草堂门开，隆中对成为可执行的路；荆州、益州与联吴不再只是酒后豪言。",
-      "loss": "第三顾仍只留下门外的脚印，原卷里那次相见被推迟；你须重问求贤究竟求什么。"
+      "title": "Thatched Cottage · The Longzhong Dialogue",
+      "why": "Master Zhuge tests whether you seek an ornament for your court or a partner willing to share bitter truths. Win his trust through steadfast composure across all three visits.",
+      "win": "The cottage doors swing open! The Longzhong Plan unfolds before you, sketching the tripartite foundation for Shu Han across the map.",
+      "loss": "Losing patience during the long wait, you turn back. The sleeping dragon remains secluded in the hills, leaving history unguided."
     }
   },
   "bowang": {
-    "era": "史事 202 年 · 演义置于 207 年",
-    "source": "《三国志·先主传》·《三国演义》第三十九回",
-    "record": "史籍中的博望之战发生在建安七年，刘备设伏击败夏侯惇，早于三顾诸葛。演义把它改写为诸葛亮初出茅庐后的火攻首功。",
-    "adaptation": "本回采用演义时间线与“军师初用火”，并在史实栏明确标出年代差异；这不是把两段记载混成一个事实。",
-    "lead": "隆中对给了远路，博望坡先给近敌。新入帐的军师必须让骄将相信，那张地图真的能变成火势。",
+    "era": "Historical 202 AD / Romance setting 207 AD",
+    "source": "Records of the Three Kingdoms · Book of Shu / Romance of the Three Kingdoms Ch. 39",
+    "record": "In history, the Battle of Bowang occurred in 202 AD, when Liu Bei laid an ambush to defeat Xiahou Dun, years before Zhuge Liang joined him. The Romance transposed this battle to 207 AD as Zhuge Liang's maiden military triumph.",
+    "adaptation": "Adopting the Romance timeline of 'the strategist's first fire', with the historical discrepancy noted. You must feign retreat convincingly to lure Xiahou Dun's armored vanguard deep into the narrow gorge.",
+    "lead": "The Longzhong dialogue showed the distant future; Bowangpo brings immediate peril. The newly appointed strategist must prove to hardened veterans that a map can ignite into roaring flames.",
     "skirmish": {
-      "title": "Skirmish: 新野道 · 诱敌入坡",
-      "why": "曹军前锋紧追不舍，你要让撤退看起来像真败，而不是一眼便被识破的空城。",
-      "win": "前锋被引进预设道路，伏兵与火路各就其位，夏侯惇仍以为自己在追一场溃败。",
-      "loss": "诱敌变成真乱，伏兵反被溃军冲散；军师的第一道军令先失去信用。"
+      "title": "Xinye Road · Luring the Foe",
+      "why": "Cao Cao's vanguard pursues relentlessly. You must make your retreat look genuine rather than an obvious trap to draw them along the narrow pass.",
+      "win": "The vanguard is led precisely into the gorge. Ambushes take their positions while Xiahou Dun believes he is chasing a routed foe.",
+      "loss": "The feigned retreat turns into chaotic rout. Friendly forces are scattered, and the strategist's first order loses all credibility."
     },
     "boss": {
-      "title": "Climax: 博望坡 · 初用火",
-      "why": "夏侯惇依仗精兵直进，要以快攻破伏。你要忍住抢先决战，把火路与他的骄进同时收紧。",
-      "win": "博望火起，军师初令得行，诸将开始按全局而非名望听令；长坂的急报却已近。",
-      "loss": "火未合围，夏侯惇突破坡道；原卷里属于军师的首功没有落在这张地图上。"
+      "title": "Bowangpo · The Strategist's First Flame",
+      "why": "Xiahou Dun relies on elite heavy troops to overwhelm any ambush. You must resist the urge to clash early, springing the fire at the exact instant the defile narrows.",
+      "win": "Bowangpo erupts into a sea of fire! The enemy vanguard is shattered, and veteran generals bow in respect to Kongming's genius.",
+      "loss": "The flames fail to enclose the gorge. Xiahou Dun cuts his way through, depriving the strategist of his legendary maiden victory."
     }
   },
   "changban": {
-    "era": "208 年",
-    "source": "《三国志·先主传》《张飞传》《赵云传》·《三国演义》第四十一、四十二回",
-    "record": "曹操南征，刘备携百姓南撤，在长坂被追及。赵云保护甘夫人与后主，张飞据水断桥拒后；七进七出等细节属文学渲染。",
-    "adaptation": "本回以三人敌阵表现追军压力，并保留长坂首次清台后回马再战。牌局不是让英雄杀光追兵，而是争到百姓与幼主撤离的时间。",
-    "lead": "博望一火挡不住曹操南下。新野到汉津之间，最重要的是那些走不快的百姓，而不是又一场漂亮的胜仗。",
+    "era": "208 AD",
+    "source": "Records of the Three Kingdoms · Liu Bei, Zhang Fei & Zhao Yun / Romance of the Three Kingdoms Ch. 41-42",
+    "record": "Cao Cao marched south, and Liu Bei retreated with thousands of refugees, overtaken at Changban. Zhao Yun protected Lady Gan and infant Liu Shan, while Zhang Fei stood on the broken bridge to hold the rearguard.",
+    "adaptation": "Features a multi-opponent pursuit. You are not fighting to wipe out the enemy, but to purchase enough hands for civilians and the young heir to cross the river.",
+    "lead": "The fire of Bowang could not halt Cao Cao's grand army. Between Xinye and Han River, what matters most are the slow-moving common folk, not another hollow victory.",
     "skirmish": {
-      "title": "Skirmish: 当阳 · 人群中的虎豹骑",
-      "why": "虎豹骑切入缓慢的队伍，你要在百姓与幼主之间截开一条缝，不能让撤退先变成互相践踏。",
-      "win": "追骑被迟滞，赵云与张飞各得一段救援空间，队伍仍朝汉津移动。",
-      "loss": "队伍被追军截断，幼主与百姓失散；即使名将仍在，也已输掉这一战要护的东西。"
+      "title": "Dangyang · Tiger Cavalry Among the Throng",
+      "why": "Elite Tiger and Leopard Cavalry slice through the refugee column. You must carve a wedge between enemies and civilians to stop the retreat from collapsing into a stampede.",
+      "win": "The pursuers are slowed. Zhao Yun and Zhang Fei gain vital space to gather the lost, keeping the column moving toward the river.",
+      "loss": "The column is severed in two. The young master and refugees are scattered; even if generals survive, what mattered most is lost."
     },
     "boss": {
-      "title": "Climax: 长坂坡 · 断桥之前",
-      "why": "曹操、夏侯惇与张郃三面施压。你要淘汰整条敌阵，为赵云寻人和张飞断桥争到最后一息。",
-      "win": "追军被挡在长坂，幼主与同行者得以渡向汉津；赤壁之前的火种没有在这里熄灭。",
-      "loss": "长坂人马俱散，汉津之路被追军封住；若首次清台，你还可回马再战一次。"
+      "title": "Changban Slope · Before the Broken Bridge",
+      "why": "Cao Cao, Xiahou Dun, and Zhang He press from three sides. You must eliminate the pressure wave to buy the final moments for Zhao Yun to emerge and Zhang Fei to roar at the bridge.",
+      "win": "The pursuing tide is halted at Changban! The young heir is brought across the river, keeping the embers of hope alive before Red Cliffs.",
+      "loss": "Forces scatter across the slope, and the bridge is taken. If cleared once, you can turn your horse back for one last heroic charge."
     }
   },
   "shezhan": {
-    "era": "208 年",
-    "source": "《三国志·诸葛亮传》《鲁肃传》《周瑜传》·《三国演义》第四十三回",
-    "record": "曹操南下后，诸葛亮出使江东见孙权，鲁肃、周瑜等力主抗曹。群儒依次问难、孔明舌战满堂是演义的集中铺写。",
-    "adaptation": "张昭、虞翻、陆绩同桌问难，把不同立场变成三种牌风。目标不是羞辱文臣，而是让抗曹不再被说成必败。",
-    "lead": "长坂之后，刘备已不能独自挡住曹操。江东每一句“降”或“战”，都关系到残军是否还有落脚处。",
+    "era": "208 AD",
+    "source": "Records of the Three Kingdoms · Zhuge Liang, Lu Su & Zhou Yu / Romance of the Three Kingdoms Ch. 43",
+    "record": "Following the rout at Changban, Zhuge Liang traveled to Chaisang to negotiate an alliance with Sun Quan, presenting sharp strategic analysis. The debate with Jiangdong's scholars in the council hall is an iconic dramatization in Romance of the Three Kingdoms.",
+    "adaptation": "This chapter seats Zhang Zhao, Yu Fan, and Bu Zhi at the same table. Each scholar raises different philosophical and political objections; you must refute their arguments while keeping the alliance from fracturing.",
+    "lead": "After Changban, Liu Bei could no longer hold off Cao Cao alone. Every word of 'surrender' or 'war' spoken in Jiangdong directly determined whether the remnant forces had a place to stand.",
     "skirmish": {
-      "title": "Skirmish: 柴桑馆驿 · 先声夺人",
-      "why": "江东儒生先以强弱之势问降，你若只剩情绪，进入议事厅前便已承认无路可走。",
-      "win": "第一轮质问被拆解，你获得进入议事厅陈述荆州败局与抗曹可能的资格。",
-      "loss": "馆驿中的论调先定下“曹不可敌”，后续每句话都会被当成败军求援的饰词。"
+      "title": "Chaisang Courier Station · Seizing the Initiative",
+      "why": "Jiangdong envoys attempt to gauge your desperation before entering court. You must maintain composure and refuse to appear as a defeated beggar seeking charity.",
+      "win": "The envoys are impressed by your quiet dignity. Kongming gains an uncompromised entry into the grand council hall.",
+      "loss": "Appearing weak and desperate, you invite patronizing condescension. The scholars scent easy prey before the debate opens."
     },
     "boss": {
-      "title": "Climax: 议事厅 · 三儒同席",
-      "why": "张昭问大势，虞翻问败绩，陆绩问根基。你要逐一应答又不让三人合围成同一个“降”字。",
-      "win": "满堂不再以众口代替判断，孙权听见抗曹仍有可为；江雾里的下一场谋划随之展开。",
-      "loss": "众口铄金，你被迫只剩求援者的位置；江东议程重归避战，原卷的抗曹联盟少一分助力。"
+      "title": "Grand Council Hall · Debating the Scholars",
+      "why": "Zhang Zhao and his peers argue that resistance is folly against northern might. You must counter their historical citations and inspire Jiangdong to embrace a joint stand.",
+      "win": "The scholars are left speechless in admiration. Sun Quan resolves to resist, cementing the historic alliance between Sun and Liu.",
+      "loss": "Out-argued by the orthodox scholars, the council leans toward appeasement. The alliance dissolves before it can be born."
     }
   },
   "caochuan": {
-    "era": "208 年",
-    "source": "《三国演义》第四十六回 · 赤壁史事为背景",
-    "record": "建安十三年孙刘联军与曹军隔江相持，但诸葛亮以草船向曹营借箭并非《三国志》正文所载，应明确视作演义名段。",
-    "adaptation": "本回保留大雾、擂鼓与借箭，把看不清牌面的风险写成江上对局；曹操的多疑既是箭的来源，也是反噬。",
-    "lead": "联盟既有可能，军需与互疑便同时上桌。周瑜要箭，曹操要稳，诸葛亮要的是一夜谁也看不清的雾。",
+    "era": "208 AD",
+    "source": "Romance of the Three Kingdoms Ch. 46 (Against Red Cliffs Historical Background)",
+    "record": "Historical records in the Chronicles of Wu recount Sun Quan inspecting Cao Cao's flotilla in a boat under heavy fire, which tilted under arrows until he turned the other side to balance it. The Romance relocated this deed to Zhuge Liang before Red Cliffs as borrowing arrows with straw-covered boats.",
+    "adaptation": "A delicate balance of deceit and timing. You must manage boat stability while beating war drums through the morning mist, drawing exactly enough enemy volleys without succumbing to arrows.",
+    "lead": "Once the alliance was forged, logistics and mutual suspicion sat at the table together. Zhou Yu demanded arrows, Cao Cao demanded stability, and Zhuge Liang needed a river enveloped in impenetrable mist.",
     "skirmish": {
-      "title": "Skirmish: 夏口 · 借船借人",
-      "why": "江东水卒只服水战规矩，不肯把船交给来历不明的奇谋。你要先证明这不是拿全船人做一场空谈。",
-      "win": "船只、草束与鼓手齐备，鲁肃也愿同船作证；雾夜借箭有了真正可执行的条件。",
-      "loss": "船未出港，疑心先在自家营中扩散；三日之约只剩无法兑现的夸口。"
+      "title": "Xiakou · Securing Boats and Comrades",
+      "why": "Zhou Yu sets an impossible quota of 100,000 arrows under penalty of law. You must secure twenty light boats and straw effigies from Lu Su without exciting premature alarm.",
+      "win": "Lu Su faithfully fulfills his promise, providing the straw-draped fleet for the dawn river venture.",
+      "loss": "The preparations leak to military inspectors. Accused of insubordination, the arrow venture is aborted at the dock."
     },
     "boss": {
-      "title": "Climax: 曹营水寨 · 雾中借箭",
-      "why": "曹操在雾中不肯轻出，只会以箭雨试探。你要让他的谨慎变成你的补给，而非把船队送进重围。",
-      "win": "雾散船满，江东得箭，曹操第一次发现自己也被别人读作底牌；连舫与火攻接踵而来。",
-      "loss": "江上无雾或鼓声失序，草船成为箭靶；三日之约与联军互信同时受损。"
+      "title": "Cao Camp Flotilla · Borrowing Arrows in the Mist",
+      "why": "Cao Cao orders his archers to loose blind volleys into the fog rather than sally out. You must turn the boats at the critical moment to balance the load and return with a hundred thousand arrows.",
+      "win": "Over one hundred thousand arrows bristle upon the straw hulls! The fleet sails back downstream to Zhou Yu's stunned awe.",
+      "loss": "The boats list too steeply under concentrated fire or the mist clears prematurely, leaving the fleet exposed to northern catapults."
     }
   },
   "chibi": {
-    "era": "208 年",
-    "source": "《三国志·武帝纪》《周瑜传》·《三国演义》第四十七至四十九回",
-    "record": "赤壁之战中，黄盖诈降并以火船突击，曹军遭火攻与疫病后退却。诸葛亮登台借东风属演义加工，不是联军胜利的唯一原因。",
-    "adaptation": "曹操、周瑜、诸葛亮三方同桌是写卷人的牌局隐喻，并非孙刘盟友在赤壁互为敌军；你必须同时读懂三种谋略。",
-    "lead": "箭已借足，船已连锁，真正难求的是各方在同一夜承担后果。风不是天上白送的，是所有人一起等来的机会。",
+    "era": "208 AD",
+    "source": "Records of the Three Kingdoms · Cao Cao & Zhou Yu / Romance of the Three Kingdoms Ch. 47-49",
+    "record": "In 208 AD, the allied forces of Sun Quan and Liu Bei defeated Cao Cao at the Battle of Red Cliffs. Huang Gai executed a feigned surrender with fire ships, burning Cao Cao's chained flotilla and turning the tide of the empire.",
+    "adaptation": "A three-sided climax at the table. Cao Cao's chained armada possesses formidable defenses, but escalating blinds and the southeast wind provide a fleeting window to trigger total inferno.",
+    "lead": "Arrows have been borrowed and ships chained; what remained elusive was for every ally to bear the burden together on the same night. The wind was no gift from heaven, but an opportunity won by all.",
     "skirmish": {
-      "title": "Skirmish: 三江口 · 火船开路",
-      "why": "北军水骑守住江面通道，火船若不能接近连舫，再准确的东南风也只吹得动空帆。",
-      "win": "江口被打开，黄盖的船队获得突进路线，火攻从帐中计策变成可执行的一击。",
-      "loss": "火船在远处便被截住，诈降与风势都失去落点；联军只能重新面对漫长相持。"
+      "title": "Sanjiangkou · Fire Ships Pave the Way",
+      "why": "Huang Gai's squadron of fire ships must cross the waves pretending to defect. You must deflect northern scouts so the torches are not uncovered too early.",
+      "win": "The fire ships close within striking distance undetected. The dry wood and fish oil are primed for ignition.",
+      "loss": "Northern river riders intercept the vanguard. Oil canisters are punctured, and the fire raid is extinguished upon the waters."
     },
     "boss": {
-      "title": "Climax: 赤壁 · 连舫一炬",
-      "why": "曹操要稳住连环船，周瑜要抢火起一刻，诸葛亮要等全局俱备。你要让三方谋略同时落到胜负上。",
-      "win": "连舫成灰，曹操北退，三分格局由此获得喘息；败军即将进入华容道。",
-      "loss": "风候、火船与人心未能同时到位，赤壁旧页没有改写；曹操的连舫仍压住江面。"
+      "title": "Red Cliffs · The Chained Armada in Flames",
+      "why": "Cao Cao's linked vessels present an impenetrable wall. The southeast wind rises; you must channel all your bets to push his ships into catastrophic fire.",
+      "win": "Flames engulf the river and illuminate the cliffs red! Cao Cao's grand armada burns to ashes, cementing the Three Kingdoms tripartite era.",
+      "loss": "The wind fails to blow or the fire lines do not connect. Cao Cao's legions cross the river, stamping out the southland's defiance."
     }
   },
   "huarong": {
-    "era": "208 年",
-    "source": "《三国志·武帝纪》裴注引《山阳公载记》·《三国演义》第五十回",
-    "record": "曹操赤壁败后行经华容险路，道路泥泞、士卒困顿有相关记载；关羽奉命把守并因旧义释曹，则是演义最著名的抉择。",
-    "adaptation": "本回保留“刀落或刀未落”双野史。牌局只争曹操是否走到你面前，胜后之义与后患仍由你亲自选择。",
-    "lead": "赤壁的火照见了曹操的败相，也把一道比胜负更难的问题留给你：旧恩、军令与天下，哪一样该最后落刀。",
+    "era": "208 AD",
+    "source": "Records of Duke of Shanyang / Romance of the Three Kingdoms Ch. 50",
+    "record": "Historical accounts record Cao Cao retreating along Huarong Trail through mud and grass, remarking that had Liu Bei set fire to the reeds in time, none would have escaped. The story of Guan Yu releasing Cao Cao out of gratitude is a literary masterwork of the Romance.",
+    "adaptation": "The climax of debt and honor. Winning the hand forces you to choose: uphold strict military discipline or honor personal loyalty.",
+    "lead": "The fires of Red Cliffs revealed Cao Cao's broken state, leaving you with a choice harder than victory or defeat: past favor, military orders, or the realm—which should face the blade?",
     "skirmish": {
-      "title": "Skirmish: 乌林 · 败军余焰",
-      "why": "败军残部拼死护住退路，你要在他们重新结阵前截住去向，而不是被惨状拖进无意义追杀。",
-      "win": "残部的护卫被拆开，曹操只能走向华容；你将面对真正无法靠全压解决的问题。",
-      "loss": "败军重新护成一线，曹操趁隙远去；华容伏兵等到的只有空路。"
+      "title": "Wulin · Embers of the Routed Army",
+      "why": "Cao Cao's rearguard scrambles through muddy paths. You must sweep through the broken regiments to trap his entourage in the narrow gorge of Huarong.",
+      "win": "The rearguard scatters into the swamps, cutting off Cao Cao's escape routes and forcing him onto Huarong Trail alone.",
+      "loss": "The desperate defenders fight with feral tenacity, holding the road long enough for Cao Cao's horse to bypass the trail."
     },
     "boss": {
-      "title": "Climax: 华容道 · 刀落之前",
-      "why": "曹操以旧恩求生，以北方后患自辩。先赢下他的军资，你才有资格决定刀落与不落各由谁承担。",
-      "win": "曹操的去留交到你手上：刀落将改北方，刀未落将全旧义；两种后果都会写入后页。",
-      "loss": "曹操越过华容，既没有军令上的斩获，也没有你主动成全的义；只是目标逃脱。"
+      "title": "Huarong Trail · Before the Blade Descends",
+      "why": "Cao Cao stands cornered in exhaustion, invoking past chivalry and wine shared at Xudu. Guan Yu must wrestle with his soul before delivering his verdict.",
+      "win": "The blade is lowered in tears and honor. Cao Cao rides north alive, while Guan Yu honors chivalry above mortal conquest.",
+      "loss": "Caught in hesitation without choice, Cao Cao slips past through the marshes, leaving behind cold cynicism rather than legendary mercy."
     }
   },
   "sanqi": {
-    "era": "210 年",
-    "source": "《三国志·周瑜传》·《三国演义》第五十一至五十六回",
-    "record": "周瑜于建安十五年病逝巴丘，年仅三十六，当时仍筹划进取巴蜀。“三气周瑜”与“既生瑜何生亮”属于演义塑造。",
-    "adaptation": "本回以演义的三次交锋写周瑜的心性与箭疮，不把真实病逝简单归因于被诸葛亮气死。",
-    "lead": "曹操北归后，孙刘同盟立刻面对荆州归属。旧友与对手只隔一席，最难的是争地而不把人逼入死局。",
+    "era": "210 AD",
+    "source": "Records of the Three Kingdoms · Biography of Zhou Yu / Romance of the Three Kingdoms Ch. 51-56",
+    "record": "Following Cao Cao's northern retreat, Sun Quan and Liu Bei vied intensely over Jingzhou. Zhou Yu planned to conquer Yizhou but fell mortally ill at Baqiu at age thirty-six. The 'three provocations of Zhou Yu' is a dramatic fiction in the Romance.",
+    "adaptation": "The battle between the feather fan and the guqin. Psychological warfare is the sharpest weapon on this page: force your opponent to lose composure without breaking the alliance entirely.",
+    "lead": "Once Cao Cao retreated north, the Sun-Liu alliance confronted the reality of Jingzhou. Friends and rivals sat separated by a single table; the hardest task was claiming territory without pushing an ally into mortal despair.",
     "skirmish": {
-      "title": "Skirmish: 南郡 · 同盟新隙",
-      "why": "东吴小将把赤壁旧功当作索地凭据，你若只顾争一时口头胜负，同盟会先在边地破裂。",
-      "win": "边地争端被暂时压住，周瑜愿亲自坐入局；荆州问题终于可以不靠小将传话。",
-      "loss": "零星冲突坐实彼此猜忌，周瑜接到的只剩挑衅；谈判未开便先成攻心。"
+      "title": "Nanjun · Factional Rifts",
+      "why": "Allied patrols quarrel over border markers outside the city. You must mediate the skirmish to prevent open civil war before diplomatic terms are spoken.",
+      "win": "The border clash is calmed without bloodshed. The diplomats take their seats for the contest over Jingzhou.",
+      "loss": "Tensions erupt into armed slaughter between allies, shattering the grand alliance in mutual recrimination."
     },
     "boss": {
-      "title": "Climax: 巴丘 · 第三激",
-      "why": "周瑜要证明自己仍能掌舵江东，你要穿过他的急怒看见箭疮与自尊，决定这一局是否只以病弱取胜。",
-      "win": "第三激后他反而看清执念，巴丘不再只是殒命之地；荆襄争夺也多一条未写尽的路。",
-      "loss": "箭疮与怒意一同崩断，原卷的“既生瑜”再次成为悼词；你赢地却未能改人。"
+      "title": "Baqiu · The Third Provocation",
+      "why": "Zhou Yu attempts to pass through Jingzhou under the pretext of conquering Shu. You must outwit his feigned march and provoke him into overextending his hand.",
+      "win": "The false march is completely checkmated. Zhou Yu laments to the heavens, leaving Jingzhou firmly within Liu Bei's grasp.",
+      "loss": "Zhou Yu seizes the mountain pass through force, cutting off Liu Bei's westward expansion and turning allies into blood foes."
     }
   },
   "luofengpo": {
-    "era": "214 年",
-    "source": "《三国志·庞统传》·《三国演义》第六十三回",
-    "record": "刘备进取益州时，庞统随军围雒县，中流矢身亡，年三十六。落凤坡、的卢换骑与伏兵桥段由演义集中渲染。",
-    "adaptation": "本回沿用落凤坡与伏兵，把“地名不吉”换成真正可判断的路线、坐骑与伏兵风险，而不是让宿命替人做决定。",
-    "lead": "荆州的争执尚未结束，入蜀的军队已到雒城。一个与卧龙齐名的人，正把大路让给主公，把小径留给自己。",
+    "era": "214 AD",
+    "source": "Records of the Three Kingdoms · Biography of Pang Tong / Romance of the Three Kingdoms Ch. 63",
+    "record": "In 214 AD, during Liu Bei's campaign to conquer Yizhou, Pang Tong was struck by a stray arrow while directing the siege of Luocheng and died at age thirty-six. The Romance dramatized his death at 'Fallen Phoenix Slope' under an ambush by Zhang Ren.",
+    "adaptation": "The Young Phoenix's tragic sacrifice. The choice of steeds and roads determines survival: will you sacrifice his life for quick conquest or guide him away from the fatal gorge?",
+    "lead": "The disputes over Jingzhou were barely settling when the army entering Shu reached Luocheng. A man sharing equal renown with the Sleeping Dragon gave the broad road to his lord, keeping the narrow path for himself.",
     "skirmish": {
-      "title": "Skirmish: 雒城 · 伏兵前影",
-      "why": "西川伏兵故意露出零星身影，引你沿最像捷径的山道深入。先辨真假，才谈得上改道。",
-      "win": "伏兵布置被提前看见，庞统不必只凭地名决定进退，雒城仍有多条进路。",
-      "loss": "疑兵把队伍牵入狭谷，所有后知后觉都变成箭雨前的停顿。"
+      "title": "Luocheng · Shadows of the Ambush",
+      "why": "Defenders under Zhang Ren watch the mountain forks. You must detect the ambush positions in the ravines before Pang Tong enters the defile.",
+      "win": "The hidden marksmen are flushed out, revealing Zhang Ren's ambush before the column enters the fatal slope.",
+      "loss": "The vanguard marches blindly into the defile, sealing Pang Tong's fate beneath the cliffs."
     },
     "boss": {
-      "title": "Climax: 落凤坡 · 的卢未换",
-      "why": "张任等的正是熟悉的旗号与坐骑。你要拆掉他对路线和人物的预判，让凤雏不成为被认出的目标。",
-      "win": "伏兵扑空，庞统得以继续向成都进发；季汉未来不再只压在卧龙一人肩上。",
-      "loss": "流矢仍落入坡前，凤雏归回原卷；你会明白所谓宿命，常是无人重新检查那条路。"
+      "title": "Fallen Phoenix Slope · Dilu Unswapped",
+      "why": "Zhang Ren targets the white steed believing it carries Liu Bei. You must read the enemy's sights and redirect the march before arrows blot out the sky.",
+      "win": "Pang Tong sees through the omen and avoids the trap, surviving to guide the conquest of Shu to a bloodless triumph.",
+      "loss": "Arrows rain upon the narrow gorge as history decreed. The Young Phoenix falls, leaving Liu Bei weeping into the hills."
     }
   },
   "dingjunshan": {
-    "era": "219 年",
-    "source": "《三国志·先主传》《黄忠传》《法正传》",
-    "record": "定军山之战中，刘备军居高俯击，黄忠在法正等人谋划配合下阵斩夏侯渊，汉中战局由此倾斜。",
-    "adaptation": "夏侯渊与张郃组成快慢两种敌阵。你要利用地势和时机，而非只把黄忠写成一刀必中的老将传奇。",
-    "lead": "益州已定，汉中成为下一道门槛。老将最缺的不是勇名，而是一次让所有人承认他仍能定局的战机。",
+    "era": "219 AD",
+    "source": "Records of the Three Kingdoms · Liu Bei, Huang Zhong & Fa Zheng",
+    "record": "In 219 AD, Liu Bei contested Hanzhong with Cao Cao. Veteran general Huang Zhong occupied the high ground at Mount Dingjun and struck down Xiahou Yuan in a surprise downhill charge, breaking Cao Cao's western bulwark.",
+    "adaptation": "The battle of high ground and patient timing. Do not rush into the opening hands; build your position on the mountain heights and unleash an unstoppable downhill surge.",
+    "lead": "With Yizhou pacified, Hanzhong became the next imperial threshold. What an aging champion lacked was not courage, but an opportunity to prove to the realm that he could still decide the fate of kingdoms.",
     "skirmish": {
-      "title": "Skirmish: 阳平关 · 争高先争势",
-      "why": "曹军屯兵控制山口，若只沿旧路仰攻，黄忠再勇也只能把士卒耗在坡下。",
-      "win": "山口守军被调动，法正所指的居高之地让出通道，定军山之势开始倒向刘备。",
-      "loss": "曹军凭险稳住阵脚，老将被迫在不利的坡面求战；战机先于兵力流失。"
+      "title": "Yangping Pass · Gaining the High Ground",
+      "why": "Xiahou Yuan's scouts guard the foothill trails. You must seize the opposing mountain ridges to gain an unobstructed view of his encampment.",
+      "win": "The high ridge is claimed! Fa Zheng raises the white banner, looking down upon Xiahou Yuan's every disposition.",
+      "loss": "The ridge is seized by the enemy, leaving Huang Zhong pinned down in the low ravines beneath enemy arrows."
     },
     "boss": {
-      "title": "Climax: 定军山 · 疾锋与后发",
-      "why": "夏侯渊以快治乱，张郃以后发补隙。你要让两人的节奏错位，给黄忠争到居高临下的一刀。",
-      "win": "夏侯渊败亡、张郃难再补局，汉中门户洞开；下一场，关羽将在沔水迎来最盛之时。",
-      "loss": "快慢敌阵互相救援，高地下的一刀砍空；汉中仍胶着，老将只能再等下一次机会。"
+      "title": "Mount Dingjun · Sudden Charge from the Heights",
+      "why": "Xiahou Yuan rushes out to repair his perimeter deer horns. Wait for Fa Zheng's signal banner to drop, then commit all your chips in one downhill charge.",
+      "win": "With war drums thundering, Huang Zhong rides down the slope and cleaves Xiahou Yuan in a single pass! Hanzhong falls to Shu Han.",
+      "loss": "Charging too early from the heights, the assault is blunted by interlocking palisades, and the veteran falls in the valley."
     }
   },
   "shuiyan": {
-    "era": "219 年",
-    "source": "《三国志·关羽传》《于禁传》",
-    "record": "汉水因连绵大雨暴涨，于禁所督七军被水困。于禁降，庞德被斩，关羽遂“威震华夏”，这是其北伐声势的顶点。",
-    "adaptation": "本回把秋雨与高地化作战前条件。水势不是凭空神迹，真正要判断的是谁能利用天时而不被天时反噬。",
-    "lead": "汉中一定，荆州北上之势同时展开。关羽距离威震华夏只差一场雨，也距离盛极而衰只剩几步。",
+    "era": "219 AD",
+    "source": "Records of the Three Kingdoms · Biographies of Guan Yu & Yu Jin",
+    "record": "In 219 AD, Guan Yu besieged Cao Ren at Fancheng. Heavy autumn rains flooded the Han River, drowning Yu Jin's seven armies. Guan Yu captured Yu Jin and executed Pang De, shaking the empire with his military renown.",
+    "adaptation": "The flood of heaven. Autumn rains build your stacks over time while Yu Jin's low-lying forces drown in chips; seize the floodgates to wash away his seven armies.",
+    "lead": "With Hanzhong secured, the northern advance from Jingzhou surged forward. Guan Yu stood only one rainstorm away from shaking the empire, but also mere steps from his tragic twilight.",
     "skirmish": {
-      "title": "Skirmish: 樊城 · 雨线之下",
-      "why": "于禁部众抢占高处与渡口，若不在水位再涨前夺下通路，楼船和援军都会被隔在樊城之外。",
-      "win": "渡口与高地重新连通，七军的低处营地暴露在水线之下，关羽掌握主动。",
-      "loss": "雨势先困住己方调度，援军无法合流；所谓天时反过来成为曹军的屏障。"
+      "title": "Fancheng · Beneath the Rain Lines",
+      "why": "Pang De fights ferociously from dry ground with his coffin brought to the field. You must hold his desperate charges while the river levels rise.",
+      "win": "Pang De is pinned down on high mounds as torrential rains pour ceaselessly into the Han River valley.",
+      "loss": "Pang De's archery pierces your lines, forcing Guan Yu's army to retreat before the river crests."
     },
     "boss": {
-      "title": "Climax: 沔水 · 七军皆鱼",
-      "why": "于禁要以完整军阵拖过雨季，你必须在堤岸与高地之间逼他做选择，而不是只等洪水替你赢。",
-      "win": "七军尽没，于禁就擒，关羽之名震动许都；然而吕蒙的白衣已悄然接近江陵。",
-      "loss": "雨住堤未决，于禁军阵仍整，关羽失去最盛的战机；荆州后防空虚却已成事实。"
+      "title": "Han River · The Seven Armies Drowned",
+      "why": "The river breaches its dikes! Guan Yu launches his tower ships across the submerged plains to scoop up thirty thousand drowning troops.",
+      "win": "Yu Jin surrenders and Pang De falls! Guan Yu's renown shakes the heartland, sending panic straight into Xudu.",
+      "loss": "The waters recede too quickly, allowing Cao Ren and Xu Huang to mount a relief counter-offensive."
     }
   },
   "maicheng": {
-    "era": "219 年冬",
-    "source": "《三国志·关羽传》《吴主传》《吕蒙传》",
-    "record": "吕蒙趁关羽北进袭取荆州，公安、江陵相继失守。关羽退至麦城，后在临沮被擒杀，孙权将其首级送予曹操。",
-    "adaptation": "吕蒙与陆逊同桌，白衣与全谎规则强调后方的隐瞒。你可以让关羽脱困，但救下一人不等于自动修好整条荆州防线。",
-    "lead": "沔水的捷报越响，江陵的空虚越深。最盛之名与最冷之雪只隔一卷，你要同时看见前线的威风和身后的门。",
+    "era": "219 AD · Winter",
+    "source": "Records of the Three Kingdoms · Guan Yu, Sun Quan & Lu Meng",
+    "record": "In winter 219 AD, Sun Quan allied with Cao Cao, while Lu Meng disguised troops in white civilian cloaks to seize Jiangling. Guan Yu was cut off, besieged at Maicheng, and captured with his son Guan Ping at Linju, where both were executed.",
+    "adaptation": "The grand tragic gate of the chronicle. Trapped on all sides under falling snow, your chips slowly dwindle; fight for honor and ensure your final stand echoes down the centuries.",
+    "lead": "The louder the victory songs echoed on the Han River, the emptier the defense stood at Jiangling. Between pinnacle glory and freezing snow lay only a single scroll; you must watch the front-line triumph while guarding the back door.",
     "skirmish": {
-      "title": "Skirmish: 江陵临沮 · 白衣断后",
-      "why": "东吴伏兵不穿甲而穿白衣，先截烽燧与归路。若不重建消息链，关羽连荆州已失都可能最后知道。",
-      "win": "伏兵与封锁被撕开，麦城不再是孤城，上庸与江陵之间重新出现求援方向。",
-      "loss": "烽燧沉默、归路断绝，前线名将成了最后知道后方已失的人。"
+      "title": "Jiangling & Linju · White Cloaks at the Rear",
+      "why": "Lu Meng's merchant disguise slips past the beacon towers. You must scramble to send word to Guan Yu before all retreat routes are severed.",
+      "win": "The warning reaches Maicheng in time, allowing Guan Yu to assemble his remaining loyalists into a tight defensive ring.",
+      "loss": "The beacon towers fall silently. Guan Yu is completely blinded to the collapse of his home base until the enemy surrounds his walls."
     },
     "boss": {
-      "title": "Climax: 麦城 · 雪夜双谋",
-      "why": "吕蒙藏锋，陆逊深算，二人要你只盯关羽的勇而忘了全城补给。赢下双谋，才可争一条突围路。",
-      "win": "云长死战得脱，荆州与夷陵的旧页都随之改变；大关野史落印，卷四提前翻开。",
-      "loss": "麦城雪落，关羽仍败亡临沮；原卷不可跨越的意难平再次发生，史鉴将留下白衣假动作的线索。"
+      "title": "Maicheng · Two Schemers in the Snowy Night",
+      "why": "Pan Zhang and Lu Xun seal every mountain path in the winter snow. Face the inevitable siege with unbreakable dignity, striking one last defiant blow before fate closes.",
+      "win": "Though the city falls, Guan Yu cuts through the ambush to leave an immortal legacy of loyalty that outshines imperial crowns.",
+      "loss": "Surrounded in the snows of Linju, the green dragon blade falls silent as history sorrowfully recorded."
     }
   },
   "yiling": {
-    "era": "222 年",
-    "source": "《三国志·先主传》《陆逊传》",
-    "record": "刘备大举东征，陆逊先固守避锋，后在夷陵、猇亭一带以火攻大破蜀军营垒。刘备退往白帝，季汉元气大伤。",
-    "adaptation": "本回把复仇、连营与火油写成连锁风险。若麦城已改，关羽会亲自否定以他为名的无谓牺牲，但战争仍可能发生。",
-    "lead": "荆州的答案决定了东征的理由，却不能自动决定东征的打法。怒火烧到人之前，会先把自己的营盘连成火绳。",
+    "era": "222 AD",
+    "source": "Records of the Three Kingdoms · Biographies of Liu Bei & Lu Xun",
+    "record": "In 222 AD, Liu Bei launched a punitive expedition against Wu to avenge Guan Yu. Lu Xun held firm along the Yangtze gorges for months, finally using fire to incinerate Liu Bei's seven-hundred-li interconnected camps at Yiling, routing the Shu army.",
+    "adaptation": "A battle against relentless fire and hasty wrath. Liu Bei's anger caused him to pitch his camps amidst the forests; you must fight against accelerating blinds before Lu Xun's fire ships consume the riverbank.",
+    "lead": "The grief of Jingzhou supplied the pretext for the eastern campaign, but could not dictate sound military doctrine. Before rage burns the enemy, it weaves one's own encampments into a fuse of fire.",
     "skirmish": {
-      "title": "Skirmish: 秭归猇亭 · 火油前哨",
-      "why": "吴军火油队沿林道试探营垒，你要先拆其火路，而不是把每次袭扰都当成决战邀请。",
-      "win": "火油位置与林道被摸清，蜀营得以拆开相连栅垒，陆逊失去最省力的一把火。",
-      "loss": "火油悄然贴近连营，蜀军越追击越把队伍拉成长线；陆逊只需等待。"
+      "title": "Zigui & Xiaoting · Pitch Patrol Vanguard",
+      "why": "Wu scouting detachments carry fire pitch toward the dry forest fringes. You must intercept their forward squads before the brush catches fire.",
+      "win": "The pitch carriers are repelled. Liu Bei gains time to reconsider pitching all seven hundred li of camps under dry trees.",
+      "loss": "Wu scouts ignite the outlying brush. Smoke spreads through the ravines, setting the stage for general conflagration."
     },
     "boss": {
-      "title": "Climax: 夷陵 · 火未起时",
-      "why": "陆逊以固守养你的急，以连营等你的错。你要在盲注与怒火耗尽全军前，让刘备看见营外的人命。",
-      "win": "旧营已空，火起无处蔓延，东征不再以惨败收尾；永安宫的病榻却仍等着你。",
-      "loss": "七百里火势按原卷奔袭，刘备败走白帝；夷陵不仅烧掉营盘，也烧掉季汉的后续选择。"
+      "title": "Yiling · Before the Sparks Catch",
+      "why": "Lu Xun waits patiently for seasonal winds to dry the timber. You must break his lines before the sparks connect into an inescapable wall of flame.",
+      "win": "The forest camps are evacuated to open stone ridges! Lu Xun's fire attack finds no purchase, and Shu forces retreat in good order.",
+      "loss": "Seven hundred li of camps burst into roaring flames! The grand host collapses, and Liu Bei is driven in sorrow toward Baidicheng."
     }
   },
   "baidicheng": {
-    "era": "223 年",
-    "source": "《三国志·先主传》《诸葛亮传》",
-    "record": "刘备在永安宫病重，将刘禅托付给诸葛亮，并以李严为副，随后去世。白帝托孤既有信任，也有政权交接的沉重现实。",
-    "adaptation": "本回把“天命·沉疴”拟作对手，不宣称一场牌能医治疾病；它写的是在有限时间里，能否把遗言从试探变回坦诚。",
-    "lead": "夷陵之后，战火退了，身体里的消耗却追了上来。你这次面对的不是名将，而是每个人最终都无法吓退的时间。",
+    "era": "223 AD",
+    "source": "Records of the Three Kingdoms · Biographies of Liu Bei & Zhuge Liang",
+    "record": "In 223 AD, broken in spirit and health after Yiling, Liu Bei fell mortally ill at Baidicheng. On his deathbed, he entrusted the young heir and the realm to Prime Minister Zhuge Liang with tearful solemnity.",
+    "adaptation": "The battle against mortality itself. No enemy general stands across the table, only the relentless ticking of time; preserve Liu Bei's final breath so his parting words seal an enduring covenant.",
+    "lead": "After Yiling, the fires subsided, but the exhaustion within caught up with him. This time you face no celebrated general, but the one thing no mortal can intimidate: time.",
     "skirmish": {
-      "title": "Skirmish: 永安宫 · 长夜宿卫",
-      "why": "宫中宿卫因遗诏流言各自紧张，任何误会都可能让最后的托付变成争抢遗命的宫门之变。",
-      "win": "宫门与药道安稳，刘备能在没有兵刃声的夜里把话说明，诸葛亮与少主得以同席。",
-      "loss": "猜疑先封住宫门，遗诏尚未写完便已成各方武器；托孤只剩下权力焦虑。"
+      "title": "Yong'an Palace · The Long Night Vigil",
+      "why": "Court physicians and royal guards scramble amidst palace whispers. You must steady the palace gates so panic does not engulf the bedchamber.",
+      "win": "Order is maintained across the palace. Zhuge Liang arrives from Chengdu to kneel beside the royal couch.",
+      "loss": "Palace intrigue leaks outward in rumor, casting shadows of instability over the young empire before the final words can be spoken."
     },
     "boss": {
-      "title": "Climax: 白帝城 · 与命争言",
-      "why": "沉疴要拿走的是说话的时间。你要争到足够坦诚的一刻，让刘备不再把江山只压给诸葛亮一人。",
-      "win": "遗诏改写，少主与辅臣各担其责；刘备争得人间时日，南中与北伐的后页因此变化。",
-      "loss": "永安宫长夜将尽，原卷托孤如期而至；没有说尽的话将成为诸葛亮此后每一次独自决断的重量。"
+      "title": "Baidicheng · Contesting Destiny for Words",
+      "why": "Liu Bei's vitality ebbs like falling sand. Maintain your bets with absolute reverence to buy the final moments needed to entrust the state to Zhuge Liang.",
+      "win": "The regent's trust is spoken with clarity and tears. A sacred covenant is forged between ruler and minister, guiding Shu Han through decades of trials.",
+      "loss": "Words falter in the dark, and the great founder passes without delivering his testament, leaving Shu Han adrift in uncertainty."
     }
   },
   "qiqin": {
-    "era": "225 年",
-    "source": "《三国志·诸葛亮传》裴注引《汉晋春秋》·《三国演义》南征诸回",
-    "record": "诸葛亮于建兴三年南征并平定南中。“七擒七纵”见于裴注所引《汉晋春秋》，具体藤甲、毒泉等情节多由后世文学扩充。",
-    "adaptation": "七阵不是七次重复刷胜，而是孟获从恼怒到自问的七个态度阶段。每阵战书会变化，胜负也要为下一次放人留余地。",
-    "lead": "永安之后，南中再起。若只得到一张降表，今日擒下的王明日仍会带着更多人回来。",
+    "era": "225 AD",
+    "source": "Records of the Three Kingdoms · Zhuge Liang (Pei Songzhi quoting Chronicles of Han & Jin) / Romance Southern Campaign Chapters",
+    "record": "In 225 AD, Zhuge Liang pacified the southern commanderies. Adopting Ma Su's counsel that 'winning hearts is superior to taking cities,' he captured and released rebel leader Meng Huo seven times, securing lasting peace in the south.",
+    "adaptation": "A seven-round gauntlet of psychology. You must defeat Meng Huo seven times, but release him six times; sheer military slaughter will only breed endless rebellion.",
+    "lead": "After Yong'an, the southern border erupted. If all one obtains is a coerced letter of submission, the tribal king captured today will return tomorrow with twice as many spears.",
     "skirmish": {
-      "title": "Skirmish: 泸水 · 藤甲拦路",
-      "why": "藤甲兵凭地形与装备守住渡口，强渡只会让南征先变成彼此都不肯再听解释的仇杀。",
-      "win": "渡口打开而俘虏未被尽数追杀，南中长者愿意说出盐粮与旧俗，攻心才有事实可凭。",
-      "loss": "泸水变成血战，孟获只看见又一支来征服的军队；七次擒纵尚未开始便失去意义。"
+      "title": "Lu River · The Rattan Armor Bastion",
+      "why": "Wutugu's rattan armor warriors are impervious to swords and spears along the toxic waters. You must uncover their fatal weakness to fire before crossing.",
+      "win": "The secret of boiling oil and pitch is applied, neutralizing the invulnerability of the rattan armors.",
+      "loss": "Frontline weapons shatter against oil-soaked vine armor, forcing the expedition back across the poisonous river."
     },
     "boss": {
-      "title": "Climax: 南中 · 七擒七纵",
-      "why": "孟获以不服维护自己和族人的尊严。你要七次赢牌又六次放人，让他最后服气的是选择而非无力。",
-      "win": "孟获亲口定下南中明日，南征从压服变成可延续的约定；诸葛亮得以整军北向。",
-      "loss": "你只记住擒与纵的次数，没有让人多懂一层；整回重开，南中仍不信所谓攻心。"
-    }
+      "title": "Nanzhong · Seven Captures and Seven Releases",
+      "why": "Meng Huo blames bad luck for each defeat. Win seven hands while showing mercy six times, transforming sullen defiance into genuine, heartfelt allegiance.",
+      "win": "On the seventh capture, Meng Huo weeps and bows to the earth: 'Your Excellency possesses the majesty of heaven; the south shall never rebel again!'",
+      "loss": "Losing patience, Meng Huo is executed in anger, leaving Nanzhong engulfed in centuries of smoldering tribal vengeance."
+    },
+    "rounds": [
+      {
+        "title": "First Capture · Overcoming His Valor",
+        "why": "Meng Huo assumes Han forces rely only on brute strength. You must defeat him in his most familiar open combat.",
+        "win": "Captured and released for the first time. He gains the road to return and begins to wonder what you truly desire.",
+        "loss": "Checked by mountain terrain in the first bout. The talk of winning hearts becomes hollow excuse."
+      },
+      {
+        "title": "Second Capture · Outwitting His Ruse",
+        "why": "He attributes his first defeat to trip-ropes. Show that you can read and counter his active tactical adaptations.",
+        "win": "Captured again amidst his own ambush. Doubts begin to take root in the tribal chieftains.",
+        "loss": "Lured into swamp ravines, the expedition suffers defeat at the hands of frontier raiders."
+      },
+      {
+        "title": "Third Capture · Old Allies and Rattan Armor",
+        "why": "He brings old allies and stronger divisions, requiring you to read the reinforcements, not just one man's play style.",
+        "win": "Reinforcements scatter and Meng Huo is taken a third time, shaken by your farsighted vision.",
+        "loss": "The combined tribal charge breaks through your perimeter lines, forcing a retreat back to camp."
+      },
+      {
+        "title": "Fourth Capture · Flames Without Scars",
+        "why": "Rattan armor perishes in flames, but Meng Huo questions whether burning their armor also burns their southern dignity.",
+        "win": "Fires burn the armors without cruelty to captives, demonstrating that victory seeks brotherhood, not extermination.",
+        "loss": "Uncontrolled infernos burn deep into tribal villages, hardening eternal hatred instead of reconciliation."
+      },
+      {
+        "title": "Fifth Capture · Submitting to Whom",
+        "why": "Meng Huo no longer contests sheer valor; he seeks to understand whether you demand submission to Kongming, the law, or yourself.",
+        "win": "The vision of peace under Han law is made clear, moving his heart beyond personal feuds.",
+        "loss": "Failing to answer his moral doubt, the captive departs with deepened political resentment."
+      },
+      {
+        "title": "Sixth Capture · Candid Table Discourse",
+        "why": "Willing to sit and converse, he still fears one surrender will forever strip the south of the right to refuse. Assure him mutual respect.",
+        "win": "Sincere covenants grant autonomy and dignity, removing the final psychological fear of submission.",
+        "loss": "Imposing humiliating terms breaks the negotiation, driving the southern tribes back to the hills."
+      },
+      {
+        "title": "Seventh Capture · Determining Tomorrow",
+        "why": "No need to demonstrate mercy on the final bout. Meng Huo fights at full strength to decide the eternal covenant between Han and Nanzhong.",
+        "win": "Meng Huo kneels in profound reverence, pledging that the south shall never rebel again across generations.",
+        "loss": "The final battle ends in mutual bloodshed, leaving the frontier in unresolved civil war."
+      }
+    ]
   },
   "qishan": {
-    "era": "227–234 年",
-    "source": "《三国志·诸葛亮传》·后世“六出祁山”叙事",
-    "record": "诸葛亮在出师表后驻汉中，屡次北伐，行军路线与次数并不等同于俗称的“六出祁山”。本回是北伐整体意象，而非单次战役复刻。",
-    "adaptation": "曹真代表魏国以逸待劳的防御思路，粮道与盲注代表长期消耗。本回要争的是可持续进军，而不是一把火换个虚名。",
-    "lead": "南中既安，北伐终于有了后方。可《出师表》写得再决绝，粮车仍要一辆辆翻山，士兵也不能只靠名篇充饥。",
+    "era": "227–234 AD",
+    "source": "Records of the Three Kingdoms · Zhuge Liang / Lore of the Six Northern Expeditions",
+    "record": "In 228 AD, Zhuge Liang submitted the Memorial on the Northern Expedition and launched his first campaign across Mount Qi, catching Wei by surprise. The phrase 'six expeditions to Mount Qi' became the poetic symbol of Shu Han's unyielding resolve.",
+    "adaptation": "A grueling war of logistics and mountain passes. Provisions dwindle across high passes; you must utilize wooden oxen and sound discipline to sustain your chip stack against fortified Wei walls.",
+    "lead": "With the south pacified, the northern expedition finally secured its rear. Yet no matter how resolute the prose of the Memorial, grain carts must still crest rugged peaks one by one—soldiers cannot dine on poetry alone.",
     "skirmish": {
-      "title": "Skirmish: 汉中 · 前哨与粮站",
-      "why": "魏军前哨专袭山道与运粮队，若只护将旗不护粮站，第一出祁山便会成为最后一次。",
-      "win": "前哨被牵制，沿途粮站接续起来，北伐获得明年仍能再来的基础。",
-      "loss": "山路被截，前锋越深入越无退路；所谓进取变成把全军押在一次空运上。"
+      "title": "Hanzhong Outskirts · Supply Depots and Outposts",
+      "why": "Crossing the Qinling mountains requires establishing fortified depot chains. You must protect the pack trains from Wei raiding cavalry.",
+      "win": "The forward granaries are filled, establishing secure supply chains reaching into the foot of Mount Qi.",
+      "loss": "Raiders torch the supply carts in the passes, leaving the expedition starved before engaging the main Wei army."
     },
     "boss": {
-      "title": "Climax: 祁山 · 长路对坚壁",
-      "why": "曹真要用山地和时日磨空你的底池。你必须让粮道、疑兵与进军节奏共同向前，逼他的墙失去意义。",
-      "win": "祁山长路被走通，北伐不再只有悲壮口号；街亭随即成为这条路上最关键的支点。",
-      "loss": "粮尽路断，《出师表》又被风掀回案上；北伐仍被写成明知不可为的一次消耗。"
+      "title": "Mount Qi · Long Road Against Fortified Bastions",
+      "why": "Cao Zhen and Guo Huai entrench behind deep walls. You must employ tactical feints and wooden transport engines to maintain supply superiority.",
+      "win": "Three commanderies surrender without a blow! The banner of Han flies over Mount Qi, striking fear into the heart of Luoyang.",
+      "loss": "Logistical strain breaks the army's endurance. Supplies run dry, forcing an agonizing retreat back through the mountain trails."
     }
   },
   "jieting": {
-    "era": "228 年",
-    "source": "《三国志·诸葛亮传》《张郃传》《王平传》",
-    "record": "街亭之战中，马谡舍水上山、举措失当，被张郃断绝水道后击败，王平所部得以收拢残军。诸葛亮随后诛马谡以谢众。",
-    "adaptation": "本回让马谡、王平都有发言，不把失败只归结于一句“纸上谈兵”；你要改的是军令、地形与用人的共同错误。",
-    "lead": "祁山的路要长久，就不能在街亭断掉。越是熟悉兵书的人，越可能把一句成法押得比全军性命还重。",
+    "era": "228 AD",
+    "source": "Records of the Three Kingdoms · Biographies of Zhuge Liang, Zhang He & Wang Ping",
+    "record": "In 228 AD, Zhuge Liang tasked Ma Su with defending the strategic crossroads of Jieting. Rejecting Wang Ping's warnings, Ma Su camped atop an isolated hill away from water. Zhang He cut off their water supply and routed the force, causing the entire northern expedition to collapse.",
+    "adaptation": "The tragic cost of dogmatic arrogance. Ma Su insists on high ground while Wang Ping begs for the road; you must manage dwindling water supplies and salvage the army before Zhang He encircles the hill.",
+    "lead": "If the road to Mount Qi was to endure, it could not be severed at Jieting. The more familiar a scholar is with classical treatises, the more likely he is to wager the lives of an entire army on a single textbook maxim.",
     "skirmish": {
-      "title": "Skirmish: 列柳城 · 先锋争道",
-      "why": "魏军先锋故意露出粮道空隙，真正目标却是山下水源。若被诱离主道，街亭会先失去守的意义。",
-      "win": "先锋佯攻被识破，马谡与王平得以共同踏勘水道，守寨军令仍有修改时间。",
-      "loss": "部队被带离当道，水源与营寨分离；张郃未至，守军已把破绽写好。"
+      "title": "Lieliucheng · Contest for the Mountain Roads",
+      "why": "Zhang He's elite cavalry race toward the pass. You must hold the crossroad forts to ensure water lines remain open to the mountain camp.",
+      "win": "Wang Ping secures the secondary camp, holding a lifeline of fresh water despite Ma Su's reckless mountain deployment.",
+      "loss": "Zhang He captures the wells along the road. The mountaintop camp is completely deprived of water under the blazing sun."
     },
     "boss": {
-      "title": "Climax: 街亭 · 山高不如水长",
-      "why": "张郃不必仰攻，只要围住水道等你自乱。你要逼马谡放下脸面，在张郃合围前下寨当道。",
-      "win": "街亭守住，马谡与王平共同重写军令，诸葛亮不必挥泪；西城的琴声却即将响起。",
-      "loss": "山上无水，街亭仍失，马谡与诸葛亮的错误一同结算；后续空城只剩更险的退路。"
+      "title": "Jieting · High Hills Surrender to Running Water",
+      "why": "Surrounded on the parched hill, Ma Su's troops dissolve in thirst. You must execute an agonizing rearguard retreat to rescue Wang Ping's survivors.",
+      "win": "Wang Ping beats drums to bluff Zhang He, guiding the survivors through the mountains and keeping the northern expedition from total slaughter.",
+      "loss": "The mountaintop is engulfed in flames and thirst. Jieting falls completely, forcing Zhuge Liang to order a full retreat with tears."
     }
   },
   "kongcheng": {
-    "era": "228 年",
-    "source": "《三国志·诸葛亮传》裴注·《三国演义》第九十五回",
-    "record": "街亭失利后蜀军退还汉中。西城空城退司马懿并非《三国志》正文所载，相关裴注材料也历来受到辨析，宜作为著名故事而非确定史实。",
-    "adaptation": "本回明确采用空城计，把司马懿的多疑写成可被利用的下注心理。胜利不是“他太笨”，而是他选择更便宜的风险。",
-    "lead": "街亭的答案决定西城还剩多少兵，也决定诸葛亮还能拿多少真实筹码做一场没有底的诈唬。",
+    "era": "228 AD",
+    "source": "Records of the Three Kingdoms · Zhuge Liang (Pei Songzhi Commentary) / Romance of the Three Kingdoms Ch. 95",
+    "record": "Following the loss of Jieting, Zhuge Liang conducted an orderly withdrawal. The famous episode of Zhuge Liang playing the guqin atop an open-gated city wall to bluff Sima Yi and his 150,000 troops is a celebrated fictional dramatization in the Romance.",
+    "adaptation": "The ultimate poker bluff. You hold virtually zero combat chips against an overwhelming army; you must project absolute, serene composure atop the city walls to make Sima Yi fold his monster hand.",
+    "lead": "The loss at Jieting dictated how few soldiers remained in Xicheng, and also how large a baseless bluff Zhuge Liang had to construct. The wiser the opponent, the more terrifying a simple open gate appears.",
     "skirmish": {
-      "title": "Skirmish: 斜谷 · 斥候读城",
-      "why": "魏军斥候要先确认城中虚实。若让他们看见真正的慌乱，城门与琴声都只是请敌入内的摆设。",
-      "win": "斥候只带回互相矛盾的线索，司马懿必须亲自带疑入局，空城才有一线可守。",
-      "loss": "虚实先被看穿，魏军不再计算伏兵代价；空城计在诸葛亮抚琴前便已失效。"
+      "title": "Xie Valley · Scouts Reading the City",
+      "why": "Sima Yi's vanguard scouts halt before the open city gates, puzzled by old men quietly sweeping the dust. You must maintain this eerie calm without firing a single arrow.",
+      "win": "The scouts report complete, unhurried serenity. Sima Yi rides up in person to inspect the bizarre scene.",
+      "loss": "A nervous guard looses a stray bolt from the wall. The illusion shatters, exposing the empty city to immediate cavalry charge."
     },
     "boss": {
-      "title": "Climax: 西城 · 一琴一疑",
-      "why": "司马懿要决定进城犯错与退兵错失哪一种更便宜。你要让他的深思变成第二道城墙，而非替他神机妙算。",
-      "win": "琴声未断，魏军退去，城中老弱争得撤离时间；五丈原的坚壁将是他下一次回答。",
-      "loss": "魏军进城，空城无兵可战；诈唬一旦被跟注，原卷里所有老弱都要承担代价。"
+      "title": "Xicheng · One Zither and Supreme Suspicion",
+      "why": "Zhuge Liang plays his guqin atop the battlements with two young attendants. You must show no weakness or fear, forcing Sima Yi to suspect a deadly hidden ambush.",
+      "win": "Sima Yi murmurs, 'Zhuge Liang was always cautious and never took risks; there must be an ambush!' He folds his army and retreats, securing your escape.",
+      "loss": "A trembling hand sourly strikes a dissonant chord. Sima Yi grins, waves his sword, and his cavalry charges into the undefended streets."
     }
   },
   "wuzhangyuan": {
-    "era": "234 年秋",
-    "source": "《三国志·诸葛亮传》《晋书·宣帝纪》",
-    "record": "诸葛亮驻军五丈原，与司马懿相持，分兵屯田以求久驻。其后病逝军中，年五十四，蜀军撤退，北伐在这一页戛然而止。",
-    "adaptation": "本回保留坚壁、女装、屯田与秋风意象，让粮尽和加速盲注共同逼近；你要改写星落，而不是把司马懿写成不敢出战的小丑。",
-    "lead": "空城只能赢一次侥幸，五丈原则没有一座空城可退。两个人都已老去，这一次比的是谁还敢认真过完每一天。",
+    "era": "234 AD · Autumn",
+    "source": "Records of the Three Kingdoms · Zhuge Liang / Book of Jin · Annals of Emperor Xuan",
+    "record": "In 234 AD, during his fifth northern expedition, Zhuge Liang confronted Sima Yi at Wuzhang Plains for over a hundred days. Exhausted by administrative burdens, Zhuge Liang passed away in camp in autumn at age fifty-four.",
+    "adaptation": "The grand gate of autumn sorrow. Sima Yi refuses all battle, immune to psychological provocation; blinds rise at double speed. Before your provisions and life run out, you must force a final showdown.",
+    "lead": "The empty city can only win luck once; Wuzhang Plains offered no empty city for retreat. Both men had grown old; this time the test was who dared live out every single day in earnest.",
     "skirmish": {
-      "title": "Skirmish: 武功水 · 游骑耗粮",
-      "why": "魏军游骑不决战，只不断骚扰屯田与运输。若被牵着四处救火，司马懿不必出手便已得胜。",
-      "win": "粮道与屯田守住，蜀军不必为一口饭仓促求战；诸葛亮终于能把明日也算进部署。",
-      "loss": "游骑拖散守军，粮仓与药碗一同见底；坚壁尚未开口，秋风已先得分。"
+      "title": "Wugong River · Cavalry Straining Supplies",
+      "why": "Wei cavalry harass Shu foraging detachments along the river. You must secure the grain fields to sustain the army through the final campaign.",
+      "win": "The foraging fields are secured, allowing Shu forces to complete their autumn harvest along the river.",
+      "loss": "Foraging lines are severed, accelerating the depletion of camp supplies under the autumn chill."
     },
     "boss": {
-      "title": "Climax: 五丈原 · 秋风与坚壁",
-      "why": "司马懿把不战当作最长的一注，你要在粮尽前逼他为每次不应付出代价，同时留住诸葛亮的时间。",
-      "win": "坚壁被撬开，东南星仍明，诸葛亮争得继续书写北伐的岁月；高平陵的未来也被惊动。",
-      "loss": "秋风中星落如旧，司马懿只靠等待便赢下终局；此卷大关不改，星落仍是星落。"
+      "title": "Wuzhang Plains · Autumn Wind and High Walls",
+      "why": "Sima Yi dons women's clothes sent in mockery without flinching, waiting for the Prime Minister's health to fail. Strive with all your might to force battle before the lamp goes out.",
+      "win": "Breaking through the impenetrable walls, Zhuge Liang wins a decisive victory in the field, carrying the Han standard across the Wei River!",
+      "loss": "The autumn wind chills the plains, and the master's lamp flickers out. The army withdraws in grief, leaving an wooden statue to frighten the living Sima."
     }
   },
   "gaopingling": {
-    "era": "249 年",
-    "source": "《三国志·曹爽传》《晋书·宣帝纪》",
-    "record": "正始十年，曹爽随魏主曹芳谒高平陵，司马懿在洛阳发动政变，控制武库与宫城。曹爽交出权力后不久被诛，曹魏权柄自此转入司马氏。",
-    "adaptation": "本回以诈病为前置迷局，把诏书、武库与人心写成真正的底池；若五丈原已改，诸葛亮会以旧信提醒你不要只看衰老。",
-    "lead": "五丈原之后，最懂等待的人回到洛阳。天下不再只看卧龙与冢虎，所有以为他会自然病死的人都被算进了局。",
+    "era": "249 AD",
+    "source": "Records of the Three Kingdoms · Biography of Cao Shuang / Book of Jin · Annals of Emperor Xuan",
+    "record": "In 249 AD, Sima Yi staged a coup d'état while regent Cao Shuang accompanied young Emperor Cao Fang to the Gaopingling tombs. Sima Yi seized Luoyang, deposed Cao Shuang, and took total control of the Wei court.",
+    "adaptation": "The battle of feigned infirmity. Every tell your opponent displays is staged; you must see through dozens of feigned frailties to stop Sima Yi's deathsworn retainers from seizing the arsenal.",
+    "lead": "After Wuzhang Plains, the master of waiting returned to Luoyang. The realm no longer watched only the Sleeping Dragon and the Hidden Tiger; all who assumed he would quietly die of old age were drawn into his calculations.",
     "skirmish": {
-      "title": "Skirmish: 洛阳 · 家兵暗动",
-      "why": "司马府家兵借探病与吊丧遮掩调动，若只盯病榻，便会漏掉武库和宫门真正的变化。",
-      "win": "暗动被提前锁定，太后诏书与武库有人看守，司马懿即使睁眼也不能直接收走全城。",
-      "loss": "家兵先占要害，病榻上的老人尚未起身，洛阳已换了主人。"
+      "title": "Luoyang City · Covert Movement of Household Troops",
+      "why": "Sima Shi gathers three thousand deathsworn warriors in hidden courtyards. You must track their deployment before the city gates are sealed.",
+      "win": "The secret militia is uncovered before dawn, warning Cao Shuang's retainers at court.",
+      "loss": "The deathsworn emerge in broad daylight, instantly capturing the armory and palace gates."
     },
     "boss": {
-      "title": "Climax: 高平陵 · 病榻之外",
-      "why": "司马懿用衰弱换曹爽的松懈，你要拆穿病相又守住权力交接；只揭穿演技而没有守门，仍然会输。",
-      "win": "政变被截，曹爽未轻交印绶，司马氏独大的旧页被改写；多年后的阴平却仍会有险路。",
-      "loss": "曹爽交权，司马氏掌权，原卷的高平陵之变完整发生；他的假破绽也会成为下一次史鉴。"
+      "title": "Gaopingling · Beyond the Sickbed",
+      "why": "Sima Yi feigns trembling hands and spilled broth while dictating ruthless edicts. Read his false weakness and counter his sudden coup.",
+      "win": "The pretense is exposed! Cao Shuang responds decisively with royal troops, preserving the imperial power of the Cao lineage.",
+      "loss": "Believing Sima Yi's false oaths at the Luo River, Cao Shuang surrenders his authority, sealing the slaughter of his clan."
     }
   },
   "yinping": {
-    "era": "263 年",
-    "source": "《三国志·邓艾传》《后主传》",
-    "record": "魏军伐蜀，邓艾从阴平险道奇袭，越摩天岭、取江油，继而在绵竹击败诸葛瞻，最终兵临成都，刘禅出降。",
-    "adaptation": "本回把阴平守备写成一盏盏互望的灯。若街亭已改，马谡会以自身旧错提醒：高处不是险固，粮水与联络才是。",
-    "lead": "高平陵之后，司马氏的魏终于向蜀伸手。所有人都说阴平无路，邓艾却偏偏要把“不可能”裹进旧毡滚下山。",
+    "era": "263 AD",
+    "source": "Records of the Three Kingdoms · Biographies of Deng Ai & Liu Shan",
+    "record": "In 263 AD, with Jiang Wei holding Jiange, Deng Ai marched his men seven hundred li across trackless mountains in Yinping, wrapped himself in felt carpets, and rolled down the sheer cliffs of Motian Ridge to take Jiangyou and Chengdu, ending Shu Han.",
+    "adaptation": "The daring high-stakes gamble across trackless precipices. Deng Ai wagers everything on a single felt roll down the mountains; will you intercept his exhausted commandos or succumb to the surprise strike?",
+    "lead": "After Gaopingling, the Sima dynasty finally reached into Shu. When everyone declared Yinping to be impassable, Deng Ai wrapped 'the impossible' inside an old wool carpet and rolled straight down the cliffs.",
     "skirmish": {
-      "title": "Skirmish: 沓中阴平 · 奇兵未落地",
-      "why": "邓艾奇兵以无退路换速度，你要在他们落地前恢复烽哨联络，而不是继续默认绝路无需守。",
-      "win": "绝壁灯火相接，江油获得预警与迁粮时间，奇袭不再能直接穿透成都门户。",
-      "loss": "烽哨彼此不知存亡，奇兵落地时各城仍以为山天然会替自己防守。"
+      "title": "Tazhong & Yinping · Airborn Strike Force",
+      "why": "Deng Ai leads his men hacking through hundreds of li of untrodden mountains. You must scout the ridge crests before they emerge on the Sichuan plains.",
+      "win": "The secret mountain trail is detected, sending emergency couriers to fortify the garrison at Jiangyou.",
+      "loss": "The mountain crossing goes undetected until Deng Ai's exhausted soldiers appear outside Jiangyou's gates."
     },
     "boss": {
-      "title": "Climax: 摩天岭 · 绝路有人",
-      "why": "邓艾把全军命押在向前，你要以粮道与互望哨位证明险路不是捷径，落地也不等于胜利。",
-      "win": "阴平奇袭被截，江油与成都争得新的防线；归晋的最后一页因此出现另一种可能。",
-      "loss": "邓艾穿过无人守处，绵竹与成都相继暴露，蜀汉仍按原划出降。"
+      "title": "Motian Ridge · Men on the Precipice",
+      "why": "Torn by brambles and cliffs, Deng Ai rolls down the mountain slopes to launch a desperate assault on Jiangyou. Defend the city gates to preserve the realm.",
+      "win": "The exhausted strike force is repelled at the walls of Jiangyou! Trapped in the ravines, Deng Ai's gamble collapses.",
+      "loss": "Jiangyou surrenders in panic, clearing the road to Chengdu. Liu Shan surrenders, bringing the final curtain down on Shu Han."
     }
   },
   "guijin": {
-    "era": "280 年",
-    "source": "《晋书·武帝纪》《三国志·三嗣主传》",
-    "record": "太康元年，王濬等晋军沿江而下，兵临建业，孙皓出降，吴亡。自黄巾起事以来近百年的分裂，至此在西晋手中暂归一统。",
-    "adaptation": "本回以司马炎作为“归一”的牌桌化身，并非让他亲赴建业领军。你要讨论统一与抹除差别是否必然相同，也承认百姓对太平的真实需要。",
-    "lead": "阴平之后，三国只剩最后的旧旗。王濬楼船东下，建业降表将具；你要面对的不是又一个名将，而是分久必合这句话本身。",
+    "era": "280 AD",
+    "source": "Book of Jin · Annals of Emperor Wu / Records of the Three Kingdoms · The Three Last Rulers",
+    "record": "In 280 AD, Emperor Wu of Jin launched a six-pronged invasion of Eastern Wu. Wang Jun's massive tower ships sailed down the Yangtze, cutting iron chains and forcing Sun Hao to surrender at Jianye, reuniting the realm under Jin.",
+    "adaptation": "The grand finale of the three empires. Facing the unyielding river armada and the mandate of unity, the three kingdoms dissolve into a single empire as history decreed.",
+    "lead": "After Yinping, only one old banner remained of the Three Kingdoms. Wang Jun's tower ships sailed eastward, and the surrender manifest of Jianye was prepared; what you face is not another famous general, but the decree that what is divided must unite.",
     "skirmish": {
-      "title": "Skirmish: 石头城 · 楼船压境",
-      "why": "晋军前锋守住江面与城门，先争的不是三面旧旗，而是城破时百姓与粮市能否免遭劫掠。",
-      "win": "城防与民生暂时保住，建业不必以屠戮换统一；你获得与司马炎讨论“如何合”的资格。",
-      "loss": "江面与城门同失，降表之外普通人的姓名先被战火抹去；天下归一只剩胜者版本。"
+      "title": "Stone Fortress · Armada at the River Gates",
+      "why": "Iron chains stretch across the Yangtze to block Jin's fleet. You must use burning rafts to melt the chains and clear the river channel.",
+      "win": "The iron chains are melted and severed! Wang Jun's colossal fleet sails downstream directly toward the walls of Jianye.",
+      "loss": "The flagship is caught in the submerged chains, stalling the naval offensive beneath fire pots."
     },
     "boss": {
-      "title": "Climax: 建业 · 天下最后一局",
-      "why": "司马炎以结束乱世为最大底牌，你要证明太平值得珍惜，却不等于三国所有人的名字都应被一笔抹平。",
-      "win": "楼船暂止，归一不再是唯一句法；三国旧页全部阅尽，写卷人将在纸背向你摊开最后一局。",
-      "loss": "孙皓出降，天下按原卷入晋。太平确实到来，但你没有替降表背面的人留下更多文字。"
+      "title": "Jianye · The Final Game of the Realm",
+      "why": "Sun Hao surrenders with bound hands and an open casket. Conclude the final hand of the century-long war and seal the reunion of all under heaven.",
+      "win": "The Three Kingdoms return to one! A century of heroism and sorrow settles into historical annals, leaving behind legends that outlast stone.",
+      "loss": "Desperate resistance causes senseless destruction, dragging the ruin of the southland into bitter ashes."
     }
   },
   "zuizhong": {
-    "era": "无纪年",
-    "source": "写卷人原创 · 残卷终章",
-    "record": "这一页没有可考的历史事件。它回收你在此前旧页留下的生命、选择与代价，让叙事者本人接受不能预知下一张牌的规则。",
-    "adaptation": "写卷人是全书虚构角色。牌局之后，封卷、还史与撕卷分别代表保存改写、恢复原卷和接受未知，没有标准答案。",
-    "lead": "你从桃园读到归晋，救过人也见过兵败。现在，那个总在页边写注的人终于承认：只有你还从未向他问过执笔之权。",
+    "era": "Undated",
+    "source": "Chronicler's Original Creation · Remnant Scroll Finale",
+    "record": "The original remnant scroll closes here. The narrator who annotated the margins throughout the five scrolls lays down his brush, inviting the player to play one final hand over the cards.",
+    "adaptation": "A duel against the Chronicler himself. He knows all history and lore, except for the randomness of the cards before you. Cards are honest and can be verified.",
+    "lead": "You have read from the Peach Garden to the Return to Jin, saving lives and witnessing defeats. Now, the man who always penned notes in the margins finally concedes: only you have never asked him for the right to hold the brush.",
     "skirmish": {
-      "title": "Skirmish: 残卷深处 · 笔墨试探",
-      "why": "写卷人先用你熟悉的旧句试探，要看你是否只会重复曾经赢过的答案。通过这一阵，他才肯真正落座。",
-      "win": "旧句被拆去预设，写卷人不能再以全知语气免除自己的选择；最终牌桌向你开放。",
-      "loss": "你仍被旧页中的经验牵着走，他提笔添一个“又”字；最后一问暂时关闭。"
+      "title": "Depths of the Remnant Scroll · Testing the Ink",
+      "why": "The Chronicler raises doubts about your journey across the chapters. You must show that your choices were guided by human honor, not mere curiosity.",
+      "win": "The Chronicler smiles and slides his chair back, inviting you to sit as an equal across the final green felt table.",
+      "loss": "Hesitating in your answers, you are treated as a mere passive reader of history rather than a co-author of fate."
     },
     "boss": {
-      "title": "Climax: 最后一页 · 与叙事者对赌",
-      "why": "他写过所有人的来路，你却要他在未知牌序前承担选择。赢他，决定谁有权替这部书写下结局。",
-      "win": "封卷、还史、撕卷三件事同时交到你手上；你可保存野史、归还原命，或让三国从此没有终稿。",
-      "loss": "改写暂退页边，但你的座位没有被抹去；史鉴留下后，你仍可回来重新问他。"
+      "title": "The Final Page · Wager with the Narrator",
+      "why": "The Chronicler is omniscient in history—except for the cards dealt this turn. Play with clarity, truth, and heart to complete the chronicle.",
+      "win": "The final hand is played to completion! The Chronicler rolls up the remnant scroll and hands you the brush: 'The history belongs to the past; the next story is yours to write.'",
+      "loss": "The hand ends unsettled, and the book closes with unanswered questions waiting for another read."
     }
   },
   "xianshan": {
-    "era": "191–192 年",
-    "source": "《三国志·孙破虏讨逆传》·《三国演义》第七回",
-    "record": "孙坚击刘表,围襄阳,单马逐岘山,中伏矢石而死,年三十七。演义将细节归于吕公设伏,黄祖此前已败于孙坚。",
-    "adaptation": "本回让黄祖与蔡瑁同桌:黄祖赢过孙坚一次的机会,全在「伏」字;你要替猛虎读出竹影里的箭。",
-    "lead": "洛阳的火还没熄,玉玺还揣在孙坚怀里。襄阳城头有人算了算:猛虎死于追击的概率,比死于正面高得多。",
+    "era": "191–192 AD",
+    "source": "Records of the Three Kingdoms · Biography of Sun Jian / Romance of the Three Kingdoms Ch. 7",
+    "record": "Sun Jian attacked Liu Biao, besieged Xiangyang, and pursued alone into Mount Xian where he was killed by ambushing arrows and rocks at age thirty-seven. The Romance attributes the ambush to Lu Gong under Huang Zu.",
+    "adaptation": "This chapter seats Huang Zu and Cai Mao together: Huang Zu's sole chance to fell Sun Jian lies in the word 'ambush'. You must read the flying arrows hidden in the bamboo shadows.",
+    "lead": "The fires of Luoyang have not cooled, and the Imperial Seal rests in Sun Jian's tunic. Atop Xiangyang's walls, scouts calculate: a tiger dies far easier during reckless pursuit than in open battle.",
     "skirmish": {
-      "title": "Skirmish: 邓塞 · 竹影疑兵",
-      "why": "溃逃的吕公部穿过竹林,人影与竹影搅作一处。先辨清这阵乱是真的溃逃还是请君入瓮,才谈得上追击。",
-      "win": "竹影被识破,伏兵露形,孙坚的前锋不再盲目深入;岘山的主局得以在你看清地形后展开。",
-      "loss": "前锋被竹影拖住,阵形在追击中散开;岘山的伏兵以逸待劳,主力未战先疲。"
+      "title": "Dengsai · Bamboo Shadow Feint",
+      "why": "Crossbows lie concealed in bamboo groves, waiting for the Jiangdong vanguard to rush forward. You must identify the hidden scouts before the tiger dashes blindly.",
+      "win": "The false lines are uncovered, giving Sun Jian time to deploy into formation. The ambush in the ravines loses its surprise.",
+      "loss": "The vanguard charges heedlessly into the bamboo groves. Rushing arrows break Sun Jian's forward momentum.",
+      "lossNote": "Do not let victory breed reckless haste in narrow paths."
     },
     "boss": {
-      "title": "Climax: 岘山 · 乱箭与猛虎",
-      "why": "黄祖要以乱箭与地形留下孙坚,蔡瑁掌水路退路。你要让猛虎在竹密之处慢下来,又不磨掉他敢战的心。",
-      "win": "孙坚拨转马头,江东的基业不折于起笔;黄祖折箭为誓,荆襄之争留给下一代。",
-      "loss": "猛虎殒于竹影,孙策提前接过复仇的旗;史鉴会告诉你,虎失于怒,不失于勇。"
+      "title": "Mount Xian · Flying Arrows and the Tiger",
+      "why": "Huang Zu relies on rugged mountain trails and traps to lure Sun Jian deep into the gorge. You must outplay his bluffs before arrows blot out the sky.",
+      "win": "The ambush is broken and Sun Jian survives the mountain pass. The Tiger of Jiangdong lives to reshape the future of the southland.",
+      "loss": "Arrows rain down from the slopes, and the Tiger falls upon the mountain trail. History records another brilliant life cut short in haste."
     }
   },
   "jieqiao": {
-    "era": "191–192 年",
-    "source": "《三国志·袁绍传》《公孙瓒传》·《后汉书》",
-    "record": "界桥之战,袁绍以麹义八百先登破公孙瓒白马义从,强弩雷发。赵云此时在公孙瓒军中,初显身手。",
-    "adaptation": "本回把先登弩阵写成可读的节奏:麹义的盾与弩各有节拍,数清节拍,白马才有半渡之外的第二种冲法。",
-    "lead": "幽州的白马号称天下第一骑,河北的先登号称天下第一弩。两样名号在界桥两岸相遇,夹着一条不宽的河。",
+    "era": "191–192 AD",
+    "source": "Records of the Three Kingdoms · Yuan Shao & Gongsun Zan / Book of the Later Han",
+    "record": "Yuan Shao and Gongsun Zan clashed at Jieqiao. Qu Yi's Xiandeng Corps used shield walls and heavy crossbows to devastate Gongsun Zan's famed cavalry, marking a pivotal shift in northern dominance.",
+    "adaptation": "This chapter pits infantry crossbows against swift cavalry. Zhao Yun makes his maiden battlefield debut, turning a desperate rear-guard defense into a legendary counterattack.",
+    "lead": "The White Horse Cavalry of Youzhou were hailed as the finest riders under heaven; the Xiandeng Corps of Hebei were hailed as the finest crossbowmen. They meet on the banks of Jieqiao.",
     "skirmish": {
-      "title": "Skirmish: 界桥 · 先登拦路",
-      "why": "麹义的八百人不见马就上弩。你要先数清他盾落弩张的节奏,再决定白马以何种队形过河。",
-      "win": "先登的节拍被记下,白马分队的路线有了依据;文丑的铁枪失去以逸待劳的便宜。",
-      "loss": "白马在河滩挤作一团,先登的弩不挑人;半渡而溃,界桥先输一阵。"
+      "title": "Jieqiao · The Crossbow Bastion",
+      "why": "Qu Yi's shield wall holds steady across the bridgehead, daring the horsemen to charge. You must absorb their initial volley before committing your chips.",
+      "win": "The front rank absorbs the crossbow barrage without breaking. The bridgehead remains contested, opening a path for cavalry flanking.",
+      "loss": "The cavalry charge blindly into repeating bolts. The horses scatter in panic, leaving the bridgehead in enemy control."
     },
     "boss": {
-      "title": "Climax: 界桥 · 白马对铁枪",
-      "why": "文丑替袁绍压阵,枪沉而心躁。你要让公孙瓒听进赵云一句谏,别把全部骑兵押在一次冲锋上。",
-      "win": "河北中军退回界桥以北,赵云之名初动幽燕;白马义从败而不散,尚有再战之力。",
-      "loss": "白马成排倒在半渡,公孙瓒自此只信高墙深堑;赵云的枪,只能先替退路开道。"
+      "title": "Jieqiao · White Horses and Iron Spears",
+      "why": "Wen Chou leads the pursuit while Zhao Yun strides forward with his spear. You must balance defense and timely counter-thrusts to reverse the tide.",
+      "win": "Zhao Yun's spear halts Wen Chou's elite charge, securing Gongsun Zan's survival and carving a hero's name into northern lore.",
+      "loss": "The white horse banners fall, and Yuan Shao claims undisputed dominion over Hebei as history ordained."
     }
   },
   "shenting": {
-    "era": "195 年",
-    "source": "《三国志·太史慈传》《孙策传》·《三国演义》第十五回",
-    "record": "孙策征刘繇,与太史慈独斗于神亭,夺戟披甲,未分胜负。太史慈后困于泾县,降于孙策,执手曰「天下智谋之士,岂止一人」。",
-    "adaptation": "本回把这场单挑写成必须「打满」的一局:胜负不在回合数,在两人是否都见到了对方的真本事。",
-    "lead": "斥候报孙策只带十二骑探营,太史慈提枪便追。旁人劝他再等等,他说:机会与险,向来同一个名字。",
+    "era": "195 AD",
+    "source": "Records of the Three Kingdoms · Taishi Ci & Sun Ce / Romance of the Three Kingdoms Ch. 15",
+    "record": "Sun Ce fought Taishi Ci at Shenting Ridge. Both generals grappled on horseback until Sun Ce seized Taishi Ci's halberd and Taishi Ci took Sun Ce's helmet, proving their martial match.",
+    "adaptation": "A pure, honorable clash of warriors. The table strips away armies and deceit, letting two champions measure each other's heart through unyielding bets.",
+    "lead": "Scouts reported that Sun Ce rode with only twelve men to inspect the camp; Taishi Ci mounted his steed alone to give chase. Opportunities and perils always bear the same name.",
     "skirmish": {
-      "title": "Skirmish: 曲阿 · 府卫拦路",
-      "why": "刘繇的府卫不认得太史慈的独来独往,先把岭路封死。你要让这一架打得起来,先得让看门的人让开。",
-      "win": "府卫让路,神亭岭的土留给了两个真正想交手的人;单挑得以不被军令搅局。",
-      "loss": "岭路被军令封死,单挑变成乱战;两件兵器都没有得到交手的体面。"
+      "title": "Qu'a · Guard Patrol Interception",
+      "why": "Retainers attempt to intervene in the private challenge. You must hold back meddling escorts so the duel remains pure.",
+      "win": "The path is cleared, leaving Shenting Ridge to two warriors who genuinely wish to test their mettle.",
+      "loss": "Escorts flood the pass and the duel descends into chaotic brawl, depriving both champions of their honor."
     },
     "boss": {
-      "title": "Climax: 神亭岭 · 戟折甲裂",
-      "why": "太史慈不求胜过孙策,只求打满全场。你要克制替人分胜负的手,让两人在力竭处见到彼此的真性情。",
-      "win": "断戟与裂甲都成了信物;不打不相识,东莱之枪自此认得江东之主。",
-      "loss": "单挑被你插手搅局,胜者不服,败者不平;史鉴只留一句:看客之手,掀翻牌桌。"
+      "title": "Shenting Ridge · Broken Halberd and Torn Armor",
+      "why": "Taishi Ci seeks not merely victory, but to push every limit against Sun Ce. You must withhold external interference and let exhaustion reveal true valor.",
+      "win": "A shattered halberd and torn helmet become tokens of eternal respect. Through combat, the hero of Donglai recognizes the Lord of Jiangdong.",
+      "loss": "Unwanted interference ruins the duel. Neither victor nor vanquished is satisfied, and the table is overturned in frustration."
     }
   },
   "baima": {
-    "era": "200 年春",
-    "source": "《三国志·关羽传》《武帝纪》·《三国演义》第二十五回",
-    "record": "袁绍遣颜良围白马,关羽望见颜良麾盖,刺良于万众之中,策马刺良而还。文丑随后至延津,军乱,死于乱军。",
-    "adaptation": "本回把白马、延津写成连战两阵:颜良死于骄,文丑死于躁。云长的刀之外,真正要读的是两将各自的性子。",
-    "lead": "颜良连斩二将,曹营无人敢应。曹操不看诸将,只看那个始终背对战报的人——他知道那口刀在等一封信的消息。",
+    "era": "200 AD · Spring",
+    "source": "Records of the Three Kingdoms · Guan Yu & Cao Cao / Romance of the Three Kingdoms Ch. 25",
+    "record": "Yuan Shao dispatched Yan Liang to besiege Baima. Guan Yu spotted Yan Liang's parasol standard, rode into the throng, and struck him down before returning with his head. Wen Chou subsequently arrived at Yanjin and was slain in the chaos of battle.",
+    "adaptation": "This chapter frames Baima and Yanjin as two consecutive battles: Yan Liang fell to arrogance, Wen Chou fell to impatience. Beyond Guan Yu's blade, the true task is reading the distinct temperaments of both generals.",
+    "lead": "Yan Liang slayed two champions in succession, and none in Cao Cao's camp dared answer. Cao Cao ignored his officers and watched only the one man standing with his back to the battlefield—waiting for news of a certain letter.",
     "skirmish": {
-      "title": "Skirmish: 黎阳 · 曹营先锋",
-      "why": "宋宪急于替旧主证明自己,抢下了头阵。你要护住这份急,又不能让白白的牺牲磨掉曹营再战的胆。",
-      "win": "先锋败退而阵脚未乱,曹营保留住了气力;云长出阵的时机成熟了。",
-      "loss": "先锋尽没,白马城下士气先折;云长即使出阵,也要先替全营的慌乱买单。"
+      "title": "Liyang · Vanguard of Cao Camp",
+      "why": "Song Xian rushed to prove his worth to his new master and claimed the vanguard. You must protect this urgency without letting a pointless sacrifice sap the camp's courage.",
+      "win": "The vanguard retreats in good order without breaking ranks, preserving the army's spirit. The hour for Guan Yu to strike has arrived.",
+      "loss": "The vanguard is wiped out, shattering morale beneath the walls of Baima. Guan Yu must bear the full cost of the camp's panic upon entry."
     },
     "boss": {
-      "title": "Climax: 白马延津 · 连诛二将",
-      "why": "颜良以连营与麾盖立威,文丑以铁骑与怒气追击。连战两阵,你要赢得一场比一场冷静。",
-      "win": "两阵皆破,两刀皆净;关羽把大功换成寻兄的路引,曹刘之间最后一层窗纸,就此捅破。",
-      "loss": "第一阵的胜冲昏了第二阵的头;河北双壁至少留下一壁,白马之围未解。"
+      "title": "Baima & Yanjin · Slaying the Twin Pillars",
+      "why": "Yan Liang commands respect with his banners; Wen Chou pursues with fury. In this two-stage battle, you must win with increasing coolness.",
+      "win": "Both battles are won, both blades strike true. Guan Yu trades glorious deeds for the road to find his brother, piercing the final veil between Cao and Liu.",
+      "loss": "Victory in the first clash clouds judgment in the second. At least one of Hebei's twin pillars survives, leaving the siege of Baima unbroken."
     }
   },
   "nanjun": {
-    "era": "209 年",
-    "source": "《三国志·周瑜传》《曹仁传》·《三国演义》第五十一回",
-    "record": "周瑜攻南郡岁余,先遣甘宁取夷陵,身中流矢仍起而励军;曹仁弃江陵走,南郡遂入吴,都督箭疮由是屡发。",
-    "adaptation": "本回把曹仁的守城写成一门「等你急」的手艺:城头的鼓专擂给周瑜的伤。你要替都督数他的换防,别数他的挑衅。",
-    "lead": "赤壁的火光才熄,荆州的旗还都姓曹。周瑜箭疮未愈便临江督战,而曹仁在江陵城头,已经备好了一面专门气他的鼓。",
+    "era": "209 AD",
+    "source": "Records of the Three Kingdoms · Zhou Yu & Cao Ren / Romance of the Three Kingdoms Ch. 51",
+    "record": "Zhou Yu and Cao Ren contested Nanjun for over a year. Zhou Yu was struck by an arrow in the right flank and suffered severe wounds, yet rallied his men to take Jiangling.",
+    "adaptation": "Cao Ren mounts an unyielding defense with drums and fortifications, while Zhou Yu fights through bleeding wounds. You must pace your aggression so Zhou Yu does not burn out before the city falls.",
+    "lead": "The fires of Red Cliffs had barely died down, and Jingzhou's banners still bore the name of Cao. Zhou Yu inspected the front despite his arrow wound, while atop Jiangling, Cao Ren readied war drums to mock him.",
     "skirmish": {
-      "title": "Skirmish: 夷陵 · 断后之路",
-      "why": "曹洪扼住夷陵道口,吴军若分兵取城,便要先过这道门。赢下他,甘宁的铃才响得到江陵侧翼。",
-      "win": "夷陵道开,吴军水陆并进;江陵侧翼受制,曹仁只剩正面可用。",
-      "loss": "夷陵不下,吴军不敢分兵;曹仁得以专心在江陵城下,与周瑜拼消耗。"
+      "title": "Yiling · Cutting the Rearguard",
+      "why": "Gan Ning seized Yiling but was encircled by Cao Ren's relief force. You must break through the surrounding lines to reinforce the garrison.",
+      "win": "The siege of Yiling is lifted, cutting Cao Ren's supply route and securing the flank of the Jiangling assault.",
+      "loss": "Yiling falls back to Cao forces. Gan Ning's detachment is decimated, dealing a blow to southland morale."
     },
     "boss": {
-      "title": "Climax: 江陵 · 箭疮与鼓",
-      "why": "曹仁的鼓专攻周瑜的怒与伤。你要让都督把每一次被激,都记成曹军换防的时刻。",
-      "win": "江陵城开,箭疮未裂;周瑜抚鼓三声送还曹仁,南郡入吴而都督不折寿。",
-      "loss": "疮因怒裂,虎将带伤强攻;城虽或下,都督的命数先赔了进去。"
+      "title": "Jiangling · The Arrow Wound and the Drum",
+      "why": "Cao Ren uses deep city defenses to drag out the siege. You must coordinate swift assaults to capture Jiangling before Zhou Yu's wound reopens.",
+      "win": "Jiangling is captured! Cao Ren retreats north, and Zhou Yu claims the crowning conquest of his strategic career.",
+      "loss": "The siege drags endlessly through winter. Zhou Yu collapses from infected wounds, leaving the southern campaign stalled."
     }
   },
   "tongguan": {
-    "era": "211 年",
-    "source": "《三国志·马超传》《武帝纪》《贾诩传》·《三国演义》第五十八回",
-    "record": "马超、韩遂联西凉十部反,曹操用贾诩离间之计,超、遂相疑而败。割须弃袍、许褚裸衣斗马超皆演义渲染。",
-    "adaptation": "本回把离间计写成牌桌上的一枚墨点:曹操与贾诩不靠兵力取胜,靠让马超自己看见那点墨。虎痴的勇,只是给墨点争取时间。",
-    "lead": "潼关的风沙里立着白袍银枪。马超把父仇押上桌时,曹操的中军帐里,贾诩正慢慢研墨——研的却不是战书。",
+    "era": "211 AD",
+    "source": "Records of the Three Kingdoms · Ma Chao, Cao Cao & Jia Xu / Romance of the Three Kingdoms Ch. 58",
+    "record": "In 211 AD, Ma Chao and Han Sui rebelled in Liangzhou and fought Cao Cao at Tongguan. Cao Cao severed their supplies and used Jia Xu's scheme of smear letters to sow distrust between Ma Chao and Han Sui, crushing the rebellion.",
+    "adaptation": "Ma Chao's ferocious bets represent raw frontier power. Cao Cao counters with ice fortifications and forged letters to divide the Liangzhou alliance.",
+    "lead": "Amidst the blowing sands of Tongguan stands a warrior in a white robe with a silver spear. As Ma Chao stakes his father's vengeance upon the table, Jia Xu quietly grinds ink—not for a war notice, but for a letter of suspicion.",
     "skirmish": {
-      "title": "Skirmish: 潼关 · 庞德先行",
-      "why": "马超的前锋庞德刀沉志决,先赢他一阵,曹操的渭南大营才有从容布垒的余地。",
-      "win": "前锋受挫,西凉军锋稍敛;渭水结冰与筑垒的时间,被你挣了出来。",
-      "loss": "庞德连破数营,曹操被迫背水列阵;离间的墨,还没研好就要见血。"
+      "title": "Tongguan · Pang De's Vanguard Charge",
+      "why": "Pang De leads the Liangzhou shock cavalry, seeking to stampede Cao Cao's outposts. You must withstand the assault with heavy shield lines.",
+      "win": "The iron charge is absorbed, stabilizing the river crossing and granting Cao Cao time to build his ice fortifications.",
+      "loss": "The outposts are overrun, cutting off Cao Cao's supplies along the Wei River."
     },
     "boss": {
-      "title": "Climax: 渭南 · 马超与虎痴",
-      "why": "马超的怒气是筹码的来源,许褚的勇是挡箭的墙。你要让那封信上的墨点,恰好落在马超看得见的地方。",
-      "win": "西凉军自相疑散,曹操抚须而笑;马超单骑西去,恨意未消,方向已乱。",
-      "loss": "铁骑冲透冰城,割须弃袍成真;离间未行,凉州之怒先烧穿了渭南。"
+      "title": "South of River Wei · The Tiger General and the Wedge",
+      "why": "Ma Chao and Xu Chu duel in blinding fury while Jia Xu slips altered correspondence between the coalition lords. Win by patience rather than matching his reckless bets.",
+      "win": "The smear letter does its work: Ma Chao and Han Sui turn on each other, dissolving the Liangzhou coalition and driving Ma Chao into exile.",
+      "loss": "The smear tactic is exposed, uniting the western lords into an unstoppable fury that drives Cao Cao into the river."
     }
   },
   "ruxu": {
-    "era": "213 年",
-    "source": "《三国志·甘宁传》《吴主传》·《三国演义》第六十八回",
-    "record": "曹操号四十万攻濡须,甘宁率百骑夜劫曹营,斩敌而还,不折一人。孙权曰:孟德有张辽,孤有兴霸,足相敌也。",
-    "adaptation": "本回把百骑劫营写成一场「耳目之战」:曹营的四十万人不是输给一百骑,是输给自己不知道来了多少骑。",
-    "lead": "四十万人的营火把江面照成了白昼。孙权案上摆着一百枚铜铃——兴霸要借的不是夜色,是曹操的疑心。",
+    "era": "213 AD",
+    "source": "Records of the Three Kingdoms · Gan Ning & Sun Quan / Romance of the Three Kingdoms Ch. 68",
+    "record": "In 213 AD, Cao Cao led a massive army to Ruxu. Gan Ning led a hundred horsemen on a night raid into Cao Cao's forward camp without losing a man, prompting Sun Quan's praise: 'Mengde has Zhang Liao, but I have Gan Xingba.'",
+    "adaptation": "The battle of the hundred copper bells. Speed and intimidation rule this skirmish: win chips swiftly before enemy reinforcements arrive with each hand.",
+    "lead": "Campfires of four hundred thousand troops turned the river surface into broad daylight. On Sun Quan's desk lay one hundred copper bells—what Xingba sought to borrow was not the night, but Cao Cao's innate suspicion.",
     "skirmish": {
-      "title": "Skirmish: 皖口 · 乐进之锋",
-      "why": "魏军前锋乐进先登惯战,要趁吴军新集冲一阵。稳住他,坞里的百骑才领得到出城的军令。",
-      "win": "前锋之势被挫,濡须坞立稳;百骑的军令,终于发到了甘宁手里。",
-      "loss": "前哨失守,吴军被迫守坞;铃还没响,先折了出击的名分。"
+      "title": "Wankou · Yue Jin's Forward Thrust",
+      "why": "Yue Jin advances aggressively along the riverbank to seize the locks. You must repulse his scouting ships before nightfall.",
+      "win": "The riverbank is secured, driving back northern scouting boats and shielding Gan Ning's staging area.",
+      "loss": "The locks are captured, forcing Jiangdong's fleet to retreat into the open river."
     },
     "boss": {
-      "title": "Climax: 濡须坞 · 铃响三遍",
-      "why": "曹操把疑心布满四十万营,也把破绽留在每一处疑心。你要让铃声响在曹操想象不到的方向。",
-      "win": "百骑归来,一枚铃不少;曹操叹「孙权不可急图」,班师回许。",
-      "loss": "铃响得太早,营中的慌乱醒了过来;回来的铃串,从此缺了三十枚。"
+      "title": "Ruxu Citadel · Three Rings of the Bell",
+      "why": "Gan Ning rides into the enemy camp with feathers in helmets and ringing bells. You must execute lightning raids and withdraw before the main body can react.",
+      "win": "A hundred riders tear through the grand camp and return without losing a man! Cao Cao sighs in awe of Jiangdong's valor.",
+      "loss": "The riders are surrounded by overwhelming reinforcements, and the legendary night raid ends in tragedy."
     }
   },
   "jiameng": {
-    "era": "214 年",
-    "source": "《三国志·马超传》《张飞传》·《三国演义》第六十五回",
-    "record": "马超投张鲁后攻葭萌,与张飞战,挑灯夜斗之说是演义名段。其后马超降刘备,蜀汉由此得一大将。",
-    "adaptation": "本回把「挑灯夜战」写成胜负之外的一局:两杆最烈的枪要打满,打到火把烧短,打到枪自己开始说话。",
-    "lead": "渭南的败兵到了葭萌关下。张飞听说来的是马超,先笑了三声,然后让人把当年戒酒的誓书,压在了案角。",
+    "era": "214 AD",
+    "source": "Records of the Three Kingdoms · Ma Chao & Zhang Fei / Romance of the Three Kingdoms Ch. 65",
+    "record": "Ma Chao surrendered to Liu Bei and advanced on Chengdu, causing Liu Zhang to surrender without further bloodshed. The duel under torches between Ma Chao and Zhang Fei at Jiameng Pass is an iconic literary chapter in the Romance.",
+    "adaptation": "A relentless night duel under torchlight. Two fierce tigers exchange blow for blow: you must maintain high stamina and match every raise without losing focus.",
+    "lead": "The routed warriors of Weinan arrived at Jiameng Pass. Hearing that Ma Chao was at the gate, Zhang Fei laughed three times and placed his solemn pledge to abstain from wine beneath the corner of his desk.",
     "skirmish": {
-      "title": "Skirmish: 巴西 · 马岱试锋",
-      "why": "马岱替兄长先探关防,刀法沉实。赢下这场试探,马超才肯亲自到关前叫阵。",
-      "win": "试探被识破,马岱收刀回阵;葭萌关的正戏得以开锣。",
-      "loss": "关前折了锐气,马超改攻为困;夜战的火把,点不起来。"
+      "title": "Baxi · Ma Dai Probing the Lines",
+      "why": "Ma Dai challenges before the walls to test the pass defense. You must repel him cleanly without wasting your main forces.",
+      "win": "Ma Dai is driven back, clearing the stage for the true champion of the western march.",
+      "loss": "Ma Dai manages to bait your forces out of position, forcing an awkward deployment before Ma Chao arrives."
     },
     "boss": {
-      "title": "Climax: 葭萌关 · 挑灯夜战",
-      "why": "张飞要打得痛快,马超要打出退路。两百盏火把之下,你要数的不是回合,是两杆枪何时开始敬重彼此。",
-      "win": "火把烧短,两虎相惜;西凉的枪找到了新的方向,蜀汉再添一将。",
-      "loss": "急于替张飞找胜机,反而打断了枪想说的话;马超闭门不出,谁也请不动。"
+      "title": "Jiameng Pass · Night Duel by Torchlight",
+      "why": "Ma Chao and Zhang Fei fight from daylight into midnight, refusing to yield a single inch. You must call every raise and outlast his stamina.",
+      "win": "Fierce combat yields to mutual admiration. Ma Chao throws in his lot with Liu Bei, sealing the capitulation of Chengdu.",
+      "loss": "Exhaustion breaks your concentration in the dark. The duel is called off in frustration, leaving the western border contested."
     }
   },
   "daodan": {
-    "era": "215 年",
-    "source": "《三国志·鲁肃传》·《三国演义》第六十六回",
-    "record": "鲁肃邀关羽单刀赴会议荆州,双方伏兵相对而终未发。史载「单刀」实为诸将皆单刀,演义归于关羽独往之壮。",
-    "adaptation": "本回把酒宴写成牌局:鲁肃押的是「信」,伏兵等的是「刀」。谁先急,谁先输;关公的刀只要不拔,就是最大的筹码。",
-    "lead": "请帖写了三遍,措辞一遍比一遍客气。舱里坐好了刀斧手,帖上却只写着两个字:叙旧。",
+    "era": "215 AD",
+    "source": "Records of the Three Kingdoms · Biography of Lu Su / Romance of the Three Kingdoms Ch. 66",
+    "record": "In 215 AD, Guan Yu and Lu Su met at Lukou to negotiate the borders of Jingzhou. Both sides positioned soldiers a hundred paces away, with commanders bearing only single broadswords at the conference table.",
+    "adaptation": "A test of poise and righteous presence. Armed guards hide in the shadows; you must leverage Guan Yu's imposing aura to ensure words carry the weight of an army.",
+    "lead": "The invitation was rewritten three times, each version polite and graceful. Inside the cabin sat armed retainers, but the letter bore only two words: 'shared memories.'",
     "skirmish": {
-      "title": "Skirmish: 巴丘 · 丁奉设伏",
-      "why": "丁奉把短兵藏进案几之下,先寻酒宴的破绽。你先一步识破埋伏的位置,席上的话才有分量。",
-      "win": "伏兵位置尽知,宴席的主动权在握;鲁肃的道理只能在桌面上说。",
-      "loss": "伏兵成了悬在头顶的刀,席间的每一句话都先软了三分。"
+      "title": "Baqiu · Ding Feng's Concealed Line",
+      "why": "Jiangdong assassins hide along the riverside reeds. You must expose their presence so the banquet cannot be hijacked by surprise ambush.",
+      "win": "The hidden guards are revealed and neutralized. Guan Yu steps onto the barge with absolute moral authority.",
+      "loss": "The ambush remains concealed. Armed guards surround the jetty as soon as Guan Yu sets foot on the shore."
     },
     "boss": {
-      "title": "Climax: 陆口 · 江心一宴",
-      "why": "鲁肃讨的是荆州之信,关羽守的是兄弟之义。你要让借据与偃月刀都留在原处,只让话在桌上过招。",
-      "win": "刀未出鞘,账未撕破;一杯酒替荆州又买了几年太平。",
-      "loss": "杯落刀出,江心见血;两家同盟当场崩裂,曹操在北岸笑出了声。"
+      "title": "Lukou · Feast of the Single Blade",
+      "why": "Lu Su presses for the return of the southern commanderies while retainers await the signal. You must keep your hand on your blade and make mutual honor prevail over murder.",
+      "win": "Guan Yu laughs heartily, holding Lu Su by the hand to board his boat safely, leaving Jiangdong generals cowed in silent respect.",
+      "loss": "Tensions snap into open slaughter aboard the boat. Both commanders are wounded, destroying any pretense of alliance."
     }
   },
   "xiaoyaojin": {
-    "era": "215 年",
-    "source": "《三国志·张辽传》《吴主传》·《三国演义》第六十七回",
-    "record": "曹操征张鲁,张辽、李典、乐进以七千人守合肥。辽率八百陷阵,孙权围城十余日不克,撤军时几为辽所获;「张辽止啼」由此而来。",
-    "adaptation": "本回把八百勇士写成「趁乱」二字的具象:张辽赢的每一手,都是吴军自己先乱的那一手。十万人的阵站得稳,八百人便只是八百人。",
-    "lead": "合肥城门无声地开了,八百人的甲叶上没有一滴水——他们已等了一夜。城外,十万吴军刚拔完营。",
+    "era": "215 AD",
+    "source": "Records of the Three Kingdoms · Zhang Liao & Sun Quan / Romance of the Three Kingdoms Ch. 67",
+    "record": "In 215 AD, Sun Quan besieged Hefei with 100,000 troops. Zhang Liao led eight hundred deathsworn warriors at dawn, smashed into the Wu vanguard, and later routed Sun Quan at Xiaoyaojin bridge, securing legendary fame.",
+    "adaptation": "A devastating ambush at the river crossing. Zhang Liao attacks when you are midway across the water: establish your footing and hold the bridgehead before his sudden aggression sweeps your chips.",
+    "lead": "The gates of Hefei opened without a sound; not a drop of dew remained on the armor of eight hundred braves—they had waited all night. Outside, one hundred thousand Wu troops had just struck camp.",
     "skirmish": {
-      "title": "Skirmish: 施水 · 李典之稳",
-      "why": "李典布的阵讲究余地,专封吴军的退路。先过他这一关,津桥的木板才有时间修。",
-      "win": "阵脚立稳,渡桥有序;孙权的中军得以完整列阵。",
-      "loss": "退路被李典封住一半,吴军挤在河滩;张辽的冲锋未至,阵先自乱。"
+      "title": "Shi River · Li Dian's Steady Defense",
+      "why": "Li Dian holds the northern bank with archers to funnel the Wu host toward the bridge. You must stabilize your vanguard before the fatal choke point.",
+      "win": "The vanguard holds its line, securing a secondary crossing and avoiding complete congestion at the bridge.",
+      "loss": "Troops crowd blindly onto the narrow bridgehead, creating the exact kill-zone Zhang Liao prepared."
     },
     "boss": {
-      "title": "Climax: 逍遥津 · 半渡之桥",
-      "why": "张辽的刀永远落在吴军最乱的一处。你要让十万人在半渡时仍是一个整体,替凌统的断后留住退路。",
-      "win": "津桥稳渡,凌统得还;张辽收刀入鞘,吴人记住了合肥,也记住了自己的乱。",
-      "loss": "津桥一断,凌统的三百亲兵留在了对岸;江东的夜哭,从此有了名字。"
+      "title": "Xiaoyaojin · The Severed Bridgehead",
+      "why": "Zhang Liao roars into the fray with thunderous ferocity, targeting Sun Quan's command chariot. You must sacrifice secondary chips to leap the broken bridge to safety.",
+      "win": "Sun Quan leaps his horse across the severed planks! The command staff escapes, though Zhang Liao's name will terrify southland children for generations.",
+      "loss": "Trapped on the bridgehead, the command chariot is overrun. Sun Quan is captured, and Wu's northern ambitions end forever."
     }
   },
   "tianshui": {
-    "era": "228 年春",
-    "source": "《三国志·姜维传》·《三国演义》第九十三回",
-    "record": "诸葛亮一出祁山,天水中郎将姜维识破调虎离山之计,反设伏大败赵云;后为马遵所疑,降蜀,亮曰「此人凉州上士」。",
-    "adaptation": "本回把收姜维写成「请」的一局:他的先手来自读遍丞相旧稿,你要用同一份旧稿反锁他,再让丞相递出那封信。",
-    "lead": "三郡望风而降,只有天水城头,站着一个把丞相疑兵一一识破的少年。赵云回营后沉默良久,只说了四个字:枪法有源。",
+    "era": "228 AD · Spring",
+    "source": "Records of the Three Kingdoms · Biography of Jiang Wei / Romance of the Three Kingdoms Ch. 93",
+    "record": "In 228 AD, during the first northern expedition, Jiang Wei saw through Zhuge Liang's diversionary tactics. Abandoned by Tianshui's governor Ma Zun, Jiang Wei surrendered to Zhuge Liang, who was overjoyed to find his true successor in military science.",
+    "adaptation": "A duel of recognizing genius. You must outwit Jiang Wei's defensive counter-maneuvers, then use honor and sincerity to convince this brilliant youth to embrace the legacy of Han.",
+    "lead": "Three commanderies surrendered at the sound of the drums; only atop Tianshui's ramparts stood a youth who saw through every feint of the Prime Minister. Returning to camp, Zhao Yun remained silent for a long time before speaking four words: 'His spear has pedigree.'",
     "skirmish": {
-      "title": "Skirmish: 冀城 · 郡兵之阵",
-      "why": "郡兵的阵图出自姜维之手,先破外围,才能与那位少年隔桌相望。",
-      "win": "外围既破,冀城门开;姜维亲自出城,来看这个读懂他阵图的人。",
-      "loss": "郡兵之阵反而困住前锋;连他的面都见不到,遑论收服。"
+      "title": "Jicheng · Defense of the Commandery Garrison",
+      "why": "Jiang Wei deploys the local garrison with textbook precision, blunting Zhao Yun's vanguard. You must probe his deployment without suffering heavy losses.",
+      "win": "The defense is respected and contained. Jiang Wei is separated from corrupt superiors who suspect his loyalty.",
+      "loss": "Underestimating the youth, the vanguard suffers a sharp rebuff, throwing the Tianshui encirclement into disarray."
     },
     "boss": {
-      "title": "Climax: 天水 · 少年之先",
-      "why": "姜维的每一步都是先手,因为你的每一步他都读过。要赢他,得让他发现:自己真正想守的,不是马遵的城。",
-      "win": "少年一揖到地,蜀营多了一个读遍丞相旧稿的名字;北伐的名单,从此改写。",
-      "loss": "急于收服反被将计就计;他守土之志更坚,丞相只能另寻传人。"
+      "title": "Tianshui · The Brilliant Youth at the Gate",
+      "why": "Jiang Wei is locked outside the walls by his suspicious prefect. You must open your arms with utmost sincerity to welcome this peerless mind into your ranks.",
+      "win": "Jiang Wei kneels in tears before Zhuge Liang, receiving the mantle of Shu Han's strategy and northern aspirations.",
+      "loss": "Suspicion hardens Jiang Wei's heart. He cuts his way north to Luoyang, becoming a formidable nemesis rather than a beloved heir."
     }
   },
   "chencang": {
-    "era": "229 年",
-    "source": "《三国志·诸葛亮传》《曹真传》附郝昭事·演义第九十七、九十八回",
-    "record": "诸葛亮二出散关围陈仓,郝昭以千余人拒守,云梯、冲车、地道、内应轮番破之;亮粮尽退军,魏将王双追击,被斩。",
-    "adaptation": "本回把攻城写成读人:郝昭守的不是城,是一个「信」字。云梯火箭之外,真正要算的是他的粮与长安的援军谁先到。",
-    "lead": "陈仓城小得像一枚棋子,守它的人却千人当万。云梯烧到第二十排时,连魏延都开始重数日子。",
+    "era": "229 AD",
+    "source": "Records of the Three Kingdoms · Zhuge Liang & Cao Zhen (Hao Zhao) / Romance of the Three Kingdoms Ch. 97-98",
+    "record": "In 228–229 AD, during the second northern expedition, Zhuge Liang besieged Chencang. Wei commander Hao Zhao held the small fortress with only a thousand men for over twenty days against siege ladders and battering rams until Shu supplies ran out.",
+    "adaptation": "A siege against an immovable stone. Hao Zhao counters every siege tactic you play; you must balance siege aggression against relentless attrition before your rations empty.",
+    "lead": "Chencang was as tiny as a single chess piece, yet its defender stood as a thousand against ten thousand. By the time the twentieth row of scaling ladders burned, even Wei Yan began recounting the remaining calendar days.",
     "skirmish": {
-      "title": "Skirmish: 散关 · 王双之锤",
-      "why": "王双的流星锤为援军开道,先挡住他,陈仓城下的攻具才搭得起来。",
-      "win": "猛将受挫,援路迟滞;陈仓被围的时间,掌握在了攻方手里。",
-      "loss": "锤开散关,粮道与援路俱通;攻城的每一日,都在替守城的人计功。"
+      "title": "San Pass · Wang Shuang's Heavy Hammer",
+      "why": "Wang Shuang leads fierce cavalry to reinforce the siege perimeter. You must ambush and eliminate this brute warrior to clear the approach to Chencang.",
+      "win": "Wang Shuang is slain in the defile, eliminating Wei's mobile strike force outside Chencang's walls.",
+      "loss": "Wang Shuang's hammer scatters the engineering corps, destroying critical siege catapults."
     },
     "boss": {
-      "title": "Climax: 陈仓 · 云梯与书信",
-      "why": "郝昭不与你斗气,只与你比「谁先到」。劝降信与云梯轮番上阵,你要算清炊烟、粮道与援军的赛跑。",
-      "win": "斩王双,全师而退;郝昭守住了城,丞相赢得了陇右的从容——这一仗两人都没输。",
-      "loss": "云梯烧尽,援军已至;强攻之失,成为二次北伐最疼的一课。"
+      "title": "Chencang · Scaling Ladders and Counter-Flames",
+      "why": "Hao Zhao ignites siege towers with flaming arrows and digs counter-trenches against mining. You must crack his fortified defenses before your grain wagons run dry.",
+      "win": "Through ingenuity and relentless pressure, Chencang's stubborn bastions are breached, unlocking the direct route across the Wei River.",
+      "loss": "Hao Zhao holds like an iron rock. With provisions exhausted and Cao Zhen's relief army drawing near, the siege must be abandoned."
     }
   },
   "shangfanggu": {
-    "era": "234 年春",
-    "source": "《三国演义》第一百三回·《晋书·宣帝纪》",
-    "record": "上方谷(葫芦谷)火计为演义情节:魏延诱司马懿父子入谷,火起而天降大雨,父子得脱。正史无此事,唯渭滨相持为真。",
-    "adaptation": "本回给这场著名的「天意」一个还手的机会:雨一定会来,但火与雨的先后,由牌桌上出手的快慢决定。",
-    "lead": "渭水的冰化了又结。蜀军屯田,魏军筑垒,两军隔水种着同一场秋收。而谷口堆好的干柴,只欠一个肯走进来的人。",
+    "era": "234 AD · Spring",
+    "source": "Romance of the Three Kingdoms Ch. 103 / Book of Jin · Annals of Emperor Xuan",
+    "record": "The Romance recounts Zhuge Liang trapping Sima Yi and his sons in Shangfang Valley (Gourd Valley) with hidden oil and gunpowder, only for a sudden downpour to extinguish the flames. Historical sources note Sima Yi strictly adhered to defense without engaging.",
+    "adaptation": "Trapping the wolf in the valley. You must use grain carts to lure Sima Yi into the gorge, ignite the inferno, and race against an impending rainstorm before destiny steps in.",
+    "lead": "The ice on the Wei River melted and froze again. The Shu army tilled the fields while the Wei army built ramparts—both sides cultivating the same autumn harvest across the water. Yet the dry timber piled at the valley mouth lacked only one man willing to step inside.",
     "skirmish": {
-      "title": "Skirmish: 渭滨 · 垒间斥候",
-      "why": "魏垒斥候专探木牛流马的去向。先赢下粮道耳目之战,弃粮的饵才有人肯吞。",
-      "win": "耳目既通,粮车动线尽在掌中;北原的饵,顺利挂上了钩。",
-      "loss": "粮道虚实先泄,饵未设而形已露;司马父子愈不敢出垒。"
+      "title": "Wei Riverbank · Scouts Along the Ramparts",
+      "why": "Sima Yi keeps his gates shut under orders. You must parade wooden transport oxen loaded with grain to bait his scouts into launching a sortie.",
+      "win": "The bait is taken. Believing Shu supplies are vulnerable, Sima Yi rides forth to seize the transport convoy.",
+      "loss": "Sima Yi suspects a trap and remains immovably entrenched behind his earthen ramparts."
     },
     "boss": {
-      "title": "Climax: 上方谷 · 火与雨",
-      "why": "司马懿的谨慎与司马昭的进取在同一谷口分兵。你要让父子的步调错开半日,让火起在雨前。",
-      "win": "火尽功成,雨落事后;司马氏自此坚壁不出,渭南的秋收姓了蜀。",
-      "loss": "雨快过火半刻,谷中父子于雨中大笑;人事已尽,天时先翻。"
+      "title": "Shangfang Valley · Fire and Rain",
+      "why": "Sima Yi and his sons are trapped in Gourd Valley as flames roar around them! You must press your winning advantage before sudden rain quenches the fire.",
+      "win": "The flames consume the gorge completely before rain can fall! The father and sons of Sima fall in the valley, rewriting the destiny of Jin.",
+      "loss": "A torrential downpour drenches the valley as history sorrowfully recorded. Sima Yi escapes through the mud, and Zhuge Liang sighs to the heavens."
     }
   },
   "tielongshan": {
-    "era": "255 年",
-    "source": "《三国志·姜维传》《郭淮传》·《三国演义》第一百九回",
-    "record": "姜维洮西大胜,进围狄道;魏以陈泰、郭淮解围。演义把此役写作铁笼山困司马昭、郭淮中箭等情事。",
-    "adaptation": "本回采用演义铁笼山框架,把胜负写在「围外」:围山的人先要赢下山外的路——羌人、粮道与郭淮的「借」字。",
-    "lead": "洮水一战,魏军折了数万。铁笼山上无水,山下的人却不慌——因为围局之外,还有一条借羌兵的路。",
+    "era": "255 AD",
+    "source": "Records of the Three Kingdoms · Jiang Wei & Guo Huai / Romance of the Three Kingdoms Ch. 109",
+    "record": "In 253–255 AD, Jiang Wei besieged Sima Zhao atop Mount Tielong, severing their water springs. Sima Zhao prayed at the fountainhead until water miraculously surged, after which Guo Huai allied with Qiang tribesmen to break Jiang Wei's siege.",
+    "adaptation": "A siege of severed water sources. Mount Tielong lacks water, but external roads can bring Qiang reinforcements; hold the springhead while countering Guo Huai's counter-encirclement.",
+    "lead": "In the battle at River Tao, Wei lost tens of thousands. There was no water atop Mount Tielong, yet the men below were not alarmed—for beyond the siege, there was a road to enlist Qiang cavalry.",
     "skirmish": {
-      "title": "Skirmish: 狄道 · 昭营试探",
-      "why": "困兽也要伸爪。挡住山上下来的试探之兵,围城的栅栏才立得稳。",
-      "win": "试探受挫,山上水源愈紧;三日之约,开始倒数。",
-      "loss": "围栅被撕开一角,军心浮动;郭淮的援军未至,围局先松。"
+      "title": "Didao · Probing Sima Zhao's Outposts",
+      "why": "Sima Zhao's vanguard fortifies the base of Mount Tielong. You must push them up the arid slopes before they link with relief columns.",
+      "win": "The enemy is driven up the waterless mountain, severing their access to the Tao River valley.",
+      "loss": "The vanguard holds the riverbank wells, rendering the water-cutoff strategy ineffective."
     },
     "boss": {
-      "title": "Climax: 铁笼山 · 围与路",
-      "why": "郭淮不与你斗围,只拆你的围。羌道、粮道、水道,三条路守得住一条,围局就成立。",
-      "win": "羌道不失,援军落空;司马昭捧着最后一囊水议和退兵,陇右门户为蜀而开。",
-      "loss": "羌人的火烧回自家营盘;围山者反被围,姜维含恨退守剑阁。"
+      "title": "Mount Tielong · The Siege and the Mountain Springs",
+      "why": "Guo Huai leads Qiang allies to flank your rear while water springs miraculously flow on the hill. Fight off the counter-siege to maintain your northern footholds.",
+      "win": "The relief column is ambushed and turned back. Mount Tielong surrenders, scoring Jiang Wei's greatest northern conquest.",
+      "loss": "Guo Huai's flanking force cuts your retreat. Jiang Wei must withdraw to Hanzhong as history recorded."
     }
   },
   "huainan": {
-    "era": "255–258 年",
-    "source": "《三国志·毌丘俭传》《诸葛诞传》《晋书》·演义第一百十至一百十二回",
-    "record": "王凌(251)、毌丘俭(255)、诸葛诞(257-258)三叛淮南,皆败。毌丘俭败死,诸葛诞据寿春,城破夷三族,文鸯单骑退追兵。",
-    "adaptation": "本回以后两叛为连战两阵:毌丘俭败于粮与内应,诸葛诞败于疑与等。文鸯的枪是淮南最后的门,但门不是城。",
-    "lead": "司马懿死后,淮南竖起了第一道讨贼檄。此后四年,同样的火在这片土地上烧了三次,名字换了,句子没换。",
+    "era": "255–258 AD",
+    "source": "Records of the Three Kingdoms · Guanqiu Jian & Zhuge Dan / Book of Jin / Romance Ch. 110-112",
+    "record": "Between 251 and 258 AD, three successive rebellions erupted in Huainan against Sima clan tyranny: Wang Ling, Guanqiu Jian, and Zhuge Dan. Sima Shi and Sima Zhao mobilized massive imperial hosts to brutally quell each uprising.",
+    "adaptation": "Two consecutive rebellions back-to-back. One failed for lack of provisions, the other crumbled under mutual distrust; you must unite Huainan and Eastern Wu to shatter the Sima grip on the central plains.",
+    "lead": "After Sima Yi died, the first call to arms against traitors was raised in Huainan. Over the next four years, the same fire burned across this soil three times; names changed, but the grievance remained unchanged.",
     "skirmish": {
-      "title": "Skirmish: 淮南 · 乐綝之守",
-      "why": "乐綝按父亲留下的阵法守淮南,先破他的门户,檄文才能出城。",
-      "win": "门户既开,义兵东连吴境;两叛的连局,有了彼此呼应的活路。",
-      "loss": "困守孤城,檄文出不了寿春;两叛各自为战,逐个被吃。"
+      "title": "Huainan · Yue Lin's Fortified Stand",
+      "why": "Yue Lin holds the regional magazines for Sima Zhao. You must capture his arsenals to supply the righteous troops.",
+      "win": "The magazines are seized, provisioning Zhuge Dan's coalition with grain and weapons.",
+      "loss": "The arsenals are set ablaze, leaving the rebel army short of supplies from the first hour."
     },
     "boss": {
-      "title": "Climax: 寿春 · 两叛连局",
-      "why": "毌丘俭以义聚兵,诸葛诞以城待援。你要读出两叛的死因不同——一个缺粮,一个多疑——才谈得上改写。",
-      "win": "檄文送达洛阳,「魏」字在兵卒心里重新发烫;司马师的眼疾与他的江山,一起痛了起来。",
-      "loss": "寿春城头三次换旗;东吴援兵每次都晚一步,司马氏的刀一次比一次快。"
-    }
+      "title": "Shouchun · The Two Rebellions in Tandem",
+      "why": "Sima Zhao uses double-layered sieges to isolate Shouchun from Wu reinforcements. You must coordinate internal sorties and external relief without falling for his discord ruses.",
+      "win": "The dual sieges are smashed! Eastern Wu and Huainan forces unite, driving Sima Zhao back to Luoyang in defeat.",
+      "loss": "Distrust consumes the coalition from within. Shouchun falls in blood, leaving the Sima dynasty unchallenged."
+    },
+    "rounds": [
+      {
+        "title": "First Rebellion · Manifesto of Righteous Troops",
+        "why": "Guanqiu Jian took up arms in the name of righteousness, lacking grain and relief. Direct their fervor toward supply lines rather than futile city sieges.",
+        "win": "Righteous forces stand at Xiangcheng, opening supply routes to Wu. Sima Shi is forced to march while sick.",
+        "loss": "Valor is broken before fortified walls. Supplies are severed and the righteous troops disperse."
+      },
+      {
+        "title": "Second Rebellion · Defense of Shouchun",
+        "why": "Zhuge Dan holds Shouchun's granaries and Wu's alliance, but falls to suspicion—doubting officers, allies, and timing.",
+        "win": "Suspicion is swept away, and internal and external forces strike in unison, breaking Sima Zhao's siege ring.",
+        "loss": "Discord tears the fortress apart. Shouchun falls in blood, extinguishing the final challenge to Jin."
+      }
+    ]
   },
   "ganlu": {
-    "era": "260 年",
-    "source": "《三国志·三少帝纪》·《汉晋春秋》·演义第一百一十四回",
-    "record": "甘露五年,曹髦率宿卫僮仆数百讨司马昭,贾充命成济弑帝于南阙之下。髦好文墨,曾作《潜龙》之诗自伤。",
-    "adaptation": "本回让那一杆戟停在半空:胜负之外,这一页赌的是史笔的下一行。天子的筹码只有名义,如何不把它孤注一掷,是你的题。",
-    "lead": "陵云台上,二十岁的天子写完了《潜龙》,折断笔杆。他叫来仅剩的旧臣,说的不是政令,而是一句话:司马昭之心,路人皆知。",
+    "era": "260 AD",
+    "source": "Records of the Three Kingdoms · Three Young Emperors / Chronicles of Han & Jin / Romance Ch. 114",
+    "record": "In 260 AD, young Emperor Cao Mao refused to submit to Sima Zhao's impending usurpation. Exclaiming 'Sima Zhao's ambition is known to every passerby,' he led his guards in a desperate charge toward Sima Zhao's residence and was slain at the South Gate by Jia Chong's man Cheng Ji.",
+    "adaptation": "The desperate gamble of an imperial sovereign. The Son of Heaven's title is your only chip; do not stake it in blind fury, but turn moral righteousness into an unanswerable weapon.",
+    "lead": "Apostle of tragedy on the Lingyun terrace, the twenty-year-old sovereign finished writing 'The Hidden Dragon' and snapped his brush. Summoning his remaining loyalists, he spoke not of statecraft, but one immortal truth: 'Sima Zhao's heart is known to every passerby.'",
     "skirmish": {
-      "title": "Skirmish: 太极殿 · 告密之笔",
-      "why": "王沈的笔永远先一步出宫。拦住那支笔,天子的亲征才有出其不意的可能。",
-      "win": "密表未出宫门,南阙的甲士尚不知情;天子得以亲列阵前。",
-      "loss": "笔快过剑,晋公府先得了消息;所谓亲征,成了自投罗网。"
+      "title": "Taiji Hall · The Traitor's Brush",
+      "why": "Ministers Wang Shen and Wang Jing waver in loyalty. You must stop Wang Shen from riding out to betray the Emperor's secret edict.",
+      "win": "The traitor is detained before he can leave the palace gates, preserving the element of surprise for the royal sortie.",
+      "loss": "Wang Shen escapes on horseback to alert Sima Zhao. The coup is ambushed before the palace gates.",
+      "lossNote": "Secrets are the first casualties in an imperial palace."
     },
     "boss": {
-      "title": "Climax: 南阙 · 戟在半空",
-      "why": "贾充不亲自动手,只把刀递到成济手里。你要当街唤破那道只认主公的军令,让甲士看见天子,也看见自己。",
-      "win": "戟未落,甲士溃散;史官蘸墨直书「帝亲讨贼」,魏,还剩一口气。",
-      "loss": "天子之血溅上宫砖,司马昭诛成济以谢天下;刀与罪,一起回鞘。"
+      "title": "South Watchtower · Halberd Suspended in Air",
+      "why": "Jia Chong and Cheng Ji block the carriage with drawn spears. You must hold the moral high ground and force the imperial guards to refuse the crime of regicide.",
+      "win": "The soldiers lower their spears in shame before their Emperor! Sima Zhao is cornered by the outrage of the entire realm.",
+      "loss": "Cheng Ji thrusts his spear forward without remorse. The young emperor falls beneath the carriage, fulfilling history's darkest page."
     }
   },
   "jiange": {
-    "era": "263 年秋",
-    "source": "《三国志·姜维传》《钟会传》·演义第一百一十六回",
-    "record": "魏十八万分三路伐蜀,姜维退保剑阁,钟会不能克,粮运县远,议欲还;邓艾遂自阴平偷度,遂有绵竹、成都之事。",
-    "adaptation": "本回把剑阁写成「正面」的胜利:钟会的檄文是他最便宜的云梯。墙守住之外,还要替张翼留出「侧翼」的哨——那是下一页的事。",
-    "lead": "十八万大军压向剑门,姜维凭险而守。钟会的檄文写得漂亮,可惜剑阁的箭,只认得字面上的血。",
+    "era": "263 AD · Autumn",
+    "source": "Records of the Three Kingdoms · Jiang Wei & Zhong Hui / Romance of the Three Kingdoms Ch. 116",
+    "record": "In 263 AD, Wei launched a massive invasion of Shu. Zhong Hui led 180,000 troops against Jiange, but Jiang Wei utilized the natural cliffs to halt the entire northern host, leaving Zhong Hui contemplating retreat until Deng Ai bypassed the front.",
+    "adaptation": "Holding the impassable mountain bastion. Face overwhelming numeric disparity; as long as your defense holds Jiange, no force under heaven can march into the Sichuan basin.",
+    "lead": "One hundred and eighty thousand troops bore down upon the sword gate, while Jiang Wei held the cliffs with desperate courage. Zhong Hui's manifestos were written with eloquence, but the arrows of Jiange recognized only the blood on the stone.",
     "skirmish": {
-      "title": "Skirmish: 白水 · 关前前锋",
-      "why": "魏军前锋要在关前立营,先挫其锋,剑阁的墙才有整固的时日。",
-      "win": "前锋退去,关墙整固;老将廖化靠上墙垛,四年来头一次合眼。",
-      "loss": "营垒逼关,攻城器械日日抬近;墙再险,也架不住天天被量。"
+      "title": "Baishui · Vanguard Before the Pass",
+      "why": "Zhong Hui's assault regiments attempt to build wooden bridges across the gorges. You must demolish their engineering works with rolling stones.",
+      "win": "The assault bridges collapse into the chasm, holding the Wei vanguard at bay before the gates of Jiange.",
+      "loss": "Wei engineers anchor the bridges, allowing siege engines to deploy directly beneath the pass."
     },
     "boss": {
-      "title": "Climax: 剑阁 · 檄文与天险",
-      "why": "钟会以势压险,劝降与强攻轮番上阵。你要让这面墙整面地立着,不因任何一封檄文回头。",
-      "win": "钟会粮尽议退,笔记里写下「难在此人」;蜀汉又赢得一个冬天。",
-      "loss": "佯攻牵走哨兵,正面薄成一层纸;关破之日,姜维只能向阴平方向一抱拳。"
+      "title": "Jiange · Manifestos and Natural Bastions",
+      "why": "Zhong Hui hurls waves of elite troops against the narrow stone steps. Hold your position firmly and bleed his army until starvation forces him to withdraw.",
+      "win": "Jiange stands like an iron wall! Out of supplies and despairing of victory, Zhong Hui begins his general retreat northward.",
+      "loss": "The pass defenses are breached under sheer attrition, opening the gateway to Chengdu."
     }
   },
   "yanglu": {
-    "era": "272–274 年",
-    "source": "《三国志·陆抗传》《晋书·羊祜传》·演义第一百二十回",
-    "record": "羊祜、陆抗对镇荆州,开源、立信,通使交好,抗曰「彼专为德,我专为暴,是不战而自服也」。西陵之战,抗先破步阐,却羊祜。",
-    "adaptation": "本回把「不战之战」搬上牌桌:羊祜的刀是信,你急攻便正中其怀。先定西陵,再守其约,是吴国最后的体面。",
-    "lead": "荆州边境两年无战。吴人打猎的猎物逃进晋营,晋人真的送了回来;陆抗病了,襄阳送来的是药。两边都在下同一副棋:人心。",
+    "era": "272–274 AD",
+    "source": "Records of the Three Kingdoms · Lu Kang / Book of Jin · Yang Hu / Romance Ch. 120",
+    "record": "Between 272 and 274 AD, Jin general Yang Hu and Wu general Lu Kang commanded opposing frontiers in Jingzhou. Both conducted warfare with profound gentlemanly chivalry, returning stray hunts and exchanging medicine, earning historical acclaim for mutual respect.",
+    "adaptation": "The battle of hearts without drawing the sword. Winning on this page means not attacking; rushing into aggression will hand victory to your opponent.",
+    "lead": "For two years, peace reigned along the Jingzhou frontier. When southland hunters saw their game flee into Jin lines, Jin soldiers returned the quarry intact; when Lu Kang fell ill, Yang Hu sent medicine across the border. Both were playing the same grand game: the hearts of men.",
     "skirmish": {
-      "title": "Skirmish: 西陵 · 叛城旧卒",
-      "why": "步阐举城降晋,旧卒据垒自守。先收自家门户,边境之信才不是笑话。",
-      "win": "叛城归吴,内外皆定;与羊公的局,才配称「对坐」。",
-      "loss": "门户失守,建业益疑陆抗拥兵;对境之信,先输给自家的城。"
+      "title": "Xiling · Veterans of the Defected Bastion",
+      "why": "Bu Chan's defection at Xiling threatens the fragile border peace. You must resolve the local skirmish without letting full-scale warfare consume the frontier.",
+      "win": "The defection is resolved with surgical restraint, preventing general war and preserving frontier chivalry.",
+      "loss": "The border erupts in brutal scorched-earth reprisals, destroying the noble bond between the two commanders."
     },
     "boss": {
-      "title": "Climax: 襄阳 · 对境之交",
-      "why": "羊祜以信为饵,以德为钩,赢的方式是「不战」。你要赢下同一个字,而不是赢他这个人。",
-      "win": "西陵定,边信全;两块碑隔江相望,谁也没有输给谁。",
-      "loss": "催战诏压过边境之信,出兵之日,人心已先过江。"
+      "title": "Xiangyang · Fellowship Across the Border",
+      "why": "Yang Hu sends fine wine and remedies while Lu Kang drinks without suspicion. Match his gentlemanly bets to win moral ascendancy over the realm.",
+      "win": "Medicine is taken without doubt, and bows are rested along the border. True nobility outshines naked slaughter.",
+      "loss": "Suspicion poisons the exchange; false poison rumors ruin the chivalric truce, plunging the frontier back into petty slaughter."
     }
   }
 };
