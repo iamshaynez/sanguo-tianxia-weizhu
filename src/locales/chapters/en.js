@@ -1,1691 +1,1691 @@
 export default {
   "taoyuan": {
     "name": "The Peach Garden",
-    "year": "中平元年",
-    "premise": "若乱世始于一场酒。",
-    "regret": "黄巾之乱,是乱世的开场白。",
+    "year": "184 AD",
+    "premise": "What if the age of turmoil began over a cup of wine?",
+    "regret": "The Yellow Turban Rebellion was but the opening chapter of chaos.",
     "ruleText": "",
-    "history": "黄巾起,天下纷纷应之。",
-    "yeshi": "涿郡一场败,黄巾作鸟兽散。桃园里,酒尚温。",
-    "note": "Historian's Note: 写卷人注:此页易读,去罢。",
-    "defeat": "Defeat Note: 酒还温着,人已退场。",
+    "history": "In 184 AD, the Yellow Turbans rose across the land. Liu Bei gathered volunteers in Zhuo Commandery to fight alongside imperial troops.",
+    "yeshi": "At Zhuo Commandery, the bandits were routed. Inside the peach garden, the ceremonial wine was still warm.",
+    "note": "Chronicler's Note: This page is easily read, depart now.",
+    "defeat": "The wine is still warm, but the heroes have departed.",
     "map": [
-      "涿郡",
-      "桃林",
-      "广宗"
+      "Zhuo Commandery",
+      "Peach Grove",
+      "Guangzong"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Libation to Heaven"
       },
       {
-        "n": "Omen 2"
+        "n": "Fiery Spirit Down"
       },
       {
-        "n": "Omen 3"
+        "n": "Night Review of Militia"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 黄巾 · 程远志"
+      "name": "Yellow Turbans · Cheng Yuanzhi"
     },
     "boss": {
-      "name": "Boss: 黄巾渠帅"
+      "name": "Yellow Turban Commander"
     }
   },
   "sishui": {
     "name": "Sishui Pass",
-    "year": "初平元年",
-    "premise": "若温酒的不是关羽,是你。",
-    "regret": "温酒斩华雄,慢一分都是遗憾。",
+    "year": "190 AD",
+    "premise": "What if it was you who warmed the wine, not Guan Yu?",
+    "regret": "Warm wine slays Hua Xiong; a second late leaves eternal regret.",
     "ruleText": "",
-    "history": "华雄连斩二将,云长温酒斩之。",
-    "yeshi": "杯酒未凉,华雄已坠。诸侯从此不敢小觑。",
-    "note": "Historian's Note: 写卷人注:酒要趁热,牌要趁狠。",
-    "defeat": "Defeat Note: 酒冷了,关还在。",
+    "history": "Hua Xiong felled coalition commanders in succession until Guan Yu took his head before the wine cooled.",
+    "yeshi": "Before the cup went cold, Hua Xiong had fallen. Never again did the lords look down upon the brothers.",
+    "note": "Chronicler's Note: Strike while the wine is hot and the cards are sharp.",
+    "defeat": "The wine turned cold, and the pass remains unbreached.",
     "map": [
-      "酸枣",
-      "汜水关",
-      "虎牢道"
+      "Suanzao",
+      "Sishui Pass",
+      "Hulao Trail"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Wine Still Warm"
       },
       {
-        "n": "Omen 2"
+        "n": "Lords Watch the Field"
       },
       {
-        "n": "Omen 3"
+        "n": "Scout's Urgent Report"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 西凉骁骑"
+      "name": "Liangzhou Cavalry"
     },
     "boss": {
-      "name": "Boss: 华雄"
+      "name": "Hua Xiong"
     }
   },
   "hulao": {
     "name": "Hulao Pass",
-    "year": "初平元年",
-    "premise": "若天下第一,只有一个人敢应。",
-    "regret": "三英战吕布,赢了也无第二人敢试。",
-    "ruleText": "他天下无双,只进不退。蹲下,等他力竭。",
-    "history": "三英战吕布,吕布败走。",
-    "yeshi": "画戟坠地,温侯掷盔长笑:「痛快!」",
-    "note": "Historian's Note: 写卷人注:此人只进不退,等他力竭。",
-    "defeat": "Defeat Note: 天下第一,名副其实。",
+    "year": "190 AD",
+    "premise": "What if Lu Bu never retreats an inch?",
+    "regret": "Three heroes encircled Lu Bu, but none could break his unmatched halberd.",
+    "ruleText": "Peerless under heaven, he only advances. Duck low and wait for him to tire.",
+    "history": "Lu Bu rode Red Hare and wielded the Sky Piercer, striking dread into the coalition outside Hulao.",
+    "yeshi": "Three blades crossed his halberd. The gate opened wide, awaiting the bravest under heaven.",
+    "note": "Chronicler's Note: He advances relentlessly; outlast his fury.",
+    "defeat": "The halberd cleaved the banner, and the alliance fell back.",
     "map": [
-      "虎牢道",
-      "汜水",
-      "虎牢关"
+      "Hulao Trail",
+      "Sishui",
+      "Hulao Pass"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Three Heroes Lend Aid"
       },
       {
-        "n": "Omen 2"
+        "n": "Red Hare's Long Neigh"
       },
       {
-        "n": "Omen 3"
+        "n": "Survey from the Camp Gate"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 并州狼骑"
+      "name": "Bingzhou Wolf Cavalry"
     },
     "boss": {
-      "name": "Boss: 吕布"
+      "name": "Lu Bu"
     }
   },
   "xianshan": {
     "name": "Xianshan Ridge",
-    "year": "初平二年",
-    "premise": "若猛虎不追那阵乱箭。",
-    "regret": "江东大业,始于猛虎,亦失于岘山。",
+    "year": "191 AD",
+    "premise": "What if the Tiger of Jiangdong saw through the ambush in the bamboo?",
+    "regret": "Sun Jian's early death halted Jiangdong's first charge across the Yangtze.",
     "ruleText": "",
-    "history": "孙坚击刘表,追击岘山,中伏矢石,殁。",
-    "yeshi": "乱箭落处无虎。孙文台拨转马头,江东的棋才刚落子。",
-    "note": "Historian's Note: 写卷人注:猛虎之失,失在一口气。",
-    "defeat": "Defeat Note: 岘山竹密,箭如飞蝗。",
+    "history": "Sun Jian pursued Huang Zu into the hills of Mount Xian, where hidden arrows felled the Tiger of Jiangdong.",
+    "yeshi": "The arrows struck stone, not flesh. The tiger turned around with his great seal blazing.",
+    "note": "Chronicler's Note: The fiercest tiger falls when he rushes his breath.",
+    "defeat": "Concealed arrows whistled through the night, leaving Jiangdong in mourning.",
     "map": [
-      "鲁阳",
-      "邓塞",
-      "岘山"
+      "Luyang",
+      "Dengsai",
+      "Mount Xian"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Zu Mao Swaps Helmets"
       },
       {
-        "n": "Omen 2"
+        "n": "Xianshan Ambush Spotted"
       },
       {
-        "n": "Omen 3"
+        "n": "Veterans of Jiangdong"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 岘山伏弩"
+      "name": "Xianshan Ambush Crossbows"
     },
     "boss": {
-      "name": "Boss: 黄祖 · 江夏之箭"
+      "name": "Huang Zu · Arrow of Jiangxia"
     }
   },
   "jieqiao": {
-    "name": "Jieqiao Bridge",
-    "year": "初平三年",
-    "premise": "若白马义从,没有撞上先登。",
-    "regret": "界桥一战,白马尽折,赵云初啼。",
+    "name": "Battle of Jieqiao",
+    "year": "192 AD",
+    "premise": "What if white horse cavalry could outmaneuver crossbow volleys?",
+    "regret": "Gongsun Zan's proud elite horsemen broke against the shield walls of Qu Yi.",
     "ruleText": "",
-    "history": "袁绍破公孙瓒于界桥,麹义先登陷阵。",
-    "yeshi": "先登未发,白马已绕。界桥两岸,换了新主人。",
-    "note": "Historian's Note: 写卷人注:骑兵再快,快不过一排弩。",
-    "defeat": "Defeat Note: 白马过河,先登已列。",
+    "history": "Yuan Shao clashed with Gongsun Zan at Jieqiao; Qu Yi's eight hundred crossbowmen crushed the White Horse Volunteers.",
+    "yeshi": "Zhao Yun's spear cleaved the shield line, turning the tide above the river bank.",
+    "note": "Chronicler's Note: Even the swiftest steed cannot outrun a line of drawn bows.",
+    "defeat": "The bridge collapsed in dust, and the white horses never returned.",
     "map": [
-      "平原",
-      "界桥",
-      "龙凑"
+      "Pingyuan",
+      "Jieqiao Bridge",
+      "Longcou"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Crossbows Thunder"
       },
       {
-        "n": "Omen 2"
+        "n": "Zilong's Maiden Battle"
       },
       {
-        "n": "Omen 3"
+        "n": "White Horse Volunteers"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 先登营 · 麹义"
+      "name": "Xiandeng Vanguard · Qu Yi"
     },
     "boss": {
-      "name": "Boss: 文丑 · 河北铁枪"
+      "name": "Wen Chou · Iron Spear of Hebei"
     }
   },
   "fengyiting": {
     "name": "Fengyi Pavilion",
-    "year": "初平三年",
-    "premise": "若连环之计,在亭中败露。",
-    "regret": "美人计如走钢丝,一步错满盘输。",
-    "ruleText": "此页眼见未必为实:破绽假动作加倍。",
-    "history": "布奉先一戟,董贼毙命。",
-    "yeshi": "亭中私语入耳,太师犹自未觉。局已成。",
-    "note": "Historian's Note: 写卷人注:这一页,眼见未必为实。",
-    "defeat": "Defeat Note: 美人计不成,反误了卿卿。",
+    "year": "192 AD",
+    "premise": "What if the halberd struck the tyrant, not the courtyard pavilion?",
+    "regret": "The scheme of chained stratagems traded one brutal tyrant for chaotic warlords.",
+    "ruleText": "Eyes deceive on this page: tells and feints are doubled.",
+    "history": "Wang Yun devised the beauty stratagem with Diaochan, driving an irreparable wedge between Dong Zhuo and Lu Bu.",
+    "yeshi": "By the pavilion railings, whispers turned to cold steel. The tyrant's blood washed the imperial court.",
+    "note": "Chronicler's Note: On this page, what you see with your eyes may be pure illusion.",
+    "defeat": "The plot was laid bare, and the chained stratagem crumbled into ashes.",
     "map": [
-      "郿坞",
-      "凤仪亭",
-      "未央殿"
+      "Mei Citadel",
+      "Fengyi Pavilion",
+      "Weiyang Palace"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Whispers of the Beauty"
       },
       {
-        "n": "Omen 2"
+        "n": "Halberd by His Side"
       },
       {
-        "n": "Omen 3"
+        "n": "Secret Gift of Pearls"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 董府侍卫"
+      "name": "Dong Residence Guards"
     },
     "boss": {
-      "name": "Boss: 董卓"
+      "name": "Dong Zhuo"
     }
   },
   "shenting": {
     "name": "Shenting Ridge",
-    "year": "兴平元年",
-    "premise": "若那件打折的戟,先断的是另一支。",
-    "regret": "神亭一搏,英雄惜英雄。",
+    "year": "194 AD",
+    "premise": "What if Sun Ce and Taishi Ci fought to the end of time?",
+    "regret": "Two young peerless champions wrestled in dust, destined to meet only in legend.",
     "ruleText": "",
-    "history": "孙策与太史慈战于神亭,夺戟披甲,未分胜负。",
-    "yeshi": "戟折甲裂,两人倒在岭上大笑。不打不相识,是这一页的注。",
-    "note": "Historian's Note: 写卷人注:让他打完,别替他分胜负。",
-    "defeat": "Defeat Note: 岭风未起,戟已脱手。",
+    "history": "Sun Ce and Taishi Ci fought hand to hand at Shenting Ridge, seizing each other's helmet and halberd without a victor.",
+    "yeshi": "Beneath thunderstorm and rain, neither yielded. Handshakes replaced steel, uniting Jiangdong's soul.",
+    "note": "Chronicler's Note: Let them finish their bout; do not judge victory too soon.",
+    "defeat": "The storm washed away the footprints, leaving the duel unresolved.",
     "map": [
-      "横江",
-      "曲阿",
-      "神亭岭",
-      "泾县"
+      "Hengjiang",
+      "Qu'a",
+      "Shenting Ridge",
+      "Jingxian"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Fame of the Little Conqueror"
       },
       {
-        "n": "Omen 2"
+        "n": "Reading the Ridge Winds"
       },
       {
-        "n": "Omen 3"
+        "n": "Cheng Pu Backs the Line"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 刘繇府卫"
+      "name": "Liu Yao's Retainers"
     },
     "boss": {
-      "name": "Boss: 太史慈 · 猿臂神射"
+      "name": "Taishi Ci · Divine Archer"
     }
   },
   "yuanshemen": {
     "name": "Feat at Camp Gate",
-    "year": "建安元年",
-    "premise": "若那一箭,偏了半寸。",
-    "regret": "辕门一箭,解的是两家之危。",
+    "year": "196 AD",
+    "premise": "What if the arrow pierced the tiny halberd prong on the first shot?",
+    "regret": "A solitary arrow pacified two armies, but could not pacify Lu Bu's restless soul.",
     "ruleText": "",
-    "history": "吕布射戟辕门,两家罢兵。",
-    "yeshi": "箭中画戟小枝,满座无声,赌局亦无声。",
-    "note": "Historian's Note: 写卷人注:和事佬,最难做。",
-    "defeat": "Defeat Note: 箭未离弦,局已破。",
+    "history": "Lu Bu set up his halberd at one hundred and fifty paces outside the camp gate, shooting his arrow through the side prong to halt war between Liu Bei and Ji Ling.",
+    "yeshi": "The bowstring hummed like thunder. Ji Ling sheathed his blade in awe, bowing before the god of war.",
+    "note": "Chronicler's Note: The peacemaker carries the heaviest wager.",
+    "defeat": "The arrow drifted in the wind, and two armies clashed in slaughter.",
     "map": [
-      "小沛",
-      "辕门",
-      "下邳"
+      "Xiaopei",
+      "Camp Gate",
+      "Xiapi"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Pact of a Single Arrow"
       },
       {
-        "n": "Omen 2"
+        "n": "Both Armies Watch"
       },
       {
-        "n": "Omen 3"
+        "n": "Feast at the Camp Gate"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 纪灵部曲"
+      "name": "Ji Ling's Troops"
     },
     "boss": {
-      "name": "Boss: 纪灵"
+      "name": "Ji Ling"
     }
   },
   "wancheng": {
     "name": "Wancheng Crisis",
-    "year": "建安二年",
-    "premise": "若那一夜,双戟未失。",
-    "regret": "典韦之死,曹营第一痛。",
+    "year": "197 AD",
+    "premise": "What if Dian Wei never lost his twin twin iron halberds?",
+    "regret": "Dian Wei died barring the camp gate, guarding Cao Cao with his bare fists.",
     "ruleText": "",
-    "history": "典韦死守营门,身被数十创,死。",
-    "yeshi": "胡车儿盗戟之手,被典韦当场擒下。是夜无事。",
-    "note": "Historian's Note: 写卷人注:护住兵器,就是护住命。",
-    "defeat": "Defeat Note: 双戟既失,营门既破。",
+    "history": "Zhang Xiu launched a night raid on Cao Cao's camp in Wancheng. Dian Wei held the gate with unmatched fury until he perished.",
+    "yeshi": "With halberds firmly in grasp, the iron warrior stood immovable like Mount Tai, escorting his lord to safety.",
+    "note": "Chronicler's Note: Protecting your weapon is protecting your life.",
+    "defeat": "The night raid engulfed the tent, and the twin halberds were lost forever.",
     "map": [
-      "淯水",
-      "宛城",
-      "舞阴"
+      "Yushui River",
+      "Wancheng",
+      "Wuyin"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Dian Wei by the Gate"
       },
       {
-        "n": "Omen 2"
+        "n": "Ceaseless Night Patrol"
       },
       {
-        "n": "Omen 3"
+        "n": "Bountiful Rewards"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 胡车儿 · 盗戟之夜"
+      "name": "Hu Che'er · Night of the Stolen Halberd"
     },
     "boss": {
-      "name": "Boss: 张绣"
+      "name": "Zhang Xiu"
     }
   },
   "baimenlou": {
     "name": "White Gate Tower",
-    "year": "建安三年",
-    "premise": "若温侯肯听陈宫一言。",
-    "regret": "天下第一,死在不肯低头。",
+    "year": "198 AD",
+    "premise": "What if the tiger tied with ropes found one final chance to negotiate?",
+    "regret": "The strongest general fell not in battle, but to bound cords and whispered words.",
     "ruleText": "",
-    "history": "布乞命于玄德,玄德一语,缢杀于白门楼。",
-    "yeshi": "温侯听陈宫,弃下邳,走淮南。天下再乱十年。",
-    "note": "Historian's Note: 写卷人注:困兽犹斗,何况是吕布。",
-    "defeat": "Defeat Note: 白门楼的绳子,始终等着。",
+    "history": "Cao Cao flooded Xiapi, captured Lu Bu at White Gate Tower, and executed him after consulting Liu Bei.",
+    "yeshi": "Looking down from the ramparts, he saw the chessboard of history and refused to bow his head.",
+    "note": "Chronicler's Note: A cornered beast fights with all fury; how much more so for Lu Bu.",
+    "defeat": "The cords tightened, and the white tower witnessed the end of a legend.",
     "map": [
-      "下邳",
-      "泗水",
-      "白门楼"
+      "Xiapi",
+      "Sishui River",
+      "White Gate Tower"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Chen Gong's Counsel"
       },
       {
-        "n": "Omen 2"
+        "n": "Red Hare Unwearied"
       },
       {
-        "n": "Omen 3"
+        "n": "Floods Besiege the City"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 陷阵营 · 高顺"
+      "name": "Camp Formation · Gao Shun"
     },
     "boss": {
-      "name": "Boss: 吕布 · 困兽"
+      "name": "Lu Bu · Cornered Beast"
     }
   },
   "zhujiu": {
-    "name": "Chapter of zhujiu",
-    "year": "建安四年",
-    "premise": "若那句「使君」,是冲你来的。",
-    "regret": "煮酒论英雄,心惊而筷不落地。",
+    "name": "Heroes Over Wine",
+    "year": "199 AD",
+    "premise": "What if the words 'My Lord' were aimed directly at you?",
+    "regret": "Discussing heroes in the plum garden, thunder masked a fallen pair of chopsticks.",
     "ruleText": "",
-    "history": "操曰:今天下英雄,唯使君与操耳。",
-    "yeshi": "筷落而心不落。他笑了,你也笑了。",
-    "note": "Historian's Note: 写卷人注:他在读你,你也在读他。",
-    "defeat": "Defeat Note: 酒是好酒,人不是好人。",
+    "history": "Cao Cao hosted Liu Bei over warm plum wine, declaring: 'The only heroes in the realm are you and I.'",
+    "yeshi": "The thunder crashed across the pavilion. The chopsticks dropped to the floor, concealing an emperor's ambition.",
+    "note": "Chronicler's Note: He reads your tells while you read his gaze.",
+    "defeat": "The secret leaked from the wine cup, and Xuchang became a gilded cage.",
     "map": [
-      "许都",
-      "青梅亭",
-      "许田"
+      "Xuchang",
+      "Green Plum Pavilion",
+      "Xutian Hunt"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Thunder as Cloak"
       },
       {
-        "n": "Omen 2"
+        "n": "Green Plums with Wine"
       },
       {
-        "n": "Omen 3"
+        "n": "Watching Every Glance"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 许都门吏"
+      "name": "Xudu Gatekeeper"
     },
     "boss": {
-      "name": "Boss: 曹操 · 对酌"
+      "name": "Cao Cao · Shared Wine"
     }
   },
   "baima": {
-    "name": "Chapter of baima",
-    "year": "建安五年 · 春",
-    "premise": "若那杯践行酒,敬错了人。",
-    "regret": "斩颜良诛文丑,是云长的锋,也是曹刘的裂。",
-    "ruleText": "连战两阵:白马对刀,延津对马。酒要温两回。",
-    "history": "关羽斩颜良于白马,诛文丑于延津,解白马之围。",
-    "yeshi": "两阵皆破,酒温了两回。云长把功记在心里,把恩留在袖中。",
-    "note": "Historian's Note: 写卷人注:河北双壁,一个输在骄,一个输在怒。",
-    "defeat": "Defeat Note: 河北的刀太沉,白马的酒太急。",
+    "name": "Siege of Baima",
+    "year": "200 AD · Spring",
+    "premise": "What if that farewell toast was poured for the wrong man?",
+    "regret": "Yan Liang and Wen Chou fell in quick succession, sealing Guan Yu's pledge to depart.",
+    "ruleText": "Two battles in sequence: blades at Baima, steeds at Yanjin. Warm the wine twice.",
+    "history": "Guan Yu rode into Yuan Shao's army at Baima, beheading Yan Liang amidst ten thousand soldiers.",
+    "yeshi": "The Green Dragon blade severed the siege banner in a single pass, paying Cao Cao's debt in full.",
+    "note": "Chronicler's Note: Hebei's twin pillars fell—one to arrogance, one to wrath.",
+    "defeat": "The siege lines held firm, and the debt of gratitude remained unpaid.",
     "map": [
-      "黎阳",
-      "白马",
-      "延津"
+      "Liyang",
+      "Baima",
+      "Yanjin"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Xun You's Scheme"
       },
       {
-        "n": "Omen 2"
+        "n": "Yunchang at Hand"
       },
       {
-        "n": "Omen 3"
+        "n": "Baima Supply Trail"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 曹营先锋 · 宋宪"
+      "name": "Cao Camp Vanguard · Song Xian"
     },
     "boss": {
-      "name": "Boss: 河北双壁"
+      "name": "Twin Pillars of Hebei"
     }
   },
   "qianli": {
-    "name": "Chapter of qianli",
-    "year": "建安五年",
-    "premise": "若五关不肯放行。",
-    "regret": "过五关斩六将,一关都少不得。",
-    "ruleText": "连战五场,场场短兵。你的筹码一路相随。",
-    "history": "云长挂印封金,过五关斩六将。",
-    "yeshi": "五关连破,黄河渡口,古城鼓声已近。",
-    "note": "Historian's Note: 写卷人注:连战连走,莫恋战。",
-    "defeat": "Defeat Note: 一关未过,千里难行。",
+    "name": "Riding Alone A Thousand Miles",
+    "year": "200 AD",
+    "premise": "What if the five passes refused to let you pass at all costs?",
+    "regret": "Severing ties with five passes and six captains, Guan Yu journeyed toward his brother.",
+    "ruleText": "Five bouts in sequence, close-quarters combat each time. Your chips carry through.",
+    "history": "Guan Yu escorted Liu Bei's families out of Xuchang, crossing five mountain passes and slaying six opposing commanders.",
+    "yeshi": "Red Hare galloped across mountains and rivers. Every pass yielded before the lone rider's oath.",
+    "note": "Chronicler's Note: Fight on the move; do not linger at any single pass.",
+    "defeat": "The mountain pass gates slammed shut, cutting off the brothers' reunion.",
     "map": [
-      "许都",
-      "东岭关",
-      "洛阳",
-      "汜水关",
-      "荥阳",
-      "古城"
+      "Xuchang",
+      "Dongling Pass",
+      "Luoyang",
+      "Sishui Pass",
+      "Xingyang",
+      "Gucheng"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Red Hare Rides a Thousand Li"
       },
       {
-        "n": "Omen 2"
+        "n": "Blade in Hand, Armor On"
       },
       {
-        "n": "Omen 3"
+        "n": "Riding Day and Night"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 关隘守将"
+      "name": "Pass Guards"
     },
     "boss": {
-      "name": "Boss: 五关守将"
+      "name": "Guardians of the Five Passes"
     }
   },
   "guandu": {
     "name": "Battle of Guandu",
-    "year": "建安五年",
-    "premise": "若许攸那一夜,没有来投。",
-    "regret": "乌巢一把火,烧出北方十年。",
-    "ruleText": "他粮多你粮少,盲注涨得更快——速战。",
-    "history": "许攸来奔,火烧乌巢,绍军大溃。",
-    "yeshi": "乌巢的火,这次没有烧起来。河北照样败了——败在人心。",
-    "note": "Historian's Note: 写卷人注:他粮多,你粮少,速战。",
-    "defeat": "Defeat Note: 乌巢的火,这次没有烧起来。",
+    "year": "200 AD",
+    "premise": "What if Xu You never defected in the dead of night?",
+    "regret": "A massive host of a hundred thousand collapsed in flame at Wuchao.",
+    "ruleText": "He has rations, you do not; the blinds rise swifter—strike swiftly.",
+    "history": "Cao Cao burned Yuan Shao's granaries at Wuchao, routing the vastly superior northern army at Guandu.",
+    "yeshi": "Torchlight lit the night sky at Wuchao. The fate of the Central Plains was decided in a single blaze.",
+    "note": "Chronicler's Note: He has mountains of grain, you have little; victory requires absolute speed.",
+    "defeat": "Grain supplies ran dry, and Cao Cao's camp was overwhelmed by northern hordes.",
     "map": [
-      "白马",
-      "延津",
-      "官渡",
-      "乌巢"
+      "Baima",
+      "Yanjin",
+      "Guandu",
+      "Wuchao Depot"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Xu You Defects"
       },
       {
-        "n": "Omen 2"
+        "n": "Flames over Wuchao"
       },
       {
-        "n": "Omen 3"
+        "n": "Enduring Supply Lines"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 河北名将 · 高览"
+      "name": "Famed Hebei General · Gao Lan"
     },
     "boss": {
-      "name": "Boss: 袁绍"
+      "name": "Yuan Shao"
     }
   },
   "sangu": {
-    "name": "Chapter of sangu",
-    "year": "建安十二年",
-    "premise": "若第三次,他仍不见你。",
-    "regret": "三顾茅庐,少一顾都无三国。",
-    "ruleText": "连访三次,他才肯落座。诚意是唯一的敲门砖。",
-    "history": "三顾茅庐,隆中一对,三分天下。",
-    "yeshi": "第三次,草堂门开。他执你手:「将军请看,天下在此。」",
-    "note": "Historian's Note: 写卷人注:前两次,输也要去。",
-    "defeat": "Defeat Note: 草庐深深,柴门不启。",
+    "name": "Three Visits to the Cottage",
+    "year": "207 AD",
+    "premise": "What if on the third visit, he still refused to meet?",
+    "regret": "Three visits in rain and snow brought the Sleeping Dragon into a fractured world.",
+    "ruleText": "Visit three times before he takes his seat. Sincerity is the only key.",
+    "history": "Liu Bei visited Longzhong three times before Zhuge Liang presented the Longzhong Plan to divide the realm into three.",
+    "yeshi": "Snow melted outside the thatch cottage. A cup of tea was poured, unfolding the strategy for forty years of war.",
+    "note": "Chronicler's Note: Even if you lose the first two hands, you must return for the third.",
+    "defeat": "The thatched door stayed barred, and the Sleeping Dragon never woke.",
     "map": [
-      "新野",
-      "隆中",
-      "卧龙岗"
+      "Xinye",
+      "Longzhong",
+      "Sleeping Dragon Ridge"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Three Visits in Snow"
       },
       {
-        "n": "Omen 2"
+        "n": "Spring Slumber in Thatched Cottage"
       },
       {
-        "n": "Omen 3"
+        "n": "Longzhong Dialogue"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 隆中书童"
+      "name": "Longzhong Page"
     },
     "boss": {
-      "name": "Boss: 卧龙 · 诸葛"
+      "name": "Sleeping Dragon · Zhuge Liang"
     }
   },
   "bowang": {
-    "name": "Chapter of bowang",
-    "year": "建安十二年",
-    "premise": "若军师初用火,你便是那把火。",
-    "regret": "博望一火,烧出三十年。",
+    "name": "Bowangpo Ambush",
+    "year": "207 AD",
+    "premise": "What if the strategist's first fire was kindled by your hands?",
+    "regret": "The fire of Bowangpo shattered Xiahou Dun's vanguard in one night.",
     "ruleText": "",
-    "history": "博望坡军师初用兵,夏侯惇大败。",
-    "yeshi": "火起时,你正站在坡上。第一把火,烧出了之后三十年。",
-    "note": "Historian's Note: 写卷人注:火攻之前,先忍。",
-    "defeat": "Defeat Note: 博望坡的草,还没干。",
+    "history": "Zhuge Liang directed Liu Bei's forces to lure Xiahou Dun into the narrow valley of Bowangpo and set it ablaze.",
+    "yeshi": "Flames engulfed the reed plains. Guan Yu and Zhang Fei yielded in complete reverence to their new strategist.",
+    "note": "Chronicler's Note: Endure the pressure until the trap is fully sprung.",
+    "defeat": "The fire failed to catch the dry brush, and the vanguard was overwhelmed.",
     "map": [
-      "新野",
-      "博望坡",
-      "宛城道"
+      "Xinye",
+      "Bowangpo",
+      "Wancheng Road"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Flames of Bowang"
       },
       {
-        "n": "Omen 2"
+        "n": "Luring the Enemy Deep"
       },
       {
-        "n": "Omen 3"
+        "n": "Xinye Well-Provisioned"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 曹军前锋"
+      "name": "Cao Vanguard"
     },
     "boss": {
-      "name": "Boss: 夏侯惇"
+      "name": "Xiahou Dun"
     }
   },
   "changban": {
     "name": "Changban Slope",
-    "year": "建安十三年",
-    "premise": "若当阳桥上,那一声吼哑了。",
-    "regret": "七进七出,一人一桥,都是孤胆。",
+    "year": "208 AD",
+    "premise": "What if that mighty roar at Dangyang Bridge fell hoarse?",
+    "regret": "Zhao Yun rode seven times through the army, and Zhang Fei roared alone at the bridge.",
     "ruleText": "",
-    "history": "赵云七进七出,张飞喝断当阳桥。",
-    "yeshi": "桥上一声吼,水为之倒流。阿斗在怀,毫发无伤。",
-    "note": "Historian's Note: 写卷人注:退无可退,便无须再退。",
-    "defeat": "Defeat Note: 长坂坡前,人马俱散。",
+    "history": "Cao Cao pursued Liu Bei to Changban. Zhao Yun rescued Liu Bei's infant son Liu Shan, while Zhang Fei broke the bridge.",
+    "yeshi": "The silver spear shone like white lightning through fifty legions. A single shout stopped ten thousand cavalry in their tracks.",
+    "note": "Chronicler's Note: When retreat is impossible, there is no need to step back.",
+    "defeat": "The river swept away the broken planks, and the bridge fell into enemy hands.",
     "map": [
-      "新野",
-      "当阳",
-      "长坂坡",
-      "汉津"
+      "Xinye",
+      "Dangyang",
+      "Changban Slope",
+      "Hanjin Port"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Zilong Shields the Heir"
       },
       {
-        "n": "Omen 2"
+        "n": "Holding the Broken Bridge"
       },
       {
-        "n": "Omen 3"
+        "n": "Marching with the People"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 追骑 · 文聘"
+      "name": "Pursuing Cavalry · Wen Pin"
     },
     "boss": {
-      "name": "Boss: 曹操 · 追军"
+      "name": "Cao Cao · Pursuing Army"
     }
   },
   "shezhan": {
-    "name": "Chapter of shezhan",
-    "year": "建安十三年",
-    "premise": "若江东诸儒,问倒了你。",
-    "regret": "一人之舌,胜十万兵。",
-    "ruleText": "三儒同席,各有问难。让他们彼此反驳,也别被任何一人牵着走。",
-    "history": "孔明舌战群儒,孙权决意抗曹。",
-    "yeshi": "满座默然。你收扇一笑:「还有谁要问?」",
-    "note": "Historian's Note: 写卷人注:以静制动,以寡敌众。",
-    "defeat": "Defeat Note: 众口铄金,一词难敌。",
+    "name": "Debating the Scholars",
+    "year": "208 AD",
+    "premise": "What if the scholars of Jiangdong argued you into silence?",
+    "regret": "Eloquent scholars debated war and peace before the gathering storm of Red Cliffs.",
+    "ruleText": "Three scholars share the table, each with debates. Let them clash, led by none.",
+    "history": "Zhuge Liang traveled to Chaisang and confronted Sun Quan's civil officials one by one, winning Jiangdong to the alliance.",
+    "yeshi": "With words as sharp as swords and composure like iron, he dismantled every argument in the council hall.",
+    "note": "Chronicler's Note: Use quiet poise to overcome the multitude.",
+    "defeat": "The council yielded to surrender, and the alliance was stillborn.",
     "map": [
-      "柴桑",
-      "馆驿",
-      "议事厅"
+      "Chaisang",
+      "Guest Pavilion",
+      "Council Hall"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Feather Fan and Silk Cap"
       },
       {
-        "n": "Omen 2"
+        "n": "Quoting the Classics"
       },
       {
-        "n": "Omen 3"
+        "n": "Hearts of Jiangdong"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 江东儒生"
+      "name": "Jiangdong Scholars"
     },
     "boss": {
-      "name": "Boss: 江东诸儒 · 张昭"
+      "name": "Jiangdong Scholars · Zhang Zhao"
     }
   },
   "caochuan": {
-    "name": "Chapter of caochuan",
-    "year": "建安十三年",
-    "premise": "若那夜江上,没有雾。",
-    "regret": "草船借箭,借的是雾也是胆。",
+    "name": "Borrowing Arrows with Straw Boats",
+    "year": "208 AD",
+    "premise": "What if no thick mist rose over the river that night?",
+    "regret": "Ten thousand bundles of straw stood ready beneath the fog of the Yangtze.",
     "ruleText": "",
-    "history": "草船借箭,三日十万。",
-    "yeshi": "雾散时,船已满。你对江北拱手:「谢丞相箭。」",
-    "note": "Historian's Note: 写卷人注:看不清的,不只你一人。",
-    "defeat": "Defeat Note: 江上无雾,船上无箭。",
+    "history": "Zhuge Liang sailed twenty straw-covered boats into the mist near Cao Cao's camp, returning with a hundred thousand arrows.",
+    "yeshi": "Arrows fell like driving rain into the straw hulls. Drums beat in celebration as they returned with the tide.",
+    "note": "Chronicler's Note: You are not the only one blinded by the fog.",
+    "defeat": "The fog cleared too early, and imperial archers loaded flaming arrows.",
     "map": [
-      "夏口",
-      "江雾",
-      "曹营水寨"
+      "Xiakou",
+      "River Mist",
+      "Cao Naval Fortress"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Heavy Mist Veils the River"
       },
       {
-        "n": "Omen 2"
+        "n": "War Drums Feign Attack"
       },
       {
-        "n": "Omen 3"
+        "n": "Lu Su Aboard"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 诈降细作 · 蔡中"
+      "name": "Feigned Defector · Cai Zhong"
     },
     "boss": {
-      "name": "Boss: 曹操 · 江上"
+      "name": "Cao Cao · On the River"
     }
   },
   "chibi": {
-    "name": "The Red Cliffs",
-    "year": "建安十三年",
-    "premise": "若东南风,一夜未起。",
-    "regret": "八十万连舫,赌一夜东风。",
-    "ruleText": "三方同桌,各自为战。盲注涨得更快——让所有对手离席,火才不等人。",
-    "history": "借东风,火烧连舫,曹操败走华容。",
-    "yeshi": "风起于青萍之末。八十万连舫,一夜成灰。",
-    "note": "Historian's Note: 写卷人注:等风来,也逼风来。",
-    "defeat": "Defeat Note: 东南风,一夜未起。",
+    "name": "Battle of Red Cliffs",
+    "year": "208 AD",
+    "premise": "What if the southeast wind never stirred that night?",
+    "regret": "Chained warships burned across the waves, setting the Three Kingdoms into history.",
+    "ruleText": "Three sides share the table, each for himself. Blinds rise faster—clear the table before fire dies.",
+    "history": "Zhou Yu and Huang Gai executed the fire attack, burning Cao Cao's naval fleet at Red Cliffs.",
+    "yeshi": "The east wind blew gale-force over the river. Flames leapt from ship to ship, painting the cliff face in crimson glory.",
+    "note": "Chronicler's Note: Wait for the wind, and force the wind to blow.",
+    "defeat": "The wind refused to turn, and northern ironclads crushed Jiangdong's fleet.",
     "map": [
-      "三江口",
-      "乌林",
-      "赤壁"
+      "Sanjiangkou",
+      "Wulin",
+      "Red Cliffs"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Summoning the East Wind"
       },
       {
-        "n": "Omen 2"
+        "n": "Self-Inflicted Ruse"
       },
       {
-        "n": "Omen 3"
+        "n": "Fire Ships Laden with Tinder"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 北军水骑"
+      "name": "Northern Flotilla Riders"
     },
     "boss": {
-      "name": "Boss: 曹操 · 连舫"
+      "name": "Cao Cao · Linked Armada"
     }
   },
   "huarong": {
-    "name": "Chapter of huarong",
-    "year": "建安十三年",
-    "premise": "若那一刻,刀落,或不落。",
-    "regret": "义释曹操,是义还是纵虎?",
-    "ruleText": "这一页,赢了还要选。",
-    "history": "云长义释曹操。",
-    "yeshi": "刀落。华容道上,曹操授首——北方从此大乱。",
-    "note": "Historian's Note: 写卷人注:这一页,赢了还要选。",
-    "defeat": "Defeat Note: 曹军已远,华容空空。",
+    "name": "Huarong Trail",
+    "year": "208 AD",
+    "premise": "What if in that fleeting instant, the blade fell—or stayed?",
+    "regret": "Guan Yu released Cao Cao on Huarong Trail, repaying his ancient debt of chivalry.",
+    "ruleText": "On this page, victory demands a choice.",
+    "history": "Cao Cao retreated through the mud of Huarong Trail, where Guan Yu stood waiting with halberds drawn.",
+    "yeshi": "A lone rider blocked the mountain pass. Looking back on old warmth, the Green Dragon blade returned to its sheath.",
+    "note": "Chronicler's Note: On this page, even winning demands a choice.",
+    "defeat": "The mountain trail collapsed, leaving neither honor nor victory intact.",
     "map": [
-      "乌林",
-      "华容道",
-      "江陵"
+      "Wulin",
+      "Huarong Trail",
+      "Jiangling"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Bond of Old Acquaintance"
       },
       {
-        "n": "Omen 2"
+        "n": "Ambushes Spring Forth"
       },
       {
-        "n": "Omen 3"
+        "n": "Press Not a Cornered Foe"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 败军残部"
+      "name": "Remnants of Defeated Army"
     },
     "boss": {
-      "name": "Boss: 曹操 · 穷途"
+      "name": "Cao Cao · Desperate Flight"
     }
   },
   "nanjun": {
-    "name": "Chapter of nanjun",
-    "year": "建安十四年",
-    "premise": "若都督的箭疮,又裂了一次。",
-    "regret": "南郡一年,周郎耗尽了心血。",
+    "name": "Contest for Nanjun",
+    "year": "209 AD",
+    "premise": "What if the commander's arrow wound tore open once more?",
+    "regret": "Zhou Yu labored at Nanjun, only for Liu Bei to claim Jingzhou's prize.",
     "ruleText": "",
-    "history": "周瑜攻南郡岁余,曹仁弃城走,都督箭疮发。",
-    "yeshi": "江陵城开,箭疮未裂。都督按剑入城,南郡姓了孙。",
-    "note": "Historian's Note: 写卷人注:守城的人不怕久,攻城的人怕。",
-    "defeat": "Defeat Note: 南郡城下,疮又裂了。",
+    "history": "Zhou Yu fought Cao Ren for over a year at Jiangling, suffering an arrow wound that shortened his life.",
+    "yeshi": "While the southern army drew Cao Ren's main force, Shu Han's banners silently rose over Nanjun's gate.",
+    "note": "Chronicler's Note: Defenders fear nothing from time; attackers fear every day.",
+    "defeat": "Cao Ren's counterattack shattered the siege, reclaiming Jiangling.",
     "map": [
-      "夷陵",
-      "江陵",
-      "南郡"
+      "Yiling",
+      "Jiangling",
+      "Nanjun"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Gan Ning Raids Yiling"
       },
       {
-        "n": "Omen 2"
+        "n": "Arrow Wound Still Closed"
       },
       {
-        "n": "Omen 3"
+        "n": "Jiangling Undercover Agent"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 断后 · 曹洪"
+      "name": "Rearguard · Cao Hong"
     },
     "boss": {
-      "name": "Boss: 曹仁 · 天人守城"
+      "name": "Cao Ren · Iron Defense"
     }
   },
   "sanqi": {
-    "name": "Chapter of sanqi",
-    "year": "建安十五年",
-    "premise": "若周郎的箭疮,经不起第三激。",
-    "regret": "既生瑜,何生亮。",
-    "ruleText": "他一点就着——攻心,是这一页的刀。",
-    "history": "三气周瑜,巴丘殒命,年三十六。",
-    "yeshi": "第三激之后,他反而笑了:「孔明,学生受教。」——周郎又活了十年。",
-    "note": "Historian's Note: 写卷人注:他的心,比箭疮更脆。",
-    "defeat": "Defeat Note: 既生瑜,何生亮。",
+    "name": "Three Provocations of Zhou Yu",
+    "year": "210 AD",
+    "premise": "What if Zhou Yu could not endure the third provocation?",
+    "regret": "'Since Heaven made Zhou Yu, why did it also give birth to Zhuge Liang?'",
+    "ruleText": "He flares at a spark—psychological warfare is your blade here.",
+    "history": "Zhou Yu's strategy to conquer Western Ba Shu was repeatedly thwarted by Liu Bei, leading to his demise at Baqiu.",
+    "yeshi": "The great commander gazed across the Yangtze waves, his brilliant mind outmaneuvered by destiny itself.",
+    "note": "Chronicler's Note: His pride was more brittle than an arrowhead.",
+    "defeat": "The fleet sailed in confusion, and Jiangdong's strategic plans collapsed.",
     "map": [
-      "南郡",
-      "柴桑",
-      "巴丘"
+      "Nanjun",
+      "Chaisang",
+      "Baqiu"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Why Create Zhou Yu?"
       },
       {
-        "n": "Omen 2"
+        "n": "Borrowing Path to Conquer"
       },
       {
-        "n": "Omen 3"
+        "n": "Jingxiang in Grasp"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 东吴小将"
+      "name": "Eastern Wu Captain"
     },
     "boss": {
-      "name": "Boss: 周瑜"
+      "name": "Zhou Yu"
     }
   },
   "tongguan": {
-    "name": "Chapter of tongguan",
-    "year": "建安十六年",
-    "premise": "若割须弃袍的那一晚,没有天黑。",
-    "regret": "西凉铁骑,是曹操一生的梦魇。",
+    "name": "Battle of Tongguan",
+    "year": "211 AD",
+    "premise": "What if night never fell on the day he cut his beard and shed his robe?",
+    "regret": "Ma Chao's ferocious charge almost claimed Cao Cao's life beside the Wei River.",
     "ruleText": "",
-    "history": "马超举西凉兵报仇,曹操割须弃袍,用离间计退之。",
-    "yeshi": "许褚赤膊,马超枪热。你把离间信押在桌上,西凉军自己散了。",
-    "note": "Historian's Note: 写卷人注:西凉不缺马,缺一个肯坐下来的人。",
-    "defeat": "Defeat Note: 铁骑如潮,渭水为之赤。",
+    "history": "Ma Chao and Han Sui rebelled in Liangzhou, driving Cao Cao into desperate flight at Tongguan.",
+    "yeshi": "Cao Cao cut his beard and threw off his red robe in haste, narrowly escaping across the Wei River.",
+    "note": "Chronicler's Note: Liangzhou lacks no warhorses, only someone willing to sit across the table.",
+    "defeat": "The spear tip caught the retreating warlord, rewriting the history of Wei.",
     "map": [
-      "长安",
-      "潼关",
-      "渭南"
+      "Chang'an",
+      "Tongguan Pass",
+      "Weinan"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Cutting Beard for Head"
       },
       {
-        "n": "Omen 2"
+        "n": "Ice Ramparts on River Wei"
       },
       {
-        "n": "Omen 3"
+        "n": "Jia Xu's Wedge"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 西凉先锋 · 庞德"
+      "name": "Liangzhou Vanguard · Pang De"
     },
     "boss": {
-      "name": "Boss: 西凉怒火"
+      "name": "Fury of Liangzhou"
     }
   },
   "ruxu": {
-    "name": "Chapter of ruxu",
-    "year": "建安十八年",
-    "premise": "若百骑出营,有一骑没回来。",
-    "regret": "百骑劫魏营,孙权帐下最亮的一夜。",
-    "ruleText": "劫营要快:他的援军每过一手就更近一步。",
-    "history": "甘宁百骑劫曹营,不折一人一骑,孙权曰:孟德有张辽,孤有兴霸。",
-    "yeshi": "铃响三遍,魏营自乱。百骑回来数了数,一个不少。",
-    "note": "Historian's Note: 写卷人注:一百人,赢十万人的胆。",
-    "defeat": "Defeat Note: 铃铛响了,人没有回来。",
+    "name": "Defense of Ruxu",
+    "year": "213 AD",
+    "premise": "What if of the hundred raiding riders, one failed to return?",
+    "regret": "Gan Ning's hundred brave horsemen raided Cao Cao's camp without losing a man.",
+    "ruleText": "Raid swiftly: his reinforcements draw closer with every hand played.",
+    "history": "Gan Ning led one hundred cavalrymen with goose plumes in their helmets into Cao Cao's camp, returning unscathed.",
+    "yeshi": "Silver bells rang in the dark night. A hundred shadows danced through the enemy ranks, shocking ten legions.",
+    "note": "Chronicler's Note: A hundred men can break the courage of ten legions.",
+    "defeat": "The silver bells fell silent, and the hundred riders were encircled.",
     "map": [
-      "皖口",
-      "横江",
-      "濡须坞"
+      "Wankou",
+      "Hengjiang",
+      "Ruxu Dock"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Hundred Silk-Bannered Riders"
       },
       {
-        "n": "Omen 2"
+        "n": "Bells Signal the Charge"
       },
       {
-        "n": "Omen 3"
+        "n": "Lanterns in the Citadel"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 魏垒前锋 · 乐进"
+      "name": "Wei Vanguard · Yue Jin"
     },
     "boss": {
-      "name": "Boss: 魏王亲军"
+      "name": "King of Wei's Guards"
     }
   },
   "luofengpo": {
-    "name": "Chapter of luofengpo",
-    "year": "建安十九年",
-    "premise": "若那匹的卢,没有换骑。",
-    "regret": "凤雏落坡,年方三十六。",
+    "name": "Fallen Phoenix Slope",
+    "year": "214 AD",
+    "premise": "What if the fateful steed Dilu was never traded?",
+    "regret": "Pang Tong fell beneath a rain of arrows at the Valley of the Fallen Phoenix.",
     "ruleText": "",
-    "history": "庞统中流矢,殁于落凤坡,年三十六。",
-    "yeshi": "落凤坡前,伏兵扑了个空。凤雏振翅,直入成都。",
-    "note": "Historian's Note: 写卷人注:地名不吉,早做打算。",
-    "defeat": "Defeat Note: 凤落坡前,箭如雨下。",
+    "history": "Pang Tong was killed by a stray arrow while leading the assault on Luocheng during the conquest of Shu.",
+    "yeshi": "The ominous valley name rang true. The strategist traded his own life to grant Liu Bei righteous cause for war.",
+    "note": "Chronicler's Note: When place names carry ill omen, make early preparations.",
+    "defeat": "Arrows fell like hail from the cliffs, and the Young Phoenix spread his wings no more.",
     "map": [
-      "雒城",
-      "落凤坡",
-      "成都道"
+      "Luocheng",
+      "Fallen Phoenix Slope",
+      "Chengdu Road"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Rerouting the March"
       },
       {
-        "n": "Omen 2"
+        "n": "Young Phoenix by His Side"
       },
       {
-        "n": "Omen 3"
+        "n": "Luocheng Informant"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 西川伏兵"
+      "name": "Xichuan Ambushers"
     },
     "boss": {
-      "name": "Boss: 张任"
+      "name": "Zhang Ren"
     }
   },
   "jiameng": {
-    "name": "Chapter of jiameng",
-    "year": "建安十九年 · 冬",
-    "premise": "若挑灯夜战,有人先眨了眼。",
-    "regret": "张飞战马超,是猛将的最后浪漫。",
+    "name": "Night Battle at Jiameng",
+    "year": "214 AD · Winter",
+    "premise": "What if during the torchlit duel, someone blinked first?",
+    "regret": "Zhang Fei and Ma Chao fought from daytime into torchlight without a victor.",
     "ruleText": "",
-    "history": "张飞与马超战于葭萌关,挑灯夜斗,不分胜负,后超降。",
-    "yeshi": "两百回合后,两人隔着火盆大笑。天下第二第三,惺惺相惜。",
-    "note": "Historian's Note: 写卷人注:打不动的时候,才看得清一个人。",
-    "defeat": "Defeat Note: 灯芯爆了一下,枪就偏了。",
+    "history": "Ma Chao assaulted Jiameng Pass, dueling Zhang Fei over several hundred rounds under torches.",
+    "yeshi": "Hundreds of torches lit the mountain pass like noon. Two peerless warriors traded blows until dawn broke.",
+    "note": "Chronicler's Note: When both sides fight to exhaustion, their true hearts show.",
+    "defeat": "The torches sputtered out, leaving the pass vulnerable in darkness.",
     "map": [
-      "巴西",
-      "葭萌关",
-      "涪水"
+      "Baxi",
+      "Jiameng Pass",
+      "Fu River"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Night Duel by Torchlight"
       },
       {
-        "n": "Omen 2"
+        "n": "Kongming in Camp"
       },
       {
-        "n": "Omen 3"
+        "n": "Zhang Fei Forbids Wine"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 西凉偏将 · 马岱"
+      "name": "Liangzhou Lieutenant · Ma Dai"
     },
     "boss": {
-      "name": "Boss: 马超 · 锦袍银枪"
+      "name": "Ma Chao · Silver Spear"
     }
   },
   "daodan": {
-    "name": "Chapter of daodan",
-    "year": "建安二十年",
-    "premise": "若那把刀,真的出了鞘。",
-    "regret": "单刀赴会,是云长最险的一次从容。",
+    "name": "Alone to the Feast",
+    "year": "215 AD",
+    "premise": "What if that famous blade truly left its scabbard?",
+    "regret": "A single blade went to the river feast, maintaining the fragile alliance between Shu and Wu.",
     "ruleText": "",
-    "history": "鲁肃邀关羽单刀赴会议荆州,羽持刀假借,谈笑而归。",
-    "yeshi": "刀未出鞘,话已说尽。鲁肃亲自送到江边,荆州之争又缓三年。",
-    "note": "Historian's Note: 写卷人注:这一页赢的不是胆,是理。",
-    "defeat": "Defeat Note: 酒过三巡,伏兵四起。",
+    "history": "Guan Yu met Lu Su on the riverbank to discuss the borders of Jingzhou, holding his blade in reserve.",
+    "yeshi": "Stepping into the banquet with his blade in hand, his towering presence held Jiangdong's swords in awe.",
+    "note": "Chronicler's Note: This page was won not by raw courage, but by unyielding righteousness.",
+    "defeat": "The ambush tripped the guest, and diplomatic peace turned into blood.",
     "map": [
-      "巴丘",
-      "陆口",
-      "益阳"
+      "Baqiu",
+      "Lukou",
+      "Yiyang"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Green Cap and Emerald Robe"
       },
       {
-        "n": "Omen 2"
+        "n": "Zhou Cang Bears the Blade"
       },
       {
-        "n": "Omen 3"
+        "n": "Righteousness of Old Friends"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 帐下伏兵 · 丁奉"
+      "name": "Concealed Troops · Ding Feng"
     },
     "boss": {
-      "name": "Boss: 鲁肃 · 陆口之宴"
+      "name": "Lu Su · Banquet at Lukou"
     }
   },
   "xiaoyaojin": {
-    "name": "Chapter of xiaoyaojin",
-    "year": "建安二十年 · 秋",
-    "premise": "若断桥的骑兵,再多等一炷香。",
-    "regret": "张辽止啼,江东六岁孩童皆知。",
-    "ruleText": "他在你半渡时最凶——先把阵脚站稳,再过津桥。",
-    "history": "张辽八百陷阵,孙权几殆,逍遥津止啼。",
-    "yeshi": "津桥未断,吴阵未乱。张辽望见孙权的伞盖,第一次没有冲。",
-    "note": "Historian's Note: 写卷人注:他的勇,建立在你乱的基础上。",
-    "defeat": "Defeat Note: 津桥一断,退路两断。",
+    "name": "Battle of Xiaoyaojin",
+    "year": "215 AD · Autumn",
+    "premise": "What if the horsemen at the broken bridge waited one incense time longer?",
+    "regret": "Zhang Liao's eight hundred warriors routed Sun Quan's hundred thousand at Xiaoyaojin.",
+    "ruleText": "He strikes fiercest when you are midway across—steady your lines before the bridge.",
+    "history": "Zhang Liao led eight hundred shock troops out of Hefei, crushing Sun Quan's main army at Xiaoyaojin.",
+    "yeshi": "Sun Quan leaped across the broken wooden bridge on horseback, forever trembling at the name of Zhang Liao.",
+    "note": "Chronicler's Note: His valor was built on your moment of hesitation.",
+    "defeat": "Sun Quan fell into the river, and the Eastern Wu throne shattered.",
     "map": [
-      "施水",
-      "合肥",
-      "逍遥津"
+      "Shishui River",
+      "Hefei",
+      "Xiaoyaojin Ford"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Ling Tong Guards the Rear"
       },
       {
-        "n": "Omen 2"
+        "n": "Bridge Can Be Severed"
       },
       {
-        "n": "Omen 3"
+        "n": "Wu Armies Assemble"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 合肥守备 · 李典"
+      "name": "Hefei Garrison · Li Dian"
     },
     "boss": {
-      "name": "Boss: 八百勇士"
+      "name": "The Eight Hundred Braves"
     }
   },
   "dingjunshan": {
-    "name": "Chapter of dingjunshan",
-    "year": "建安二十四年",
-    "premise": "若老将的那一刀,砍空了。",
-    "regret": "老当益壮,一刀定汉中。",
+    "name": "Mount Dingjun",
+    "year": "219 AD",
+    "premise": "What if the veteran general's downward slash had struck empty air?",
+    "regret": "Huang Zhong charged down from the heights, cutting down Xiahou Yuan in one blow.",
     "ruleText": "",
-    "history": "黄忠阵斩夏侯渊,汉中遂定。",
-    "yeshi": "刀落如雷霆,渊军自溃。山下白马,老将军抚须而笑。",
-    "note": "Historian's Note: 写卷人注:居高者,势也。",
-    "defeat": "Defeat Note: 定军山上,旗折。",
+    "history": "Huang Zhong occupied the high ground at Mount Dingjun and launched a sudden charge, killing Xiahou Yuan.",
+    "yeshi": "Descending from the mountain crest like a thunderbolt, the veteran warrior secured the conquest of Hanzhong.",
+    "note": "Chronicler's Note: Those who hold the heights command the momentum.",
+    "defeat": "The charge faltered uphill, and the veteran army was cut off from supplies.",
     "map": [
-      "阳平关",
-      "定军山",
-      "汉中"
+      "Yangping Pass",
+      "Mount Dingjun",
+      "Hanzhong"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Vigorous in Old Age"
       },
       {
-        "n": "Omen 2"
+        "n": "Dominating the Heights"
       },
       {
-        "n": "Omen 3"
+        "n": "Fa Zheng's Strategy"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 汉中宿将 · 郭淮"
+      "name": "Hanzhong Veteran · Guo Huai"
     },
     "boss": {
-      "name": "Boss: 夏侯渊"
+      "name": "Xiahou Yuan"
     }
   },
   "shuiyan": {
-    "name": "Chapter of shuiyan",
-    "year": "建安二十四年",
-    "premise": "若那场秋雨,晚来了三天。",
-    "regret": "威震华夏,是云长最盛时。",
+    "name": "Flooding the Seven Armies",
+    "year": "219 AD",
+    "premise": "What if the autumn torrents arrived three days too late?",
+    "regret": "The floodwaters drowned Yu Jin's seven armies, echoing Guan Yu's fame across China.",
     "ruleText": "",
-    "history": "水淹七军,擒于禁,斩庞德,威震华夏。",
-    "yeshi": "水至时,七军皆鱼。关某之名,自此惊了许都。",
-    "note": "Historian's Note: 写卷人注:天时,站在你这边。",
-    "defeat": "Defeat Note: 雨住了,堤未决。",
+    "history": "Heavy autumn rains swelled the Han River. Guan Yu diverted the waters, drowning Yu Jin's seven legions outside Fancheng.",
+    "yeshi": "War barges sailed above flooded ramparts. Guan Yu stood in armor, terrifying Cao Cao into considering moving his capital.",
+    "note": "Chronicler's Note: The heavens themselves fought on your side this day.",
+    "defeat": "The dikes held firm, and Guan Yu's vanguard was surrounded by dry walls.",
     "map": [
-      "樊城",
-      "罾口川",
-      "沔水"
+      "Fancheng",
+      "Zengkouchuan",
+      "Mianshui River"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Ten Days of Autumn Rain"
       },
       {
-        "n": "Omen 2"
+        "n": "Holding the High Ground"
       },
       {
-        "n": "Omen 3"
+        "n": "Tower Ships Ready"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 七军前部"
+      "name": "Vanguard of the Seven Armies"
     },
     "boss": {
-      "name": "Boss: 七军 · 于禁"
+      "name": "The Seven Armies · Yu Jin"
     }
   },
   "maicheng": {
-    "name": "Chapter of maicheng",
-    "year": "建安二十四年 · 冬",
-    "premise": "若荆州不失。",
-    "regret": "云长之殁,是全书最大的意难平。",
+    "name": "Retreat to Maicheng",
+    "year": "219 AD · Winter",
+    "premise": "What if Jingzhou was never lost?",
+    "regret": "White clothes crossed the river in stealth, and the God of War fell at Linju.",
     "ruleText": "",
-    "history": "云长败亡,权送其首于洛。",
-    "yeshi": "麦城雪夜,云长死战得脱,荆州无恙。",
-    "note": "Historian's Note: 写卷人注:这一页,全书的泪。",
-    "defeat": "Defeat Note: 麦城的雪,又下了一夜。",
+    "history": "Lu Meng feigned illness while crossed the river in merchant disguise. Guan Yu lost Jingzhou and was ambushed at Maicheng.",
+    "yeshi": "Surrounded in the lone citadel of Maicheng, he gazed across the snowy plains, keeping his honor to the last breath.",
+    "note": "Chronicler's Note: On this page lies the bitterest tear in all history.",
+    "defeat": "The snow swallowed his footsteps, and the Green Dragon fell silent forever.",
     "map": [
-      "江陵",
-      "临沮",
-      "麦城"
+      "Jiangling",
+      "Linju",
+      "Maicheng"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Beacons Failed to Warn"
       },
       {
-        "n": "Omen 2"
+        "n": "Death Battle in Snowy Night"
       },
       {
-        "n": "Omen 3"
+        "n": "Shangyong Relief Force"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 东吴 · 潘璋"
+      "name": "Eastern Wu · Pan Zhang"
     },
     "boss": {
-      "name": "Boss: 吕蒙 · 陆逊"
+      "name": "Lu Meng & Lu Xun"
     }
   },
   "yiling": {
-    "name": "Battle of Yiling",
-    "year": "章武二年",
-    "premise": "若七百里连营,不在林中。",
-    "regret": "火烧连营,烧掉的是复仇也是季汉。",
-    "ruleText": "盲注涨得更快——他的火,在等你犯错。",
-    "history": "陆逊火烧连营七百里,先主败走白帝。",
-    "yeshi": "火未起时,营已移出山林。这一把火,陆逊无处可放。",
-    "note": "Historian's Note: 写卷人注:怒,是他的,也是你的。",
-    "defeat": "Defeat Note: 七百里,一场火。",
+    "name": "Fire at Yiling",
+    "year": "222 AD",
+    "premise": "What if the seven hundred li of camps were never pitched among trees?",
+    "regret": "Lu Xun's fire scorched seven hundred li of camps, ending Shu's golden host.",
+    "ruleText": "Blinds climb swiftly—his flames wait for your mistake.",
+    "history": "Liu Bei attacked Wu to avenge Guan Yu. Lu Xun held his lines until autumn and burned Liu Bei's camps.",
+    "yeshi": "Flames turned night into blinding noon across the mountains. Liu Bei fled into the safety of Baidi City.",
+    "note": "Chronicler's Note: The wrath was his, but the consequence was yours.",
+    "defeat": "The fire spread unchecked, consuming the army and the emperor's ambitions.",
     "map": [
-      "秭归",
-      "猇亭",
-      "夷陵"
+      "Zigui",
+      "Xiaoting",
+      "Yiling"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Moving Camp to Heights"
       },
       {
-        "n": "Omen 2"
+        "n": "Pitch Unprepared"
       },
       {
-        "n": "Omen 3"
+        "n": "Fury of Vengeance"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 吴军 · 朱然"
+      "name": "Wu Forces · Zhu Ran"
     },
     "boss": {
-      "name": "Boss: 陆逊"
+      "name": "Lu Xun"
     }
   },
   "baidicheng": {
-    "name": "Chapter of baidicheng",
-    "year": "章武三年",
-    "premise": "若那句托付,可以不出口。",
-    "regret": "白帝托孤,是英雄末路。",
+    "name": "Entrusting the Orphan at Baidi",
+    "year": "223 AD",
+    "premise": "What if the final entrustment never needed to be spoken?",
+    "regret": "At Yong'an Palace, Liu Bei placed his son and kingdom into Zhuge Liang's hands.",
     "ruleText": "",
-    "history": "先主托孤,崩于永安宫,年六十三。",
-    "yeshi": "秋去冬来,病榻前的人坐了起来。那句托付,终究没有说出口。",
-    "note": "Historian's Note: 写卷人注:有些对手,不在牌桌上。",
-    "defeat": "Defeat Note: 永安宫里,长夜将尽。",
+    "history": "On his deathbed at Baidi City, Liu Bei entrusted the orphan and the Han restoration to Zhuge Liang.",
+    "yeshi": "Hands clasped in tearful devotion, a bond between sovereign and minister was forged stronger than gold.",
+    "note": "Chronicler's Note: Some opponents are not sitting across the card table.",
+    "defeat": "The emperor died without heir, and the kingdom fell into factional ruin.",
     "map": [
-      "鱼复浦",
-      "永安宫",
-      "白帝城"
+      "Yufupu Maze",
+      "Yong'an Palace",
+      "Baidi City"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Regent Entrusted with Heir"
       },
       {
-        "n": "Omen 2"
+        "n": "Young Master by His Side"
       },
       {
-        "n": "Omen 3"
+        "n": "Physician's Devoted Care"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 宫中宿卫"
+      "name": "Imperial Guards"
     },
     "boss": {
-      "name": "Boss: 天命 · 沉疴"
+      "name": "Destiny · Failing Health"
     }
   },
   "qiqin": {
-    "name": "Chapter of qiqin",
-    "year": "建兴三年",
-    "premise": "若第七次,他仍不服。",
-    "regret": "七擒七纵,攻心为上。",
-    "ruleText": "连战七场。擒他七次,也要放他六次。",
-    "history": "七擒七纵,南中遂定,终身不反。",
-    "yeshi": "第七次,他自己走进了营门:「丞相,服了。」",
-    "note": "Historian's Note: 写卷人注:擒他七次,也要放他六次。",
-    "defeat": "Defeat Note: 南中的瘴气,比人更难缠。",
+    "name": "Seven Captures of Meng Huo",
+    "year": "225 AD",
+    "premise": "What if on the seventh capture, he remained unyielding?",
+    "regret": "Capturing and releasing Meng Huo seven times won the hearts of the southern tribes forever.",
+    "ruleText": "Seven rounds in sequence. Capture him seven times, release him six.",
+    "history": "Zhuge Liang pacified the southern barbarians, capturing and releasing Meng Huo seven times to win true loyalty.",
+    "yeshi": "Across poisonous marshes and burning valleys, loyalty was won not by iron, but by benevolence.",
+    "note": "Chronicler's Note: To capture him seven times, you must release him six times.",
+    "defeat": "The southern warriors retreated into impenetrable marshes, refusing all peace.",
     "map": [
-      "益州",
-      "泸水",
-      "盘蛇谷",
-      "南中"
+      "Yizhou",
+      "Lushui River",
+      "Panshe Valley",
+      "Nanzhong"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Winning Hearts Above All"
       },
       {
-        "n": "Omen 2"
+        "n": "Rattan Armor Fears Fire"
       },
       {
-        "n": "Omen 3"
+        "n": "Rites across River Lu"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 南蛮藤甲兵"
+      "name": "Nanman Rattan Armor Soldiers"
     },
     "boss": {
-      "name": "Boss: 孟获"
+      "name": "Meng Huo"
     }
   },
   "qishan": {
-    "name": "Chapter of qishan",
-    "year": "建兴五年",
-    "premise": "若《出师表》,不是最后一篇。",
-    "regret": "六出祁山,明知不可为而为之。",
+    "name": "Northern Expedition from Qishan",
+    "year": "227 AD",
+    "premise": "What if the Memorial on the Northern Expedition was not the final chapter?",
+    "regret": "Leading the armies through the mountain passes six times to restore the Han.",
     "ruleText": "",
-    "history": "六出祁山,中原终不可复。",
-    "yeshi": "祁山的道,这一次,走通了。",
-    "note": "Historian's Note: 写卷人注:明知不可为,而为之。",
-    "defeat": "Defeat Note: 祁山的风,还是那么大。",
+    "history": "Zhuge Liang submitted the Memorial on the Northern Expedition and marched out of Hanzhong toward Qishan.",
+    "yeshi": "The green dragon banners crested the mountain pass. An old minister dedicated his remaining years to an impossible oath.",
+    "note": "Chronicler's Note: Knowing that it cannot be done, yet doing it anyway.",
+    "defeat": "Supplies failed in the rugged mountains, forcing a bitter retreat.",
     "map": [
-      "汉中",
-      "祁山",
-      "天水"
+      "Hanzhong",
+      "Mount Qi",
+      "Tianshui"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "First Memorial on Expedition"
       },
       {
-        "n": "Omen 2"
+        "n": "Veteran Asks for the Task"
       },
       {
-        "n": "Omen 3"
+        "n": "Wooden Oxen and Flowing Horses"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 魏军前哨"
+      "name": "Wei Outpost"
     },
     "boss": {
-      "name": "Boss: 曹真"
+      "name": "Cao Zhen"
     }
   },
   "tianshui": {
-    "name": "Chapter of tianshui",
-    "year": "建兴六年 · 春",
-    "premise": "若凤鸣山的老将,败给一个少年。",
-    "regret": "收姜维,是丞相北伐最大的意外之得。",
+    "name": "Subduing Jiang Wei",
+    "year": "228 AD · Spring",
+    "premise": "What if the veteran of Fengming Mountain was bested by a youth?",
+    "regret": "At Tianshui, the Sleeping Dragon found the young disciple who would carry his dream.",
     "ruleText": "",
-    "history": "诸葛亮一出祁山,姜维识破计策,后降,授平生所学。",
-    "yeshi": "枪法里读得出兵书。丞相掷扇而笑:「吾道有人继矣。」",
-    "note": "Historian's Note: 写卷人注:这一页不是赢他,是请他。",
-    "defeat": "Defeat Note: 少年的枪,比传闻更快。",
+    "history": "Jiang Wei saw through Zhuge Liang's stratagem at Tianshui, and was later recruited to inherit his military lore.",
+    "yeshi": "Looking at the brilliant young officer kneeling before him, Zhuge Liang passed down the secret scrolls of Shu Han.",
+    "note": "Chronicler's Note: On this page, victory means recruiting him, not crushing him.",
+    "defeat": "Jiang Wei slipped through the trap, denying Shu Han its last great general.",
     "map": [
-      "祁山",
-      "天水",
-      "冀城"
+      "Mount Qi",
+      "Tianshui",
+      "Jicheng"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Zilong Taken Aback"
       },
       {
-        "n": "Omen 2"
+        "n": "Feigned Force Exposed"
       },
       {
-        "n": "Omen 3"
+        "n": "Liangzhou Supply Line"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 冀城郡兵"
+      "name": "Jicheng Garrison"
     },
     "boss": {
-      "name": "Boss: 姜维 · 冀城少年"
+      "name": "Jiang Wei · Youth of Jicheng"
     }
   },
   "jieting": {
-    "name": "Chapter of jieting",
-    "year": "建兴六年",
-    "premise": "若马谡肯当道下寨。",
-    "regret": "挥泪斩马谡,斩的是自己的错。",
+    "name": "The Loss of Jieting",
+    "year": "228 AD",
+    "premise": "What if Ma Su had camped right across the main road?",
+    "regret": "Camping on the hilltop led to total loss, forcing the tears at Ma Su's execution.",
     "ruleText": "",
-    "history": "马谡失街亭,孔明挥泪斩之。",
-    "yeshi": "当道一座寨,张郃望之兴叹。街亭未失,泪未挥。",
-    "note": "Historian's Note: 写卷人注:守则胜,攻则殆。",
-    "defeat": "Defeat Note: 山上无水,街亭已失。",
+    "history": "Ma Su ignored orders and camped atop Mount Jieting; Zhang He cut off his water supply and annihilated the outpost.",
+    "yeshi": "Water supplies ran dry in the summer heat. Jieting fell, collapsing the entire Northern Expedition.",
+    "note": "Chronicler's Note: Defense brings victory; overconfidence brings ruin.",
+    "defeat": "Water dried on the hill, and the Northern Expedition was shattered.",
     "map": [
-      "祁山",
-      "街亭",
-      "列柳城"
+      "Mount Qi",
+      "Jieting Outpost",
+      "Lieliucheng"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Encamping on the Road"
       },
       {
-        "n": "Omen 2"
+        "n": "Wang Ping's Bitter Warning"
       },
       {
-        "n": "Omen 3"
+        "n": "Water Source in Hand"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 魏军先锋"
+      "name": "Wei Vanguard"
     },
     "boss": {
-      "name": "Boss: 张郃"
+      "name": "Zhang He"
     }
   },
   "kongcheng": {
-    "name": "Chapter of kongcheng",
-    "year": "建兴六年",
-    "premise": "若城楼上那张琴,断了一根弦。",
-    "regret": "空城一计,赌的就是他太聪明。",
-    "ruleText": "他越聪明,越好骗——诈唬在这一页更值钱。",
-    "history": "空城一计,仲达退兵。",
-    "yeshi": "琴声未断,他已退兵三十里。城上城下,各输一口气。",
-    "note": "Historian's Note: 写卷人注:他越聪明,越好骗。",
-    "defeat": "Defeat Note: 琴弦一断,满盘皆输。",
+    "name": "The Empty Fort Stratagem",
+    "year": "228 AD",
+    "premise": "What if the zither atop the rampart snapped a single string?",
+    "regret": "An empty city gate and a quiet zither drove away Sima Yi's fifteen legions.",
+    "ruleText": "The wiser he is, the easier he is deceived—bluffs are worth more on this page.",
+    "history": "Zhuge Liang opened the city gates and played the zither calmly, causing Sima Yi to suspect an ambush and retreat.",
+    "yeshi": "Incense smoke drifted lazily above the open city gate. The calm notes of the zither echoed with unfathomable depth.",
+    "note": "Chronicler's Note: The smarter your opponent, the easier he falls to an empty bluff.",
+    "defeat": "The zither string broke with a snap, and the enemy cavalry rushed the open gate.",
     "map": [
-      "西城",
-      "城楼",
-      "斜谷"
+      "Xicheng Fortress",
+      "City Rampart",
+      "Xie Valley"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Playing Zither on Tower"
       },
       {
-        "n": "Omen 2"
+        "n": "Gates Thrown Wide Open"
       },
       {
-        "n": "Omen 3"
+        "n": "Elders Sweep the Street"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 魏军斥候"
+      "name": "Wei Scouts"
     },
     "boss": {
-      "name": "Boss: 司马懿 · 疑兵"
+      "name": "Sima Yi · Phantom Army"
     }
   },
   "chencang": {
-    "name": "Chapter of chencang",
-    "year": "建兴七年",
-    "premise": "若云梯断尽,还有一封信。",
-    "regret": "千人守陈仓,丞相二十日无功。",
+    "name": "Siege of Chencang",
+    "year": "229 AD",
+    "premise": "What if when siege ladders shattered, a final letter remained?",
+    "regret": "Hao Zhao held Chencang with one thousand men, defying all siege machinery for weeks.",
     "ruleText": "",
-    "history": "诸葛亮二出祁山攻陈仓,郝昭拒守,粮尽而退,斩王双。",
-    "yeshi": "二十日不下,你却收到城里一封回信。陈仓之门,开在纸上下一次。",
-    "note": "Historian's Note: 写卷人注:攻不下城,就攻他守城的理由。",
-    "defeat": "Defeat Note: 城头火箭,烧尽云梯。",
+    "history": "Hao Zhao fortified Chencang with a small garrison, repelling Zhuge Liang's siege engines until relief arrived.",
+    "yeshi": "Cloud ladders burned and tunnels collapsed. Two masters of siege and defense traded stratagems under the stars.",
+    "note": "Chronicler's Note: If you cannot breach the fortress, attack his reason for holding it.",
+    "defeat": "Supplies ran out before the stone walls, forcing a retreat.",
     "map": [
-      "散关",
-      "陈仓",
-      "渭水"
+      "Sanguan Pass",
+      "Chencang Fortress",
+      "Wei River"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Scaling Ladders and Repeating Crossbows"
       },
       {
-        "n": "Omen 2"
+        "n": "Hao Zhao's Kinsman"
       },
       {
-        "n": "Omen 3"
+        "n": "Withdrawing as Supplies Exhaust"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 陇西猛将 · 王双"
+      "name": "Longxi Champion · Wang Shuang"
     },
     "boss": {
-      "name": "Boss: 郝昭 · 千人守城"
+      "name": "Hao Zhao · Defense of a Thousand"
     }
   },
   "shangfanggu": {
-    "name": "Chapter of shangfanggu",
-    "year": "建兴十二年 · 春",
-    "premise": "若那场雨,晚落半刻。",
-    "regret": "天不灭魏,火熄上方谷。",
-    "ruleText": "火起于谷口:逼他入谷前,先赢下他的退路。",
-    "history": "诸葛亮诱司马懿入上方谷,火烧将成,天降大雨,父子得脱。",
-    "yeshi": "雨落下来时,谷口的牌局已经结束。司马懿仰望天色,第一次失语。",
-    "note": "Historian's Note: 写卷人注:人算的尽头,是天下的一口气。",
-    "defeat": "Defeat Note: 雨先到了,火后熄了。",
+    "name": "Rain at Shangfang Valley",
+    "year": "234 AD · Spring",
+    "premise": "What if the heavens delayed the downpour by half a moment?",
+    "regret": "'Man proposes, Heaven disposes.' A Sudden rain saved Sima Yi from the valley of fire.",
+    "ruleText": "Fire rises at the valley entrance: claim his retreat before driving him in.",
+    "history": "Zhuge Liang trapped Sima Yi in Shangfang Valley and set fire to it, but a sudden downpour extinguished the flames.",
+    "yeshi": "Flames rose like dragons before the clouds burst with torrential rain. Zhuge Liang sighed into the heavens.",
+    "note": "Chronicler's Note: At the end of human strategy lies the breath of heaven.",
+    "defeat": "The rain quenched the fire, and Sima Yi rode out to safety.",
     "map": [
-      "渭滨",
-      "北原",
-      "上方谷"
+      "Wei Riverside",
+      "Beiyuan Heights",
+      "Shangfang Valley"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Flames in Gourd Valley"
       },
       {
-        "n": "Omen 2"
+        "n": "Wooden Oxen Hauling Grain"
       },
       {
-        "n": "Omen 3"
+        "n": "Cloudless Skies"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 魏垒斥候"
+      "name": "Wei Camp Scouts"
     },
     "boss": {
-      "name": "Boss: 司马父子"
+      "name": "Sima Father & Sons"
     }
   },
   "wuzhangyuan": {
     "name": "Wuzhang Plains",
-    "year": "建兴十二年 · 秋",
-    "premise": "若这一次,东南星明。",
-    "regret": "秋风五丈原,星落。出师未捷身先死。",
-    "ruleText": "他坚壁不战,攻心于他无用;盲注两倍速——粮尽之前,逼他决战。",
-    "history": "秋风五丈原,星落,年五十四。",
-    "yeshi": "是夜,丞相掀帐而出,见东南星明,再借十年。",
-    "note": "Historian's Note: 写卷人注:他不出战,粮是你的命。",
-    "defeat": "Defeat Note: 秋风五丈原,星落。",
+    "year": "234 AD · Autumn",
+    "premise": "What if this time, the stars in the southeast shone bright?",
+    "regret": "The prime minister died before victory, leaving tears on the robes of all heroes.",
+    "ruleText": "Behind high walls he will not engage; double-speed blinds—force battle before rations empty.",
+    "history": "Zhuge Liang confronted Sima Yi at Wuzhang Plains for one hundred days, perishing from illness in the camp.",
+    "yeshi": "The fallen star was obscured in the mist. Even in death, the wooden statue of Zhuge drove away the living Sima.",
+    "note": "Chronicler's Note: If he refuses battle, your supply line is your very life.",
+    "defeat": "The lantern of the big dipper went dark, and the army fell into grief.",
     "map": [
-      "斜谷",
-      "武功水",
-      "五丈原"
+      "Xie Valley",
+      "Wugong River",
+      "Wuzhang Plains"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Reading the Stars by Night"
       },
       {
-        "n": "Omen 2"
+        "n": "Wooden Oxen and Flowing Horses"
       },
       {
-        "n": "Omen 3"
+        "n": "Forced March through Xie Valley"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 木门道 · 张郃"
+      "name": "Mumen Trail · Zhang He"
     },
     "boss": {
-      "name": "Boss: 司马懿 · 坚壁"
+      "name": "Sima Yi · Impassable Wall"
     }
   },
   "gaopingling": {
-    "name": "Chapter of gaopingling",
-    "year": "正始十年",
-    "premise": "若那坛「病」,骗不过你。",
-    "regret": "诈病一计,骗过了整个魏国。",
-    "ruleText": "他的一切破绽,都是给你看的——假动作极多。",
-    "history": "司马懿诈病赚曹爽,高平陵之变,魏归司马。",
-    "yeshi": "病榻前的粥,喂给了狗。他睁开眼时,你的刀已经架好了。",
-    "note": "Historian's Note: 写卷人注:他的破绽,都是饵。",
-    "defeat": "Defeat Note: 装病的人,赢了真病的人。",
+    "name": "Incident at Gaopingling",
+    "year": "249 AD",
+    "premise": "What if feigned sickness failed to deceive your eyes?",
+    "regret": "Ten years of patient endurance culminated in the coup that usurped the throne of Wei.",
+    "ruleText": "Every tell he shows is staged for your eyes—beware abundant feints.",
+    "history": "Sima Yi feigned decrepit illness to lower Cao Shuang's guard, seizing Luoyang while Cao Shuang visited Gaopingling.",
+    "yeshi": "The shaking hands suddenly drew steel. Decades of hidden ambition seized the imperial capital in one strike.",
+    "note": "Chronicler's Note: His apparent weakness was only bait.",
+    "defeat": "Cao Shuang saw through the coup, executing Sima Yi's family in Luoyang.",
     "map": [
-      "洛阳",
-      "高平陵",
-      "洛水"
+      "Luoyang",
+      "Gaoping Tomb",
+      "Luo River"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Feigning Illness to Avoid Court"
       },
       {
-        "n": "Omen 2"
+        "n": "Three Thousand Deathsworn"
       },
       {
-        "n": "Omen 3"
+        "n": "Empress Dowager's Edict"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 司马府家兵"
+      "name": "Sima Household Retainers"
     },
     "boss": {
-      "name": "Boss: 司马懿 · 诈病"
+      "name": "Sima Yi · Feigned Illness"
     }
   },
   "tielongshan": {
-    "name": "Chapter of tielongshan",
-    "year": "延熙十八年",
-    "premise": "若泉水枯时,羌人不退反进。",
-    "regret": "姜维一枪,差一点改写陇右。",
+    "name": "Siege of Mount Tielong",
+    "year": "255 AD",
+    "premise": "What if when springs dried up, the Qiang advanced instead of retreating?",
+    "regret": "Surrounded on Mount Tielong, Sima Zhao struck stone to find water, while Jiang Wei had to retreat.",
     "ruleText": "",
-    "history": "姜维围司马昭于铁笼山,郭淮解围,维败退;射杀郭淮之说系演义。",
-    "yeshi": "山泉将枯,羌人的火却先烧到魏营。陇右的棋,又多一手。",
-    "note": "Historian's Note: 写卷人注:围人者,先算自己能撑几日。",
-    "defeat": "Defeat Note: 泉枯了,援兵到了。",
+    "history": "Jiang Wei besieged Sima Zhao on Mount Tielong, but Guo Huai attacked his rear and lifted the siege.",
+    "yeshi": "Spring water gushed from dry rock like an omen from heaven. The Qiang withdrew, and the mountain siege broke.",
+    "note": "Chronicler's Note: Those who besiege others must first calculate how long they can survive.",
+    "defeat": "Guo Huai's flanking force severed the pass, trapping the Northern Expedition in the mountain.",
     "map": [
-      "洮水",
-      "铁笼山",
-      "狄道"
+      "Taoshui River",
+      "Mount Tielong",
+      "Didao"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Siege of Severed Springs"
       },
       {
-        "n": "Omen 2"
+        "n": "Qiang Allies Inside"
       },
       {
-        "n": "Omen 3"
+        "n": "Launching Boats on River Tao"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 昭营试探 · 司马昭"
+      "name": "Sima Zhao's Probe"
     },
     "boss": {
-      "name": "Boss: 郭淮 · 陇右宿将"
+      "name": "Guo Huai · Veteran of Longyou"
     }
   },
   "huainan": {
-    "name": "Chapter of huainan",
-    "year": "正元二年",
-    "premise": "若讨贼的檄文,只差一个名字。",
-    "regret": "淮南三叛,魏臣最后的骨气。",
-    "ruleText": "连战两叛:一叛败于粮,一叛败于疑。",
-    "history": "毌丘俭、诸葛诞先后举兵淮南讨司马氏,皆败,夷三族。",
-    "yeshi": "两场檄文都送到了洛阳。司马师的枕头,从此垫不稳。",
-    "note": "Historian's Note: 写卷人注:名字越多,越要先赢人心。",
-    "defeat": "Defeat Note: 寿春城头,换了三次旗。",
+    "name": "Three Rebellions in Huainan",
+    "year": "255 AD",
+    "premise": "What if the manifesto against usurpers lacked just one name?",
+    "regret": "Loyalists rose three times in Huainan, but none could stop the rise of Jin.",
+    "ruleText": "Two rebellions back-to-back: one fails for grain, one fails from distrust.",
+    "history": "Wang Ling, Guanqiu Jian, and Zhuge Dan rebelled sequentially in Huainan, all crushed by the Sima clan.",
+    "yeshi": "Banners of loyalty rose across the Huai River, shedding the final drops of Han and Wei blood.",
+    "note": "Chronicler's Note: The more names on the banner, the more important to win men's hearts first.",
+    "defeat": "The rebellion was suppressed, cementing the supremacy of the Sima family.",
     "map": [
-      "项城",
-      "寿春",
-      "淮南"
+      "Xiangcheng",
+      "Shouchun",
+      "Huainan"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Call to Arms Against Traitors"
       },
       {
-        "n": "Omen 2"
+        "n": "Covenant of Eastern Wu"
       },
       {
-        "n": "Omen 3"
+        "n": "Infiltrators Unmasked"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 乐綝守淮南"
+      "name": "Yue Lin · Defender of Huainan"
     },
     "boss": {
-      "name": "Boss: 淮南义兵"
+      "name": "Righteous Army of Huainan"
     }
   },
   "ganlu": {
-    "name": "Chapter of ganlu",
-    "year": "甘露五年",
-    "premise": "若《潜龙》诗,题在出鞘之后。",
-    "regret": "司马昭之心,路人皆知;天子之血,溅在车驾之下。",
-    "ruleText": "他等你先亮牌——天子之名是唯一的筹码,别孤注一掷。",
-    "history": "曹髦讨司马昭,贾充命成济弑之于南阙之下,魏之名存实亡。",
-    "yeshi": "南阙之下,成济的戟停在半空。史官抬头:「陛下,臣直笔。」",
-    "note": "Historian's Note: 写卷人注:这一页赌的不是胜负,是史笔。",
-    "defeat": "Defeat Note: 天子的血,没能溅醒洛阳。",
+    "name": "Incident at Ganlu Hall",
+    "year": "260 AD",
+    "premise": "What if the Poem of the Hidden Dragon was inscribed after blades were drawn?",
+    "regret": "The young emperor took up arms himself, dying in the street outside Ganlu Hall.",
+    "ruleText": "He waits for your reveal—the Son of Heaven is your only chip; do not stake it all.",
+    "history": "Emperor Cao Mao led his guards to attack Sima Zhao, but was killed in the palace street by Cheng Ji.",
+    "yeshi": "Drawing his imperial sword against usurpers, the young sovereign preferred death to subjugation.",
+    "note": "Chronicler's Note: This page wagers not on victory, but on the verdict of history.",
+    "defeat": "The palace chariot overturned, and the dynasty fell into silence.",
     "map": [
-      "洛阳",
-      "太极殿",
-      "南阙"
+      "Luoyang",
+      "Taiji Throne Hall",
+      "South Gate Tower"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Dragon Standard Rides South"
       },
       {
-        "n": "Omen 2"
+        "n": "Known to Every Passerby"
       },
       {
-        "n": "Omen 3"
+        "n": "Old Ministers Weep in Restraint"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 告密之笔 · 王沈"
+      "name": "Traitor's Brush · Wang Shen"
     },
     "boss": {
-      "name": "Boss: 司马昭之刃"
+      "name": "Blade of Sima Zhao"
     }
   },
   "jiange": {
-    "name": "Chapter of jiange",
-    "year": "景耀六年 · 秋",
-    "premise": "若一夫当关,关后无小道。",
-    "regret": "剑阁天险,挡得住大军,挡不住阴平。",
+    "name": "Cliffs of Jiange",
+    "year": "263 AD · Autumn",
+    "premise": "What if when one held the pass, no secret trail bypassed the rear?",
+    "regret": "Jiang Wei held Jiange firmly, but Chengdu had already opened its gates.",
     "ruleText": "",
-    "history": "姜维拒钟会于剑阁,会不能进;邓艾遂偷渡阴平。",
-    "yeshi": "钟会望关二十日,笔搁下了:「此关,取之无益。」蜀汉又得一冬。",
-    "note": "Historian's Note: 写卷人注:守住了正面,别忘了侧面。",
-    "defeat": "Defeat Note: 剑门虽险,独木难支。",
+    "history": "Jiang Wei locked horns with Zhong Hui at the cliffs of Jiange, holding the pass until Liu Shan surrendered.",
+    "yeshi": "Ten legions could not breach the iron cliffs. Yet the surrender decree came from the emperor's court behind him.",
+    "note": "Chronicler's Note: Even if you hold the front, never forget your flanks.",
+    "defeat": "The mountain pass was bypassed, rendering heroic resistance futile.",
     "map": [
-      "白水",
-      "剑阁",
-      "涪城"
+      "Baishui",
+      "Jiange Cliffs",
+      "Fucheng"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Impassable Bastion"
       },
       {
-        "n": "Omen 2"
+        "n": "Liao Hua Renders Aid"
       },
       {
-        "n": "Omen 3"
+        "n": "Fucheng Supply Line"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 关前魏军前锋"
+      "name": "Wei Vanguard before the Pass"
     },
     "boss": {
-      "name": "Boss: 钟会 · 十八万之众"
+      "name": "Zhong Hui · The 180,000 Host"
     }
   },
   "yinping": {
-    "name": "Chapter of yinping",
-    "year": "景耀六年 · 冬",
-    "premise": "若摩天岭上,有人守。",
-    "regret": "偷渡阴平,险路成了亡国路。",
+    "name": "Yinping Trail",
+    "year": "263 AD · Winter",
+    "premise": "What if guards were stationed atop the cliffs of Motian Ridge?",
+    "regret": "Deng Ai wrapped himself in felt to roll down the cliff, taking Chengdu in one blow.",
     "ruleText": "",
-    "history": "邓艾偷渡阴平,后主出降,蜀亡。",
-    "yeshi": "摩天岭上,滚木礌石俱下。阴平小道,从此无人敢走。",
-    "note": "Historian's Note: 写卷人注:最险的路,最怕有人等。",
-    "defeat": "Defeat Note: 阴平无人,成都无险。",
+    "history": "Deng Ai marched through seven hundred li of uninhabited mountains, bypassing Jiange to seize Jiangyou and Chengdu.",
+    "yeshi": "Rolling down treacherous cliffs wrapped in wool, ghost soldiers appeared out of the southern mountains.",
+    "note": "Chronicler's Note: On the most perilous path, the greatest fear is someone waiting at the end.",
+    "defeat": "The cliff fell under surprise attack, and the road to Chengdu opened wide.",
     "map": [
-      "沓中",
-      "阴平",
-      "摩天岭",
-      "江油"
+      "Dazhong",
+      "Yinping Trail",
+      "Motian Ridge",
+      "Jiangyou"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Defense of Yinping"
       },
       {
-        "n": "Omen 2"
+        "n": "Skyscraper Precipice"
       },
       {
-        "n": "Omen 3"
+        "n": "Jiangyou Supply Line"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 邓艾奇兵"
+      "name": "Deng Ai's Strike Force"
     },
     "boss": {
-      "name": "Boss: 邓艾"
+      "name": "Deng Ai"
     }
   },
   "yanglu": {
-    "name": "Chapter of yanglu",
-    "year": "凤凰元年",
-    "premise": "若对境两年,只欠一杯药。",
-    "regret": "羊陆之交,敌国之间的君子之约。",
-    "ruleText": "他赢的方式是「不战」——你若急攻,正中其怀。",
-    "history": "羊祜、陆抗对镇荆州,互市通好;羊死,荐杜预,吴人立碑。",
-    "yeshi": "两境两年无战。襄阳的碑与江陵的泪,同一天落下。",
-    "note": "Historian's Note: 写卷人注:最难的对手,是让你不想赢他的人。",
-    "defeat": "Defeat Note: 仁义为墙,你撞不开。",
+    "name": "Friendship of Yang and Lu",
+    "year": "272 AD",
+    "premise": "What if two years across the frontier hung on a single cup of medicine?",
+    "regret": "Yang Hu and Lu Kang guarded opposite sides of the border with profound mutual chivalry.",
+    "ruleText": "His path to victory is non-engagement—if you rush, you play into his hand.",
+    "history": "Yang Hu and Lu Kang commanded the Jin and Wu borders, treating each other with unmatched chivalric respect.",
+    "yeshi": "Medicine sent without poison, wine drunk without hesitation. An oasis of peerless honor amidst final war.",
+    "note": "Chronicler's Note: The hardest opponent is the one who makes you wish not to defeat him.",
+    "defeat": "Poison entered the wine cup, and chivalry died on the frontier.",
     "map": [
-      "西陵",
-      "江夏",
-      "襄阳"
+      "Xiling",
+      "Jiangxia",
+      "Xiangyang"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Medicine Given Without Suspicion"
       },
       {
-        "n": "Omen 2"
+        "n": "Guarding Respective Borders"
       },
       {
-        "n": "Omen 3"
+        "n": "Fortifying the Xiling Ring"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 西陵叛卒"
+      "name": "Xiling Rebels"
     },
     "boss": {
-      "name": "Boss: 羊祜 · 轻裘缓带"
+      "name": "Yang Hu · Cloaked in Elegance"
     }
   },
   "guijin": {
-    "name": "Chapter of guijin",
-    "year": "太康元年",
-    "premise": "若三国的牌,还有最后一局。",
-    "regret": "分久必合,合久……未必合。",
+    "name": "Three Kingdoms Return to Jin",
+    "year": "280 AD",
+    "premise": "What if the cards of the Three Kingdoms had one final hand?",
+    "regret": "The Three Kingdoms unified under Jin, ending a century of epic strife.",
     "ruleText": "",
-    "history": "三分归晋,天下一统。",
-    "yeshi": "楼船未到,建业未破。三国的牌,还有人接着打。",
-    "note": "Historian's Note: 写卷人注:合久必分,分久……未必合。",
-    "defeat": "Defeat Note: 天下,终究归了晋。",
+    "history": "In 280 AD, Jin forces attacked Wu from multiple routes; Sun Hao surrendered, bringing the realm under unified rule.",
+    "yeshi": "Iron chains dissolved in the river waves. The board was cleared, leaving centuries of legendary lore.",
+    "note": "Chronicler's Note: That which is long divided must unite; yet unity is never the final word.",
+    "defeat": "The river fleets sank, leaving the realm divided forever.",
     "map": [
-      "建业",
-      "石头城",
-      "洛阳"
+      "Jianye",
+      "Stone City",
+      "Luoyang"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Wang Jun's Fleet of Tower Ships"
       },
       {
-        "n": "Omen 2"
+        "n": "Imperial Aura of Jinling"
       },
       {
-        "n": "Omen 3"
+        "n": "All Under Heaven United"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 晋军前锋"
+      "name": "Jin Vanguard"
     },
     "boss": {
-      "name": "Boss: 司马炎"
+      "name": "Sima Yan"
     }
   },
   "zuizhong": {
-    "name": "Chapter of zuizhong",
-    "year": "",
-    "premise": "若写这部书的人,肯坐下来和你打一局。",
-    "regret": "你一直在和叙事者对赌。",
-    "ruleText": "他全知全能——除了牌。牌,是可以验的。",
-    "history": "残卷无署名。",
-    "yeshi": "他推开牌,笑了:「这一卷,你来写。」",
-    "note": "Historian's Note: 写卷人注:你来了。",
-    "defeat": "Defeat Note: 他提起笔:「这一页,重写。」",
+    "name": "The Final Page: The Chronicler",
+    "year": "Undated",
+    "premise": "What if the chronicler who penned this scroll sat across to play a hand with you?",
+    "regret": "All five scrolls are read, yet the yearning of history never truly fades.",
+    "ruleText": "He is omniscient—except for the cards. And cards can be verified.",
+    "history": "Beyond the fifty chapters lies the chronicler's desk, where ink dries on the blank parchment of fate.",
+    "yeshi": "Placing the cards upon the table, the chronicler smiled: 'You have finally arrived.'",
+    "note": "Chronicler's Note: You have arrived.",
+    "defeat": "The scroll rolls closed, awaiting your next reading.",
     "map": [
-      "残卷深处"
+      "Depths of Chronicle"
     ],
     "omens": [
       {
-        "n": "Omen 1"
+        "n": "Reading the Entire Scroll"
       },
       {
-        "n": "Omen 2"
+        "n": "Mastery in Mind"
       },
       {
-        "n": "Omen 3"
+        "n": "Brush and Ink by the Hand"
       }
     ],
     "skirmish": {
-      "name": "Skirmish: 写卷人"
+      "name": "The Chronicler"
     },
     "boss": {
-      "name": "Boss: 写卷人"
+      "name": "The Chronicler"
     }
   }
 };

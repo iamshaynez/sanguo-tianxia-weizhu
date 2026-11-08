@@ -1,658 +1,654 @@
 export default {
-  named: {
-  "lvbu": {
-    "strongTrue": [
-      "[Genuinely Strong] \"哼,就这些?\"",
-      "[Genuinely Strong] \"插标卖首之辈。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"谁敢与我一战?!……怎么,没人?\"",
-      "[Faking Strength] \"我吕布,何曾怕过!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"……此牌,呸。\"",
-      "[Genuinely Weak] \"换赤兔来,再来!\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"罢了罢了,你且赢去。\"",
-      "[Faking Weakness] \"今日布,无意争胜。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"来呀,跟呀!你倒是不跟!\"",
-      "[Bluffing Leak] \"怕?我这里没有这个字!\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"急什么,让你三招。\"",
-      "[Trap Leak] \"且慢,再看看。\""
-    ]
+  "named": {
+    "lvbu": {
+      "strongTrue": [
+        "Hmph! Is this all you have?",
+        "Merely men selling their own necks."
+      ],
+      "strongFake": [
+        "Who dares cross blades with me?! ...What, no one?",
+        "I am Lu Bu! When have I ever known fear?!"
+      ],
+      "weakTrue": [
+        "...Pah, what cursed cards.",
+        "Bring Red Hare here, deal again!"
+      ],
+      "weakFake": [
+        "Enough, enough, take the pot if you will.",
+        "Today, I have no desire to contend."
+      ],
+      "bluffLeak": [
+        "Come on, call! Why don't you call?!",
+        "Fear? That word does not exist in my vocabulary!"
+      ],
+      "trapLeak": [
+        "What is your hurry? I shall grant you three moves.",
+        "Stay your hand, let us watch a little longer."
+      ]
+    },
+    "guanyu": {
+      "strongTrue": [
+        "Guan Yu is here. Step forward as you please.",
+        "Hardly worth mentioning."
+      ],
+      "strongFake": [
+        "When has Guan Yu ever known hesitation?!",
+        "This hand shall be borne upon my shoulders alone!"
+      ],
+      "weakTrue": [
+        "...A slip of the hand.",
+        "Carelessness clouded my vision."
+      ],
+      "weakFake": [
+        "Victory and defeat are commonplace; take the pot.",
+        "Today, I seek no strife."
+      ],
+      "bluffLeak": [
+        "Guess whether this blade will leave its scabbard or not.",
+        "I told you, I know no fear."
+      ],
+      "trapLeak": [
+        "No hurry, the Spring and Autumn Annals are not yet finished.",
+        "Drink this cup of wine first."
+      ]
+    },
+    "zhangfei": {
+      "strongTrue": [
+        "Hahaha, glorious!",
+        "Is this all the mettle you possess?"
+      ],
+      "strongFake": [
+        "Whom has Zhang Yide ever feared?! Ah?!",
+        "Come, come! Let none of you leave!"
+      ],
+      "weakTrue": [
+        "Bah, cursed luck!",
+        "This hand does not count; I withheld my strength!"
+      ],
+      "weakFake": [
+        "I drank too much wine today, take it.",
+        "Yielding to you, merely yielding to you."
+      ],
+      "bluffLeak": [
+        "Call if you have the backbone!",
+        "In my hand... hmph, go on and guess!"
+      ],
+      "trapLeak": [
+        "I hold still; you dare not stir either.",
+        "What is the hurry? The wine is still warm."
+      ]
+    },
+    "liubei": {
+      "strongTrue": [
+        "I quietly await the good tidings.",
+        "May the ancestors of the Han watch over us."
+      ],
+      "strongFake": [
+        "I am... not entirely unprepared!",
+        "In this hand, I possess my own stratagem!"
+      ],
+      "weakTrue": [
+        "Alas, man proposes, heaven disposes.",
+        "I have lost a little ground once more."
+      ],
+      "weakFake": [
+        "I merely play to share your company.",
+        "Yielding to talent, yielding to talent."
+      ],
+      "bluffLeak": [
+        "Do you truly suspect I hold nothing?",
+        "I can still fight on."
+      ],
+      "trapLeak": [
+        "Allow me to ponder; you first, my friend.",
+        "No hurry, no hurry at all."
+      ]
+    },
+    "zhuge": {
+      "strongTrue": [
+        "Everything proceeds strictly according to calculation.",
+        "I have foreseen this hand to its very conclusion."
+      ],
+      "strongFake": [
+        "I... have long devised a cunning plan!",
+        "The silk pouch is right here, what is there to fear!"
+      ],
+      "weakTrue": [
+        "Strategy lies not in abundance, but in timing.",
+        "I have conceded the initiative."
+      ],
+      "weakFake": [
+        "My learning is humble; pray proceed ahead of me.",
+        "Beyond victory and defeat, there lies a greater realm."
+      ],
+      "bluffLeak": [
+        "Heaven and earth reside within my feather fan; hazard a guess.",
+        "Throughout my life, I have never dared to be careless."
+      ],
+      "trapLeak": [
+        "At Bowang Slope, it is you we have been waiting for.",
+        "Wait a little longer; the fire is not yet stoked."
+      ]
+    },
+    "caocao": {
+      "strongTrue": [
+        "Victory and defeat alike serve my refined amusement.",
+        "This hand is as effortless as reaching into a purse."
+      ],
+      "strongFake": [
+        "Could I—Cao Cao—ever be vanquished?!",
+        "Better that I wrong the world than this table wrong me!"
+      ],
+      "weakTrue": [
+        "Winning brings joy, yet losing brings enlightenment.",
+        "So be it, consider it grain levied for the treasury."
+      ],
+      "weakFake": [
+        "My spirits are subdued today; I yield three paces.",
+        "My heart is tender today; I grant you an exception."
+      ],
+      "bluffLeak": [
+        "I have a habit of slaying in dreams, and bluffing at cards.",
+        "Do you dare make the call?"
+      ],
+      "trapLeak": [
+        "Watch him chant poetry with spear poised horizontally.",
+        "I favor laying ambushes... within my dreams."
+      ]
+    },
+    "zhouyu": {
+      "strongTrue": [
+        "When the tune errs, Zhou Yu glances back; so it is with cards.",
+        "The arrow rests squarely upon the bowstring."
+      ],
+      "strongFake": [
+        "Did Zhou Gongjin gain his renown by hollow luck?!",
+        "This cadence—shall assuredly triumph!"
+      ],
+      "weakTrue": [
+        "Since heaven gave birth to Zhou Yu...",
+        "The elegant mood has run dry."
+      ],
+      "weakFake": [
+        "The zither strings are loose today; enjoy your moment.",
+        "Zhou Yu yields to his guest: courtesy before arms."
+      ],
+      "bluffLeak": [
+        "The tempo remains in my hands.",
+        "The fire has ignited; do you dare advance?"
+      ],
+      "trapLeak": [
+        "The eastern gale has not yet risen; wait.",
+        "I might as well borrow three arrows from you."
+      ]
+    },
+    "luxun": {
+      "strongTrue": [
+        "The board's layout is completely transparent.",
+        "This junior acknowledges your courteous yielding."
+      ],
+      "strongFake": [
+        "This junior... may not necessarily be defeated!",
+        "For this hand, this junior has also made preparations!"
+      ],
+      "weakTrue": [
+        "My studies have not yet reached mastery.",
+        "Allow me to return and read further."
+      ],
+      "weakFake": [
+        "You are a venerated senior; Lu Xun dare not contest.",
+        "The cards of a scholar are not fit for a master's eye."
+      ],
+      "bluffLeak": [
+        "Tell me, should this blaze be sparked or not?",
+        "When burning interconnected camps, someone must kindle the first spark."
+      ],
+      "trapLeak": [
+        "A scholar's spirit culminates at the final stroke.",
+        "Wait for one more stick of incense to burn."
+      ]
+    },
+    "lusu": {
+      "strongTrue": [
+        "Lu Zijing's fortune remains fair.",
+        "This hand is quite intriguing."
+      ],
+      "strongFake": [
+        "I, Lu Su, am by no means holding empty air!",
+        "I too can triumph! Today is the day!"
+      ],
+      "weakTrue": [
+        "Alas, I have let down the Marquis of Wu once more.",
+        "I can only look forward to the next round."
+      ],
+      "weakFake": [
+        "Take the win, my friend; let us not harm our harmony.",
+        "My true intention lies in alliance, not petty contest."
+      ],
+      "bluffLeak": [
+        "Even an honest man knows how to conceal his cards.",
+        "I have a hand—I might as well speak plainly."
+      ],
+      "trapLeak": [
+        "Borrowing Jingzhou requires slow repayment.",
+        "No rush, let us take a sip of tea first."
+      ]
+    },
+    "simayi": {
+      "strongTrue": [
+        "The opportune moment has arrived.",
+        "I have endured until now precisely for this instant."
+      ],
+      "strongFake": [
+        "I—shall endure no longer!",
+        "Today I shall settle this duel with you once and for all!"
+      ],
+      "weakTrue": [
+        "Fall back, fall back for now.",
+        "Above patience hangs the edge of a blade."
+      ],
+      "weakFake": [
+        "I am advanced in years; I yield the first move to you.",
+        "I shall feign sleep; do as you please."
+      ],
+      "bluffLeak": [
+        "Have you ever witnessed the gaze of a hawk and the glare of a wolf?",
+        "I have feigned illness for decades; feigning cards is child's play."
+      ],
+      "trapLeak": [
+        "At Gaoping Tombs, I waited ten whole years.",
+        "Endure one more hand; just one more."
+      ]
+    },
+    "jiangwei": {
+      "strongTrue": [
+        "The Chancellor's aspiration—Jiang Wei carries it on.",
+        "This formation, I have deduced a hundred times."
+      ],
+      "strongFake": [
+        "Jiang Wei... shall never bring shame to the Chancellor!",
+        "This hand Jiang Wei must win, must win!"
+      ],
+      "weakTrue": [
+        "My stratagem fell short; it is my fault alone.",
+        "One pace short, merely one pace short."
+      ],
+      "weakFake": [
+        "Having just inherited his legacy, I yield to my seniors.",
+        "Today we discuss no warfare."
+      ],
+      "bluffLeak": [
+        "In nine campaigns into the Central Plains, when was I ever afraid?",
+        "Deceiving by appearing empty—I know that art as well."
+      ],
+      "trapLeak": [
+        "The defeat at Duan Valley shall never be repeated.",
+        "Lure him one stretch further."
+      ]
+    },
+    "zhaoyun": {
+      "strongTrue": [
+        "Zhao Yun has witnessed true battle.",
+        "There is no need to probe."
+      ],
+      "strongFake": [
+        "I broke through Changban Slope; what is this table to me!",
+        "What fear could Zhao Yun ever hold!"
+      ],
+      "weakTrue": [
+        "Zhao Yun has slipped.",
+        "My calculations lacked precision this time."
+      ],
+      "weakFake": [
+        "Zhao Yun dares not contend for precedence before seniors.",
+        "Let us reminisce today; cards matter not."
+      ],
+      "bluffLeak": [
+        "Discern for yourself whether this spear thrust is feint or true.",
+        "Seven in, seven out—that relied not on blind fortune."
+      ],
+      "trapLeak": [
+        "One who guards his lord excels at striking from behind.",
+        "Wait for one more breath."
+      ]
+    },
+    "machao": {
+      "strongTrue": [
+        "Xiliang iron cavalry shall trample all.",
+        "You come at the perfect time!"
+      ],
+      "strongFake": [
+        "Who says Xiliang produces no champions?!",
+        "Ma Chao yields to no one today!"
+      ],
+      "weakTrue": [
+        "The wind blows fierce against this hand.",
+        "Regroup, and fight again!"
+      ],
+      "weakFake": [
+        "This stallion is weary; after you.",
+        "Today we shall take a detour."
+      ],
+      "bluffLeak": [
+        "Kill! Thunderous clamor is a weapon in itself!",
+        "Do you dare to call?!"
+      ],
+      "trapLeak": [
+        "Reins pulled, turn back, strike again.",
+        "By the banks of the Wei River, wait a moment longer."
+      ]
+    },
+    "huangzhong": {
+      "strongTrue": [
+        "This old arm has not weakened.",
+        "My precious blade is not yet blunted; this hand proves it."
+      ],
+      "strongFake": [
+        "An old general though I may be, I can still fight!",
+        "Who dares say the veteran is timid?!"
+      ],
+      "weakTrue": [
+        "Alas, the passing years spare no man.",
+        "My hand... proved too slow in the end."
+      ],
+      "weakFake": [
+        "The old man yields to young talent.",
+        "At my age, I play merely for amusement."
+      ],
+      "bluffLeak": [
+        "Listen to the resonance beyond the bowstring.",
+        "At Mount Dingjun, I too knew how to feign defeat."
+      ],
+      "trapLeak": [
+        "Lure him a hundred paces before releasing the shaft.",
+        "A veteran commander is accustomed to striking last."
+      ]
+    },
+    "dianwei": {
+      "strongTrue": [
+        "Good! Full of vigor!",
+        "My twin halberds are right here."
+      ],
+      "strongFake": [
+        "I, Dian Wei, am not afraid!",
+        "Come on! Come at me again!"
+      ],
+      "weakTrue": [
+        "This... I didn't understand.",
+        "Eh? Something is wrong."
+      ],
+      "weakFake": [
+        "I'll take a rest first; you play.",
+        "I yield, I yield."
+      ],
+      "bluffLeak": [
+        "If you fear death, don't be Dian Wei!",
+        "Calling or not? Give me a straight answer!"
+      ],
+      "trapLeak": [
+        "Guarding gates is what I do best.",
+        "I stay put; do you dare step forward?"
+      ]
+    },
+    "xiahoudun": {
+      "strongTrue": [
+        "A single eye sees with utmost clarity.",
+        "Swallowing my own plucked eye was nothing to speak of."
+      ],
+      "strongFake": [
+        "When has Xiahou Yuanrang ever retreated?!",
+        "Unless we fight to the death today, I return not!"
+      ],
+      "weakTrue": [
+        "The wounded eye threw off my aim.",
+        "Hmph, we shall duel another day."
+      ],
+      "weakFake": [
+        "I shall grant you a little face.",
+        "Yuanrang makes a strategic withdrawal today."
+      ],
+      "bluffLeak": [
+        "Hollow bluster? I know that trick too!",
+        "The flesh may be maimed, but resolve cannot be broken!"
+      ],
+      "trapLeak": [
+        "Blind Xiahou can hear your footsteps.",
+        "Let him venture deeper into the net."
+      ]
+    },
+    "dongzhuo": {
+      "strongTrue": [
+        "The realm is but an object within my palm.",
+        "The grain in Mei Fortress is piled higher than this."
+      ],
+      "strongFake": [
+        "I possess the wealth of the four seas; why fear a hand!",
+        "Who dares win against me?! Ah?"
+      ],
+      "weakTrue": [
+        "Impudent brat, mere blind luck.",
+        "Speak no more of this, speak no more."
+      ],
+      "weakFake": [
+        "My heart is merciful today; I spare you.",
+        "For the sake of good wine and meat, I yield."
+      ],
+      "bluffLeak": [
+        "I rose from Xiliang on raw nerve alone.",
+        "Call! This pot belongs to me as well!"
+      ],
+      "trapLeak": [
+        "Even a fattened hog knows how to bite.",
+        "What is the rush? The feast is not yet cold."
+      ]
+    },
+    "menghuo": {
+      "strongTrue": [
+        "This is the power of the sacred grottoes!",
+        "The war elephant phalanx is assembled."
+      ],
+      "strongFake": [
+        "Could the King of Nanman ever lose to you?!",
+        "Fight again! Victory is certain on this ground!"
+      ],
+      "weakTrue": [
+        "Trapped by a stratagem once again...",
+        "This cavern favors not our troops."
+      ],
+      "weakFake": [
+        "I yield one stage, lest you claim I bullied you.",
+        "The barbarian concedes; we fight another day."
+      ],
+      "bluffLeak": [
+        "Rattan armor repels both blade and spear; call if you dare!",
+        "Seven captures? I refuse to submit even once!"
+      ],
+      "trapLeak": [
+        "Luring the enemy deep—I know that game well.",
+        "Let you advance one more march."
+      ]
+    },
+    "diaochan": {
+      "strongTrue": [
+        "A dance beneath the moon has its own exquisite rhythm.",
+        "This step was calculated long ago."
+      ],
+      "strongFake": [
+        "This humble maiden... might not necessarily lose, you know?",
+        "Never underestimate those in the inner chambers!"
+      ],
+      "weakTrue": [
+        "This melody has gone awry.",
+        "This humble maiden's skill is exhausted."
+      ],
+      "weakFake": [
+        "You are a great hero; how could I dare win?",
+        "This maiden merely plays along for the occasion."
+      ],
+      "bluffLeak": [
+        "Guess which link in the chain this is?",
+        "The chain scheme binds ring within ring."
+      ],
+      "trapLeak": [
+        "A splendid drama needs no hasty opening.",
+        "At Fengyi Pavilion, we wait until all have gathered."
+      ]
+    },
+    "pangtong": {
+      "strongTrue": [
+        "A single peck of the Fledgling Phoenix decides the day.",
+        "Clumsy hands cannot fathom this arrangement."
+      ],
+      "strongFake": [
+        "My renown equals that of the Crouching Dragon!!",
+        "Judge not by appearance—this hand is guaranteed victory!"
+      ],
+      "weakTrue": [
+        "Hmph, the times and fate were not aligned.",
+        "This hand slipped outside my web."
+      ],
+      "weakFake": [
+        "Allowing you to win pays for my wine.",
+        "Today is for refined leisure, not vulgar victory."
+      ],
+      "bluffLeak": [
+        "If you call, you step into the trap.",
+        "The interlocking scheme weaves falsehood with truth."
+      ],
+      "trapLeak": [
+        "That fire at Red Cliffs awaited only the wind.",
+        "When the tea cools, the net tightens."
+      ]
+    }
   },
-  "guanyu": {
-    "strongTrue": [
-      "[Genuinely Strong] \"关某在此,自管来。\"",
-      "[Genuinely Strong] \"何足挂齿。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"关某何惧之有!?\"",
-      "[Faking Strength] \"此局,关某一力承之!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"……失手,失手。\"",
-      "[Genuinely Weak] \"大意了。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"胜负乃常事,你且取去。\"",
-      "[Faking Weakness] \"关某今日,不欲争锋。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"你猜,这刀出不出鞘?\"",
-      "[Bluffing Leak] \"关某说过,不怕。\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"不急,春秋未读完。\"",
-      "[Trap Leak] \"且饮了这盏。\""
-    ]
-  },
-  "zhangfei": {
-    "strongTrue": [
-      "[Genuinely Strong] \"哈哈哈,痛快!\"",
-      "[Genuinely Strong] \"就这点本事?\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"俺张飞怕过谁?!啊?!\"",
-      "[Faking Strength] \"来来来,都别走!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"呸,晦气!\"",
-      "[Genuinely Weak] \"这把不算,俺没使劲!\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"俺今日喝多了,你赢去。\"",
-      "[Faking Weakness] \"让让你,让让你。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"有本事你跟啊!\"",
-      "[Bluffing Leak] \"俺手里……哼,你猜!\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"俺不动,你也别动。\"",
-      "[Trap Leak] \"急什么,酒还没凉。\""
-    ]
-  },
-  "liubei": {
-    "strongTrue": [
-      "[Genuinely Strong] \"备,静候佳音。\"",
-      "[Genuinely Strong] \"汉室在天之灵。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"备……并非无备!\"",
-      "[Faking Strength] \"此局备自有主张!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"唉,谋事在人。\"",
-      "[Genuinely Weak] \"备,又输了些。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"备不过陪君一乐。\"",
-      "[Faking Weakness] \"让贤,让贤。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"莫非,君疑备无牌?\"",
-      "[Bluffing Leak] \"备,尚可一战。\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"备再想想,君先请。\"",
-      "[Trap Leak] \"不急,不急。\""
-    ]
-  },
-  "zhuge": {
-    "strongTrue": [
-      "[Genuinely Strong] \"一切,尽在算中。\"",
-      "[Genuinely Strong] \"此局,亮已观至终局。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"亮……早有妙算!\"",
-      "[Faking Strength] \"锦囊在此,何惧!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"谋不在多,在时。\"",
-      "[Genuinely Weak] \"亮,失一先。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"亮才疏,君且先行。\"",
-      "[Faking Weakness] \"胜负之外,另有天地。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"扇底乾坤,君且猜猜。\"",
-      "[Bluffing Leak] \"亮生平,不敢稍懈。\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"博望坡,等的就是你。\"",
-      "[Trap Leak] \"再等等,火候未到。\""
-    ]
-  },
-  "caocao": {
-    "strongTrue": [
-      "[Genuinely Strong] \"胜败,皆吾雅意。\"",
-      "[Genuinely Strong] \"此局,如探囊取物。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"吾——岂会输?!\"",
-      "[Faking Strength] \"宁教我负人,此局亦然!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"胜固欣然,败亦可喜。\"",
-      "[Genuinely Weak] \"罢了,权当纳粮。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"今日操兴不佳,让君三分。\"",
-      "[Faking Weakness] \"吾今日心慈,破例让之。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"吾梦中好杀人,亦好诈牌。\"",
-      "[Bluffing Leak] \"你敢跟么?\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"且看他横槊赋诗。\"",
-      "[Trap Leak] \"吾好梦中——布局。\""
-    ]
-  },
-  "zhouyu": {
-    "strongTrue": [
-      "[Genuinely Strong] \"曲有误,周郎顾;此局亦然。\"",
-      "[Genuinely Strong] \"此局在弦上矣。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"公瑾岂是浪得虚名!\"",
-      "[Faking Strength] \"此曲——必胜!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"既生瑜……\"",
-      "[Genuinely Weak] \"雅意尽矣。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"今日琴弦松了,君且得意。\"",
-      "[Faking Weakness] \"周郎让客,先礼后兵。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"拍子在我手里。\"",
-      "[Bluffing Leak] \"火候到了,你敢来么?\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"东风未起,且慢。\"",
-      "[Trap Leak] \"借你三箭,何妨。\""
-    ]
-  },
-  "luxun": {
-    "strongTrue": [
-      "[Genuinely Strong] \"棋势已明。\"",
-      "[Genuinely Strong] \"晚辈,承让。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"晚辈……未必输!\"",
-      "[Faking Strength] \"此局,晚辈亦有所备!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"学艺不精。\"",
-      "[Genuinely Weak] \"容我回去再读书。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"君是前辈,逊不敢争。\"",
-      "[Faking Weakness] \"书生之牌,不入方家之眼。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"你说,这把火点不点?\"",
-      "[Bluffing Leak] \"火烧连营,总要有人先点。\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"书生意气,重在收梢。\"",
-      "[Trap Leak] \"再等一炷香。\""
-    ]
-  },
-  "lusu": {
-    "strongTrue": [
-      "[Genuinely Strong] \"子敬,运气尚可。\"",
-      "[Genuinely Strong] \"这手,是有点意思。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"肃、肃并非无牌!\"",
-      "[Faking Strength] \"吾亦能胜!今日便是!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"唉,又让吴侯失望了。\"",
-      "[Genuinely Weak] \"肃,只好看下一局了。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"君且赢,莫伤和气。\"",
-      "[Faking Weakness] \"肃本意,在联盟不在胜负。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"老实人,也会藏牌。\"",
-      "[Bluffing Leak] \"肃……有一手,不妨直说。\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"借荆州,总要慢慢还。\"",
-      "[Trap Leak] \"不忙,先喝口茶。\""
-    ]
-  },
-  "simayi": {
-    "strongTrue": [
-      "[Genuinely Strong] \"时候到了。\"",
-      "[Genuinely Strong] \"吾忍至此,正为此刻。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"吾——不复忍矣!\"",
-      "[Faking Strength] \"今日便与君决之!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"且退,且退。\"",
-      "[Genuinely Weak] \"忍字头上一把刀。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"老夫年迈,让君先手。\"",
-      "[Faking Weakness] \"吾且装睡,君自便。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"君可识得,鹰视狼顾?\"",
-      "[Bluffing Leak] \"装病数十载,何况装牌。\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"高平陵,等了十年。\"",
-      "[Trap Leak] \"再忍一手,只一手。\""
-    ]
-  },
-  "jiangwei": {
-    "strongTrue": [
-      "[Genuinely Strong] \"丞相之志,维承之。\"",
-      "[Genuinely Strong] \"此阵,维已推演百遍。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"维……不愧对丞相!\"",
-      "[Faking Strength] \"此局维必胜,必胜!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"计不及此,维之过。\"",
-      "[Genuinely Weak] \"差一步,只差一步。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"维新承遗志,且让前辈。\"",
-      "[Faking Weakness] \"今日不谈兵。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"九伐中原,哪次怕过。\"",
-      "[Bluffing Leak] \"虚则实之,维也会。\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"段谷之败,不会再有。\"",
-      "[Trap Leak] \"再引一程。\""
-    ]
-  },
-  "zhaoyun": {
-    "strongTrue": [
-      "[Genuinely Strong] \"云,见过阵仗。\"",
-      "[Genuinely Strong] \"不必试探。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"长坂坡尚且去得,何况此局!\"",
-      "[Faking Strength] \"云,何惧之有!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"云,失手了。\"",
-      "[Genuinely Weak] \"此番算学不精。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"云不敢与前辈争先。\"",
-      "[Faking Weakness] \"今日且叙旧,不论牌。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"这一枪,虚实君自辨。\"",
-      "[Bluffing Leak] \"七进七出,靠的不是运气。\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"护主之人,最擅后发。\"",
-      "[Trap Leak] \"再候一息。\""
-    ]
-  },
-  "machao": {
-    "strongTrue": [
-      "[Genuinely Strong] \"西凉铁骑,踏碎之。\"",
-      "[Genuinely Strong] \"来得正好!\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"谁说西凉无人?!\"",
-      "[Faking Strength] \"马儿今日不认输!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"此局风紧。\"",
-      "[Genuinely Weak] \"重整,再战!\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"马儿乏了,你先。\"",
-      "[Faking Weakness] \"今日权且绕道。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"杀——声势也是杀!\"",
-      "[Bluffing Leak] \"你敢不敢跟?!\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"勒马,回身,再刺。\"",
-      "[Trap Leak] \"渭水之畔,再等一等。\""
-    ]
-  },
-  "huangzhong": {
-    "strongTrue": [
-      "[Genuinely Strong] \"老夫臂未衰。\"",
-      "[Genuinely Strong] \"宝刀未老,此为证。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"老将虽老,尚能一战!!\"",
-      "[Faking Strength] \"谁言老夫怯阵?!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"唉,岁月不饶人。\"",
-      "[Genuinely Weak] \"手,终究慢了。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"老朽让贤,让贤。\"",
-      "[Faking Weakness] \"这把年纪,图个乐。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"听,弦外之音。\"",
-      "[Bluffing Leak] \"定军山,老夫亦会诈败。\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"引他百步,再放箭。\"",
-      "[Trap Leak] \"老将用兵,惯于后发。\""
-    ]
-  },
-  "dianwei": {
-    "strongTrue": [
-      "[Genuinely Strong] \"好!够劲!\"",
-      "[Genuinely Strong] \"双戟在此。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"俺、俺典韦不怕!\"",
-      "[Faking Strength] \"来啊!再来啊!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"这……没看懂。\"",
-      "[Genuinely Weak] \"咦?不对劲。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"俺先歇歇,你玩。\"",
-      "[Faking Weakness] \"让俺让俺。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"怕死不当典韦!\"",
-      "[Bluffing Leak] \"跟不跟?给句痛快话!\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"守门,俺最在行。\"",
-      "[Trap Leak] \"俺不动,你敢来?\""
-    ]
-  },
-  "xiahoudun": {
-    "strongTrue": [
-      "[Genuinely Strong] \"独眼,看得分明。\"",
-      "[Genuinely Strong] \"拔矢啖睛,不过等闲。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"元让何曾退过?!\"",
-      "[Faking Strength] \"今日不死战,不归!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"伤目,失了准头。\"",
-      "[Genuinely Weak] \"哼,改日再战。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"且给君几分薄面。\"",
-      "[Faking Weakness] \"元让今日,战略后撤。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"虚张声势?俺也会!\"",
-      "[Bluffing Leak] \"身可残,志不可夺!\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"盲夏侯,听得见你的脚步。\"",
-      "[Trap Leak] \"且待其深入。\""
-    ]
-  },
-  "dongzhuo": {
-    "strongTrue": [
-      "[Genuinely Strong] \"天下,皆吾掌中物。\"",
-      "[Genuinely Strong] \"郿坞之粮,堆得比这高。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"吾富有四海,岂惧一局!\"",
-      "[Faking Strength] \"谁敢赢吾?!啊?\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"竖子,运气罢了。\"",
-      "[Genuinely Weak] \"不谈这个,不谈。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"吾今日心慈,放你一马。\"",
-      "[Faking Weakness] \"看在酒肉面上,让你。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"吾起家西凉,靠的就是胆子。\"",
-      "[Bluffing Leak] \"跟啊!这局也是吾的!\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"肥猪,亦会咬人。\"",
-      "[Trap Leak] \"急什么,酒肉未凉。\""
-    ]
-  },
-  "menghuo": {
-    "strongTrue": [
-      "[Genuinely Strong] \"此乃洞天福地之力!\"",
-      "[Genuinely Strong] \"象阵已成。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"蛮王岂会输你?!\"",
-      "[Faking Strength] \"再战!此地必胜!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"又中计了……\"",
-      "[Genuinely Weak] \"这洞,不利我军。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"让你一程,免得说我欺你。\"",
-      "[Faking Weakness] \"蛮子认输,改日再打。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"藤甲刀枪不入,你跟啊!\"",
-      "[Bluffing Leak] \"七次?我一次都不服!\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"诱敌深入,我熟。\"",
-      "[Trap Leak] \"再放你进一程。\""
-    ]
-  },
-  "diaochan": {
-    "strongTrue": [
-      "[Genuinely Strong] \"月下之舞,自有分寸。\"",
-      "[Genuinely Strong] \"这一步,早已算好。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"贱妾……未必会输哦?\"",
-      "[Faking Strength] \"莫小瞧深闺中人!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"这一曲,乱了。\"",
-      "[Genuinely Weak] \"妾身,技穷了。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"君是英雄,妾怎敢赢。\"",
-      "[Faking Weakness] \"贱妾不过逢场作戏。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"你猜,哪一环?\"",
-      "[Bluffing Leak] \"连环计,环环相扣。\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"好戏,不急开场。\"",
-      "[Trap Leak] \"凤仪亭,等的就是人齐。\""
-    ]
-  },
-  "pangtong": {
-    "strongTrue": [
-      "[Genuinely Strong] \"凤雏一啄,便知胜负。\"",
-      "[Genuinely Strong] \"此局,俗手看不懂。\""
-    ],
-    "strongFake": [
-      "[Faking Strength] \"吾与卧龙齐名!!\"",
-      "[Faking Strength] \"莫以貌取人——此局必胜!\""
-    ],
-    "weakTrue": [
-      "[Genuinely Weak] \"哼,时也命也。\"",
-      "[Genuinely Weak] \"此局未入吾彀中。\""
-    ],
-    "weakFake": [
-      "[Faking Weakness] \"让君赢,权当付酒钱。\"",
-      "[Faking Weakness] \"今日风雅,不谈俗胜负。\""
-    ],
-    "bluffLeak": [
-      "[Bluffing Leak] \"跟,便中计。\"",
-      "[Bluffing Leak] \"连环计,虚则实之。\""
-    ],
-    "trapLeak": [
-      "[Trap Leak] \"赤壁那把火,等的就是风。\"",
-      "[Trap Leak] \"茶凉,即收网。\""
-    ]
+  "defaults": {
+    "fierce": {
+      "strongTrue": [
+        "Just this?",
+        "Glorious!",
+        "Again!"
+      ],
+      "strongFake": [
+        "Fear? No such word!",
+        "Who dares clash with me?!",
+        "Victory is mine today, stand aside!"
+      ],
+      "weakTrue": [
+        "Pah, cursed luck.",
+        "This one doesn't count!",
+        "Didn't see clearly, redo!"
+      ],
+      "weakFake": [
+        "Weary today, yielding to you.",
+        "Won't bother disputing with you.",
+        "Giving you three paces, don't get smug."
+      ],
+      "bluffLeak": [
+        "Calling or not? Give a straight answer!",
+        "Call if you are a real man!",
+        "If you fear death, don't touch the cards!"
+      ],
+      "trapLeak": [
+        "Let you walk a little closer.",
+        "I stand still; do you dare come?",
+        "Wait one more breath."
+      ]
+    },
+    "sage": {
+      "strongTrue": [
+        "Everything proceeds by calculation.",
+        "The outcome is decided, though you have not perceived it.",
+        "This hand has reached its endgame."
+      ],
+      "strongFake": [
+        "I have long held a cunning plan!",
+        "The pouch remains; what fear is there!",
+        "This strategy cannot fail... surely!"
+      ],
+      "weakTrue": [
+        "Man proposes, heaven disposes.",
+        "Losing one step shackles the entire board.",
+        "I miscalculated by a single move."
+      ],
+      "weakFake": [
+        "Humble learning yields the first move to you.",
+        "Today we discuss the Dao, not petty triumph.",
+        "Pray proceed, I guard the rear."
+      ],
+      "bluffLeak": [
+        "Deceiving by appearing empty—care to guess?",
+        "Have you ever read Sun Tzu?",
+        "The flux of void and substance rests in the mind."
+      ],
+      "trapLeak": [
+        "Step into the urn; the vessel is prepared.",
+        "Wait half a moment; the heat will peak.",
+        "Wait quietly for developments."
+      ]
+    },
+    "commander": {
+      "strongTrue": [
+        "Armies can be stripped of morale, as can this table.",
+        "Provisions are abundant; protracted battle holds no terror.",
+        "Steady."
+      ],
+      "strongFake": [
+        "Commanding troops, I have never known defeat!",
+        "Victory today shall bolster troop morale!",
+        "Look on, generals; this hand is won!"
+      ],
+      "weakTrue": [
+        "Victory and defeat are ordinary matters for soldiers.",
+        "Withdraw for now; seek another opportunity.",
+        "This hand lost geographical advantage."
+      ],
+      "weakFake": [
+        "Drilling troops today, not contesting victory.",
+        "Yielding one skirmish to show goodwill.",
+        "Warfare permits deceit—today I yield."
+      ],
+      "bluffLeak": [
+        "War is the art of deception.",
+        "Do you recognize a feigned troop movement?",
+        "An empty camp stands before you; dare you enter?"
+      ],
+      "trapLeak": [
+        "Luring the enemy deep is a basic lesson of war.",
+        "The ramparts are solid; waiting for your assault.",
+        "Withdraw another thirty li."
+      ]
+    },
+    "veteran": {
+      "strongTrue": [
+        "I have seen much.",
+        "Old experience still holds true.",
+        "This move is rock solid."
+      ],
+      "strongFake": [
+        "In my youth... and I can still do it today!",
+        "The veteran blade has not rusted, not yet!",
+        "Who says I am spent?!"
+      ],
+      "weakTrue": [
+        "The years do not forgive.",
+        "Hands were slow, I admit it.",
+        "This old mind won't turn anymore."
+      ],
+      "weakFake": [
+        "The elder yields to talent.",
+        "Playing along with you, take it not to heart.",
+        "At this age, victory and loss are trivial."
+      ],
+      "bluffLeak": [
+        "Old ginger is still the spiciest.",
+        "This move is called all's fair in war.",
+        "Call, what are you hesitating for?"
+      ],
+      "trapLeak": [
+        "I have waited a lifetime for you to make a mistake.",
+        "An old man's patience wears down any adversary.",
+        "No hurry, the tea is still scalding."
+      ]
+    }
   }
-},
-  defaults: {
-  "fierce": {
-    "strongTrue": [
-      "[Strong] \"就这?\"",
-      "[Strong] \"痛快!\"",
-      "[Strong] \"再来!\""
-    ],
-    "strongFake": [
-      "[Feigned Strength] \"怕?没这个字!\"",
-      "[Feigned Strength] \"谁敢跟我拼?!\"",
-      "[Feigned Strength] \"今日必赢,谁拦跟谁急!\""
-    ],
-    "weakTrue": [
-      "[Weak] \"呸,晦气。\"",
-      "[Weak] \"这把不算!\"",
-      "[Weak] \"没看清,重来!\""
-    ],
-    "weakFake": [
-      "[Feigned Weakness] \"今日乏了,让你。\"",
-      "[Feigned Weakness] \"不与你计较。\"",
-      "[Feigned Weakness] \"先让你三分,莫得意。\""
-    ],
-    "bluffLeak": [
-      "[Tell] \"跟不跟?给句痛快话!\"",
-      "[Tell] \"是条汉子就跟!\"",
-      "[Tell] \"怕死不抬牌!\""
-    ],
-    "trapLeak": [
-      "[Ambush] \"且让你走近些。\"",
-      "[Ambush] \"俺不动,你敢来?\"",
-      "[Ambush] \"再等一息。\""
-    ]
-  },
-  "sage": {
-    "strongTrue": [
-      "[Strong] \"一切在算中。\"",
-      "[Strong] \"胜负已分,君未察耳。\"",
-      "[Strong] \"此局已至收官。\""
-    ],
-    "strongFake": [
-      "[Feigned Strength] \"吾早有妙算!\"",
-      "[Feigned Strength] \"锦囊尚在,何惧!\"",
-      "[Feigned Strength] \"此策万无一失……必是!\""
-    ],
-    "weakTrue": [
-      "[Weak] \"谋事在人,成事在天。\"",
-      "[Weak] \"失一先,满盘掣肘。\"",
-      "[Weak] \"吾算漏一着。\""
-    ],
-    "weakFake": [
-      "[Feigned Weakness] \"才疏学浅,让君先手。\"",
-      "[Feigned Weakness] \"今日论道,不论胜。\"",
-      "[Feigned Weakness] \"君且先行,吾压阵。\""
-    ],
-    "bluffLeak": [
-      "[Tell] \"虚则实之,君猜?\"",
-      "[Tell] \"君可读过孙子?\"",
-      "[Tell] \"虚实之变,存乎一心。\""
-    ],
-    "trapLeak": [
-      "[Ambush] \"请君入瓮,瓮已备好。\"",
-      "[Ambush] \"再等半刻,火候即到。\"",
-      "[Ambush] \"静待其变。\""
-    ]
-  },
-  "commander": {
-    "strongTrue": [
-      "[Strong] \"三军可夺气,此局亦然。\"",
-      "[Strong] \"兵粮足备,何惧持久。\"",
-      "[Strong] \"稳了。\""
-    ],
-    "strongFake": [
-      "[Feigned Strength] \"吾自领兵,未尝败绩!\"",
-      "[Feigned Strength] \"今日定要赢下,以振军心!\"",
-      "[Feigned Strength] \"众将看着,此局必胜!\""
-    ],
-    "weakTrue": [
-      "[Weak] \"胜败兵家常事。\"",
-      "[Weak] \"且收兵,再图。\"",
-      "[Weak] \"此局失了地利。\""
-    ],
-    "weakFake": [
-      "[Feigned Weakness] \"今日练兵,不较胜负。\"",
-      "[Feigned Weakness] \"让君一阵,以示诚意。\"",
-      "[Feigned Weakness] \"兵不厌诈——今日让之。\""
-    ],
-    "bluffLeak": [
-      "[Tell] \"兵者,诡道也。\"",
-      "[Tell] \"疑兵之计,君识得么?\"",
-      "[Tell] \"虚营一座,敢不敢进?\""
-    ],
-    "trapLeak": [
-      "[Ambush] \"诱敌深入,兵法常课。\"",
-      "[Ambush] \"壁垒已固,等君来攻。\"",
-      "[Ambush] \"再退三十里。\""
-    ]
-  },
-  "veteran": {
-    "strongTrue": [
-      "[Strong] \"见得多了。\"",
-      "[Strong] \"老经验,还在。\"",
-      "[Strong] \"这一手,稳的。\""
-    ],
-    "strongFake": [
-      "[Feigned Strength] \"老夫当年……今日也行!\"",
-      "[Feigned Strength] \"宝刀未老,未老!\"",
-      "[Feigned Strength] \"谁说我不行了?\""
-    ],
-    "weakTrue": [
-      "[Weak] \"岁月不饶人呐。\"",
-      "[Weak] \"手慢了,认了。\"",
-      "[Weak] \"这脑子,转不动喽。\""
-    ],
-    "weakFake": [
-      "[Feigned Weakness] \"老朽让贤。\"",
-      "[Feigned Weakness] \"陪君玩玩,莫当真。\"",
-      "[Feigned Weakness] \"这把年纪,输赢看淡。\""
-    ],
-    "bluffLeak": [
-      "[Tell] \"姜还是老的辣。\"",
-      "[Tell] \"老夫这招,叫兵不厌诈。\"",
-      "[Tell] \"跟呀,犹豫什么。\""
-    ],
-    "trapLeak": [
-      "[Ambush] \"等你犯错,等了一辈子。\"",
-      "[Ambush] \"老家伙的耐心,最是熬人。\"",
-      "[Ambush] \"不急,茶还烫。\""
-    ]
-  }
-},
-  intent: {
-  "bluff": "Fingers betrayed the truth — a bluff in motion",
-  "trap": "Unnerving stillness — a cunning trap awaits"
-},
 };
