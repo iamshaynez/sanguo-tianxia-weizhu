@@ -119,6 +119,12 @@ export function translatePage() {
     if (key) el.setAttribute('aria-label', t(key));
   }
 
+  const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+  for (const el of placeholderElements) {
+    const key = el.getAttribute('data-i18n-placeholder');
+    if (key) el.setAttribute('placeholder', t(key));
+  }
+
   // 更新语言切换按钮状态
   const activeLangBtn = document.querySelector(`.lang-btn[data-locale="${currentLocale}"]`);
   if (activeLangBtn) {
