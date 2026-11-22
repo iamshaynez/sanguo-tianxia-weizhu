@@ -1164,3 +1164,124 @@ body:has(#battle:not(.hidden)) #langBar {
   font-weight: bold;
 }
 
+
+/* ===== 网战(在线牌桌) —— 视觉契约与单人 battle 同源,仅换 id 作用域 ===== */
+.online-mast { position: relative; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 auto; padding: 14px 18px; width: min(1200px, 100%); }
+.online-mast .ghost { padding: 8px 14px; font-size: 13px; }
+.online-mid { display: flex; align-items: baseline; gap: 12px; }
+.online-kicker { color: #8d927b; font: 11px var(--song); letter-spacing: .5em; }
+.online-code-tag { color: #e0c17b; font: 20px var(--serif); letter-spacing: .3em; }
+.online-conn { display: flex; align-items: center; gap: 7px; padding: 6px 12px; color: #a9ab94; background: #171b15cc; border: 1px solid #4f4a36; font-size: 11px; letter-spacing: .12em; }
+.conn-dot { width: 8px; height: 8px; border-radius: 50%; background: #6b6f5c; }
+.online-conn[data-state="on"] .conn-dot { background: #7fae62; box-shadow: 0 0 8px #7fae6288; }
+.online-conn[data-state="off"] .conn-dot { background: #a5433a; }
+.online-pane { position: relative; z-index: 10; width: min(1200px, calc(100vw - 24px)); margin: 0 auto; }
+.online-pane.hidden { display: none; }
+
+/* --- 大厅(主页/房间) --- */
+.online-home, .online-room { max-width: 640px; margin: 4vh auto 0; padding: 26px 28px; background: linear-gradient(160deg, #1c20189f, #12160fe8); border: 1px solid #6b5c39; box-shadow: 0 18px 44px #0006; }
+.online-title { margin: 8px 0 4px; color: #e6d5ac; font: 30px var(--serif); letter-spacing: .18em; }
+.online-lead { margin-bottom: 14px; color: #9a9d88; font-size: 13px; line-height: 1.8; }
+.online-kicker { margin-bottom: 6px; color: #8d927b; font: 12px var(--song); letter-spacing: .5em; }
+.online-label { display: block; margin: 16px 0 6px; color: #baa574; font: 13px var(--song); letter-spacing: .3em; }
+.online-select { min-width: 200px; padding: 9px 10px; color: #ded2b5; background: #141812; border: 1px solid #6b5c39; font: 14px var(--serif); letter-spacing: .08em; }
+.online-select option { background: #141812; }
+.online-gen-row { display: flex; gap: 14px; align-items: stretch; }
+.online-portrait { width: 84px; height: 112px; object-fit: cover; border: 1px solid #75633f; box-shadow: 0 6px 18px #0006; }
+.online-gen-meta { flex: 1; min-width: 0; }
+.online-gen-meta b { color: #e6d5ac; font: 17px var(--serif); letter-spacing: .1em; }
+.online-gen-meta .dim { margin: 4px 0 8px; color: #8b8f7a; font-size: 11px; line-height: 1.6; }
+.online-gen-card .trait-grid { margin-top: 4px; }
+.online-home-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.online-home-actions button { padding: 12px 18px; font-size: 15px; }
+.online-join { display: flex; gap: 8px; }
+.online-code-input { flex: 1; padding: 10px 12px; color: #e0c17b; background: #141812; border: 1px solid #6b5c39; font: 20px var(--serif); letter-spacing: .4em; text-align: center; text-transform: uppercase; }
+.online-code-input::placeholder { color: #565a49; font-size: 12px; letter-spacing: .2em; }
+.online-hint { margin-top: 14px; color: #5f6353; font-size: 11px; line-height: 1.7; }
+.online-notice { margin: 10px 0 0; padding: 8px 12px; color: #d8a05e; background: #4a3417aa; border: 1px solid #8a6a35; font-size: 12px; }
+.online-conn-badge { margin-bottom: 8px; }
+
+.online-room-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.online-code-line { display: flex; align-items: center; gap: 10px; }
+.online-code { color: #e0c17b; font: 26px var(--serif); letter-spacing: .45em; text-shadow: 0 0 14px #c9a45c44; }
+.online-room-note { margin: 4px 0 12px; color: #8b8f7a; font-size: 11px; letter-spacing: .06em; }
+.online-seats { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; margin: 12px 0; }
+.online-seat { position: relative; display: flex; gap: 12px; padding: 12px; background: #171b15d9; border: 1px solid #55492c; }
+.online-seat.open { opacity: .55; border-style: dashed; align-items: center; justify-content: center; flex-direction: column; }
+.online-seat .seat-tag { display: inline-block; margin-right: 6px; padding: 1px 6px; color: #d8cbaa; background: #101310; border: 1px solid #75633f; font: 10px var(--song); }
+.online-seat .seat-tag.ai { color: #9fc4d8; border-color: #4c6a78; }
+.online-seat .seat-tag.you { color: #e0c17b; border-color: #8a6a35; }
+.online-seat .seat-sub { color: #6b6f5c; font-size: 11px; }
+.online-seat .seat-tags { margin-top: 6px; }
+.seat-remove { position: absolute; top: 6px; right: 8px; width: 22px; height: 22px; padding: 0; font-size: 13px; }
+.online-host-panel { margin-top: 12px; padding: 14px; background: #14181188; border: 1px solid #55492c; }
+.online-npc-row { display: flex; gap: 8px; }
+.online-npc-row button { white-space: nowrap; }
+.online-config-line { margin: 10px 0 12px; color: #9a9d88; font-size: 12px; letter-spacing: .05em; }
+.online-start { width: 100%; padding: 14px; font-size: 17px; letter-spacing: .3em; }
+.online-waiting { margin-top: 14px; color: #8d927b; font-size: 12px; letter-spacing: .2em; text-align: center; }
+.online-room-actions { margin-top: 16px; text-align: center; }
+
+/* --- 牌桌(镜像 #table/#cardLayer/#oppChar/#actions) --- */
+.online-scene { position: relative; height: calc(100vh - 64px); min-height: 480px; overflow: hidden; }
+.online-lines { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 110%, #1d2418 0%, #10140e 55%, #0a0d08 100%); }
+#onlineOpp { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; width: min(1120px, calc(100vw - 16px)); z-index: 13; }
+#onlineOpp.is-multi { width: calc(100vw - 16px); overflow-x: auto; padding: 14px 2px 8px; justify-content: safe center; }
+#onlineOpp.is-multi .opponent-seat { flex: 1 0 168px; max-width: 210px; }
+#onlineOpp.is-multi .seat-card { grid-template-columns: 72px minmax(0, 1fr); height: 112px; }
+#onTable { position: absolute; left: 50%; top: 58%; transform: translate(-50%, -50%); width: min(86vw, 940px); aspect-ratio: 2.45; border-radius: 50%; background: radial-gradient(ellipse at 50% 40%, #3d4b36, #29382a 48%, #1a281e 80%, #111c15); box-shadow: 0 0 0 13px #2a1d13, 0 0 0 15px #927344, 0 0 0 20px #15110c, 0 30px 60px #000a, inset 0 0 90px #0007; z-index: 2; }
+#onTable::before { content: ""; position: absolute; inset: 7.5%; border: 2px solid #ad915257; border-radius: 50%; pointer-events: none; }
+#onCardLayer { position: absolute; inset: -14% -10%; z-index: 4; pointer-events: none; }
+#onDeck { position: absolute; left: 10%; top: 42%; width: 56px; height: 80px; transform: translate(-50%, -50%); border-radius: 4px; z-index: 3; display: flex; align-items: center; justify-content: center; background: repeating-linear-gradient(45deg, #b89a5630 0 1px, transparent 1px 8px), repeating-linear-gradient(-45deg, #b89a5630 0 1px, transparent 1px 8px), #26362c; border: 1px solid #b89a5c; box-shadow: 2px 2px 0 #17231b, 4px 4px 0 #101810, 0 4px 12px #0008; }
+#onDeck .back-sig { color: #cdb176; font: 22px var(--serif); }
+#onYouPlate { position: absolute; left: 22px; bottom: 20%; z-index: 12; }
+#onYouPlate .pstack { color: #e0c17b; font-size: 17px; margin-left: 12px; }
+#onYouPlate .seat-roles { top: -18px; right: auto; left: 0; }
+#onPotLabel { position: absolute; top: 44%; left: 50%; transform: translateX(-50%); color: #c5b68c; font-size: 13px; letter-spacing: .25em; z-index: 12; }
+#onPotLabel b { color: #f0cf7e; font-size: 18px; margin-left: 6px; }
+#onBlindLabel { position: absolute; top: 14px; left: 16px; padding: 6px 10px; color: #aaa083; background: #151912bb; border: 1px solid #4f4a36; font-size: 11px; letter-spacing: .16em; z-index: 12; }
+#onHandLabel { position: absolute; bottom: 9.5%; right: 3%; color: #b8c0a2; font-size: 12px; letter-spacing: .15em; z-index: 12; }
+#onSeedLabel { position: absolute; bottom: 14px; left: 18px; color: #656a57; font-size: 10px; letter-spacing: .1em; z-index: 12; }
+#onSeedLabel b { color: #8e9379; }
+#onSeedLabel a { color: #b2a073; cursor: pointer; margin-left: 8px; text-decoration: underline; text-underline-offset: 3px; }
+#onCountdown { position: absolute; left: 50%; bottom: 17%; transform: translateX(-50%); width: min(300px, 60vw); height: 5px; background: #10140ecc; border: 1px solid #4f4a36; z-index: 14; }
+#onCountdown i { display: block; height: 100%; background: linear-gradient(90deg, #b89a56, #e0c184); transition: width .25s linear; }
+#onCountdown i[data-low="1"] { background: #c05043; }
+#onLog { position: absolute; top: 130px; right: 12px; width: 210px; max-height: 34vh; overflow: hidden; list-style: none; padding: 10px 12px; background: #13171199; border: 1px solid #3d4230; z-index: 12; }
+#onLog li { margin-bottom: 5px; color: #9a9d88; font-size: 11px; line-height: 1.6; letter-spacing: .03em; }
+#onLog li b { color: #d4a563; }
+#onLog li[data-kind="showdown"], #onLog li[data-kind="foldwin"] { color: #d8cbaa; }
+#onLog li[data-kind="autopilot"] { color: #c88d5a; }
+#onActions { position: absolute; bottom: 4%; right: 3%; display: flex; gap: 9px; z-index: 14; }
+#onActions button, #onRaise button { padding: 12px 20px; font-size: 14px; }
+#onActions button[data-act="allin"] { color: #edca8d; background: #6f3028; border-color: #a85c45; }
+#onActions button b, #onRaise button b { color: #f0cf7e; margin-left: 6px; }
+#onActions button:disabled { opacity: .45; }
+#onRaise { position: absolute; bottom: 12%; right: 3%; display: flex; gap: 9px; z-index: 14; }
+#onBanner { position: absolute; top: 33%; left: 50%; transform: translate(-50%, -50%); text-align: center; pointer-events: none; z-index: 15; }
+#onBannerMain { color: #f0dfae; font: 30px var(--serif); letter-spacing: .3em; text-shadow: 0 0 24px #0009, 0 2px 2px #000a; }
+#onBannerSub { margin-top: 8px; color: #b9c2a4; font-size: 13px; letter-spacing: .14em; }
+#onBanner.gold #onBannerMain { color: #ffd98a; text-shadow: 0 0 30px #d9a84e88, 0 2px 2px #000a; }
+#onBanner.show { animation: bannerIn 2.8s ease forwards; }
+
+/* 终局座次 */
+.online-standings { list-style: none; margin: 14px 0; }
+.online-standings li { display: flex; align-items: center; gap: 10px; padding: 7px 10px; border-bottom: 1px solid #33362b; color: #c5bda2; font-size: 14px; }
+.online-standings li.champion { color: #f0cf7e; background: #3c2f1477; }
+.online-standings li img { width: 34px; height: 44px; object-fit: cover; border: 1px solid #6b5c39; }
+.online-standings .rank { width: 20px; color: #8d927b; font: 14px var(--serif); }
+.online-standings li b { margin-left: auto; color: #e0c17b; font-size: 16px; }
+
+@media (max-width: 640px) {
+  .online-home, .online-room { margin: 2vh auto 0; padding: 18px 16px; }
+  .online-gen-row { flex-direction: column; }
+  .online-scene { height: calc(100vh - 56px); min-height: 430px; }
+  #onTable { top: 56%; width: 96vw; aspect-ratio: 2.15; }
+  #onlineOpp.is-multi .opponent-seat { flex: 1 0 150px; }
+  #onLog { top: 108px; right: 8px; width: 158px; max-height: 26vh; }
+  #onBlindLabel { max-width: 46vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #onActions { right: 2%; left: 2%; justify-content: center; flex-wrap: wrap; }
+  #onRaise { bottom: 20%; right: 2%; left: 2%; justify-content: center; flex-wrap: wrap; }
+  #onYouPlate { left: 10px; bottom: 15%; }
+  .online-code { font-size: 20px; }
+}

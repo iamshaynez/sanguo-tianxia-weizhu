@@ -87,6 +87,7 @@
     <div class="scroll-title-wrap"><span class="title-seal" id="scrollTitleSeal">卷</span><div><h2 class="screen-title" data-i18n="toc.codexTitle">英 雄 记</h2><p class="screen-subtitle" data-i18n="app.subtitle">以牌为刃 · 重写意难平</p></div></div>
     <p class="runinfo" id="codexProgress"></p>
     <div id="codexTools">
+      <button id="onlineBtn" class="ghost" data-i18n="online.entry">网 战</button>
       <button id="annalsBtn" class="ghost" data-i18n="annals.title">观 阵 录</button>
       <button id="saveBtn" class="ghost" data-i18n="save.title">存 档</button>
       <button id="pwaInstallBtn" class="ghost hidden" type="button">安装 App</button>
@@ -309,6 +310,65 @@
     <div id="finaleQ" class="ev-opts"></div>
     <p id="finaleText" class="annals gold"></p>
     <button id="finaleHome" data-i18n="finale.close">合 上 残 卷</button>
+  </div>
+</div>
+
+<!-- 网战:可断线重连的多人牌桌(单人模式不依赖本屏) -->
+<div id="online" class="screen hidden">
+  <header class="online-mast">
+    <button id="onlineLeave" class="ghost" type="button" data-i18n="online.back">回 目 录</button>
+    <div class="online-mid">
+      <p class="online-kicker" data-i18n="online.kicker">网 战</p>
+      <span class="online-code-tag" id="onCode">——</span>
+    </div>
+    <div class="online-conn" id="onlineConn" data-state="off" role="status" aria-live="polite">
+      <span class="conn-dot" aria-hidden="true"></span><span class="conn-text">…</span>
+    </div>
+  </header>
+  <div id="onlineLobby" class="online-pane"></div>
+  <div id="onlineBoard" class="online-pane hidden">
+    <div class="online-scene">
+      <div class="online-lines" aria-hidden="true"></div>
+      <div id="onlineOpp"></div>
+      <div id="onTable">
+        <div id="onCardLayer"></div>
+        <div class="stack" id="onPot"></div>
+        <div id="onDeck"><div class="back-sig">汉</div></div>
+      </div>
+      <div id="onYouPlate" class="plate">
+        <span id="onYouRoles" class="seat-roles hidden" aria-label="你的席位角色"></span>
+        <span class="pname" id="onYouName">你</span>
+        <span class="pstack" id="onYouStack">0</span>
+        <span id="onYouFold" class="player-fold-status hidden">已弃牌 · 观战</span>
+      </div>
+      <div id="onPotLabel"><span data-i18n="battle.pot">底 池</span> <b id="onPotNum">0</b></div>
+      <div id="onBlindLabel"></div>
+      <div id="onHandLabel">当前牌型 —</div>
+      <div id="onSeedLabel">种子 <b id="onSeedVal">—</b> <a id="onVerifyBtn" class="hidden">验 牌</a></div>
+      <div id="onCountdown" class="hidden" aria-hidden="true"><i></i></div>
+      <ul id="onLog" aria-live="polite"></ul>
+      <div id="onActions" class="hidden">
+        <button data-act="fold"></button>
+        <button data-act="check"></button>
+        <button data-act="call"></button>
+        <button data-act="raise"></button>
+        <button data-act="allin"></button>
+      </div>
+      <div id="onRaise" class="hidden"></div>
+      <div id="onBanner" class="hidden"><div id="onBannerMain"></div><div id="onBannerSub"></div></div>
+      <div id="onEnd" class="modal hidden">
+        <div class="modal-box endbox">
+          <p class="modal-kicker" data-i18n="online.endKicker">牌局终了</p>
+          <h2 data-i18n="online.endTitle">群雄散席</h2>
+          <ul id="onEndList" class="online-standings"></ul>
+          <p id="onEndNote" class="annals dim"></p>
+          <div class="end-actions">
+            <button id="onRematch">再 开 一 局</button>
+            <button id="onlineLeave2" class="ghost">回 目 录</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
