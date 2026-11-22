@@ -88,8 +88,10 @@ test.describe('手机竖屏操作坞', () => {
         const opened = await boxes(page);
         expect(opened.overlaps.raiseTaunt).toBe(false);
         expect(opened.overlaps.raiseHand).toBe(false);
-        expect(opened.overlaps.raiseActions).toBe(false);
+        // 加注档位为单行浮层,原位替换主操作行(占位保留,主行隐藏不重复可点)
         expect(opened.overlaps.actionsHand).toBe(false);
+        const actionsInvisible = await page.evaluate(() => getComputedStyle(document.getElementById('actions')).visibility === 'hidden');
+        expect(actionsInvisible).toBe(true);
         expect(opened.actions.top).toBeGreaterThanOrEqual(0);
         expect(opened.actions.bottom).toBeLessThanOrEqual(opened.innerHeight);
       }
@@ -157,6 +159,65 @@ test.describe('手机竖屏顶部布局', () => {
       expect(bubbleGeo.inSeat).toBe(true);
       expect(bubbleGeo.hitsCodex).toBe(false);
       expect(bubbleGeo.hitsPot).toBe(false);
+    });
+  }
+});
+
+test.describe('手机竖屏手牌可见性', () => {
+  // 700 高模拟真机浏览器工具栏展开后的动态视口(dvh < 844):手牌曾因此
+  // 被固定像素高的操作坞盖住(线上反馈「看不到自己的两张牌」)
+  const CARD_SIZES = [
+    { label: '390×844', width: 390, height: 844 },
+    { label: '390×700(带工具栏)', width: 390, height: 700 },
+    { label: '320×568', width: 320, height: 568 },
+  ];
+
+  async function cardGeometry(page) {
+    return page.evaluate(() => {
+      const rect = sel => {
+        const el = typeof sel === 'string' ? document.querySelector(sel) : sel;
+        const r = el.getBoundingClientRect();
+        return { top: r.top, left: r.left, bottom: r.bottom, right: r.right };
+      };
+      const dock = rect('#actionDock');
+      const cards = [...document.querySelectorAll('#cardLayer .card.big')].map(rect);
+      return {
+        dock, cards,
+        cardsClearDock: cards.length > 0 && cards.every(c => c.bottom <= dock.top + 1),
+        cardsInScreen: cards.length > 0 && cards.every(c => c.top >= 0 && c.bottom <= innerHeight),
+      };
+    });
+  }
+
+  for (const size of CARD_SIZES) {
+    test(`竖屏 ${size.label}:两张手牌完整露出操作坞之上,加注展开坞高不跳`, async ({ page }) => {
+      await page.setViewportSize({ width: size.width, height: size.height });
+      await newGame(page, 'fast=1&chapter=taoyuan&omen=sow');
+      await page.click('#openPage');
+      await settleOmen(page);
+      await enterBattle(page);
+      await waitButtons(page);
+      await page.waitForTimeout(1200); // 等发牌落位
+
+      const closed = await cardGeometry(page);
+      expect(closed.cards.length).toBe(2);
+      expect(closed.cardsInScreen).toBe(true);
+      expect(closed.cardsClearDock).toBe(true);
+
+      const hasRaise = await page.evaluate(() => {
+        const b = document.querySelector('#actions button[data-act="raise"]');
+        return !!b && b.style.display !== 'none';
+      });
+      if (hasRaise) {
+        const dockTopBefore = closed.dock.top;
+        await page.click('#actions button[data-act="raise"]');
+        await expect(page.locator('#raiseOpts:not(.hidden)')).toBeVisible();
+        const opened = await cardGeometry(page);
+        // 加注面板为单行浮层:坞高恒定,手牌仍完整可见
+        expect(Math.abs(opened.dock.top - dockTopBefore)).toBeLessThanOrEqual(2);
+        expect(opened.cardsClearDock).toBe(true);
+        expect(opened.cardsInScreen).toBe(true);
+      }
     });
   }
 });
