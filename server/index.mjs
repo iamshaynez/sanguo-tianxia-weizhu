@@ -1,7 +1,8 @@
 // index.mjs —— 服务入口:静态托管 dist(与单人模式同一份构建产物)+ 同源 /ws 网关。
 // 单人模式不依赖本进程:dist 仍是纯静态,任何静态服务器都能跑。
 import http from 'node:http';
-import { createReadStream, existsSync, statSync, writeFileSync } from 'node:fs';
+import zlib from 'node:zlib';
+import { createReadStream, existsSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { RoomStore } from './rooms.js';
@@ -36,14 +37,35 @@ try {
   }
 } catch { /* dist 只读时跳过,页面有兜底显示 */ }
 
-function serveFile(res, file, cache) {
+// 文本类静态响应 gzip(nginx 版本有、node 版本补齐):CF/浏览器回源体积降 ~65%。
+// 压缩产物按 文件路径+mtime 缓存,首次访问现压,之后零 CPU。
+const GZIP_TYPES = new Set(['.html', '.js', '.css', '.json', '.webmanifest', '.svg']);
+const gzipCache = new Map();            // file -> { mtimeMs, body }
+
+function serveFile(req, res, file, cache) {
   const ext = path.extname(file).toLowerCase();
-  res.writeHead(200, {
+  const headers = {
     'content-type': MIME[ext] || 'application/octet-stream',
     'cache-control': cache,
     'x-content-type-options': 'nosniff',
-  });
-  createReadStream(file).pipe(res);
+  };
+  const wantsGzip = GZIP_TYPES.has(ext) && /\bgzip\b/.test(String(req.headers['accept-encoding'] || ''));
+  if (!wantsGzip) {
+    res.writeHead(200, headers);
+    createReadStream(file).pipe(res);
+    return;
+  }
+  const mtime = statSync(file).mtimeMs;
+  const hit = gzipCache.get(file);
+  let body;
+  if (hit && hit.mtimeMs === mtime) body = hit.body;
+  else {
+    body = zlib.gzipSync(readFileSync(file), { level: 6 });
+    gzipCache.set(file, { mtimeMs: mtime, body });
+    if (gzipCache.size > 256) gzipCache.delete(gzipCache.keys().next().value);
+  }
+  res.writeHead(200, { ...headers, 'content-encoding': 'gzip', vary: 'Accept-Encoding' });
+  res.end(body);
 }
 
 const server = http.createServer((req, res) => {
@@ -68,7 +90,7 @@ const server = http.createServer((req, res) => {
   const base = path.basename(file);
   const immutable = pathname.startsWith('/assets/') || pathname.startsWith('/icons/');
   const noStore = base === 'index.html' || base === 'sw.js' || base === 'runtime.json' || base === 'manifest.webmanifest' || pathname === '/';
-  serveFile(res, file, noStore ? 'no-store' : immutable ? 'public, max-age=31536000, immutable' : 'public, max-age=3600');
+  serveFile(req, res, file, noStore ? 'no-store' : immutable ? 'public, max-age=31536000, immutable' : 'public, max-age=3600');
 });
 
 const store = new RoomStore({ dataFile: DATA_FILE });

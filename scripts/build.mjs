@@ -53,6 +53,9 @@ let html = await readFile(path.join(root, 'index.html'), 'utf8');
 const replacements = [
   ['href="./style.css"', `href="./${styleFile}"`],
   ['data-app-entry="./src/main.js"', `data-app-entry="./${mainFile}"`],
+  // 模块预加载:bootstrap 动态 import 前就开始拉主包,省一个串行往返
+  ['<link rel="stylesheet"', `<link rel="modulepreload" href="./${mainFile}">
+<link rel="stylesheet"`],
 ];
 for (const [before, after] of replacements) {
   if (!html.includes(before)) throw new Error(`index.html 缺少构建替换锚点:${before}`);
