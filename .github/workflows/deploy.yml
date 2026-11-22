@@ -34,6 +34,7 @@ jobs:
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_PORT: ${{ secrets.DEPLOY_PORT }}
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
         run: |
@@ -49,4 +50,4 @@ jobs:
           # $SSH_ORIGINAL_COMMAND 读取并校验 40 位十六进制，其余一律拒绝）
           ssh -F /dev/null -i ~/.ssh/deploy_key -o IdentitiesOnly=yes \
             -o UserKnownHostsFile=~/.ssh/known_hosts -o StrictHostKeyChecking=yes \
-            "$DEPLOY_USER@$DEPLOY_HOST" "$GITHUB_SHA"
+            -p "${DEPLOY_PORT:-22}" "$DEPLOY_USER@$DEPLOY_HOST" "$GITHUB_SHA"
