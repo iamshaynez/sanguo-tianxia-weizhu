@@ -61,7 +61,8 @@ test('首次缓存后断网也能从图标重开,进入未访问章节并显示�
     for (const name of names) {
       const cache = await caches.open(name);
       const urls = (await cache.keys()).map(request => request.url);
-      if (urls.some(url => url.includes('/assets/chunks/scroll-4-')) && urls.some(url => url.endsWith('/assets/offline-portrait.svg'))) return true;
+      // 章节 chunk 已并入主包(离线优先架构):预缓存的主包 + 离线头像齐备即算就绪
+      if (urls.some(url => /\/assets\/main-[A-Z0-9]+\.js$/.test(url)) && urls.some(url => url.endsWith('/assets/offline-portrait.svg'))) return true;
     }
     return false;
   })).toBe(true);
