@@ -1214,6 +1214,8 @@ body:has(#battle:not(.hidden)) #langBar {
 .online-gen-meta .dim { margin: 4px 0 8px; color: #8b8f7a; font-size: 11px; line-height: 1.6; }
 .online-home-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
 .online-home-actions button { padding: 12px 18px; font-size: 15px; }
+.online-seats-pick { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #b8ab88; font-size: 12px; letter-spacing: .12em; }
+.online-seats-pick .online-select { min-width: 0; flex: 0 1 150px; padding: 8px 10px; font-size: 13px; }
 .online-join { display: flex; gap: 8px; }
 .online-code-input { flex: 1; padding: 10px 12px; color: #e0c17b; background: #141812; border: 1px solid #6b5c39; font: 20px var(--serif); letter-spacing: .4em; text-align: center; text-transform: uppercase; }
 .online-code-input::placeholder { color: #565a49; font-size: 12px; letter-spacing: .2em; }
