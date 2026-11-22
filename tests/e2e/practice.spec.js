@@ -55,8 +55,11 @@ test.describe('野战练习场', () => {
     });
     expect(total).toBe(2800 * 8);
 
-    // 自动玩家打几手:引擎在 8 人桌不报错,盲注与席位正常轮转
-    await installDriver(page, 'station');
+    // 自动玩家打几手:引擎在 8 人桌不报错,盲注与席位正常轮转。
+    // 用 cautious 而非 station:跟注站可能首手全跟爆仓,战斗终止回到点兵台,
+    // 永远等不到第 2 手(实测概率性 120s 超时);cautious 单次决策至多损 90,
+    // 2800 军资不可能首手出局,「第 2 手」稳定可达。
+    await installDriver(page, 'cautious');
     await expect(page.locator('#blindLabel')).toContainText('第 2 手', { timeout: 120_000 });
     await stopDriver(page);
     await expect(page.locator('#errBox')).toBeEmpty();

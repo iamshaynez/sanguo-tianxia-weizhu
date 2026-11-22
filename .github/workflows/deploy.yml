@@ -1,7 +1,7 @@
 name: deploy
 
-# 本仓库唯一的远端流水线:只构建部署,不跑测试(测试在本地跑,
-# npm test 全绿后再合并;线上 CI 已按需移除,不再消耗 Actions 分钟)。
+# 部署流水线:只构建部署,不跑测试(测试在本地跑,npm test 全绿后再合并;
+# 轻量 PR 门禁见 ci.yml——构建冒烟+内容契约+分析+网战集成,不含 e2e)。
 # - push main(合并 release PR)→ 服务器侧构建 + 推 ACR + deploy.sh 冒烟,约 1 分钟;
 # - workflow_dispatch 供手动重部署任意 main 状态。
 on:
