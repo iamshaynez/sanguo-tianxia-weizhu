@@ -7,7 +7,7 @@
 # → docker push（服务器→ACR 国内路径，实测秒级；GitHub 美国 runner 推此端点
 # 会 blob 上传停滞，故构建推送整体移到服务器侧，与 novel-universe 同构）
 # → exec deploy.sh（pull 幂等 + up + 冒烟）。
-# --provenance/sbom 关闭：Docker 29(buildx) 默认附加 vnd.oci.empty 附件清单，ACR 个人版拒收(2026-11-06 hk-dev 首跑复现，与 the-41-days 同因同解)。
+# --provenance/sbom 关闭：Docker 29(buildx) 默认附加 vnd.oci.empty 附件清单，ACR 个人版拒收(2026-11-06 hk-dev 首跑复现，与 the-41-days 同因同解)
 set -uo pipefail
 cd /opt/apps/sanguo || { echo "部署目录不存在"; exit 1; }
 
