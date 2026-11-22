@@ -465,6 +465,7 @@ export class Room {
 
   aiAct(seat, autopilot = false) {
     if (!this.H || this.phase !== 'playing' || this.H.actor !== seat.id || seat.folded) return;
+    seat.persona ||= makePersona(traitsOfGen(seat.genId));   // 兜底:快照恢复/异常路径人格缺失时代打不崩
     const view = T.actionView(this.H, seat.id);
     const decision = PK.aiDecide({
       ...view,
@@ -763,7 +764,7 @@ export class Room {
         playerId: seat.playerId, eliminated: seat.eliminated,
         handStartStack: seat.handStartStack || 0,   // 供 midHand 回退手前筹码
       });
-      if (restored.kind === 'npc') restored.persona = makePersona(traitsOfGen(restored.genId));
+      if (restored.kind !== 'open') restored.persona = makePersona(traitsOfGen(restored.genId));
       return restored;
     });
     for (const record of data.players || []) {

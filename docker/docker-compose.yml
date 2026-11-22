@@ -21,6 +21,8 @@ services:
       timeout: 5s
       retries: 3
       start_period: 5s
+    volumes:
+      - /opt/apps/sanguo/data:/data   # 网战房间快照:绑定挂载,重建容器不丢
 
 # 接入层：与 openresty（1Panel）共享 apps 网络，nginx 以容器名反代
 networks:
