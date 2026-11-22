@@ -102,7 +102,8 @@ export function initOnline({ P, show, save }) {
   net.on('disconnected', () => paintConn('off'));
   net.on('reconnecting', () => paintConn('off'));
 
-  document.getElementById('onlineBtn')?.addEventListener('click', enterOnline);
+  // 入口卡接线:目录「联机对战」卡由 scroll.renderCodex 挂接(同沙场点兵),
+  // 顶部 #onlineBtn 小按钮已移除(手机端曾被语言栏遮挡)。
   // 扫码直达:带 ?room=CODE 打开页面 → 自动进网战屏(lobby 会对该参数自动入局)
   if (new URLSearchParams(location.search).get('room')) {
     enterOnline();
@@ -123,4 +124,5 @@ export function initOnline({ P, show, save }) {
     if (!root.querySelector('#onlineBoard').classList.contains('hidden')) board.banner(t('online.langChanged'));
     else lobby.show();
   });
+  return enterOnline;
 }

@@ -42,7 +42,7 @@ test('网战:建房→入席→军师→开局→断线代打→续接', async (
 
   // —— 房主建房(3 席 + 军师补位,10 秒出牌时限) ——
   const A = await newPage(browser);
-  await A.page.click('#onlineBtn');
+  await A.page.click('[data-online-gate]');
   await expect(A.page.locator('#online:not(.hidden)')).toBeVisible();
   await A.page.click('#onlineCreate');
   await expect(A.page.locator('.online-room')).toBeVisible({ timeout: 15_000 });
@@ -68,7 +68,7 @@ test('网战:建房→入席→军师→开局→断线代打→续接', async (
 
   // —— 朋友凭码入席 ——
   const B = await newPage(browser);
-  await B.page.click('#onlineBtn');
+  await B.page.click('[data-online-gate]');
   await expect(B.page.locator('#onlineHome, .online-home').first()).toBeVisible();
   await B.page.fill('.online-code-input', code);
   await B.page.click('#onlineJoin');
@@ -125,7 +125,7 @@ test('网战:建房→入席→军师→开局→断线代打→续接', async (
   await B2.goto('/?tutorial=0');
   await expect(B2.locator('#startBtn')).toBeEnabled();
   await B2.click('#startBtn');
-  await B2.click('#onlineBtn');
+  await B2.click('[data-online-gate]');
   await expect(B2.locator('#onlineBoard:not(.hidden), .online-room').first()).toBeVisible({ timeout: 30_000 });
 
   console.error('[step] cleanup');
@@ -139,12 +139,12 @@ test('网战:翻牌后公共牌正面朝上(公共牌从未翻面的存量缺陷
 
   // 房主建房,朋友凭码入席,各自点将开局(1 个空席不影响开局)
   const A = await newPage(browser);
-  await A.page.click('#onlineBtn');
+  await A.page.click('[data-online-gate]');
   await A.page.click('#onlineCreate');
   await expect(A.page.locator('.online-room')).toBeVisible({ timeout: 15_000 });
   const code = (await A.page.locator('.online-code').textContent()).trim();
   const B = await newPage(browser);
-  await B.page.click('#onlineBtn');
+  await B.page.click('[data-online-gate]');
   await B.page.fill('.online-code-input', code);
   await B.page.click('#onlineJoin');
   await expect(B.page.locator('.online-room')).toBeVisible({ timeout: 15_000 });
@@ -177,7 +177,7 @@ test('网战:建房可选同桌人数(2-6),选定值进房生效', async () => {
   test.setTimeout(120_000);
   const browser = await chromium.launch();
   const A = await newPage(browser);
-  await A.page.click('#onlineBtn');
+  await A.page.click('[data-online-gate]');
   // 选择器默认 4 人,选项覆盖 2-6
   await expect(A.page.locator('#onlineSeats')).toHaveValue('4');
   const options = await A.page.locator('#onlineSeats option').allTextContents();

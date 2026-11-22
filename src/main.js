@@ -47,7 +47,7 @@ document.querySelectorAll('.lang-btn').forEach(btn => {
 });
 onLocaleChange(() => {
   if (!$('scroll').classList.contains('hidden')) {
-    SC.renderCodex(P, openChapterPage, enterPractice);
+    SC.renderCodex(P, openChapterPage, enterPractice, enterOnline);
   }
   if ($('page') && !$('page').classList.contains('hidden') && currentChapter) {
     renderChapterPage(currentChapter);
@@ -330,7 +330,7 @@ function showCodex() {
   $('chapterLoadStatus').classList.add('hidden');
   $('chapterLoadRetry').classList.add('hidden');
   show('scroll');
-  SC.renderCodex(P, openChapterPage, enterPractice);
+  SC.renderCodex(P, openChapterPage, enterPractice, enterOnline);
 }
 
 // ---------------- 野战练习场:与正史并列的全屏点兵台 ----------------
@@ -778,5 +778,5 @@ $('replayIntroBtn').addEventListener('click', () => {
   onboarding.replay();
 });
 $('startBtn').disabled = false;
-initOnline({ P, show, save: () => SC.saveProgress(P) });
+const enterOnline = initOnline({ P, show, save: () => SC.saveProgress(P) });
 initPwa();
