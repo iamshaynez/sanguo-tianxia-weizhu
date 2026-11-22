@@ -804,7 +804,7 @@ button.ghost:hover { border-color: #b7a578; }
   #oppChar.is-multi .seat-turn { bottom: 4px; padding: 2px 4px; font-size: 7px; }
   #table { top: 56%; width: 96vw; aspect-ratio: 2.15; }
   #cardLayer { inset: -14% 0; }
-  #youPlate { bottom: 39%; left: 8px; padding: 6px 10px; font-size: 11px; }
+  #youPlate { bottom: 42%; left: 8px; padding: 6px 10px; font-size: 11px; } /* 42%:避让上移后的手牌(320 宽曾与铭牌下缘相擦 2px) */
   #youPlate .pname { margin-right: 8px; }
   #youPlate .pstack { font-size: 14px; }
   #oppChar { top: 52px; } /* 席位上移,给牌桌与底部操作区让出纵向空间 */
@@ -852,8 +852,12 @@ button.ghost:hover { border-color: #b7a578; }
   #dockMeta { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 30px; }
   #dockMeta > #tauntBtn { position: static; padding: 8px 14px; font-size: 11px; }
   #dockMeta > #handLabel { position: static; bottom: auto; right: auto; font-size: 10px; text-align: right; }
-  #raiseOpts { position: static; right: auto; bottom: auto; transform: none; gap: 6px; width: auto; max-width: none; flex-wrap: wrap; justify-content: center; }
-  #raiseOpts button { flex: 1 1 30%; min-height: 44px; padding: 10px 6px; font-size: 12px; letter-spacing: .04em; white-space: nowrap; }
+  /* 坞高恒定(手牌锚定坞顶的前提):未轮到时操作行保留占位;加注档位为单行
+     浮层,原位覆盖操作行,展开不再撑高操作坞 */
+  #actions.hidden { display: flex !important; visibility: hidden; pointer-events: none; }
+  #actionDock:has(#raiseOpts:not(.hidden)) #actions { visibility: hidden; pointer-events: none; }
+  #raiseOpts { position: absolute; left: 8px; right: 8px; bottom: calc(8px + env(safe-area-inset-bottom)); transform: none; gap: 6px; width: auto; max-width: none; flex-wrap: nowrap; overflow-x: auto; z-index: 2; }
+  #raiseOpts button { flex: 1 1 0; min-width: 0; min-height: 48px; padding: 10px 4px; font-size: 12px; letter-spacing: .02em; white-space: nowrap; }
   #actions { position: static; right: auto; bottom: auto; transform: none; gap: 6px; width: auto; max-width: none; }
   #actions button { flex: 1 1 0; min-height: 48px; padding: 12px 4px; font-size: 13px; letter-spacing: .04em; white-space: nowrap; }
   #actions button b, #raiseOpts button b { margin-left: 3px; }
@@ -1320,10 +1324,14 @@ body:has(#battle:not(.hidden)) #langBar {
   #onBlindLabel { max-width: 46vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   #onDock { position: absolute; left: 0; right: 0; bottom: 0; z-index: 14; display: flex; flex-direction: column; gap: 7px; padding: 26px 8px calc(8px + env(safe-area-inset-bottom)); pointer-events: none; background: linear-gradient(180deg, transparent, #0b0e0bd9 34%); }
   #onDock button { pointer-events: auto; }
+  /* 坞高恒定(手牌锚定坞顶的前提):未轮到时操作行保留占位;加注档位为单行
+     浮层,原位覆盖操作行,展开不再撑高操作坞 */
+  #onActions.hidden { display: flex !important; visibility: hidden; pointer-events: none; }
+  #onDock:has(#onRaise:not(.hidden)) #onActions { visibility: hidden; pointer-events: none; }
   #onCountdown { position: static; left: auto; bottom: auto; transform: none; width: 100%; }
   #onHandLabel { position: static; bottom: auto; right: auto; align-self: flex-end; font-size: 10px; }
-  #onRaise { position: static; right: auto; bottom: auto; gap: 6px; flex-wrap: wrap; justify-content: center; }
-  #onRaise button { flex: 1 1 30%; min-height: 44px; padding: 10px 6px; font-size: 12px; letter-spacing: .04em; white-space: nowrap; }
+  #onRaise { position: absolute; left: 8px; right: 8px; bottom: calc(8px + env(safe-area-inset-bottom)); gap: 6px; flex-wrap: nowrap; overflow-x: auto; z-index: 2; }
+  #onRaise button { flex: 1 1 0; min-width: 0; min-height: 48px; padding: 10px 4px; font-size: 12px; letter-spacing: .02em; white-space: nowrap; }
   #onActions { position: static; right: auto; bottom: auto; gap: 6px; }
   #onActions button { flex: 1 1 0; min-height: 48px; padding: 12px 4px; font-size: 13px; letter-spacing: .04em; white-space: nowrap; }
   #onYouPlate { left: 10px; bottom: 15%; }
