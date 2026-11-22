@@ -321,6 +321,8 @@ export default {
     title: '天下英雄,同席為注',
     lead: '與好友同桌,再邀三國軍師入座。斷線不散局——軍師按武將牌風代打,歸席即收回兵權。',
     pickGeneral: '點 將',
+    seatsLabel: '同桌人數',
+    seatsN: '{n} 人桌',
     create: '建 房 召 集',
     join: '入 局',
     codePh: '房間號 6 位',
