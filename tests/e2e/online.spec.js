@@ -133,3 +133,42 @@ test('网战:建房→入席→军师→开局→断线代打→续接', async (
   await B2context.close();
   await browser.close();
 });
+test('网战:翻牌后公共牌正面朝上(公共牌从未翻面的存量缺陷)', async () => {
+  test.setTimeout(180_000);
+  const browser = await chromium.launch();
+
+  // 房主建房,朋友凭码入席,各自点将开局(1 个空席不影响开局)
+  const A = await newPage(browser);
+  await A.page.click('#onlineBtn');
+  await A.page.click('#onlineCreate');
+  await expect(A.page.locator('.online-room')).toBeVisible({ timeout: 15_000 });
+  const code = (await A.page.locator('.online-code').textContent()).trim();
+  const B = await newPage(browser);
+  await B.page.click('#onlineBtn');
+  await B.page.fill('.online-code-input', code);
+  await B.page.click('#onlineJoin');
+  await expect(B.page.locator('.online-room')).toBeVisible({ timeout: 15_000 });
+  await A.page.selectOption('.online-seat .online-select[data-pick-general]', 'guanyu');
+  await B.page.selectOption('.online-seat .online-select[data-pick-general]', 'zhangfei');
+  await A.page.click('#onlineStart');
+  await expect(A.page.locator('#onlineBoard:not(.hidden)')).toBeVisible({ timeout: 20_000 });
+
+  // 双方 check/call 过 preflop,等翻牌落地(转牌河牌先到也不影响断言)
+  await autoDrive(A.page, 'flopA');
+  await autoDrive(B.page, 'flopB');
+  await A.page.waitForFunction(
+    () => document.querySelectorAll('#onCardLayer .card:not(.big):not([data-seat-id])').length >= 3,
+    { timeout: 90_000 });
+  await stopDrive(A.page, 'flopA');
+  await stopDrive(B.page, 'flopB');
+
+  // 公共牌必须带 flipped(正面朝上)——修复前 dealBoard 漏加该类,翻牌背面示人
+  const faceUp = await A.page.evaluate(() =>
+    [...document.querySelectorAll('#onCardLayer .card:not(.big):not([data-seat-id])')]
+      .every(el => el.classList.contains('flipped')));
+  expect(faceUp).toBe(true);
+
+  await A.context.close();
+  await B.context.close();
+  await browser.close();
+});

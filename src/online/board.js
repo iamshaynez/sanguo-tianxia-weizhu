@@ -252,6 +252,7 @@ export function createOnlineBoard(root, net, hooks = {}) {
       cards.set(`b${renderedBoard}`, el);
       place(el, SLOT.deck, true);
       void el.offsetWidth;
+      el.classList.add('flipped'); // 公共牌是明牌:落位途中翻面(单机 dealCard 同款;漏加则永远背面朝上)
       place(el, SLOT.community(renderedBoard));
       await wait(0.3);
     }
