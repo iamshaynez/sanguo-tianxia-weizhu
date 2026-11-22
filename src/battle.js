@@ -136,11 +136,21 @@ export function startBattle(opts) {
     piles.bet.set(seat.id, betEl); piles.stack.set(seat.id, stackEl);
   }
 
+  // 手机端手牌不再贴牌桌下缘(y:97):视口被浏览器工具栏压矮后,底部操作坞
+  // (固定像素高)会盖住挂桌手牌。改为锚定到坞顶上方 8px;视口足够高时退回
+  // 原位。返回相对 cardLayer 的纵向百分比。
+  function heroHoleY() {
+    const layer = cardLayer.getBoundingClientRect();
+    const dock = document.getElementById('actionDock');
+    if (!dock || !layer.height) return 97;
+    const aboveDock = dock.getBoundingClientRect().top - 62 - layer.top; // 坞顶-8px 间隙-半张牌
+    return Math.max(60, Math.min(97, aboveDock / layer.height * 100));
+  }
   function seatSlot(seat, kind, cardIndex = 0) {
     if (seat.isHero) {
       if (kind === 'hole') {
-        const gap = window.innerWidth <= 640 ? 28 : 10;
-        return { x: 50 + (cardIndex ? gap / 2 : -gap / 2), y: 97 };
+        const gap = window.innerWidth <= 640 ? 40 : 10; // 手机 40:上移后与左侧铭牌拉开横向距离
+        return { x: 50 + (cardIndex ? gap / 2 : -gap / 2), y: window.innerWidth <= 640 ? heroHoleY() : 97 };
       }
       if (kind === 'bet') return SLOTS.betP;
       return SLOTS.stackP;

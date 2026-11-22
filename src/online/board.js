@@ -82,11 +82,23 @@ export function createOnlineBoard(root, net, hooks = {}) {
   let replayedHandFor = 0;          // lastHand 展示过的 handNum
 
   // ---------- 坐标 ----------
+  // 手机端手牌锚定操作坞上方(同 battle.js 的 heroHoleY):视口被浏览器工具栏
+  // 压矮后,挂桌下缘(y:97)的手牌会被固定像素高的 #onDock 盖住。
+  function heroHoleY() {
+    const layer = cardLayer.getBoundingClientRect();
+    const dock = root.querySelector('#onDock');
+    if (!dock || !layer.height) return 97;
+    const aboveDock = dock.getBoundingClientRect().top - 62 - layer.top; // 坞顶-8px 间隙-半张牌
+    return Math.max(60, Math.min(97, aboveDock / layer.height * 100));
+  }
   function slotFor(room, seat, kind, cardIndex = 0) {
     const you = room.you?.seatIndex;
     const narrow = window.innerWidth <= 640;
     if (seat.index === you) {
-      if (kind === 'hole') return SLOT.heroHole(cardIndex, narrow);
+      if (kind === 'hole') {
+        const slot = SLOT.heroHole(cardIndex, narrow);
+        return narrow ? { ...slot, y: heroHoleY() } : slot;
+      }
       if (kind === 'bet') return SLOT.heroBet;
       return SLOT.heroStack;
     }
