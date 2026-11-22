@@ -51,11 +51,12 @@ export const ERR = {
   ILLEGAL_ACTION: 'ILLEGAL_ACTION',
   ACTION_CONFLICT: 'ACTION_CONFLICT',
   RATE_LIMITED: 'RATE_LIMITED',
+  NEED_GENERAL: 'NEED_GENERAL',
 };
 
 // ---- 客户端 → 服务端 ----
 export const CLIENT_KINDS = ['hello_create', 'hello_join', 'hello_resume', 'room_action', 'poker_action', 'verify_deck', 'ping'];
-export const ROOM_ACTIONS = ['configure', 'add_npc', 'remove_npc', 'start_game', 'end_game', 'rematch', 'leave'];
+export const ROOM_ACTIONS = ['configure', 'add_npc', 'remove_npc', 'set_general', 'start_game', 'end_game', 'rematch', 'leave'];
 
 // ---- 服务端 → 客户端 ----
 export const SERVER_KINDS = ['welcome', 'room', 'deck', 'ack', 'error', 'pong'];
@@ -82,16 +83,16 @@ export function validateClientMessage(msg) {
     case 'ping':
       return { ok: true, type: msg.type };
     case 'hello_create': {
-      if (!isStr(msg.genId)) return { ok: false, code: ERR.BAD_MESSAGE };
+      if (msg.genId != null && !isStr(msg.genId)) return { ok: false, code: ERR.BAD_MESSAGE };
       if (msg.config !== undefined && !isObj(msg.config)) return { ok: false, code: ERR.BAD_MESSAGE };
-      return { ok: true, type: msg.type, genId: msg.genId, config: clampConfig(msg.config) };
+      return { ok: true, type: msg.type, genId: msg.genId ?? null, config: clampConfig(msg.config) };
     }
     case 'hello_join':
     case 'hello_resume': {
       if (!isStr(msg.code, CODE_LEN, CODE_LEN)) return { ok: false, code: ERR.BAD_MESSAGE };
-      if (msg.type === 'hello_join' && !isStr(msg.genId)) return { ok: false, code: ERR.BAD_MESSAGE };
       if (msg.type === 'hello_resume' && !isStr(msg.token, 16, 64)) return { ok: false, code: ERR.BAD_MESSAGE };
-      return { ok: true, type: msg.type, code: msg.code, genId: msg.genId, token: msg.token };
+      if (msg.type === 'hello_join' && msg.genId != null && !isStr(msg.genId)) return { ok: false, code: ERR.BAD_MESSAGE };
+      return { ok: true, type: msg.type, code: msg.code, genId: msg.genId ?? null, token: msg.token };
     }
     case 'room_action': {
       if (!isStr(msg.actionId, 6, 64)) return { ok: false, code: ERR.BAD_MESSAGE };
@@ -104,6 +105,8 @@ export function validateClientMessage(msg) {
       if (msg.kind === 'add_npc' && msg.genId !== undefined && !isStr(msg.genId)) return { ok: false, code: ERR.BAD_MESSAGE };
       if (msg.kind === 'add_npc') out.genId = msg.genId;   // 透传给房间
       if (msg.kind === 'remove_npc' && !isInt(msg.seat, 0, SEAT_MAX - 1)) return { ok: false, code: ERR.BAD_MESSAGE };
+      if (msg.kind === 'set_general' && !isStr(msg.genId)) return { ok: false, code: ERR.BAD_MESSAGE };
+      if (msg.kind === 'set_general') out.genId = msg.genId;
       return out;
     }
     case 'poker_action': {
