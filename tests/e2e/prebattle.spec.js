@@ -53,7 +53,9 @@ test.describe('战前展卷仪式', () => {
   test('正常速度:地图到战书到武将卡再到牌桌,略过只结束动画', async ({ page }) => {
     const external = [];
     page.on('request', request => {
-      if (/^https?:/.test(request.url()) && !request.url().startsWith('http://127.0.0.1:8619')) external.push(request.url());
+      const url = request.url();
+      // 自托管打点(core.xiaowenz.com,首页内联 snippet)是预期行为,不算外部依赖
+      if (/^https?:/.test(url) && !url.startsWith('http://127.0.0.1:8619') && !url.startsWith('https://core.xiaowenz.com/')) external.push(url);
     });
     await newGame(page, 'seed=PB01&chapter=taoyuan&omen=sow');
     await page.click('#openPage');

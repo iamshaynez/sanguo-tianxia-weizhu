@@ -329,12 +329,16 @@ try {
       console.error('    NPC房守恒破坏:', totalStack(room), JSON.stringify(room.seats.map(seat => [seat.kind, seat.stack, seat.committed, seat.folded, seat.eliminated])), 'hand', room.hand?.handNum, 'lastHand', room.lastHand?.handNum ?? null, 'log', JSON.stringify(room.log.slice(-4)));
     }
   });
-  // 不给 C 挂 autoDrive:故意让 4s 超时打满,验证军师代打路径
-  await c.waitFor('room', room => room.log.some(event => event.t === 'deal' && event.n >= 2), 150_000);
+  // 不给 C 挂 autoDrive:故意让 4s 超时打满,验证军师代打路径。
+  // C 的代打全押可能首手爆仓出局(牌局种子随机,属正常终局),此时无第 2 手——
+  // 终局与第 2 手任一到达即算推进,断言只在未终局时要求第 2 手。
+  await c.waitFor('room', room => room.log.some(event => event.t === 'deal' && event.n >= 2)
+    || room.log.some(event => event.t === 'over'), 150_000);
 
-  check('人机局推进到第 2 手(超时代打入流水)', () => {
+  check('人机局推进(超时代打入流水,首手爆仓终局亦算)', () => {
     assert.ok(c.room().log.some(event => event.t === 'autopilot'));
-    assert.ok(c.room().log.some(event => event.t === 'deal' && event.n >= 2));
+    const ended = c.room().log.some(event => event.t === 'over');
+    if (!ended) assert.ok(c.room().log.some(event => event.t === 'deal' && event.n >= 2));
   });
   check('人机局守恒(3×600)', () => assert.ok(conservation3));
   await c.close();
