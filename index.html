@@ -219,10 +219,12 @@
       <span id="playerFoldStatus" class="player-fold-status hidden" data-i18n="battle.folded">已弃牌 · 观战</span>
     </div>
     <div id="potLabel"><span id="potLabelText" data-i18n="battle.pot">底 池</span> <b id="potNum">0</b></div>
-    <div id="blindLabel"></div>
-    <div id="handLabel">当前牌型 —</div>
+    <!-- 顶部状态条:桌面端 display:contents 零影响,手机端盲注+种子并成一行 -->
+    <div id="topBar">
+      <div id="blindLabel"></div>
+      <div id="seedLabel">种子 <b id="seedVal">—</b> <a id="verifyBtn">验牌</a></div>
+    </div>
     <div id="luckLabel"><span class="dot"></span>运势 · 平</div>
-    <div id="seedLabel">种子 <b id="seedVal">—</b> <a id="verifyBtn">验牌</a></div>
     <div id="playerCardsHint" class="hidden" data-i18n="battle.cardsHint">点击手牌可拿起看</div>
 
     <aside id="oddsPanel" class="hidden" data-state="idle" aria-label="局势分析" data-i18n-aria="odds.aria">
@@ -251,15 +253,18 @@
       </details>
     </aside>
 
-    <div id="actions" class="hidden">
-      <button data-act="fold">弃牌</button>
-      <button data-act="check">过牌</button>
-      <button data-act="call">跟注</button>
-      <button data-act="raise">加注</button>
-      <button data-act="allin">全压</button>
+    <!-- 底部操作坞:桌面端 display:contents 零影响,手机端整体成坞贴底 -->
+    <div id="actionDock">
+      <div id="dockMeta"><button id="tauntBtn" disabled>攻 心</button><div id="handLabel">当前牌型 —</div></div>
+      <div id="raiseOpts" class="hidden"></div>
+      <div id="actions" class="hidden">
+        <button data-act="fold">弃牌</button>
+        <button data-act="check">过牌</button>
+        <button data-act="call">跟注</button>
+        <button data-act="raise">加注</button>
+        <button data-act="allin">全压</button>
+      </div>
     </div>
-    <div id="raiseOpts" class="hidden"></div>
-    <button id="tauntBtn" disabled>攻 心</button>
 
     <div id="banner" class="hidden"><div id="bannerMain"></div><div id="bannerSub"></div></div>
     <div id="codex"><h3>破 绽 簿</h3><ul id="codexList"><li class="empty">尚无记录 —— 盯住他的手。</li></ul></div>
@@ -343,18 +348,21 @@
       </div>
       <div id="onPotLabel"><span data-i18n="battle.pot">底 池</span> <b id="onPotNum">0</b></div>
       <div id="onBlindLabel"></div>
-      <div id="onHandLabel">当前牌型 —</div>
       <div id="onSeedLabel">种子 <b id="onSeedVal">—</b> <a id="onVerifyBtn" class="hidden">验 牌</a></div>
-      <div id="onCountdown" class="hidden" aria-hidden="true"><i></i></div>
       <ul id="onLog" aria-live="polite"></ul>
-      <div id="onActions" class="hidden">
-        <button data-act="fold"></button>
-        <button data-act="check"></button>
-        <button data-act="call"></button>
-        <button data-act="raise"></button>
-        <button data-act="allin"></button>
+      <!-- 底部操作坞:桌面端 display:contents 零影响,手机端整体成坞贴底 -->
+      <div id="onDock">
+        <div id="onCountdown" class="hidden" aria-hidden="true"><i></i></div>
+        <div id="onHandLabel">当前牌型 —</div>
+        <div id="onRaise" class="hidden"></div>
+        <div id="onActions" class="hidden">
+          <button data-act="fold"></button>
+          <button data-act="check"></button>
+          <button data-act="call"></button>
+          <button data-act="raise"></button>
+          <button data-act="allin"></button>
+        </div>
       </div>
-      <div id="onRaise" class="hidden"></div>
       <div id="onBanner" class="hidden"><div id="onBannerMain"></div><div id="onBannerSub"></div></div>
       <div id="onEnd" class="modal hidden">
         <div class="modal-box endbox">
