@@ -86,6 +86,7 @@ function startServer() {
   return child;
 }
 const stopServer = child => new Promise(resolve => {
+  if (child.exitCode !== null || child.signalCode) return resolve();
   child.on('exit', resolve);
   child.kill('SIGTERM');
   setTimeout(() => { try { child.kill('SIGKILL'); } catch {} }, 3000);
@@ -341,7 +342,35 @@ try {
   await a.close();
   await b2.close();
 
-  // [5] 快照恢复
+  // [4.5] 崩溃回归:恢复含离线玩家的对局,军师代打路径不得崩进程
+  console.log('[4.5] 恢复离线玩家房间(代打崩溃回归)');
+  const e = makeClient('E');
+  const f = makeClient('F');
+  await e.open();
+  e.send({ type: 'hello_create', config: { seats: 2, stack: 1000, blindsIdx: 0, escalate: 4, turnMs: 4000 } });
+  const we = await e.waitFor('welcome');
+  e.state.code = we.code;
+  e.state.playerId = we.playerId;
+  e.state.token = we.token;
+  await e.waitFor('room', room => room.phase === 'lobby');
+  await f.open();
+  f.send({ type: 'hello_join', code: e.state.code });
+  const wf = await f.waitFor('welcome');
+  f.state.token = wf.token;
+  await f.waitFor('room', room => room.seats.filter(seat => seat.kind !== 'open').length === 2);
+  e.send({ type: 'room_action', actionId: 'genx-e1', kind: 'set_general', genId: 'lvbu' });
+  await e.waitFor('ack', ack => ack.actionId === 'genx-e1');
+  f.send({ type: 'room_action', actionId: 'genx-f1', kind: 'set_general', genId: 'machao' });
+  await f.waitFor('ack', ack => ack.actionId === 'genx-f1');
+  e.send({ type: 'room_action', actionId: 'gox-e1', kind: 'start_game' });
+  await e.waitFor('room', room => room.phase === 'playing');
+  await e.close();
+  await f.close();                         // 双双离线 → 全 AI 代打推进中
+  await sleep(2500);                       // 代打至少走几步
+  // 双离线代打推进中即停服(存下 mid-hand 快照),重启段验证恢复后代打不崩
+  await stopServer(server);
+
+  // [5] 快照持久化与重启恢复
   console.log('[5] 快照持久化与重启恢复');
   await stopServer(server);
   const snapshot = JSON.parse(readFileSync(dataFile, 'utf8'));
@@ -366,6 +395,19 @@ try {
     assert.ok(room.hand && room.hand.handNum >= 1);
     assert.equal(totalStack(room), expectedTotal(room));
   });
+  // 崩溃回归主断言:含离线玩家的房间恢复后,代打路径不再崩进程
+  const e2 = makeClient('E2');
+  await e2.open();
+  e2.send({ type: 'hello_resume', code: e.state.code, token: e.state.token });
+  await e2.waitFor('welcome', welcome => welcome.playerId === e.state.playerId, 8000);
+  await e2.waitFor('room', room => room.phase === 'playing' && room.hand, 20_000);
+  await sleep(6000);                       // 让代打真实走几步
+  check('离线玩家房间恢复后由军师代打继续推进(进程不崩)', () => {
+    const room = e2.room();
+    assert.ok(room.hand.handNum >= 1);
+    assert.ok(room.log.some(event => event.t === 'deal'), '已开新手');
+  });
+  await e2.close();
   await r2.close();
   await stopServer(server2);
 } finally {
