@@ -172,3 +172,21 @@ test('网战:翻牌后公共牌正面朝上(公共牌从未翻面的存量缺陷
   await B.context.close();
   await browser.close();
 });
+
+test('网战:建房可选同桌人数(2-6),选定值进房生效', async () => {
+  test.setTimeout(120_000);
+  const browser = await chromium.launch();
+  const A = await newPage(browser);
+  await A.page.click('#onlineBtn');
+  // 选择器默认 4 人,选项覆盖 2-6
+  await expect(A.page.locator('#onlineSeats')).toHaveValue('4');
+  const options = await A.page.locator('#onlineSeats option').allTextContents();
+  expect(options).toHaveLength(5);
+  await A.page.selectOption('#onlineSeats', '2');
+  await A.page.click('#onlineCreate');
+  await expect(A.page.locator('.online-room')).toBeVisible({ timeout: 15_000 });
+  // 2 人桌:房间恰好两张席位卡
+  await expect(A.page.locator('.online-seat')).toHaveCount(2);
+  await A.context.close();
+  await browser.close();
+});

@@ -321,6 +321,8 @@ export default {
     title: 'Heroes of the Realm, One Table',
     lead: 'Share a table with friends and draft Three-Kingdoms strategists as seats. Disconnects never end the hand — the strategist plays in your general\'s style until you return.',
     pickGeneral: 'PICK',
+    seatsLabel: 'TABLE SIZE',
+    seatsN: '{n} players',
     create: 'FOUND A TABLE',
     join: 'JOIN',
     codePh: '6-character code',

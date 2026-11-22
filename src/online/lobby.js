@@ -8,7 +8,7 @@ import { loadSession } from './net.js';
 import { t } from '../i18n.js';
 import { joinUrl, roomQrSvg } from './qr.js';
 import {
-  STACK_PRESETS, BLIND_PRESETS, ESCALATE_PRESETS, TURN_MS_PRESETS,
+  STACK_PRESETS, BLIND_PRESETS, ESCALATE_PRESETS, TURN_MS_PRESETS, SEAT_MIN, SEAT_MAX,
 } from './protocol.js';
 
 const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
@@ -78,6 +78,14 @@ export function createOnlineLobby(root, net, hooks = {}) {
         <p class="online-lead">${t('online.lead')}</p>
         ${notice ? `<p class="online-notice">${esc(notice)}</p>` : ''}
         <div class="online-home-actions">
+          <label class="online-seats-pick">${t('online.seatsLabel')}
+            <select id="onlineSeats" class="online-select">
+              ${Array.from({ length: SEAT_MAX - SEAT_MIN + 1 }, (_, i) => {
+                const n = SEAT_MIN + i;
+                return `<option value="${n}"${n === 4 ? ' selected' : ''}>${t('online.seatsN', { n })}</option>`;
+              }).join('')}
+            </select>
+          </label>
           <button id="onlineCreate">${t('online.create')}</button>
           <div class="online-join">
             <input id="onlineCode" class="online-code-input" maxlength="6" placeholder="${t('online.codePh')}" autocomplete="off" autocapitalize="characters" value="${esc(inviteCode)}">
@@ -130,8 +138,10 @@ export function createOnlineLobby(root, net, hooks = {}) {
   }
 
   function readConfig() {
+    // 席位数来自主页选择器(2-6,默认 4);其余对局参数仍用预设,后续可扩成表单
+    const seats = parseInt(root.querySelector('#onlineSeats')?.value, 10) || 4;
     return {
-      seats: 4,
+      seats: Math.max(SEAT_MIN, Math.min(SEAT_MAX, seats)),
       stack: STACK_PRESETS[1],
       blindsIdx: 0,
       escalate: ESCALATE_PRESETS[1],

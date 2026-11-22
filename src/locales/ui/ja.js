@@ -321,6 +321,8 @@ export default {
     title: '天下の英雄、同じ卓に',
     lead: '友と同卓し、三国の軍師を招いて座につく。切断しても局は散らない——軍師がその武将の牌風で代打し、復席すれば兵権を取り戻す。',
     pickGeneral: '点 将',
+    seatsLabel: '卓の人数',
+    seatsN: '{n} 人卓',
     create: '部屋 を 作 る',
     join: '参 战',
     codePh: '部屋番号 6 桁',
