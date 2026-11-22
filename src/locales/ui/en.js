@@ -12,6 +12,9 @@ export default {
     loading: 'Loading...',
     versionPrefix: 'v',
     runtimeMissing: 'Server start unrecorded',
+    subtitle: 'Cards as blades, rewriting regrets',
+    replayIntro: 'REPLAY INTRO',
+    playerName: 'YOU',
   },
   menu: {
     back: 'Back',
@@ -176,6 +179,7 @@ export default {
     title: 'Skirmish Arenas',
     subtitle: 'Hone your wits in legendary duels',
     allTiers: 'All Tables',
+    lead: 'Beyond the codex lies the battlefield. Thirty-three classic tables — equal stakes, free victories, the canon untouched.',
     tier2: 'Heads-up Duel',
     tier3: 'Three-Way Strife',
     tier4: 'Four-Front Cross',
@@ -195,6 +199,9 @@ export default {
     outsDesc: 'Cards that secure victory',
     advice: 'Strategist\'s Counsel',
     analyzing: 'Calculating...',
+    aria: 'Odds analysis',
+    heading: 'ODDS',
+    winRate: 'Win rate',
   },
   onboarding: {
     welcome: 'Entering the Divided Realm',
