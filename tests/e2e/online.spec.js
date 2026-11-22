@@ -44,10 +44,6 @@ test('网战:建房→入席→军师→开局→断线代打→续接', async (
   const A = await newPage(browser);
   await A.page.click('#onlineBtn');
   await expect(A.page.locator('#online:not(.hidden)')).toBeVisible();
-  await expect(A.page.locator('#onlineGen')).toBeVisible();
-  await A.page.selectOption('#onlineGen', 'guanyu');
-  await expect(A.page.locator('#onlineGenCard')).toContainText('关羽');
-
   await A.page.click('#onlineCreate');
   await expect(A.page.locator('.online-room')).toBeVisible({ timeout: 15_000 });
   const code = (await A.page.locator('.online-code').textContent()).trim();
@@ -62,7 +58,12 @@ test('网战:建房→入席→军师→开局→断线代打→续接', async (
     net.on('room', room => { (window.__flog ||= []).push([room.phase, room.v, room.seats.map(s => s.kind).join(',')]); });
   });
   await A.page.click('#onlineAddNpc');
-      await expect(A.page.locator('.online-seat').filter({ hasText: '周瑜' })).toBeVisible({ timeout: 8000 });
+      await expect(A.page.locator('.online-gen-meta b', { hasText: '周瑜' })).toBeVisible({ timeout: 8000 });
+  await expect(A.page.locator('#onlineQr svg')).toBeVisible();
+  const qrPayload = await A.page.evaluate(() => decodeURIComponent(
+    document.querySelector('#onlineQr svg')?.closest('.online-qr')?.parentElement
+      ?.querySelector('svg')?.innerHTML?.match(/xlink:href|aria|data/)?.[0] ?? ''));
+  expect(await A.page.evaluate(() => !!document.querySelector('#onlineQr svg'))).toBe(true);
   await expect(A.page.locator('.online-seat .seat-tag.ai')).toHaveCount(1);
 
   // —— 朋友凭码入席 ——
@@ -72,9 +73,16 @@ test('网战:建房→入席→军师→开局→断线代打→续接', async (
   await B.page.fill('.online-code-input', code);
   await B.page.click('#onlineJoin');
   await expect(B.page.locator('.online-room')).toBeVisible({ timeout: 15_000 });
-  await expect(B.page.locator('.online-seat').filter({ hasText: '关羽' })).toBeVisible();
-  await expect(B.page.locator('.online-seat').filter({ hasText: '张飞' }).or(
-    B.page.locator('.online-seat').filter({ hasText: '周瑜' }))).toBeVisible();
+  await expect(B.page.locator('.online-gen-meta b', { hasText: '待选武将' })).toHaveCount(2);
+  await expect(A.page.locator('.online-gen-meta b', { hasText: '待选武将' })).toHaveCount(2);
+  await expect(B.page.locator('.online-gen-meta b', { hasText: '待选武将' })).toHaveCount(2);
+  await expect(B.page.locator('.online-gen-meta b', { hasText: '周瑜' })).toBeVisible();
+
+  // —— 房内点将(A 关羽 / B 张飞) ——
+  await A.page.selectOption('.online-seat .online-select[data-pick-general]', 'guanyu');
+  await expect(A.page.locator('.online-gen-meta b', { hasText: '关羽' })).toBeVisible({ timeout: 8000 });
+  await B.page.selectOption('.online-seat .online-select[data-pick-general]', 'zhangfei');
+  await expect(B.page.locator('.online-gen-meta b', { hasText: '张飞' })).toBeVisible({ timeout: 8000 });
 
   // —— 开局 ——
   await A.page.click('#onlineStart');

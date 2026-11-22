@@ -113,14 +113,31 @@ export class Room {
     if (index < 0) return { error: 'ROOM_FULL' };
     const seat = this.seats[index];
     seat.kind = 'human';
-    seat.genId = genId;
-    seat.name = genId;
-    seat.playerId = null;                   // 稍后由 addPlayer 调用方绑定
+    seat.genId = genId || null;             // 允许先入席后点将(start 前必须选定)
+    seat.name = seat.genId || '';
+    seat.playerId = null;                   // 稍后由调用方绑定 playerId
     return { index, seat };
   }
 
+  // 进房后点将:只限本人席位、lobby 阶段、武将未被占
+  setGeneral(playerId, genId) {
+    if (this.phase !== 'lobby') return { error: 'ALREADY_STARTED' };
+    const player = this.players.get(playerId);
+    const seat = player && player.seatIndex >= 0 ? this.seats[player.seatIndex] : null;
+    if (!seat || seat.kind !== 'human') return { error: 'BAD_STATE' };
+    if (!GENERAL_TRAITS[genId]) return { error: 'BAD_STATE' };
+    const owner = this.seats.find(item => item.kind !== 'open' && item !== seat && item.genId === genId);
+    if (owner) return { error: 'GEN_TAKEN' };
+    seat.genId = genId;
+    seat.name = genId;
+    seat.persona = makePersona(traitsOfGen(genId));
+    this.event('general', seat.index, null, genId);
+    this.bump(this);
+    return {};
+  }
+
   bindPlayer(playerId, { genId, tokenHash }, seatIndex) {
-    const player = { id: playerId, genId, tokenHash, seatIndex, conns: new Set(), joinedAt: now() };
+    const player = { id: playerId, genId: genId || null, tokenHash, seatIndex, conns: new Set(), joinedAt: now() };
     this.players.set(playerId, player);
     const seat = this.seats[seatIndex];
     seat.playerId = playerId;
@@ -251,6 +268,8 @@ export class Room {
     if (this.phase !== 'lobby') return { error: 'ALREADY_STARTED' };
     if (playerId !== this.hostId) return { error: 'NOT_HOST' };
     if (this.occupiedCount() < 2) return { error: 'BAD_STATE' };
+    const unselected = this.seats.filter(seat => seat.kind === 'human' && !seat.genId);
+    if (unselected.length) return { error: 'NEED_GENERAL', detail: String(unselected[0].index) };
     for (const seat of this.seats) {
       if (seat.kind === 'open') continue;
       seat.stack = this.config.stack;
@@ -664,6 +683,7 @@ export class Room {
       case 'configure': result = this.configure(payload.config); break;
       case 'add_npc': result = this.addNpc(payload.genId); break;
       case 'remove_npc': result = this.removeNpc(payload.seat); break;
+      case 'set_general': result = this.setGeneral(playerId, payload.genId); break;
       case 'start_game': result = this.startGame(playerId); break;
       case 'end_game': result = this.endGame(playerId, 'host'); break;
       case 'rematch': result = this.rematch(playerId); break;

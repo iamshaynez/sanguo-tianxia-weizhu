@@ -9,6 +9,7 @@ import { getGeneral } from '../generals.js';
 import { localizeGeneral } from '../i18n.js';
 import { t } from '../i18n.js';
 import { BLIND_PRESETS } from './protocol.js';
+import { generalPortrait } from './lobby.js';
 
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
@@ -130,7 +131,8 @@ export function createOnlineBoard(root, net, hooks = {}) {
 
   // ---------- 席位 ----------
   function seatName(seat) {
-    return localizeGeneral(getGeneral(seat.genId), seat.genId)?.name || seat.genId || '';
+    if (!seat.genId) return t('online.noGeneral');
+    return localizeGeneral(getGeneral(seat.genId), seat.genId)?.name || seat.genId;
   }
 
   function rolesOf(room, seat) {
@@ -404,6 +406,7 @@ export function createOnlineBoard(root, net, hooks = {}) {
       leave: () => t('online.verbs.leave', { who }),
       over: () => t('online.verbs.over'),
       npc: () => t('online.verbs.npc', { who }),
+      general: () => `${who} ${t('online.verbs.general', { gen: event.x ? seatName({ genId: event.x }) : '' })}`
     };
     const action = { fold: 'fold', check: 'check', call: 'call', bet: 'bet', raise: 'raise', allin: 'allin' }[event.t];
     if (action) {

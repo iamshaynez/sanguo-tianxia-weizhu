@@ -103,7 +103,7 @@ export function attachGateway(httpServer, store, { allowedOrigins = [], logger =
         if (!target) { fail(conn, ERR.ROOM_NOT_FOUND, '房间不存在或已解散'); return; }
         if (target.phase !== 'lobby') { fail(conn, ERR.ALREADY_STARTED, '牌局已开始,请等待下一局'); return; }
         if (target.occupiedCount() >= target.config.seats) { fail(conn, ERR.ROOM_FULL, '席位已满'); return; }
-        if (target.genTaken(msg.genId)) { fail(conn, ERR.GEN_TAKEN, '该武将已在席上,请另择一人'); return; }
+        if (msg.genId && target.genTaken(msg.genId)) { fail(conn, ERR.GEN_TAKEN, '该武将已在席上,请另择一人'); return; }
         const token = newToken();
         const tokenHash = hashToken(token);
         const seatInfo = target.addPlayer({ genId: msg.genId, tokenHash });
