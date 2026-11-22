@@ -288,7 +288,7 @@ button.ghost:hover { border-color: #b7a578; }
 .chip.ivory { background: repeating-linear-gradient(90deg, transparent 0 6px, #315c48 6px 9px), linear-gradient(#efe6d0, #cfc3a4); }
 .chip.ebony { background: repeating-linear-gradient(90deg, transparent 0 6px, #92382e 6px 9px), linear-gradient(#3d4137, #242820); }
 .chip.pot { background: repeating-linear-gradient(90deg, transparent 0 6px, #c39b4d 6px 9px), linear-gradient(#e8dcc0, #c8b88e); }
-#scene > .plate, #scene > #potLabel, #scene > #blindLabel, #scene > #handLabel, #scene > #luckLabel, #scene > #seedLabel, #scene > #playerCardsHint { position: absolute; z-index: 12; }
+#scene > .plate, #scene > #potLabel, #topBar > #blindLabel, #dockMeta > #handLabel, #scene > #luckLabel, #topBar > #seedLabel, #scene > #playerCardsHint { position: absolute; z-index: 12; }
 .plate { padding: 9px 16px; background: #171b15dd; border: 1px solid #75633f; border-left: 3px solid #923b2f; box-shadow: 0 6px 18px #0004; font-size: 14px; letter-spacing: .1em; }
 #youPlate .seat-roles { top: -18px; right: auto; left: 0; }
 #youPlate.is-folded .pname, #youPlate.is-folded .pstack { opacity: .24; }
@@ -310,6 +310,8 @@ button.ghost:hover { border-color: #b7a578; }
 #actions button b, #raiseOpts button b { color: #f0cf7e; margin-left: 6px; }
 #raiseOpts { position: absolute; bottom: 12%; right: 3%; display: flex; gap: 9px; z-index: 14; }
 #tauntBtn { position: absolute; bottom: 58px; left: 22px; z-index: 12; padding: 10px 18px; color: #d0b683; background: #34271c; font-size: 12px; }
+/* 操作坞/顶部状态条包装层:桌面端透明(子元素沿用上方绝对定位),手机端在媒体查询里整体成坞 */
+#actionDock, #onDock, #dockMeta, #topBar { display: contents; }
 #banner { position: absolute; top: 37%; left: 50%; transform: translate(-50%, -50%); text-align: center; pointer-events: none; z-index: 15; }
 #bannerMain { color: #efd08a; font: 42px var(--serif); letter-spacing: .3em; text-indent: .3em; text-shadow: 0 0 30px #f0cf7e88, 0 2px 6px #0009; }
 #bannerSub { margin-top: 12px; color: #d0c4a6; font-size: 14px; letter-spacing: .2em; text-shadow: 0 1px 4px #000b; }
@@ -807,14 +809,21 @@ button.ghost:hover { border-color: #b7a578; }
   #youPlate .pstack { font-size: 14px; }
   #oppChar { top: 52px; } /* 席位上移,给牌桌与底部操作区让出纵向空间 */
   #oppChar.is-multi { margin-top: -8px; }
-  #blindLabel, #luckLabel { top: 12px; padding: 6px; font-size: 9px; }
-  #blindLabel { left: 8px; max-width: 54%; letter-spacing: .03em; white-space: nowrap; } #luckLabel { top: 12px; right: 8px; }
-  #potLabel { top: 40%; }
-  #codex { top: 226px; left: 8px; width: 150px; padding: 8px; transition: opacity .25s; }
-  #oppChar.is-multi ~ #codex { top: 226px; width: 150px; }
+  /* 顶部一行状态条:盲注左、种子+验牌右,长文本省略号截断,不再两行堆叠 */
+  #topBar { position: absolute; top: 8px; left: 8px; right: 8px; z-index: 12; display: flex; align-items: center; gap: 8px; pointer-events: none; }
+  #topBar > #blindLabel { position: static; top: auto; left: auto; padding: 6px 9px; font-size: 9px; letter-spacing: .03em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #topBar > #seedLabel { position: static; top: auto; right: auto; bottom: auto; left: auto; display: flex; align-items: baseline; gap: 4px; margin-left: auto; padding: 6px 8px; font-size: 9px; white-space: nowrap; }
+  #topBar > #seedLabel b { display: block; flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  #topBar > #seedLabel a { flex: none; }
+  #topBar a { pointer-events: auto; }
+  #luckLabel { display: none; } /* 手机端顶部只留一行状态条,运势行让位 */
+  #potLabel { top: 52%; } /* 贴桌面毡面上缘,避开破绽簿/局势面板(320宽曾相撞) */
+  /* 破绽簿上移与局势面板齐平(对手卡正下方),条目加一号提亮 */
+  #codex { top: 178px; left: 8px; width: 150px; padding: 8px; transition: opacity .25s; }
+  #oppChar.is-multi ~ #codex { top: 178px; width: 150px; }
   #scene:has(.opponent-seat.speaking) #codex { opacity: .12; }
-  #codex ul { max-height: 64px; }
-  #codex li { font-size: 9px; }
+  #codex ul { max-height: 72px; }
+  #codex li { font-size: 10px; line-height: 1.7; color: #bcc0a6; }
   #oddsPanel { top: 178px; right: 8px; width: calc(50vw - 12px); padding: 9px 9px 8px; }
   .odds-panel-heading { gap: 5px; padding-bottom: 6px; }
   .odds-panel-heading h3 { font-size: 10px; }
@@ -835,14 +844,21 @@ button.ghost:hover { border-color: #b7a578; }
   #oddsDetails { margin-top: 7px; padding-top: 7px; }
   #oddsDetails summary { font-size: 9px; }
   .odds-details-body { width: min(330px, calc(100vw - 16px)); max-height: 55vh; max-height: 55dvh; }
-  #actions { right: 50%; transform: translateX(50%); bottom: calc(46px + env(safe-area-inset-bottom)); gap: 5px; width: max-content; max-width: 96vw; }
-  #actions button, #raiseOpts button { flex: 0 0 auto; padding: 11px 9px; font-size: 12px; letter-spacing: .08em; white-space: nowrap; }
+  /* 底部操作坞:dvh 随浏览器工具栏收缩,按钮贴动态视口底;攻心/牌型/加注档位/
+     主操作纵向成坞,不再各自绝对定位互压(实测加注档位曾压攻心与牌型提示) */
+  #battle { bottom: auto; height: 100vh; height: 100dvh; }
+  #actionDock { position: absolute; left: 0; right: 0; bottom: 0; z-index: 14; display: flex; flex-direction: column; gap: 7px; padding: 26px 8px calc(8px + env(safe-area-inset-bottom)); pointer-events: none; background: linear-gradient(180deg, transparent, #0b0e0bd9 34%); }
+  #actionDock button { pointer-events: auto; }
+  #dockMeta { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 30px; }
+  #dockMeta > #tauntBtn { position: static; padding: 8px 14px; font-size: 11px; }
+  #dockMeta > #handLabel { position: static; bottom: auto; right: auto; font-size: 10px; text-align: right; }
+  #raiseOpts { position: static; right: auto; bottom: auto; transform: none; gap: 6px; width: auto; max-width: none; flex-wrap: wrap; justify-content: center; }
+  #raiseOpts button { flex: 1 1 30%; min-height: 44px; padding: 10px 6px; font-size: 12px; letter-spacing: .04em; white-space: nowrap; }
+  #actions { position: static; right: auto; bottom: auto; transform: none; gap: 6px; width: auto; max-width: none; }
+  #actions button { flex: 1 1 0; min-height: 48px; padding: 12px 4px; font-size: 13px; letter-spacing: .04em; white-space: nowrap; }
   #actions button b, #raiseOpts button b { margin-left: 3px; }
-  #raiseOpts { right: 50%; transform: translateX(50%); bottom: calc(88px + env(safe-area-inset-bottom)); width: max-content; max-width: 96vw; flex-wrap: wrap; justify-content: center; }
-  #handLabel { right: 8px; bottom: calc(100px + env(safe-area-inset-bottom)); font-size: 10px; }
-  #tauntBtn { left: 8px; bottom: calc(96px + env(safe-area-inset-bottom)); }
-  #luckLabel { display: none; } /* 手机端让出顶部右栏,种子行上移顶替 */
-  #seedLabel { left: auto; right: 8px; top: 40px; bottom: auto; max-width: 62%; overflow: hidden; white-space: nowrap; text-align: right; font-size: 8px; }
+  /* 战斗时隐藏底部版本栏:它与操作按钮同处拇指热区,且真机浏览器工具栏展开时整条被压 */
+  body:has(#battle:not(.hidden)) .app-version, body:has(#online:not(.hidden)) .app-version { display: none; }
   #playerCardsHint { display: none; }
   /* 版本栏收成单行(隐藏时间戳),给牌桌底部操作区让出净空 */
   .app-version { flex-wrap: nowrap; max-width: calc(100vw - 12px); overflow: hidden; white-space: nowrap; }
@@ -851,6 +867,8 @@ button.ghost:hover { border-color: #b7a578; }
   .seat-bubble b { font-size: 12px; }
   .seat-bubble i { font-size: 9px; }
   #oppChar.is-multi .seat-bubble { top: auto; right: 5px; bottom: 5px; left: 5px; width: auto; max-width: none; transform: none; text-align: left; }
+  /* 单人局气泡同样收进席位卡内:不再下溢压破绽簿/局势面板(与多人局同方案) */
+  #oppChar:not(.is-multi) .seat-bubble { top: auto; left: 8px; right: 8px; bottom: 8px; width: auto; max-width: none; transform: none; max-height: 62px; overflow: hidden; text-align: left; }
   #mapSvg .node .nlabel { font-size: 20px; }
   #banner { top: 28%; width: 94vw; }
   #bannerMain { font-size: 28px; }
@@ -938,8 +956,8 @@ button.ghost:hover { border-color: #b7a578; }
   #oppChar.is-multi .seat-art { flex-basis: 48px; }
   #oppChar.is-multi .seat-art .portrait-img { width: 48px; height: 48px; }
   #oppChar.is-multi .seat-body { padding: 4px 7px; }
-  #codex { top: 196px; }
-  #oppChar.is-multi ~ #codex { top: 196px; }
+  #codex { top: 154px; } /* 与局势面板(154)齐平,对手卡(108高)正下方 */
+  #oppChar.is-multi ~ #codex { top: 154px; }
   #oddsPanel { top: 154px; padding: 6px 8px; }
   .odds-panel-heading { padding-bottom: 4px; }
   .odds-primary { margin: 5px 0; }
@@ -1294,13 +1312,20 @@ body:has(#battle:not(.hidden)) #langBar {
 
 @media (max-width: 640px) {
   .online-home, .online-room { margin: 2vh auto 0; padding: 18px 16px; }
-    .online-scene { height: calc(100vh - 56px); min-height: 430px; }
+  /* dvh 随浏览器工具栏收缩,操作坞贴动态视口底(单机 #actionDock 同方案) */
+  .online-scene { height: calc(100vh - 56px); height: calc(100dvh - 56px); min-height: 430px; }
   #onTable { top: 56%; width: 96vw; aspect-ratio: 2.15; }
   #onlineOpp.is-multi .opponent-seat { flex: 1 0 150px; }
   #onLog { top: 108px; right: 8px; width: 158px; max-height: 26vh; }
   #onBlindLabel { max-width: 46vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  #onActions { right: 2%; left: 2%; justify-content: center; flex-wrap: wrap; }
-  #onRaise { bottom: 20%; right: 2%; left: 2%; justify-content: center; flex-wrap: wrap; }
+  #onDock { position: absolute; left: 0; right: 0; bottom: 0; z-index: 14; display: flex; flex-direction: column; gap: 7px; padding: 26px 8px calc(8px + env(safe-area-inset-bottom)); pointer-events: none; background: linear-gradient(180deg, transparent, #0b0e0bd9 34%); }
+  #onDock button { pointer-events: auto; }
+  #onCountdown { position: static; left: auto; bottom: auto; transform: none; width: 100%; }
+  #onHandLabel { position: static; bottom: auto; right: auto; align-self: flex-end; font-size: 10px; }
+  #onRaise { position: static; right: auto; bottom: auto; gap: 6px; flex-wrap: wrap; justify-content: center; }
+  #onRaise button { flex: 1 1 30%; min-height: 44px; padding: 10px 6px; font-size: 12px; letter-spacing: .04em; white-space: nowrap; }
+  #onActions { position: static; right: auto; bottom: auto; gap: 6px; }
+  #onActions button { flex: 1 1 0; min-height: 48px; padding: 12px 4px; font-size: 13px; letter-spacing: .04em; white-space: nowrap; }
   #onYouPlate { left: 10px; bottom: 15%; }
   .online-code { font-size: 20px; }
 }

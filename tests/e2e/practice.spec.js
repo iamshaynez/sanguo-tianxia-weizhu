@@ -90,18 +90,22 @@ test.describe('野战练习场', () => {
       expect(box.x).toBeGreaterThanOrEqual(0);
       expect(box.x + box.width).toBeLessThanOrEqual(390);
     }
-    // 底部净空:行动/攻心/加注按钮不得侵入版本栏,种子行不与盲注行重叠
+    // 底部净空:行动/攻心/加注按钮不得侵入版本栏(战斗时版本栏隐藏则无从侵入),
+    // 盲注行与种子行互不重叠(手机端同排省略号截断,不再上下堆叠)
     const layout = await page.evaluate(() => {
       const footer = document.getElementById('appVersion').getBoundingClientRect();
-      const intruded = [...document.querySelectorAll('#actions button, #tauntBtn, #raiseOpts button')]
+      const footerVisible = footer.height > 0;
+      const intruded = footerVisible && [...document.querySelectorAll('#actions button, #tauntBtn, #raiseOpts button')]
         .filter(el => el.offsetParent && el.getBoundingClientRect().height > 0)
         .some(el => el.getBoundingClientRect().bottom > footer.top - 2);
       const blind = document.getElementById('blindLabel').getBoundingClientRect();
       const seed = document.getElementById('seedLabel').getBoundingClientRect();
-      return { intruded, seedBelowBlind: seed.top >= blind.bottom - 2 };
+      const overlap = Math.max(0, Math.min(blind.right, seed.right) - Math.max(blind.left, seed.left))
+        * Math.max(0, Math.min(blind.bottom, seed.bottom) - Math.max(blind.top, seed.top));
+      return { intruded, blindSeedOverlap: overlap };
     });
     expect(layout.intruded).toBe(false);
-    expect(layout.seedBelowBlind).toBe(true);
+    expect(layout.blindSeedOverlap).toBe(0);
     // 桌面卡牌层:16 张暗牌都落在桌面范围内
     const cards = await page.locator('#cardLayer .card:not(.big)').evaluateAll(els =>
       els.every(el => { const r = el.getBoundingClientRect(); return r.x >= -60 && r.x + r.width <= 450 && r.y >= 0; }));
