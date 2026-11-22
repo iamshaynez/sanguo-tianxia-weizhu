@@ -117,10 +117,10 @@ git push -u origin feat/my-change
 一个 PR 只有在以下条件全部满足后才算完成：
 
 - 范围单一，说明为什么改以及用户会感知到什么。
-- 相关测试已更新，完整 `npm test` 和远端 CI 均通过。
+- 相关测试已更新，完整 `npm test` 与远端轻量 CI（构建 + 内容契约 + 分析 + 网战集成）均通过；e2e 仍以本地全绿为准。
 - 没有冲突、调试残留、生成物或与任务无关的改动。
 - UI 改动附截图；文档、测试、素材来源说明同步更新。
 - README、TESTING 或本文件中仍准确描述当前行为。
 - 合并后删除已完成专题分支；需要发布时，再通过 PR 将 `dev` 合入 `main`。
 
-PR 模板位于 `.github/pull_request_template.md`。CI 工作流位于 `.github/workflows/ci.yml`。
+PR 模板位于 `.github/pull_request_template.md`。轻量 CI 工作流位于 `.github/workflows/ci.yml`（构建 + 内容契约 + 分析 + 网战集成，不含 e2e——e2e 本地跑，见 TESTING.md；部署流水线见 `deploy.yml`）。

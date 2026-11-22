@@ -96,11 +96,10 @@ npm test              = 内容校验 + 评估 + E2E
 
 ## CI 与 PR 证据
 
-`.github/workflows/ci.yml` 在以下情况运行与本地一致的完整 `npm test`：向 `main` / `dev` 提交 PR、受保护分支产生合并提交，以及手动触发工作流。CI 使用 `.nvmrc` 中的 Node.js 版本和全新依赖安装，避免依赖开发者机器上的残留状态。
+`.github/workflows/ci.yml` 是轻量 PR 门禁：构建冒烟 + `lint:content` + 牌局分析 + 网战服务端集成，纯 Node、无浏览器，单次约 2–4 分钟，在任何 PR 与 `dev` 直推时运行。**e2e（Playwright）不进 CI**——耗时与 Actions 分钟成本高，仍以本地完整 `npm test` 全绿为合并前提；未来如需扩档（如 `eval:ai`）在 ci.yml 追加一个 step 即可。
 
-- 合并者必须等待名为 `test` 的 CI 任务成功；分支审核人数为 0 不构成跳过 CI 的理由。
-- 失败时下载 `test-results-<run_id>` 构件排查，不凭无法复现的截图猜测。
-- UI PR 另附人工截图；测试报告、截图和 CI 各自证明不同事实，不能互相替代。
+- 合并者必须等待名为 `gate` 的 CI 任务成功；分支审核人数为 0 不构成跳过 CI 的理由。
+- 失败时优先在本地复现对应命令；UI PR 另附人工截图；测试报告、截图和 CI 各自证明不同事实，不能互相替代。
 
 ## 当前基线
 

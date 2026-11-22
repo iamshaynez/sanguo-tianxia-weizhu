@@ -1,0 +1,37 @@
+name: ci
+
+# 轻量 PR 门禁:lint:content + 牌局分析 + online 服务端集成,纯 Node、无浏览器,
+# 单次约 2–4 分钟。e2e(Playwright)不进 CI,仍按约定本地 npm test 全绿后合并
+# ——deploy.yml 的「按需移除线上 CI 省分钟」决策只回补到这个轻量档位。
+# 如需扩档(如 eval:ai),在此文件追加一个 step 即可。
+on:
+  pull_request:
+  push:
+    branches: [dev]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: 构建冒烟
+        run: node scripts/build.mjs
+      - name: 内容契约校验
+        run: npm run lint:content
+      - name: 牌局分析一致性
+        run: npm run test:analysis
+      - name: 网战服务端集成
+        run: npm run test:online
