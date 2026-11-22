@@ -12,6 +12,9 @@ export default {
     loading: '読み込み中……',
     versionPrefix: '版',
     runtimeMissing: '起動時刻未登録',
+    subtitle: '牌を刃に、意難平を塗り替える',
+    replayIntro: '序 章 を 再 生',
+    playerName: 'あなた',
   },
   menu: {
     back: '戻る',
@@ -176,6 +179,7 @@ export default {
     title: '野戦演武',
     subtitle: '盤上にて腕を磨き、百戦錬磨となせ',
     allTiers: 'すべての卓',
+    lead: '残巻のほかに戦場あり。三十三の故事、点将すれば即開戦——軍資は同額、勝敗は腕次第、正巻には触れない。',
     tier2: '二人一騎討ち',
     tier3: '鼎立三人',
     tier4: '四方縦横',
@@ -195,6 +199,9 @@ export default {
     outsDesc: '逆転・勝利に繋がる残り牌',
     advice: '軍師の進言',
     analyzing: '軍師が盤を凝視中……',
+    aria: '情勢分析',
+    heading: '情 势',
+    winRate: '勝率',
   },
   onboarding: {
     welcome: '乱世への第一歩',

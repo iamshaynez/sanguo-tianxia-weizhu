@@ -12,6 +12,9 @@ export default {
     loading: '载入中……',
     versionPrefix: '版本',
     runtimeMissing: '启动时间未登记',
+    subtitle: '以牌为刃 · 重写意难平',
+    replayIntro: '重 温 开 卷',
+    playerName: '你',
   },
   menu: {
     back: '返回',
@@ -176,6 +179,7 @@ export default {
     title: '演武野战',
     subtitle: '沙场对弈，百炼成钢',
     allTiers: '全部席位',
+    lead: '残卷之外，另有沙场。三十三处典故，点兵即战——军资等额，胜负随手，不动正卷一页。',
     tier2: '二人独弈',
     tier3: '三人分鼎',
     tier4: '四方纵横',
@@ -195,6 +199,9 @@ export default {
     outsDesc: '能成胜势之余牌',
     advice: '军师断语',
     analyzing: '正在密算……',
+    aria: '局势分析',
+    heading: '局 势',
+    winRate: '胜率',
   },
   onboarding: {
     welcome: '初入乱世',
