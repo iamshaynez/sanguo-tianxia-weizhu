@@ -19,6 +19,7 @@ import { watchRuntimeVersion, forceReloadLatest } from './auto-update.js';
 import { initFullscreen } from './fullscreen.js';
 import { loadChapterData } from './story-data/runtime.js';
 import { initPwa } from './pwa.js';
+import { initOnline } from './online/main.js';
 import { createSaveTransfer } from './save-transfer.js';
 import { createOddsPanel } from './odds-panel.js';
 import {
@@ -178,7 +179,7 @@ $('oppChar').addEventListener('seatinspect', e => {
 });
 
 // ---------------- 屏幕切换 ----------------
-const SCREENS = ['intro', 'scroll', 'practice', 'page', 'map', 'battle'];
+const SCREENS = ['intro', 'scroll', 'practice', 'online', 'page', 'map', 'battle'];
 function show(name) {
   for (const s of SCREENS) $(s).classList.toggle('hidden', s !== name);
   document.body.dataset.screen = name;
@@ -777,4 +778,5 @@ $('replayIntroBtn').addEventListener('click', () => {
   onboarding.replay();
 });
 $('startBtn').disabled = false;
+initOnline({ P, show, save: () => SC.saveProgress(P) });
 initPwa();

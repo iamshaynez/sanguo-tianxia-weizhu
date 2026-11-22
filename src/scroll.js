@@ -33,6 +33,12 @@ export function normalizeProgress(p = {}) {
     flags: { ...record(p.flags) },
     apocWins: Number.isFinite(p.apocWins) ? Math.max(0, p.apocWins) : 0,
     settings: { equityAssist: !!record(p.settings).equityAssist },
+    online: {
+      tables: Math.max(0, Math.floor(Number(record(p.online).tables) || 0)),
+      wins: Math.max(0, Math.floor(Number(record(p.online).wins) || 0)),
+      hands: Math.max(0, Math.floor(Number(record(p.online).hands) || 0)),
+      bestStack: Math.max(0, Math.floor(Number(record(p.online).bestStack) || 0)),
+    },
     story: normalizeStoryState(p.story),
     tutorial: {
       version: TUTORIAL_VERSION,
