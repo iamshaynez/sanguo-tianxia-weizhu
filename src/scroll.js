@@ -5,6 +5,7 @@ import { portraitImage } from './portrait.js';
 import { normalizeStoryState, coldOpenFor, storyFor, speakerName, outcomeVariant } from './story-engine.js';
 import { chapterEncounters } from './encounters.js';
 import { renderPracticeGate } from './practice.js';
+import { renderOnlineGate } from './online/gate.js';
 import { briefingFor } from './story-data/runtime.js';
 import { t, localizeChapter } from './i18n.js';
 
@@ -78,7 +79,7 @@ export function finaleUnlocked(p) {
 const STATE_MARK = { unread: '○', history: '原', yeshi: '野', yeshiB: '野', yeshiAB: '全' };
 const STATE_MARK_EN = { unread: '○', history: 'L', yeshi: 'F', yeshiB: 'F', yeshiAB: '★' };
 // onPractice:野战练习场入口(与正史各卷并列,永不上锁)
-export function renderCodex(p, onPick, onPractice = null) {
+export function renderCodex(p, onPick, onPractice = null, onOnline = null) {
   const currentLang = document.documentElement.getAttribute('lang') || 'zh-CN';
   const progressText = t('scroll.rewrittenCount', { count: yeshiCount(p), total: NORMAL_IDS.length }) || `已改写 <b>${yeshiCount(p)}</b> / ${NORMAL_IDS.length} 页`;
   const finaleText = finaleUnlocked(p) ? ` · <b class="gold">${t('scroll.finaleUnlocked') || '最后一页已现'}</b>` : '';
@@ -117,6 +118,7 @@ export function renderCodex(p, onPick, onPractice = null) {
     box.appendChild(group);
   }
   if (onPractice) renderPracticeGate(box, onPractice);
+  if (onOnline) renderOnlineGate(box, onOnline);
 }
 
 // ---------------- 翻页题记 ----------------
