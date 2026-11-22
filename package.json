@@ -4,13 +4,17 @@
   "description": "《三国：天下为注》——三国古风德州扑克战役网页游戏",
   "main": "index.js",
   "scripts": {
-    "start": "node scripts/stamp-runtime.mjs && node scripts/build.mjs --dev && python3 -m http.server 8619 --directory dist",
+    "start": "node scripts/stamp-runtime.mjs && node scripts/build.mjs --dev && node server/index.mjs",
+    "start:static": "node scripts/stamp-runtime.mjs && node scripts/build.mjs --dev && python3 -m http.server 8619 --directory dist",
+    "serve": "node server/index.mjs",
     "build": "node scripts/build.mjs",
-    "test": "npm run lint:content && npm run test:analysis && npm run eval:ai && npm run test:e2e",
+    "test": "npm run lint:content && npm run test:analysis && npm run eval:ai && npm run test:online && npm run test:e2e",
     "test:analysis": "node tests/analysis/run.mjs && node tests/analysis/client.mjs",
+    "test:online": "node tests/online/run.mjs",
     "lint:content": "node tests/content/chapters.lint.mjs && node tests/content/practice.lint.mjs && node tests/content/tell-lines.lint.mjs",
     "eval:ai": "node tests/ai-eval/run.mjs",
     "gen:preflop": "node scripts/generate-preflop-table.mjs",
+    "gen:online-traits": "node scripts/generate-online-traits.mjs",
     "gen:locales": "node scripts/generate-generals-locales.mjs && node scripts/generate-chapters-locales.mjs && node scripts/generate-practice-locales.mjs && node scripts/generate-tells-locales.mjs && node scripts/generate-briefings-locales.mjs && node scripts/generate-stories-locales.mjs",
     "gen:og": "node scripts/generate-og-card.mjs",
     "gen:pwa": "node scripts/generate-pwa-assets.mjs",
@@ -20,6 +24,9 @@
   "author": "",
   "license": "ISC",
   "type": "module",
+  "dependencies": {
+    "ws": "^8.18.3"
+  },
   "devDependencies": {
     "@playwright/test": "^1.64.1",
     "esbuild": "^0.28.2"

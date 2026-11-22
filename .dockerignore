@@ -1,11 +1,8 @@
-# 注意：docker/ 不能忽略——Dockerfile 要 COPY docker/nginx.conf
 .git
 .github
 .dockerignore
 node_modules
 dist
-scripts/*
-!scripts/build.mjs
 test-results
 playwright-report
 gui-test-screenshots
@@ -16,3 +13,4 @@ archive-3d
 tests
 out
 *.log
+data
