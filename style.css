@@ -1186,12 +1186,10 @@ body:has(#battle:not(.hidden)) #langBar {
 .online-label { display: block; margin: 16px 0 6px; color: #baa574; font: 13px var(--song); letter-spacing: .3em; }
 .online-select { min-width: 200px; padding: 9px 10px; color: #ded2b5; background: #141812; border: 1px solid #6b5c39; font: 14px var(--serif); letter-spacing: .08em; }
 .online-select option { background: #141812; }
-.online-gen-row { display: flex; gap: 14px; align-items: stretch; }
 .online-portrait { width: 84px; height: 112px; object-fit: cover; border: 1px solid #75633f; box-shadow: 0 6px 18px #0006; }
 .online-gen-meta { flex: 1; min-width: 0; }
 .online-gen-meta b { color: #e6d5ac; font: 17px var(--serif); letter-spacing: .1em; }
 .online-gen-meta .dim { margin: 4px 0 8px; color: #8b8f7a; font-size: 11px; line-height: 1.6; }
-.online-gen-card .trait-grid { margin-top: 4px; }
 .online-home-actions { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
 .online-home-actions button { padding: 12px 18px; font-size: 15px; }
 .online-join { display: flex; gap: 8px; }
@@ -1272,10 +1270,31 @@ body:has(#battle:not(.hidden)) #langBar {
 .online-standings .rank { width: 20px; color: #8d927b; font: 14px var(--serif); }
 .online-standings li b { margin-left: auto; color: #e0c17b; font-size: 16px; }
 
+
+/* --- 二维码入局 / 席位点将 --- */
+.online-qr-row { display: flex; gap: 14px; align-items: center; margin: 10px 0 4px; }
+.online-qr { flex: 0 0 auto; width: 108px; height: 108px; padding: 8px; background: #f2ecd8; border: 1px solid #8b754a; box-shadow: 0 6px 18px #0005; }
+.online-qr svg { width: 100%; height: 100%; display: block; }
+.online-qr-meta { flex: 1; min-width: 0; }
+.online-qr-meta .online-room-note { margin: 0 0 6px; }
+.online-qr-hint { color: #8d927b; font-size: 11px; letter-spacing: .2em; }
+.online-seat.unpicked { opacity: .82; border-style: dashed; }
+.online-seat.unpicked .online-portrait { filter: grayscale(.9) brightness(.8); }
+.online-pick-row { display: flex; gap: 8px; margin-top: 8px; }
+.online-pick-row .online-select { min-width: 0; flex: 1; padding: 7px 8px; font-size: 13px; }
+.online-pick-row .ghost { white-space: nowrap; padding: 7px 10px; }
+.seat-tag.host { color: #e6b96a; border-color: #a8853c; }
+.online-start { width: 100%; padding: 14px; font-size: 17px; letter-spacing: .3em; }
+.online-start:disabled { opacity: .4; }
+.online-start-hint { margin: 8px 0 0; color: #d8a05e; font-size: 11px; }
+@media (max-width: 640px) {
+  .online-qr-row { flex-direction: row; }
+  .online-qr { width: 92px; height: 92px; }
+}
+
 @media (max-width: 640px) {
   .online-home, .online-room { margin: 2vh auto 0; padding: 18px 16px; }
-  .online-gen-row { flex-direction: column; }
-  .online-scene { height: calc(100vh - 56px); min-height: 430px; }
+    .online-scene { height: calc(100vh - 56px); min-height: 430px; }
   #onTable { top: 56%; width: 96vw; aspect-ratio: 2.15; }
   #onlineOpp.is-multi .opponent-seat { flex: 1 0 150px; }
   #onLog { top: 108px; right: 8px; width: 158px; max-height: 26vh; }

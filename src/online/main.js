@@ -103,6 +103,10 @@ export function initOnline({ P, show, save }) {
   net.on('reconnecting', () => paintConn('off'));
 
   document.getElementById('onlineBtn')?.addEventListener('click', enterOnline);
+  // 扫码直达:带 ?room=CODE 打开页面 → 自动进网战屏(lobby 会对该参数自动入局)
+  if (new URLSearchParams(location.search).get('room')) {
+    enterOnline();
+  }
   window.__onlineDebug = { net, lobby, board };   // 仅供 e2e/diag
   root.querySelector('#onlineLeave').addEventListener('click', () => {
     if (net.code) net.abandon();

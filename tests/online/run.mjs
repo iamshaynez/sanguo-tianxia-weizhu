@@ -95,14 +95,14 @@ async function roomOfTwo({ turnMs = 4000 } = {}) {
   const a = makeClient('A');
   const b = makeClient('B');
   await a.open();
-  a.send({ type: 'hello_create', genId: 'guanyu', config: { seats: 2, stack: 1000, blindsIdx: 0, escalate: 4, turnMs } });
+  a.send({ type: 'hello_create', config: { seats: 2, stack: 1000, blindsIdx: 0, escalate: 4, turnMs } });
   const wa = await a.waitFor('welcome');
   a.state.playerId = wa.playerId;
   a.state.token = wa.token;
   a.state.code = wa.code;
   await a.waitFor('room', room => room.phase === 'lobby');
   await b.open();
-  b.send({ type: 'hello_join', code: a.state.code, genId: 'zhangfei' });
+  b.send({ type: 'hello_join', code: a.state.code });
   const wb = await b.waitFor('welcome');
   b.state.playerId = wb.playerId;
   b.state.token = wb.token;
@@ -110,6 +110,14 @@ async function roomOfTwo({ turnMs = 4000 } = {}) {
   await b.waitFor('room', room => room.seats.filter(seat => seat.kind !== 'open').length === 2);
   a.reset();
   b.reset();
+  // 点将后置:入席无将,开局前各自点将(先验证未点将被拒)
+  a.send({ type: 'room_action', actionId: 'gate-1', kind: 'start_game' });
+  const gateErr = await a.waitFor('error', error => error.code === 'NEED_GENERAL', 8000);
+  a.state.lastGate = gateErr.code;
+  a.send({ type: 'room_action', actionId: 'genx-a1', kind: 'set_general', genId: 'guanyu' });
+  await a.waitFor('ack', ack => ack.actionId === 'genx-a1');
+  b.send({ type: 'room_action', actionId: 'genx-b1', kind: 'set_general', genId: 'zhangfei' });
+  await b.waitFor('ack', ack => ack.actionId === 'genx-b1');
   a.send({ type: 'room_action', actionId: 'start-1', kind: 'start_game' });
   await a.waitFor('ack', ack => ack.actionId === 'start-1');
   await Promise.all([
@@ -154,6 +162,12 @@ try {
     assert.equal(va.seats[1].hole, null, 'A 不见 B 的牌');
     assert.equal(vb.seats[0].hole, null, 'B 不见 A 的牌');
     assert.equal(va.hand.pot, 30, '盲注 10+20 入池');
+  });
+  check('入席无将、开局前点将生效', () => {
+    const room = a.room();
+    assert.equal(room.seats[0].genId, 'guanyu');
+    assert.equal(room.seats[1].genId, 'zhangfei');
+    assert.equal(a.state.lastGate, 'NEED_GENERAL', '未点将 start 被拒');
   });
   check('庄位/盲注角色齐备', () => {
     const roles = a.room().seats.map(seat => seat.roles.join(','));
@@ -288,7 +302,7 @@ try {
   console.log('[4] NPC 房与超时代打');
   const c = makeClient('C');
   await c.open();
-  c.send({ type: 'hello_create', genId: 'caocao', config: { seats: 3, stack: 600, blindsIdx: 0, escalate: 4, turnMs: 4000 } });
+  c.send({ type: 'hello_create', config: { seats: 3, stack: 600, blindsIdx: 0, escalate: 4, turnMs: 4000 } });
   const wc = await c.waitFor('welcome');
   c.state.playerId = wc.playerId;
   c.state.code = wc.code;
@@ -301,6 +315,8 @@ try {
     assert.equal(npc.genId, 'zhouyu');
     assert.equal(npc.online, true, 'NPC 恒在线');
   });
+  c.send({ type: 'room_action', actionId: 'genx-c1', kind: 'set_general', genId: 'caocao' });
+  await c.waitFor('ack', ack => ack.actionId === 'genx-c1');
   c.send({ type: 'room_action', actionId: 'npcx-go2', kind: 'start_game' });
   await c.waitFor('room', room => room.phase === 'playing');
   let conservation3 = true;
