@@ -122,6 +122,14 @@ export function attachGateway(httpServer, store, { allowedOrigins = [], logger =
           if (candidate.tokenHash && tokenMatch(hashToken(msg.token), candidate.tokenHash)) { player = candidate; break; }
         }
         if (!player) { fail(conn, ERR.AUTH_FAILED, '凭据不符,无法续接'); return; }
+        // 大厅期掉线时席位已被释放(detach→freeSeat):续接须自动补回空席,
+        // 否则「有连接无席位」,凑不齐开局人数、也无法点将。
+        if (target.phase === 'lobby' && !target.seatOf(player.id)) {
+          const seatIndex = target.seats.findIndex(item => item.kind === 'open');
+          if (seatIndex === -1) { fail(conn, ERR.ROOM_FULL, '席位已满,无法归席'); return; }
+          target.bindPlayer(player.id, { genId: player.genId, tokenHash: player.tokenHash }, seatIndex);
+          player = target.players.get(player.id); // bindPlayer 重建了 players 表项,取新引用
+        }
         welcome(conn, target, player, msg.token);
         return;
       }
