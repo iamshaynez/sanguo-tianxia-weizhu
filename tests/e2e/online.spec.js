@@ -190,3 +190,46 @@ test('网战:建房可选同桌人数(2-6),选定值进房生效', async () => {
   await A.context.close();
   await browser.close();
 });
+
+test('网战:侧滑退出后重进稳定续接,不再「已在一局之中」', async () => {
+  test.setTimeout(120_000);
+  const browser = await chromium.launch();
+
+  // A 建房,B 凭码入席并保持在线(房间因此存活);A 随后模拟手机侧滑:
+  // 直接关页,不走「回目录」(teardown/forget 不触发,会话残留本机)
+  const A = await newPage(browser);
+  await A.page.click('[data-online-gate]');
+  await A.page.click('#onlineCreate');
+  await expect(A.page.locator('.online-room')).toBeVisible({ timeout: 15_000 });
+  const code = (await A.page.locator('.online-code').textContent()).trim();
+  const B = await newPage(browser);
+  await B.page.click('[data-online-gate]');
+  await B.page.fill('.online-code-input', code);
+  await B.page.click('#onlineJoin');
+  await expect(B.page.locator('.online-room')).toBeVisible({ timeout: 15_000 });
+  await A.page.close();
+
+  // 同一 context(共享 localStorage)重开页面再进网战:应稳定续接回旧房间
+  // (大厅期掉线席位已释放,服务端须自动补席),且全程不得出现 BAD_STATE
+  // (已在一局之中)——修复前 handshake 与显式 helloResume 双发 resume,
+  // 第二条必被拒绝并污染后续建房;席位不补则凑不齐人数无法开局。
+  const page2 = await A.context.newPage();
+  await page2.goto('/?tutorial=0');
+  await page2.click('#startBtn');
+  await page2.click('[data-online-gate]');
+  await expect(page2.locator('.online-room')).toBeVisible({ timeout: 15_000 });
+  await page2.waitForTimeout(800);
+  expect(await page2.evaluate(() => window.__lastNetErr?.code ?? null)).not.toBe('BAD_STATE');
+
+  // 干净退出(回目录=forget)后重新建房:不被旧房间绑定挡死
+  await page2.click('#onlineLeave');
+  await expect(page2.locator('#scroll:not(.hidden)')).toBeVisible();
+  await page2.click('[data-online-gate]');
+  await expect(page2.locator('.online-home')).toBeVisible();
+  await page2.click('#onlineCreate');
+  await expect(page2.locator('.online-room')).toBeVisible({ timeout: 15_000 });
+
+  await A.context.close();
+  await B.context.close();
+  await browser.close();
+});

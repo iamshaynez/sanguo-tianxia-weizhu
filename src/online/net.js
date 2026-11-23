@@ -55,14 +55,28 @@ export function createOnlineNet() {
     return true;
   }
 
-  function handshake() {
-    if (sessionActive) return;                    // 本连接已续接过
+  // 续接单飞:handshake 的自动续接(为断线重连设计)与显式 helloResume 共用同一次
+  // 发送。此前两条 hello_resume 并发,服务端把第二条判为「已在一局之中」(BAD_STATE)
+  // 拒绝,显式续接 promise 被误杀 → clearSession 后 socket 仍绑在旧房间,后续
+  // 建房/加入全被「已在一局之中」挡死——手机侧滑退出(不走回目录)再重进必现。
+  let resumeFlight = null;
+  function sendResume() {
     const session = loadSession();
-    if (session?.code && session?.token) {
+    if (!session?.code || !session?.token) {
+      return Promise.reject(Object.assign(new Error('本机没有可续接的牌局'), { code: 'NO_SESSION' }));
+    }
+    if (!resumeFlight) {
       code = session.code;
       token = session.token;
-      rawSend({ type: 'hello_resume', code: session.code, token: session.token });
+      resumeFlight = helloRequest({ type: 'hello_resume', code: session.code, token: session.token });
+      resumeFlight.catch(() => {}); // 调用方各自感知;后台自动续接无调用方,防未处理拒绝
     }
+    return resumeFlight;
+  }
+
+  function handshake() {
+    if (sessionActive) return;                    // 本连接已续接过
+    sendResume().catch(() => {});                 // 失败留在当前界面,由用户操作兜底
   }
 
   function handleMessage(data) {
@@ -133,6 +147,7 @@ export function createOnlineNet() {
 
   function connect() {
     if (ws && (ws.readyState === WebSocket.OPEN || ws.readyState === WebSocket.CONNECTING)) return;
+    resumeFlight = null;                          // 新连接:续接可重新单飞一次
     try { ws = new WebSocket(url()); } catch { scheduleReconnect(); return; }
     ws.onopen = () => { handshake(); emit('open'); };
     ws.onmessage = event => handleMessage(event.data);
@@ -197,6 +212,7 @@ export function createOnlineNet() {
     forget() {
       clearSession();
       sessionActive = false;
+      resumeFlight = null;
       code = null;
       token = null;
       playerId = null;
@@ -212,11 +228,7 @@ export function createOnlineNet() {
       return helloRequest({ type: 'hello_join', code: String(roomCode || '').toUpperCase(), genId });
     },
     helloResume() {
-      const session = loadSession();
-      if (!session) return Promise.reject(Object.assign(new Error('本机没有可续接的牌局'), { code: 'NO_SESSION' }));
-      code = session.code;
-      token = session.token;
-      return helloRequest({ type: 'hello_resume', code: session.code, token: session.token });
+      return sendResume();
     },
     roomAction(kind, fields = {}) {
       return action('room_action', { kind, ...fields });

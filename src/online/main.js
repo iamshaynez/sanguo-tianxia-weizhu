@@ -30,6 +30,7 @@ export function initOnline({ P, show, save }) {
 
   function teardown() {
     net.forget();
+    lobby.reset();
     board.hide();
     lobby.hide();
     root.classList.add('hidden');
