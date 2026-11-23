@@ -233,3 +233,56 @@ test('网战:侧滑退出后重进稳定续接,不再「已在一局之中」', 
   await B.context.close();
   await browser.close();
 });
+
+test('网战:续接帧风暴中新一手的手牌不丢(并发 render 竞态)', async () => {
+  test.setTimeout(150_000);
+  const browser = await chromium.launch();
+
+  const A = await newPage(browser);
+  await A.page.click('[data-online-gate]');
+  await A.page.selectOption('#onlineSeats', '2');
+  await A.page.click('#onlineCreate');
+  await expect(A.page.locator('.online-room')).toBeVisible({ timeout: 15_000 });
+  const code = (await A.page.locator('.online-code').textContent()).trim();
+  const B = await newPage(browser);
+  await B.page.click('[data-online-gate]');
+  await B.page.fill('.online-code-input', code);
+  await B.page.click('#onlineJoin');
+  await expect(B.page.locator('.online-room')).toBeVisible({ timeout: 15_000 });
+  await A.page.selectOption('.online-seat .online-select[data-pick-general]', 'guanyu');
+  await B.page.selectOption('.online-seat .online-select[data-pick-general]', 'zhangfei');
+
+  // 先订阅房间帧,开局后 stash 到一张 playing 帧
+  await A.page.evaluate(() => {
+    window.__roomStash = null;
+    window.__onlineDebug.net.on('room', room => {
+      if (room.phase === 'playing' && room.hand && !window.__roomStash) window.__roomStash = room;
+    });
+  });
+  await A.page.click('#onlineStart');
+  await expect(A.page.locator('#onCardLayer .card.big')).toHaveCount(2, { timeout: 20_000 });
+  await A.page.waitForFunction(() => !!window.__roomStash);
+
+  // 伪装成新一手(手号+1、公共牌清空),同步并发两次 render——复现续接时
+  // 补帧风暴挤进 sweep 窗口的竞态。修复前:第二帧跳过发牌、第一帧被
+  // epoch 中断,两张手牌谁都不发(桌上空空如也)。
+  // 等开局帧风暴(deal/时限等连发 bump)平息,避免真实帧干扰复现;
+  // 随后伪造手号+1 同步并发两次 render——复现续接时补帧挤进 sweep 窗口
+  // 的竞态。修复前:第二帧跳过发牌、第一帧被 epoch 中断,手牌谁都不发。
+  await A.page.waitForTimeout(2500);
+  await A.page.evaluate(async () => {
+    const fresh = structuredClone(window.__roomStash);
+    fresh.hand.handNum += 1;
+    fresh.hand.board = [];
+    const board = window.__onlineDebug.board;
+    await Promise.all([board.__render(fresh), board.__render(fresh)]);
+  });
+
+
+  await A.page.waitForTimeout(1500); // 等扫牌+发牌动画落地
+  await expect(A.page.locator('#onCardLayer .card.big')).toHaveCount(2);
+
+  await A.context.close();
+  await B.context.close();
+  await browser.close();
+});

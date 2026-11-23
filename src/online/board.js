@@ -75,6 +75,7 @@ export function createOnlineBoard(root, net, hooks = {}) {
   let boardEls = [];
   let renderedHand = 0;
   let renderEpoch = 0;
+let initFlight = null;   // 新一手初始化(扫牌+发底牌)的单飞互斥
   let renderedBoard = -1;
   let countdownTimer = null;
   let deadline = 0;
@@ -514,11 +515,20 @@ export function createOnlineBoard(root, net, hooks = {}) {
 
     if (playing && room.hand) {
       if (renderedHand !== room.hand.handNum) {
-        renderedHand = room.hand.handNum;
-        renderedBoard = -1;
-        await sweepCards();
-        if (epoch !== renderEpoch) return;
-        await dealHole(room);
+        // 新一手初始化(扫牌+发底牌)必须完整跑完:此前并发 render 帧会在
+        // sweep 的 await 间隙挤进来,后者见 renderedHand 已设便跳过发牌,
+        // 前者又被 epoch 中断——两张手牌谁都没发(续接帧风暴下必现)。
+        // 互斥单飞:首个 render 独占初始化,后续 render 等它落地再继续。
+        if (!initFlight) {
+          const hand = room.hand;
+          initFlight = (async () => {
+            renderedHand = hand.handNum;
+            renderedBoard = -1;
+            await sweepCards();
+            await dealHole({ ...room, hand });
+          })().finally(() => { initFlight = null; });
+        }
+        await initFlight;
         if (epoch !== renderEpoch) return;
       }
       await dealBoard(room);
@@ -573,5 +583,5 @@ export function createOnlineBoard(root, net, hooks = {}) {
     clearCards();
   }
 
-  return { show, hide, destroy, banner };
+  return { show, hide, destroy, banner, __render: render }; // __render 仅供 e2e 复现并发帧
 }
