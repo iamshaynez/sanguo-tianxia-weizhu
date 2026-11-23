@@ -1,5 +1,6 @@
 // tests/online/run.mjs —— 在线服务端集成测试(真实子进程 + 真实 ws 客户端)。
-// 覆盖:建房/加入/NPC/开局/下注/幂等/隐私/守恒/验牌/断线代打/续接/越权/快照恢复。
+// 覆盖:建房/加入/NPC(含请出)/开局/下注/幂等/隐私/守恒/验牌/断线代打/续接/越权/快照恢复,
+// 以及已绑定连接上的重复 hello(幂等重欢迎/大厅换房/对局中拒绝)。
 import { spawn } from 'node:child_process';
 import { mkdtempSync, rmSync, readFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -178,6 +179,99 @@ try {
   });
 
   // [2] 全程审计:守恒 + 隐私 + 幂等
+  // [1.5] 已绑定连接上的 hello:幂等重欢迎 / 大厅期换房 / 对局中拒绝并补发房间帧
+  // 背景:旧客户端重复续接、扫码自动入局都会在已绑定的连接上重发 hello,此前一律回
+  // 「已在一局之中」;客户端把它当致命错误,扫码入局更是陷入重试死循环(进不去也回不去)。
+  console.log('[1.5] 已绑定连接上的 hello');
+  {
+    const c = makeClient('C');
+    await c.open();
+    c.send({ type: 'hello_create', config: { seats: 4, stack: 1000, blindsIdx: 0, escalate: 4, turnMs: 4000 } });
+    const wc = await c.waitFor('welcome');
+    c.state.playerId = wc.playerId;
+    c.state.token = wc.token;
+    c.state.code = wc.code;
+    const code1 = wc.code;
+    const token1 = wc.token;
+    await c.waitFor('room', room => room.phase === 'lobby');
+
+    // 同一玩家重复续接(旧客户端双发 resume):幂等重欢迎
+    c.reset();
+    c.send({ type: 'hello_resume', code: code1, token: token1 });
+    const again = await c.waitFor('welcome');
+    check('重复续接幂等:再收 welcome 而非「已在一局之中」,身份与席位不变', () => {
+      assert.equal(again.playerId, wc.playerId);
+      assert.equal(again.seatIndex, wc.seatIndex);
+      assert.equal(again.token, token1);
+    });
+
+    // 已绑定时重复入局同一房间:幂等重欢迎(凭据轮换),不多占席位
+    c.reset();
+    c.send({ type: 'hello_join', code: code1 });
+    const rejoin = await c.waitFor('welcome');
+    const afterRejoin = (await c.waitFor('room', room => room.phase === 'lobby')).room;
+    check('重复入局同一房间:幂等重欢迎,不多占席位', () => {
+      assert.equal(rejoin.playerId, wc.playerId);
+      assert.equal(rejoin.seatIndex, wc.seatIndex);
+      assert.notEqual(rejoin.token, token1, '凭据轮换');
+      assert.equal(afterRejoin.seats.filter(seat => seat.kind !== 'open').length, 1);
+    });
+
+    // 「请出」军师:协议须透传席位号(此前只校验不透传,× 永远无效)
+    c.reset();
+    c.send({ type: 'room_action', actionId: 'npcx-add01', kind: 'add_npc', genId: 'zhouyu' });
+    await c.waitFor('ack', ack => ack.actionId === 'npcx-add01');
+    const withNpc = (await c.waitFor('room', room => room.seats.some(seat => seat.kind === 'npc'))).room;
+    const npcSeat = withNpc.seats.find(seat => seat.kind === 'npc');
+    c.reset();
+    c.send({ type: 'room_action', actionId: 'npcx-out01', kind: 'remove_npc', seat: npcSeat.index });
+    await c.waitFor('ack', ack => ack.actionId === 'npcx-out01');
+    const withoutNpc = (await c.waitFor('room', room => room.phase === 'lobby' && !room.seats.some(seat => seat.kind === 'npc'))).room;
+    check('请出军师:remove_npc 的席位号透传生效', () => {
+      assert.equal(withoutNpc.seats[npcSeat.index].kind, 'open');
+    });
+
+    // 大厅期换房:先离开当前房间,再进入新房间
+    const d = makeClient('D');
+    await d.open();
+    d.send({ type: 'hello_create', config: { seats: 4, stack: 1000, blindsIdx: 0, escalate: 4, turnMs: 4000 } });
+    const wd = await d.waitFor('welcome');
+    d.state.playerId = wd.playerId;
+    d.state.token = wd.token;
+    d.state.code = wd.code;
+    await d.waitFor('room', room => room.phase === 'lobby');
+    c.reset();
+    c.send({ type: 'hello_join', code: wd.code });
+    const switched = await c.waitFor('welcome');
+    await d.waitFor('room', room => room.seats.filter(seat => seat.kind === 'human').length === 2);
+    check('大厅期换房:离开旧房,进入新房', () => {
+      assert.equal(switched.code, wd.code);
+      assert.notEqual(switched.playerId, wc.playerId, '新房间是新身份');
+    });
+
+    // 对局中:hello 被拒,并补发当前房间帧让客户端回到牌桌
+    c.reset();
+    d.reset();
+    c.send({ type: 'room_action', actionId: 'genx-c9', kind: 'set_general', genId: 'guanyu' });
+    d.send({ type: 'room_action', actionId: 'genx-d9', kind: 'set_general', genId: 'zhangfei' });
+    await Promise.all([
+      c.waitFor('ack', ack => ack.actionId === 'genx-c9'),
+      d.waitFor('ack', ack => ack.actionId === 'genx-d9'),
+    ]);
+    d.send({ type: 'room_action', actionId: 'start-9', kind: 'start_game' });
+    await d.waitFor('room', room => room.phase === 'playing');
+    c.reset();
+    c.send({ type: 'hello_join', code: code1 });
+    const refused = await c.waitFor('error', error => error.code === 'BAD_STATE');
+    const resent = (await c.waitFor('room', room => room.phase === 'playing')).room;
+    check('对局中 hello 仍被拒,但紧随其后补发所在房间帧', () => {
+      assert.equal(refused.message, '已在一局之中');
+      assert.equal(resent.you.seatIndex, switched.seatIndex, '补发的是本人所在房间');
+    });
+    await c.close();
+    await d.close();
+  }
+
   console.log('[2] 下注/幂等/隐私/守恒/验牌');
   let conservationOk = true;
   let privacyOk = true;

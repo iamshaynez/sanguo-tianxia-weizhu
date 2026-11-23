@@ -131,6 +131,7 @@ export class Room {
     seat.genId = genId;
     seat.name = genId;
     seat.persona = makePersona(traitsOfGen(genId));
+    player.genId = genId;                  // 大厅期掉线会释放席位:续接补席时据此带回点好的武将
     this.event('general', seat.index, null, genId);
     this.bump(this);
     return {};

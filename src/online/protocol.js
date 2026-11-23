@@ -105,6 +105,7 @@ export function validateClientMessage(msg) {
       if (msg.kind === 'add_npc' && msg.genId !== undefined && !isStr(msg.genId)) return { ok: false, code: ERR.BAD_MESSAGE };
       if (msg.kind === 'add_npc') out.genId = msg.genId;   // 透传给房间
       if (msg.kind === 'remove_npc' && !isInt(msg.seat, 0, SEAT_MAX - 1)) return { ok: false, code: ERR.BAD_MESSAGE };
+      if (msg.kind === 'remove_npc') out.seat = msg.seat;   // 只校验不透传曾让「请出」永远拿到 undefined 席位
       if (msg.kind === 'set_general' && !isStr(msg.genId)) return { ok: false, code: ERR.BAD_MESSAGE };
       if (msg.kind === 'set_general') out.genId = msg.genId;
       return out;
