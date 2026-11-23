@@ -300,5 +300,11 @@ export function createOnlineLobby(root, net, hooks = {}) {
     root.innerHTML = '';
   }
 
-  return { show, hide, destroy, get view() { return view; } };
+  // 弃局退场后重置视图:否则下次 show() 沿用 'room' 渲染幽灵房间,
+  // 玩家退出重进会以为「已经在游戏里」。
+  function reset() {
+    view = 'home';
+    currentRoom = null;
+  }
+  return { show, hide, destroy, reset, get view() { return view; } };
 }
