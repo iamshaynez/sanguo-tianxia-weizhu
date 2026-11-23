@@ -79,6 +79,37 @@ export function attachGateway(httpServer, store, { allowedOrigins = [], logger =
     }
   }
 
+  // 已绑定连接上再收到 hello:旧客户端的重复续接、扫码链接的自动入局、残留会话
+  // 都会落到这里。大厅阶段一律友好处理(幂等/换房);只有对局中才拒绝,并补发
+  // 当前房间帧让客户端回到它真正所在的牌桌——而不是停在一句「已在一局之中」上
+  // (此前客户端把它当致命错误退回主页,扫码入局还会就此陷入重试死循环)。
+  function tokenOwner(room, token) {
+    for (const candidate of room.players.values()) {
+      if (candidate.tokenHash && tokenMatch(hashToken(token), candidate.tokenHash)) return candidate;
+    }
+    return null;
+  }
+
+  function refuseInPlay(conn) {
+    fail(conn, ERR.BAD_STATE, '已在一局之中');
+    send(conn, { type: 'room', room: conn.room.viewFor(conn.playerId) });
+  }
+
+  // 大厅阶段离开当前房间(释放席位、迁移房主、空房自散),连接保留
+  function leaveCurrent(conn) {
+    const { room, playerId } = conn;
+    conn.room = null;
+    conn.playerId = null;
+    if (room && playerId) room.leave(playerId);
+  }
+
+  // 重新欢迎同一房间的玩家:席位/武将/房主身份全保留,仅轮换凭据
+  function rewelcome(conn, player) {
+    const token = newToken();
+    player.tokenHash = hashToken(token);
+    welcome(conn, conn.room, player, token);
+  }
+
   function route(conn, msg) {
     const room = conn.room;
     switch (msg.type) {
@@ -86,7 +117,8 @@ export function attachGateway(httpServer, store, { allowedOrigins = [], logger =
         send(conn, { type: 'pong', now: Date.now() });
         return;
       case 'hello_create': {
-        if (room) { fail(conn, ERR.BAD_STATE, '已在一局之中'); return; }
+        if (room && room.phase !== 'lobby') { refuseInPlay(conn); return; }
+        if (room) leaveCurrent(conn);
         const player = { id: `p_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 8)}` };
         const token = newToken();
         const tokenHash = hashToken(token);
@@ -98,7 +130,15 @@ export function attachGateway(httpServer, store, { allowedOrigins = [], logger =
         return;
       }
       case 'hello_join': {
-        if (room) { fail(conn, ERR.BAD_STATE, '已在一局之中'); return; }
+        if (room) {
+          if (room.phase !== 'lobby') { refuseInPlay(conn); return; }
+          // 已在同一房间:幂等重欢迎(不另开席位);别的房间:先离开当前房间再入局
+          if (room.code === String(msg.code).toUpperCase()) {
+            const self = room.players.get(conn.playerId);
+            if (self) { rewelcome(conn, self); return; }
+          }
+          leaveCurrent(conn);
+        }
         const target = store.get(msg.code);
         if (!target) { fail(conn, ERR.ROOM_NOT_FOUND, '房间不存在或已解散'); return; }
         if (target.phase !== 'lobby') { fail(conn, ERR.ALREADY_STARTED, '牌局已开始,请等待下一局'); return; }
@@ -114,20 +154,23 @@ export function attachGateway(httpServer, store, { allowedOrigins = [], logger =
         return;
       }
       case 'hello_resume': {
-        if (room) { fail(conn, ERR.BAD_STATE, '已在一局之中'); return; }
+        if (room) {
+          if (room.phase !== 'lobby') { refuseInPlay(conn); return; }
+          // 同一玩家的重复续接(旧客户端双发 resume):幂等重欢迎;否则先离开当前房间
+          const owner = tokenOwner(room, msg.token);
+          if (owner && owner.id === conn.playerId) { welcome(conn, room, owner, msg.token); return; }
+          leaveCurrent(conn);
+        }
         const target = store.get(msg.code);
         if (!target) { fail(conn, ERR.ROOM_NOT_FOUND, '房间不存在或已解散'); return; }
-        let player = null;
-        for (const candidate of target.players.values()) {
-          if (candidate.tokenHash && tokenMatch(hashToken(msg.token), candidate.tokenHash)) { player = candidate; break; }
-        }
+        let player = tokenOwner(target, msg.token);
         if (!player) { fail(conn, ERR.AUTH_FAILED, '凭据不符,无法续接'); return; }
-        // 大厅期掉线时席位已被释放(detach→freeSeat):续接须自动补回空席,
-        // 否则「有连接无席位」,凑不齐开局人数、也无法点将。
+        // 大厅期掉线时席位已被释放(detach→freeSeat):续接须自动补回空席(带回先前
+        // 点好的武将),否则「有连接无席位」,凑不齐开局人数、也无法点将。
         if (target.phase === 'lobby' && !target.seatOf(player.id)) {
-          const seatIndex = target.seats.findIndex(item => item.kind === 'open');
-          if (seatIndex === -1) { fail(conn, ERR.ROOM_FULL, '席位已满,无法归席'); return; }
-          target.bindPlayer(player.id, { genId: player.genId, tokenHash: player.tokenHash }, seatIndex);
+          const seatInfo = target.addPlayer({ genId: player.genId, tokenHash: player.tokenHash });
+          if (seatInfo.error) { fail(conn, seatInfo.error, '席位已满,无法归席'); return; }
+          target.bindPlayer(player.id, { genId: player.genId, tokenHash: player.tokenHash }, seatInfo.index);
           player = target.players.get(player.id); // bindPlayer 重建了 players 表项,取新引用
         }
         welcome(conn, target, player, msg.token);
