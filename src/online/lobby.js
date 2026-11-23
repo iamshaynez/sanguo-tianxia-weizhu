@@ -23,8 +23,10 @@ export function generalPortrait(genId, className = 'online-portrait') {
   return portraitImage(gen?.skin || 'default', className);
 }
 
-function generalOptions(selected = '') {
+// taken:已被别的席位占用的武将——自己的选将下拉不再列出,从源头减少「该武将已在席上」
+function generalOptions(selected = '', taken = new Set()) {
   return Object.keys(GENERALS)
+    .filter(genId => !taken.has(genId))
     .map(genId => `<option value="${esc(genId)}"${genId === selected ? ' selected' : ''}>${esc(generalName(genId))}</option>`)
     .join('');
 }
@@ -34,16 +36,22 @@ export function createOnlineLobby(root, net, hooks = {}) {
   root.classList.add('online-root');
   let currentRoom = null;   // 最近一帧 room 视图
   let view = 'home';        // home | room
+  let autoJoined = false;   // 扫码自动入局只做一次(见 renderHome)
   const offRoom = net.on('room', room => {
     currentRoom = room;     // 任何阶段先落最新视图,渲染与判断都以它为准
     if (room.phase === 'lobby') {
       view = 'room';
       renderRoom();
-    } else if (view === 'room') {
+    } else {
+      // 非大厅帧只会发给已入房的连接:无论界面此刻停在哪,都该进牌桌
+      view = 'room';
       onEnterTable(room);   // 开局/终局交给牌桌模块
     }
   });
   const offError = net.on('error', msg => {
+    // 带 actionId 的是某次具体操作的失败(选到被占武将、未选将等),该操作的 catch
+    // 已就地提示——不得据此把人踢回主页(曾因此触发扫码自动重入的死循环)。
+    if (msg.actionId) return;
     if (['ROOM_FULL', 'ROOM_NOT_FOUND', 'ALREADY_STARTED', 'GEN_TAKEN', 'AUTH_FAILED'].includes(msg.code)) {
       view = 'home';
       renderHome(translateErr(msg.code, msg.message));
@@ -133,8 +141,14 @@ export function createOnlineLobby(root, net, hooks = {}) {
       }
     });
     root.querySelector('#onlineLeaveHome').addEventListener('click', onExit);
-    // 扫码入局:带 ?room=CODE 打开即自动加入(入局意图明确),失败回落表单提示
-    if (inviteCode) doJoin();
+    // 扫码入局:带 ?room=CODE 打开即自动加入(入局意图明确),失败回落表单提示。
+    // 只触发一次:renderHome 会被重绘反复调用,若每次都重发入局,连接已绑定房间时
+    // 服务端必拒,报错→重绘→再入局→再报错,按钮被轮流锁死(「进不去也回不去」)。
+    // 本机已有同一房间的会话时走续接(保留席位身份),不重复入局。
+    if (inviteCode && !autoJoined && currentRoom?.code !== inviteCode && loadSession()?.code !== inviteCode) {
+      autoJoined = true;
+      doJoin();
+    }
   }
 
   function readConfig() {
@@ -186,7 +200,7 @@ export function createOnlineLobby(root, net, hooks = {}) {
       } catch { /* 剪贴板不可用 */ }
     });
     root.querySelector('#onlineQuitRoom').addEventListener('click', () => {
-      net.roomAction('leave');
+      net.roomAction('leave').catch(() => {});   // 断线/未入房时离席失败无妨,本地照样退场
       net.forget();
       view = 'home';
       onExit();
@@ -211,6 +225,7 @@ export function createOnlineLobby(root, net, hooks = {}) {
     // 席位点将:自己席位 select 变更/随机按钮
     for (const select of root.querySelectorAll('[data-pick-general]')) {
       select.addEventListener('change', () => {
+        if (!select.value) return;            // 原生选框被重绘打断时可能回落到占位项
         net.roomAction('set_general', { genId: select.value })
           .catch(error => renderRoom(translateErr(error.code, error.message)));
       });
@@ -238,11 +253,12 @@ export function createOnlineLobby(root, net, hooks = {}) {
     if (you) tags.push(`<span class="seat-tag you">${t('online.seatYou')}</span>`);
     if (room.hostId && seat.playerId === room.hostId) tags.push(`<span class="seat-tag host">${t('online.seatHost')}</span>`);
     const picked = !!seat.genId;
+    const takenByOthers = new Set(room.seats.filter(other => other.kind !== 'open' && other.index !== seat.index).map(other => other.genId));
     const picker = you && seat.kind === 'human' && !picked
       ? `<div class="online-pick-row">
            <select class="online-select" data-pick-general>
              <option value="" selected disabled>${t('online.pickGeneral')}</option>
-             ${generalOptions()}
+             ${generalOptions('', takenByOthers)}
            </select>
            <button class="ghost" data-random-general>${t('online.random')}</button>
          </div>`
@@ -305,6 +321,7 @@ export function createOnlineLobby(root, net, hooks = {}) {
   function reset() {
     view = 'home';
     currentRoom = null;
+    autoJoined = false;      // 再次进入网战(仍带 ?room=)时重新按扫码意图自动入局
   }
   return { show, hide, destroy, reset, get view() { return view; } };
 }

@@ -81,8 +81,12 @@ export function initOnline({ P, show, save }) {
 
   function enterOnline() {
     show('online');
+    // 扫码链接表达的是「进这一间」:本机若留着别的房间的会话,不抢跑续接把人带回旧房
+    // (同一房间的会话则照常续接,保留席位身份)。
+    const invite = (new URLSearchParams(location.search).get('room') || '').toUpperCase();
+    let session = loadSession();
+    if (session && invite && session.code !== invite) { net.forget(); session = null; }
     net.connect();
-    const session = loadSession();
     if (session) {
       lobby.show();
       net.helloResume().catch(() => { clearSession(); lobby.show(); });

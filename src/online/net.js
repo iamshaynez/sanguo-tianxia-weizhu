@@ -68,7 +68,9 @@ export function createOnlineNet() {
     if (!resumeFlight) {
       code = session.code;
       token = session.token;
-      resumeFlight = helloRequest({ type: 'hello_resume', code: session.code, token: session.token });
+      // 落定即清空:失败(如重连未及时建立导致 OFFLINE)后,下一次连接打开还要能重新续接
+      resumeFlight = helloRequest({ type: 'hello_resume', code: session.code, token: session.token })
+        .finally(() => { resumeFlight = null; });
       resumeFlight.catch(() => {}); // 调用方各自感知;后台自动续接无调用方,防未处理拒绝
     }
     return resumeFlight;
@@ -147,16 +149,23 @@ export function createOnlineNet() {
 
   function connect() {
     if (ws && (ws.readyState === WebSocket.OPEN || ws.readyState === WebSocket.CONNECTING)) return;
+    intentional = false;                          // 显式 connect 即「要联网」:上次退出留下的标记不沿用到这一次
     resumeFlight = null;                          // 新连接:续接可重新单飞一次
-    try { ws = new WebSocket(url()); } catch { scheduleReconnect(); return; }
-    ws.onopen = () => { handshake(); emit('open'); };
-    ws.onmessage = event => handleMessage(event.data);
-    ws.onclose = () => {
+    let socket;
+    try { socket = ws = new WebSocket(url()); } catch { scheduleReconnect(); return; }
+    // 只认「当前连接」的事件:被 forget/close 替换掉的旧连接,其迟到的 close 不得
+    // 误把新连接置空或触发多余的重连。
+    const stale = () => socket !== ws;
+    socket.onopen = () => { if (stale()) return; handshake(); emit('open'); };
+    socket.onmessage = event => { if (!stale()) handleMessage(event.data); };
+    socket.onclose = () => {
+      if (stale()) return;
       ws = null;
+      sessionActive = false;                      // 连接已断:重连后由 handshake 重新续接归席
       emit('disconnected');
       scheduleReconnect();
     };
-    ws.onerror = () => { try { ws.close(); } catch { /* 已断 */ } };
+    socket.onerror = () => { try { socket.close(); } catch { /* 已断 */ } };
   }
 
   const action = (type, fields = {}) => new Promise((resolve, reject) => {
@@ -217,7 +226,9 @@ export function createOnlineNet() {
       token = null;
       playerId = null;
       intentional = true;
-      try { ws?.close(); } catch { /* 已断 */ }
+      const socket = ws;
+      ws = null;                                  // 立即断引用:旧连接的迟到 close 会被 connect 里的身份判断忽略
+      try { socket?.close(); } catch { /* 已断 */ }
     },
     // hello 类指令的应答是 welcome/error 而非 ack,单独走 __hello__ 通道
     helloCreate(genId, config) {
@@ -243,7 +254,7 @@ export function createOnlineNet() {
       rawSend({ type: 'ping' });
     },
     abandon() {
-      if (!sessionActive) return;
+      if (!code) return;                          // 以「是否知道自己在哪个房间」为准:断线重连期间同样要能离席
       sessionActive = false;
       rawSend({ type: 'room_action', actionId: `lv${Date.now().toString(36)}`, kind: 'leave' });
     },
